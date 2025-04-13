@@ -34,7 +34,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var description: String?
         
-        public var isBankOffer: Bool?
+        public var tags: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -59,11 +59,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case description = "description"
             
-            case isBankOffer = "is_bank_offer"
+            case tags = "tags"
             
         }
 
-        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, isBankOffer: Bool? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
+        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, tags: [String]? = nil, validTill: String? = nil) {
             
             self.id = id
             
@@ -85,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.description = description
             
-            self.isBankOffer = isBankOffer
+            self.tags = tags
             
         }
 
@@ -214,7 +214,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    isBankOffer = try container.decode(Bool.self, forKey: .isBankOffer)
+                    tags = try container.decode([String].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -281,7 +281,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(isBankOffer, forKey: .isBankOffer)
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }

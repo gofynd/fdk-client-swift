@@ -52,9 +52,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var modifiedBy: String?
         
-        public var expireAt: String?
-        
-        public var distributionLogic: DistributionLogic?
+        public var distributionLogic: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -97,13 +95,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case modifiedBy = "modified_by"
             
-            case expireAt = "expire_at"
-            
             case distributionLogic = "distribution_logic"
             
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, cartValue: Double? = nil, collection: Collection, createdBy: String? = nil, distributionLogic: DistributionLogic? = nil, expireAt: String? = nil, id: String? = nil, isActive: Bool? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, removeArticles: Bool? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, cartValue: Double? = nil, collection: Collection, createdBy: String? = nil, distributionLogic: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, removeArticles: Bool? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
             
             self.value = value
             
@@ -142,8 +138,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.cartValue = cartValue
             
             self.modifiedBy = modifiedBy
-            
-            self.expireAt = expireAt
             
             self.distributionLogic = distributionLogic
             
@@ -326,19 +320,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    expireAt = try container.decode(String.self, forKey: .expireAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    distributionLogic = try container.decode(DistributionLogic.self, forKey: .distributionLogic)
+                    distributionLogic = try container.decode([String: Any].self, forKey: .distributionLogic)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -446,11 +428,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-            
-            
-            
-            try? container.encodeIfPresent(expireAt, forKey: .expireAt)
             
             
             

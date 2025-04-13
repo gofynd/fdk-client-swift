@@ -34,7 +34,7 @@ public extension PlatformClient.Catalog {
         
         public var selectedMin: Int?
         
-        public var value: [String: Any]
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: [String: Any]) {
+        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String? = nil) {
             
             self.count = count
             
@@ -215,9 +215,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                value = try container.decode([String: Any].self, forKey: .value)
+                do {
+                    value = try container.decode(String.self, forKey: .value)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -322,7 +329,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var selectedMin: Int?
         
-        public var value: [String: Any]
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -353,7 +360,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: [String: Any]) {
+        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String? = nil) {
             
             self.count = count
             
@@ -503,9 +510,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                value = try container.decode([String: Any].self, forKey: .value)
+                do {
+                    value = try container.decode(String.self, forKey: .value)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

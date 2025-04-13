@@ -25,6 +25,8 @@ public class PlatformClient {
 
     public let fileStorage: FileStorage
 
+    public let finance: Finance
+
     public let lead: Lead
 
     public let serviceability: Serviceability
@@ -59,6 +61,8 @@ public class PlatformClient {
         discount = Discount(config: config)
         
         fileStorage = FileStorage(config: config)
+        
+        finance = Finance(config: config)
         
         lead = Lead(config: config)
         
@@ -351,7 +355,7 @@ public class PlatformClient {
             public func createCoupon(
                 body: CouponAdd,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CouponDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CouponDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -379,7 +383,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CouponDetailResult.self, from: data)
+                            let response = Utility.decode(CouponDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -407,16 +411,9 @@ public class PlatformClient {
                 isDisplay: Bool?,
                 typeSlug: String?,
                 code: String?,
-                createdBy: String?,
-                reviewedBy: String?,
-                approvedStartTime: String?,
-                approvedEndTime: String?,
-                reviewStartTime: String?,
-                reviewEndTime: String?,
-                status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CouponsResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CouponsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -453,34 +450,6 @@ public class PlatformClient {
                     xQuery["code"] = value
                 }
                 
-                if let value = createdBy {
-                    xQuery["created_by"] = value
-                }
-                
-                if let value = reviewedBy {
-                    xQuery["reviewed_by"] = value
-                }
-                
-                if let value = approvedStartTime {
-                    xQuery["approved_start_time"] = value
-                }
-                
-                if let value = approvedEndTime {
-                    xQuery["approved_end_time"] = value
-                }
-                
-                if let value = reviewStartTime {
-                    xQuery["review_start_time"] = value
-                }
-                
-                if let value = reviewEndTime {
-                    xQuery["review_end_time"] = value
-                }
-                
-                if let value = status {
-                    xQuery["status"] = value
-                }
-                
                 var xHeaders: [(key: String, value: String)] = []
                 
                 
@@ -504,7 +473,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CouponsResult.self, from: data)
+                            let response = Utility.decode(CouponsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -515,20 +484,6 @@ public class PlatformClient {
                         }
                 });
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
             
             
@@ -557,17 +512,10 @@ public class PlatformClient {
                 isDisplay: Bool?,
                 typeSlug: String?,
                 code: String?,
-                createdBy: String?,
-                reviewedBy: String?,
-                approvedStartTime: String?,
-                approvedEndTime: String?,
-                reviewStartTime: String?,
-                reviewEndTime: String?,
-                status: String?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<CouponsResult> {
+                ) -> Paginator<CouponsResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<CouponsResult>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<CouponsResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getCoupons(
                         pageNo: paginator.pageNo,
@@ -578,13 +526,6 @@ public class PlatformClient {
                         isDisplay: isDisplay,
                         typeSlug: typeSlug,
                         code: code,
-                        createdBy: createdBy,
-                        reviewedBy: reviewedBy,
-                        approvedStartTime: approvedStartTime,
-                        approvedEndTime: approvedEndTime,
-                        reviewStartTime: reviewStartTime,
-                        reviewEndTime: reviewEndTime,
-                        status: status,
                         
                         headers: headers
                     ) { response, error in                    
@@ -609,7 +550,7 @@ public class PlatformClient {
             public func getCouponTags(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TagsViewResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TagsViewResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -637,7 +578,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TagsViewResult.self, from: data)
+                            let response = Utility.decode(TagsViewResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -659,7 +600,7 @@ public class PlatformClient {
             public func getPromotionTags(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TagsViewResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TagsViewResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -687,7 +628,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TagsViewResult.self, from: data)
+                            let response = Utility.decode(TagsViewResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -703,7 +644,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get a coupon
+            * Summary: Get coupon details by ID
             * Description: Retrieve details of a specific coupon by providing its unique identifier to obtain information such as coupon type, rules, validity period and other related information.
             **/
             public func getCouponById(
@@ -761,7 +702,7 @@ public class PlatformClient {
                 id: String,
                 body: CouponUpdate,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CouponDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CouponDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -789,7 +730,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CouponDetailResult.self, from: data)
+                            let response = Utility.decode(CouponDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -805,7 +746,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Update a coupon partially 
+            * Summary: Update coupon archive state and schedule
             * Description: Seller can make partial adjustments of an existing coupon by specifying its unique identifier. It enables businesses to modify specific attributes of the coupon while preserving other details intact.
             **/
             public func updateCouponPartially(
@@ -856,58 +797,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Delete a coupon which is in draft state
-            * Description: Delete details of a draft coupon by providing its unique identifier to delete information such as coupon type, rules, validity period and other related information.
-            **/
-            public func deleteCoupon(
-                id: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon/\(id)",
-                    query: nil,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SuccessMessage.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: List of promotions
+            * Summary: List promotions
             * Description: Retrieve a list of all created promotions for specific sales channel. It also supports efficient text search and pagination functionalities, ensuring optimized promotion listing for streamlined navigation and management.
             **/
             public func getPromotions(
@@ -919,16 +809,9 @@ public class PlatformClient {
                 promotionType: String?,
                 fpPanel: String?,
                 promotionId: String?,
-                createdBy: String?,
-                reviewedBy: String?,
-                approvedStartTime: String?,
-                approvedEndTime: String?,
-                reviewStartTime: String?,
-                reviewEndTime: String?,
-                status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionsResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -965,34 +848,6 @@ public class PlatformClient {
                     xQuery["promotion_id"] = value
                 }
                 
-                if let value = createdBy {
-                    xQuery["created_by"] = value
-                }
-                
-                if let value = reviewedBy {
-                    xQuery["reviewed_by"] = value
-                }
-                
-                if let value = approvedStartTime {
-                    xQuery["approved_start_time"] = value
-                }
-                
-                if let value = approvedEndTime {
-                    xQuery["approved_end_time"] = value
-                }
-                
-                if let value = reviewStartTime {
-                    xQuery["review_start_time"] = value
-                }
-                
-                if let value = reviewEndTime {
-                    xQuery["review_end_time"] = value
-                }
-                
-                if let value = status {
-                    xQuery["status"] = value
-                }
-                
                 var xHeaders: [(key: String, value: String)] = []
                 
                 
@@ -1016,7 +871,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionsResult.self, from: data)
+                            let response = Utility.decode(PromotionsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1027,20 +882,6 @@ public class PlatformClient {
                         }
                 });
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
             
             
@@ -1069,17 +910,10 @@ public class PlatformClient {
                 promotionType: String?,
                 fpPanel: String?,
                 promotionId: String?,
-                createdBy: String?,
-                reviewedBy: String?,
-                approvedStartTime: String?,
-                approvedEndTime: String?,
-                reviewStartTime: String?,
-                reviewEndTime: String?,
-                status: String?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<PromotionsResult> {
+                ) -> Paginator<PromotionsResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<PromotionsResult>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<PromotionsResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getPromotions(
                         pageNo: paginator.pageNo,
@@ -1090,13 +924,6 @@ public class PlatformClient {
                         promotionType: promotionType,
                         fpPanel: fpPanel,
                         promotionId: promotionId,
-                        createdBy: createdBy,
-                        reviewedBy: reviewedBy,
-                        approvedStartTime: approvedStartTime,
-                        approvedEndTime: approvedEndTime,
-                        reviewStartTime: reviewStartTime,
-                        reviewEndTime: reviewEndTime,
-                        status: status,
                         
                         headers: headers
                     ) { response, error in                    
@@ -1165,7 +992,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get a specific promotion
+            * Summary: Get a promotion
             * Description: Retrieve details of a specific promotion by providing its unique identifier to obtain information such as promotion type, rules, validity period and other related information.
             **/
             public func getPromotionById(
@@ -1318,57 +1145,6 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Delete a promotion which is in draft state
-            * Description: Delete details of a draft promotion by providing its unique identifier to delete information such as promotion type, rules, validity period and other related information.
-            **/
-            public func deletePromotion(
-                id: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promotion/\(id)",
-                    query: nil,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SuccessMessage.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
             * Summary: Get promotion and coupon type
             * Description: Retrieve the configuration settings related to promotions and coupons for a specific seller. It provides details of the supported types of coupons and promotions along with their descriptions, examples, and related attributes.
             **/
@@ -1377,7 +1153,7 @@ public class PlatformClient {
                 isHidden: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ActivePromosResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ActivePromosResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -1413,67 +1189,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ActivePromosResult.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Fetch available promotions payment offers
-            * Description: Use this API to get top 5 payment offers available for current product
-            **/
-            public func getPromotionPaymentOffers(
-                id: String?,
-                uid: Int?,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionPaymentOffersDetails?, _ error: FDKError?) -> Void
-            ) {
-                                
-                var xQuery: [String: Any] = [:] 
-                
-                if let value = id {
-                    xQuery["id"] = value
-                }
-                
-                if let value = uid {
-                    xQuery["uid"] = value
-                }
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/available-payment-offers",
-                    query: xQuery,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(PromotionPaymentOffersDetails.self, from: data)
+                            let response = Utility.decode(ActivePromosResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1496,7 +1212,7 @@ public class PlatformClient {
                 cartMetaId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartMetaConfigDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartMetaConfigDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1524,7 +1240,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartMetaConfigDetailResult.self, from: data)
+                            let response = Utility.decode(CartMetaConfigDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1648,7 +1364,7 @@ public class PlatformClient {
             public func getCartMetaConfigs(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartMetaConfigListResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartMetaConfigListResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1676,7 +1392,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartMetaConfigListResult.self, from: data)
+                            let response = Utility.decode(CartMetaConfigListResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1698,7 +1414,7 @@ public class PlatformClient {
             public func createCartMetaConfig(
                 body: CartMetaConfigAdd,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartMetaConfigAddResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartMetaConfigAddResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1726,7 +1442,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartMetaConfigAddResult.self, from: data)
+                            let response = Utility.decode(CartMetaConfigAddResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1748,7 +1464,7 @@ public class PlatformClient {
             public func addPriceAdjustment(
                 body: PriceAdjustmentAdd,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AddPriceAdjustmentResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AddPriceAdjustmentResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1776,7 +1492,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AddPriceAdjustmentResult.self, from: data)
+                            let response = Utility.decode(AddPriceAdjustmentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1799,7 +1515,7 @@ public class PlatformClient {
                 cartId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PriceAdjustmentResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PriceAdjustmentResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -1828,7 +1544,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PriceAdjustmentResult.self, from: data)
+                            let response = Utility.decode(PriceAdjustmentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1851,7 +1567,7 @@ public class PlatformClient {
                 id: String,
                 body: PriceAdjustmentUpdate,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdatePriceAdjustmentResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdatePriceAdjustmentResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1879,7 +1595,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdatePriceAdjustmentResult.self, from: data)
+                            let response = Utility.decode(UpdatePriceAdjustmentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1950,9 +1666,9 @@ public class PlatformClient {
             * Description: Retrieve cart details for a provided list of cart items and validate its contents. This ensures accuracy and completeness in cart information, including item quantities, prices, discounts, and applicable taxes.
             **/
             public func fetchAndvalidateCartItems(
-                body: OpenapiCartDetailsPayload,
+                body: OpenapiCartDetailsRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OpenapiCartDetailsResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OpenapiCartDetailsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1980,7 +1696,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OpenapiCartDetailsResult.self, from: data)
+                            let response = Utility.decode(OpenapiCartDetailsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2000,9 +1716,9 @@ public class PlatformClient {
             * Description: Verify the serviceability of items in the cart at a specific pin code and ensure accurate delivery promises. System checks each item's availability and delivery feasibility, providing real-time information on serviceability and estimated delivery times.
             **/
             public func checkCartServiceability(
-                body: OpenApiCartServiceabilityPayload,
+                body: OpenApiCartServiceabilityRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OpenApiCartServiceabilityResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OpenApiCartServiceabilityResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -2030,7 +1746,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OpenApiCartServiceabilityResult.self, from: data)
+                            let response = Utility.decode(OpenApiCartServiceabilityResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2052,7 +1768,7 @@ public class PlatformClient {
             public func checkoutCart(
                 body: OpenApiPlatformCheckoutReq,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OpenApiCheckoutResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OpenApiCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -2080,7 +1796,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OpenApiCheckoutResult.self, from: data)
+                            let response = Utility.decode(OpenApiCheckoutResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2109,7 +1825,7 @@ public class PlatformClient {
                 sortOn: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AbandonedCartResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AbandonedCartResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2165,7 +1881,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AbandonedCartResult.self, from: data)
+                            let response = Utility.decode(AbandonedCartResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2202,9 +1918,9 @@ public class PlatformClient {
                 lastId: String?,
                 sortOn: String?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<AbandonedCartResult> {
+                ) -> Paginator<AbandonedCartResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<AbandonedCartResult>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<AbandonedCartResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAbandonedCart(
                         pageNo: paginator.pageNo,
@@ -2242,7 +1958,7 @@ public class PlatformClient {
                 c: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2286,7 +2002,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResult.self, from: data)
+                            let response = Utility.decode(CartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2308,9 +2024,9 @@ public class PlatformClient {
             public func addItems(
                 cartId: String,
                 b: Bool?,
-                body: AddCartPayload,
+                body: AddCartRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AddCartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2342,7 +2058,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AddCartDetailResult.self, from: data)
+                            let response = Utility.decode(AddCartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2364,9 +2080,9 @@ public class PlatformClient {
             public func updateCart(
                 cartId: String,
                 b: Bool?,
-                body: UpdateCartPayload,
+                body: UpdateCartRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdateCartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2398,7 +2114,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdateCartDetailResult.self, from: data)
+                            let response = Utility.decode(UpdateCartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2580,7 +2296,7 @@ public class PlatformClient {
             public func overrideCart(
                 body: OverrideCheckoutReq,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OverrideCheckoutResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OverrideCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -2608,7 +2324,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OverrideCheckoutResult.self, from: data)
+                            let response = Utility.decode(OverrideCheckoutResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2628,9 +2344,9 @@ public class PlatformClient {
             * Description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences.
             **/
             public func getCartShareLink(
-                body: GetShareCartLinkPayload,
+                body: GetShareCartLinkRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetShareCartLinkResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -2658,7 +2374,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetShareCartLinkResult.self, from: data)
+                            let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2681,7 +2397,7 @@ public class PlatformClient {
                 token: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SharedCartResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -2709,7 +2425,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SharedCartResult.self, from: data)
+                            let response = Utility.decode(SharedCartResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2734,7 +2450,7 @@ public class PlatformClient {
                 cartId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SharedCartResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2766,7 +2482,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SharedCartResult.self, from: data)
+                            let response = Utility.decode(SharedCartResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2791,7 +2507,7 @@ public class PlatformClient {
                 filterOn: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: MultiCartResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: MultiCartResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2831,7 +2547,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(MultiCartResult.self, from: data)
+                            let response = Utility.decode(MultiCartResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2854,7 +2570,7 @@ public class PlatformClient {
                 id: String?,
                 body: UpdateUserCartMapping,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserCartMappingResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserCartMappingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2886,7 +2602,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserCartMappingResult.self, from: data)
+                            let response = Utility.decode(UserCartMappingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2911,7 +2627,7 @@ public class PlatformClient {
                 cartType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartItemCountResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2951,7 +2667,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartItemCountResult.self, from: data)
+                            let response = Utility.decode(CartItemCountResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2976,9 +2692,9 @@ public class PlatformClient {
                 buyNow: Bool?,
                 id: String?,
                 cartType: String?,
-                body: PlatformAddCartPayload,
+                body: PlatformAddCartRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AddCartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3026,7 +2742,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AddCartDetailResult.self, from: data)
+                            let response = Utility.decode(AddCartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3055,7 +2771,7 @@ public class PlatformClient {
                 cartType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3111,7 +2827,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResult.self, from: data)
+                            let response = Utility.decode(CartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3137,9 +2853,9 @@ public class PlatformClient {
                 b: Bool?,
                 buyNow: Bool?,
                 cartType: String?,
-                body: PlatformUpdateCartPayload,
+                body: PlatformUpdateCartRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdateCartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3191,7 +2907,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdateCartDetailResult.self, from: data)
+                            let response = Utility.decode(UpdateCartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3213,9 +2929,9 @@ public class PlatformClient {
             public func deleteCart(
                 id: String?,
                 cartType: String?,
-                body: DeleteCartPayload,
+                body: DeleteCartRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteCartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3251,7 +2967,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteCartDetailResult.self, from: data)
+                            let response = Utility.decode(DeleteCartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3267,7 +2983,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: List of coupons
+            * Summary: List coupons
             * Description: Retrieve a list of all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions.
             **/
             public func getAppCoupons(
@@ -3277,7 +2993,7 @@ public class PlatformClient {
                 storeId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetCouponResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3321,7 +3037,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetCouponResult.self, from: data)
+                            let response = Utility.decode(GetCouponResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3346,9 +3062,9 @@ public class PlatformClient {
                 p: Bool?,
                 id: String?,
                 buyNow: Bool?,
-                body: ApplyCouponPayload,
+                body: ApplyCouponRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3396,7 +3112,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResult.self, from: data)
+                            let response = Utility.decode(CartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3421,7 +3137,7 @@ public class PlatformClient {
                 cartType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3461,7 +3177,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResult.self, from: data)
+                            let response = Utility.decode(CartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3483,7 +3199,7 @@ public class PlatformClient {
             public func addAddress(
                 body: PlatformAddress,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SaveAddressResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -3511,7 +3227,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SaveAddressResult.self, from: data)
+                            let response = Utility.decode(SaveAddressResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3540,7 +3256,7 @@ public class PlatformClient {
                 userId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformGetAddressesResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformGetAddressesResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3596,7 +3312,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformGetAddressesResult.self, from: data)
+                            let response = Utility.decode(PlatformGetAddressesResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3705,7 +3421,7 @@ public class PlatformClient {
                 id: String,
                 body: PlatformAddress,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdateAddressResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -3733,7 +3449,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdateAddressResult.self, from: data)
+                            let response = Utility.decode(UpdateAddressResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3757,7 +3473,7 @@ public class PlatformClient {
                 userId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteAddressResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3789,7 +3505,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteAddressResult.self, from: data)
+                            let response = Utility.decode(DeleteAddressResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3813,9 +3529,9 @@ public class PlatformClient {
                 buyNow: Bool?,
                 i: Bool?,
                 b: Bool?,
-                body: PlatformSelectCartAddressPayload,
+                body: PlatformSelectCartAddressRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3859,7 +3575,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResult.self, from: data)
+                            let response = Utility.decode(CartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3889,7 +3605,7 @@ public class PlatformClient {
                 orderType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformCartShipmentsResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformCartShipmentsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3949,7 +3665,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformCartShipmentsResult.self, from: data)
+                            let response = Utility.decode(PlatformCartShipmentsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3975,9 +3691,9 @@ public class PlatformClient {
                 addressId: String?,
                 areaCode: String?,
                 orderType: String?,
-                body: UpdateCartShipmentPayload,
+                body: UpdateCartShipmentRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformCartShipmentsResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformCartShipmentsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4029,7 +3745,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformCartShipmentsResult.self, from: data)
+                            let response = Utility.decode(PlatformCartShipmentsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4052,9 +3768,9 @@ public class PlatformClient {
                 id: String?,
                 buyNow: Bool?,
                 userId: String?,
-                body: PlatformCartMetaPayload,
+                body: PlatformCartMetaRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartMetaResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4094,7 +3810,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartMetaResult.self, from: data)
+                            let response = Utility.decode(CartMetaResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4116,9 +3832,9 @@ public class PlatformClient {
             public func platformCheckoutCart(
                 id: String?,
                 cartType: String?,
-                body: PlatformCartCheckoutDetailPayload,
+                body: PlatformCartCheckoutDetailRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartCheckoutResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4154,7 +3870,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartCheckoutResult.self, from: data)
+                            let response = Utility.decode(CartCheckoutResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4178,7 +3894,7 @@ public class PlatformClient {
                 id: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDeliveryModesResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDeliveryModesResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4211,7 +3927,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDeliveryModesResult.self, from: data)
+                            let response = Utility.decode(CartDeliveryModesResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4234,7 +3950,7 @@ public class PlatformClient {
                 storeUid: Int,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: StoreDetailsResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: StoreDetailsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4263,7 +3979,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(StoreDetailsResult.self, from: data)
+                            let response = Utility.decode(StoreDetailsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4286,9 +4002,9 @@ public class PlatformClient {
                 id: String?,
                 buyNow: Bool?,
                 orderType: String?,
-                body: UpdateCartPaymentPayload,
+                body: UpdateCartPaymentRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4328,7 +4044,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResult.self, from: data)
+                            let response = Utility.decode(CartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4455,14 +4171,14 @@ public class PlatformClient {
             /**
             *
             * Summary: Cart checkout (latest)
-            * Description: The checkout cart initiates the order creation process based on the items in the user’s cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement.
+            * Description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement.
             **/
             public func platformCheckoutCartV2(
                 id: String?,
                 cartType: String?,
-                body: PlatformCartCheckoutDetailV2Payload,
+                body: PlatformCartCheckoutDetailV2Request,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartCheckoutResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4498,7 +4214,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartCheckoutResult.self, from: data)
+                            let response = Utility.decode(CartCheckoutResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4521,9 +4237,9 @@ public class PlatformClient {
                 id: String?,
                 buyNow: Bool?,
                 orderType: String?,
-                body: UpdateCartPaymentPayloadV2,
+                body: UpdateCartPaymentRequestV2,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4563,7 +4279,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResult.self, from: data)
+                            let response = Utility.decode(CartDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4601,7 +4317,7 @@ public class PlatformClient {
                 brand: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CatalogInsightResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CatalogInsightResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4633,7 +4349,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CatalogInsightResponseSchema.self, from: data)
+                            let response = Utility.decode(CatalogInsightResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4735,7 +4451,7 @@ public class PlatformClient {
                         headers: headers
                     ) { response, error in                    
                         if let response = response {
-                            paginator.hasNext = response.page.hasNext ?? false
+                            paginator.hasNext = response.page?.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
                         }
                         paginator.onNext?(response, error)
@@ -4750,13 +4466,13 @@ public class PlatformClient {
             /**
             *
             * Summary: Update application brand.
-            * Description: Modify data associated to a item custom meta.
+            * Description: Modify data associated to the brand for that particular sales channel.
             **/
             public func updateAppBrand(
                 brandUid: Int,
                 body: ApplicationBrandJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1Schema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -4784,7 +4500,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1Schema.self, from: data)
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4811,7 +4527,7 @@ public class PlatformClient {
                 brandId: [Int]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BrandListingResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4859,7 +4575,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BrandListingResponseSchema.self, from: data)
+                            let response = Utility.decode(BrandListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4890,9 +4606,9 @@ public class PlatformClient {
                 q: String?,
                 brandId: [Int]?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<BrandListingResponseSchema> {
+                ) -> Paginator<BrandListingResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<BrandListingResponseSchema>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationBrands(
                         department: department,
@@ -4925,7 +4641,7 @@ public class PlatformClient {
                 department: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CategoryListingResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4957,7 +4673,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CategoryListingResponseSchema.self, from: data)
+                            let response = Utility.decode(CategoryListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5089,7 +4805,7 @@ public class PlatformClient {
                 categoryUid: Int,
                 body: ApplicationCategoryJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1Schema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5117,7 +4833,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1Schema.self, from: data)
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5139,7 +4855,7 @@ public class PlatformClient {
             public func createCollection(
                 body: CreateCollection,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CollectionCreateResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CollectionCreateResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5167,7 +4883,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CollectionCreateResponseSchema.self, from: data)
+                            let response = Utility.decode(CollectionCreateResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5196,7 +4912,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetCollectionListingResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -5252,7 +4968,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetCollectionListingResponseSchema.self, from: data)
+                            let response = Utility.decode(GetCollectionListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5280,7 +4996,7 @@ public class PlatformClient {
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetQueryFiltersValuesResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetQueryFiltersValuesResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -5328,7 +5044,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetQueryFiltersValuesResponseSchema.self, from: data)
+                            let response = Utility.decode(GetQueryFiltersValuesResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5351,7 +5067,7 @@ public class PlatformClient {
                 c: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetQueryFiltersKeysResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetQueryFiltersKeysResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -5383,7 +5099,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetQueryFiltersKeysResponseSchema.self, from: data)
+                            let response = Utility.decode(GetQueryFiltersKeysResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5405,7 +5121,7 @@ public class PlatformClient {
             public func getQueryFilters(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetQueryFiltersResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetQueryFiltersResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5433,7 +5149,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetQueryFiltersResponseSchema.self, from: data)
+                            let response = Utility.decode(GetQueryFiltersResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5639,7 +5355,7 @@ public class PlatformClient {
                 slug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetCollectionDetailResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetCollectionDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5667,7 +5383,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetCollectionDetailResponseSchema.self, from: data)
+                            let response = Utility.decode(GetCollectionDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5794,7 +5510,7 @@ public class PlatformClient {
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationDepartmentListingResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationDepartmentListingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -5834,7 +5550,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationDepartmentListingResponseSchema.self, from: data)
+                            let response = Utility.decode(ApplicationDepartmentListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5859,9 +5575,9 @@ public class PlatformClient {
                 pageSize: Int?,
                 q: String?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<ApplicationDepartmentListingResponseSchema> {
+                ) -> Paginator<ApplicationDepartmentListingResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<ApplicationDepartmentListingResponseSchema>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<ApplicationDepartmentListingResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationDepartmentListing(
                         pageNo: paginator.pageNo,
@@ -5892,7 +5608,7 @@ public class PlatformClient {
                 departmentUid: Int,
                 body: ApplicationDepartmentJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1Schema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5920,7 +5636,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1Schema.self, from: data)
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5943,7 +5659,7 @@ public class PlatformClient {
                 filter: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: FilterResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: FilterResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5971,7 +5687,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(FilterResponseSchema.self, from: data)
+                            let response = Utility.decode(FilterResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5993,7 +5709,7 @@ public class PlatformClient {
             public func getDepartments(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DepartmentResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DepartmentResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6021,7 +5737,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DepartmentResponseSchema.self, from: data)
+                            let response = Utility.decode(DepartmentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6038,7 +5754,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Get application inventory.
-            * Description: Retrieve inventory data related to the sales channel. this can be used  to get the Inventory status of products.
+            * Description: Retrieve inventory data related to the application. Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination
             **/
             public func getAppInventory(
                 itemIds: [Int]?,
@@ -6055,7 +5771,7 @@ public class PlatformClient {
                 toDate: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: InventoryStockResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: InventoryStockResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -6131,7 +5847,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(InventoryStockResponseSchema.self, from: data)
+                            let response = Utility.decode(InventoryStockResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6148,7 +5864,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Get application locations.
-            * Description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status.
+            * Description: Retrieve locations specific to the application. View all the locations asscoiated to a application.
             **/
             public func getAppLocations(
                 storeType: String?,
@@ -6162,7 +5878,7 @@ public class PlatformClient {
                 companyUids: [Int]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: LocationListSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -6226,7 +5942,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(LocationListSchema.self, from: data)
+                            let response = Utility.decode(LocationListSerializer.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6269,9 +5985,9 @@ public class PlatformClient {
                 storeTypes: [String]?,
                 companyUids: [Int]?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<LocationListSchema> {
+                ) -> Paginator<LocationListSerializer> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<LocationListSchema>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<LocationListSerializer>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAppLocations(
                         storeType: storeType,
@@ -6560,7 +6276,7 @@ public class PlatformClient {
                 itemId: Int,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OwnerAppItemResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OwnerAppItemResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6588,7 +6304,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OwnerAppItemResponseSchema.self, from: data)
+                            let response = Utility.decode(OwnerAppItemResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6605,13 +6321,13 @@ public class PlatformClient {
             /**
             *
             * Summary: Update application product data.
-            * Description: Allows to update data associated to a item by its item_id for a sales
+            * Description: Allows to update data associated to a item custom meta.
             **/
             public func updateAppProduct(
                 itemId: Int,
                 body: ApplicationItemMeta,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1Schema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6639,7 +6355,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1Schema.self, from: data)
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6672,7 +6388,7 @@ public class PlatformClient {
                 itemIds: [String]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationProductListingResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationProductListingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -6744,7 +6460,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationProductListingResponseSchema.self, from: data)
+                            let response = Utility.decode(ApplicationProductListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6791,9 +6507,9 @@ public class PlatformClient {
                 pageSize: Int?,
                 itemIds: [String]?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<ApplicationProductListingResponseSchema> {
+                ) -> Paginator<ApplicationProductListingResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<ApplicationProductListingResponseSchema>(pageSize: pageSize, type: "cursor")
+                let paginator = Paginator<ApplicationProductListingResponse>(pageSize: pageSize, type: "cursor")
                 paginator.onPage = {
                     self.getApplicationProducts(
                         q: q,
@@ -6837,7 +6553,7 @@ public class PlatformClient {
                 locationIds: [Int]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationInventorySellerIdentifierResponsePaginated?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: InventorySellerIdentifierResponsePaginated?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -6877,7 +6593,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationInventorySellerIdentifierResponsePaginated.self, from: data)
+                            let response = Utility.decode(InventorySellerIdentifierResponsePaginated.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6958,7 +6674,7 @@ public class PlatformClient {
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RawProductListingResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RawProductListingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -7018,7 +6734,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RawProductListingResponseSchema.self, from: data)
+                            let response = Utility.decode(RawProductListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7040,7 +6756,7 @@ public class PlatformClient {
             public func getAppReturnConfiguration(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AppReturnConfigResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AppReturnConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7068,7 +6784,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppReturnConfigResponseSchema.self, from: data)
+                            let response = Utility.decode(AppReturnConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7090,7 +6806,7 @@ public class PlatformClient {
             public func createAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1Schema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7105,106 +6821,6 @@ public class PlatformClient {
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SuccessResponse1Schema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update Return configuration level set for an application
-            * Description: Update Return configuration level set for an application.
-            **/
-            public func updateAppReturnConfiguration(
-                body: CreateUpdateAppReturnConfig,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1Schema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SuccessResponse1Schema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete Category level Application Return Configuration setttings
-            * Description: Delete Category level Application Return Configuration setttings
-            **/
-            public func deleteAppCategoryReturnConfiguration(
-                body: DeleteAppCategoryReturnConfig,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -7234,6 +6850,106 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Update Return configuration level set for an application
+            * Description: Update Return configuration level set for an application.
+            **/
+            public func updateAppReturnConfiguration(
+                body: CreateUpdateAppReturnConfig,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Delete Category level Application Return Configuration setttings
+            * Description: Delete Category level Application Return Configuration setttings
+            **/
+            public func deleteAppCategoryReturnConfiguration(
+                body: DeleteAppCategoryReturnConfig,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Get all category level configuration level set for an application
             * Description: Get all category level configuration level set for an application.
             **/
@@ -7243,7 +6959,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BaseAppCategoryReturnConfigResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: BaseAppCategoryReturnConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -7283,7 +6999,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BaseAppCategoryReturnConfigResponseSchema.self, from: data)
+                            let response = Utility.decode(BaseAppCategoryReturnConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7305,56 +7021,6 @@ public class PlatformClient {
             public func createAppCategoryReturnConfiguration(
                 body: BaseAppCategoryReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1Schema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SuccessResponse1Schema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update Category level Application Return Configuration setttings
-            * Description: Update Category level Application Return Configuration setttings
-            **/
-            public func updateAppCategoryReturnConfiguration(
-                body: BaseAppCategoryReturnConfig,
-                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
@@ -7368,7 +7034,7 @@ public class PlatformClient {
                 }
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "PUT",
+                    method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
                     query: nil,
                     body: body.dictionary,
@@ -7399,13 +7065,63 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Update Category level Application Return Configuration setttings
+            * Description: Update Category level Application Return Configuration setttings
+            **/
+            public func updateAppCategoryReturnConfiguration(
+                body: BaseAppCategoryReturnConfig,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Create custom autocomplete rules.
             * Description: Generate and add custom autocomplete rules to the catalog.
             **/
             public func createCustomAutocompleteRule(
                 body: CreateAutocompleteKeyword,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAutocompleteWordsResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7433,7 +7149,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAutocompleteWordsResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateAutocompleteWordsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7459,7 +7175,7 @@ public class PlatformClient {
                 isActive: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -7503,7 +7219,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetAutocompleteWordsResponseSchema.self, from: data)
+                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7628,7 +7344,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7656,7 +7372,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteResponseSchema.self, from: data)
+                            let response = Utility.decode(DeleteResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7676,9 +7392,9 @@ public class PlatformClient {
             * Description: This view allows you to create search rerank attributes for an application
             **/
             public func createSearchRerank(
-                body: CreateSearchRerankRequestSchema,
+                body: CreateSearchRerankRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateSearchRerankResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateSearchRerankResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7706,7 +7422,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateSearchRerankResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateSearchRerankResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7728,7 +7444,7 @@ public class PlatformClient {
             public func getSearchRerank(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetSearchRerankResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetSearchRerankResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7756,7 +7472,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetSearchRerankResponseSchema.self, from: data)
+                            let response = Utility.decode(GetSearchRerankResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7779,7 +7495,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetSearchRerankDetailResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetSearchRerankDetailResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7807,7 +7523,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetSearchRerankDetailResponseSchema.self, from: data)
+                            let response = Utility.decode(GetSearchRerankDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7828,9 +7544,9 @@ public class PlatformClient {
             **/
             public func updateSearchRerankConfiguration(
                 id: String,
-                body: UpdateSearchRerankRequestSchema,
+                body: UpdateSearchRerankRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdateSearchRerankResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdateSearchRerankResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7858,7 +7574,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdateSearchRerankResponseSchema.self, from: data)
+                            let response = Utility.decode(UpdateSearchRerankResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7881,7 +7597,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteSearchRerankConfigurationResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteSearchRerankConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7909,7 +7625,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteSearchRerankConfigurationResponseSchema.self, from: data)
+                            let response = Utility.decode(DeleteSearchRerankConfigurationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7929,9 +7645,9 @@ public class PlatformClient {
             * Description: Create search configuration for the catalog.
             **/
             public func createSearchConfiguration(
-                body: CreateSearchConfigurationRequestSchema,
+                body: CreateSearchConfigurationRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateSearchConfigurationResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateSearchConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7959,7 +7675,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateSearchConfigurationResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateSearchConfigurationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7981,7 +7697,7 @@ public class PlatformClient {
             public func getSearchConfiguration(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetSearchConfigurationResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetSearchConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8009,7 +7725,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetSearchConfigurationResponseSchema.self, from: data)
+                            let response = Utility.decode(GetSearchConfigurationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8029,9 +7745,9 @@ public class PlatformClient {
             * Description: This view allows you to modify searchable attributes for an application
             **/
             public func updateSearchConfiguration(
-                body: UpdateSearchConfigurationRequestSchema,
+                body: UpdateSearchConfigurationRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdateSearchConfigurationResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdateSearchConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8059,7 +7775,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdateSearchConfigurationResponseSchema.self, from: data)
+                            let response = Utility.decode(UpdateSearchConfigurationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8081,7 +7797,7 @@ public class PlatformClient {
             public func deleteSearchConfiguration(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteSearchConfigurationResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteSearchConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8109,7 +7825,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteSearchConfigurationResponseSchema.self, from: data)
+                            let response = Utility.decode(DeleteSearchConfigurationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8185,7 +7901,7 @@ public class PlatformClient {
                 isActive: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetSearchWordsResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetSearchWordsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -8229,7 +7945,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetSearchWordsResponseSchema.self, from: data)
+                            let response = Utility.decode(GetSearchWordsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8354,7 +8070,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8382,7 +8098,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteResponseSchema.self, from: data)
+                            let response = Utility.decode(DeleteResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8405,7 +8121,7 @@ public class PlatformClient {
                 storeUid: Int,
                 body: ApplicationStoreJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1Schema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8433,7 +8149,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1Schema.self, from: data)
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8509,9 +8225,9 @@ public class PlatformClient {
             * Description: Modify allow single flag for filters of the application.
             **/
             public func updateAllowSingle(
-                body: AllowSingleRequestSchema,
+                body: AllowSingleRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ConfigSuccessResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8539,7 +8255,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ConfigSuccessResponseSchema.self, from: data)
+                            let response = Utility.decode(ConfigSuccessResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8559,9 +8275,9 @@ public class PlatformClient {
             * Description: Modify the default sort key configuration for the application.
             **/
             public func updateDefaultSort(
-                body: DefaultKeyRequestSchema,
+                body: DefaultKeyRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ConfigSuccessResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8589,7 +8305,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ConfigSuccessResponseSchema.self, from: data)
+                            let response = Utility.decode(ConfigSuccessResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8612,7 +8328,7 @@ public class PlatformClient {
                 configType: String,
                 body: AppConfigurationsFilter,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AppConfigurationsFilterResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AppConfigurationsFilterResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8640,7 +8356,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppConfigurationsFilterResponseSchema.self, from: data)
+                            let response = Utility.decode(AppConfigurationsFilterResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8667,7 +8383,7 @@ public class PlatformClient {
                 uids: [Int]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetListingConfigResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetListingConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -8711,7 +8427,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetListingConfigResponseSchema.self, from: data)
+                            let response = Utility.decode(GetListingConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8789,7 +8505,7 @@ public class PlatformClient {
                 templateSlug: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetConfigResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -8833,7 +8549,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetConfigResponseSchema.self, from: data)
+                            let response = Utility.decode(GetConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8959,9 +8675,9 @@ public class PlatformClient {
             public func updateListingConfiguration(
                 configType: String,
                 configId: String,
-                body: AppConfigurationsFilterResponseSchema,
+                body: AppConfigurationsFilterResponse,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AppConfigurationsFilterResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AppConfigurationsFilterResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8989,7 +8705,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppConfigurationsFilterResponseSchema.self, from: data)
+                            let response = Utility.decode(AppConfigurationsFilterResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -9013,7 +8729,7 @@ public class PlatformClient {
                 configId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ConfigSuccessResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -9041,7 +8757,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ConfigSuccessResponseSchema.self, from: data)
+                            let response = Utility.decode(ConfigSuccessResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -9065,7 +8781,7 @@ public class PlatformClient {
                 templateSlug: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetConfigMetadataResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetConfigMetadataResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -9097,7 +8813,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetConfigMetadataResponseSchema.self, from: data)
+                            let response = Utility.decode(GetConfigMetadataResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -9369,7 +9085,7 @@ public class PlatformClient {
             **/
             public func createMerchandisingRulePinAction(
                 merchandisingRuleId: String,
-                body: PinRequestSchema,
+                body: PinRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
             ) {
@@ -9420,7 +9136,7 @@ public class PlatformClient {
             **/
             public func updateMerchandisingRulePinAction(
                 merchandisingRuleId: String,
-                body: PinRequestSchema,
+                body: PinRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
             ) {
@@ -9473,7 +9189,7 @@ public class PlatformClient {
                 merchandisingRuleId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PinResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PinResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -9501,7 +9217,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PinResponseSchema.self, from: data)
+                            let response = Utility.decode(PinResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -9522,7 +9238,7 @@ public class PlatformClient {
             **/
             public func createMerchandisingRuleHideAction(
                 merchandisingRuleId: String,
-                body: HideRequestSchema,
+                body: HideRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
             ) {
@@ -9573,7 +9289,7 @@ public class PlatformClient {
             **/
             public func updateMerchandisingRuleHideAction(
                 merchandisingRuleId: String,
-                body: HideRequestSchema,
+                body: HideRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
             ) {
@@ -9626,7 +9342,7 @@ public class PlatformClient {
                 merchandisingRuleId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: HideResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: HideResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -9654,7 +9370,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(HideResponseSchema.self, from: data)
+                            let response = Utility.decode(HideResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -9982,7 +9698,7 @@ public class PlatformClient {
             public func createMerchandisingRuleQuery(
                 body: MerchandisingRuleQueryPost,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: MerchandiseQueryResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: MerchandiseQueryResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10010,7 +9726,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(MerchandiseQueryResponseSchema.self, from: data)
+                            let response = Utility.decode(MerchandiseQueryResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10349,7 +10065,7 @@ public class PlatformClient {
                 searchKeyword: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ProductListingResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -10381,7 +10097,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ProductListingResponseSchema.self, from: data)
+                            let response = Utility.decode(ProductListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10403,7 +10119,7 @@ public class PlatformClient {
             public func createAppPriceFactory(
                 body: CreateAppPriceFactoryRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAppPriceFactoryResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAppPriceFactoryResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10431,7 +10147,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAppPriceFactoryResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateAppPriceFactoryResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10458,7 +10174,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetAppPriceFactoryResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetAppPriceFactoryResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -10506,7 +10222,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetAppPriceFactoryResponseSchema.self, from: data)
+                            let response = Utility.decode(GetAppPriceFactoryResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10629,9 +10345,9 @@ public class PlatformClient {
             **/
             public func addProductsInPriceFactoryByZoneId(
                 id: String,
-                body: CreatePriceFactoryProductRequestSchema,
+                body: CreatePriceFactoryProductRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreatePriceFactoryProductResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreatePriceFactoryProductResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10659,7 +10375,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreatePriceFactoryProductResponseSchema.self, from: data)
+                            let response = Utility.decode(CreatePriceFactoryProductResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10687,7 +10403,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAppPriceFactoryProductsResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -10732,7 +10448,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAppPriceFactoryProductsResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateAppPriceFactoryProductsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10753,9 +10469,9 @@ public class PlatformClient {
             **/
             public func createProductPriceFactoryBulkJob(
                 id: String,
-                body: CreateAppPriceFactoryProductBulkJobRequestSchema,
+                body: CreateAppPriceFactoryProductBulkJobRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10783,7 +10499,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10807,7 +10523,7 @@ public class PlatformClient {
                 jobId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobPollResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobPollResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10835,7 +10551,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobPollResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobPollResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10857,9 +10573,9 @@ public class PlatformClient {
             public func validateProductPriceFactoryBulkJob(
                 id: String,
                 jobId: String,
-                body: CreateAppPriceFactoryProductBulkJobRequestSchema,
+                body: CreateAppPriceFactoryProductBulkJobRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobValidateResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobValidateResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10887,7 +10603,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobValidateResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobValidateResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10909,9 +10625,9 @@ public class PlatformClient {
             public func processProductPriceFactoryBulkJob(
                 id: String,
                 jobId: String,
-                body: CreateAppPriceFactoryProductBulkJobRequestSchema,
+                body: CreateAppPriceFactoryProductBulkJobRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10939,7 +10655,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10960,9 +10676,9 @@ public class PlatformClient {
             **/
             public func exportProductsInPriceFactory(
                 id: String,
-                body: CreateAppPriceFactoryProductExportJobRequestSchema,
+                body: CreateAppPriceFactoryProductExportJobRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAppPriceFactoryProductExportJobResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductExportJobResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10990,7 +10706,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAppPriceFactoryProductExportJobResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateAppPriceFactoryProductExportJobResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11019,7 +10735,7 @@ public class PlatformClient {
                 type: [String]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAppPriceFactoryProductExportJobPollResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductExportJobPollResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -11071,7 +10787,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAppPriceFactoryProductExportJobPollResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateAppPriceFactoryProductExportJobPollResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11330,7 +11046,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SynonymDeleteResponseSchemaSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SynonymDeleteResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -11359,7 +11075,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SynonymDeleteResponseSchemaSchema.self, from: data)
+                            let response = Utility.decode(SynonymDeleteResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11690,7 +11406,7 @@ public class PlatformClient {
                 sellerId: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AppPriceByIdResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AppPriceByIdResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -11730,7 +11446,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppPriceByIdResponseSchema.self, from: data)
+                            let response = Utility.decode(AppPriceByIdResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11759,15 +11475,67 @@ public class PlatformClient {
             
             
             
+            
+            /**
+            *
+            * Summary: Send communication asynchronously.
+            * Description: Initiate and send communication with the option for asynchronous processing.
+            **/
+            public func sendEngineCommunicationSynchronously(
+                body: EngineRequest,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SendInstantResponse?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/engine/send-sync",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SendInstantResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
             /**
             *
             * Summary: Send communication asynchronously.
             * Description: Initiate and send communication with the option for asynchronous processing.
             **/
             public func sendCommunicationAsynchronously(
-                body: EngineReq,
+                body: EngineRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EngineRes?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EngineResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11795,7 +11563,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EngineRes.self, from: data)
+                            let response = Utility.decode(EngineResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11815,9 +11583,9 @@ public class PlatformClient {
             * Description: Initiate and send communication in real-time.
             **/
             public func sendCommunicationSynchronously(
-                body: EngineReq,
+                body: EngineRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SendInstantRes?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SendInstantResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11845,7 +11613,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SendInstantRes.self, from: data)
+                            let response = Utility.decode(SendInstantResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11856,6 +11624,7 @@ public class PlatformClient {
                         }
                 });
             }
+            
             
             
             
@@ -11961,13 +11730,63 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Create event subscriptions
+            * Description: Create event subscriptions
+            **/
+            public func createEventSubscriptions(
+                body: SubscriptionsObject,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: EventSubscription?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(EventSubscription.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Create event subscriptions by bulk
             * Description: Create event subscriptions by bulk
             **/
             public func createEventSubscriptionsByBulk(
-                body: EventSubscriptionsBulkUpdateReq,
+                body: EventSubscriptionsBulkUpdateRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: [EventSubscriptionsBulkUpdateRes]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: [EventSubscriptionsBulkUpdateResponse]?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11995,7 +11814,165 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode([EventSubscriptionsBulkUpdateRes].self, from: data)
+                            let response = Utility.decode([EventSubscriptionsBulkUpdateResponse].self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get event subscriptions by id
+            * Description: Get event subscriptions by id
+            **/
+            public func getEventSubscriptionsById(
+                populate: String?,
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: EventSubscription?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = populate {
+                    xQuery["populate"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions/\(id)",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(EventSubscription.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Create event subscriptions
+            * Description: Create event subscriptions
+            **/
+            public func editEventSubscriptions(
+                id: String,
+                body: SubscriptionsObjectRequest,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: EventSubscription?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(EventSubscription.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Create event subscriptions
+            * Description: Create event subscriptions
+            **/
+            public func deleteEventSubscriptionsById(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: EventSubscription?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(EventSubscription.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -12699,6 +12676,57 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Delete email provider by ID.
+            * Description: Remove a specific email communication provider from the platform.
+            **/
+            public func deleteEmailProviderById(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: BasicDelete?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(BasicDelete.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Get app providers.
             * Description: Retrieve a list of app  providers.
             **/
@@ -12956,6 +12984,57 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(SmsProvider.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Delete SMS provider by ID.
+            * Description: Remove a specific SMS communication provider.
+            **/
+            public func deleteSmsProviderById(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: BasicDelete?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(BasicDelete.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13452,9 +13531,9 @@ public class PlatformClient {
             * Description: Initiate a job to execute a communication campaign.
             **/
             public func triggerCampaignJob(
-                body: TriggerJobReq,
+                body: TriggerJobRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TriggerJobRes?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TriggerJobResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -13482,7 +13561,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TriggerJobRes.self, from: data)
+                            let response = Utility.decode(TriggerJobResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13607,6 +13686,56 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Create jobs
+            * Description: Create jobs
+            **/
+            public func createJobs(
+                body: CreateJobsReq,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CreateJobsRes?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/jobs",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateJobsRes.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Get job logs.
             * Description: Retrieve logs and details related to communication jobs.
             **/
@@ -13722,7 +13851,7 @@ public class PlatformClient {
             public func getGlobalVariables(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GlobalVariablesGetRes?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GlobalVariablesGetResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -13750,7 +13879,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GlobalVariablesGetRes.self, from: data)
+                            let response = Utility.decode(GlobalVariablesGetResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13772,7 +13901,7 @@ public class PlatformClient {
             public func postGlobalVariables(
                 body: GlobalVariablesReq,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GlobalVariablesPostRes?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GlobalVariablesPostResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -13800,7 +13929,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GlobalVariablesPostRes.self, from: data)
+                            let response = Utility.decode(GlobalVariablesPostResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -14075,6 +14204,158 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Get global app providers.
+            * Description: Retrieve a list of global app  providers.
+            **/
+            public func updateAppProvidersGlobalProvider(
+                body: AppProvidersGlobalProviderRequest,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: UpdateAppProvidersGlobalProviderResponse?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/app-provider/global-providers",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(UpdateAppProvidersGlobalProviderResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get dummy data sources metadata.
+            * Description: Retrieve metadata information about dummy data sources.
+            **/
+            public func getDummyDatasourcesMeta(
+                id: Int,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: DummyDatasourcesMeta?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["id"] = id
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasource/dummy-data-source-meta",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DummyDatasourcesMeta.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get dummy data sources.
+            * Description: Retrieve a list of dummy data sources for testing.
+            **/
+            public func getDummyDatasources(
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: [DummyDatasources]?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasource/dummy-data-sources",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode([DummyDatasources].self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Get audiences.
             * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign.
             **/
@@ -14270,6 +14551,173 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(Audience.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update audience by ID.
+            * Description: Modify the settings of a specific custom communication audience.
+            **/
+            public func updateAudienceById(
+                id: String,
+                body: AudienceReq,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(Audience.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Delete audience by ID.
+            * Description: Remove a specific custom communication audience.
+            **/
+            public func deleteAudienceById(
+                id: String,
+                body: AudienceReq,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: BasicDelete?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(BasicDelete.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get N sample records in CSV 
+            * Description: Retrieve a specified number of sample records from a CSV data source using a GET request.
+            **/
+            public func getNSampleRecordsFromCsvByGet(
+                count: Int?,
+                header: Bool?,
+                url: String?,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: GetNRecordsCsvRes?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = count {
+                    xQuery["count"] = value
+                }
+                
+                if let value = header {
+                    xQuery["header"] = value
+                }
+                
+                if let value = url {
+                    xQuery["url"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/get-n-records",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetNRecordsCsvRes.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -14557,6 +15005,57 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Update campaign by ID.
+            * Description: Modify the settings of a specific communication campaign.
+            **/
+            public func deleteCampaignById(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: BasicDelete?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(BasicDelete.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Get campaign statistics by ID.
             * Description: Retrieve statistical data for a specific communication campaign.
             **/
@@ -14809,6 +15308,56 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
+            
+            /**
+            *
+            * Summary: Create app push token.
+            * Description: Create the push token of the user. 
+            **/
+            public func createAppPushtoken(
+                body: PushtokenReq,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: PushtokenRes?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/pn/tokens",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PushtokenRes.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
         }
         
         
@@ -14835,7 +15384,7 @@ public class PlatformClient {
             public func getAppFeatures(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AppFeatureResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -14863,7 +15412,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppFeatureResponseSchema.self, from: data)
+                            let response = Utility.decode(AppFeatureResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -14883,7 +15432,7 @@ public class PlatformClient {
             * Description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func updateAppFeatures(
-                body: AppFeatureRequestSchema,
+                body: AppFeatureRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppFeature?, _ error: FDKError?) -> Void
             ) {
@@ -14933,7 +15482,7 @@ public class PlatformClient {
             * Description: Update features of application
             **/
             public func modifyAppFeatures(
-                body: AppFeatureRequestSchema,
+                body: AppFeatureRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppFeature?, _ error: FDKError?) -> Void
             ) {
@@ -15185,7 +15734,7 @@ public class PlatformClient {
             public func getAppApiTokens(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TokenResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -15213,7 +15762,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TokenResponseSchema.self, from: data)
+                            let response = Utility.decode(TokenResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15233,9 +15782,9 @@ public class PlatformClient {
             * Description: Add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
             **/
             public func updateAppApiTokens(
-                body: TokenResponseSchema,
+                body: TokenResponse,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TokenResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -15263,7 +15812,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TokenResponseSchema.self, from: data)
+                            let response = Utility.decode(TokenResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15288,7 +15837,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CompaniesResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CompaniesResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -15328,7 +15877,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CompaniesResponseSchema.self, from: data)
+                            let response = Utility.decode(CompaniesResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15353,9 +15902,9 @@ public class PlatformClient {
                 uid: Int?,
                 pageSize: Int?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<CompaniesResponseSchema> {
+                ) -> Paginator<CompaniesResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<CompaniesResponseSchema>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<CompaniesResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAppCompanies(
                         uid: uid,
@@ -15387,7 +15936,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: StoresResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: StoresResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -15423,7 +15972,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(StoresResponseSchema.self, from: data)
+                            let response = Utility.decode(StoresResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15445,9 +15994,9 @@ public class PlatformClient {
             public func getAppStoresPaginator(
                 pageSize: Int?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<StoresResponseSchema> {
+                ) -> Paginator<StoresResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<StoresResponseSchema>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<StoresResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAppStores(
                         pageNo: paginator.pageNo,
@@ -15826,7 +16375,7 @@ public class PlatformClient {
             public func getAppSupportedCurrency(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AppCurrencyResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AppCurrencyResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -15854,7 +16403,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppCurrencyResponseSchema.self, from: data)
+                            let response = Utility.decode(AppCurrencyResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15876,7 +16425,7 @@ public class PlatformClient {
             public func getOrderingStoresByFilter(
                 pageNo: Int?,
                 pageSize: Int?,
-                body: FilterOrderingStoreRequestSchemaSchema,
+                body: FilterOrderingStoreRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
             ) {
@@ -15936,7 +16485,7 @@ public class PlatformClient {
             public func getOrderingStoresByFilterPaginator(
                 pageSize: Int?,
                 headers: [(key: String, value: String)]? = nil,
-                body: FilterOrderingStoreRequestSchemaSchema) -> Paginator<OrderingStores> {
+                body: FilterOrderingStoreRequest) -> Paginator<OrderingStores> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<OrderingStores>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
@@ -16070,7 +16619,7 @@ public class PlatformClient {
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OrderingStoresResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OrderingStoresResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -16110,7 +16659,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OrderingStoresResponseSchema.self, from: data)
+                            let response = Utility.decode(OrderingStoresResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16135,9 +16684,9 @@ public class PlatformClient {
                 pageSize: Int?,
                 q: String?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<OrderingStoresResponseSchema> {
+                ) -> Paginator<OrderingStoresResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<OrderingStoresResponseSchema>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<OrderingStoresResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getStaffOrderingStores(
                         pageNo: paginator.pageNo,
@@ -16165,9 +16714,9 @@ public class PlatformClient {
             * Description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
             **/
             public func getOrderingStoreCookie(
-                body: OrderingStoreSelectRequestSchema,
+                body: OrderingStoreSelectRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -16195,7 +16744,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16217,7 +16766,7 @@ public class PlatformClient {
             public func removeOrderingStoreCookie(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -16245,7 +16794,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16418,7 +16967,7 @@ public class PlatformClient {
             public func getDomains(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DomainsResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DomainsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -16446,7 +16995,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DomainsResponseSchema.self, from: data)
+                            let response = Utility.decode(DomainsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16466,7 +17015,7 @@ public class PlatformClient {
             * Description: Add a new domain. Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
             **/
             public func addDomain(
-                body: DomainAddRequestSchema,
+                body: DomainAddRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Domain?, _ error: FDKError?) -> Void
             ) {
@@ -16519,7 +17068,7 @@ public class PlatformClient {
                 domainId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -16547,7 +17096,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16567,9 +17116,9 @@ public class PlatformClient {
             * Description: Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links.
             **/
             public func changeDomainType(
-                body: UpdateDomainTypeRequestSchema,
+                body: UpdateDomainTypeRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DomainsResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DomainsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -16597,7 +17146,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DomainsResponseSchema.self, from: data)
+                            let response = Utility.decode(DomainsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16617,9 +17166,9 @@ public class PlatformClient {
             * Description: Retrieve the status of a specific domain. Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
             **/
             public func getDomainStatus(
-                body: DomainStatusRequestSchema,
+                body: DomainStatusRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DomainStatusResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DomainStatusResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -16647,7 +17196,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DomainStatusResponseSchema.self, from: data)
+                            let response = Utility.decode(DomainStatusResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16774,9 +17323,9 @@ public class PlatformClient {
             * Description: Check the availability of a specific domain. Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
             **/
             public func getApplicationDomainAvailibility(
-                body: DomainSuggestionsRequestSchema,
+                body: DomainSuggestionsRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DomainSuggestionsResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DomainSuggestionsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -16804,7 +17353,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DomainSuggestionsResponseSchema.self, from: data)
+                            let response = Utility.decode(DomainSuggestionsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16830,7 +17379,7 @@ public class PlatformClient {
             * Description: Updates the version details of an application.
             **/
             public func updateApplicationVersion(
-                body: PlatformVersionRequestSchema,
+                body: PlatformVersionRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformVersion?, _ error: FDKError?) -> Void
             ) {
@@ -16984,7 +17533,7 @@ public class PlatformClient {
             public func getUrlRedirections(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UrlRedirectionResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UrlRedirectionResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -17012,7 +17561,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UrlRedirectionResponseSchema.self, from: data)
+                            let response = Utility.decode(UrlRedirectionResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -17032,7 +17581,7 @@ public class PlatformClient {
             * Description: Creates a new URL redirection
             **/
             public func createUrlRedirection(
-                body: UrlRedirectionRequestSchema,
+                body: UrlRedirectionRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UrlRedirection?, _ error: FDKError?) -> Void
             ) {
@@ -17187,7 +17736,7 @@ public class PlatformClient {
                 redirectionDomainId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -17215,7 +17764,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -17226,7 +17775,6 @@ public class PlatformClient {
                         }
                 });
             }
-            
             
             
         }
@@ -17567,7 +18115,7 @@ public class PlatformClient {
             * Description: Generate and add a new blog.
             **/
             public func createBlog(
-                body: BlogRequestSchema,
+                body: BlogRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
@@ -17626,7 +18174,7 @@ public class PlatformClient {
                 status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BlogGetResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -17682,7 +18230,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BlogGetResponseSchema.self, from: data)
+                            let response = Utility.decode(BlogGetResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -17703,7 +18251,7 @@ public class PlatformClient {
             **/
             public func updateBlog(
                 id: String,
-                body: BlogRequestSchema,
+                body: BlogRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
@@ -18828,7 +19376,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: LandingPageGetResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: LandingPageGetResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -18864,7 +19412,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(LandingPageGetResponseSchema.self, from: data)
+                            let response = Utility.decode(LandingPageGetResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -19141,7 +19689,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: NavigationGetResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -19178,7 +19726,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(NavigationGetResponseSchema.self, from: data)
+                            let response = Utility.decode(NavigationGetResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -19198,7 +19746,7 @@ public class PlatformClient {
             * Description: Generate and add a new navigation element.
             **/
             public func createNavigation(
-                body: NavigationRequestSchema,
+                body: NavigationRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
@@ -19250,7 +19798,7 @@ public class PlatformClient {
             public func getDefaultNavigations(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DefaultNavigationResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DefaultNavigationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -19278,7 +19826,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DefaultNavigationResponseSchema.self, from: data)
+                            let response = Utility.decode(DefaultNavigationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -19355,7 +19903,7 @@ public class PlatformClient {
             **/
             public func updateNavigation(
                 id: String,
-                body: NavigationRequestSchema,
+                body: NavigationRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
@@ -19556,7 +20104,7 @@ public class PlatformClient {
             * Description: Generate and add a new page preview.
             **/
             public func createPagePreview(
-                body: PageRequestSchema,
+                body: PageRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -19607,7 +20155,7 @@ public class PlatformClient {
             **/
             public func updatePagePreview(
                 slug: String,
-                body: PagePublishRequestSchema,
+                body: PagePublishRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -20395,378 +20943,6 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get default sitemap configuration
-            * Description: Retrieves the current default sitemap configuration settings
-            **/
-            public func getDefaultSitemapConfig(
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DefaultSitemapConfig?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/sitemap/default",
-                    query: nil,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DefaultSitemapConfig.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update default sitemap configuration
-            * Description: Updates the default sitemap configuration settings
-            **/
-            public func updateDefaultSitemapConfig(
-                body: DefaultSitemapConfig,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DefaultSitemapConfig?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/sitemap/default",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DefaultSitemapConfig.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: List sitemap configurations
-            * Description: Retrieve a list of sitemap configurations for a specific company and application. Each configuration contains the sitemap XML data and its activation status. 
-
-            **/
-            public func getSitemaps(
-                pageNo: String,
-                pageSize: String,
-                isActive: Bool?,
-                name: String?,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SitemapConfigurationList?, _ error: FDKError?) -> Void
-            ) {
-                                
-                var xQuery: [String: Any] = [:] 
-                xQuery["page_no"] = pageNo
-                xQuery["page_size"] = pageSize
-                
-                if let value = isActive {
-                    xQuery["is_active"] = value
-                }
-                
-                if let value = name {
-                    xQuery["name"] = value
-                }
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/sitemaps",
-                    query: xQuery,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SitemapConfigurationList.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Create a new sitemap configuration
-            * Description: Create a new sitemap configuration for a specific company and application. The name must be unique within the scope of the application. The sitemap XML data must be valid XML following the sitemap protocol specification. Once created, the configuration can be activated or deactivated using the is_active flag.
-
-            **/
-            public func createSitemap(
-                body: SitemapConfigCreate,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SitemapConfig?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/sitemaps",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SitemapConfig.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get a specific sitemap configuration
-            * Description: Retrieve a specific sitemap configuration by its name. Returns the complete configuration including the sitemap XML data, activation status, and timestamps.
-
-            **/
-            public func getSitemap(
-                name: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SitemapConfig?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/sitemaps/\(name)",
-                    query: nil,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SitemapConfig.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update a specific sitemap configuration
-            * Description: Update an existing sitemap configuration identified by its name. You can update the activation status and/or the sitemap XML data. The name cannot be modified once the configuration is created. The updated sitemap XML data must be valid XML following the sitemap protocol specification.
-
-            **/
-            public func updateSitemap(
-                name: String,
-                body: SitemapConfigUpdate,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SitemapConfig?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/sitemaps/\(name)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SitemapConfig.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete a specific sitemap configuration
-            * Description: Permanently delete a sitemap configuration identified by its name. This action cannot be undone. All associated data including the sitemap XML data will be removed.
-
-            **/
-            public func deleteSitemap(
-                name: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SitemapConfig?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/sitemaps/\(name)",
-                    query: nil,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SitemapConfig.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
             * Summary: Create HTML tag
             * Description: Create and add a new injectable tag
             **/
@@ -20923,7 +21099,7 @@ public class PlatformClient {
             public func removeInjectableTag(
                 body: RemoveHandpickedSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TagDeleteSuccessResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TagDeleteSuccessResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20951,7 +21127,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TagDeleteSuccessResponseSchema.self, from: data)
+                            let response = Utility.decode(TagDeleteSuccessResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21273,7 +21449,7 @@ public class PlatformClient {
             * Description: Generate and add a new page to the platform.
             **/
             public func createPage(
-                body: PageRequestSchema,
+                body: PageRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -21327,7 +21503,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PageGetResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -21363,7 +21539,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PageGetResponseSchema.self, from: data)
+                            let response = Utility.decode(PageGetResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21385,9 +21561,9 @@ public class PlatformClient {
             public func getPagesPaginator(
                 pageSize: Int?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<PageGetResponseSchema> {
+                ) -> Paginator<PageGetResponse> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<PageGetResponseSchema>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<PageGetResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getPages(
                         pageNo: paginator.pageNo,
@@ -21534,6 +21710,9 @@ public class PlatformClient {
             
             
             
+            
+            
+            
             /**
             *
             * Summary: Get custom field types
@@ -21646,10 +21825,9 @@ public class PlatformClient {
                 types: String?,
                 search: String?,
                 slugs: String?,
-                namespaces: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationCustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -21672,10 +21850,6 @@ public class PlatformClient {
                     xQuery["slugs"] = value
                 }
                 
-                if let value = namespaces {
-                    xQuery["namespaces"] = value
-                }
-                
                 var xHeaders: [(key: String, value: String)] = []
                 
                 
@@ -21685,7 +21859,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/definition",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions",
                     query: xQuery,
                     body: nil,
                     headers: xHeaders,
@@ -21699,7 +21873,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomFieldDefinitionsSchema.self, from: data)
+                            let response = Utility.decode(ApplicationCustomFieldDefinitionsSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21715,86 +21889,10 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get custom fields definitions for a given resource type
-            * Description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list.
-            **/
-            public func getAppCustomFieldDefinitionByResource(
-                pageNo: String,
-                pageSize: String,
-                resource: String,
-                types: String?,
-                search: String?,
-                slugs: String?,
-                namespaces: String?,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                var xQuery: [String: Any] = [:] 
-                xQuery["page_no"] = pageNo
-                xQuery["page_size"] = pageSize
-                
-                if let value = types {
-                    xQuery["types"] = value
-                }
-                
-                if let value = search {
-                    xQuery["search"] = value
-                }
-                
-                if let value = slugs {
-                    xQuery["slugs"] = value
-                }
-                
-                if let value = namespaces {
-                    xQuery["namespaces"] = value
-                }
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/definition",
-                    query: xQuery,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(CustomFieldDefinitionsSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Create custom field definition for a given resource type
+            * Summary: Create custom field definition
             * Description: You can create custom fields definition to any resource so you can extend property of resource.
             **/
             public func createAppCustomFieldDefinition(
-                resource: String,
                 body: CustomFieldDefinitionRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
@@ -21811,7 +21909,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/definition",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -21841,16 +21939,14 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get custom fields definition by resource, slug and namespace
-            * Description: Custom field definitions can be retrived from this using its slug, namespace and resource
+            * Summary: Get custom fields definition by id
+            * Description: Use this API to retrieve the definitions of custom fields using definition_id.
             **/
-            public func getAppCustomFieldDefinitionBySlug(
-                slug: String,
-                resource: String,
-                namespace: String,
+            public func getAppCustomFieldDefinition(
+                id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: MetaFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -21864,7 +21960,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/namespace/\(namespace)/definition/\(slug)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions/\(id)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -21878,7 +21974,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(MetaFieldDefinitionDetailResSchema.self, from: data)
+                            let response = Utility.decode(CustomFieldDefinitionDetailResSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21897,10 +21993,8 @@ public class PlatformClient {
             * Summary: Update custom field definition
             * Description: Custom fields definition can be update using this api, You can update custom field definition name and description.
             **/
-            public func updateAppCustomFieldDefinitionBySlug(
-                slug: String,
-                resource: String,
-                namespace: String,
+            public func updateAppCustomFieldDefinition(
+                id: String,
                 body: CustomFieldDefinitionRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
@@ -21917,7 +22011,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/namespace/\(namespace)/definition/\(slug)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions/\(id)",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -21950,10 +22044,8 @@ public class PlatformClient {
             * Summary: Delete custom fields definition
             * Description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id.
             **/
-            public func deleteAppCustomFieldDefinitionBySlug(
-                slug: String,
-                resource: String,
-                namespace: String,
+            public func deleteAppCustomFieldDefinition(
+                id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
@@ -21970,7 +22062,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/namespace/\(namespace)/definition/\(slug)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions/\(id)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -22000,12 +22092,63 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get list of custom fields of given resource and resource slug
-            * Description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug.
+            * Summary: Get list of custom fields of gives resource
+            * Description: Retrieves a list of custom fields attached to a particular resource by using the resource.
             **/
-            public func getAppCustomFieldsByResourceSlug(
+            public func getAppCustomFields(
                 resource: String,
-                resourceSlug: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CustomFieldsResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CustomFieldsResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get list of custom fields of given resource and resource id
+            * Description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource id.
+            **/
+            public func getAppCustomFieldsByResourceId(
+                resource: String,
+                resourceId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
@@ -22022,7 +22165,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/\(resourceSlug)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)/\(resourceId)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -22052,12 +22195,12 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Create custom field entries for gives resource and resource slug
-            * Description: You can add a custom field using this endpoint to any resource by providing the resource slug.
+            * Summary: Create custom field entries for gives resource and resource_id
+            * Description: You can add a custom field using this endpoint to any resource by providing the resource ID.
             **/
-            public func updateAppCustomFieldByResourceSlug(
+            public func createAppCustomFieldByResourceId(
                 resource: String,
-                resourceSlug: String,
+                resourceId: String,
                 body: CustomFieldRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
@@ -22073,8 +22216,8 @@ public class PlatformClient {
                 }
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "PUT",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/\(resourceSlug)",
+                    method: "POST",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)/\(resourceId)",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -22104,13 +22247,15 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Create custom object definition
-            * Description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource.
+            * Summary: Create custom field entries for gives resource and resource_id
+            * Description: Use this API to create the custom field entry for given resource and resource_id in param.
             **/
-            public func createAppCustomObjectDefinition(
-                body: CustomObjectDefinitionRequestSchema,
+            public func updateAppCustomFieldByResourceId(
+                resource: String,
+                resourceId: String,
+                body: CustomFieldRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectDefinitionSlugSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22123,8 +22268,8 @@ public class PlatformClient {
                 }
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "POST",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition",
+                    method: "PUT",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)/\(resourceId)",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -22138,7 +22283,167 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectDefinitionSlugSchema.self, from: data)
+                            let response = Utility.decode(CustomFieldsResponseByResourceIdSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: delete custom fields of given resource and resource id
+            * Description: Use this API to delete the custom fields for given resource in param.
+            **/
+            public func deleteAppCustomFieldsByResourceId(
+                resource: String,
+                resourceId: String,
+                ids: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CustomFieldsDeleteSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["ids"] = ids
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)/\(resourceId)",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CustomFieldsDeleteSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Fetch bulk import and export job list.
+            * Description: Use this api to get list of jobs of bulk import and exports
+            **/
+            public func getAppCustomFieldJobs(
+                page: String,
+                pageSize: String,
+                actionType: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CustomFieldBulkEntry?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["page"] = page
+                xQuery["page_size"] = pageSize
+                xQuery["action_type"] = actionType
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/jobs",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CustomFieldBulkEntry.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Create custom object definition
+            * Description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource.
+            **/
+            public func createAppCustomObjectDefinition(
+                body: CustomObjectDefinitionRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CustomObjectDefinitionSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22183,7 +22488,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions",
                     query: xQuery,
                     body: nil,
                     headers: xHeaders,
@@ -22214,13 +22519,13 @@ public class PlatformClient {
             /**
             *
             * Summary: Get custom object definition
-            * Description: Custom object definitions can be fetched using their custom object definition slug.
+            * Description: Custom object definitions can be fetched using their definition ID.
             **/
-            public func getAppCustomObjectDefinitionBySlug(
-                slug: String,
+            public func getAppCustomObjectDefinition(
+                id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectDefinitionSlugSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22234,7 +22539,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions/\(id)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -22248,7 +22553,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectDefinitionSlugSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectDefinitionSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22265,13 +22570,13 @@ public class PlatformClient {
             /**
             *
             * Summary: Update custom object definition
-            * Description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object.
+            * Description: Use this API to update a custom object definition for your application.
             **/
-            public func updateAppCustomObjectDefinitionBySlug(
-                slug: String,
+            public func updateAppCustomObjectDefinition(
+                id: String,
                 body: CustomObjectDefinitionUpdateRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectDefinitionSlugSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22285,7 +22590,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions/\(id)",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -22299,7 +22604,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectDefinitionSlugSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectDefinitionSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22318,8 +22623,8 @@ public class PlatformClient {
             * Summary: Delete custom object definition
             * Description: Custom object definitions can be deleted using this endpoint by providing the definition ID.
             **/
-            public func deleteAppCustomObjectDefinitionBySlug(
-                slug: String,
+            public func deleteAppCustomObjectDefinition(
+                id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectDefinitionDeleteResponseSchema?, _ error: FDKError?) -> Void
@@ -22336,7 +22641,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions/\(id)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -22369,16 +22674,20 @@ public class PlatformClient {
             * Summary: Get list of custom objects
             * Description: Custom object entries can fetch using this endpoint.
             **/
-            public func getAppCustomObjectsBySlug(
+            public func getAppCustomObjects(
+                definitionId: String?,
                 pageNo: String,
                 pageSize: String,
-                definitionSlug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectsSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
+                
+                if let value = definitionId {
+                    xQuery["definition_id"] = value
+                }
                 xQuery["page_no"] = pageNo
                 xQuery["page_size"] = pageSize
                 
@@ -22391,7 +22700,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects",
                     query: xQuery,
                     body: nil,
                     headers: xHeaders,
@@ -22424,11 +22733,10 @@ public class PlatformClient {
             * Summary: Create custom object entries
             * Description: Custom object entries against the custom object definition can be added using this API.
             **/
-            public func createAppCustomObjectBySlug(
-                definitionSlug: String,
-                body: CustomObjectRequestSchemaWithoutId,
+            public func createAppCustomObject(
+                body: CustomObjectRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectApplicationSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22442,7 +22750,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -22456,7 +22764,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectApplicationSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22473,14 +22781,13 @@ public class PlatformClient {
             /**
             *
             * Summary: Get custom object details
-            * Description: Details of a custom object entry can be obtained using this endpoint.
+            * Description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint.
             **/
-            public func getAppCustomObjectBySlug(
-                definitionSlug: String,
-                slug: String,
+            public func getAppCustomObject(
+                id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectBySlugSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22494,7 +22801,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries/\(slug)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/\(id)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -22508,7 +22815,58 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectBySlugSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectByIdSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update custom object details
+            * Description: Custom object entries can be updated using this endpoint.
+            **/
+            public func updateAppCustomObject(
+                id: String,
+                body: CustomObjectRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CustomObjectApplicationSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CustomObjectApplicationSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22525,11 +22883,10 @@ public class PlatformClient {
             /**
             *
             * Summary: Delete custom object
-            * Description: A Custom object entry can be deleted by providing the custom object definition slug and custom object entry slug using this endpoint.
+            * Description: Custom object entries can be deleted by providing the delete ID using this endpoint.
             **/
-            public func deleteAppCustomObjectBySlug(
-                definitionSlug: String,
-                slug: String,
+            public func deleteAppCustomObject(
+                id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
@@ -22546,7 +22903,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries/\(slug)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/\(id)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -22576,63 +22933,11 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Update custom object details
-            * Description: Custom object entries can be updated using this endpoint.
-            **/
-            public func updateAppCustomObjectBySlug(
-                definitionSlug: String,
-                slug: String,
-                body: CustomObjectRequestSchemaWithoutId,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectBySlugSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries/\(slug)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(CustomObjectBySlugSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
             * Summary: Get bulk import and export job list
             * Description: Custom object bulk import and export jobs status and details can be obtained using this endpoint.
             **/
             public func getAppJobs(
-                pageNo: String,
+                page: String,
                 pageSize: String,
                 actionType: String,
                 
@@ -22641,7 +22946,7 @@ public class PlatformClient {
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
-                xQuery["page_no"] = pageNo
+                xQuery["page"] = page
                 xQuery["page_size"] = pageSize
                 xQuery["action_type"] = actionType
                 
@@ -22687,11 +22992,11 @@ public class PlatformClient {
             * Summary: Bulk custom object entries upload
             * Description: Custom object bulk import of bulk entries can be performed using this endpoint.
             **/
-            public func importAppCustomObjectEntriesBySlug(
-                slug: String,
+            public func importAppCustomObjectEntries(
+                definitionId: String,
                 body: CustomObjectBulkSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectEntryBulkUploadDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectEntryBulkUploadResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22705,7 +23010,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)/bulk/upload",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/bulk/\(definitionId)/upload",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -22719,7 +23024,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectEntryBulkUploadDetails.self, from: data)
+                            let response = Utility.decode(CustomObjectEntryBulkUploadResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22738,8 +23043,8 @@ public class PlatformClient {
             * Summary: Initiate download for bulk custom object entries
             * Description: Custom object bulk export of bulk entries can be perform using this endpoint.
             **/
-            public func exportAppCustomObjectEntriesBySlug(
-                slug: String,
+            public func exportAppCustomObjectEntries(
+                definitionId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectBulkEntryInitiateDownload?, _ error: FDKError?) -> Void
@@ -22756,7 +23061,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)/bulk/download",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/bulk/\(definitionId)/download",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -22789,8 +23094,8 @@ public class PlatformClient {
             * Summary: Download sample for custom object bulk entry
             * Description: Sample files for custom object bulk import can be obtained from this endpoint.
             **/
-            public func sampleAppCustomObjectBulkEntryBySlug(
-                slug: String,
+            public func sampleAppCustomObjectBulkEntry(
+                definitionId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
@@ -22807,7 +23112,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)/bulk/sample",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/bulk/\(definitionId)/sample",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -22859,9 +23164,9 @@ public class PlatformClient {
             **/
             public func appStartUpload(
                 namespace: String,
-                body: FileUploadStart,
+                body: StartRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: FileUpload?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22889,7 +23194,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(FileUpload.self, from: data)
+                            let response = Utility.decode(StartResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22910,9 +23215,9 @@ public class PlatformClient {
             **/
             public func appCompleteUpload(
                 namespace: String,
-                body: FileUpload,
+                body: StartResponse,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: FileUploadComplete?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22940,7 +23245,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(FileUploadComplete.self, from: data)
+                            let response = Utility.decode(CompleteResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23154,7 +23459,7 @@ public class PlatformClient {
                 storeOs: Bool,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: InvoiceTypes?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: InvoiceTypesResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -23187,7 +23492,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(InvoiceTypes.self, from: data)
+                            let response = Utility.decode(InvoiceTypesResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23210,7 +23515,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PdfTypeByIdDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PdfTypeIdResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23238,7 +23543,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PdfTypeByIdDetails.self, from: data)
+                            let response = Utility.decode(PdfTypeIdResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23262,7 +23567,7 @@ public class PlatformClient {
                 countryCode: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PdfDataItemsDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DummyTemplateDataItems?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -23295,7 +23600,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PdfDataItemsDetails.self, from: data)
+                            let response = Utility.decode(DummyTemplateDataItems.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23318,7 +23623,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: MapperDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DummyPayloadById?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23346,7 +23651,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(MapperDetails.self, from: data)
+                            let response = Utility.decode(DummyPayloadById.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23413,57 +23718,6 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Update HTML Template
-            * Description: Update the HTML Template.
-            **/
-            public func updateHtmlTemplate(
-                id: String,
-                body: PdfConfig,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PdfConfigSaveSuccess?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config/\(id)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(PdfConfigSaveSuccess.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
             * Summary: Delete a PDF generator configuration
             * Description: Deletes a specific PDF generator configuration based on the provided id.
             **/
@@ -23500,6 +23754,57 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = data.dictionary
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update HTML Template
+            * Description: Update the HTML Template.
+            **/
+            public func updateHtmlTemplate(
+                id: String,
+                body: PdfConfig,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: PdfConfigSaveSuccess?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PdfConfigSaveSuccess.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23740,7 +24045,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PdfDefaultTemplateById?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PdfDefaultTemplateResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23768,7 +24073,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PdfDefaultTemplateById.self, from: data)
+                            let response = Utility.decode(PdfDefaultTemplateResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24426,8 +24731,6 @@ public class PlatformClient {
                 state: String?,
                 city: String?,
                 sector: String?,
-                storeUid: Int?,
-                regionUid: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ListViewResponseV2?, _ error: FDKError?) -> Void
@@ -24485,14 +24788,6 @@ public class PlatformClient {
                 
                 if let value = sector {
                     xQuery["sector"] = value
-                }
-                
-                if let value = storeUid {
-                    xQuery["store_uid"] = value
-                }
-                
-                if let value = regionUid {
-                    xQuery["region_uid"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -24592,7 +24887,7 @@ public class PlatformClient {
                 zoneId: String,
                 body: UpdateZoneDataV2,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ZoneUpdateSuccessResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ZoneUpdateSuccessResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -24620,7 +24915,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ZoneUpdateSuccessResponseSchema.self, from: data)
+                            let response = Utility.decode(ZoneUpdateSuccessResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24643,7 +24938,7 @@ public class PlatformClient {
                 zoneId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ZoneDeleteSuccessResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ZoneDeleteSuccessResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -24671,7 +24966,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ZoneDeleteSuccessResponseSchema.self, from: data)
+                            let response = Utility.decode(ZoneDeleteSuccessResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24744,7 +25039,7 @@ public class PlatformClient {
             public func createBulkZone(
                 body: CreateBulkZoneData,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateBulkZoneResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateBulkZoneResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -24772,7 +25067,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateBulkZoneResponseSchema.self, from: data)
+                            let response = Utility.decode(CreateBulkZoneResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24945,7 +25240,7 @@ public class PlatformClient {
             public func updatePincodeMopView(
                 body: PincodeMopData,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PincodeMOPresponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PincodeMOPresponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -24973,7 +25268,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PincodeMOPresponseSchema.self, from: data)
+                            let response = Utility.decode(PincodeMOPresponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24995,7 +25290,7 @@ public class PlatformClient {
             public func updatePincodeBulkView(
                 body: PincodeMopBulkData,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PincodeBulkViewResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PincodeBulkViewResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -25023,7 +25318,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PincodeBulkViewResponseSchema.self, from: data)
+                            let response = Utility.decode(PincodeBulkViewResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -25043,9 +25338,9 @@ public class PlatformClient {
             * Description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings.
             **/
             public func updatePincodeCoDListing(
-                body: PincodeCodStatusListingRequestSchema,
+                body: PincodeCodStatusListingRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PincodeCodStatusListingResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PincodeCodStatusListingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -25073,7 +25368,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PincodeCodStatusListingResponseSchema.self, from: data)
+                            let response = Utility.decode(PincodeCodStatusListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -25093,7 +25388,7 @@ public class PlatformClient {
             * Description: Retrieves the history of changes made to cash on delivery settings for pincodes.
             **/
             public func updatePincodeAuditHistory(
-                body: PincodeMopUpdateAuditHistoryRequestSchema,
+                body: PincodeMopUpdateAuditHistoryRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PincodeMopUpdateAuditHistoryResponseData?, _ error: FDKError?) -> Void
             ) {
@@ -25296,7 +25591,7 @@ public class PlatformClient {
                 geoareaId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GeoAreaResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GeoAreaResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -25324,7 +25619,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GeoAreaResponseSchema.self, from: data)
+                            let response = Utility.decode(GeoAreaResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -25448,7 +25743,7 @@ public class PlatformClient {
                 geoareaId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BulkGeoAreaGetResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: BulkGeoAreaGetResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -25476,7 +25771,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BulkGeoAreaGetResponseSchema.self, from: data)
+                            let response = Utility.decode(BulkGeoAreaGetResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -25956,20 +26251,15 @@ public class PlatformClient {
             * Description: Retrieve a list of rules within the delivery configuration.
             **/
             public func getCourierPartnerRules(
-                q: String?,
                 pageNo: Int?,
                 pageSize: Int?,
                 status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CourierPartnerRulesListResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CourierPartnerRulesListResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
-                
-                if let value = q {
-                    xQuery["q"] = value
-                }
                 
                 if let value = pageNo {
                     xQuery["page_no"] = value
@@ -26006,7 +26296,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CourierPartnerRulesListResponseSchema.self, from: data)
+                            let response = Utility.decode(CourierPartnerRulesListResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -26122,57 +26412,6 @@ public class PlatformClient {
             
             
             
-            /**
-            *
-            * Summary: Delete courier rule
-            * Description: Delete a single courier rule
-            **/
-            public func deleteCourierPartnerRule(
-                ruleUid: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CourierPartnerRuleDeleteResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courier-partner/rules/\(ruleUid)",
-                    query: nil,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(CourierPartnerRuleDeleteResponseSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
             
             
             /**
@@ -26181,9 +26420,9 @@ public class PlatformClient {
             * Description: Apply configuration to application to set DP rules and Zone configuration
             **/
             public func updateApplicationConfiguration(
-                body: ApplicationConfigPutRequestSchema,
+                body: ApplicationConfigPutRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationConfigPutResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationConfigPutResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -26211,7 +26450,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationConfigPutResponseSchema.self, from: data)
+                            let response = Utility.decode(ApplicationConfigPutResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -26233,7 +26472,7 @@ public class PlatformClient {
             public func getApplicationConfiguration(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationConfigGetResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationConfigGetResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -26261,7 +26500,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationConfigGetResponseSchema.self, from: data)
+                            let response = Utility.decode(ApplicationConfigGetResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -26281,9 +26520,9 @@ public class PlatformClient {
             * Description: Apply configs to application. Supports patching for buybox rule config and promise config. For reference, refer to examples
             **/
             public func patchApplicationConfiguration(
-                body: ApplicationConfigPatchRequestSchema,
+                body: ApplicationConfigPatchRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationConfigPatchResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationConfigPatchResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -26311,7 +26550,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationConfigPatchResponseSchema.self, from: data)
+                            let response = Utility.decode(ApplicationConfigPatchResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -26486,7 +26725,7 @@ public class PlatformClient {
                 status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetStoreRulesApiResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetStoreRulesApiResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -26526,7 +26765,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetStoreRulesApiResponseSchema.self, from: data)
+                            let response = Utility.decode(GetStoreRulesApiResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -26596,9 +26835,9 @@ public class PlatformClient {
             * Description: Update Store Rule priority
             **/
             public func updateStoreRulePriority(
-                body: RulePriorityRequestSchema,
+                body: RulePriorityRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RulePriorityResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RulePriorityResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -26626,7 +26865,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RulePriorityResponseSchema.self, from: data)
+                            let response = Utility.decode(RulePriorityResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -26742,59 +26981,6 @@ public class PlatformClient {
             
             
             
-            /**
-            *
-            * Summary: Delete store rule
-            * Description: Delete a single store rule
-            **/
-            public func deleteStoreRule(
-                ruleUid: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: StoreRuleDeleteResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/store/rules/\(ruleUid)",
-                    query: nil,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(StoreRuleDeleteResponseSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
             
             
             
@@ -26810,9 +26996,9 @@ public class PlatformClient {
             * Description: Updates a courier partner rule priority for a single application
             **/
             public func updateCourierPartnerRulePriority(
-                body: RulePriorityRequestSchema,
+                body: RulePriorityRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RulePriorityResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RulePriorityResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -26840,7 +27026,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RulePriorityResponseSchema.self, from: data)
+                            let response = Utility.decode(RulePriorityResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27062,6 +27248,362 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
+            
+            /**
+            *
+            * Summary: Validate bulk zones.
+            * Description: Validates the bulk zones data before import.
+            **/
+            public func validateBulkZone(
+                body: ZoneBulkValidationRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: ZoneBulkValidationResponse?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/logistics/v2.0/company/\(companyId)/application/\(applicationId)/zones/bulk/validation",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ZoneBulkValidationResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get bulk zone validation status.
+            * Description: Fetch the validation status and results for a specific bulk zone validation batch.
+            **/
+            public func getBulkZoneValidation(
+                batchId: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: ZoneBulkValidationStatusResponse?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/logistics/v2.0/company/\(companyId)/application/\(applicationId)/zones/bulk/validation/\(batchId)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ZoneBulkValidationStatusResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Import validated bulk zones.
+            * Description: Imports previously validated bulk zones into the system.
+            **/
+            public func importBulkZone(
+                batchId: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: ZoneBulkImportResponse?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/logistics/v2.0/company/\(companyId)/application/\(applicationId)/zones/bulk/import/\(batchId)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ZoneBulkImportResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Resolves Given Zone Conflicts.
+            * Description: Resolves the conflicts in the current zone with or without existing zone.
+            **/
+            public func overrideZoneById(
+                zoneId: String,
+                body: ZoneOverrideSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: ZoneOverrideResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/logistics/v2.0/company/\(companyId)/application/\(applicationId)/zones/\(zoneId)/conflicts",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ZoneOverrideResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Zone conflict override status.
+            * Description: Get current status of zone conflict override process.
+            **/
+            public func getZoneOverrideStatus(
+                zoneId: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: ZoneOverrideStatusResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/logistics/v2.0/company/\(companyId)/application/\(applicationId)/zones/\(zoneId)/conflicts",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ZoneOverrideStatusResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Bulk Zone Override.
+            * Description: Resolve multiple zone conflicts.
+            **/
+            public func overrideBulkZone(
+                batchId: String,
+                body: BulkZoneOverrideSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: BulkZoneOverrideResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/logistics/v2.0/company/\(companyId)/application/\(applicationId)/zones/bulk/conflicts/\(batchId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(BulkZoneOverrideResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Bulk Zone Override Status.
+            * Description: Get status multiple zone conflicts.
+            **/
+            public func getBulkZoneOverrideStatus(
+                batchId: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: BulkZoneOverrideStatusSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/logistics/v2.0/company/\(companyId)/application/\(applicationId)/zones/bulk/history/\(batchId)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(BulkZoneOverrideStatusSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
         }
         
         
@@ -27076,8 +27618,6 @@ public class PlatformClient {
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
-            
-            
             
             
             
@@ -27193,7 +27733,7 @@ public class PlatformClient {
                 searchValue: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: LaneRuleConfigSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RuleLaneConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -27225,7 +27765,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(LaneRuleConfigSchema.self, from: data)
+                            let response = Utility.decode(RuleLaneConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27245,9 +27785,9 @@ public class PlatformClient {
             * Description: Create a new rule
             **/
             public func createRule(
-                body: RuleRequestSchema,
+                body: RuleRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RuleSuccessResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RuleSuccessResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27275,7 +27815,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RuleSuccessResponseSchema.self, from: data)
+                            let response = Utility.decode(RuleSuccessResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27298,7 +27838,7 @@ public class PlatformClient {
                 ruleId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RuleResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RuleResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27326,7 +27866,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RuleResponseSchema.self, from: data)
+                            let response = Utility.decode(RuleResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27347,9 +27887,9 @@ public class PlatformClient {
             **/
             public func updateRule(
                 ruleId: String,
-                body: RuleUpdateRequestSchema,
+                body: RuleUpdateRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RuleSuccessResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RuleSuccessResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27377,7 +27917,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RuleSuccessResponseSchema.self, from: data)
+                            let response = Utility.decode(RuleSuccessResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27400,7 +27940,7 @@ public class PlatformClient {
                 ruleId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RuleSuccessResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RuleSuccessResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27428,7 +27968,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RuleSuccessResponseSchema.self, from: data)
+                            let response = Utility.decode(RuleSuccessResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27448,9 +27988,9 @@ public class PlatformClient {
             * Description: Update the position of a rule
             **/
             public func updateRulePosition(
-                body: UpdateRulePositionRequestSchema,
+                body: UpdateRulePositionRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RuleListResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RuleListResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27478,7 +28018,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RuleListResponseSchema.self, from: data)
+                            let response = Utility.decode(RuleListResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27500,7 +28040,7 @@ public class PlatformClient {
             public func getRuleParameters(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RuleParametersResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RuleParametersResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27528,7 +28068,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RuleParametersResponseSchema.self, from: data)
+                            let response = Utility.decode(RuleParametersResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27548,9 +28088,9 @@ public class PlatformClient {
             * Description: Get a list of rules
             **/
             public func getRuleList(
-                body: RuleListRequestSchema,
+                body: RuleListRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RuleListResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RuleListResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27578,7 +28118,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RuleListResponseSchema.self, from: data)
+                            let response = Utility.decode(RuleListResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27598,12 +28138,10 @@ public class PlatformClient {
             
             
             
-            
-            
             /**
             *
-            * Summary: Retrieve Reasons for Cancellation and Return journey
-            * Description: Allows users to retrieve a comprehensive list of reasons for cancellation  or returning a shipment. It provides both cancellation and return reasons, with an emphasis  on Quality Control (QC) evaluations.
+            * Summary: Get reasons behind full or partial cancellation of a shipment
+            * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
             **/
             public func getShipmentBagReasons(
                 shipmentId: String,
@@ -27683,7 +28221,7 @@ public class PlatformClient {
                 excludeLockedShipments: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -27775,7 +28313,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ShipmentInternalPlatformViewResponseSchema.self, from: data)
+                            let response = Utility.decode(ShipmentInternalPlatformViewResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27860,7 +28398,7 @@ public class PlatformClient {
                 action: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ShipmentReasonsResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ShipmentReasonsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27888,7 +28426,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ShipmentReasonsResponseSchema.self, from: data)
+                            let response = Utility.decode(ShipmentReasonsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27899,8 +28437,6 @@ public class PlatformClient {
                         }
                 });
             }
-            
-            
             
             
             
@@ -27933,7 +28469,7 @@ public class PlatformClient {
                 extensionId: String,
                 body: AddProxyReq,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ExtensionProxyPathCreation?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AddProxyResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27961,7 +28497,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ExtensionProxyPathCreation.self, from: data)
+                            let response = Utility.decode(AddProxyResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27985,7 +28521,7 @@ public class PlatformClient {
                 attachedPath: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ExtensionProxyPathDelete?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RemoveProxyResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -28013,7 +28549,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ExtensionProxyPathDelete.self, from: data)
+                            let response = Utility.decode(RemoveProxyResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28052,7 +28588,7 @@ public class PlatformClient {
                 configType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentGatewayConfigDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentGatewayConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -28085,7 +28621,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentGatewayConfigDetails.self, from: data)
+                            let response = Utility.decode(PaymentGatewayConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28105,7 +28641,7 @@ public class PlatformClient {
             * Description: Store and update configuration settings for brand payment gateways i.e required for payment for a payment gateway like key, secret, merchant salt. - Payment
             **/
             public func saveBrandPaymentGatewayConfig(
-                body: PaymentGatewayConfigCreation,
+                body: PaymentGatewayConfigRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentGatewayToBeReviewed?, _ error: FDKError?) -> Void
             ) {
@@ -28156,13 +28692,13 @@ public class PlatformClient {
             **/
             public func getPaymentModeRoutes(
                 refresh: Bool?,
-                amount: Int,
                 requestType: String?,
                 orderId: String?,
                 shipmentId: String?,
+                amount: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentOptionsDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentOptionsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -28170,7 +28706,6 @@ public class PlatformClient {
                 if let value = refresh {
                     xQuery["refresh"] = value
                 }
-                xQuery["amount"] = amount
                 
                 if let value = requestType {
                     xQuery["request_type"] = value
@@ -28182,6 +28717,10 @@ public class PlatformClient {
                 
                 if let value = shipmentId {
                     xQuery["shipment_id"] = value
+                }
+                
+                if let value = amount {
+                    xQuery["amount"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -28207,7 +28746,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentOptionsDetails.self, from: data)
+                            let response = Utility.decode(PaymentOptionsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28241,7 +28780,7 @@ public class PlatformClient {
                 requestHash: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetRefundAccountDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetRefundAccountResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -28274,7 +28813,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetRefundAccountDetails.self, from: data)
+                            let response = Utility.decode(GetRefundAccountResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28294,9 +28833,9 @@ public class PlatformClient {
             * Description: The addition of a bank account specifically for refunds, employing OTP verification for security - Payment
             **/
             public func addRefundBankAccountUsingOTP(
-                body: AddBeneficiaryDetailsOTPCreation,
+                body: AddBeneficiaryDetailsOTPRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundAccountDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -28324,7 +28863,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundAccountDetails.self, from: data)
+                            let response = Utility.decode(RefundAccountResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28348,7 +28887,7 @@ public class PlatformClient {
                 orderId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OrderBeneficiaryFetchResults?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -28377,7 +28916,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OrderBeneficiaryFetchResults.self, from: data)
+                            let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28400,7 +28939,7 @@ public class PlatformClient {
                 orderId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OrderBeneficiaryFetchResults?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -28429,7 +28968,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OrderBeneficiaryFetchResults.self, from: data)
+                            let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28449,9 +28988,9 @@ public class PlatformClient {
             * Description: Authentication and confirmation of a payment.It requires details such as the order ID and payment methods in the request body to authenticate and confirm the payment.
             **/
             public func confirmPayment(
-                body: PaymentConfirmationCreation,
+                body: PaymentConfirmationRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentConfirmationDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentConfirmationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -28479,7 +29018,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentConfirmationDetails.self, from: data)
+                            let response = Utility.decode(PaymentConfirmationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28503,7 +29042,7 @@ public class PlatformClient {
                 mobileNo: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetUserCODLimitDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetUserCODLimitResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -28533,7 +29072,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetUserCODLimitDetails.self, from: data)
+                            let response = Utility.decode(GetUserCODLimitResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28553,9 +29092,9 @@ public class PlatformClient {
             * Description: This allows access to seller to enable disable cod of specific user
             **/
             public func setUserCODlimitRoutes(
-                body: SetCODForUserCreation,
+                body: SetCODForUserRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetUserCODLimitDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetUserCODLimitResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -28583,7 +29122,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetUserCODLimitDetails.self, from: data)
+                            let response = Utility.decode(GetUserCODLimitResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28605,7 +29144,7 @@ public class PlatformClient {
             public func edcAggregatorsAndModelList(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcAggregatorAndModelListDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcAggregatorAndModelListResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -28633,7 +29172,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcAggregatorAndModelListDetails.self, from: data)
+                            let response = Utility.decode(EdcAggregatorAndModelListResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28655,7 +29194,7 @@ public class PlatformClient {
             public func edcDeviceStats(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceStatsDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceStatsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -28683,7 +29222,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceStatsDetails.self, from: data)
+                            let response = Utility.decode(EdcDeviceStatsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28703,9 +29242,9 @@ public class PlatformClient {
             * Description: Enables the modification of settings and details associated with an Electronic Data Capture (EDC) device linked to a specific application within a company. Upon success, it returns the updated information of the EDC device.
             **/
             public func updateEdcDevice(
-                body: EdcAddCreation,
+                body: EdcAddRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceAddDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceAddResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -28733,7 +29272,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceAddDetails.self, from: data)
+                            let response = Utility.decode(EdcDeviceAddResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28756,7 +29295,7 @@ public class PlatformClient {
                 terminalUniqueIdentifier: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceDetailsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -28784,7 +29323,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceDetails.self, from: data)
+                            let response = Utility.decode(EdcDeviceDetailsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28805,9 +29344,9 @@ public class PlatformClient {
             **/
             public func addEdcDevice(
                 terminalUniqueIdentifier: String,
-                body: EdcUpdate,
+                body: EdcUpdateRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceUpdateDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceUpdateResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -28835,7 +29374,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceUpdateDetails.self, from: data)
+                            let response = Utility.decode(EdcDeviceUpdateResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28862,7 +29401,7 @@ public class PlatformClient {
                 deviceTag: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceListDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceListResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -28910,7 +29449,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceListDetails.self, from: data)
+                            let response = Utility.decode(EdcDeviceListResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28944,7 +29483,7 @@ public class PlatformClient {
                 shipmentId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentModeRouteDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -29011,7 +29550,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentModeRouteDetails.self, from: data)
+                            let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29031,9 +29570,9 @@ public class PlatformClient {
             * Description: Initiates the payment procedure for an order.Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID.
             **/
             public func initialisePayment(
-                body: PaymentInitializationCreation,
+                body: PaymentInitializationRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentInitializationDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29061,7 +29600,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentInitializationDetails.self, from: data)
+                            let response = Utility.decode(PaymentInitializationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29081,9 +29620,9 @@ public class PlatformClient {
             * Description: Polling process to confirm the payment status. It periodically checks and updates the current status of a payment, ensuring timely and accurate confirmation of payment transactions.
             **/
             public func checkAndUpdatePaymentStatus(
-                body: PaymentStatusUpdateCreation,
+                body: PaymentStatusUpdateRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentStatusUpdateDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29111,7 +29650,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentStatusUpdateDetails.self, from: data)
+                            let response = Utility.decode(PaymentStatusUpdateResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29131,9 +29670,9 @@ public class PlatformClient {
             * Description: Enable you to perform actions related to the resending and cancellation of payment links through SMS or EMAIL. resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing.
             **/
             public func resendOrCancelPayment(
-                body: ResendOrCancelPaymentCreation,
+                body: ResendOrCancelPaymentRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ResendOrCancelPaymentDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ResendOrCancelPaymentResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29161,7 +29700,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ResendOrCancelPaymentDetails.self, from: data)
+                            let response = Utility.decode(ResendOrCancelPaymentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29181,9 +29720,9 @@ public class PlatformClient {
             * Description: Retrieve status of multiple payments in bulk and returns the status of each payment along with associated details such as payment ID, amount, currency, status, payment mode, and payment gateway in the response
             **/
             public func paymentStatusBulk(
-                body: PaymentStatusBulkHandlerCreation,
+                body: PaymentStatusBulkHandlerRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentStatusBulkHandlerDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentStatusBulkHandlerResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29211,7 +29750,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentStatusBulkHandlerDetails.self, from: data)
+                            let response = Utility.decode(PaymentStatusBulkHandlerResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29236,7 +29775,7 @@ public class PlatformClient {
                 failureRedirectUrl: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetOauthUrlDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetOauthUrlResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -29272,7 +29811,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetOauthUrlDetails.self, from: data)
+                            let response = Utility.decode(GetOauthUrlResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29345,7 +29884,7 @@ public class PlatformClient {
             public func repaymentDetails(
                 body: RepaymentDetailsSerialiserPayAll,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RepaymentDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RepaymentResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29373,7 +29912,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RepaymentDetails.self, from: data)
+                            let response = Utility.decode(RepaymentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29393,9 +29932,9 @@ public class PlatformClient {
             * Description: Initiate the merchant onboarding process for Buy Now Pay Later (BNPL).
             **/
             public func merchantOnBoarding(
-                body: MerchantOnBoardingCreation,
+                body: MerchantOnBoardingRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: MerchantOnBoardingDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: MerchantOnBoardingResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29423,7 +29962,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(MerchantOnBoardingDetails.self, from: data)
+                            let response = Utility.decode(MerchantOnBoardingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29443,9 +29982,9 @@ public class PlatformClient {
             * Description: Verify whether the user is eligible for pay-later payment from the payment aggregator's side using the customer's phone number
             **/
             public func verifyCustomerForPayment(
-                body: ValidateCustomerCreation,
+                body: ValidateCustomerRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ValidateCustomerDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ValidateCustomerResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29473,7 +30012,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ValidateCustomerDetails.self, from: data)
+                            let response = Utility.decode(ValidateCustomerResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29496,7 +30035,7 @@ public class PlatformClient {
                 paymentLinkId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetPaymentLinkDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -29525,7 +30064,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetPaymentLinkDetails.self, from: data)
+                            let response = Utility.decode(GetPaymentLinkResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29545,9 +30084,9 @@ public class PlatformClient {
             * Description: Generate a payment link for accepting payments.
             **/
             public func createPaymentLink(
-                body: CreatePaymentLinkCreation,
+                body: CreatePaymentLinkRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreatePaymentLinkDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreatePaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29575,7 +30114,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreatePaymentLinkDetails.self, from: data)
+                            let response = Utility.decode(CreatePaymentLinkResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29599,7 +30138,7 @@ public class PlatformClient {
                 paymentLinkId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetPaymentLinkDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -29628,7 +30167,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetPaymentLinkDetails.self, from: data)
+                            let response = Utility.decode(GetPaymentLinkResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29651,7 +30190,7 @@ public class PlatformClient {
                 paymentLinkId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PollingPaymentLinkDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PollingPaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -29680,7 +30219,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PollingPaymentLinkDetails.self, from: data)
+                            let response = Utility.decode(PollingPaymentLinkResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29700,9 +30239,9 @@ public class PlatformClient {
             * Description: Resends an existing payment link to the user to complete the payment
             **/
             public func resendPaymentLink(
-                body: CancelOrResendPaymentLinkCreation,
+                body: CancelOrResendPaymentLinkRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ResendPaymentLinkDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ResendPaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29730,7 +30269,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ResendPaymentLinkDetails.self, from: data)
+                            let response = Utility.decode(ResendPaymentLinkResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29750,9 +30289,9 @@ public class PlatformClient {
             * Description: Deactivate and cancel a payment link.
             **/
             public func cancelPaymentLink(
-                body: CancelOrResendPaymentLinkCreation,
+                body: CancelOrResendPaymentLinkRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CancelPaymentLinkDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CancelPaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29780,7 +30319,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CancelPaymentLinkDetails.self, from: data)
+                            let response = Utility.decode(CancelPaymentLinkResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29804,7 +30343,7 @@ public class PlatformClient {
                 device: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentModeDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -29834,7 +30373,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentModeDetails.self, from: data)
+                            let response = Utility.decode(PaymentModeResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29854,9 +30393,9 @@ public class PlatformClient {
             * Description: Update sequencing of payment modes for the merchant
             **/
             public func patchPaymentModeSequencing(
-                body: PlatformPaymentMode,
+                body: PlatformPaymentModeRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorConfigDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29884,7 +30423,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorConfigDetails.self, from: data)
+                            let response = Utility.decode(AggregatorConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29907,7 +30446,7 @@ public class PlatformClient {
                 mode: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformOfflineAdvanceDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformOfflineAdvanceResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29935,7 +30474,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformOfflineAdvanceDetails.self, from: data)
+                            let response = Utility.decode(PlatformOfflineAdvanceResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -29956,9 +30495,9 @@ public class PlatformClient {
             **/
             public func setMerchantModeControlRoutes(
                 mode: String,
-                body: PlatformOfflineAdvance,
+                body: PlatformOfflineAdvanceRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformOfflineAdvanceDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformOfflineAdvanceResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -29986,7 +30525,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformOfflineAdvanceDetails.self, from: data)
+                            let response = Utility.decode(PlatformOfflineAdvanceResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30111,7 +30650,7 @@ public class PlatformClient {
             public func getPaymentCodeOption(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetPaymentCodeDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPaymentCodeResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30139,7 +30678,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetPaymentCodeDetails.self, from: data)
+                            let response = Utility.decode(GetPaymentCodeResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30163,7 +30702,7 @@ public class PlatformClient {
                 lineItem: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetPaymentSessionDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPaymentSessionResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -30195,7 +30734,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetPaymentSessionDetails.self, from: data)
+                            let response = Utility.decode(GetPaymentSessionResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30216,9 +30755,9 @@ public class PlatformClient {
             **/
             public func updatePaymentSession(
                 gid: String,
-                body: PaymentSessionCreation,
+                body: PaymentSessionRequestSerializer,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentSessionPutDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentSessionResponseSerializer?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30246,7 +30785,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentSessionPutDetails.self, from: data)
+                            let response = Utility.decode(PaymentSessionResponseSerializer.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30268,9 +30807,9 @@ public class PlatformClient {
             public func updateRefundSession(
                 gid: String,
                 requestId: String,
-                body: RefundSessionCreation,
+                body: RefundSessionRequestSerializer,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundSessionDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundSessionResponseSerializer?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30298,7 +30837,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundSessionDetails.self, from: data)
+                            let response = Utility.decode(RefundSessionResponseSerializer.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30321,7 +30860,7 @@ public class PlatformClient {
                 paymentOptionType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformOnlineOfflinePaymentDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformOnlineOfflinePaymentResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -30353,7 +30892,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformOnlineOfflinePaymentDetails.self, from: data)
+                            let response = Utility.decode(PlatformOnlineOfflinePaymentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30373,9 +30912,9 @@ public class PlatformClient {
             * Description: Updated online/offline payment as active/inactive like disable offline payment mode will disable offline payment modes on checkout page on merchant's website
             **/
             public func patchMerchantPaymentOption(
-                body: MerchnatPaymentModeCreation,
+                body: MerchantPaymentModeRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PatchPlatformOnlineOfflinePaymentDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PatchPlatformOnlineOfflinePaymentResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30403,7 +30942,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PatchPlatformOnlineOfflinePaymentDetails.self, from: data)
+                            let response = Utility.decode(PatchPlatformOnlineOfflinePaymentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30425,7 +30964,7 @@ public class PlatformClient {
             public func getDevices(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetDevice?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetDeviceResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30453,7 +30992,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetDevice.self, from: data)
+                            let response = Utility.decode(GetDeviceResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30478,7 +31017,7 @@ public class PlatformClient {
                 device: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorPlatformPaymentModeDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorPlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -30508,7 +31047,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorPlatformPaymentModeDetails.self, from: data)
+                            let response = Utility.decode(AggregatorPlatformPaymentModeResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30529,9 +31068,9 @@ public class PlatformClient {
             **/
             public func patchMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
-                body: PlatformPaymentMode,
+                body: PlatformPaymentModeRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30559,7 +31098,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
+                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30581,7 +31120,7 @@ public class PlatformClient {
             public func getPGConfigAggregators(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorConfigDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30609,7 +31148,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorConfigDetails.self, from: data)
+                            let response = Utility.decode(AggregatorConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30633,7 +31172,7 @@ public class PlatformClient {
                 configType: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorHistoryDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorHistoryResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -30663,7 +31202,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorHistoryDetails.self, from: data)
+                            let response = Utility.decode(AggregatorHistoryResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30687,7 +31226,7 @@ public class PlatformClient {
                 configType: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorCredentialRes?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorCredentialResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -30717,7 +31256,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorCredentialRes.self, from: data)
+                            let response = Utility.decode(AggregatorCredentialResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30737,9 +31276,9 @@ public class PlatformClient {
             * Description: 
             **/
             public func updateAggregatorCredential(
-                body: AggregatorCredentialReq,
+                body: AggregatorCredentialRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PatchAggregatorCredentialDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PatchAggregatorCredentialResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30767,7 +31306,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PatchAggregatorCredentialDetails.self, from: data)
+                            let response = Utility.decode(PatchAggregatorCredentialResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30791,7 +31330,7 @@ public class PlatformClient {
                 businessUnit: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundPriorityDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30819,7 +31358,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundPriorityDetails.self, from: data)
+                            let response = Utility.decode(RefundPriorityResponseSerializer.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30841,9 +31380,9 @@ public class PlatformClient {
             public func createMerchantRefundPriority(
                 configType: String,
                 businessUnit: String,
-                body: RefundPriorityCreation,
+                body: RefundPriorityRequestSerializer,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundPriorityDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30871,7 +31410,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundPriorityDetails.self, from: data)
+                            let response = Utility.decode(RefundPriorityResponseSerializer.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30893,9 +31432,9 @@ public class PlatformClient {
             public func updateMerchantRefundPriority(
                 configType: String,
                 businessUnit: String,
-                body: RefundPriorityCreation,
+                body: RefundPriorityRequestSerializer,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundPriorityDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30923,7 +31462,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundPriorityDetails.self, from: data)
+                            let response = Utility.decode(RefundPriorityResponseSerializer.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30943,9 +31482,9 @@ public class PlatformClient {
             * Description: Create an order and payment on the aggregator side
             **/
             public func createPaymentOrder(
-                body: PaymentOrderCreation,
+                body: PaymentOrderRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentOrderDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentOrderResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -30973,7 +31512,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentOrderDetails.self, from: data)
+                            let response = Utility.decode(PaymentOrderResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -30993,9 +31532,9 @@ public class PlatformClient {
             * Description: Copy aggregator config like Wallet, NB, paylater from one device of an aggregator like razorpay to another device.
             **/
             public func copyConfigPaymentModes(
-                body: PlatformPaymentModeCopyConfigCreation,
+                body: PlatformPaymentModeCopyConfigRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorConfigDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31023,7 +31562,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorConfigDetails.self, from: data)
+                            let response = Utility.decode(AggregatorConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31044,9 +31583,9 @@ public class PlatformClient {
             **/
             public func copyConfigAggPaymentModes(
                 aggregatorId: String,
-                body: PlatformPaymentModeCopyConfigCreation,
+                body: PlatformPaymentModeCopyConfigRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorConfigDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31074,7 +31613,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorConfigDetails.self, from: data)
+                            let response = Utility.decode(AggregatorConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31101,7 +31640,7 @@ public class PlatformClient {
                 subPaymentMode: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorVersionDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorVersionResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -31139,7 +31678,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorVersionDetails.self, from: data)
+                            let response = Utility.decode(AggregatorVersionResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31160,9 +31699,9 @@ public class PlatformClient {
             **/
             public func patchMerchantPaymentOptionVersion(
                 aggregatorId: Int,
-                body: PatchAggregatorControl,
+                body: AggregatorControlRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorConfigDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31190,7 +31729,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorConfigDetails.self, from: data)
+                            let response = Utility.decode(AggregatorConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31210,9 +31749,9 @@ public class PlatformClient {
             * Description: save bank details for returned/cancelled order to refund amount in his account.
             **/
             public func addRefundBankAccount(
-                body: AddBeneficiaryDetailsOTPCreation,
+                body: AddBeneficiaryDetailsOTPRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundAccountDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31240,7 +31779,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundAccountDetails.self, from: data)
+                            let response = Utility.decode(RefundAccountResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31260,9 +31799,9 @@ public class PlatformClient {
             * Description: Delete the saved beneficiary details provided beneficiary Id.
             **/
             public func deleteBeneficiaryDetails(
-                body: DeleteBeneficiary,
+                body: DeleteBeneficiaryRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteRefundAccountDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteRefundAccountResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31290,7 +31829,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteRefundAccountDetails.self, from: data)
+                            let response = Utility.decode(DeleteRefundAccountResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31310,9 +31849,9 @@ public class PlatformClient {
             * Description: Save refund source against shipment and order
             **/
             public func setRefundOptionforShipment(
-                body: ShipmentRefundDetails,
+                body: ShipmentRefundRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ShipmentRefundRes?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ShipmentRefundResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31340,7 +31879,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ShipmentRefundRes.self, from: data)
+                            let response = Utility.decode(ShipmentRefundResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31364,7 +31903,7 @@ public class PlatformClient {
                 orderId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SelectedRefundOptionDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SelectedRefundOptionResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -31394,7 +31933,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SelectedRefundOptionDetails.self, from: data)
+                            let response = Utility.decode(SelectedRefundOptionResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31479,9 +32018,9 @@ public class PlatformClient {
             * Description: Validate UPI ID and IFSC code
             **/
             public func validateBeneficiaryAddress(
-                body: ValidateValidateAddress,
+                body: ValidateValidateAddressRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ValidateValidateAddressDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ValidateValidateAddressResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31509,7 +32048,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ValidateValidateAddressDetails.self, from: data)
+                            let response = Utility.decode(ValidateValidateAddressResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31529,9 +32068,9 @@ public class PlatformClient {
             * Description: set a default beneficiary for getting a refund.
             **/
             public func updateDefaultBeneficiary(
-                body: SetDefaultBeneficiary,
+                body: SetDefaultBeneficiaryRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SetDefaultBeneficiaryDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SetDefaultBeneficiaryResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31559,7 +32098,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SetDefaultBeneficiaryDetails.self, from: data)
+                            let response = Utility.decode(SetDefaultBeneficiaryResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31581,7 +32120,7 @@ public class PlatformClient {
             public func getPennyDropValidation(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PennyDropValidationDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PennyDropValidationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31609,7 +32148,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PennyDropValidationDetails.self, from: data)
+                            let response = Utility.decode(PennyDropValidationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31629,9 +32168,9 @@ public class PlatformClient {
             * Description: update penny drop validation for application ID
             **/
             public func updatePennyDropValidation(
-                body: UpdatePennyDropValidation,
+                body: UpdatePennyDropValidationRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PennyDropValidationDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PennyDropValidationResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31659,7 +32198,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PennyDropValidationDetails.self, from: data)
+                            let response = Utility.decode(PennyDropValidationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31682,7 +32221,7 @@ public class PlatformClient {
                 shipmentId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ShipmentBeneficiaryDetailsRes?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ShipmentBeneficiaryDetailsResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -31710,87 +32249,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ShipmentBeneficiaryDetailsRes.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Retrieve transaction history by user or order
-            * Description: Fetches a list of transactions associated with a specific user ID or order ID. Allows filtering and pagination to retrieve specific transaction records.
-            **/
-            public func getTransactions(
-                userId: String?,
-                pageSize: Int?,
-                pageNumber: Int?,
-                orderId: String?,
-                shipmentId: String?,
-                transactionId: String?,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TransactionsResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                var xQuery: [String: Any] = [:] 
-                
-                if let value = userId {
-                    xQuery["user_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = pageNumber {
-                    xQuery["page_number"] = value
-                }
-                
-                if let value = orderId {
-                    xQuery["order_id"] = value
-                }
-                
-                if let value = shipmentId {
-                    xQuery["shipment_id"] = value
-                }
-                
-                if let value = transactionId {
-                    xQuery["transaction_id"] = value
-                }
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/transactions",
-                    query: xQuery,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(TransactionsResponseSchema.self, from: data)
+                            let response = Utility.decode(ShipmentBeneficiaryDetailsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -31829,7 +32288,7 @@ public class PlatformClient {
                 pageSize: Int,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ListGiveaway?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GiveawayResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -31859,7 +32318,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ListGiveaway.self, from: data)
+                            let response = Utility.decode(GiveawayResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -32396,7 +32855,7 @@ public class PlatformClient {
             * Description: Configure and modify the settings for the rewards program.
             **/
             public func setRewardsConfiguration(
-                body: SetConfiguration,
+                body: ConfigurationRequest,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SetConfigurationRes?, _ error: FDKError?) -> Void
             ) {
@@ -32507,7 +32966,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get short links
+            * Summary: Get short links.
             * Description: Retrieve a list of all generated short links.
             **/
             public func getShortLinks(
@@ -32679,58 +33138,6 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(ShortLinkRes.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get short link click statistics
-            * Description: Retrieve statistics and analytics for clicks on a short link.
-            **/
-            public func getShortLinkClickStats(
-                surlId: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ClickStatsResult?, _ error: FDKError?) -> Void
-            ) {
-                                
-                var xQuery: [String: Any] = [:] 
-                xQuery["surl_id"] = surlId
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link/click-stats",
-                    query: xQuery,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(ClickStatsResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -32966,13 +33373,13 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Delete a page
-            * Description: Remove a page from a theme of the platform.
+            * Summary: Update a page
+            * Description: Modify and update the content of a page.
             **/
-            public func deletePage(
+            public func updatePage(
                 themeId: String,
                 pageValue: String,
-                
+                body: AvailablePageSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -32987,10 +33394,10 @@ public class PlatformClient {
                 }
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "DELETE",
+                    method: "PUT",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/\(pageValue)",
                     query: nil,
-                    body: nil,
+                    body: body.dictionary,
                     headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
@@ -33018,14 +33425,13 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Update a page
-            * Description: Modify and update the content of a page.
+            * Summary: Delete a page
+            * Description: Remove a page from a theme of the platform.
             **/
-            public func updatePage(
+            public func deletePage(
                 themeId: String,
                 pageValue: String,
-                socketId: String,
-                body: AvailablePageSchema,
+                
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -33040,10 +33446,10 @@ public class PlatformClient {
                 }
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "PUT",
-                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/\(pageValue)/\(socketId)",
+                    method: "DELETE",
+                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/\(pageValue)",
                     query: nil,
-                    body: body.dictionary,
+                    body: nil,
                     headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
@@ -33790,7 +34196,7 @@ public class PlatformClient {
                 themeId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ThemeUpgradable?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ThemeUpgradableResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -33818,7 +34224,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ThemeUpgradable.self, from: data)
+                            let response = Utility.decode(ThemeUpgradableResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -35040,7 +35446,7 @@ public class PlatformClient {
             public func createUserAttributeDefinition(
                 body: CreateUserAttributeDefinition,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserAttributeDefinitionResp?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttributeDefinitionResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -35068,7 +35474,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserAttributeDefinitionResp.self, from: data)
+                            let response = Utility.decode(UserAttributeDefinitionResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -35247,7 +35653,7 @@ public class PlatformClient {
                 attributeDefId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -35275,7 +35681,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -35348,9 +35754,9 @@ public class PlatformClient {
             public func updateUserAttribute(
                 attributeDefId: String,
                 userId: String,
-                body: CreateUserAttributePayload,
+                body: CreateUserAttributeRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserAttribute?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttributeResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -35378,7 +35784,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserAttribute.self, from: data)
+                            let response = Utility.decode(UserAttributeResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -35402,7 +35808,7 @@ public class PlatformClient {
                 userId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserAttribute?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttributeResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -35430,7 +35836,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserAttribute.self, from: data)
+                            let response = Utility.decode(UserAttributeResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -35454,7 +35860,7 @@ public class PlatformClient {
                 userId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -35482,7 +35888,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -35566,7 +35972,7 @@ public class PlatformClient {
                 attributeId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserAttribute?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttributeResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -35594,107 +36000,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserAttribute.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Bulk Update User Attributes
-            * Description: Update the same set of attributes for multiple users at once
-            **/
-            public func bulkUpdateUserAttributes(
-                body: BulkUpdateUserAttributesBody,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BulkOperation?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/bulk_update",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(BulkOperation.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Bulk Update Different Attributes Per User
-            * Description: Update different sets of attributes for different users in a single request
-            **/
-            public func bulkUpdatePerUserAttributes(
-                body: BulkUpdatePerUserAttributesBody,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BulkOperation?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/bulk_update/per_user",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(BulkOperation.self, from: data)
+                            let response = Utility.decode(UserAttributeResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

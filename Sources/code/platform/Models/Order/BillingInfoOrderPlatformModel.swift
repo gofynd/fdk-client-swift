@@ -12,6 +12,8 @@ public extension PlatformClient.Order {
     class BillingInfo: Codable {
         
         
+        public var phone: String?
+        
         public var alternateMobileNumber: String?
         
         public var state: String?
@@ -56,12 +58,14 @@ public extension PlatformClient.Order {
         
         public var address2: String?
         
-        public var countryCode: String?
+        public var landmark: String?
         
-        public var countryIsoCode: String?
+        public var countryCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case phone = "phone"
             
             case alternateMobileNumber = "alternate_mobile_number"
             
@@ -107,13 +111,15 @@ public extension PlatformClient.Order {
             
             case address2 = "address2"
             
-            case countryCode = "country_code"
+            case landmark = "landmark"
             
-            case countryIsoCode = "country_iso_code"
+            case countryCode = "country_code"
             
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, houseNo: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, phone: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
+            
+            self.phone = phone
             
             self.alternateMobileNumber = alternateMobileNumber
             
@@ -159,14 +165,26 @@ public extension PlatformClient.Order {
             
             self.address2 = address2
             
-            self.countryCode = countryCode
+            self.landmark = landmark
             
-            self.countryIsoCode = countryIsoCode
+            self.countryCode = countryCode
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    phone = try container.decode(String.self, forKey: .phone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -434,7 +452,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    countryCode = try container.decode(String.self, forKey: .countryCode)
+                    landmark = try container.decode(String.self, forKey: .landmark)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -446,7 +464,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    countryIsoCode = try container.decode(String.self, forKey: .countryIsoCode)
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -460,6 +478,11 @@ public extension PlatformClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(phone, forKey: .phone)
+            
             
             
             
@@ -573,12 +596,12 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            
+            
+            
+            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(countryIsoCode, forKey: .countryIsoCode)
             
             
         }
@@ -597,6 +620,8 @@ public extension PlatformClient.ApplicationClient.Order {
     class BillingInfo: Codable {
         
         
+        public var phone: String?
+        
         public var alternateMobileNumber: String?
         
         public var state: String?
@@ -641,12 +666,14 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var address2: String?
         
-        public var countryCode: String?
+        public var landmark: String?
         
-        public var countryIsoCode: String?
+        public var countryCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case phone = "phone"
             
             case alternateMobileNumber = "alternate_mobile_number"
             
@@ -692,13 +719,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case address2 = "address2"
             
-            case countryCode = "country_code"
+            case landmark = "landmark"
             
-            case countryIsoCode = "country_iso_code"
+            case countryCode = "country_code"
             
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, houseNo: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, phone: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
+            
+            self.phone = phone
             
             self.alternateMobileNumber = alternateMobileNumber
             
@@ -744,14 +773,26 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.address2 = address2
             
-            self.countryCode = countryCode
+            self.landmark = landmark
             
-            self.countryIsoCode = countryIsoCode
+            self.countryCode = countryCode
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    phone = try container.decode(String.self, forKey: .phone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -1019,7 +1060,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    countryCode = try container.decode(String.self, forKey: .countryCode)
+                    landmark = try container.decode(String.self, forKey: .landmark)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1031,7 +1072,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    countryIsoCode = try container.decode(String.self, forKey: .countryIsoCode)
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1045,6 +1086,11 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(phone, forKey: .phone)
+            
             
             
             
@@ -1158,12 +1204,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            
+            
+            
+            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(countryIsoCode, forKey: .countryIsoCode)
             
             
         }

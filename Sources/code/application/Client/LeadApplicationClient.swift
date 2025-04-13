@@ -257,7 +257,7 @@ extension ApplicationClient {
             slug: String,
             body: CustomFormSubmissionPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SubmitCustomFormResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SubmitCustomFormResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -290,7 +290,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SubmitCustomFormResponseSchema.self, from: data)
+                        let response = Utility.decode(SubmitCustomFormResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

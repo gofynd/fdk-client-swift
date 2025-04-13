@@ -14,7 +14,7 @@ public extension PlatformClient.Payment {
         
         public var merchantOrderId: String
         
-        public var paymentObjectList: [PaymentObjectList]?
+        public var paymentObjectList: [PaymentObjectListSerializer]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(merchantOrderId: String, paymentObjectList: [PaymentObjectList]? = nil) {
+        public init(merchantOrderId: String, paymentObjectList: [PaymentObjectListSerializer]? = nil) {
             
             self.merchantOrderId = merchantOrderId
             
@@ -43,7 +43,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    paymentObjectList = try container.decode([PaymentObjectList].self, forKey: .paymentObjectList)
+                    paymentObjectList = try container.decode([PaymentObjectListSerializer].self, forKey: .paymentObjectList)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var merchantOrderId: String
         
-        public var paymentObjectList: [PaymentObjectList]?
+        public var paymentObjectList: [PaymentObjectListSerializer]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -97,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(merchantOrderId: String, paymentObjectList: [PaymentObjectList]? = nil) {
+        public init(merchantOrderId: String, paymentObjectList: [PaymentObjectListSerializer]? = nil) {
             
             self.merchantOrderId = merchantOrderId
             
@@ -115,7 +115,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    paymentObjectList = try container.decode([PaymentObjectList].self, forKey: .paymentObjectList)
+                    paymentObjectList = try container.decode([PaymentObjectListSerializer].self, forKey: .paymentObjectList)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

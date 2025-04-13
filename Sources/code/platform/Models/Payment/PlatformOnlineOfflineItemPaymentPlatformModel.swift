@@ -16,7 +16,7 @@ public extension PlatformClient.Payment {
         
         public var offline: OfflinePaymentDetails?
         
-        public var advance: PlatformOfflineAdvanceDetails?
+        public var advance: PlatformOfflineAdvanceResponse?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(advance: PlatformOfflineAdvanceDetails? = nil, offline: OfflinePaymentDetails? = nil, online: OnlinePaymentDetails? = nil) {
+        public init(advance: PlatformOfflineAdvanceResponse? = nil, offline: OfflinePaymentDetails? = nil, online: OnlinePaymentDetails? = nil) {
             
             self.online = online
             
@@ -68,7 +68,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    advance = try container.decode(PlatformOfflineAdvanceDetails.self, forKey: .advance)
+                    advance = try container.decode(PlatformOfflineAdvanceResponse.self, forKey: .advance)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var offline: OfflinePaymentDetails?
         
-        public var advance: PlatformOfflineAdvanceDetails?
+        public var advance: PlatformOfflineAdvanceResponse?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(advance: PlatformOfflineAdvanceDetails? = nil, offline: OfflinePaymentDetails? = nil, online: OnlinePaymentDetails? = nil) {
+        public init(advance: PlatformOfflineAdvanceResponse? = nil, offline: OfflinePaymentDetails? = nil, online: OnlinePaymentDetails? = nil) {
             
             self.online = online
             
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    advance = try container.decode(PlatformOfflineAdvanceDetails.self, forKey: .advance)
+                    advance = try container.decode(PlatformOfflineAdvanceResponse.self, forKey: .advance)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

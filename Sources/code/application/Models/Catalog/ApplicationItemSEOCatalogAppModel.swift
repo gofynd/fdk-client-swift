@@ -8,6 +8,8 @@ public extension ApplicationClient.Catalog {
     */
     class ApplicationItemSEO: Codable {
         
+        public var title: String?
+        
         public var description: String?
         
         public var sitemap: ApplicationItemSeoSitemap?
@@ -21,6 +23,8 @@ public extension ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
+            case title = "title"
+            
             case description = "description"
             
             case sitemap = "sitemap"
@@ -33,7 +37,9 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [ApplicationItemSeoMetaTags]? = nil, sitemap: ApplicationItemSeoSitemap? = nil) {
+        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [ApplicationItemSeoMetaTags]? = nil, sitemap: ApplicationItemSeoSitemap? = nil, title: String? = nil) {
+            
+            self.title = title
             
             self.description = description
             
@@ -49,6 +55,18 @@ public extension ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                title = try container.decode(String.self, forKey: .title)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -114,6 +132,10 @@ public extension ApplicationClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
             
             
             try? container.encodeIfPresent(description, forKey: .description)

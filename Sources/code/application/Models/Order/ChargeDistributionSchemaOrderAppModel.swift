@@ -12,6 +12,8 @@ public extension ApplicationClient.Order {
         
         public var logic: String
         
+        public var rule: RuleSchema?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Order {
             
             case logic = "logic"
             
+            case rule = "rule"
+            
         }
 
-        public init(logic: String, type: String) {
+        public init(logic: String, rule: RuleSchema? = nil, type: String) {
             
             self.type = type
             
             self.logic = logic
+            
+            self.rule = rule
             
         }
 
@@ -42,6 +48,18 @@ public extension ApplicationClient.Order {
             
             
             
+            
+            do {
+                rule = try container.decode(RuleSchema.self, forKey: .rule)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -53,6 +71,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(logic, forKey: .logic)
+            
+            
+            
+            try? container.encodeIfPresent(rule, forKey: .rule)
             
             
         }

@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class ServiceabilityZoneErrorResult: Codable {
         
         
-        public var error: [ServiceabilityErrorResponseSchema]
+        public var error: [ServiceabilityErrorResponse]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(error: [ServiceabilityErrorResponseSchema]) {
+        public init(error: [ServiceabilityErrorResponse]) {
             
             self.error = error
             
@@ -31,7 +31,7 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                error = try container.decode([ServiceabilityErrorResponseSchema].self, forKey: .error)
+                error = try container.decode([ServiceabilityErrorResponse].self, forKey: .error)
                 
             
             
@@ -61,7 +61,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ServiceabilityZoneErrorResult: Codable {
         
         
-        public var error: [ServiceabilityErrorResponseSchema]
+        public var error: [ServiceabilityErrorResponse]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -70,7 +70,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(error: [ServiceabilityErrorResponseSchema]) {
+        public init(error: [ServiceabilityErrorResponse]) {
             
             self.error = error
             
@@ -80,7 +80,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                error = try container.decode([ServiceabilityErrorResponseSchema].self, forKey: .error)
+                error = try container.decode([ServiceabilityErrorResponse].self, forKey: .error)
                 
             
             

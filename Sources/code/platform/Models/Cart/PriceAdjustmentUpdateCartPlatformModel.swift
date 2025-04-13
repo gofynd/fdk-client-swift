@@ -44,7 +44,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var cartId: String
         
-        public var distributionLogic: DistributionLogic?
+        public var allowRefund: Bool?
+        
+        public var distributionLogic: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -79,11 +81,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case cartId = "cart_id"
             
+            case allowRefund = "allow_refund"
+            
             case distributionLogic = "distribution_logic"
             
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, distributionLogic: DistributionLogic? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, removeArticles: Bool? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, allowRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, distributionLogic: [String: Any]? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, removeArticles: Bool? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
             
             self.modifiedBy = modifiedBy
             
@@ -114,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.meta = meta
             
             self.cartId = cartId
+            
+            self.allowRefund = allowRefund
             
             self.distributionLogic = distributionLogic
             
@@ -248,7 +254,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    distributionLogic = try container.decode(DistributionLogic.self, forKey: .distributionLogic)
+                    allowRefund = try container.decode(Bool.self, forKey: .allowRefund)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    distributionLogic = try container.decode([String: Any].self, forKey: .distributionLogic)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -336,6 +354,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowRefund, forKey: .allowRefund)
             
             
             

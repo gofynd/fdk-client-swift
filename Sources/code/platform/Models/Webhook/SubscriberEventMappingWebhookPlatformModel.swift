@@ -18,7 +18,7 @@ public extension PlatformClient.Webhook {
         
         public var subscriberId: Double?
         
-        public var broadcasterConfig: BroadcasterConfig?
+        public var topic: String?
         
         public var createdOn: String?
         
@@ -31,13 +31,13 @@ public extension PlatformClient.Webhook {
             
             case subscriberId = "subscriber_id"
             
-            case broadcasterConfig = "broadcaster_config"
+            case topic = "topic"
             
             case createdOn = "created_on"
             
         }
 
-        public init(broadcasterConfig: BroadcasterConfig? = nil, createdOn: String? = nil, eventId: Double? = nil, id: Double? = nil, subscriberId: Double? = nil) {
+        public init(createdOn: String? = nil, eventId: Double? = nil, id: Double? = nil, subscriberId: Double? = nil, topic: String? = nil) {
             
             self.id = id
             
@@ -45,7 +45,7 @@ public extension PlatformClient.Webhook {
             
             self.subscriberId = subscriberId
             
-            self.broadcasterConfig = broadcasterConfig
+            self.topic = topic
             
             self.createdOn = createdOn
             
@@ -92,7 +92,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    broadcasterConfig = try container.decode(BroadcasterConfig.self, forKey: .broadcasterConfig)
+                    topic = try container.decode(String.self, forKey: .topic)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,7 +136,7 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encodeIfPresent(broadcasterConfig, forKey: .broadcasterConfig)
+            try? container.encodeIfPresent(topic, forKey: .topic)
             
             
             

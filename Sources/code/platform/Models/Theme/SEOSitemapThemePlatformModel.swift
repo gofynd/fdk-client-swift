@@ -16,8 +16,6 @@ public extension PlatformClient.Theme {
         
         public var frequency: String?
         
-        public var modifiedOn: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,17 +23,13 @@ public extension PlatformClient.Theme {
             
             case frequency = "frequency"
             
-            case modifiedOn = "modified_on"
-            
         }
 
-        public init(frequency: String? = nil, modifiedOn: String? = nil, priority: Double? = nil) {
+        public init(frequency: String? = nil, priority: Double? = nil) {
             
             self.priority = priority
             
             self.frequency = frequency
-            
-            self.modifiedOn = modifiedOn
             
         }
 
@@ -66,18 +60,6 @@ public extension PlatformClient.Theme {
                 }
                 
             
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -91,11 +73,6 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(frequency, forKey: .frequency)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }
@@ -118,8 +95,6 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var frequency: String?
         
-        public var modifiedOn: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -127,17 +102,13 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case frequency = "frequency"
             
-            case modifiedOn = "modified_on"
-            
         }
 
-        public init(frequency: String? = nil, modifiedOn: String? = nil, priority: Double? = nil) {
+        public init(frequency: String? = nil, priority: Double? = nil) {
             
             self.priority = priority
             
             self.frequency = frequency
-            
-            self.modifiedOn = modifiedOn
             
         }
 
@@ -168,18 +139,6 @@ public extension PlatformClient.ApplicationClient.Theme {
                 }
                 
             
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -193,11 +152,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(frequency, forKey: .frequency)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }

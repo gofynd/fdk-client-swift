@@ -16,6 +16,8 @@ public extension ApplicationClient.Cart {
         
         public var name: String?
         
+        public var isActive: Bool?
+        
         public var articleTags: [String]?
         
 
@@ -29,11 +31,13 @@ public extension ApplicationClient.Cart {
             
             case name = "name"
             
+            case isActive = "is_active"
+            
             case articleTags = "article_tags"
             
         }
 
-        public init(articleTags: [String]? = nil, createdOn: String? = nil, id: String? = nil, name: String? = nil, slug: String? = nil) {
+        public init(articleTags: [String]? = nil, createdOn: String? = nil, id: String? = nil, isActive: Bool? = nil, name: String? = nil, slug: String? = nil) {
             
             self.id = id
             
@@ -42,6 +46,8 @@ public extension ApplicationClient.Cart {
             self.createdOn = createdOn
             
             self.name = name
+            
+            self.isActive = isActive
             
             self.articleTags = articleTags
             
@@ -100,6 +106,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 articleTags = try container.decode([String].self, forKey: .articleTags)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -129,6 +147,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             

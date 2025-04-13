@@ -35,6 +35,8 @@ extension ApplicationClient {
             
             ulrs["getDeliveryPromise"] = config.domain.appendAsPath("/service/application/logistics/v1.0/delivery-promise") 
             
+            ulrs["getQCPromise"] = config.domain.appendAsPath("/service/application/logistics/v1.0/qc-promise") 
+            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -54,7 +56,7 @@ extension ApplicationClient {
             pincode: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PincodeApiResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PincodeApiResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -87,7 +89,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PincodeApiResponseSchema.self, from: data)
+                        let response = Utility.decode(PincodeApiResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -108,7 +110,7 @@ extension ApplicationClient {
         public func getAllCountries(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CountryListResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CountryListResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -139,7 +141,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CountryListResponseSchema.self, from: data)
+                        let response = Utility.decode(CountryListResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -171,11 +173,9 @@ extension ApplicationClient {
             state: String?,
             city: String?,
             sector: String?,
-            storeUid: Int?,
-            regionUid: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ListViewResponseSchemaV2?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ListViewResponseV2?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -224,14 +224,6 @@ extension ApplicationClient {
                 xQuery["sector"] = value
             }
             
-            if let value = storeUid {
-                xQuery["store_uid"] = value
-            }
-            
-            if let value = regionUid {
-                xQuery["region_uid"] = value
-            }
-            
             var xHeaders: [(key: String, value: String)] = []
             
             
@@ -262,7 +254,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ListViewResponseSchemaV2.self, from: data)
+                        let response = Utility.decode(ListViewResponseV2.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -564,6 +556,7 @@ extension ApplicationClient {
         * Description: Get localities that start with a specified prefix.
         **/
         public func getLocalitiesByPrefix(
+            companyId: Int,
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
@@ -593,7 +586,9 @@ extension ApplicationClient {
                 xHeaders.append(contentsOf: headers)
             }
             
-            let fullUrl = relativeUrls["getLocalitiesByPrefix"] ?? ""
+            var fullUrl = relativeUrls["getLocalitiesByPrefix"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "company_id" + "}", with: "\(companyId)")
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -628,12 +623,15 @@ extension ApplicationClient {
         
         
         
+        
+        
         /**
         *
         * Summary: get paginator for getLocalitiesByPrefix
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getLocalitiesByPrefixPaginator(
+            companyId: Int,
             pageSize: Int?,
             q: String?,
             headers: [(key: String, value: String)]? = nil
@@ -642,6 +640,7 @@ extension ApplicationClient {
             let paginator = Paginator<GetLocalities>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getLocalitiesByPrefix(
+                    companyId: companyId,
                     pageNo: paginator.pageNo,
                     pageSize: paginator.pageSize,
                     q: q,
@@ -886,9 +885,9 @@ extension ApplicationClient {
         public func validateAddress(
             countryIsoCode: String,
             templateName: String,
-            body: ValidateAddressRequestSchema,
+            body: ValidateAddressRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ValidateAddressRequestSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ValidateAddressRequest?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -923,7 +922,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ValidateAddressRequestSchema.self, from: data)
+                        let response = Utility.decode(ValidateAddressRequest.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -944,9 +943,9 @@ extension ApplicationClient {
         public func createShipments(
             companyId: Int,
             applicationId: String,
-            body: GenerateShipmentsRequestSchema,
+            body: GenerateShipmentsRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GenerateShipmentsAndCourierPartnerResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GenerateShipmentsAndCourierPartnerResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -981,7 +980,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GenerateShipmentsAndCourierPartnerResponseSchema.self, from: data)
+                        let response = Utility.decode(GenerateShipmentsAndCourierPartnerResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1044,6 +1043,58 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetPromiseDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get QC promise
+        * Description: Get QC promises for the pincode.
+        **/
+        public func getQCPromise(
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetQCPromiseDetails?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getQCPromise"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetQCPromiseDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

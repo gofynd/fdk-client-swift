@@ -52,7 +52,7 @@ public extension ApplicationClient.Cart {
         
         public var customOrder: CartItemCustomOrder?
         
-        public var charges: [Charges]?
+        public var charges: [Double]?
         
         public var sellerCount: Double?
         
@@ -61,6 +61,10 @@ public extension ApplicationClient.Cart {
         public var autoAddToCart: Bool?
         
         public var discountMeta: DiscountMeta?
+        
+        public var journeyWisePromise: [JourneyPromiseObject]?
+        
+        public var distance: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -119,9 +123,13 @@ public extension ApplicationClient.Cart {
             
             case discountMeta = "discount_meta"
             
+            case journeyWisePromise = "journey_wise_promise"
+            
+            case distance = "distance"
+            
         }
 
-        public init(allowRemove: Bool? = nil, article: ProductArticle? = nil, autoAddToCart: Bool? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, charges: [Charges]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: CartItemCustomOrder? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, key: String? = nil, message: String? = nil, moq: CartItemMOQ? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, priceAdjustmentApplied: [ArticleAppliedPriceAdjustment]? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil, sellerCount: Double? = nil) {
+        public init(allowRemove: Bool? = nil, article: ProductArticle? = nil, autoAddToCart: Bool? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, charges: [Double]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: CartItemCustomOrder? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, distance: Double? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, journeyWisePromise: [JourneyPromiseObject]? = nil, key: String? = nil, message: String? = nil, moq: CartItemMOQ? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, priceAdjustmentApplied: [ArticleAppliedPriceAdjustment]? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil, sellerCount: Double? = nil) {
             
             self.quantity = quantity
             
@@ -176,6 +184,10 @@ public extension ApplicationClient.Cart {
             self.autoAddToCart = autoAddToCart
             
             self.discountMeta = discountMeta
+            
+            self.journeyWisePromise = journeyWisePromise
+            
+            self.distance = distance
             
         }
 
@@ -441,7 +453,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                charges = try container.decode([Charges].self, forKey: .charges)
+                charges = try container.decode([Double].self, forKey: .charges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -490,6 +502,30 @@ public extension ApplicationClient.Cart {
             
             do {
                 discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                journeyWisePromise = try container.decode([JourneyPromiseObject].self, forKey: .journeyWisePromise)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                distance = try container.decode(Double.self, forKey: .distance)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -610,6 +646,14 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
+            
+            
+            
+            try? container.encodeIfPresent(journeyWisePromise, forKey: .journeyWisePromise)
+            
+            
+            
+            try? container.encodeIfPresent(distance, forKey: .distance)
             
             
         }

@@ -24,8 +24,6 @@ public extension ApplicationClient.Theme {
         
         public var source: SectionSource?
         
-        public var assets: SectionAssets?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -45,11 +43,9 @@ public extension ApplicationClient.Theme {
             
             case source = "__source"
             
-            case assets = "assets"
-            
         }
 
-        public init(assets: SectionAssets? = nil, blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, id: String? = nil, source: SectionSource? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, id: String? = nil, source: SectionSource? = nil) {
             
             self.id = id
             
@@ -66,8 +62,6 @@ public extension ApplicationClient.Theme {
             self.predicate = predicate
             
             self.source = source
-            
-            self.assets = assets
             
         }
 
@@ -170,18 +164,6 @@ public extension ApplicationClient.Theme {
             }
             
             
-            
-            do {
-                assets = try container.decode(SectionAssets.self, forKey: .assets)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -217,10 +199,6 @@ public extension ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(source, forKey: .source)
-            
-            
-            
-            try? container.encodeIfPresent(assets, forKey: .assets)
             
             
         }

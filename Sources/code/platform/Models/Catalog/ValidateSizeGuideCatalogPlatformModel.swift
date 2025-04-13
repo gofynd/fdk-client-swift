@@ -16,7 +16,7 @@ public extension PlatformClient.Catalog {
         
         public var brandId: Int?
         
-        public var companyId: String?
+        public var companyId: Int?
         
         public var createdBy: [String: Any]?
         
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(active: Bool? = nil, brandId: Int? = nil, companyId: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, description: String? = nil, guide: Guide? = nil, id: String? = nil, image: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, subtitle: String? = nil, tag: String? = nil, title: String) {
+        public init(active: Bool? = nil, brandId: Int? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, description: String? = nil, guide: Guide? = nil, id: String? = nil, image: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, subtitle: String? = nil, tag: String? = nil, title: String) {
             
             self.active = active
             
@@ -140,7 +140,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(String.self, forKey: .companyId)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -380,7 +380,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var brandId: Int?
         
-        public var companyId: String?
+        public var companyId: Int?
         
         public var createdBy: [String: Any]?
         
@@ -441,7 +441,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(active: Bool? = nil, brandId: Int? = nil, companyId: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, description: String? = nil, guide: Guide? = nil, id: String? = nil, image: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, subtitle: String? = nil, tag: String? = nil, title: String) {
+        public init(active: Bool? = nil, brandId: Int? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, description: String? = nil, guide: Guide? = nil, id: String? = nil, image: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, subtitle: String? = nil, tag: String? = nil, title: String) {
             
             self.active = active
             
@@ -504,7 +504,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(String.self, forKey: .companyId)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

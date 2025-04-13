@@ -12,72 +12,24 @@ public extension PlatformClient.Payment {
     class PayoutDetails: Codable {
         
         
-        public var paymentStatus: String?
+        public var moreAttributes: BankDetails?
         
-        public var users: PayoutUserDetails
-        
-        public var aggregator: String
-        
-        public var uniqueTransferNo: String
-        
-        public var isActive: Bool
-        
-        public var bankDetails: PayoutBankDetails
-        
-        public var success: Bool
-        
-        public var transferType: String
-        
-        public var created: Bool
-        
-        public var payouts: PayoutData?
+        public var aggregatorFundId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case paymentStatus = "payment_status"
+            case moreAttributes = "more_attributes"
             
-            case users = "users"
-            
-            case aggregator = "aggregator"
-            
-            case uniqueTransferNo = "unique_transfer_no"
-            
-            case isActive = "is_active"
-            
-            case bankDetails = "bank_details"
-            
-            case success = "success"
-            
-            case transferType = "transfer_type"
-            
-            case created = "created"
-            
-            case payouts = "payouts"
+            case aggregatorFundId = "aggregator_fund_id"
             
         }
 
-        public init(aggregator: String, bankDetails: PayoutBankDetails, created: Bool, isActive: Bool, paymentStatus: String? = nil, payouts: PayoutData? = nil, success: Bool, transferType: String, uniqueTransferNo: String, users: PayoutUserDetails) {
+        public init(aggregatorFundId: String? = nil, moreAttributes: BankDetails? = nil) {
             
-            self.paymentStatus = paymentStatus
+            self.moreAttributes = moreAttributes
             
-            self.users = users
-            
-            self.aggregator = aggregator
-            
-            self.uniqueTransferNo = uniqueTransferNo
-            
-            self.isActive = isActive
-            
-            self.bankDetails = bankDetails
-            
-            self.success = success
-            
-            self.transferType = transferType
-            
-            self.created = created
-            
-            self.payouts = payouts
+            self.aggregatorFundId = aggregatorFundId
             
         }
 
@@ -86,7 +38,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    paymentStatus = try container.decode(String.self, forKey: .paymentStatus)
+                    moreAttributes = try container.decode(BankDetails.self, forKey: .moreAttributes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,48 +49,8 @@ public extension PlatformClient.Payment {
                 
             
             
-                users = try container.decode(PayoutUserDetails.self, forKey: .users)
-                
-            
-            
-            
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-            
-            
-            
-                uniqueTransferNo = try container.decode(String.self, forKey: .uniqueTransferNo)
-                
-            
-            
-            
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
-                bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
-                
-            
-            
-            
-                success = try container.decode(Bool.self, forKey: .success)
-                
-            
-            
-            
-                transferType = try container.decode(String.self, forKey: .transferType)
-                
-            
-            
-            
-                created = try container.decode(Bool.self, forKey: .created)
-                
-            
-            
-            
                 do {
-                    payouts = try container.decode(PayoutData.self, forKey: .payouts)
+                    aggregatorFundId = try container.decode(String.self, forKey: .aggregatorFundId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -155,52 +67,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(paymentStatus, forKey: .paymentStatus)
+            try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
             
             
             
             
-            try? container.encodeIfPresent(users, forKey: .users)
-            
-            
-            
-            
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(transferType, forKey: .transferType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(created, forKey: .created)
-            
-            
-            
-            
-            try? container.encodeIfPresent(payouts, forKey: .payouts)
+            try? container.encodeIfPresent(aggregatorFundId, forKey: .aggregatorFundId)
             
             
         }
@@ -219,72 +91,24 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PayoutDetails: Codable {
         
         
-        public var paymentStatus: String?
+        public var moreAttributes: BankDetails?
         
-        public var users: PayoutUserDetails
-        
-        public var aggregator: String
-        
-        public var uniqueTransferNo: String
-        
-        public var isActive: Bool
-        
-        public var bankDetails: PayoutBankDetails
-        
-        public var success: Bool
-        
-        public var transferType: String
-        
-        public var created: Bool
-        
-        public var payouts: PayoutData?
+        public var aggregatorFundId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case paymentStatus = "payment_status"
+            case moreAttributes = "more_attributes"
             
-            case users = "users"
-            
-            case aggregator = "aggregator"
-            
-            case uniqueTransferNo = "unique_transfer_no"
-            
-            case isActive = "is_active"
-            
-            case bankDetails = "bank_details"
-            
-            case success = "success"
-            
-            case transferType = "transfer_type"
-            
-            case created = "created"
-            
-            case payouts = "payouts"
+            case aggregatorFundId = "aggregator_fund_id"
             
         }
 
-        public init(aggregator: String, bankDetails: PayoutBankDetails, created: Bool, isActive: Bool, paymentStatus: String? = nil, payouts: PayoutData? = nil, success: Bool, transferType: String, uniqueTransferNo: String, users: PayoutUserDetails) {
+        public init(aggregatorFundId: String? = nil, moreAttributes: BankDetails? = nil) {
             
-            self.paymentStatus = paymentStatus
+            self.moreAttributes = moreAttributes
             
-            self.users = users
-            
-            self.aggregator = aggregator
-            
-            self.uniqueTransferNo = uniqueTransferNo
-            
-            self.isActive = isActive
-            
-            self.bankDetails = bankDetails
-            
-            self.success = success
-            
-            self.transferType = transferType
-            
-            self.created = created
-            
-            self.payouts = payouts
+            self.aggregatorFundId = aggregatorFundId
             
         }
 
@@ -293,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    paymentStatus = try container.decode(String.self, forKey: .paymentStatus)
+                    moreAttributes = try container.decode(BankDetails.self, forKey: .moreAttributes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -304,48 +128,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                users = try container.decode(PayoutUserDetails.self, forKey: .users)
-                
-            
-            
-            
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-            
-            
-            
-                uniqueTransferNo = try container.decode(String.self, forKey: .uniqueTransferNo)
-                
-            
-            
-            
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
-                bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
-                
-            
-            
-            
-                success = try container.decode(Bool.self, forKey: .success)
-                
-            
-            
-            
-                transferType = try container.decode(String.self, forKey: .transferType)
-                
-            
-            
-            
-                created = try container.decode(Bool.self, forKey: .created)
-                
-            
-            
-            
                 do {
-                    payouts = try container.decode(PayoutData.self, forKey: .payouts)
+                    aggregatorFundId = try container.decode(String.self, forKey: .aggregatorFundId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -362,52 +146,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(paymentStatus, forKey: .paymentStatus)
+            try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
             
             
             
             
-            try? container.encodeIfPresent(users, forKey: .users)
-            
-            
-            
-            
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(transferType, forKey: .transferType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(created, forKey: .created)
-            
-            
-            
-            
-            try? container.encodeIfPresent(payouts, forKey: .payouts)
+            try? container.encodeIfPresent(aggregatorFundId, forKey: .aggregatorFundId)
             
             
         }

@@ -18,8 +18,6 @@ public extension PlatformClient.Order {
         
         public var isInserted: Bool?
         
-        public var statusSyncConfig: StatusSyncConfig?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,19 +27,15 @@ public extension PlatformClient.Order {
             
             case isInserted = "is_inserted"
             
-            case statusSyncConfig = "status_sync_config"
-            
         }
 
-        public init(acknowledged: Bool? = nil, isInserted: Bool? = nil, isUpserted: Bool? = nil, statusSyncConfig: StatusSyncConfig? = nil) {
+        public init(acknowledged: Bool? = nil, isInserted: Bool? = nil, isUpserted: Bool? = nil) {
             
             self.acknowledged = acknowledged
             
             self.isUpserted = isUpserted
             
             self.isInserted = isInserted
-            
-            self.statusSyncConfig = statusSyncConfig
             
         }
 
@@ -84,18 +78,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    statusSyncConfig = try container.decode(StatusSyncConfig.self, forKey: .statusSyncConfig)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -114,11 +96,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(isInserted, forKey: .isInserted)
-            
-            
-            
-            
-            try? container.encodeIfPresent(statusSyncConfig, forKey: .statusSyncConfig)
             
             
         }
@@ -143,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var isInserted: Bool?
         
-        public var statusSyncConfig: StatusSyncConfig?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -154,19 +129,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isInserted = "is_inserted"
             
-            case statusSyncConfig = "status_sync_config"
-            
         }
 
-        public init(acknowledged: Bool? = nil, isInserted: Bool? = nil, isUpserted: Bool? = nil, statusSyncConfig: StatusSyncConfig? = nil) {
+        public init(acknowledged: Bool? = nil, isInserted: Bool? = nil, isUpserted: Bool? = nil) {
             
             self.acknowledged = acknowledged
             
             self.isUpserted = isUpserted
             
             self.isInserted = isInserted
-            
-            self.statusSyncConfig = statusSyncConfig
             
         }
 
@@ -209,18 +180,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    statusSyncConfig = try container.decode(StatusSyncConfig.self, forKey: .statusSyncConfig)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -239,11 +198,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(isInserted, forKey: .isInserted)
-            
-            
-            
-            
-            try? container.encodeIfPresent(statusSyncConfig, forKey: .statusSyncConfig)
             
             
         }

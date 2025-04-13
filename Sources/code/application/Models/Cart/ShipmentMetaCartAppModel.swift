@@ -24,8 +24,6 @@ public extension ApplicationClient.Cart {
         
         public var shippingZone: String?
         
-        public var debug: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -45,11 +43,9 @@ public extension ApplicationClient.Cart {
             
             case shippingZone = "shipping_zone"
             
-            case debug = "debug"
-            
         }
 
-        public init(assignDpFromSb: String? = nil, debug: String? = nil, dimension: ShipmentMetaDimension? = nil, dpSortKey: String? = nil, packagingName: String? = nil, shipmentChargeableWeight: Double? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, shippingZone: String? = nil) {
+        public init(assignDpFromSb: String? = nil, dimension: ShipmentMetaDimension? = nil, dpSortKey: String? = nil, packagingName: String? = nil, shipmentChargeableWeight: Double? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, shippingZone: String? = nil) {
             
             self.packagingName = packagingName
             
@@ -66,8 +62,6 @@ public extension ApplicationClient.Cart {
             self.shipmentChargeableWeight = shipmentChargeableWeight
             
             self.shippingZone = shippingZone
-            
-            self.debug = debug
             
         }
 
@@ -170,18 +164,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                debug = try container.decode(String.self, forKey: .debug)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -217,10 +199,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(shippingZone, forKey: .shippingZone)
-            
-            
-            
-            try? container.encodeIfPresent(debug, forKey: .debug)
             
             
         }

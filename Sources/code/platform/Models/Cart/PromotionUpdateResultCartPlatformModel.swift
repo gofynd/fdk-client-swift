@@ -56,7 +56,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var applicationId: String
         
-        public var buyRules: [String: Any]?
+        public var buyRules: [String: ItemCriteria]?
         
         public var customJson: [String: Any]?
         
@@ -67,10 +67,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         public var tags: [String]?
         
         public var id: String?
-        
-        public var isArchived: Bool?
-        
-        public var isBankOffer: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -129,13 +125,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case id = "_id"
             
-            case isArchived = "is_archived"
-            
-            case isBankOffer = "is_bank_offer"
-            
         }
 
-        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: [String: Any]? = nil, calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule]? = nil, displayMeta: DisplayMeta1? = nil, indexedCriteria: [PromoIndexedCriteria]? = nil, isArchived: Bool? = nil, isBankOffer: Bool? = nil, isProcessed: Bool? = nil, mode: String, ownership: Ownership? = nil, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, reason: String? = nil, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: PromotionSchedule? = nil) {
+        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: [String: ItemCriteria]? = nil, calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule]? = nil, displayMeta: DisplayMeta1? = nil, indexedCriteria: [PromoIndexedCriteria]? = nil, isProcessed: Bool? = nil, mode: String, ownership: Ownership? = nil, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, reason: String? = nil, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: PromotionSchedule? = nil) {
             
             self.stackable = stackable
             
@@ -190,10 +182,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.tags = tags
             
             self.id = id
-            
-            self.isArchived = isArchived
-            
-            self.isBankOffer = isBankOffer
             
         }
 
@@ -426,7 +414,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    buyRules = try container.decode([String: Any].self, forKey: .buyRules)
+                    buyRules = try container.decode([String: ItemCriteria].self, forKey: .buyRules)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -487,30 +475,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isArchived = try container.decode(Bool.self, forKey: .isArchived)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isBankOffer = try container.decode(Bool.self, forKey: .isBankOffer)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -658,16 +622,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isBankOffer, forKey: .isBankOffer)
             
             
         }

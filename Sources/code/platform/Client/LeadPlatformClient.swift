@@ -376,7 +376,7 @@ extension PlatformClient {
         public func getGeneralConfig(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GeneralConfigResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GeneralConfigResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -404,7 +404,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GeneralConfigResponseSchema.self, from: data)
+                        let response = Utility.decode(GeneralConfigResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

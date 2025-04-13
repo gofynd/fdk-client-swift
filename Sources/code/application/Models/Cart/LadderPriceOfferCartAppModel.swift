@@ -30,8 +30,6 @@ public extension ApplicationClient.Cart {
         
         public var promotionType: String?
         
-        public var medias: [Media]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,11 +55,9 @@ public extension ApplicationClient.Cart {
             
             case promotionType = "promotion_type"
             
-            case medias = "medias"
-            
         }
 
-        public init(buyRules: [String: Any]? = nil, calculateOn: String? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, medias: [Media]? = nil, offerPrices: [LadderOfferItem]? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
+        public init(buyRules: [String: Any]? = nil, calculateOn: String? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerPrices: [LadderOfferItem]? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
             
             self.id = id
             
@@ -84,8 +80,6 @@ public extension ApplicationClient.Cart {
             self.description = description
             
             self.promotionType = promotionType
-            
-            self.medias = medias
             
         }
 
@@ -224,18 +218,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                medias = try container.decode([Media].self, forKey: .medias)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -283,10 +265,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
-            
-            
-            
-            try? container.encodeIfPresent(medias, forKey: .medias)
             
             
         }

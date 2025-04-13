@@ -8,7 +8,7 @@ public extension ApplicationClient.Catalog {
     */
     class ApplicationStoreListing: Codable {
         
-        public var filters: [ApplicationStoreFilterListing]?
+        public var filters: [[String: Any]]?
         
         public var items: [AppStore]?
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(filters: [ApplicationStoreFilterListing]? = nil, items: [AppStore]? = nil, page: Page? = nil) {
+        public init(filters: [[String: Any]]? = nil, items: [AppStore]? = nil, page: Page? = nil) {
             
             self.filters = filters
             
@@ -40,7 +40,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                filters = try container.decode([ApplicationStoreFilterListing].self, forKey: .filters)
+                filters = try container.decode([[String: Any]].self, forKey: .filters)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

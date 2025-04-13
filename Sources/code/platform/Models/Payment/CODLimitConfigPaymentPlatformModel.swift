@@ -12,9 +12,9 @@ public extension PlatformClient.Payment {
     class CODLimitConfig: Codable {
         
         
-        public var storefront: Double?
+        public var storefront: Double
         
-        public var pos: Double?
+        public var pos: Double
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(pos: Double? = nil, storefront: Double? = nil) {
+        public init(pos: Double, storefront: Double) {
             
             self.storefront = storefront
             
@@ -37,28 +37,14 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    storefront = try container.decode(Double.self, forKey: .storefront)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                storefront = try container.decode(Double.self, forKey: .storefront)
                 
             
             
-                do {
-                    pos = try container.decode(Double.self, forKey: .pos)
+            
+                pos = try container.decode(Double.self, forKey: .pos)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -91,9 +77,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class CODLimitConfig: Codable {
         
         
-        public var storefront: Double?
+        public var storefront: Double
         
-        public var pos: Double?
+        public var pos: Double
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(pos: Double? = nil, storefront: Double? = nil) {
+        public init(pos: Double, storefront: Double) {
             
             self.storefront = storefront
             
@@ -116,28 +102,14 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    storefront = try container.decode(Double.self, forKey: .storefront)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                storefront = try container.decode(Double.self, forKey: .storefront)
                 
             
             
-                do {
-                    pos = try container.decode(Double.self, forKey: .pos)
+            
+                pos = try container.decode(Double.self, forKey: .pos)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

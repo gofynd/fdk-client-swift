@@ -30,6 +30,8 @@ public extension ApplicationClient.Logistic {
         
         public var promise: PromiseObject?
         
+        public var journeyWisePromise: [JourneyPromiseObject]?
+        
         public var tags: [[String: Any]]?
         
         public var isMto: Bool
@@ -79,6 +81,8 @@ public extension ApplicationClient.Logistic {
             
             case promise = "promise"
             
+            case journeyWisePromise = "journey_wise_promise"
+            
             case tags = "tags"
             
             case isMto = "is_mto"
@@ -105,7 +109,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(articles: [ShipmentsArticles], count: Int, courierPartners: [ShipmentCourierPartners], deliverySlots: ArticleDeliverySlots? = nil, error: ShipmentError? = nil, ewaybillEnabled: Bool? = nil, fromServiceability: [String: Any], fulfillmentId: Int, fulfillmentTags: [String]? = nil, fulfillmentType: String? = nil, isAutoAssign: Bool, isCodAvailable: Bool? = nil, isGift: Bool, isLocked: Bool, isMto: Bool, meta: [String: Any]? = nil, mps: Bool? = nil, packaging: Packaging, promise: PromiseObject? = nil, shipmentType: String, tags: [[String: Any]]? = nil, volumetricWeight: Double, weight: Double) {
+        public init(articles: [ShipmentsArticles], count: Int, courierPartners: [ShipmentCourierPartners], deliverySlots: ArticleDeliverySlots? = nil, error: ShipmentError? = nil, ewaybillEnabled: Bool? = nil, fromServiceability: [String: Any], fulfillmentId: Int, fulfillmentTags: [String]? = nil, fulfillmentType: String? = nil, isAutoAssign: Bool, isCodAvailable: Bool? = nil, isGift: Bool, isLocked: Bool, isMto: Bool, journeyWisePromise: [JourneyPromiseObject]? = nil, meta: [String: Any]? = nil, mps: Bool? = nil, packaging: Packaging, promise: PromiseObject? = nil, shipmentType: String, tags: [[String: Any]]? = nil, volumetricWeight: Double, weight: Double) {
             
             self.fulfillmentId = fulfillmentId
             
@@ -128,6 +132,8 @@ public extension ApplicationClient.Logistic {
             self.courierPartners = courierPartners
             
             self.promise = promise
+            
+            self.journeyWisePromise = journeyWisePromise
             
             self.tags = tags
             
@@ -253,6 +259,18 @@ public extension ApplicationClient.Logistic {
             
             do {
                 promise = try container.decode(PromiseObject.self, forKey: .promise)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                journeyWisePromise = try container.decode([JourneyPromiseObject].self, forKey: .journeyWisePromise)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -390,6 +408,10 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(promise, forKey: .promise)
+            
+            
+            
+            try? container.encodeIfPresent(journeyWisePromise, forKey: .journeyWisePromise)
             
             
             

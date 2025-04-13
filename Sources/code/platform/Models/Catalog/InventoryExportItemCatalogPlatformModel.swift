@@ -30,7 +30,7 @@ public extension PlatformClient.Catalog {
         
         public var notificationEmails: [String]?
         
-        public var createdBy: UserInfo?
+        public var createdBy: CreatedBy?
         
         public var id: String?
         
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(brand: [Int]? = nil, completedOn: String? = nil, createdBy: UserInfo? = nil, createdOn: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int? = nil, stats: [String: Any]? = nil, status: String? = nil, store: [Int]? = nil, taskId: String? = nil, triggerOn: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
+        public init(brand: [Int]? = nil, completedOn: String? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int? = nil, stats: [String: Any]? = nil, status: String? = nil, store: [Int]? = nil, taskId: String? = nil, triggerOn: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
             
             self.status = status
             
@@ -224,7 +224,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -408,7 +408,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var notificationEmails: [String]?
         
-        public var createdBy: UserInfo?
+        public var createdBy: CreatedBy?
         
         public var id: String?
         
@@ -455,7 +455,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(brand: [Int]? = nil, completedOn: String? = nil, createdBy: UserInfo? = nil, createdOn: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int? = nil, stats: [String: Any]? = nil, status: String? = nil, store: [Int]? = nil, taskId: String? = nil, triggerOn: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
+        public init(brand: [Int]? = nil, completedOn: String? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int? = nil, stats: [String: Any]? = nil, status: String? = nil, store: [Int]? = nil, taskId: String? = nil, triggerOn: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
             
             self.status = status
             
@@ -602,7 +602,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

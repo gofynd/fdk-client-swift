@@ -26,7 +26,7 @@ public extension ApplicationClient.Order {
         
         public var rawStatus: String?
         
-        public var meta: [String: Any]?
+        public var meta: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -53,7 +53,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(accountName: String? = nil, awb: String? = nil, lastLocationRecievedAt: String? = nil, meta: [String: Any]? = nil, rawStatus: String? = nil, reason: String? = nil, shipmentType: String? = nil, status: String? = nil, updatedAt: String? = nil, updatedTime: String? = nil) {
+        public init(accountName: String? = nil, awb: String? = nil, lastLocationRecievedAt: String? = nil, meta: String? = nil, rawStatus: String? = nil, reason: String? = nil, shipmentType: String? = nil, status: String? = nil, updatedAt: String? = nil, updatedTime: String? = nil) {
             
             self.accountName = accountName
             
@@ -190,7 +190,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                meta = try container.decode(String.self, forKey: .meta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

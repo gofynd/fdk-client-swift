@@ -205,7 +205,7 @@ extension ApplicationClient {
             slug: [String],
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductsComparisonResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductsComparisonResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -237,7 +237,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductsComparisonResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductsComparisonResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -259,7 +259,7 @@ extension ApplicationClient {
             slug: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductCompareResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductCompareResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -292,7 +292,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductCompareResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductCompareResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -314,7 +314,7 @@ extension ApplicationClient {
             slug: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductFrequentlyComparedSimilarResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductFrequentlyComparedSimilarResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -347,7 +347,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductFrequentlyComparedSimilarResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductFrequentlyComparedSimilarResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -369,7 +369,7 @@ extension ApplicationClient {
             slug: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductVariantsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductVariantsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -402,7 +402,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductVariantsResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductVariantsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -428,7 +428,7 @@ extension ApplicationClient {
             upc: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductStockStatusResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductStockStatusResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -479,7 +479,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductStockStatusResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductStockStatusResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -608,7 +608,7 @@ extension ApplicationClient {
             pageType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -671,7 +671,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductListingResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -709,9 +709,9 @@ extension ApplicationClient {
             sortOn: String?,
             pageSize: Int?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<ProductListingResponseSchema> {
+            ) -> Paginator<ProductListingResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductListingResponseSchema>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<ProductListingResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getProducts(
                     q: q,
@@ -749,7 +749,7 @@ extension ApplicationClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BrandListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -792,7 +792,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BrandListingResponseSchema.self, from: data)
+                        let response = Utility.decode(BrandListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -817,9 +817,9 @@ extension ApplicationClient {
             department: String?,
             pageSize: Int?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<BrandListingResponseSchema> {
+            ) -> Paginator<BrandListingResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<BrandListingResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getBrands(
                     department: department,
@@ -849,7 +849,7 @@ extension ApplicationClient {
             slug: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BrandDetailResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BrandDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -882,7 +882,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BrandDetailResponseSchema.self, from: data)
+                        let response = Utility.decode(BrandDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -904,7 +904,7 @@ extension ApplicationClient {
             department: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CategoryListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -939,7 +939,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CategoryListingResponseSchema.self, from: data)
+                        let response = Utility.decode(CategoryListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -961,7 +961,7 @@ extension ApplicationClient {
             slug: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CategoryMetaResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CategoryMetaResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -994,7 +994,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CategoryMetaResponseSchema.self, from: data)
+                        let response = Utility.decode(CategoryMetaResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1018,7 +1018,7 @@ extension ApplicationClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: HomeListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: HomeListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1061,7 +1061,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(HomeListingResponseSchema.self, from: data)
+                        let response = Utility.decode(HomeListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1086,9 +1086,9 @@ extension ApplicationClient {
             sortOn: String?,
             pageSize: Int?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<HomeListingResponseSchema> {
+            ) -> Paginator<HomeListingResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<HomeListingResponseSchema>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<HomeListingResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getHomeProducts(
                     sortOn: sortOn,
@@ -1118,7 +1118,7 @@ extension ApplicationClient {
         public func getDepartments(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DepartmentResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DepartmentResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1149,7 +1149,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DepartmentResponseSchema.self, from: data)
+                        let response = Utility.decode(DepartmentResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1171,7 +1171,7 @@ extension ApplicationClient {
             q: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AutoCompleteResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AutoCompleteResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1203,7 +1203,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AutoCompleteResponseSchema.self, from: data)
+                        let response = Utility.decode(AutoCompleteResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1228,7 +1228,7 @@ extension ApplicationClient {
             q: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetCollectionListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1275,7 +1275,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetCollectionListingResponseSchema.self, from: data)
+                        let response = Utility.decode(GetCollectionListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1303,9 +1303,9 @@ extension ApplicationClient {
             tag: [String]?,
             q: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<GetCollectionListingResponseSchema> {
+            ) -> Paginator<GetCollectionListingResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<GetCollectionListingResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getCollections(
                     pageNo: paginator.pageNo,
@@ -1344,7 +1344,7 @@ extension ApplicationClient {
             pageType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1409,7 +1409,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductListingResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1450,9 +1450,9 @@ extension ApplicationClient {
             sortOn: String?,
             pageSize: Int?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<ProductListingResponseSchema> {
+            ) -> Paginator<ProductListingResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductListingResponseSchema>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<ProductListingResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getCollectionItemsBySlug(
                     slug: slug,
@@ -1489,7 +1489,7 @@ extension ApplicationClient {
             slug: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CollectionDetailResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1522,7 +1522,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CollectionDetailResponseSchema.self, from: data)
+                        let response = Utility.decode(CollectionDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1546,7 +1546,7 @@ extension ApplicationClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetFollowListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetFollowListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1587,7 +1587,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetFollowListingResponseSchema.self, from: data)
+                        let response = Utility.decode(GetFollowListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1612,9 +1612,9 @@ extension ApplicationClient {
             collectionType: String,
             pageSize: Int?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<GetFollowListingResponseSchema> {
+            ) -> Paginator<GetFollowListingResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<GetFollowListingResponseSchema>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<GetFollowListingResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getFollowedListing(
                     collectionType: collectionType,
@@ -1638,7 +1638,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Delete item, brand, product
+        * Summary: Unfollows an item by ID.
         * Description: Remove a followed item, brand, or product using its collection ID.
         **/
         public func unfollowById(
@@ -1646,7 +1646,7 @@ extension ApplicationClient {
             collectionId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FollowPostResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1681,7 +1681,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FollowPostResponseSchema.self, from: data)
+                        let response = Utility.decode(FollowPostResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1704,7 +1704,7 @@ extension ApplicationClient {
             collectionId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FollowPostResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1739,7 +1739,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FollowPostResponseSchema.self, from: data)
+                        let response = Utility.decode(FollowPostResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1762,7 +1762,7 @@ extension ApplicationClient {
             collectionId: Int,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FollowerCountResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FollowerCountResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1797,7 +1797,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FollowerCountResponseSchema.self, from: data)
+                        let response = Utility.decode(FollowerCountResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1819,7 +1819,7 @@ extension ApplicationClient {
             collectionType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FollowIdsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FollowIdsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1854,7 +1854,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FollowIdsResponseSchema.self, from: data)
+                        let response = Utility.decode(FollowIdsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1880,10 +1880,9 @@ extension ApplicationClient {
             range: Int?,
             latitude: Double?,
             longitude: Double?,
-            tags: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: StoreListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1916,10 +1915,6 @@ extension ApplicationClient {
                 xQuery["longitude"] = value
             }
             
-            if let value = tags {
-                xQuery["tags"] = value
-            }
-            
             var xHeaders: [(key: String, value: String)] = []
             
             
@@ -1946,7 +1941,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(StoreListingResponseSchema.self, from: data)
+                        let response = Utility.decode(StoreListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1957,8 +1952,6 @@ extension ApplicationClient {
                     }
             });
         }
-        
-        
         
         
         
@@ -1984,11 +1977,10 @@ extension ApplicationClient {
             range: Int?,
             latitude: Double?,
             longitude: Double?,
-            tags: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<StoreListingResponseSchema> {
+            ) -> Paginator<StoreListingResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<StoreListingResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<StoreListingResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getStores(
                     pageNo: paginator.pageNo,
@@ -1998,7 +1990,6 @@ extension ApplicationClient {
                     range: range,
                     latitude: latitude,
                     longitude: longitude,
-                    tags: tags,
                     
                     headers: headers
                 ) { response, error in                    
@@ -2285,7 +2276,7 @@ extension ApplicationClient {
         * Description: Get the price of a product size at all the selling locations near to a PIN Code.
         **/
         public func getProductPriceBySlug(
-            body: ProductSizePriceV1RequestSchema,
+            body: ProductSizePriceV1Request,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductSizePriceResponseV1?, _ error: FDKError?) -> Void
         ) {
