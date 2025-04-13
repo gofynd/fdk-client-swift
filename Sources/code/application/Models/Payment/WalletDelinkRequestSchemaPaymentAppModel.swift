@@ -12,8 +12,6 @@ public extension ApplicationClient.Payment {
         
         public var walletCode: String
         
-        public var walletId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -21,17 +19,13 @@ public extension ApplicationClient.Payment {
             
             case walletCode = "wallet_code"
             
-            case walletId = "wallet_id"
-            
         }
 
-        public init(aggregator: String? = nil, walletCode: String, walletId: String? = nil) {
+        public init(aggregator: String? = nil, walletCode: String) {
             
             self.aggregator = aggregator
             
             self.walletCode = walletCode
-            
-            self.walletId = walletId
             
         }
 
@@ -55,18 +49,6 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            do {
-                walletId = try container.decode(String.self, forKey: .walletId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -78,10 +60,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(walletCode, forKey: .walletCode)
-            
-            
-            
-            try? container.encodeIfPresent(walletId, forKey: .walletId)
             
             
         }

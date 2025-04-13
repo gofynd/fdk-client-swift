@@ -34,7 +34,7 @@ public extension PlatformClient.Catalog {
         
         public var taskId: String?
         
-        public var createdBy: UserInfo?
+        public var createdBy: CreatedBy?
         
         public var id: String?
         
@@ -69,7 +69,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(completedOn: String? = nil, createdBy: UserInfo? = nil, createdOn: String? = nil, filters: InventoryExportJobListFilters? = nil, id: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int? = nil, stats: InventoryExportJobListStats? = nil, status: String? = nil, taskId: String? = nil, type: String? = nil, url: String? = nil) {
+        public init(completedOn: String? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, filters: InventoryExportJobListFilters? = nil, id: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int? = nil, stats: InventoryExportJobListStats? = nil, status: String? = nil, taskId: String? = nil, type: String? = nil, url: String? = nil) {
             
             self.status = status
             
@@ -236,7 +236,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -366,7 +366,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var taskId: String?
         
-        public var createdBy: UserInfo?
+        public var createdBy: CreatedBy?
         
         public var id: String?
         
@@ -401,7 +401,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(completedOn: String? = nil, createdBy: UserInfo? = nil, createdOn: String? = nil, filters: InventoryExportJobListFilters? = nil, id: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int? = nil, stats: InventoryExportJobListStats? = nil, status: String? = nil, taskId: String? = nil, type: String? = nil, url: String? = nil) {
+        public init(completedOn: String? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, filters: InventoryExportJobListFilters? = nil, id: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int? = nil, stats: InventoryExportJobListStats? = nil, status: String? = nil, taskId: String? = nil, type: String? = nil, url: String? = nil) {
             
             self.status = status
             
@@ -568,7 +568,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

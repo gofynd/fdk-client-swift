@@ -8,7 +8,7 @@ public extension ApplicationClient.Logistic {
     */
     class GeoAreaGetResponseBody: Codable {
         
-        public var items: [GeoAreaItemResponseSchema]?
+        public var items: [GeoAreaItemResponse]?
         
         public var page: Page2?
         
@@ -21,7 +21,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(items: [GeoAreaItemResponseSchema]? = nil, page: Page2? = nil) {
+        public init(items: [GeoAreaItemResponse]? = nil, page: Page2? = nil) {
             
             self.items = items
             
@@ -34,7 +34,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                items = try container.decode([GeoAreaItemResponseSchema].self, forKey: .items)
+                items = try container.decode([GeoAreaItemResponse].self, forKey: .items)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

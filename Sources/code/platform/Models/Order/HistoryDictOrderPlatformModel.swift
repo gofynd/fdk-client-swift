@@ -28,9 +28,7 @@ public extension PlatformClient.Order {
         
         public var ticketId: String?
         
-        public var type: String?
-        
-        public var activityType: String
+        public var type: String
         
         public var l2Detail: String?
         
@@ -65,8 +63,6 @@ public extension PlatformClient.Order {
             
             case type = "type"
             
-            case activityType = "activity_type"
-            
             case l2Detail = "l2_detail"
             
             case assignedAgent = "assigned_agent"
@@ -81,7 +77,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(activityType: String, assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String? = nil, user: String, userDetails: [String: Any]? = nil) {
+        public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String, userDetails: [String: Any]? = nil) {
             
             self.userDetails = userDetails
             
@@ -100,8 +96,6 @@ public extension PlatformClient.Order {
             self.ticketId = ticketId
             
             self.type = type
-            
-            self.activityType = activityType
             
             self.l2Detail = l2Detail
             
@@ -210,19 +204,7 @@ public extension PlatformClient.Order {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                activityType = try container.decode(String.self, forKey: .activityType)
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
@@ -332,11 +314,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(activityType, forKey: .activityType)
             
             
             
@@ -401,9 +378,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var ticketId: String?
         
-        public var type: String?
-        
-        public var activityType: String
+        public var type: String
         
         public var l2Detail: String?
         
@@ -438,8 +413,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case type = "type"
             
-            case activityType = "activity_type"
-            
             case l2Detail = "l2_detail"
             
             case assignedAgent = "assigned_agent"
@@ -454,7 +427,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(activityType: String, assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String? = nil, user: String, userDetails: [String: Any]? = nil) {
+        public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String, userDetails: [String: Any]? = nil) {
             
             self.userDetails = userDetails
             
@@ -473,8 +446,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.ticketId = ticketId
             
             self.type = type
-            
-            self.activityType = activityType
             
             self.l2Detail = l2Detail
             
@@ -583,19 +554,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                activityType = try container.decode(String.self, forKey: .activityType)
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
@@ -705,11 +664,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(activityType, forKey: .activityType)
             
             
             

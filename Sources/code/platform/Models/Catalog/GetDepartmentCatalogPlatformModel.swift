@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class GetDepartment: Codable {
         
         
-        public var createdBy: UserSchema?
+        public var createdBy: RequestUserSerializer?
         
         public var createdOn: String?
         
@@ -22,19 +22,23 @@ public extension PlatformClient.Catalog {
         
         public var logo: String?
         
-        public var modifiedBy: UserSchema?
+        public var modifiedBy: RequestUserSerializer?
         
         public var modifiedOn: String?
         
-        public var id: String?
-        
         public var name: String?
+        
+        public var pageNo: Int?
+        
+        public var pageSize: Int?
+        
+        public var priorityOrder: Int?
+        
+        public var search: String?
         
         public var slug: String?
         
         public var synonyms: [String]?
-        
-        public var priorityOrder: Int?
         
         public var uid: Int?
         
@@ -55,21 +59,25 @@ public extension PlatformClient.Catalog {
             
             case modifiedOn = "modified_on"
             
-            case id = "id"
-            
             case name = "name"
+            
+            case pageNo = "page_no"
+            
+            case pageSize = "page_size"
+            
+            case priorityOrder = "priority_order"
+            
+            case search = "search"
             
             case slug = "slug"
             
             case synonyms = "synonyms"
             
-            case priorityOrder = "priority_order"
-            
             case uid = "uid"
             
         }
 
-        public init(createdBy: UserSchema? = nil, createdOn: String? = nil, id: String? = nil, isActive: Bool? = nil, itemType: String? = nil, logo: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil) {
+        public init(createdBy: RequestUserSerializer? = nil, createdOn: String? = nil, isActive: Bool? = nil, itemType: String? = nil, logo: String? = nil, modifiedBy: RequestUserSerializer? = nil, modifiedOn: String? = nil, name: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil, priorityOrder: Int? = nil, search: String? = nil, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil) {
             
             self.createdBy = createdBy
             
@@ -85,15 +93,19 @@ public extension PlatformClient.Catalog {
             
             self.modifiedOn = modifiedOn
             
-            self.id = id
-            
             self.name = name
+            
+            self.pageNo = pageNo
+            
+            self.pageSize = pageSize
+            
+            self.priorityOrder = priorityOrder
+            
+            self.search = search
             
             self.slug = slug
             
             self.synonyms = synonyms
-            
-            self.priorityOrder = priorityOrder
             
             self.uid = uid
             
@@ -104,7 +116,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSchema.self, forKey: .createdBy)
+                    createdBy = try container.decode(RequestUserSerializer.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +176,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSchema.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(RequestUserSerializer.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,7 +200,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -200,7 +212,43 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    name = try container.decode(String.self, forKey: .name)
+                    pageNo = try container.decode(Int.self, forKey: .pageNo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    pageSize = try container.decode(Int.self, forKey: .pageSize)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    search = try container.decode(String.self, forKey: .search)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,18 +273,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     synonyms = try container.decode([String].self, forKey: .synonyms)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -300,12 +336,27 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pageNo, forKey: .pageNo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+            
+            
+            
+            
+            try? container.encodeIfPresent(search, forKey: .search)
             
             
             
@@ -316,11 +367,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-            
-            
-            
-            
-            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
             
             
             
@@ -344,7 +390,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetDepartment: Codable {
         
         
-        public var createdBy: UserSchema?
+        public var createdBy: RequestUserSerializer?
         
         public var createdOn: String?
         
@@ -354,19 +400,23 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var logo: String?
         
-        public var modifiedBy: UserSchema?
+        public var modifiedBy: RequestUserSerializer?
         
         public var modifiedOn: String?
         
-        public var id: String?
-        
         public var name: String?
+        
+        public var pageNo: Int?
+        
+        public var pageSize: Int?
+        
+        public var priorityOrder: Int?
+        
+        public var search: String?
         
         public var slug: String?
         
         public var synonyms: [String]?
-        
-        public var priorityOrder: Int?
         
         public var uid: Int?
         
@@ -387,21 +437,25 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case modifiedOn = "modified_on"
             
-            case id = "id"
-            
             case name = "name"
+            
+            case pageNo = "page_no"
+            
+            case pageSize = "page_size"
+            
+            case priorityOrder = "priority_order"
+            
+            case search = "search"
             
             case slug = "slug"
             
             case synonyms = "synonyms"
             
-            case priorityOrder = "priority_order"
-            
             case uid = "uid"
             
         }
 
-        public init(createdBy: UserSchema? = nil, createdOn: String? = nil, id: String? = nil, isActive: Bool? = nil, itemType: String? = nil, logo: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil) {
+        public init(createdBy: RequestUserSerializer? = nil, createdOn: String? = nil, isActive: Bool? = nil, itemType: String? = nil, logo: String? = nil, modifiedBy: RequestUserSerializer? = nil, modifiedOn: String? = nil, name: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil, priorityOrder: Int? = nil, search: String? = nil, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil) {
             
             self.createdBy = createdBy
             
@@ -417,15 +471,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.modifiedOn = modifiedOn
             
-            self.id = id
-            
             self.name = name
+            
+            self.pageNo = pageNo
+            
+            self.pageSize = pageSize
+            
+            self.priorityOrder = priorityOrder
+            
+            self.search = search
             
             self.slug = slug
             
             self.synonyms = synonyms
-            
-            self.priorityOrder = priorityOrder
             
             self.uid = uid
             
@@ -436,7 +494,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSchema.self, forKey: .createdBy)
+                    createdBy = try container.decode(RequestUserSerializer.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -496,7 +554,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSchema.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(RequestUserSerializer.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -520,7 +578,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -532,7 +590,43 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    name = try container.decode(String.self, forKey: .name)
+                    pageNo = try container.decode(Int.self, forKey: .pageNo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    pageSize = try container.decode(Int.self, forKey: .pageSize)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    search = try container.decode(String.self, forKey: .search)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -557,18 +651,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     synonyms = try container.decode([String].self, forKey: .synonyms)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -632,12 +714,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pageNo, forKey: .pageNo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+            
+            
+            
+            
+            try? container.encodeIfPresent(search, forKey: .search)
             
             
             
@@ -648,11 +745,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-            
-            
-            
-            
-            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
             
             
             

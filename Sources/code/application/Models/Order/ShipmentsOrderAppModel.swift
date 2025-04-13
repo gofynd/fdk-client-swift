@@ -16,15 +16,13 @@ public extension ApplicationClient.Order {
         
         public var isValidated: Bool?
         
+        public var isActive: Bool?
+        
         public var refundInformation: [[String: Any]]?
         
-        public var currency: CurrencySchema?
+        public var currency: Currency?
         
         public var currencyInfo: CurrencyInfo?
-        
-        public var couponDetails: [CouponDetails]?
-        
-        public var meta: [String: Any]?
         
         public var payment: ShipmentPayment?
         
@@ -106,7 +104,9 @@ public extension ApplicationClient.Order {
         
         public var deliveryDate: String?
         
-        public var order: OrderRequestSchema?
+        public var order: OrderRequest?
+        
+        public var meta: [String: Any]?
         
         public var canPayRemainingAmount: Bool?
         
@@ -129,15 +129,13 @@ public extension ApplicationClient.Order {
             
             case isValidated = "is_validated"
             
+            case isActive = "is_active"
+            
             case refundInformation = "refund_information"
             
             case currency = "currency"
             
             case currencyInfo = "currency_info"
-            
-            case couponDetails = "coupon_details"
-            
-            case meta = "meta"
             
             case payment = "payment"
             
@@ -221,6 +219,8 @@ public extension ApplicationClient.Order {
             
             case order = "order"
             
+            case meta = "meta"
+            
             case canPayRemainingAmount = "can_pay_remaining_amount"
             
             case charges = "charges"
@@ -233,7 +233,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(advancePaymentConfig: [String: Any]? = nil, awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canPayRemainingAmount: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, couponDetails: [CouponDetails]? = nil, currency: CurrencySchema? = nil, currencyInfo: CurrencyInfo? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, externalShipmentId: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, isRefundInitiated: Bool? = nil, isValidated: Bool? = nil, meta: [String: Any]? = nil, multiMopPayments: [String: Any]? = nil, multiMopPaymentsList: [[String: Any]]? = nil, needHelpUrl: String? = nil, order: OrderRequestSchema? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [PaymentInfo]? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, refundInformation: [[String: Any]]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(advancePaymentConfig: [String: Any]? = nil, awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canPayRemainingAmount: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, externalShipmentId: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, isActive: Bool? = nil, isRefundInitiated: Bool? = nil, isValidated: Bool? = nil, meta: [String: Any]? = nil, multiMopPayments: [String: Any]? = nil, multiMopPaymentsList: [[String: Any]]? = nil, needHelpUrl: String? = nil, order: OrderRequest? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [PaymentInfo]? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, refundInformation: [[String: Any]]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             
             self.advancePaymentConfig = advancePaymentConfig
             
@@ -243,15 +243,13 @@ public extension ApplicationClient.Order {
             
             self.isValidated = isValidated
             
+            self.isActive = isActive
+            
             self.refundInformation = refundInformation
             
             self.currency = currency
             
             self.currencyInfo = currencyInfo
-            
-            self.couponDetails = couponDetails
-            
-            self.meta = meta
             
             self.payment = payment
             
@@ -335,6 +333,8 @@ public extension ApplicationClient.Order {
             
             self.order = order
             
+            self.meta = meta
+            
             self.canPayRemainingAmount = canPayRemainingAmount
             
             self.charges = charges
@@ -400,6 +400,18 @@ public extension ApplicationClient.Order {
             
             
             do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 refundInformation = try container.decode([[String: Any]].self, forKey: .refundInformation)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -412,7 +424,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                currency = try container.decode(CurrencySchema.self, forKey: .currency)
+                currency = try container.decode(Currency.self, forKey: .currency)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -425,30 +437,6 @@ public extension ApplicationClient.Order {
             
             do {
                 currencyInfo = try container.decode(CurrencyInfo.self, forKey: .currencyInfo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                couponDetails = try container.decode([CouponDetails].self, forKey: .couponDetails)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -940,7 +928,19 @@ public extension ApplicationClient.Order {
             
             
             do {
-                order = try container.decode(OrderRequestSchema.self, forKey: .order)
+                order = try container.decode(OrderRequest.self, forKey: .order)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1032,6 +1032,10 @@ public extension ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
             try? container.encodeIfPresent(refundInformation, forKey: .refundInformation)
             
             
@@ -1041,14 +1045,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
-            
-            
-            
-            try? container.encodeIfPresent(couponDetails, forKey: .couponDetails)
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -1213,6 +1209,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(order, forKey: .order)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             

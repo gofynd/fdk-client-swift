@@ -44,7 +44,7 @@ public extension ApplicationClient.Catalog {
         
         public var rating: Double?
         
-        public var identifier: Identifier?
+        public var identifier: [String: Any]?
         
         public var highlights: [String]?
         
@@ -97,7 +97,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(attributes: [String: Any]? = nil, brandUid: Int? = nil, countryOfOrigin: String? = nil, description: String? = nil, groupedAttributes: [String: Any]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, hsnCode: Int? = nil, identifier: Identifier? = nil, images: [String]? = nil, imageNature: String? = nil, isSet: Bool? = nil, itemCode: String? = nil, media: [[String: Any]]? = nil, name: String? = nil, outOfStock: Bool? = nil, rating: Double? = nil, ratingCount: Int? = nil, shortDescription: String? = nil, slug: String? = nil, templateTag: String? = nil) {
+        public init(attributes: [String: Any]? = nil, brandUid: Int? = nil, countryOfOrigin: String? = nil, description: String? = nil, groupedAttributes: [String: Any]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, hsnCode: Int? = nil, identifier: [String: Any]? = nil, images: [String]? = nil, imageNature: String? = nil, isSet: Bool? = nil, itemCode: String? = nil, media: [[String: Any]]? = nil, name: String? = nil, outOfStock: Bool? = nil, rating: Double? = nil, ratingCount: Int? = nil, shortDescription: String? = nil, slug: String? = nil, templateTag: String? = nil) {
             
             self.templateTag = templateTag
             
@@ -364,7 +364,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                identifier = try container.decode(Identifier.self, forKey: .identifier)
+                identifier = try container.decode([String: Any].self, forKey: .identifier)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

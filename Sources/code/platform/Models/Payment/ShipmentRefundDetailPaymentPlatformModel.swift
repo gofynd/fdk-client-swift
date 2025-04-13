@@ -18,7 +18,7 @@ public extension PlatformClient.Payment {
         
         public var beneficiaryId: String
         
-        public var shipmentIds: [String]?
+        public var shipmentIds: [String]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(beneficiaryId: String, orderId: String, shipmentIds: [String]? = nil, transferMode: String) {
+        public init(beneficiaryId: String, orderId: String, shipmentIds: [String], transferMode: String) {
             
             self.orderId = orderId
             
@@ -64,16 +64,9 @@ public extension PlatformClient.Payment {
             
             
             
-                do {
-                    shipmentIds = try container.decode([String].self, forKey: .shipmentIds)
+                shipmentIds = try container.decode([String].self, forKey: .shipmentIds)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -122,7 +115,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var beneficiaryId: String
         
-        public var shipmentIds: [String]?
+        public var shipmentIds: [String]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -137,7 +130,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(beneficiaryId: String, orderId: String, shipmentIds: [String]? = nil, transferMode: String) {
+        public init(beneficiaryId: String, orderId: String, shipmentIds: [String], transferMode: String) {
             
             self.orderId = orderId
             
@@ -168,16 +161,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                do {
-                    shipmentIds = try container.decode([String].self, forKey: .shipmentIds)
+                shipmentIds = try container.decode([String].self, forKey: .shipmentIds)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

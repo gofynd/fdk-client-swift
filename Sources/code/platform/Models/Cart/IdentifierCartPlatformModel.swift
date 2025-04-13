@@ -16,8 +16,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var brandId: [Int]?
         
-        public var emailDomain: [String]?
-        
         public var companyId: [Int]?
         
         public var storeId: [Int]?
@@ -39,8 +37,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case brandId = "brand_id"
             
-            case emailDomain = "email_domain"
-            
             case companyId = "company_id"
             
             case storeId = "store_id"
@@ -59,11 +55,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(articleId: [String]? = nil, brandId: [Int]? = nil, categoryId: [Int]? = nil, collectionId: [String]? = nil, companyId: [Int]? = nil, emailDomain: [String]? = nil, excludeBrandId: [Int]? = nil, itemId: [Int]? = nil, storeId: [Int]? = nil, userId: [String]? = nil) {
+        public init(articleId: [String]? = nil, brandId: [Int]? = nil, categoryId: [Int]? = nil, collectionId: [String]? = nil, companyId: [Int]? = nil, excludeBrandId: [Int]? = nil, itemId: [Int]? = nil, storeId: [Int]? = nil, userId: [String]? = nil) {
             
             self.brandId = brandId
-            
-            self.emailDomain = emailDomain
             
             self.companyId = companyId
             
@@ -89,18 +83,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     brandId = try container.decode([Int].self, forKey: .brandId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    emailDomain = try container.decode([String].self, forKey: .emailDomain)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,11 +196,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(brandId, forKey: .brandId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(emailDomain, forKey: .emailDomain)
             
             
             

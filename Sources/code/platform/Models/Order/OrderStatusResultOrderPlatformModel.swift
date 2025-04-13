@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var statusCode: Int?
         
+        public var remarks: String?
+        
         public var success: Bool
         
         public var result: [OrderStatusData]?
@@ -23,15 +25,19 @@ public extension PlatformClient.Order {
             
             case statusCode = "status_code"
             
+            case remarks = "remarks"
+            
             case success = "success"
             
             case result = "result"
             
         }
 
-        public init(result: [OrderStatusData]? = nil, statusCode: Int? = nil, success: Bool) {
+        public init(remarks: String? = nil, result: [OrderStatusData]? = nil, statusCode: Int? = nil, success: Bool) {
             
             self.statusCode = statusCode
+            
+            self.remarks = remarks
             
             self.success = success
             
@@ -45,6 +51,18 @@ public extension PlatformClient.Order {
             
                 do {
                     statusCode = try container.decode(Int.self, forKey: .statusCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    remarks = try container.decode(String.self, forKey: .remarks)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,6 +97,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(remarks, forKey: .remarks)
             
             
             
@@ -109,6 +132,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var statusCode: Int?
         
+        public var remarks: String?
+        
         public var success: Bool
         
         public var result: [OrderStatusData]?
@@ -118,15 +143,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case statusCode = "status_code"
             
+            case remarks = "remarks"
+            
             case success = "success"
             
             case result = "result"
             
         }
 
-        public init(result: [OrderStatusData]? = nil, statusCode: Int? = nil, success: Bool) {
+        public init(remarks: String? = nil, result: [OrderStatusData]? = nil, statusCode: Int? = nil, success: Bool) {
             
             self.statusCode = statusCode
+            
+            self.remarks = remarks
             
             self.success = success
             
@@ -140,6 +169,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     statusCode = try container.decode(Int.self, forKey: .statusCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    remarks = try container.decode(String.self, forKey: .remarks)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -174,6 +215,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(remarks, forKey: .remarks)
             
             
             

@@ -60,8 +60,6 @@ public extension PlatformClient.Order {
         
         public var charges: [PriceAdjustmentCharge]?
         
-        public var orderingCurrencyPrices: OrderingCurrencyPrices?
-        
         public var currentStatus: CurrentStatus?
         
         public var bagId: Int
@@ -71,10 +69,6 @@ public extension PlatformClient.Order {
         public var isParent: Bool?
         
         public var variants: [String: Any]?
-        
-        public var markAsReturnable: Bool?
-        
-        public var returnableDate: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -127,8 +121,6 @@ public extension PlatformClient.Order {
             
             case charges = "charges"
             
-            case orderingCurrencyPrices = "ordering_currency_prices"
-            
             case currentStatus = "current_status"
             
             case bagId = "bag_id"
@@ -139,13 +131,9 @@ public extension PlatformClient.Order {
             
             case variants = "variants"
             
-            case markAsReturnable = "mark_as_returnable"
-            
-            case returnableDate = "returnable_date"
-            
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, markAsReturnable: Bool? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Double? = nil, returnableDate: String? = nil, sellerIdentifier: String? = nil, variants: [String: Any]? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Double? = nil, sellerIdentifier: String? = nil, variants: [String: Any]? = nil) {
             
             self.gstDetails = gstDetails
             
@@ -195,8 +183,6 @@ public extension PlatformClient.Order {
             
             self.charges = charges
             
-            self.orderingCurrencyPrices = orderingCurrencyPrices
-            
             self.currentStatus = currentStatus
             
             self.bagId = bagId
@@ -206,10 +192,6 @@ public extension PlatformClient.Order {
             self.isParent = isParent
             
             self.variants = variants
-            
-            self.markAsReturnable = markAsReturnable
-            
-            self.returnableDate = returnableDate
             
         }
 
@@ -506,18 +488,6 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    orderingCurrencyPrices = try container.decode(OrderingCurrencyPrices.self, forKey: .orderingCurrencyPrices)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     currentStatus = try container.decode(CurrentStatus.self, forKey: .currentStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -560,30 +530,6 @@ public extension PlatformClient.Order {
             
                 do {
                     variants = try container.decode([String: Any].self, forKey: .variants)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    markAsReturnable = try container.decode(Bool.self, forKey: .markAsReturnable)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    returnableDate = try container.decode(String.self, forKey: .returnableDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -720,11 +666,6 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
-            
-            
-            
-            
             try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
             
             
@@ -746,16 +687,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(variants, forKey: .variants)
-            
-            
-            
-            
-            try? container.encodeIfPresent(markAsReturnable, forKey: .markAsReturnable)
-            
-            
-            
-            
-            try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
             
             
         }
@@ -822,8 +753,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var charges: [PriceAdjustmentCharge]?
         
-        public var orderingCurrencyPrices: OrderingCurrencyPrices?
-        
         public var currentStatus: CurrentStatus?
         
         public var bagId: Int
@@ -833,10 +762,6 @@ public extension PlatformClient.ApplicationClient.Order {
         public var isParent: Bool?
         
         public var variants: [String: Any]?
-        
-        public var markAsReturnable: Bool?
-        
-        public var returnableDate: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -889,8 +814,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case charges = "charges"
             
-            case orderingCurrencyPrices = "ordering_currency_prices"
-            
             case currentStatus = "current_status"
             
             case bagId = "bag_id"
@@ -901,13 +824,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case variants = "variants"
             
-            case markAsReturnable = "mark_as_returnable"
-            
-            case returnableDate = "returnable_date"
-            
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, markAsReturnable: Bool? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Double? = nil, returnableDate: String? = nil, sellerIdentifier: String? = nil, variants: [String: Any]? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Double? = nil, sellerIdentifier: String? = nil, variants: [String: Any]? = nil) {
             
             self.gstDetails = gstDetails
             
@@ -957,8 +876,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.charges = charges
             
-            self.orderingCurrencyPrices = orderingCurrencyPrices
-            
             self.currentStatus = currentStatus
             
             self.bagId = bagId
@@ -968,10 +885,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.isParent = isParent
             
             self.variants = variants
-            
-            self.markAsReturnable = markAsReturnable
-            
-            self.returnableDate = returnableDate
             
         }
 
@@ -1268,18 +1181,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    orderingCurrencyPrices = try container.decode(OrderingCurrencyPrices.self, forKey: .orderingCurrencyPrices)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     currentStatus = try container.decode(CurrentStatus.self, forKey: .currentStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1322,30 +1223,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     variants = try container.decode([String: Any].self, forKey: .variants)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    markAsReturnable = try container.decode(Bool.self, forKey: .markAsReturnable)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    returnableDate = try container.decode(String.self, forKey: .returnableDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1482,11 +1359,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
-            
-            
-            
-            
             try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
             
             
@@ -1508,16 +1380,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(variants, forKey: .variants)
-            
-            
-            
-            
-            try? container.encodeIfPresent(markAsReturnable, forKey: .markAsReturnable)
-            
-            
-            
-            
-            try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
             
             
         }

@@ -25,13 +25,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Capture and save click events from various sales channels
-        * Description: Send click events from various sales channels to enable insightful data collection and analysis.
+        * Summary: Endpoint to capture click events from sales channels and persist them in database.
+        * Description: Send click events from sales channels.
         **/
         public func saveClickEvent(
-            body: ClickEventPayload,
+            body: ClickEventRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ClickEventDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ClickEventResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -62,7 +62,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ClickEventDetails.self, from: data)
+                        let response = Utility.decode(ClickEventResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

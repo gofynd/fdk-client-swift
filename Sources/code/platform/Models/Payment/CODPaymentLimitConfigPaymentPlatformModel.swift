@@ -18,7 +18,7 @@ public extension PlatformClient.Payment {
         
         public var userId: Int
         
-        public var merchantUserId: String?
+        public var merchantUserId: String
         
         public var remainingLimit: Int
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(isActive: Bool, limit: CODLimitConfig, merchantUserId: String? = nil, remainingLimit: Int, usages: Double, userId: Int) {
+        public init(isActive: Bool, limit: CODLimitConfig, merchantUserId: String, remainingLimit: Int, usages: Double, userId: Int) {
             
             self.isActive = isActive
             
@@ -76,16 +76,9 @@ public extension PlatformClient.Payment {
             
             
             
-                do {
-                    merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
+                merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
@@ -154,7 +147,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var userId: Int
         
-        public var merchantUserId: String?
+        public var merchantUserId: String
         
         public var remainingLimit: Int
         
@@ -177,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(isActive: Bool, limit: CODLimitConfig, merchantUserId: String? = nil, remainingLimit: Int, usages: Double, userId: Int) {
+        public init(isActive: Bool, limit: CODLimitConfig, merchantUserId: String, remainingLimit: Int, usages: Double, userId: Int) {
             
             self.isActive = isActive
             
@@ -212,16 +205,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                do {
-                    merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
+                merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)

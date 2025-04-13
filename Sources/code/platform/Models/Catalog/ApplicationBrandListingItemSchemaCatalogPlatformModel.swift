@@ -40,6 +40,8 @@ public extension PlatformClient.Catalog {
         
         public var departments: [Int]?
         
+        public var modifiedOn: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -71,9 +73,11 @@ public extension PlatformClient.Catalog {
             
             case departments = "departments"
             
+            case modifiedOn = "modified_on"
+            
         }
 
-        public init(brandBannerPortraitUrl: String? = nil, brandBannerUrl: String? = nil, brandLogoUrl: String? = nil, createdOn: String? = nil, departments: [Int]? = nil, description: String? = nil, isActive: Bool? = nil, lastUpdated: String? = nil, name: String? = nil, priority: Int? = nil, slugKey: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil) {
+        public init(brandBannerPortraitUrl: String? = nil, brandBannerUrl: String? = nil, brandLogoUrl: String? = nil, createdOn: String? = nil, departments: [Int]? = nil, description: String? = nil, isActive: Bool? = nil, lastUpdated: String? = nil, modifiedOn: String? = nil, name: String? = nil, priority: Int? = nil, slugKey: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -102,6 +106,8 @@ public extension PlatformClient.Catalog {
             self.isActive = isActive
             
             self.departments = departments
+            
+            self.modifiedOn = modifiedOn
             
         }
 
@@ -276,6 +282,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -349,6 +367,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(departments, forKey: .departments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }
@@ -395,6 +418,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var departments: [Int]?
         
+        public var modifiedOn: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -426,9 +451,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case departments = "departments"
             
+            case modifiedOn = "modified_on"
+            
         }
 
-        public init(brandBannerPortraitUrl: String? = nil, brandBannerUrl: String? = nil, brandLogoUrl: String? = nil, createdOn: String? = nil, departments: [Int]? = nil, description: String? = nil, isActive: Bool? = nil, lastUpdated: String? = nil, name: String? = nil, priority: Int? = nil, slugKey: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil) {
+        public init(brandBannerPortraitUrl: String? = nil, brandBannerUrl: String? = nil, brandLogoUrl: String? = nil, createdOn: String? = nil, departments: [Int]? = nil, description: String? = nil, isActive: Bool? = nil, lastUpdated: String? = nil, modifiedOn: String? = nil, name: String? = nil, priority: Int? = nil, slugKey: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -457,6 +484,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.isActive = isActive
             
             self.departments = departments
+            
+            self.modifiedOn = modifiedOn
             
         }
 
@@ -631,6 +660,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -704,6 +745,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(departments, forKey: .departments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }

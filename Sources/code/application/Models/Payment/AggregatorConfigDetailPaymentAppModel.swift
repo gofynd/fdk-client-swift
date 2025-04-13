@@ -8,8 +8,6 @@ public extension ApplicationClient.Payment {
     */
     class AggregatorConfigDetail: Codable {
         
-        public var sdk: Bool?
-        
         public var secret: String?
         
         public var api: String?
@@ -62,10 +60,10 @@ public extension ApplicationClient.Payment {
         
         public var isActive: [String: Any]?
         
+        public var sdk: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case sdk = "sdk"
             
             case secret = "secret"
             
@@ -119,11 +117,11 @@ public extension ApplicationClient.Payment {
             
             case isActive = "is_active"
             
+            case sdk = "sdk"
+            
         }
 
-        public init(api: String? = nil, apiDomain: String? = nil, apiKey: String? = nil, checkoutFormpostUrl: String? = nil, configType: String? = nil, domain: String? = nil, isActive: [String: Any]? = nil, isSubFyndAccount: String? = nil, key: String? = nil, merchantId: [String: Any]? = nil, merchantKey: String? = nil, merchantSalt: String? = nil, nonTrxnUrl: String? = nil, pin: String? = nil, productId: String? = nil, refundApiDomain: String? = nil, sdk: Bool? = nil, secret: String? = nil, secretKey: String? = nil, signatureKey: String? = nil, trxnUrl: String? = nil, userId: String? = nil, verifyApi: String? = nil, vpa: String? = nil, webhookPassword: String? = nil, webhookSecret: String? = nil, webhookUsername: String? = nil) {
-            
-            self.sdk = sdk
+        public init(api: String? = nil, apiDomain: String? = nil, apiKey: String? = nil, checkoutFormpostUrl: String? = nil, configType: String? = nil, domain: String? = nil, isActive: [String: Any]? = nil, isSubFyndAccount: String? = nil, key: String? = nil, merchantId: [String: Any]? = nil, merchantKey: String? = nil, merchantSalt: String? = nil, nonTrxnUrl: String? = nil, pin: String? = nil, productId: String? = nil, refundApiDomain: String? = nil, sdk: [String: Any]? = nil, secret: String? = nil, secretKey: String? = nil, signatureKey: String? = nil, trxnUrl: String? = nil, userId: String? = nil, verifyApi: String? = nil, vpa: String? = nil, webhookPassword: String? = nil, webhookSecret: String? = nil, webhookUsername: String? = nil) {
             
             self.secret = secret
             
@@ -177,22 +175,12 @@ public extension ApplicationClient.Payment {
             
             self.isActive = isActive
             
+            self.sdk = sdk
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                sdk = try container.decode(Bool.self, forKey: .sdk)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -506,14 +494,22 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                sdk = try container.decode([String: Any].self, forKey: .sdk)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            try? container.encodeIfPresent(sdk, forKey: .sdk)
-            
             
             
             try? container.encodeIfPresent(secret, forKey: .secret)
@@ -617,6 +613,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            try? container.encodeIfPresent(sdk, forKey: .sdk)
             
             
         }

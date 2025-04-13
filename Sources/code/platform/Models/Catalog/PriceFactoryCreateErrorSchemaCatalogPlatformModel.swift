@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var message: String?
         
-        public var error: [String: Any]?
+        public var error: PriceFactoryErrorSchema?
         
         public var code: Int?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(code: Int? = nil, error: [String: Any]? = nil, message: String? = nil) {
+        public init(code: Int? = nil, error: PriceFactoryErrorSchema? = nil, message: String? = nil) {
             
             self.message = message
             
@@ -56,7 +56,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    error = try container.decode([String: Any].self, forKey: .error)
+                    error = try container.decode(PriceFactoryErrorSchema.self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var message: String?
         
-        public var error: [String: Any]?
+        public var error: PriceFactoryErrorSchema?
         
         public var code: Int?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(code: Int? = nil, error: [String: Any]? = nil, message: String? = nil) {
+        public init(code: Int? = nil, error: PriceFactoryErrorSchema? = nil, message: String? = nil) {
             
             self.message = message
             
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    error = try container.decode([String: Any].self, forKey: .error)
+                    error = try container.decode(PriceFactoryErrorSchema.self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

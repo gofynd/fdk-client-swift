@@ -8,24 +8,24 @@ public extension ApplicationClient.Cart {
     */
     class ChargesAmount: Codable {
         
-        public var value: Double?
+        public var orderingCurrency: [String: Any]?
         
-        public var currency: String?
+        public var baseCurrency: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
+            case orderingCurrency = "ordering_currency"
             
-            case currency = "currency"
+            case baseCurrency = "base_currency"
             
         }
 
-        public init(currency: String? = nil, value: Double? = nil) {
+        public init(baseCurrency: [String: Any]? = nil, orderingCurrency: [String: Any]? = nil) {
             
-            self.value = value
+            self.orderingCurrency = orderingCurrency
             
-            self.currency = currency
+            self.baseCurrency = baseCurrency
             
         }
 
@@ -34,7 +34,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                orderingCurrency = try container.decode([String: Any].self, forKey: .orderingCurrency)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                baseCurrency = try container.decode([String: Any].self, forKey: .baseCurrency)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(orderingCurrency, forKey: .orderingCurrency)
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(baseCurrency, forKey: .baseCurrency)
             
             
         }

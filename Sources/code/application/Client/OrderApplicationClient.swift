@@ -58,7 +58,7 @@ extension ApplicationClient {
             shipmentId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentRefundSummaryResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentRefundSummaryResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -91,7 +91,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentRefundSummaryResponseSchema.self, from: data)
+                        let response = Utility.decode(ShipmentRefundSummaryResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -118,7 +118,7 @@ extension ApplicationClient {
             status: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: RefundOptionsSchemaResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RefundOptionsSchemaResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -171,7 +171,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RefundOptionsSchemaResponseSchema.self, from: data)
+                        let response = Utility.decode(RefundOptionsSchemaResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -186,7 +186,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List customer orders
+        * Summary: Lists customer orders.
         * Description: Get all orders associated with a customer account.
         **/
         public func getOrders(
@@ -278,7 +278,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get an order
+        * Summary: Fetches order by ID.
         * Description: Get order details such as tracking details, shipment, store information using Fynd Order ID.
         **/
         public func getOrderById(
@@ -571,7 +571,7 @@ extension ApplicationClient {
             shipmentId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CustomerDetailsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CustomerDetailsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -606,7 +606,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CustomerDetailsResponseSchema.self, from: data)
+                        let response = Utility.decode(CustomerDetailsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -629,7 +629,7 @@ extension ApplicationClient {
             shipmentId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtpToCustomerResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SendOtpToCustomerResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -664,7 +664,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendOtpToCustomerResponseSchema.self, from: data)
+                        let response = Utility.decode(SendOtpToCustomerResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -687,7 +687,7 @@ extension ApplicationClient {
             shipmentId: String,
             body: VerifyOtp,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: VerifyOtpResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: VerifyOtpResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -722,7 +722,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(VerifyOtpResponseSchema.self, from: data)
+                        let response = Utility.decode(VerifyOtpResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -737,8 +737,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieve Reasons for Cancellation and Return journey
-        * Description: Allows users to retrieve a comprehensive list of reasons for cancellation  or returning a shipment. It provides both cancellation and return reasons, with an emphasis  on Quality Control (QC) evaluations.
+        * Summary: Lists bag reasons.
+        * Description: Get reasons to perform full or partial cancellation of a bag.
         **/
         public func getShipmentBagReasons(
             shipmentId: String,
@@ -851,13 +851,13 @@ extension ApplicationClient {
         /**
         *
         * Summary: Updates shipment status.
-        * Description: This operation allows for updating the status and properties of a shipment.  For example, it allows users to initiate a return by providing reasons and  uploading quality check images.
+        * Description: Update current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings.
         **/
         public func updateShipmentStatus(
             shipmentId: String,
-            body: UpdateShipmentStatusRequestSchema,
+            body: UpdateShipmentStatusRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentApplicationStatusResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentApplicationStatusResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -890,7 +890,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentApplicationStatusResponseSchema.self, from: data)
+                        let response = Utility.decode(ShipmentApplicationStatusResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

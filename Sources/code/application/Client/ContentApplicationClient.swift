@@ -33,17 +33,11 @@ extension ApplicationClient {
             
             ulrs["getLegalInformation"] = config.domain.appendAsPath("/service/application/content/v1.0/legal") 
             
-            ulrs["getNavigations"] = config.domain.appendAsPath("/service/application/content/v2.0/navigations") 
+            ulrs["getNavigations"] = config.domain.appendAsPath("/service/application/content/v1.0/navigations") 
             
             ulrs["getSEOConfiguration"] = config.domain.appendAsPath("/service/application/content/v1.0/seo") 
             
             ulrs["getSEOMarkupSchemas"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/schema") 
-            
-            ulrs["getDefaultSitemapConfig"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/sitemap/default") 
-            
-            ulrs["getSitemaps"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/sitemaps") 
-            
-            ulrs["getSitemap"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/sitemaps/{name}") 
             
             ulrs["getSupportInformation"] = config.domain.appendAsPath("/service/application/content/v1.0/support") 
             
@@ -53,11 +47,17 @@ extension ApplicationClient {
             
             ulrs["getPage"] = config.domain.appendAsPath("/service/application/content/v2.0/pages/{slug}") 
             
-            ulrs["getCustomObjectBySlug"] = config.domain.appendAsPath("/service/application/content/v2.0/customobjects/definition/{definition_slug}/entries/{slug}") 
-            
-            ulrs["getCustomFieldsByResourceId"] = config.domain.appendAsPath("/service/application/content/v2.0/customfields/resource/{resource}/{resource_slug}") 
-            
             ulrs["getWellKnownUrl"] = config.domain.appendAsPath("/service/application/content/v1.0/well-known/{slug}") 
+            
+            ulrs["getCustomObject"] = config.domain.appendAsPath("/service/application/content/v1.0/metaobjects/{id}") 
+            
+            ulrs["getCustomObjects"] = config.domain.appendAsPath("/service/application/content/v1.0/metaobjects") 
+            
+            ulrs["getCustomFieldDefinitions"] = config.domain.appendAsPath("/service/application/content/v1.0/metafields/definitions") 
+            
+            ulrs["getCustomFieldDefinition"] = config.domain.appendAsPath("/service/application/content/v1.0/metafields/definitions/{id}") 
+            
+            ulrs["getCustomFields"] = config.domain.appendAsPath("/service/application/content/v1.0/metafields/{resource}") 
             
             self.relativeUrls = ulrs
         }
@@ -193,7 +193,7 @@ extension ApplicationClient {
             search: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BlogGetResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -240,7 +240,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BlogGetResponseSchema.self, from: data)
+                        let response = Utility.decode(BlogGetResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -688,7 +688,7 @@ extension ApplicationClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: NavigationGetResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -727,7 +727,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(NavigationGetResponseSchema.self, from: data)
+                        let response = Utility.decode(NavigationGetResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -856,181 +856,6 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get default sitemap configuration
-        * Description: Retrieves the current default sitemap configuration settings
-        **/
-        public func getDefaultSitemapConfig(
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DefaultSitemapConfig?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            let fullUrl = relativeUrls["getDefaultSitemapConfig"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: xHeaders,
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(DefaultSitemapConfig.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: List sitemap configurations
-        * Description: Retrieve a list of sitemap configurations for a specific company and application. Each configuration contains the sitemap XML data and its activation status. 
-
-        **/
-        public func getSitemaps(
-            pageNo: String,
-            pageSize: String,
-            isActive: Bool?,
-            name: String?,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SitemapConfigurationList?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            xQuery["page_no"] = pageNo
-            xQuery["page_size"] = pageSize
-            
-            if let value = isActive {
-                xQuery["is_active"] = value
-            }
-            
-            if let value = name {
-                xQuery["name"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            let fullUrl = relativeUrls["getSitemaps"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: xHeaders,
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SitemapConfigurationList.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get a specific sitemap configuration
-        * Description: Retrieve a specific sitemap configuration by its name. Returns the complete configuration including the sitemap XML data, activation status, and timestamps.
-
-        **/
-        public func getSitemap(
-            name: String,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SitemapConfig?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            var fullUrl = relativeUrls["getSitemap"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "name" + "}", with: "\(name)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: xHeaders,
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SitemapConfig.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Get customer support information
         * Description: Get customer support contact details. Contact Details can be either a phone number or an email-id or both.
         **/
@@ -1143,7 +968,7 @@ extension ApplicationClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PageGetResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1182,7 +1007,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PageGetResponseSchema.self, from: data)
+                        let response = Utility.decode(PageGetResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1257,12 +1082,66 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get custom object details
-        * Description: Details of a custom object entry can be obtained using this endpoint.
+        * Summary: Get a specific well-known URL
+        * Description: Retrieves the details of a specific well-known URL by its slug.
         **/
-        public func getCustomObjectBySlug(
-            definitionSlug: String,
+        public func getWellKnownUrl(
             slug: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: WellKnownResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["getWellKnownUrl"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(WellKnownResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get custom object
+        * Description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint.
+        **/
+        public func getCustomObject(
+            id: String,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
@@ -1277,11 +1156,9 @@ extension ApplicationClient {
                 xHeaders.append(contentsOf: headers)
             }
             
-            var fullUrl = relativeUrls["getCustomObjectBySlug"] ?? ""
+            var fullUrl = relativeUrls["getCustomObject"] ?? ""
             
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "definition_slug" + "}", with: "\(definitionSlug)")
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1315,18 +1192,40 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get list of custom fields of given resource and resource slug
-        * Description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug.
+        * Summary: Get list of custom objects
+        * Description: Use this API to retrieve the custom objects.
         **/
-        public func getCustomFieldsByResourceId(
-            resource: String,
-            resourceSlug: String,
+        public func getCustomObjects(
+            definitionId: String?,
+            pageNo: String,
+            pageSize: String,
+            type: String?,
+            ids: String?,
+            search: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CustomObjectsSchema?, _ error: FDKError?) -> Void
         ) {
                         
-             
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = definitionId {
+                xQuery["definition_id"] = value
+            }
+            xQuery["page_no"] = pageNo
+            xQuery["page_size"] = pageSize
+            
+            if let value = type {
+                xQuery["type"] = value
+            }
+            
+            if let value = ids {
+                xQuery["ids"] = value
+            }
+            
+            if let value = search {
+                xQuery["search"] = value
+            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -1335,17 +1234,13 @@ extension ApplicationClient {
                 xHeaders.append(contentsOf: headers)
             }
             
-            var fullUrl = relativeUrls["getCustomFieldsByResourceId"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource" + "}", with: "\(resource)")
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource_slug" + "}", with: "\(resourceSlug)")
+            let fullUrl = relativeUrls["getCustomObjects"] ?? ""
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
@@ -1358,7 +1253,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CustomFieldsResponseByResourceIdSchema.self, from: data)
+                        let response = Utility.decode(CustomObjectsSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1373,14 +1268,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get a specific well-known URL
-        * Description: Retrieves the details of a specific well-known URL by its slug.
+        * Summary: Get custom fields definitions
+        * Description: Use this API to retrieve the definitions of custom fields.
         **/
-        public func getWellKnownUrl(
-            slug: String,
+        public func getCustomFieldDefinitions(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: WellKnownResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1392,9 +1286,7 @@ extension ApplicationClient {
                 xHeaders.append(contentsOf: headers)
             }
             
-            var fullUrl = relativeUrls["getWellKnownUrl"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            let fullUrl = relativeUrls["getCustomFieldDefinitions"] ?? ""
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1413,7 +1305,119 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(WellKnownResponseSchema.self, from: data)
+                        let response = Utility.decode(CustomFieldDefinitionsSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get custom fields definition by id
+        * Description: Use this API to retrieve the definitions of custom fields using definition_id.
+        **/
+        public func getCustomFieldDefinition(
+            id: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["getCustomFieldDefinition"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomFieldDefinitionDetailResSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get list of custom fields of given resource
+        * Description: Use this API to retrieve the custom fields for given resource and resource_ids in param
+        **/
+        public func getCustomFields(
+            resource: String,
+            resourceIds: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["resource_ids"] = resourceIds
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["getCustomFields"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource" + "}", with: "\(resource)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomFieldsResponseByResourceIdSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

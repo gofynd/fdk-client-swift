@@ -508,7 +508,7 @@ extension ApplicationClient {
             platform: String?,
             body: SendOtpRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtp?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -543,7 +543,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendOtp.self, from: data)
+                        let response = Utility.decode(SendOtpResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2285,7 +2285,7 @@ extension ApplicationClient {
             q: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UserExists?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UserExistsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2317,7 +2317,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UserExists.self, from: data)
+                        let response = Utility.decode(UserExistsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

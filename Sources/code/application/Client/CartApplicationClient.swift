@@ -75,8 +75,6 @@ extension ApplicationClient {
             
             ulrs["getCartMetaConfig"] = config.domain.appendAsPath("/service/application/cart/v1.0/cart/configuration/{cart_meta_id}") 
             
-            ulrs["addItemsv2"] = config.domain.appendAsPath("/service/application/cart/v2.0/detail") 
-            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -104,7 +102,7 @@ extension ApplicationClient {
             orderType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -171,7 +169,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartDetailResult.self, from: data)
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -254,9 +252,9 @@ extension ApplicationClient {
             id: String?,
             cartType: String?,
             orderType: String?,
-            body: AddCartPayload,
+            body: AddCartRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AddCartDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -315,7 +313,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AddCartDetailResult.self, from: data)
+                        let response = Utility.decode(AddCartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -341,9 +339,9 @@ extension ApplicationClient {
             buyNow: Bool?,
             cartType: String?,
             orderType: String?,
-            body: UpdateCartPayload,
+            body: UpdateCartRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdateCartDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -402,7 +400,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdateCartDetailResult.self, from: data)
+                        let response = Utility.decode(UpdateCartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -423,9 +421,9 @@ extension ApplicationClient {
         public func deleteCart(
             id: String?,
             cartType: String?,
-            body: DeleteCartPayload,
+            body: DeleteCartRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DeleteCartDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -464,7 +462,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DeleteCartDetailResult.self, from: data)
+                        let response = Utility.decode(DeleteCartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -487,7 +485,7 @@ extension ApplicationClient {
             buyNow: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartItemCountResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -526,7 +524,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartItemCountResult.self, from: data)
+                        let response = Utility.decode(CartItemCountResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -549,7 +547,7 @@ extension ApplicationClient {
             buyNow: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartItemCountResultV2?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartItemCountResponseV2?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -588,7 +586,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartItemCountResultV2.self, from: data)
+                        let response = Utility.decode(CartItemCountResponseV2.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -613,7 +611,7 @@ extension ApplicationClient {
             storeId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetCouponResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -660,7 +658,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetCouponResult.self, from: data)
+                        let response = Utility.decode(GetCouponResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -685,9 +683,9 @@ extension ApplicationClient {
             id: String?,
             buyNow: Bool?,
             cartType: String?,
-            body: ApplyCouponPayload,
+            body: ApplyCouponRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -742,7 +740,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartDetailResult.self, from: data)
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -766,7 +764,7 @@ extension ApplicationClient {
             cartType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -809,7 +807,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartDetailResult.self, from: data)
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -835,7 +833,7 @@ extension ApplicationClient {
             cartType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkPriceResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -886,7 +884,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkPriceResult.self, from: data)
+                        let response = Utility.decode(BulkPriceResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -910,9 +908,9 @@ extension ApplicationClient {
             b: Bool?,
             buyNow: Bool?,
             cartType: String?,
-            body: RewardPointPayload,
+            body: RewardPointRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -963,7 +961,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartDetailResult.self, from: data)
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -991,7 +989,7 @@ extension ApplicationClient {
             userId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetAddressesResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1050,7 +1048,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetAddressesResult.self, from: data)
+                        let response = Utility.decode(GetAddressesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1071,7 +1069,7 @@ extension ApplicationClient {
         public func addAddress(
             body: Address,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SaveAddressResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1102,7 +1100,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SaveAddressResult.self, from: data)
+                        let response = Utility.decode(SaveAddressResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1214,7 +1212,7 @@ extension ApplicationClient {
             id: String,
             body: Address,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdateAddressResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1247,7 +1245,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdateAddressResult.self, from: data)
+                        let response = Utility.decode(UpdateAddressResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1269,7 +1267,7 @@ extension ApplicationClient {
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DeleteAddressResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1302,7 +1300,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DeleteAddressResult.self, from: data)
+                        let response = Utility.decode(DeleteAddressResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1325,9 +1323,9 @@ extension ApplicationClient {
             buyNow: Bool?,
             i: Bool?,
             b: Bool?,
-            body: SelectCartAddressPayload,
+            body: SelectCartAddressRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1374,7 +1372,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartDetailResult.self, from: data)
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1396,9 +1394,9 @@ extension ApplicationClient {
             id: String?,
             buyNow: Bool?,
             orderType: String?,
-            body: UpdateCartPaymentPayload,
+            body: UpdateCartPaymentRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1441,7 +1439,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartDetailResult.self, from: data)
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1574,9 +1572,9 @@ extension ApplicationClient {
         public func updateCartMeta(
             id: String?,
             buyNow: Bool?,
-            body: CartMetaPayload,
+            body: CartMetaRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartMetaResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1615,7 +1613,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartMetaResult.self, from: data)
+                        let response = Utility.decode(CartMetaResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1634,9 +1632,9 @@ extension ApplicationClient {
         * Description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences.
         **/
         public func getCartShareLink(
-            body: GetShareCartLinkPayload,
+            body: GetShareCartLinkRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetShareCartLinkResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1667,7 +1665,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetShareCartLinkResult.self, from: data)
+                        let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1689,7 +1687,7 @@ extension ApplicationClient {
             token: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SharedCartResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1722,7 +1720,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SharedCartResult.self, from: data)
+                        let response = Utility.decode(SharedCartResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1746,7 +1744,7 @@ extension ApplicationClient {
             cartId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SharedCartResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1785,7 +1783,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SharedCartResult.self, from: data)
+                        let response = Utility.decode(SharedCartResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1810,7 +1808,7 @@ extension ApplicationClient {
             storeId: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PromotionOffersResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1857,7 +1855,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PromotionOffersResult.self, from: data)
+                        let response = Utility.decode(PromotionOffersResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1956,7 +1954,7 @@ extension ApplicationClient {
             orderType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartShipmentsResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2023,7 +2021,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartShipmentsResult.self, from: data)
+                        let response = Utility.decode(CartShipmentsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2044,9 +2042,9 @@ extension ApplicationClient {
         public func checkoutCart(
             buyNow: Bool?,
             cartType: String?,
-            body: CartCheckoutDetailPayload,
+            body: CartCheckoutDetailRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartCheckoutResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2085,7 +2083,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartCheckoutResult.self, from: data)
+                        let response = Utility.decode(CartCheckoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2106,9 +2104,9 @@ extension ApplicationClient {
         public func checkoutCartV2(
             buyNow: Bool?,
             cartType: String?,
-            body: CartCheckoutDetailV2Payload,
+            body: CartCheckoutDetailV2Request,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartCheckoutResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2147,7 +2145,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartCheckoutResult.self, from: data)
+                        let response = Utility.decode(CartCheckoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2170,7 +2168,7 @@ extension ApplicationClient {
             uid: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PromotionPaymentOffersResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PromotionPaymentOffersResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2209,7 +2207,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PromotionPaymentOffersResult.self, from: data)
+                        let response = Utility.decode(PromotionPaymentOffersResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2230,7 +2228,7 @@ extension ApplicationClient {
         public func getCartMetaConfigs(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartMetaConfigListResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartMetaConfigListResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2261,7 +2259,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartMetaConfigListResult.self, from: data)
+                        let response = Utility.decode(CartMetaConfigListResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2281,17 +2279,12 @@ extension ApplicationClient {
         **/
         public func getCartMetaConfig(
             cartMetaId: String,
-            isBankOffer: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartConfigDetailResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartConfigDetailResponse?, _ error: FDKError?) -> Void
         ) {
                         
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = isBankOffer {
-                xQuery["is_bank_offer"] = value
-            }
+             
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -2308,7 +2301,7 @@ extension ApplicationClient {
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
@@ -2321,79 +2314,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartConfigDetailResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Add items to a cart
-        * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
-        **/
-        public func addItemsv2(
-            buyNow: Bool?,
-            id: String?,
-            cartType: String?,
-            orderType: String?,
-            body: AddCartPayload,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AddCartDetailResultV2?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = buyNow {
-                xQuery["buy_now"] = value
-            }
-            
-            if let value = id {
-                xQuery["id"] = value
-            }
-            
-            if let value = cartType {
-                xQuery["cart_type"] = value
-            }
-            
-            if let value = orderType {
-                xQuery["order_type"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            let fullUrl = relativeUrls["addItemsv2"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(AddCartDetailResultV2.self, from: data)
+                        let response = Utility.decode(CartConfigDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

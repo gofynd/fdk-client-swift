@@ -50,12 +50,6 @@ public extension PlatformClient.Order {
         
         public var displayName: String?
         
-        public var appFacing: Bool?
-        
-        public var actionUser: [String: Any]?
-        
-        public var id: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -97,15 +91,9 @@ public extension PlatformClient.Order {
             
             case displayName = "display_name"
             
-            case appFacing = "app_facing"
-            
-            case actionUser = "action_user"
-            
-            case id = "id"
-            
         }
 
-        public init(actionUser: [String: Any]? = nil, appDisplayName: String? = nil, appFacing: Bool? = nil, bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, bshId: Int? = nil, createdAt: String? = nil, createdTs: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, displayName: String? = nil, forward: Bool? = nil, id: Double? = nil, kafkaSync: Bool? = nil, reasons: [[String: Any]]? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String, storeId: Int? = nil, updatedAt: String? = nil, updatedTs: String? = nil) {
+        public init(appDisplayName: String? = nil, bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, bshId: Int? = nil, createdAt: String? = nil, createdTs: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, displayName: String? = nil, forward: Bool? = nil, kafkaSync: Bool? = nil, reasons: [[String: Any]]? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String, storeId: Int? = nil, updatedAt: String? = nil, updatedTs: String? = nil) {
             
             self.forward = forward
             
@@ -144,12 +132,6 @@ public extension PlatformClient.Order {
             self.status = status
             
             self.displayName = displayName
-            
-            self.appFacing = appFacing
-            
-            self.actionUser = actionUser
-            
-            self.id = id
             
         }
 
@@ -377,42 +359,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    appFacing = try container.decode(Bool.self, forKey: .appFacing)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    actionUser = try container.decode([String: Any].self, forKey: .actionUser)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(Double.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -511,21 +457,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appFacing, forKey: .appFacing)
-            
-            
-            
-            
-            try? container.encodeIfPresent(actionUser, forKey: .actionUser)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }
@@ -582,12 +513,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var displayName: String?
         
-        public var appFacing: Bool?
-        
-        public var actionUser: [String: Any]?
-        
-        public var id: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -629,15 +554,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case displayName = "display_name"
             
-            case appFacing = "app_facing"
-            
-            case actionUser = "action_user"
-            
-            case id = "id"
-            
         }
 
-        public init(actionUser: [String: Any]? = nil, appDisplayName: String? = nil, appFacing: Bool? = nil, bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, bshId: Int? = nil, createdAt: String? = nil, createdTs: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, displayName: String? = nil, forward: Bool? = nil, id: Double? = nil, kafkaSync: Bool? = nil, reasons: [[String: Any]]? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String, storeId: Int? = nil, updatedAt: String? = nil, updatedTs: String? = nil) {
+        public init(appDisplayName: String? = nil, bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, bshId: Int? = nil, createdAt: String? = nil, createdTs: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, displayName: String? = nil, forward: Bool? = nil, kafkaSync: Bool? = nil, reasons: [[String: Any]]? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String, storeId: Int? = nil, updatedAt: String? = nil, updatedTs: String? = nil) {
             
             self.forward = forward
             
@@ -676,12 +595,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.status = status
             
             self.displayName = displayName
-            
-            self.appFacing = appFacing
-            
-            self.actionUser = actionUser
-            
-            self.id = id
             
         }
 
@@ -909,42 +822,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    appFacing = try container.decode(Bool.self, forKey: .appFacing)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    actionUser = try container.decode([String: Any].self, forKey: .actionUser)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(Double.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1043,21 +920,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appFacing, forKey: .appFacing)
-            
-            
-            
-            
-            try? container.encodeIfPresent(actionUser, forKey: .actionUser)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }

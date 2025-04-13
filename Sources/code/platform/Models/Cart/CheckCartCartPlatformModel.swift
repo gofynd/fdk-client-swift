@@ -66,7 +66,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var customCart: CustomCart?
         
-        public var priceAdjustmentApplied: [CartAppliedPriceAdjustment]?
+        public var priceAdjustmentApplied: [PriceAdjustmentApplied]?
         
         public var isPanReceived: Bool?
         
@@ -76,23 +76,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var customCartMeta: [String: Any]?
         
-        public var errorMessage: String?
-        
-        public var userType: String?
-        
-        public var codCharges: Double?
-        
-        public var codMessage: String?
-        
-        public var deliveryChargeOrderValue: Int?
-        
-        public var storeCode: String?
-        
-        public var storeEmps: [[String: Any]]?
-        
         public var codAvailable: Bool?
         
         public var deliveryCharges: Double?
+        
+        public var errorCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -159,27 +147,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case customCartMeta = "custom_cart_meta"
             
-            case errorMessage = "error_message"
-            
-            case userType = "user_type"
-            
-            case codCharges = "cod_charges"
-            
-            case codMessage = "cod_message"
-            
-            case deliveryChargeOrderValue = "delivery_charge_order_value"
-            
-            case storeCode = "store_code"
-            
-            case storeEmps = "store_emps"
-            
             case codAvailable = "cod_available"
             
             case deliveryCharges = "delivery_charges"
             
+            case errorCode = "error_code"
+            
         }
 
-        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codAvailable: Bool? = nil, codCharges: Double? = nil, codMessage: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCart: CustomCart? = nil, customCartMeta: [String: Any]? = nil, deliveryCharges: Double? = nil, deliveryChargeInfo: String? = nil, deliveryChargeOrderValue: Int? = nil, deliveryPromise: ShipmentPromise? = nil, errorMessage: String? = nil, gstin: String? = nil, id: String? = nil, isPanReceived: Bool? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, notification: [String: Any]? = nil, orderId: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, priceAdjustmentApplied: [CartAppliedPriceAdjustment]? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, storeCode: String? = nil, storeEmps: [[String: Any]]? = nil, success: Bool? = nil, uid: String? = nil, userType: String? = nil) {
+        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codAvailable: Bool? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCart: CustomCart? = nil, customCartMeta: [String: Any]? = nil, deliveryCharges: Double? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, errorCode: String? = nil, gstin: String? = nil, id: String? = nil, isPanReceived: Bool? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, notification: [String: Any]? = nil, orderId: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, priceAdjustmentApplied: [PriceAdjustmentApplied]? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
             
             self.cartId = cartId
             
@@ -243,23 +219,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.customCartMeta = customCartMeta
             
-            self.errorMessage = errorMessage
-            
-            self.userType = userType
-            
-            self.codCharges = codCharges
-            
-            self.codMessage = codMessage
-            
-            self.deliveryChargeOrderValue = deliveryChargeOrderValue
-            
-            self.storeCode = storeCode
-            
-            self.storeEmps = storeEmps
-            
             self.codAvailable = codAvailable
             
             self.deliveryCharges = deliveryCharges
+            
+            self.errorCode = errorCode
             
         }
 
@@ -580,7 +544,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    priceAdjustmentApplied = try container.decode([CartAppliedPriceAdjustment].self, forKey: .priceAdjustmentApplied)
+                    priceAdjustmentApplied = try container.decode([PriceAdjustmentApplied].self, forKey: .priceAdjustmentApplied)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -640,90 +604,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    errorMessage = try container.decode(String.self, forKey: .errorMessage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    userType = try container.decode(String.self, forKey: .userType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    codCharges = try container.decode(Double.self, forKey: .codCharges)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    codMessage = try container.decode(String.self, forKey: .codMessage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    deliveryChargeOrderValue = try container.decode(Int.self, forKey: .deliveryChargeOrderValue)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    storeCode = try container.decode(String.self, forKey: .storeCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    storeEmps = try container.decode([[String: Any]].self, forKey: .storeEmps)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     codAvailable = try container.decode(Bool.self, forKey: .codAvailable)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -737,6 +617,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    errorCode = try container.decode(String.self, forKey: .errorCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -908,47 +800,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(userType, forKey: .userType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
-            
-            
-            
-            
-            try? container.encodeIfPresent(codMessage, forKey: .codMessage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(deliveryChargeOrderValue, forKey: .deliveryChargeOrderValue)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeEmps, forKey: .storeEmps)
-            
-            
-            
-            
             try? container.encodeIfPresent(codAvailable, forKey: .codAvailable)
             
             
             
             
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
+            
+            
+            
+            
+            try? container.encodeIfPresent(errorCode, forKey: .errorCode)
             
             
         }
