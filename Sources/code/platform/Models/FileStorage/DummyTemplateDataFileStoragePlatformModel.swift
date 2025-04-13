@@ -16,7 +16,7 @@ public extension PlatformClient.FileStorage {
         
         public var pdfTypeId: Double?
         
-        public var payload: DummyTemplateDataPayload
+        public var payload: PdfPayloadDetails
         
         public var countryCode: String?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.FileStorage {
             
         }
 
-        public init(countryCode: String? = nil, payload: DummyTemplateDataPayload, pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
+        public init(countryCode: String? = nil, payload: PdfPayloadDetails, pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
@@ -79,7 +79,7 @@ public extension PlatformClient.FileStorage {
                 
             
             
-                payload = try container.decode(DummyTemplateDataPayload.self, forKey: .payload)
+                payload = try container.decode(PdfPayloadDetails.self, forKey: .payload)
                 
             
             
@@ -157,7 +157,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var pdfTypeId: Double?
         
-        public var payload: DummyTemplateDataPayload
+        public var payload: PdfPayloadDetails
         
         public var countryCode: String?
         
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
         }
 
-        public init(countryCode: String? = nil, payload: DummyTemplateDataPayload, pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
+        public init(countryCode: String? = nil, payload: PdfPayloadDetails, pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
@@ -220,7 +220,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 
             
             
-                payload = try container.decode(DummyTemplateDataPayload.self, forKey: .payload)
+                payload = try container.decode(PdfPayloadDetails.self, forKey: .payload)
                 
             
             

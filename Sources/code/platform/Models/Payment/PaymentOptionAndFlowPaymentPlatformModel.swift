@@ -16,6 +16,8 @@ public extension PlatformClient.Payment {
         
         public var paymentFlows: PaymentFlow?
         
+        public var paymentDefaultSelection: PaymentDefaultSelection?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Payment {
             
             case paymentFlows = "payment_flows"
             
+            case paymentDefaultSelection = "payment_default_selection"
+            
         }
 
-        public init(paymentFlows: PaymentFlow? = nil, paymentOption: [RootPaymentMode]) {
+        public init(paymentDefaultSelection: PaymentDefaultSelection? = nil, paymentFlows: PaymentFlow? = nil, paymentOption: [RootPaymentMode]) {
             
             self.paymentOption = paymentOption
             
             self.paymentFlows = paymentFlows
+            
+            self.paymentDefaultSelection = paymentDefaultSelection
             
         }
 
@@ -53,6 +59,18 @@ public extension PlatformClient.Payment {
                 }
                 
             
+            
+                do {
+                    paymentDefaultSelection = try container.decode(PaymentDefaultSelection.self, forKey: .paymentDefaultSelection)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -66,6 +84,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(paymentFlows, forKey: .paymentFlows)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentDefaultSelection, forKey: .paymentDefaultSelection)
             
             
         }
@@ -88,6 +111,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var paymentFlows: PaymentFlow?
         
+        public var paymentDefaultSelection: PaymentDefaultSelection?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -95,13 +120,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case paymentFlows = "payment_flows"
             
+            case paymentDefaultSelection = "payment_default_selection"
+            
         }
 
-        public init(paymentFlows: PaymentFlow? = nil, paymentOption: [RootPaymentMode]) {
+        public init(paymentDefaultSelection: PaymentDefaultSelection? = nil, paymentFlows: PaymentFlow? = nil, paymentOption: [RootPaymentMode]) {
             
             self.paymentOption = paymentOption
             
             self.paymentFlows = paymentFlows
+            
+            self.paymentDefaultSelection = paymentDefaultSelection
             
         }
 
@@ -125,6 +154,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
+            
+                do {
+                    paymentDefaultSelection = try container.decode(PaymentDefaultSelection.self, forKey: .paymentDefaultSelection)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -138,6 +179,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(paymentFlows, forKey: .paymentFlows)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentDefaultSelection, forKey: .paymentDefaultSelection)
             
             
         }

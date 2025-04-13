@@ -38,7 +38,9 @@ public extension PlatformClient.Order {
         
         public var currencyInfo: CurrencyInfo?
         
-        public var affiliateOrderId: String?
+        public var prices: Prices?
+        
+        public var orderingCurrencyPrices: OrderingCurrencyPrices?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -69,11 +71,13 @@ public extension PlatformClient.Order {
             
             case currencyInfo = "currency_info"
             
-            case affiliateOrderId = "affiliate_order_id"
+            case prices = "prices"
+            
+            case orderingCurrencyPrices = "ordering_currency_prices"
             
         }
 
-        public init(affiliateOrderId: String? = nil, breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
+        public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, prices: Prices? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
             
             self.breakupValues = breakupValues
             
@@ -101,7 +105,9 @@ public extension PlatformClient.Order {
             
             self.currencyInfo = currencyInfo
             
-            self.affiliateOrderId = affiliateOrderId
+            self.prices = prices
+            
+            self.orderingCurrencyPrices = orderingCurrencyPrices
             
         }
 
@@ -266,7 +272,19 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                    prices = try container.decode(Prices.self, forKey: .prices)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingCurrencyPrices = try container.decode(OrderingCurrencyPrices.self, forKey: .orderingCurrencyPrices)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -348,7 +366,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+            try? container.encodeIfPresent(prices, forKey: .prices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
             
             
         }
@@ -393,7 +416,9 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var currencyInfo: CurrencyInfo?
         
-        public var affiliateOrderId: String?
+        public var prices: Prices?
+        
+        public var orderingCurrencyPrices: OrderingCurrencyPrices?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -424,11 +449,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case currencyInfo = "currency_info"
             
-            case affiliateOrderId = "affiliate_order_id"
+            case prices = "prices"
+            
+            case orderingCurrencyPrices = "ordering_currency_prices"
             
         }
 
-        public init(affiliateOrderId: String? = nil, breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
+        public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, prices: Prices? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
             
             self.breakupValues = breakupValues
             
@@ -456,7 +483,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.currencyInfo = currencyInfo
             
-            self.affiliateOrderId = affiliateOrderId
+            self.prices = prices
+            
+            self.orderingCurrencyPrices = orderingCurrencyPrices
             
         }
 
@@ -621,7 +650,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                    prices = try container.decode(Prices.self, forKey: .prices)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingCurrencyPrices = try container.decode(OrderingCurrencyPrices.self, forKey: .orderingCurrencyPrices)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -703,7 +744,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+            try? container.encodeIfPresent(prices, forKey: .prices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
             
             
         }

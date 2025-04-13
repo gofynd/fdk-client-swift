@@ -18,11 +18,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var autoApply: Bool?
         
-        public var type: String
+        public var type: String?
         
         public var isExact: Bool?
         
-        public var applicableOn: String
+        public var applicableOn: String?
         
         public var calculateOn: String?
         
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(applicableOn: String, autoApply: Bool? = nil, calculateOn: String? = nil, currencyCode: String? = nil, isExact: Bool? = nil, scope: [String]? = nil, type: String, valueType: String? = nil) {
+        public init(applicableOn: String? = nil, autoApply: Bool? = nil, calculateOn: String? = nil, currencyCode: String? = nil, isExact: Bool? = nil, scope: [String]? = nil, type: String? = nil, valueType: String? = nil) {
             
             self.currencyCode = currencyCode
             
@@ -99,9 +99,16 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                type = try container.decode(String.self, forKey: .type)
+                do {
+                    type = try container.decode(String.self, forKey: .type)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -116,9 +123,16 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                applicableOn = try container.decode(String.self, forKey: .applicableOn)
+                do {
+                    applicableOn = try container.decode(String.self, forKey: .applicableOn)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

@@ -12,8 +12,6 @@ public extension ApplicationClient.Content {
         
         public var status: String?
         
-        public var slug: String?
-        
         public var displayName: String?
         
         public var definition: CustomObjectListItemDefinationSchema?
@@ -25,11 +23,9 @@ public extension ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case id = "id"
             
             case status = "status"
-            
-            case slug = "slug"
             
             case displayName = "display_name"
             
@@ -41,13 +37,11 @@ public extension ApplicationClient.Content {
             
         }
 
-        public init(definition: CustomObjectListItemDefinationSchema? = nil, displayName: String? = nil, fields: [CustomObjectFieldSchema]? = nil, references: [[String: Any]]? = nil, slug: String? = nil, status: String? = nil, id: String? = nil) {
+        public init(definition: CustomObjectListItemDefinationSchema? = nil, displayName: String? = nil, fields: [CustomObjectFieldSchema]? = nil, id: String? = nil, references: [[String: Any]]? = nil, status: String? = nil) {
             
             self.id = id
             
             self.status = status
-            
-            self.slug = slug
             
             self.displayName = displayName
             
@@ -77,18 +71,6 @@ public extension ApplicationClient.Content {
             
             do {
                 status = try container.decode(String.self, forKey: .status)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,10 +139,6 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             

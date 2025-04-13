@@ -32,8 +32,6 @@ public extension PlatformClient.Serviceability {
         
         public var mapping: [ZoneMappingType]
         
-        public var assignmentPreference: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,11 +55,9 @@ public extension PlatformClient.Serviceability {
             
             case mapping = "mapping"
             
-            case assignmentPreference = "assignment_preference"
-            
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -82,8 +78,6 @@ public extension PlatformClient.Serviceability {
             self.regionType = regionType
             
             self.mapping = mapping
-            
-            self.assignmentPreference = assignmentPreference
             
         }
 
@@ -140,18 +134,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                do {
-                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -205,11 +187,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
         }
@@ -248,8 +225,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var mapping: [ZoneMappingType]
         
-        public var assignmentPreference: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -273,11 +248,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case mapping = "mapping"
             
-            case assignmentPreference = "assignment_preference"
-            
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -298,8 +271,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.regionType = regionType
             
             self.mapping = mapping
-            
-            self.assignmentPreference = assignmentPreference
             
         }
 
@@ -356,18 +327,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                do {
-                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -421,11 +380,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
         }

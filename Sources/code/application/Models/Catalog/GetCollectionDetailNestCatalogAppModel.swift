@@ -12,8 +12,6 @@ public extension ApplicationClient.Catalog {
         
         public var uid: String?
         
-        public var id: String?
-        
         public var sortOn: String?
         
         public var meta: [String: Any]?
@@ -21,6 +19,8 @@ public extension ApplicationClient.Catalog {
         public var banners: ImageUrls?
         
         public var cron: [String: Any]?
+        
+        public var schedule: Schedule?
         
         public var query: [CollectionQuery]?
         
@@ -48,21 +48,21 @@ public extension ApplicationClient.Catalog {
         
         public var priority: Int?
         
-        public var tag: [String]?
+        public var tags: [String]?
         
         public var appId: String?
         
         public var published: Bool?
         
-        public var tags: [String]?
+        public var id: String?
         
         public var localeLanguage: [String: Any]?
         
         public var seo: [String: Any]?
         
-        public var schedule: Schedule?
-        
         public var isVisible: Bool?
+        
+        public var modifiedOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -71,8 +71,6 @@ public extension ApplicationClient.Catalog {
             
             case uid = "uid"
             
-            case id = "_id"
-            
             case sortOn = "sort_on"
             
             case meta = "meta"
@@ -80,6 +78,8 @@ public extension ApplicationClient.Catalog {
             case banners = "banners"
             
             case cron = "cron"
+            
+            case schedule = "_schedule"
             
             case query = "query"
             
@@ -107,31 +107,29 @@ public extension ApplicationClient.Catalog {
             
             case priority = "priority"
             
-            case tag = "tag"
+            case tags = "tags"
             
             case appId = "app_id"
             
             case published = "published"
             
-            case tags = "tags"
+            case id = "_id"
             
             case localeLanguage = "_locale_language"
             
             case seo = "seo"
             
-            case schedule = "_schedule"
-            
             case isVisible = "is_visible"
+            
+            case modifiedOn = "modified_on"
             
         }
 
-        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: [String: Any]? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: Schedule? = nil) {
+        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: [String: Any]? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: Schedule? = nil) {
             
             self.isActive = isActive
             
             self.uid = uid
-            
-            self.id = id
             
             self.sortOn = sortOn
             
@@ -140,6 +138,8 @@ public extension ApplicationClient.Catalog {
             self.banners = banners
             
             self.cron = cron
+            
+            self.schedule = schedule
             
             self.query = query
             
@@ -167,21 +167,21 @@ public extension ApplicationClient.Catalog {
             
             self.priority = priority
             
-            self.tag = tag
+            self.tags = tags
             
             self.appId = appId
             
             self.published = published
             
-            self.tags = tags
+            self.id = id
             
             self.localeLanguage = localeLanguage
             
             self.seo = seo
             
-            self.schedule = schedule
-            
             self.isVisible = isVisible
+            
+            self.modifiedOn = modifiedOn
             
         }
 
@@ -203,18 +203,6 @@ public extension ApplicationClient.Catalog {
             
             do {
                 uid = try container.decode(String.self, forKey: .uid)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                id = try container.decode(String.self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -263,6 +251,18 @@ public extension ApplicationClient.Catalog {
             
             do {
                 cron = try container.decode([String: Any].self, forKey: .cron)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                schedule = try container.decode(Schedule.self, forKey: .schedule)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -430,7 +430,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                tag = try container.decode([String].self, forKey: .tag)
+                tags = try container.decode([String].self, forKey: .tags)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -466,7 +466,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                tags = try container.decode([String].self, forKey: .tags)
+                id = try container.decode(String.self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -502,7 +502,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                schedule = try container.decode(Schedule.self, forKey: .schedule)
+                isVisible = try container.decode(Bool.self, forKey: .isVisible)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -514,7 +514,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                isVisible = try container.decode(Bool.self, forKey: .isVisible)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -538,10 +538,6 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
             
             
@@ -555,6 +551,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(cron, forKey: .cron)
+            
+            
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
             
             
             
@@ -610,7 +610,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(tag, forKey: .tag)
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
@@ -622,7 +622,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(tags, forKey: .tags)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -634,11 +634,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
-            
-            
-            
             try? container.encodeIfPresent(isVisible, forKey: .isVisible)
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }

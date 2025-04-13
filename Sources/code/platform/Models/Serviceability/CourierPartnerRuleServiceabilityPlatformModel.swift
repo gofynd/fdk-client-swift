@@ -12,12 +12,6 @@ public extension PlatformClient.Serviceability {
     class CourierPartnerRule: Codable {
         
         
-        public var id: String?
-        
-        public var applicationId: String?
-        
-        public var companyId: Int?
-        
         public var isActive: Bool
         
         public var cpList: [CourierPartnerList]?
@@ -26,22 +20,12 @@ public extension PlatformClient.Serviceability {
         
         public var conditions: CourierPartnerRuleConditions
         
-        public var manualPriority: [String]?
-        
         public var sort: [String]
         
-        public var shipmentAdjustmentType: String?
-        
-        public var type: String
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "id"
-            
-            case applicationId = "application_id"
-            
-            case companyId = "company_id"
             
             case isActive = "is_active"
             
@@ -51,23 +35,13 @@ public extension PlatformClient.Serviceability {
             
             case conditions = "conditions"
             
-            case manualPriority = "manual_priority"
-            
             case sort = "sort"
-            
-            case shipmentAdjustmentType = "shipment_adjustment_type"
             
             case type = "type"
             
         }
 
-        public init(applicationId: String? = nil, companyId: Int? = nil, conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, id: String? = nil, isActive: Bool, manualPriority: [String]? = nil, name: String, shipmentAdjustmentType: String? = nil, sort: [String], type: String) {
-            
-            self.id = id
-            
-            self.applicationId = applicationId
-            
-            self.companyId = companyId
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
@@ -77,11 +51,7 @@ public extension PlatformClient.Serviceability {
             
             self.conditions = conditions
             
-            self.manualPriority = manualPriority
-            
             self.sort = sort
-            
-            self.shipmentAdjustmentType = shipmentAdjustmentType
             
             self.type = type
             
@@ -89,42 +59,6 @@ public extension PlatformClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    applicationId = try container.decode(String.self, forKey: .applicationId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -154,25 +88,13 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    manualPriority = try container.decode([String].self, forKey: .manualPriority)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 sort = try container.decode([String].self, forKey: .sort)
                 
             
             
             
                 do {
-                    shipmentAdjustmentType = try container.decode(String.self, forKey: .shipmentAdjustmentType)
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -182,30 +104,10 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
-            
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
             
             
             
@@ -229,17 +131,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
             try? container.encodeIfPresent(sort, forKey: .sort)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentAdjustmentType, forKey: .shipmentAdjustmentType)
             
             
             
@@ -263,12 +155,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CourierPartnerRule: Codable {
         
         
-        public var id: String?
-        
-        public var applicationId: String?
-        
-        public var companyId: Int?
-        
         public var isActive: Bool
         
         public var cpList: [CourierPartnerList]?
@@ -277,22 +163,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var conditions: CourierPartnerRuleConditions
         
-        public var manualPriority: [String]?
-        
         public var sort: [String]
         
-        public var shipmentAdjustmentType: String?
-        
-        public var type: String
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "id"
-            
-            case applicationId = "application_id"
-            
-            case companyId = "company_id"
             
             case isActive = "is_active"
             
@@ -302,23 +178,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case conditions = "conditions"
             
-            case manualPriority = "manual_priority"
-            
             case sort = "sort"
-            
-            case shipmentAdjustmentType = "shipment_adjustment_type"
             
             case type = "type"
             
         }
 
-        public init(applicationId: String? = nil, companyId: Int? = nil, conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, id: String? = nil, isActive: Bool, manualPriority: [String]? = nil, name: String, shipmentAdjustmentType: String? = nil, sort: [String], type: String) {
-            
-            self.id = id
-            
-            self.applicationId = applicationId
-            
-            self.companyId = companyId
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
@@ -328,11 +194,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.conditions = conditions
             
-            self.manualPriority = manualPriority
-            
             self.sort = sort
-            
-            self.shipmentAdjustmentType = shipmentAdjustmentType
             
             self.type = type
             
@@ -340,42 +202,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    applicationId = try container.decode(String.self, forKey: .applicationId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -405,25 +231,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    manualPriority = try container.decode([String].self, forKey: .manualPriority)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 sort = try container.decode([String].self, forKey: .sort)
                 
             
             
             
                 do {
-                    shipmentAdjustmentType = try container.decode(String.self, forKey: .shipmentAdjustmentType)
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -433,30 +247,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
-            
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
             
             
             
@@ -480,17 +274,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
             try? container.encodeIfPresent(sort, forKey: .sort)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentAdjustmentType, forKey: .shipmentAdjustmentType)
             
             
             

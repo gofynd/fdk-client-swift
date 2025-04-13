@@ -32,7 +32,7 @@ public extension ApplicationClient.Catalog {
         
         public var max: Int?
         
-        public var logo: String?
+        public var logo: Media?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -65,7 +65,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, logo: String? = nil, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String? = nil) {
+        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, logo: Media? = nil, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String? = nil) {
             
             self.min = min
             
@@ -230,7 +230,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                logo = try container.decode(Media.self, forKey: .logo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

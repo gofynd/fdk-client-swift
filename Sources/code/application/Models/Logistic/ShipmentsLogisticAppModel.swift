@@ -8,156 +8,66 @@ public extension ApplicationClient.Logistic {
     */
     class Shipments: Codable {
         
-        public var fulfillmentId: Int
+        public var id: String?
         
-        public var fulfillmentTags: [String]?
+        public var locationId: Double?
         
-        public var fulfillmentType: String?
+        public var locationTags: [String]?
         
-        public var ewaybillEnabled: Bool?
+        public var shipmentWeight: Double?
         
-        public var mps: Bool?
+        public var shipmentVolumetricWeight: Double?
         
-        public var meta: [String: Any]?
+        public var shipmentCost: Double?
         
-        public var isCodAvailable: Bool?
+        public var shipmentDimension: ShipmentDimension?
         
-        public var count: Int
+        public var courierPartnerSchemes: [String]?
         
-        public var articles: [ShipmentsArticles]
-        
-        public var courierPartners: [ShipmentCourierPartners]
-        
-        public var promise: PromiseObject?
-        
-        public var journeyWisePromise: [JourneyPromiseObject]?
-        
-        public var tags: [[String: Any]]?
-        
-        public var isMto: Bool
-        
-        public var isGift: Bool
-        
-        public var isLocked: Bool
-        
-        public var packaging: Packaging
-        
-        public var deliverySlots: ArticleDeliverySlots?
-        
-        public var weight: Double
-        
-        public var volumetricWeight: Double
-        
-        public var isAutoAssign: Bool
-        
-        public var shipmentType: String
-        
-        public var fromServiceability: [String: Any]
-        
-        public var error: ShipmentError?
+        public var articles: [ShipmentsArticles]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case fulfillmentId = "fulfillment_id"
+            case id = "id"
             
-            case fulfillmentTags = "fulfillment_tags"
+            case locationId = "location_id"
             
-            case fulfillmentType = "fulfillment_type"
+            case locationTags = "location_tags"
             
-            case ewaybillEnabled = "ewaybill_enabled"
+            case shipmentWeight = "shipment_weight"
             
-            case mps = "mps"
+            case shipmentVolumetricWeight = "shipment_volumetric_weight"
             
-            case meta = "meta"
+            case shipmentCost = "shipment_cost"
             
-            case isCodAvailable = "is_cod_available"
+            case shipmentDimension = "shipment_dimension"
             
-            case count = "count"
+            case courierPartnerSchemes = "courier_partner_schemes"
             
             case articles = "articles"
             
-            case courierPartners = "courier_partners"
-            
-            case promise = "promise"
-            
-            case journeyWisePromise = "journey_wise_promise"
-            
-            case tags = "tags"
-            
-            case isMto = "is_mto"
-            
-            case isGift = "is_gift"
-            
-            case isLocked = "is_locked"
-            
-            case packaging = "packaging"
-            
-            case deliverySlots = "delivery_slots"
-            
-            case weight = "weight"
-            
-            case volumetricWeight = "volumetric_weight"
-            
-            case isAutoAssign = "is_auto_assign"
-            
-            case shipmentType = "shipment_type"
-            
-            case fromServiceability = "from_serviceability"
-            
-            case error = "error"
-            
         }
 
-        public init(articles: [ShipmentsArticles], count: Int, courierPartners: [ShipmentCourierPartners], deliverySlots: ArticleDeliverySlots? = nil, error: ShipmentError? = nil, ewaybillEnabled: Bool? = nil, fromServiceability: [String: Any], fulfillmentId: Int, fulfillmentTags: [String]? = nil, fulfillmentType: String? = nil, isAutoAssign: Bool, isCodAvailable: Bool? = nil, isGift: Bool, isLocked: Bool, isMto: Bool, journeyWisePromise: [JourneyPromiseObject]? = nil, meta: [String: Any]? = nil, mps: Bool? = nil, packaging: Packaging, promise: PromiseObject? = nil, shipmentType: String, tags: [[String: Any]]? = nil, volumetricWeight: Double, weight: Double) {
+        public init(articles: [ShipmentsArticles]? = nil, courierPartnerSchemes: [String]? = nil, id: String? = nil, locationId: Double? = nil, locationTags: [String]? = nil, shipmentCost: Double? = nil, shipmentDimension: ShipmentDimension? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil) {
             
-            self.fulfillmentId = fulfillmentId
+            self.id = id
             
-            self.fulfillmentTags = fulfillmentTags
+            self.locationId = locationId
             
-            self.fulfillmentType = fulfillmentType
+            self.locationTags = locationTags
             
-            self.ewaybillEnabled = ewaybillEnabled
+            self.shipmentWeight = shipmentWeight
             
-            self.mps = mps
+            self.shipmentVolumetricWeight = shipmentVolumetricWeight
             
-            self.meta = meta
+            self.shipmentCost = shipmentCost
             
-            self.isCodAvailable = isCodAvailable
+            self.shipmentDimension = shipmentDimension
             
-            self.count = count
+            self.courierPartnerSchemes = courierPartnerSchemes
             
             self.articles = articles
-            
-            self.courierPartners = courierPartners
-            
-            self.promise = promise
-            
-            self.journeyWisePromise = journeyWisePromise
-            
-            self.tags = tags
-            
-            self.isMto = isMto
-            
-            self.isGift = isGift
-            
-            self.isLocked = isLocked
-            
-            self.packaging = packaging
-            
-            self.deliverySlots = deliverySlots
-            
-            self.weight = weight
-            
-            self.volumetricWeight = volumetricWeight
-            
-            self.isAutoAssign = isAutoAssign
-            
-            self.shipmentType = shipmentType
-            
-            self.fromServiceability = fromServiceability
-            
-            self.error = error
             
         }
 
@@ -165,13 +75,8 @@ public extension ApplicationClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
-            
-            
-            
-            
             do {
-                fulfillmentTags = try container.decode([String].self, forKey: .fulfillmentTags)
+                id = try container.decode(String.self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,7 +88,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                fulfillmentType = try container.decode(String.self, forKey: .fulfillmentType)
+                locationId = try container.decode(Double.self, forKey: .locationId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,7 +100,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                ewaybillEnabled = try container.decode(Bool.self, forKey: .ewaybillEnabled)
+                locationTags = try container.decode([String].self, forKey: .locationTags)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -207,7 +112,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                mps = try container.decode(Bool.self, forKey: .mps)
+                shipmentWeight = try container.decode(Double.self, forKey: .shipmentWeight)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -219,7 +124,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                shipmentVolumetricWeight = try container.decode(Double.self, forKey: .shipmentVolumetricWeight)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -231,34 +136,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                isCodAvailable = try container.decode(Bool.self, forKey: .isCodAvailable)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            count = try container.decode(Int.self, forKey: .count)
-            
-            
-            
-            
-            articles = try container.decode([ShipmentsArticles].self, forKey: .articles)
-            
-            
-            
-            
-            courierPartners = try container.decode([ShipmentCourierPartners].self, forKey: .courierPartners)
-            
-            
-            
-            
-            do {
-                promise = try container.decode(PromiseObject.self, forKey: .promise)
+                shipmentCost = try container.decode(Double.self, forKey: .shipmentCost)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -270,7 +148,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                journeyWisePromise = try container.decode([JourneyPromiseObject].self, forKey: .journeyWisePromise)
+                shipmentDimension = try container.decode(ShipmentDimension.self, forKey: .shipmentDimension)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -282,7 +160,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                tags = try container.decode([[String: Any]].self, forKey: .tags)
+                courierPartnerSchemes = try container.decode([String].self, forKey: .courierPartnerSchemes)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -293,65 +171,8 @@ public extension ApplicationClient.Logistic {
             
             
             
-            isMto = try container.decode(Bool.self, forKey: .isMto)
-            
-            
-            
-            
-            isGift = try container.decode(Bool.self, forKey: .isGift)
-            
-            
-            
-            
-            isLocked = try container.decode(Bool.self, forKey: .isLocked)
-            
-            
-            
-            
-            packaging = try container.decode(Packaging.self, forKey: .packaging)
-            
-            
-            
-            
             do {
-                deliverySlots = try container.decode(ArticleDeliverySlots.self, forKey: .deliverySlots)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            weight = try container.decode(Double.self, forKey: .weight)
-            
-            
-            
-            
-            volumetricWeight = try container.decode(Double.self, forKey: .volumetricWeight)
-            
-            
-            
-            
-            isAutoAssign = try container.decode(Bool.self, forKey: .isAutoAssign)
-            
-            
-            
-            
-            shipmentType = try container.decode(String.self, forKey: .shipmentType)
-            
-            
-            
-            
-            fromServiceability = try container.decode([String: Any].self, forKey: .fromServiceability)
-            
-            
-            
-            
-            do {
-                error = try container.decode(ShipmentError.self, forKey: .error)
+                articles = try container.decode([ShipmentsArticles].self, forKey: .articles)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -367,99 +188,39 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
-            try? container.encodeIfPresent(fulfillmentTags, forKey: .fulfillmentTags)
+            try? container.encodeIfPresent(locationId, forKey: .locationId)
             
             
             
-            try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
+            try? container.encodeIfPresent(locationTags, forKey: .locationTags)
             
             
             
-            try? container.encodeIfPresent(ewaybillEnabled, forKey: .ewaybillEnabled)
+            try? container.encodeIfPresent(shipmentWeight, forKey: .shipmentWeight)
             
             
             
-            try? container.encodeIfPresent(mps, forKey: .mps)
+            try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(shipmentCost, forKey: .shipmentCost)
             
             
             
-            try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
+            try? container.encodeIfPresent(shipmentDimension, forKey: .shipmentDimension)
             
             
             
-            try? container.encodeIfPresent(count, forKey: .count)
+            try? container.encodeIfPresent(courierPartnerSchemes, forKey: .courierPartnerSchemes)
             
             
             
             try? container.encodeIfPresent(articles, forKey: .articles)
-            
-            
-            
-            try? container.encodeIfPresent(courierPartners, forKey: .courierPartners)
-            
-            
-            
-            try? container.encodeIfPresent(promise, forKey: .promise)
-            
-            
-            
-            try? container.encodeIfPresent(journeyWisePromise, forKey: .journeyWisePromise)
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            try? container.encodeIfPresent(isMto, forKey: .isMto)
-            
-            
-            
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
-            
-            
-            
-            try? container.encodeIfPresent(isLocked, forKey: .isLocked)
-            
-            
-            
-            try? container.encodeIfPresent(packaging, forKey: .packaging)
-            
-            
-            
-            try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
-            
-            
-            
-            try? container.encodeIfPresent(weight, forKey: .weight)
-            
-            
-            
-            try? container.encodeIfPresent(volumetricWeight, forKey: .volumetricWeight)
-            
-            
-            
-            try? container.encodeIfPresent(isAutoAssign, forKey: .isAutoAssign)
-            
-            
-            
-            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
-            
-            
-            
-            try? container.encodeIfPresent(fromServiceability, forKey: .fromServiceability)
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

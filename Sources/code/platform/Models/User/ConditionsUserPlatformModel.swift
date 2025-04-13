@@ -18,7 +18,7 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var type: String?
         
-        public var value: [String: Any]?
+        public var value: String?
         
         public var key: String?
         
@@ -35,7 +35,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(key: String? = nil, type: String? = nil, userAttributeDefinitionId: String? = nil, value: [String: Any]? = nil) {
+        public init(key: String? = nil, type: String? = nil, userAttributeDefinitionId: String? = nil, value: String? = nil) {
             
             self.userAttributeDefinitionId = userAttributeDefinitionId
             
@@ -76,7 +76,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    value = try container.decode([String: Any].self, forKey: .value)
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

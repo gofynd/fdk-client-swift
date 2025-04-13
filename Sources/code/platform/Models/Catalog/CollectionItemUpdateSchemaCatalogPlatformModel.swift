@@ -24,8 +24,6 @@ public extension PlatformClient.Catalog {
         
         public var visibleFacetsKeys: [String]?
         
-        public var resetItems: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,11 +39,9 @@ public extension PlatformClient.Catalog {
             
             case visibleFacetsKeys = "visible_facets_keys"
             
-            case resetItems = "reset_items"
-            
         }
 
-        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItemSchemaV2]? = nil, query: [CollectionQuerySchemaV2]? = nil, resetItems: Bool? = nil, type: String, visibleFacetsKeys: [String]? = nil) {
+        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItemSchemaV2]? = nil, query: [CollectionQuerySchemaV2]? = nil, type: String, visibleFacetsKeys: [String]? = nil) {
             
             self.allowFacets = allowFacets
             
@@ -58,8 +54,6 @@ public extension PlatformClient.Catalog {
             self.type = type
             
             self.visibleFacetsKeys = visibleFacetsKeys
-            
-            self.resetItems = resetItems
             
         }
 
@@ -131,18 +125,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    resetItems = try container.decode(Bool.self, forKey: .resetItems)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -176,11 +158,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-            
-            
-            
-            
-            try? container.encodeIfPresent(resetItems, forKey: .resetItems)
             
             
         }
@@ -211,8 +188,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var visibleFacetsKeys: [String]?
         
-        public var resetItems: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -228,11 +203,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case visibleFacetsKeys = "visible_facets_keys"
             
-            case resetItems = "reset_items"
-            
         }
 
-        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItemSchemaV2]? = nil, query: [CollectionQuerySchemaV2]? = nil, resetItems: Bool? = nil, type: String, visibleFacetsKeys: [String]? = nil) {
+        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItemSchemaV2]? = nil, query: [CollectionQuerySchemaV2]? = nil, type: String, visibleFacetsKeys: [String]? = nil) {
             
             self.allowFacets = allowFacets
             
@@ -245,8 +218,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.type = type
             
             self.visibleFacetsKeys = visibleFacetsKeys
-            
-            self.resetItems = resetItems
             
         }
 
@@ -318,18 +289,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    resetItems = try container.decode(Bool.self, forKey: .resetItems)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -363,11 +322,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-            
-            
-            
-            
-            try? container.encodeIfPresent(resetItems, forKey: .resetItems)
             
             
         }

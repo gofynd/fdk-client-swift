@@ -12,6 +12,8 @@ public extension PlatformClient.Configuration {
     class ApplicationInventory: Codable {
         
         
+        public var search: SearchConfig?
+        
         public var inventory: AppInventoryConfig?
         
         public var authentication: AuthenticationConfig?
@@ -57,6 +59,8 @@ public extension PlatformClient.Configuration {
 
         public enum CodingKeys: String, CodingKey {
             
+            case search = "search"
+            
             case inventory = "inventory"
             
             case authentication = "authentication"
@@ -101,7 +105,9 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedAt: String? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, piiMasking: PiiMasking? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, tags: [String]? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedAt: String? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, piiMasking: PiiMasking? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, search: SearchConfig? = nil, tags: [String]? = nil, id: String? = nil, v: Int? = nil) {
+            
+            self.search = search
             
             self.inventory = inventory
             
@@ -149,6 +155,18 @@ public extension PlatformClient.Configuration {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    search = try container.decode(SearchConfig.self, forKey: .search)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -406,6 +424,11 @@ public extension PlatformClient.Configuration {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(search, forKey: .search)
+            
             
             
             
@@ -528,6 +551,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
     class ApplicationInventory: Codable {
         
         
+        public var search: SearchConfig?
+        
         public var inventory: AppInventoryConfig?
         
         public var authentication: AuthenticationConfig?
@@ -573,6 +598,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         public enum CodingKeys: String, CodingKey {
             
+            case search = "search"
+            
             case inventory = "inventory"
             
             case authentication = "authentication"
@@ -617,7 +644,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedAt: String? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, piiMasking: PiiMasking? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, tags: [String]? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedAt: String? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, piiMasking: PiiMasking? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, search: SearchConfig? = nil, tags: [String]? = nil, id: String? = nil, v: Int? = nil) {
+            
+            self.search = search
             
             self.inventory = inventory
             
@@ -665,6 +694,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    search = try container.decode(SearchConfig.self, forKey: .search)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -922,6 +963,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(search, forKey: .search)
+            
             
             
             
