@@ -14,7 +14,7 @@ public extension PlatformClient.Billing {
         
         public var name: String
         
-        public var trialDays: Int?
+        public var trialDays: Double?
         
         public var lineItems: [ChargeLineItem]
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(isTest: Bool? = nil, lineItems: [ChargeLineItem], name: String, returnUrl: String, trialDays: Int? = nil) {
+        public init(isTest: Bool? = nil, lineItems: [ChargeLineItem], name: String, returnUrl: String, trialDays: Double? = nil) {
             
             self.name = name
             
@@ -61,7 +61,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    trialDays = try container.decode(Int.self, forKey: .trialDays)
+                    trialDays = try container.decode(Double.self, forKey: .trialDays)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -22,6 +22,8 @@ public extension ApplicationClient.User {
         
         public var registerToken: String?
         
+        public var consent: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension ApplicationClient.User {
             
             case registerToken = "register_token"
             
+            case consent = "consent"
+            
         }
 
-        public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, password: String? = nil, phone: FormRegisterRequestSchemaPhone? = nil, registerToken: String? = nil) {
+        public init(consent: Bool? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, password: String? = nil, phone: FormRegisterRequestSchemaPhone? = nil, registerToken: String? = nil) {
             
             self.firstName = firstName
             
@@ -56,6 +60,8 @@ public extension ApplicationClient.User {
             self.phone = phone
             
             self.registerToken = registerToken
+            
+            self.consent = consent
             
         }
 
@@ -146,6 +152,18 @@ public extension ApplicationClient.User {
             }
             
             
+            
+            do {
+                consent = try container.decode(Bool.self, forKey: .consent)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -177,6 +195,10 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+            
+            
+            try? container.encodeIfPresent(consent, forKey: .consent)
             
             
         }

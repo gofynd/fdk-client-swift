@@ -14,26 +14,26 @@ public extension PlatformClient.Content {
         
         public var id: String?
         
-        public var definitionId: String?
-        
         public var status: String?
+        
+        public var createdAt: String?
         
         public var updatedAt: String?
         
         public var displayName: String?
         
-        public var definition: CustomObjectListItemDefinationSchema?
+        public var definition: CustomObjectListItemDefinitionModel?
         
         public var references: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
-            
-            case definitionId = "definition_id"
+            case id = "id"
             
             case status = "status"
+            
+            case createdAt = "created_at"
             
             case updatedAt = "updated_at"
             
@@ -45,13 +45,13 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(definition: CustomObjectListItemDefinationSchema? = nil, definitionId: String? = nil, displayName: String? = nil, references: Int? = nil, status: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(createdAt: String? = nil, definition: CustomObjectListItemDefinitionModel? = nil, displayName: String? = nil, id: String? = nil, references: Int? = nil, status: String? = nil, updatedAt: String? = nil) {
             
             self.id = id
             
-            self.definitionId = definitionId
-            
             self.status = status
+            
+            self.createdAt = createdAt
             
             self.updatedAt = updatedAt
             
@@ -80,7 +80,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    definitionId = try container.decode(String.self, forKey: .definitionId)
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +92,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
+                    createdAt = try container.decode(String.self, forKey: .createdAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,7 +128,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    definition = try container.decode(CustomObjectListItemDefinationSchema.self, forKey: .definition)
+                    definition = try container.decode(CustomObjectListItemDefinitionModel.self, forKey: .definition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,12 +162,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
-            
-            
-            
-            
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
@@ -208,26 +208,26 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var id: String?
         
-        public var definitionId: String?
-        
         public var status: String?
+        
+        public var createdAt: String?
         
         public var updatedAt: String?
         
         public var displayName: String?
         
-        public var definition: CustomObjectListItemDefinationSchema?
+        public var definition: CustomObjectListItemDefinitionModel?
         
         public var references: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
-            
-            case definitionId = "definition_id"
+            case id = "id"
             
             case status = "status"
+            
+            case createdAt = "created_at"
             
             case updatedAt = "updated_at"
             
@@ -239,13 +239,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(definition: CustomObjectListItemDefinationSchema? = nil, definitionId: String? = nil, displayName: String? = nil, references: Int? = nil, status: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(createdAt: String? = nil, definition: CustomObjectListItemDefinitionModel? = nil, displayName: String? = nil, id: String? = nil, references: Int? = nil, status: String? = nil, updatedAt: String? = nil) {
             
             self.id = id
             
-            self.definitionId = definitionId
-            
             self.status = status
+            
+            self.createdAt = createdAt
             
             self.updatedAt = updatedAt
             
@@ -274,7 +274,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    definitionId = try container.decode(String.self, forKey: .definitionId)
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -286,7 +286,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
+                    createdAt = try container.decode(String.self, forKey: .createdAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -322,7 +322,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    definition = try container.decode(CustomObjectListItemDefinationSchema.self, forKey: .definition)
+                    definition = try container.decode(CustomObjectListItemDefinitionModel.self, forKey: .definition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -356,12 +356,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
-            
-            
-            
-            
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
