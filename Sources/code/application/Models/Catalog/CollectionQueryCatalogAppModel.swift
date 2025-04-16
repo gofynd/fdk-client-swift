@@ -10,7 +10,7 @@ public extension ApplicationClient.Catalog {
         
         public var op: String
         
-        public var value: [String]
+        public var value: [[String: Any]]
         
         public var attribute: String
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(attribute: String, op: String, value: [String]) {
+        public init(attribute: String, op: String, value: [[String: Any]]) {
             
             self.op = op
             
@@ -44,7 +44,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            value = try container.decode([String].self, forKey: .value)
+            value = try container.decode([[String: Any]].self, forKey: .value)
             
             
             

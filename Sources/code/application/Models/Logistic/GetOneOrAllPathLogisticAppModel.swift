@@ -8,24 +8,24 @@ public extension ApplicationClient.Logistic {
     */
     class GetOneOrAllPath: Codable {
         
-        public var type: String?
+        public var localityType: String?
         
-        public var value: String?
+        public var localityValue: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case type = "type"
+            case localityType = "locality_type"
             
-            case value = "value"
+            case localityValue = "locality_value"
             
         }
 
-        public init(type: String? = nil, value: String? = nil) {
+        public init(localityType: String? = nil, localityValue: String? = nil) {
             
-            self.type = type
+            self.localityType = localityType
             
-            self.value = value
+            self.localityValue = localityValue
             
         }
 
@@ -34,7 +34,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                type = try container.decode(String.self, forKey: .type)
+                localityType = try container.decode(String.self, forKey: .localityType)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                value = try container.decode(String.self, forKey: .value)
+                localityValue = try container.decode(String.self, forKey: .localityValue)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(localityType, forKey: .localityType)
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(localityValue, forKey: .localityValue)
             
             
         }

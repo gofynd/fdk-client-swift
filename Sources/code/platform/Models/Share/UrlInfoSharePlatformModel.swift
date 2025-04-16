@@ -20,8 +20,6 @@ public extension PlatformClient.ApplicationClient.Share {
         
         public var shortUrl: String?
         
-        public var alias: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,19 +29,15 @@ public extension PlatformClient.ApplicationClient.Share {
             
             case shortUrl = "short_url"
             
-            case alias = "alias"
-            
         }
 
-        public init(alias: String? = nil, hash: String? = nil, original: String? = nil, shortUrl: String? = nil) {
+        public init(hash: String? = nil, original: String? = nil, shortUrl: String? = nil) {
             
             self.original = original
             
             self.hash = hash
             
             self.shortUrl = shortUrl
-            
-            self.alias = alias
             
         }
 
@@ -86,18 +80,6 @@ public extension PlatformClient.ApplicationClient.Share {
                 }
                 
             
-            
-                do {
-                    alias = try container.decode(String.self, forKey: .alias)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -116,11 +98,6 @@ public extension PlatformClient.ApplicationClient.Share {
             
             
             try? container.encodeIfPresent(shortUrl, forKey: .shortUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(alias, forKey: .alias)
             
             
         }

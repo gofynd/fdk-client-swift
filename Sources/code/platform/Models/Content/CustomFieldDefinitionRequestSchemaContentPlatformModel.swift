@@ -12,9 +12,11 @@ public extension PlatformClient.Content {
     class CustomFieldDefinitionRequestSchema: Codable {
         
         
+        public var resource: String?
+        
         public var type: String?
         
-        public var slug: String?
+        public var key: String?
         
         public var namespace: String?
         
@@ -29,9 +31,11 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
+            case resource = "resource"
+            
             case type = "type"
             
-            case slug = "slug"
+            case key = "key"
             
             case namespace = "namespace"
             
@@ -45,11 +49,13 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(description: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+            
+            self.resource = resource
             
             self.type = type
             
-            self.slug = slug
+            self.key = key
             
             self.namespace = namespace
             
@@ -68,6 +74,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    resource = try container.decode(String.self, forKey: .resource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -80,7 +98,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,12 +175,17 @@ public extension PlatformClient.Content {
             
             
             
+            try? container.encodeIfPresent(resource, forKey: .resource)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
@@ -206,9 +229,11 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomFieldDefinitionRequestSchema: Codable {
         
         
+        public var resource: String?
+        
         public var type: String?
         
-        public var slug: String?
+        public var key: String?
         
         public var namespace: String?
         
@@ -223,9 +248,11 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
+            case resource = "resource"
+            
             case type = "type"
             
-            case slug = "slug"
+            case key = "key"
             
             case namespace = "namespace"
             
@@ -239,11 +266,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(description: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+            
+            self.resource = resource
             
             self.type = type
             
-            self.slug = slug
+            self.key = key
             
             self.namespace = namespace
             
@@ -262,6 +291,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    resource = try container.decode(String.self, forKey: .resource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -274,7 +315,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -351,12 +392,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(resource, forKey: .resource)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             

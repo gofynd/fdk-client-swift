@@ -14,7 +14,7 @@ public extension PlatformClient.Communication {
         
         public var subscribed: Bool?
         
-        public var template: EmailTemplate?
+        public var template: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(subscribed: Bool? = nil, template: EmailTemplate? = nil) {
+        public init(subscribed: Bool? = nil, template: String? = nil) {
             
             self.subscribed = subscribed
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    template = try container.decode(EmailTemplate.self, forKey: .template)
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var subscribed: Bool?
         
-        public var template: EmailTemplate?
+        public var template: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(subscribed: Bool? = nil, template: EmailTemplate? = nil) {
+        public init(subscribed: Bool? = nil, template: String? = nil) {
             
             self.subscribed = subscribed
             
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    template = try container.decode(EmailTemplate.self, forKey: .template)
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

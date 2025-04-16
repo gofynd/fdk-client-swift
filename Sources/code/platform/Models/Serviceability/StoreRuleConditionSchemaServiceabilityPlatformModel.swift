@@ -30,7 +30,7 @@ public extension PlatformClient.Serviceability {
         
         public var storeTags: StringComparisonOperations?
         
-        public var orderPlaceDate: DateOperations?
+        public var orderPlaceDate: ArithmeticOperations?
         
         public var zoneIds: StringComparisonOperations?
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, customerRadius: CustomerRadiusSchema? = nil, departmentIds: IntComparisonOperations? = nil, orderPlaceDate: DateOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, toLocation: LocationRule? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, customerRadius: CustomerRadiusSchema? = nil, departmentIds: IntComparisonOperations? = nil, orderPlaceDate: ArithmeticOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, toLocation: LocationRule? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.departmentIds = departmentIds
             
@@ -200,7 +200,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    orderPlaceDate = try container.decode(DateOperations.self, forKey: .orderPlaceDate)
+                    orderPlaceDate = try container.decode(ArithmeticOperations.self, forKey: .orderPlaceDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -316,7 +316,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var storeTags: StringComparisonOperations?
         
-        public var orderPlaceDate: DateOperations?
+        public var orderPlaceDate: ArithmeticOperations?
         
         public var zoneIds: StringComparisonOperations?
         
@@ -347,7 +347,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, customerRadius: CustomerRadiusSchema? = nil, departmentIds: IntComparisonOperations? = nil, orderPlaceDate: DateOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, toLocation: LocationRule? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, customerRadius: CustomerRadiusSchema? = nil, departmentIds: IntComparisonOperations? = nil, orderPlaceDate: ArithmeticOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, toLocation: LocationRule? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.departmentIds = departmentIds
             
@@ -486,7 +486,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    orderPlaceDate = try container.decode(DateOperations.self, forKey: .orderPlaceDate)
+                    orderPlaceDate = try container.decode(ArithmeticOperations.self, forKey: .orderPlaceDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

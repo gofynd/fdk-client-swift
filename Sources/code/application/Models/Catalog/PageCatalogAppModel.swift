@@ -22,8 +22,6 @@ public extension ApplicationClient.Catalog {
         
         public var size: Int?
         
-        public var pageSize: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,11 +39,9 @@ public extension ApplicationClient.Catalog {
             
             case size = "size"
             
-            case pageSize = "page_size"
-            
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, pageSize: Int? = nil, size: Int? = nil, type: String) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
             
             self.itemTotal = itemTotal
             
@@ -60,8 +56,6 @@ public extension ApplicationClient.Catalog {
             self.type = type
             
             self.size = size
-            
-            self.pageSize = pageSize
             
         }
 
@@ -145,18 +139,6 @@ public extension ApplicationClient.Catalog {
             }
             
             
-            
-            do {
-                pageSize = try container.decode(Int.self, forKey: .pageSize)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -188,10 +170,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
             
             
         }
