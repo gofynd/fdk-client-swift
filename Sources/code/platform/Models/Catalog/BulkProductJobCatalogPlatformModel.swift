@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class BulkProductJob: Codable {
         
         
-        public var companyId: Int?
+        public var companyId: String?
         
         public var templateTag: String?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(companyId: Int? = nil, department: String? = nil, filePath: String? = nil, productType: String? = nil, templateTag: String? = nil) {
+        public init(companyId: String? = nil, department: String? = nil, filePath: String? = nil, productType: String? = nil, templateTag: String? = nil) {
             
             self.companyId = companyId
             
@@ -56,7 +56,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                    companyId = try container.decode(String.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,7 +160,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class BulkProductJob: Codable {
         
         
-        public var companyId: Int?
+        public var companyId: String?
         
         public var templateTag: String?
         
@@ -185,7 +185,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(companyId: Int? = nil, department: String? = nil, filePath: String? = nil, productType: String? = nil, templateTag: String? = nil) {
+        public init(companyId: String? = nil, department: String? = nil, filePath: String? = nil, productType: String? = nil, templateTag: String? = nil) {
             
             self.companyId = companyId
             
@@ -204,7 +204,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                    companyId = try container.decode(String.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

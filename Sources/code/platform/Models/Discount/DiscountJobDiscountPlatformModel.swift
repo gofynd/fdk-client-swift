@@ -20,13 +20,13 @@ public extension PlatformClient.Discount {
         
         public var isActive: Bool
         
-        public var appIds: [String]?
+        public var appIds: [String]
         
-        public var jobType: String?
+        public var jobType: String
         
         public var discountType: String?
         
-        public var discountLevel: String?
+        public var discountLevel: String
         
         public var value: Int?
         
@@ -97,7 +97,7 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(appIds: [String]? = nil, brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String? = nil, discountMeta: DiscountMeta? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, zoneIds: [String]? = nil, id: String) {
+        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, zoneIds: [String]? = nil, id: String) {
             
             self.id = id
             
@@ -165,28 +165,14 @@ public extension PlatformClient.Discount {
             
             
             
-                do {
-                    appIds = try container.decode([String].self, forKey: .appIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                appIds = try container.decode([String].self, forKey: .appIds)
                 
             
             
-                do {
-                    jobType = try container.decode(String.self, forKey: .jobType)
+            
+                jobType = try container.decode(String.self, forKey: .jobType)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -201,16 +187,9 @@ public extension PlatformClient.Discount {
                 
             
             
-                do {
-                    discountLevel = try container.decode(String.self, forKey: .discountLevel)
+                discountLevel = try container.decode(String.self, forKey: .discountLevel)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

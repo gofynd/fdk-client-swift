@@ -48,6 +48,10 @@ public extension PlatformClient.Serviceability {
         
         public var ewaybill: Bool?
         
+        public var qcShipmentItemQuantity: Int?
+        
+        public var nonQcShipmentItemQuantity: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -87,9 +91,13 @@ public extension PlatformClient.Serviceability {
             
             case ewaybill = "ewaybill"
             
+            case qcShipmentItemQuantity = "qc_shipment_item_quantity"
+            
+            case nonQcShipmentItemQuantity = "non_qc_shipment_item_quantity"
+            
         }
 
-        public init(coldStorageGoods: Bool? = nil, dangerousGoods: Bool? = nil, doorstepExchange: Bool? = nil, doorstepQc: Bool? = nil, doorstepReturn: Bool? = nil, ewaybill: Bool? = nil, fragileGoods: Bool? = nil, mps: Bool? = nil, multiPickMultiDrop: Bool? = nil, multiPickSingleDrop: Bool? = nil, ndr: Bool? = nil, ndrAttempts: Int? = nil, openboxDelivery: Bool? = nil, productInstallation: Bool? = nil, qr: Bool? = nil, restrictedGoods: Bool? = nil, singlePickMultiDrop: Bool? = nil, statusUpdates: String? = nil) {
+        public init(coldStorageGoods: Bool? = nil, dangerousGoods: Bool? = nil, doorstepExchange: Bool? = nil, doorstepQc: Bool? = nil, doorstepReturn: Bool? = nil, ewaybill: Bool? = nil, fragileGoods: Bool? = nil, mps: Bool? = nil, multiPickMultiDrop: Bool? = nil, multiPickSingleDrop: Bool? = nil, ndr: Bool? = nil, ndrAttempts: Int? = nil, nonQcShipmentItemQuantity: Int? = nil, openboxDelivery: Bool? = nil, productInstallation: Bool? = nil, qcShipmentItemQuantity: Int? = nil, qr: Bool? = nil, restrictedGoods: Bool? = nil, singlePickMultiDrop: Bool? = nil, statusUpdates: String? = nil) {
             
             self.doorstepQc = doorstepQc
             
@@ -126,6 +134,10 @@ public extension PlatformClient.Serviceability {
             self.multiPickMultiDrop = multiPickMultiDrop
             
             self.ewaybill = ewaybill
+            
+            self.qcShipmentItemQuantity = qcShipmentItemQuantity
+            
+            self.nonQcShipmentItemQuantity = nonQcShipmentItemQuantity
             
         }
 
@@ -348,6 +360,30 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    qcShipmentItemQuantity = try container.decode(Int.self, forKey: .qcShipmentItemQuantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    nonQcShipmentItemQuantity = try container.decode(Int.self, forKey: .nonQcShipmentItemQuantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -441,6 +477,16 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(ewaybill, forKey: .ewaybill)
+            
+            
+            
+            
+            try? container.encodeIfPresent(qcShipmentItemQuantity, forKey: .qcShipmentItemQuantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(nonQcShipmentItemQuantity, forKey: .nonQcShipmentItemQuantity)
             
             
         }
@@ -495,6 +541,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var ewaybill: Bool?
         
+        public var qcShipmentItemQuantity: Int?
+        
+        public var nonQcShipmentItemQuantity: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -534,9 +584,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case ewaybill = "ewaybill"
             
+            case qcShipmentItemQuantity = "qc_shipment_item_quantity"
+            
+            case nonQcShipmentItemQuantity = "non_qc_shipment_item_quantity"
+            
         }
 
-        public init(coldStorageGoods: Bool? = nil, dangerousGoods: Bool? = nil, doorstepExchange: Bool? = nil, doorstepQc: Bool? = nil, doorstepReturn: Bool? = nil, ewaybill: Bool? = nil, fragileGoods: Bool? = nil, mps: Bool? = nil, multiPickMultiDrop: Bool? = nil, multiPickSingleDrop: Bool? = nil, ndr: Bool? = nil, ndrAttempts: Int? = nil, openboxDelivery: Bool? = nil, productInstallation: Bool? = nil, qr: Bool? = nil, restrictedGoods: Bool? = nil, singlePickMultiDrop: Bool? = nil, statusUpdates: String? = nil) {
+        public init(coldStorageGoods: Bool? = nil, dangerousGoods: Bool? = nil, doorstepExchange: Bool? = nil, doorstepQc: Bool? = nil, doorstepReturn: Bool? = nil, ewaybill: Bool? = nil, fragileGoods: Bool? = nil, mps: Bool? = nil, multiPickMultiDrop: Bool? = nil, multiPickSingleDrop: Bool? = nil, ndr: Bool? = nil, ndrAttempts: Int? = nil, nonQcShipmentItemQuantity: Int? = nil, openboxDelivery: Bool? = nil, productInstallation: Bool? = nil, qcShipmentItemQuantity: Int? = nil, qr: Bool? = nil, restrictedGoods: Bool? = nil, singlePickMultiDrop: Bool? = nil, statusUpdates: String? = nil) {
             
             self.doorstepQc = doorstepQc
             
@@ -573,6 +627,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.multiPickMultiDrop = multiPickMultiDrop
             
             self.ewaybill = ewaybill
+            
+            self.qcShipmentItemQuantity = qcShipmentItemQuantity
+            
+            self.nonQcShipmentItemQuantity = nonQcShipmentItemQuantity
             
         }
 
@@ -795,6 +853,30 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    qcShipmentItemQuantity = try container.decode(Int.self, forKey: .qcShipmentItemQuantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    nonQcShipmentItemQuantity = try container.decode(Int.self, forKey: .nonQcShipmentItemQuantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -888,6 +970,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(ewaybill, forKey: .ewaybill)
+            
+            
+            
+            
+            try? container.encodeIfPresent(qcShipmentItemQuantity, forKey: .qcShipmentItemQuantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(nonQcShipmentItemQuantity, forKey: .nonQcShipmentItemQuantity)
             
             
         }

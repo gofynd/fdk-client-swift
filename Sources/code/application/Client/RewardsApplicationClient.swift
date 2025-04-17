@@ -93,12 +93,12 @@ extension ApplicationClient {
         /**
         *
         * Summary: Order from catalogue
-        * Description: Place an reward on order items available in the catalogue.
+        * Description: Place a reward on order items available in the catalogue.
         **/
         public func catalogueOrder(
-            body: CatalogueOrderRequest,
+            body: CatalogueOrderCreation,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CatalogueOrderResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CatalogueOrderDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -129,7 +129,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CatalogueOrderResponse.self, from: data)
+                        let response = Utility.decode(CatalogueOrderDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -152,7 +152,7 @@ extension ApplicationClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PointsHistoryResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PointsHistoryDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -191,7 +191,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PointsHistoryResponse.self, from: data)
+                        let response = Utility.decode(PointsHistoryDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -212,7 +212,7 @@ extension ApplicationClient {
         public func getUserPoints(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PointsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PointsDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -243,7 +243,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PointsResponse.self, from: data)
+                        let response = Utility.decode(PointsDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -264,7 +264,7 @@ extension ApplicationClient {
         public func getUserReferralDetails(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ReferralDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ReferralDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -295,7 +295,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ReferralDetailsResponse.self, from: data)
+                        let response = Utility.decode(ReferralDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -314,9 +314,9 @@ extension ApplicationClient {
         * Description: Retrieve the discount applied to a specific order.
         **/
         public func getOrderDiscount(
-            body: OrderDiscountRequest,
+            body: RetrieveOrderDiscount,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OrderDiscountResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderDiscountDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -347,7 +347,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OrderDiscountResponse.self, from: data)
+                        let response = Utility.decode(OrderDiscountDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -366,9 +366,9 @@ extension ApplicationClient {
         * Description: Applies a referral code to earn or redeem rewards.
         **/
         public func redeemReferralCode(
-            body: RedeemReferralCodeRequest,
+            body: RedeemReferralCode,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: RedeemReferralCodeResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RedeemReferralCodeDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -399,7 +399,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RedeemReferralCodeResponse.self, from: data)
+                        let response = Utility.decode(RedeemReferralCodeDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

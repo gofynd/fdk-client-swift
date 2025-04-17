@@ -50,6 +50,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var rrId: String?
         
+        public var consent: UserConsent?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -89,9 +91,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             case rrId = "rr_id"
             
+            case consent = "consent"
+            
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, consent: UserConsent? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             
             self.applicationId = applicationId
             
@@ -128,6 +132,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.externalId = externalId
             
             self.rrId = rrId
+            
+            self.consent = consent
             
         }
 
@@ -350,6 +356,18 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    consent = try container.decode(UserConsent.self, forKey: .consent)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -443,6 +461,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(rrId, forKey: .rrId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(consent, forKey: .consent)
             
             
         }

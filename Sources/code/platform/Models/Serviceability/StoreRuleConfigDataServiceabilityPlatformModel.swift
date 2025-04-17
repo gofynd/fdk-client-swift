@@ -22,6 +22,10 @@ public extension PlatformClient.Serviceability {
         
         public var sort: [String]?
         
+        public var metaSortPriority: [String: Any]?
+        
+        public var manualPriority: [Int]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +39,13 @@ public extension PlatformClient.Serviceability {
             
             case sort = "sort"
             
+            case metaSortPriority = "meta_sort_priority"
+            
+            case manualPriority = "manual_priority"
+            
         }
 
-        public init(ruleIds: [String]? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
+        public init(manualPriority: [Int]? = nil, metaSortPriority: [String: Any]? = nil, ruleIds: [String]? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
             
             self.ruleIds = ruleIds
             
@@ -48,6 +56,10 @@ public extension PlatformClient.Serviceability {
             self.storePriority = storePriority
             
             self.sort = sort
+            
+            self.metaSortPriority = metaSortPriority
+            
+            self.manualPriority = manualPriority
             
         }
 
@@ -114,6 +126,30 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    metaSortPriority = try container.decode([String: Any].self, forKey: .metaSortPriority)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    manualPriority = try container.decode([Int].self, forKey: .manualPriority)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +178,16 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(sort, forKey: .sort)
+            
+            
+            
+            
+            try? container.encodeIfPresent(metaSortPriority, forKey: .metaSortPriority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
             
             
         }
@@ -170,6 +216,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var sort: [String]?
         
+        public var metaSortPriority: [String: Any]?
+        
+        public var manualPriority: [Int]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -183,9 +233,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case sort = "sort"
             
+            case metaSortPriority = "meta_sort_priority"
+            
+            case manualPriority = "manual_priority"
+            
         }
 
-        public init(ruleIds: [String]? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
+        public init(manualPriority: [Int]? = nil, metaSortPriority: [String: Any]? = nil, ruleIds: [String]? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
             
             self.ruleIds = ruleIds
             
@@ -196,6 +250,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.storePriority = storePriority
             
             self.sort = sort
+            
+            self.metaSortPriority = metaSortPriority
+            
+            self.manualPriority = manualPriority
             
         }
 
@@ -262,6 +320,30 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    metaSortPriority = try container.decode([String: Any].self, forKey: .metaSortPriority)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    manualPriority = try container.decode([Int].self, forKey: .manualPriority)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -290,6 +372,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(sort, forKey: .sort)
+            
+            
+            
+            
+            try? container.encodeIfPresent(metaSortPriority, forKey: .metaSortPriority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
             
             
         }

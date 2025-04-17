@@ -32,6 +32,8 @@ public extension ApplicationClient.User {
         
         public var registerToken: String?
         
+        public var consent: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -59,9 +61,11 @@ public extension ApplicationClient.User {
             
             case registerToken = "register_token"
             
+            case consent = "consent"
+            
         }
 
-        public init(androidHash: String? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, encryptOtp: Bool? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
+        public init(androidHash: String? = nil, consent: Bool? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, encryptOtp: Bool? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
             
             self.encryptOtp = encryptOtp
             
@@ -86,6 +90,8 @@ public extension ApplicationClient.User {
             self.sender = sender
             
             self.registerToken = registerToken
+            
+            self.consent = consent
             
         }
 
@@ -236,6 +242,18 @@ public extension ApplicationClient.User {
             }
             
             
+            
+            do {
+                consent = try container.decode(Bool.self, forKey: .consent)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -287,6 +305,10 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+            
+            
+            try? container.encodeIfPresent(consent, forKey: .consent)
             
             
         }

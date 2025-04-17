@@ -20,7 +20,7 @@ extension PublicClient {
         public func fetchAllWebhookEvents(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: EventConfigResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: EventDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -48,7 +48,7 @@ extension PublicClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(EventConfigResponse.self, from: data)
+                        let response = Utility.decode(EventDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -69,7 +69,7 @@ extension PublicClient {
         public func queryWebhookEventDetails(
             body: [EventConfigBase],
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: EventConfigResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: EventDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -97,7 +97,7 @@ extension PublicClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(EventConfigResponse.self, from: data)
+                        let response = Utility.decode(EventDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -165,9 +165,9 @@ extension PublicClient {
         * Description: Test transformation of handler
         **/
         public func testHandlerTransformation(
-            body: TransformEventRequest,
+            body: TransformEventPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: TransformEventResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: TransformEventResult?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -195,7 +195,7 @@ extension PublicClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(TransformEventResponse.self, from: data)
+                        let response = Utility.decode(TransformEventResult.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -214,9 +214,9 @@ extension PublicClient {
         * Description: Validate Schema for an event
         **/
         public func validateSchema(
-            body: ValidateSchemaRequest,
+            body: ValidateSchemaPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ValidateSchemaResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ValidateSchemaResult?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -244,7 +244,7 @@ extension PublicClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ValidateSchemaResponse.self, from: data)
+                        let response = Utility.decode(ValidateSchemaResult.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

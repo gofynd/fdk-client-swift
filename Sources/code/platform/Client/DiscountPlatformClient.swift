@@ -109,6 +109,65 @@ extension PlatformClient {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getDiscounts
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getDiscountsPaginator(
+            view: String?,
+            q: String?,
+            pageSize: Int?,
+            archived: Bool?,
+            month: Int?,
+            year: Int?,
+            type: String?,
+            appIds: [String]?,
+            headers: [(key: String, value: String)]? = nil
+            ) -> Paginator<ListOrCalender> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ListOrCalender>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getDiscounts(
+                    view: view,
+                    q: q,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    archived: archived,
+                    month: month,
+                    year: year,
+                    type: type,
+                    appIds: appIds,
+                    
+                    headers: headers
+                ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
         /**
         *
         * Summary: Create discount
@@ -319,9 +378,9 @@ extension PlatformClient {
         **/
         public func validateDiscountFile(
             discount: String?,
-            body: FileJobRequest,
+            body: FileJobRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -353,7 +412,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        let response = Utility.decode(FileJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -376,7 +435,7 @@ extension PlatformClient {
             type: String,
             body: DownloadFileJob,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -404,7 +463,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        let response = Utility.decode(FileJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -427,7 +486,7 @@ extension PlatformClient {
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -455,7 +514,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        let response = Utility.decode(FileJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -478,7 +537,7 @@ extension PlatformClient {
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CancelJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -506,7 +565,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CancelJobResponse.self, from: data)
+                        let response = Utility.decode(CancelJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -529,7 +588,7 @@ extension PlatformClient {
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -557,7 +616,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        let response = Utility.decode(FileJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -580,7 +639,7 @@ extension PlatformClient {
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CancelJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -608,7 +667,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CancelJobResponse.self, from: data)
+                        let response = Utility.decode(CancelJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
