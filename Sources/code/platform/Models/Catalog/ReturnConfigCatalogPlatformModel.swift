@@ -14,9 +14,9 @@ public extension PlatformClient.Catalog {
         
         public var returnable: Bool
         
-        public var time: Int
+        public var time: Int?
         
-        public var unit: String
+        public var unit: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(returnable: Bool, time: Int, unit: String) {
+        public init(returnable: Bool, time: Int? = nil, unit: String? = nil) {
             
             self.returnable = returnable
             
@@ -48,14 +48,28 @@ public extension PlatformClient.Catalog {
             
             
             
-                time = try container.decode(Int.self, forKey: .time)
+                do {
+                    time = try container.decode(Int.self, forKey: .time)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                unit = try container.decode(String.self, forKey: .unit)
+                do {
+                    unit = try container.decode(String.self, forKey: .unit)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -95,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var returnable: Bool
         
-        public var time: Int
+        public var time: Int?
         
-        public var unit: String
+        public var unit: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -110,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(returnable: Bool, time: Int, unit: String) {
+        public init(returnable: Bool, time: Int? = nil, unit: String? = nil) {
             
             self.returnable = returnable
             
@@ -129,14 +143,28 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                time = try container.decode(Int.self, forKey: .time)
+                do {
+                    time = try container.decode(Int.self, forKey: .time)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                unit = try container.decode(String.self, forKey: .unit)
+                do {
+                    unit = try container.decode(String.self, forKey: .unit)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

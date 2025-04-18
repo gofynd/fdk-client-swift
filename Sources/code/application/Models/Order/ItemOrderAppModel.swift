@@ -36,6 +36,8 @@ public extension ApplicationClient.Order {
         
         public var attributes: [String: Any]?
         
+        public var variants: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -67,9 +69,11 @@ public extension ApplicationClient.Order {
             
             case attributes = "attributes"
             
+            case variants = "variants"
+            
         }
 
-        public init(attributes: [String: Any]? = nil, brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, l1Categories: [String]? = nil, l2Categories: [String]? = nil, l2Category: [String]? = nil, l2CategoryId: Double? = nil, l3CategoryName: String? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, slugKey: String? = nil) {
+        public init(attributes: [String: Any]? = nil, brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, l1Categories: [String]? = nil, l2Categories: [String]? = nil, l2Category: [String]? = nil, l2CategoryId: Double? = nil, l3CategoryName: String? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, slugKey: String? = nil, variants: [String: Any]? = nil) {
             
             self.image = image
             
@@ -98,6 +102,8 @@ public extension ApplicationClient.Order {
             self.size = size
             
             self.attributes = attributes
+            
+            self.variants = variants
             
         }
 
@@ -272,6 +278,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                variants = try container.decode([String: Any].self, forKey: .variants)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -331,6 +349,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(attributes, forKey: .attributes)
+            
+            
+            
+            try? container.encodeIfPresent(variants, forKey: .variants)
             
             
         }

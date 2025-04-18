@@ -12,7 +12,11 @@ public extension ApplicationClient.Content {
         
         public var id: String?
         
+        public var company: String?
+        
         public var tags: [TagSchema]?
+        
+        public var v: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,17 +25,25 @@ public extension ApplicationClient.Content {
             
             case id = "_id"
             
+            case company = "company"
+            
             case tags = "tags"
+            
+            case v = "__v"
             
         }
 
-        public init(application: String? = nil, tags: [TagSchema]? = nil, id: String? = nil) {
+        public init(application: String? = nil, company: String? = nil, tags: [TagSchema]? = nil, id: String? = nil, v: Double? = nil) {
             
             self.application = application
             
             self.id = id
             
+            self.company = company
+            
             self.tags = tags
+            
+            self.v = v
             
         }
 
@@ -64,7 +76,31 @@ public extension ApplicationClient.Content {
             
             
             do {
+                company = try container.decode(String.self, forKey: .company)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 tags = try container.decode([TagSchema].self, forKey: .tags)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                v = try container.decode(Double.self, forKey: .v)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +124,15 @@ public extension ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(company, forKey: .company)
+            
+            
+            
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

@@ -12,24 +12,18 @@ public extension PlatformClient.Discount {
     class DownloadFileJob: Codable {
         
         
-        public var brandIds: [Int]?
-        
-        public var storeIds: [Int]?
+        public var appId: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case brandIds = "brand_ids"
-            
-            case storeIds = "store_ids"
+            case appId = "app_id"
             
         }
 
-        public init(brandIds: [Int]? = nil, storeIds: [Int]? = nil) {
+        public init(appId: String) {
             
-            self.brandIds = brandIds
-            
-            self.storeIds = storeIds
+            self.appId = appId
             
         }
 
@@ -37,28 +31,9 @@ public extension PlatformClient.Discount {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    brandIds = try container.decode([Int].self, forKey: .brandIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                appId = try container.decode(String.self, forKey: .appId)
                 
             
-            
-                do {
-                    storeIds = try container.decode([Int].self, forKey: .storeIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -67,12 +42,7 @@ public extension PlatformClient.Discount {
             
             
             
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(appId, forKey: .appId)
             
             
         }

@@ -16,11 +16,11 @@ public extension PlatformClient.Catalog {
         
         public var banners: ImageUrls?
         
-        public var departments: [String]?
+        public var departments: [Int]?
         
         public var discount: String?
         
-        public var logo: BrandMedia?
+        public var logo: BrandLogo?
         
         public var name: String?
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(action: Action? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, discount: String? = nil, logo: BrandMedia? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
+        public init(action: Action? = nil, banners: ImageUrls? = nil, departments: [Int]? = nil, discount: String? = nil, logo: BrandLogo? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             
             self.action = action
             
@@ -98,7 +98,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    departments = try container.decode([String].self, forKey: .departments)
+                    departments = try container.decode([Int].self, forKey: .departments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +122,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    logo = try container.decode(BrandMedia.self, forKey: .logo)
+                    logo = try container.decode(BrandLogo.self, forKey: .logo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -233,11 +233,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var banners: ImageUrls?
         
-        public var departments: [String]?
+        public var departments: [Int]?
         
         public var discount: String?
         
-        public var logo: BrandMedia?
+        public var logo: BrandLogo?
         
         public var name: String?
         
@@ -266,7 +266,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(action: Action? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, discount: String? = nil, logo: BrandMedia? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
+        public init(action: Action? = nil, banners: ImageUrls? = nil, departments: [Int]? = nil, discount: String? = nil, logo: BrandLogo? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             
             self.action = action
             
@@ -315,7 +315,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    departments = try container.decode([String].self, forKey: .departments)
+                    departments = try container.decode([Int].self, forKey: .departments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -339,7 +339,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    logo = try container.decode(BrandMedia.self, forKey: .logo)
+                    logo = try container.decode(BrandLogo.self, forKey: .logo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -20,6 +20,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var isPublic: Bool?
         
+        public var isActive: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,15 +31,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case isPublic = "is_public"
             
+            case isActive = "is_active"
+            
         }
 
-        public init(isArchived: Bool? = nil, isDisplay: Bool? = nil, isPublic: Bool? = nil) {
+        public init(isActive: Bool? = nil, isArchived: Bool? = nil, isDisplay: Bool? = nil, isPublic: Bool? = nil) {
             
             self.isArchived = isArchived
             
             self.isDisplay = isDisplay
             
             self.isPublic = isPublic
+            
+            self.isActive = isActive
             
         }
 
@@ -80,6 +86,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -98,6 +116,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(isPublic, forKey: .isPublic)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
         }

@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class GetZoneBulkExport: Codable {
         
         
-        public var items: [String: Any]?
+        public var items: [ZoneBulkItem]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(items: [String: Any]? = nil) {
+        public init(items: [ZoneBulkItem]? = nil) {
             
             self.items = items
             
@@ -32,7 +32,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    items = try container.decode([String: Any].self, forKey: .items)
+                    items = try container.decode([ZoneBulkItem].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class GetZoneBulkExport: Codable {
         
         
-        public var items: [String: Any]?
+        public var items: [ZoneBulkItem]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(items: [String: Any]? = nil) {
+        public init(items: [ZoneBulkItem]? = nil) {
             
             self.items = items
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    items = try container.decode([String: Any].self, forKey: .items)
+                    items = try container.decode([ZoneBulkItem].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

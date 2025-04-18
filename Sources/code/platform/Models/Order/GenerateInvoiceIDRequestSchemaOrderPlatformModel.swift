@@ -12,18 +12,24 @@ public extension PlatformClient.Order {
     class GenerateInvoiceIDRequestSchema: Codable {
         
         
-        public var shipmentIds: [String]
+        public var id: Int
+        
+        public var displayName: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case shipmentIds = "shipment_ids"
+            case id = "id"
+            
+            case displayName = "display_name"
             
         }
 
-        public init(shipmentIds: [String]) {
+        public init(displayName: String, id: Int) {
             
-            self.shipmentIds = shipmentIds
+            self.id = id
+            
+            self.displayName = displayName
             
         }
 
@@ -31,7 +37,12 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                shipmentIds = try container.decode([String].self, forKey: .shipmentIds)
+                id = try container.decode(Int.self, forKey: .id)
+                
+            
+            
+            
+                displayName = try container.decode(String.self, forKey: .displayName)
                 
             
             
@@ -42,7 +53,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(shipmentIds, forKey: .shipmentIds)
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }
@@ -61,18 +77,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class GenerateInvoiceIDRequestSchema: Codable {
         
         
-        public var shipmentIds: [String]
+        public var id: Int
+        
+        public var displayName: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case shipmentIds = "shipment_ids"
+            case id = "id"
+            
+            case displayName = "display_name"
             
         }
 
-        public init(shipmentIds: [String]) {
+        public init(displayName: String, id: Int) {
             
-            self.shipmentIds = shipmentIds
+            self.id = id
+            
+            self.displayName = displayName
             
         }
 
@@ -80,7 +102,12 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                shipmentIds = try container.decode([String].self, forKey: .shipmentIds)
+                id = try container.decode(Int.self, forKey: .id)
+                
+            
+            
+            
+                displayName = try container.decode(String.self, forKey: .displayName)
                 
             
             
@@ -91,7 +118,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(shipmentIds, forKey: .shipmentIds)
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }

@@ -32,7 +32,7 @@ public extension PlatformClient.Order {
         
         public var affiliateBagId: String
         
-        public var id: String?
+        public var adId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -57,11 +57,11 @@ public extension PlatformClient.Order {
             
             case affiliateBagId = "affiliate_bag_id"
             
-            case id = "id"
+            case adId = "ad_id"
             
         }
 
-        public init(affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, config: AffiliateConfig? = nil, id: String? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
+        public init(adId: String? = nil, affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, config: AffiliateConfig? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
             
             self.shipmentMeta = shipmentMeta
             
@@ -83,7 +83,7 @@ public extension PlatformClient.Order {
             
             self.affiliateBagId = affiliateBagId
             
-            self.id = id
+            self.adId = adId
             
         }
 
@@ -170,7 +170,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    adId = try container.decode(String.self, forKey: .adId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -237,7 +237,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(adId, forKey: .adId)
             
             
         }
@@ -276,7 +276,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var affiliateBagId: String
         
-        public var id: String?
+        public var adId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -301,11 +301,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case affiliateBagId = "affiliate_bag_id"
             
-            case id = "id"
+            case adId = "ad_id"
             
         }
 
-        public init(affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, config: AffiliateConfig? = nil, id: String? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
+        public init(adId: String? = nil, affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, config: AffiliateConfig? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
             
             self.shipmentMeta = shipmentMeta
             
@@ -327,7 +327,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.affiliateBagId = affiliateBagId
             
-            self.id = id
+            self.adId = adId
             
         }
 
@@ -414,7 +414,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    adId = try container.decode(String.self, forKey: .adId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -481,7 +481,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(adId, forKey: .adId)
             
             
         }

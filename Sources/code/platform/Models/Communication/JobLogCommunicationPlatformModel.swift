@@ -12,9 +12,9 @@ public extension PlatformClient.Communication {
     class JobLog: Codable {
         
         
-        public var imported: [String: Any]?
+        public var imported: StatsImported?
         
-        public var processed: [String: Any]?
+        public var processed: StatsProcessed?
         
         public var id: String?
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(campaign: String? = nil, createdAt: String? = nil, imported: [String: Any]? = nil, job: String? = nil, processed: [String: Any]? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(campaign: String? = nil, createdAt: String? = nil, imported: StatsImported? = nil, job: String? = nil, processed: StatsProcessed? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.imported = imported
             
@@ -74,7 +74,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    imported = try container.decode([String: Any].self, forKey: .imported)
+                    imported = try container.decode(StatsImported.self, forKey: .imported)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    processed = try container.decode([String: Any].self, forKey: .processed)
+                    processed = try container.decode(StatsProcessed.self, forKey: .processed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,9 +229,9 @@ public extension PlatformClient.ApplicationClient.Communication {
     class JobLog: Codable {
         
         
-        public var imported: [String: Any]?
+        public var imported: StatsImported?
         
-        public var processed: [String: Any]?
+        public var processed: StatsProcessed?
         
         public var id: String?
         
@@ -266,7 +266,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(campaign: String? = nil, createdAt: String? = nil, imported: [String: Any]? = nil, job: String? = nil, processed: [String: Any]? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(campaign: String? = nil, createdAt: String? = nil, imported: StatsImported? = nil, job: String? = nil, processed: StatsProcessed? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.imported = imported
             
@@ -291,7 +291,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    imported = try container.decode([String: Any].self, forKey: .imported)
+                    imported = try container.decode(StatsImported.self, forKey: .imported)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -303,7 +303,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    processed = try container.decode([String: Any].self, forKey: .processed)
+                    processed = try container.decode(StatsProcessed.self, forKey: .processed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -12,7 +12,7 @@ public extension PlatformClient.Payment {
     class ToConfig: Codable {
         
         
-        public var device: [[String: Any]]
+        public var device: [String]
         
         public var businessUnit: String
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(businessUnit: String, device: [[String: Any]]) {
+        public init(businessUnit: String, device: [String]) {
             
             self.device = device
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                device = try container.decode([[String: Any]].self, forKey: .device)
+                device = try container.decode([String].self, forKey: .device)
                 
             
             
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Payment {
     class ToConfig: Codable {
         
         
-        public var device: [[String: Any]]
+        public var device: [String]
         
         public var businessUnit: String
         
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(businessUnit: String, device: [[String: Any]]) {
+        public init(businessUnit: String, device: [String]) {
             
             self.device = device
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                device = try container.decode([[String: Any]].self, forKey: .device)
+                device = try container.decode([String].self, forKey: .device)
                 
             
             

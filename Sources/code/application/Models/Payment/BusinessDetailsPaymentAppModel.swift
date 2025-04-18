@@ -30,6 +30,8 @@ public extension ApplicationClient.Payment {
         
         public var address: KYCAddress?
         
+        public var state: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension ApplicationClient.Payment {
             
             case address = "address"
             
+            case state = "state"
+            
         }
 
-        public init(address: KYCAddress? = nil, businessOwnershipType: String? = nil, businessType: String? = nil, entityType: String? = nil, fda: String? = nil, fssai: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, shopAndEstablishment: [String: Any]? = nil, vintage: String? = nil) {
+        public init(address: KYCAddress? = nil, businessOwnershipType: String? = nil, businessType: String? = nil, entityType: String? = nil, fda: String? = nil, fssai: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, shopAndEstablishment: [String: Any]? = nil, state: String? = nil, vintage: String? = nil) {
             
             self.businessOwnershipType = businessOwnershipType
             
@@ -80,6 +84,8 @@ public extension ApplicationClient.Payment {
             self.name = name
             
             self.address = address
+            
+            self.state = state
             
         }
 
@@ -218,6 +224,18 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                state = try container.decode(String.self, forKey: .state)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -265,6 +283,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(address, forKey: .address)
+            
+            
+            
+            try? container.encodeIfPresent(state, forKey: .state)
             
             
         }

@@ -44,6 +44,16 @@ public extension ApplicationClient.Lead {
         
         public var createdAt: String?
         
+        public var videoRoomId: String?
+        
+        public var subscribers: [String]?
+        
+        public var additionalInfo: [[String: Any]]?
+        
+        public var v: Double?
+        
+        public var attachments: [TicketAsset]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -83,9 +93,19 @@ public extension ApplicationClient.Lead {
             
             case createdAt = "created_at"
             
+            case videoRoomId = "video_room_id"
+            
+            case subscribers = "subscribers"
+            
+            case additionalInfo = "additional_info"
+            
+            case v = "__v"
+            
+            case attachments = "attachments"
+            
         }
 
-        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
+        public init(additionalInfo: [[String: Any]]? = nil, assignedTo: [String: Any]? = nil, attachments: [TicketAsset]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subscribers: [String]? = nil, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, videoRoomId: String? = nil, customJson: [String: Any]? = nil, id: String, v: Double? = nil) {
             
             self.context = context
             
@@ -122,6 +142,16 @@ public extension ApplicationClient.Lead {
             self.updatedAt = updatedAt
             
             self.createdAt = createdAt
+            
+            self.videoRoomId = videoRoomId
+            
+            self.subscribers = subscribers
+            
+            self.additionalInfo = additionalInfo
+            
+            self.v = v
+            
+            self.attachments = attachments
             
         }
 
@@ -309,6 +339,66 @@ public extension ApplicationClient.Lead {
             }
             
             
+            
+            do {
+                videoRoomId = try container.decode(String.self, forKey: .videoRoomId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                subscribers = try container.decode([String].self, forKey: .subscribers)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                additionalInfo = try container.decode([[String: Any]].self, forKey: .additionalInfo)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                v = try container.decode(Double.self, forKey: .v)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                attachments = try container.decode([TicketAsset].self, forKey: .attachments)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -384,6 +474,26 @@ public extension ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            
+            
+            try? container.encodeIfPresent(videoRoomId, forKey: .videoRoomId)
+            
+            
+            
+            try? container.encodeIfPresent(subscribers, forKey: .subscribers)
+            
+            
+            
+            try? container.encodeIfPresent(additionalInfo, forKey: .additionalInfo)
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            try? container.encodeIfPresent(attachments, forKey: .attachments)
             
             
         }

@@ -32,6 +32,8 @@ public extension PlatformClient.Payment {
         
         public var allPrepaymentType: [String]?
         
+        public var allCancellationType: [String]?
+        
         public var allowCustomAdvanceAmount: Bool?
         
 
@@ -57,11 +59,13 @@ public extension PlatformClient.Payment {
             
             case allPrepaymentType = "all_prepayment_type"
             
+            case allCancellationType = "all_cancellation_type"
+            
             case allowCustomAdvanceAmount = "allow_custom_advance_amount"
             
         }
 
-        public init(allowCustomAdvanceAmount: Bool? = nil, allPrepaymentType: [String]? = nil, amount: Double? = nil, cancellationType: String? = nil, description: String? = nil, displayName: String? = nil, isActive: Bool? = nil, prepaymentType: String? = nil, prepaymentValue: Double? = nil, refundTimeLimit: Double? = nil, timeUnit: String? = nil) {
+        public init(allowCustomAdvanceAmount: Bool? = nil, allCancellationType: [String]? = nil, allPrepaymentType: [String]? = nil, amount: Double? = nil, cancellationType: String? = nil, description: String? = nil, displayName: String? = nil, isActive: Bool? = nil, prepaymentType: String? = nil, prepaymentValue: Double? = nil, refundTimeLimit: Double? = nil, timeUnit: String? = nil) {
             
             self.isActive = isActive
             
@@ -82,6 +86,8 @@ public extension PlatformClient.Payment {
             self.refundTimeLimit = refundTimeLimit
             
             self.allPrepaymentType = allPrepaymentType
+            
+            self.allCancellationType = allCancellationType
             
             self.allowCustomAdvanceAmount = allowCustomAdvanceAmount
             
@@ -212,6 +218,18 @@ public extension PlatformClient.Payment {
             
             
                 do {
+                    allCancellationType = try container.decode([String].self, forKey: .allCancellationType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     allowCustomAdvanceAmount = try container.decode(Bool.self, forKey: .allowCustomAdvanceAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -275,6 +293,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(allPrepaymentType, forKey: .allPrepaymentType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allCancellationType, forKey: .allCancellationType)
             
             
             
@@ -318,6 +341,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var allPrepaymentType: [String]?
         
+        public var allCancellationType: [String]?
+        
         public var allowCustomAdvanceAmount: Bool?
         
 
@@ -343,11 +368,13 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case allPrepaymentType = "all_prepayment_type"
             
+            case allCancellationType = "all_cancellation_type"
+            
             case allowCustomAdvanceAmount = "allow_custom_advance_amount"
             
         }
 
-        public init(allowCustomAdvanceAmount: Bool? = nil, allPrepaymentType: [String]? = nil, amount: Double? = nil, cancellationType: String? = nil, description: String? = nil, displayName: String? = nil, isActive: Bool? = nil, prepaymentType: String? = nil, prepaymentValue: Double? = nil, refundTimeLimit: Double? = nil, timeUnit: String? = nil) {
+        public init(allowCustomAdvanceAmount: Bool? = nil, allCancellationType: [String]? = nil, allPrepaymentType: [String]? = nil, amount: Double? = nil, cancellationType: String? = nil, description: String? = nil, displayName: String? = nil, isActive: Bool? = nil, prepaymentType: String? = nil, prepaymentValue: Double? = nil, refundTimeLimit: Double? = nil, timeUnit: String? = nil) {
             
             self.isActive = isActive
             
@@ -368,6 +395,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.refundTimeLimit = refundTimeLimit
             
             self.allPrepaymentType = allPrepaymentType
+            
+            self.allCancellationType = allCancellationType
             
             self.allowCustomAdvanceAmount = allowCustomAdvanceAmount
             
@@ -498,6 +527,18 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
+                    allCancellationType = try container.decode([String].self, forKey: .allCancellationType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     allowCustomAdvanceAmount = try container.decode(Bool.self, forKey: .allowCustomAdvanceAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -561,6 +602,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(allPrepaymentType, forKey: .allPrepaymentType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allCancellationType, forKey: .allCancellationType)
             
             
             

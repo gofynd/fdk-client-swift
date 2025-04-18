@@ -14,11 +14,11 @@ public extension PlatformClient.ApplicationClient.User {
     class UnDeleteUserRequestSchema: Codable {
         
         
-        public var userId: String?
+        public var userId: String
         
-        public var reason: String?
+        public var reason: String
         
-        public var reasonId: String?
+        public var reasonId: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -31,7 +31,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(reason: String? = nil, reasonId: String? = nil, userId: String? = nil) {
+        public init(reason: String, reasonId: String, userId: String) {
             
             self.userId = userId
             
@@ -45,40 +45,19 @@ public extension PlatformClient.ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    userId = try container.decode(String.self, forKey: .userId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                userId = try container.decode(String.self, forKey: .userId)
                 
             
             
-                do {
-                    reason = try container.decode(String.self, forKey: .reason)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                reason = try container.decode(String.self, forKey: .reason)
                 
             
             
-                do {
-                    reasonId = try container.decode(String.self, forKey: .reasonId)
+            
+                reasonId = try container.decode(String.self, forKey: .reasonId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

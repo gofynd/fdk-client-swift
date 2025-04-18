@@ -12,13 +12,13 @@ public extension PlatformClient.Theme {
     class AvailablePageSchemaSections: Codable {
         
         
+        public var id: String?
+        
         public var name: String?
         
         public var label: String?
         
         public var props: [String: Any]?
-        
-        public var customCss: String?
         
         public var blocks: [[String: Any]]?
         
@@ -31,13 +31,13 @@ public extension PlatformClient.Theme {
 
         public enum CodingKeys: String, CodingKey {
             
+            case id = "_id"
+            
             case name = "name"
             
             case label = "label"
             
             case props = "props"
-            
-            case customCss = "custom_css"
             
             case blocks = "blocks"
             
@@ -49,15 +49,15 @@ public extension PlatformClient.Theme {
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, customCss: String? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: SectionSource? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, id: String? = nil, source: SectionSource? = nil) {
+            
+            self.id = id
             
             self.name = name
             
             self.label = label
             
             self.props = props
-            
-            self.customCss = customCss
             
             self.blocks = blocks
             
@@ -71,6 +71,18 @@ public extension PlatformClient.Theme {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -99,18 +111,6 @@ public extension PlatformClient.Theme {
             
                 do {
                     props = try container.decode([String: Any].self, forKey: .props)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    customCss = try container.decode(String.self, forKey: .customCss)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -175,6 +175,11 @@ public extension PlatformClient.Theme {
             
             
             
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
@@ -186,11 +191,6 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(props, forKey: .props)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customCss, forKey: .customCss)
             
             
             
@@ -229,13 +229,13 @@ public extension PlatformClient.ApplicationClient.Theme {
     class AvailablePageSchemaSections: Codable {
         
         
+        public var id: String?
+        
         public var name: String?
         
         public var label: String?
         
         public var props: [String: Any]?
-        
-        public var customCss: String?
         
         public var blocks: [[String: Any]]?
         
@@ -248,13 +248,13 @@ public extension PlatformClient.ApplicationClient.Theme {
 
         public enum CodingKeys: String, CodingKey {
             
+            case id = "_id"
+            
             case name = "name"
             
             case label = "label"
             
             case props = "props"
-            
-            case customCss = "custom_css"
             
             case blocks = "blocks"
             
@@ -266,15 +266,15 @@ public extension PlatformClient.ApplicationClient.Theme {
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, customCss: String? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: SectionSource? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, id: String? = nil, source: SectionSource? = nil) {
+            
+            self.id = id
             
             self.name = name
             
             self.label = label
             
             self.props = props
-            
-            self.customCss = customCss
             
             self.blocks = blocks
             
@@ -288,6 +288,18 @@ public extension PlatformClient.ApplicationClient.Theme {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -316,18 +328,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
                 do {
                     props = try container.decode([String: Any].self, forKey: .props)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    customCss = try container.decode(String.self, forKey: .customCss)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -392,6 +392,11 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
@@ -403,11 +408,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(props, forKey: .props)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customCss, forKey: .customCss)
             
             
             

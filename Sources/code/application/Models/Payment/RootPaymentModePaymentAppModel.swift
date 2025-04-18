@@ -26,13 +26,11 @@ public extension ApplicationClient.Payment {
         
         public var anonymousEnable: Bool?
         
-        public var supportedMethods: [SupportedMethodDetails]?
+        public var paymentModeId: Int?
         
-        public var storedPaymentDetails: [StoredPaymentDetails]?
+        public var logoUrl: PaymentModeLogo?
         
-        public var suggestedList: [String]?
-        
-        public var flow: String?
+        public var version: Version?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -55,17 +53,15 @@ public extension ApplicationClient.Payment {
             
             case anonymousEnable = "anonymous_enable"
             
-            case supportedMethods = "supported_methods"
+            case paymentModeId = "payment_mode_id"
             
-            case storedPaymentDetails = "stored_payment_details"
+            case logoUrl = "logo_url"
             
-            case suggestedList = "suggested_list"
-            
-            case flow = "flow"
+            case version = "version"
             
         }
 
-        public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, flow: String? = nil, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, name: String, saveCard: Bool? = nil, storedPaymentDetails: [StoredPaymentDetails]? = nil, suggestedList: [String]? = nil, supportedMethods: [SupportedMethodDetails]? = nil) {
+        public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, logoUrl: PaymentModeLogo? = nil, name: String, paymentModeId: Int? = nil, saveCard: Bool? = nil, version: Version? = nil) {
             
             self.isPayByCardPl = isPayByCardPl
             
@@ -85,13 +81,11 @@ public extension ApplicationClient.Payment {
             
             self.anonymousEnable = anonymousEnable
             
-            self.supportedMethods = supportedMethods
+            self.paymentModeId = paymentModeId
             
-            self.storedPaymentDetails = storedPaymentDetails
+            self.logoUrl = logoUrl
             
-            self.suggestedList = suggestedList
-            
-            self.flow = flow
+            self.version = version
             
         }
 
@@ -187,7 +181,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                supportedMethods = try container.decode([SupportedMethodDetails].self, forKey: .supportedMethods)
+                paymentModeId = try container.decode(Int.self, forKey: .paymentModeId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,7 +193,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                storedPaymentDetails = try container.decode([StoredPaymentDetails].self, forKey: .storedPaymentDetails)
+                logoUrl = try container.decode(PaymentModeLogo.self, forKey: .logoUrl)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,19 +205,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                suggestedList = try container.decode([String].self, forKey: .suggestedList)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                flow = try container.decode(String.self, forKey: .flow)
+                version = try container.decode(Version.self, forKey: .version)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -275,19 +257,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(supportedMethods, forKey: .supportedMethods)
+            try? container.encodeIfPresent(paymentModeId, forKey: .paymentModeId)
             
             
             
-            try? container.encodeIfPresent(storedPaymentDetails, forKey: .storedPaymentDetails)
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
             
             
             
-            try? container.encodeIfPresent(suggestedList, forKey: .suggestedList)
-            
-            
-            
-            try? container.encodeIfPresent(flow, forKey: .flow)
+            try? container.encodeIfPresent(version, forKey: .version)
             
             
         }

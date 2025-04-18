@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class PincodeMopBulkData: Codable {
         
         
-        public var batchId: String
+        public var batchId: String?
         
         public var s3Url: String
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(batchId: String, s3Url: String) {
+        public init(batchId: String? = nil, s3Url: String) {
             
             self.batchId = batchId
             
@@ -37,9 +37,16 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                batchId = try container.decode(String.self, forKey: .batchId)
+                do {
+                    batchId = try container.decode(String.self, forKey: .batchId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 s3Url = try container.decode(String.self, forKey: .s3Url)
@@ -77,7 +84,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class PincodeMopBulkData: Codable {
         
         
-        public var batchId: String
+        public var batchId: String?
         
         public var s3Url: String
         
@@ -90,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(batchId: String, s3Url: String) {
+        public init(batchId: String? = nil, s3Url: String) {
             
             self.batchId = batchId
             
@@ -102,9 +109,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                batchId = try container.decode(String.self, forKey: .batchId)
+                do {
+                    batchId = try container.decode(String.self, forKey: .batchId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 s3Url = try container.decode(String.self, forKey: .s3Url)

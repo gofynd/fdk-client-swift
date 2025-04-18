@@ -32,6 +32,30 @@ public extension PlatformClient.Payment {
         
         public var merchantOrderId: String?
         
+        public var url: String?
+        
+        public var encdata: String?
+        
+        public var checksum: String?
+        
+        public var mcode: String?
+        
+        public var success: Bool?
+        
+        public var status: String?
+        
+        public var id: String?
+        
+        public var mobile: String?
+        
+        public var user: String?
+        
+        public var merchantTransactionId: String?
+        
+        public var paymentModeIdentifier: String?
+        
+        public var bank: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +79,33 @@ public extension PlatformClient.Payment {
             
             case merchantOrderId = "merchant_order_id"
             
+            case url = "url"
+            
+            case encdata = "encdata"
+            
+            case checksum = "checksum"
+            
+            case mcode = "mcode"
+            
+            case success = "success"
+            
+            case status = "status"
+            
+            case id = "id"
+            
+            case mobile = "mobile"
+            
+            case user = "user"
+            
+            case merchantTransactionId = "merchant_transaction_id"
+            
+            case paymentModeIdentifier = "payment_mode_identifier"
+            
+            case bank = "bank"
+            
         }
 
-        public init(aggregator: String? = nil, amount: Double? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
+        public init(aggregator: String? = nil, amount: Double? = nil, bank: String? = nil, callbackUrl: String? = nil, checksum: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, encdata: String? = nil, id: String? = nil, mcode: String? = nil, merchantOrderId: String? = nil, merchantTransactionId: String? = nil, method: String? = nil, mobile: String? = nil, orderId: String? = nil, paymentModeIdentifier: String? = nil, status: String? = nil, success: Bool? = nil, url: String? = nil, user: String? = nil) {
             
             self.contact = contact
             
@@ -78,6 +126,30 @@ public extension PlatformClient.Payment {
             self.method = method
             
             self.merchantOrderId = merchantOrderId
+            
+            self.url = url
+            
+            self.encdata = encdata
+            
+            self.checksum = checksum
+            
+            self.mcode = mcode
+            
+            self.success = success
+            
+            self.status = status
+            
+            self.id = id
+            
+            self.mobile = mobile
+            
+            self.user = user
+            
+            self.merchantTransactionId = merchantTransactionId
+            
+            self.paymentModeIdentifier = paymentModeIdentifier
+            
+            self.bank = bank
             
         }
 
@@ -204,6 +276,150 @@ public extension PlatformClient.Payment {
                 }
                 
             
+            
+                do {
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    encdata = try container.decode(String.self, forKey: .encdata)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    checksum = try container.decode(String.self, forKey: .checksum)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mcode = try container.decode(String.self, forKey: .mcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    status = try container.decode(String.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mobile = try container.decode(String.self, forKey: .mobile)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    user = try container.decode(String.self, forKey: .user)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    paymentModeIdentifier = try container.decode(String.self, forKey: .paymentModeIdentifier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bank = try container.decode(String.self, forKey: .bank)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -257,6 +473,66 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(url, forKey: .url)
+            
+            
+            
+            
+            try? container.encodeIfPresent(encdata, forKey: .encdata)
+            
+            
+            
+            
+            try? container.encodeIfPresent(checksum, forKey: .checksum)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mcode, forKey: .mcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            
+            
+            
+            try? container.encodeIfPresent(user, forKey: .user)
+            
+            
+            
+            
+            try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentModeIdentifier, forKey: .paymentModeIdentifier)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bank, forKey: .bank)
             
             
         }
@@ -295,6 +571,30 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var merchantOrderId: String?
         
+        public var url: String?
+        
+        public var encdata: String?
+        
+        public var checksum: String?
+        
+        public var mcode: String?
+        
+        public var success: Bool?
+        
+        public var status: String?
+        
+        public var id: String?
+        
+        public var mobile: String?
+        
+        public var user: String?
+        
+        public var merchantTransactionId: String?
+        
+        public var paymentModeIdentifier: String?
+        
+        public var bank: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -318,9 +618,33 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case merchantOrderId = "merchant_order_id"
             
+            case url = "url"
+            
+            case encdata = "encdata"
+            
+            case checksum = "checksum"
+            
+            case mcode = "mcode"
+            
+            case success = "success"
+            
+            case status = "status"
+            
+            case id = "id"
+            
+            case mobile = "mobile"
+            
+            case user = "user"
+            
+            case merchantTransactionId = "merchant_transaction_id"
+            
+            case paymentModeIdentifier = "payment_mode_identifier"
+            
+            case bank = "bank"
+            
         }
 
-        public init(aggregator: String? = nil, amount: Double? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
+        public init(aggregator: String? = nil, amount: Double? = nil, bank: String? = nil, callbackUrl: String? = nil, checksum: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, encdata: String? = nil, id: String? = nil, mcode: String? = nil, merchantOrderId: String? = nil, merchantTransactionId: String? = nil, method: String? = nil, mobile: String? = nil, orderId: String? = nil, paymentModeIdentifier: String? = nil, status: String? = nil, success: Bool? = nil, url: String? = nil, user: String? = nil) {
             
             self.contact = contact
             
@@ -341,6 +665,30 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.method = method
             
             self.merchantOrderId = merchantOrderId
+            
+            self.url = url
+            
+            self.encdata = encdata
+            
+            self.checksum = checksum
+            
+            self.mcode = mcode
+            
+            self.success = success
+            
+            self.status = status
+            
+            self.id = id
+            
+            self.mobile = mobile
+            
+            self.user = user
+            
+            self.merchantTransactionId = merchantTransactionId
+            
+            self.paymentModeIdentifier = paymentModeIdentifier
+            
+            self.bank = bank
             
         }
 
@@ -467,6 +815,150 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
+            
+                do {
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    encdata = try container.decode(String.self, forKey: .encdata)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    checksum = try container.decode(String.self, forKey: .checksum)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mcode = try container.decode(String.self, forKey: .mcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    status = try container.decode(String.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mobile = try container.decode(String.self, forKey: .mobile)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    user = try container.decode(String.self, forKey: .user)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    paymentModeIdentifier = try container.decode(String.self, forKey: .paymentModeIdentifier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bank = try container.decode(String.self, forKey: .bank)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -520,6 +1012,66 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(url, forKey: .url)
+            
+            
+            
+            
+            try? container.encodeIfPresent(encdata, forKey: .encdata)
+            
+            
+            
+            
+            try? container.encodeIfPresent(checksum, forKey: .checksum)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mcode, forKey: .mcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            
+            
+            
+            try? container.encodeIfPresent(user, forKey: .user)
+            
+            
+            
+            
+            try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentModeIdentifier, forKey: .paymentModeIdentifier)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bank, forKey: .bank)
             
             
         }

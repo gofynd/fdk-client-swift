@@ -12,6 +12,8 @@ public extension ApplicationClient.Catalog {
         
         public var marked: Price?
         
+        public var selling: Price?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Catalog {
             
             case marked = "marked"
             
+            case selling = "selling"
+            
         }
 
-        public init(effective: Price? = nil, marked: Price? = nil) {
+        public init(effective: Price? = nil, marked: Price? = nil, selling: Price? = nil) {
             
             self.effective = effective
             
             self.marked = marked
+            
+            self.selling = selling
             
         }
 
@@ -56,6 +62,18 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                selling = try container.decode(Price.self, forKey: .selling)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,6 +85,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(marked, forKey: .marked)
+            
+            
+            
+            try? container.encodeIfPresent(selling, forKey: .selling)
             
             
         }

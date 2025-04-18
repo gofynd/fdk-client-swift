@@ -14,7 +14,7 @@ public extension ApplicationClient.Logistic {
         
         public var name: String?
         
-        public var promise: Promise?
+        public var promise: PromiseDetails?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(code: String? = nil, name: String? = nil, promise: Promise? = nil, uid: Int? = nil) {
+        public init(code: String? = nil, name: String? = nil, promise: PromiseDetails? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
@@ -82,7 +82,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                promise = try container.decode(Promise.self, forKey: .promise)
+                promise = try container.decode(PromiseDetails.self, forKey: .promise)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

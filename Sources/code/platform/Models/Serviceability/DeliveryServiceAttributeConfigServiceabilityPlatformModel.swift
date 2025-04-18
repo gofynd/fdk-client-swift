@@ -18,8 +18,6 @@ public extension PlatformClient.Serviceability {
         
         public var isHolidayEnabled: Bool?
         
-        public var isAllDpsConsidered: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,19 +27,15 @@ public extension PlatformClient.Serviceability {
             
             case isHolidayEnabled = "is_holiday_enabled"
             
-            case isAllDpsConsidered = "is_all_dps_considered"
-            
         }
 
-        public init(isAllDpsConsidered: Bool? = nil, isHolidayEnabled: Bool? = nil, isPickupCutoffTimeEnabled: Bool? = nil, isServiceTatEnabled: Bool? = nil) {
+        public init(isHolidayEnabled: Bool? = nil, isPickupCutoffTimeEnabled: Bool? = nil, isServiceTatEnabled: Bool? = nil) {
             
             self.isPickupCutoffTimeEnabled = isPickupCutoffTimeEnabled
             
             self.isServiceTatEnabled = isServiceTatEnabled
             
             self.isHolidayEnabled = isHolidayEnabled
-            
-            self.isAllDpsConsidered = isAllDpsConsidered
             
         }
 
@@ -84,18 +78,6 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
-            
-                do {
-                    isAllDpsConsidered = try container.decode(Bool.self, forKey: .isAllDpsConsidered)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -114,11 +96,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(isHolidayEnabled, forKey: .isHolidayEnabled)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isAllDpsConsidered, forKey: .isAllDpsConsidered)
             
             
         }
@@ -143,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isHolidayEnabled: Bool?
         
-        public var isAllDpsConsidered: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -154,19 +129,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isHolidayEnabled = "is_holiday_enabled"
             
-            case isAllDpsConsidered = "is_all_dps_considered"
-            
         }
 
-        public init(isAllDpsConsidered: Bool? = nil, isHolidayEnabled: Bool? = nil, isPickupCutoffTimeEnabled: Bool? = nil, isServiceTatEnabled: Bool? = nil) {
+        public init(isHolidayEnabled: Bool? = nil, isPickupCutoffTimeEnabled: Bool? = nil, isServiceTatEnabled: Bool? = nil) {
             
             self.isPickupCutoffTimeEnabled = isPickupCutoffTimeEnabled
             
             self.isServiceTatEnabled = isServiceTatEnabled
             
             self.isHolidayEnabled = isHolidayEnabled
-            
-            self.isAllDpsConsidered = isAllDpsConsidered
             
         }
 
@@ -209,18 +180,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
-            
-                do {
-                    isAllDpsConsidered = try container.decode(Bool.self, forKey: .isAllDpsConsidered)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -239,11 +198,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(isHolidayEnabled, forKey: .isHolidayEnabled)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isAllDpsConsidered, forKey: .isAllDpsConsidered)
             
             
         }

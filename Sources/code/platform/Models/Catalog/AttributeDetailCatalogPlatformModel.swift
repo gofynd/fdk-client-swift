@@ -12,7 +12,15 @@ public extension PlatformClient.Catalog {
     class AttributeDetail: Codable {
         
         
-        public var id: [String]?
+        public var createdOn: String?
+        
+        public var modifiedOn: String?
+        
+        public var createdBy: CreatedBy?
+        
+        public var modifiedBy: CreatedBy?
+        
+        public var departments: [String]?
         
         public var description: String?
         
@@ -21,6 +29,8 @@ public extension PlatformClient.Catalog {
         public var enabledForEndConsumer: Bool?
         
         public var filters: AttributeMasterFilter?
+        
+        public var id: String?
         
         public var isNested: Bool?
         
@@ -34,10 +44,20 @@ public extension PlatformClient.Catalog {
         
         public var slug: String?
         
+        public var variant: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case createdOn = "created_on"
+            
+            case modifiedOn = "modified_on"
+            
+            case createdBy = "created_by"
+            
+            case modifiedBy = "modified_by"
+            
+            case departments = "departments"
             
             case description = "description"
             
@@ -46,6 +66,8 @@ public extension PlatformClient.Catalog {
             case enabledForEndConsumer = "enabled_for_end_consumer"
             
             case filters = "filters"
+            
+            case id = "_id"
             
             case isNested = "is_nested"
             
@@ -59,11 +81,21 @@ public extension PlatformClient.Catalog {
             
             case slug = "slug"
             
+            case variant = "variant"
+            
         }
 
-        public init(description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil, id: [String]? = nil) {
+        public init(createdBy: CreatedBy? = nil, createdOn: String? = nil, departments: [String]? = nil, description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, modifiedBy: CreatedBy? = nil, modifiedOn: String? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil, variant: Bool? = nil, id: String? = nil) {
             
-            self.id = id
+            self.createdOn = createdOn
+            
+            self.modifiedOn = modifiedOn
+            
+            self.createdBy = createdBy
+            
+            self.modifiedBy = modifiedBy
+            
+            self.departments = departments
             
             self.description = description
             
@@ -72,6 +104,8 @@ public extension PlatformClient.Catalog {
             self.enabledForEndConsumer = enabledForEndConsumer
             
             self.filters = filters
+            
+            self.id = id
             
             self.isNested = isNested
             
@@ -85,6 +119,8 @@ public extension PlatformClient.Catalog {
             
             self.slug = slug
             
+            self.variant = variant
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -92,7 +128,55 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    id = try container.decode([String].self, forKey: .id)
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode(CreatedBy.self, forKey: .modifiedBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    departments = try container.decode([String].self, forKey: .departments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,6 +225,18 @@ public extension PlatformClient.Catalog {
             
                 do {
                     filters = try container.decode(AttributeMasterFilter.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,6 +318,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    variant = try container.decode(Bool.self, forKey: .variant)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -229,7 +337,27 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(departments, forKey: .departments)
             
             
             
@@ -250,6 +378,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -280,6 +413,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(variant, forKey: .variant)
             
             
         }
@@ -298,7 +436,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AttributeDetail: Codable {
         
         
-        public var id: [String]?
+        public var createdOn: String?
+        
+        public var modifiedOn: String?
+        
+        public var createdBy: CreatedBy?
+        
+        public var modifiedBy: CreatedBy?
+        
+        public var departments: [String]?
         
         public var description: String?
         
@@ -307,6 +453,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var enabledForEndConsumer: Bool?
         
         public var filters: AttributeMasterFilter?
+        
+        public var id: String?
         
         public var isNested: Bool?
         
@@ -320,10 +468,20 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var slug: String?
         
+        public var variant: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case createdOn = "created_on"
+            
+            case modifiedOn = "modified_on"
+            
+            case createdBy = "created_by"
+            
+            case modifiedBy = "modified_by"
+            
+            case departments = "departments"
             
             case description = "description"
             
@@ -332,6 +490,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case enabledForEndConsumer = "enabled_for_end_consumer"
             
             case filters = "filters"
+            
+            case id = "_id"
             
             case isNested = "is_nested"
             
@@ -345,11 +505,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case slug = "slug"
             
+            case variant = "variant"
+            
         }
 
-        public init(description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil, id: [String]? = nil) {
+        public init(createdBy: CreatedBy? = nil, createdOn: String? = nil, departments: [String]? = nil, description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, modifiedBy: CreatedBy? = nil, modifiedOn: String? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil, variant: Bool? = nil, id: String? = nil) {
             
-            self.id = id
+            self.createdOn = createdOn
+            
+            self.modifiedOn = modifiedOn
+            
+            self.createdBy = createdBy
+            
+            self.modifiedBy = modifiedBy
+            
+            self.departments = departments
             
             self.description = description
             
@@ -358,6 +528,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.enabledForEndConsumer = enabledForEndConsumer
             
             self.filters = filters
+            
+            self.id = id
             
             self.isNested = isNested
             
@@ -371,6 +543,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.slug = slug
             
+            self.variant = variant
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -378,7 +552,55 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    id = try container.decode([String].self, forKey: .id)
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode(CreatedBy.self, forKey: .modifiedBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    departments = try container.decode([String].self, forKey: .departments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -427,6 +649,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     filters = try container.decode(AttributeMasterFilter.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -508,6 +742,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    variant = try container.decode(Bool.self, forKey: .variant)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -515,7 +761,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(departments, forKey: .departments)
             
             
             
@@ -536,6 +802,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -566,6 +837,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(variant, forKey: .variant)
             
             
         }
