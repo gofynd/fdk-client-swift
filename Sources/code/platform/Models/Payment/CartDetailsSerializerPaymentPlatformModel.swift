@@ -22,8 +22,6 @@ public extension PlatformClient.Payment {
         
         public var customCartMeta: [String: Any]?
         
-        public var cartCharges: [[String: Any]]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension PlatformClient.Payment {
             
             case customCartMeta = "custom_cart_meta"
             
-            case cartCharges = "cart_charges"
-            
         }
 
-        public init(articles: [[String: Any]], cartCharges: [[String: Any]]? = nil, cartValue: Double, customCartMeta: [String: Any]? = nil, items: [String: Any], totalQuantity: Int? = nil) {
+        public init(articles: [[String: Any]], cartValue: Double, customCartMeta: [String: Any]? = nil, items: [String: Any], totalQuantity: Int? = nil) {
             
             self.items = items
             
@@ -52,8 +48,6 @@ public extension PlatformClient.Payment {
             self.totalQuantity = totalQuantity
             
             self.customCartMeta = customCartMeta
-            
-            self.cartCharges = cartCharges
             
         }
 
@@ -99,18 +93,6 @@ public extension PlatformClient.Payment {
                 }
                 
             
-            
-                do {
-                    cartCharges = try container.decode([[String: Any]].self, forKey: .cartCharges)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -139,11 +121,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cartCharges, forKey: .cartCharges)
             
             
         }
@@ -172,8 +149,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var customCartMeta: [String: Any]?
         
-        public var cartCharges: [[String: Any]]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -187,11 +162,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case customCartMeta = "custom_cart_meta"
             
-            case cartCharges = "cart_charges"
-            
         }
 
-        public init(articles: [[String: Any]], cartCharges: [[String: Any]]? = nil, cartValue: Double, customCartMeta: [String: Any]? = nil, items: [String: Any], totalQuantity: Int? = nil) {
+        public init(articles: [[String: Any]], cartValue: Double, customCartMeta: [String: Any]? = nil, items: [String: Any], totalQuantity: Int? = nil) {
             
             self.items = items
             
@@ -202,8 +175,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.totalQuantity = totalQuantity
             
             self.customCartMeta = customCartMeta
-            
-            self.cartCharges = cartCharges
             
         }
 
@@ -249,18 +220,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
-            
-                do {
-                    cartCharges = try container.decode([[String: Any]].self, forKey: .cartCharges)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -289,11 +248,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cartCharges, forKey: .cartCharges)
             
             
         }

@@ -16,8 +16,6 @@ public extension ApplicationClient.Payment {
         
         public var message: String
         
-        public var error: PaymentLinkError?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,11 +27,9 @@ public extension ApplicationClient.Payment {
             
             case message = "message"
             
-            case error = "error"
-            
         }
 
-        public init(error: PaymentLinkError? = nil, message: String, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
+        public init(message: String, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
             
             self.statusCode = statusCode
             
@@ -42,8 +38,6 @@ public extension ApplicationClient.Payment {
             self.success = success
             
             self.message = message
-            
-            self.error = error
             
         }
 
@@ -77,18 +71,6 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            do {
-                error = try container.decode(PaymentLinkError.self, forKey: .error)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -108,10 +90,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

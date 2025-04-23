@@ -14,9 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var items: [InventoryResponseItem]?
         
-        public var message: String?
-        
-        public var success: Bool?
+        public var message: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,17 +23,13 @@ public extension PlatformClient.Catalog {
             
             case message = "message"
             
-            case success = "success"
-            
         }
 
-        public init(items: [InventoryResponseItem]? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(items: [InventoryResponseItem]? = nil, message: String) {
             
             self.items = items
             
             self.message = message
-            
-            self.success = success
             
         }
 
@@ -55,28 +49,9 @@ public extension PlatformClient.Catalog {
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                message = try container.decode(String.self, forKey: .message)
                 
             
-            
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -91,11 +66,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -116,9 +86,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var items: [InventoryResponseItem]?
         
-        public var message: String?
-        
-        public var success: Bool?
+        public var message: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -127,17 +95,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case message = "message"
             
-            case success = "success"
-            
         }
 
-        public init(items: [InventoryResponseItem]? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(items: [InventoryResponseItem]? = nil, message: String) {
             
             self.items = items
             
             self.message = message
-            
-            self.success = success
             
         }
 
@@ -157,28 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                message = try container.decode(String.self, forKey: .message)
                 
             
-            
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -193,11 +138,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

@@ -12,8 +12,6 @@ public extension PlatformClient.Theme {
     class AvailablePageSchemaSections: Codable {
         
         
-        public var id: String?
-        
         public var name: String?
         
         public var label: String?
@@ -26,12 +24,10 @@ public extension PlatformClient.Theme {
         
         public var predicate: AvailablePagePredicate?
         
-        public var source: SectionSource?
+        public var source: String?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "_id"
             
             case name = "name"
             
@@ -45,13 +41,11 @@ public extension PlatformClient.Theme {
             
             case predicate = "predicate"
             
-            case source = "__source"
+            case source = "source"
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, id: String? = nil, source: SectionSource? = nil) {
-            
-            self.id = id
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: String? = nil) {
             
             self.name = name
             
@@ -71,18 +65,6 @@ public extension PlatformClient.Theme {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -158,7 +140,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    source = try container.decode(SectionSource.self, forKey: .source)
+                    source = try container.decode(String.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,11 +154,6 @@ public extension PlatformClient.Theme {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -229,8 +206,6 @@ public extension PlatformClient.ApplicationClient.Theme {
     class AvailablePageSchemaSections: Codable {
         
         
-        public var id: String?
-        
         public var name: String?
         
         public var label: String?
@@ -243,12 +218,10 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var predicate: AvailablePagePredicate?
         
-        public var source: SectionSource?
+        public var source: String?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "_id"
             
             case name = "name"
             
@@ -262,13 +235,11 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case predicate = "predicate"
             
-            case source = "__source"
+            case source = "source"
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, id: String? = nil, source: SectionSource? = nil) {
-            
-            self.id = id
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: String? = nil) {
             
             self.name = name
             
@@ -288,18 +259,6 @@ public extension PlatformClient.ApplicationClient.Theme {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -375,7 +334,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    source = try container.decode(SectionSource.self, forKey: .source)
+                    source = try container.decode(String.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -389,11 +348,6 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             

@@ -14,11 +14,9 @@ public extension PlatformClient.ApplicationClient.User {
     class CreateUserSessionRequestSchema: Codable {
         
         
-        public var domain: String
+        public var domain: String?
         
-        public var userId: String
-        
-        public var maxAge: Double?
+        public var userId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,17 +25,13 @@ public extension PlatformClient.ApplicationClient.User {
             
             case userId = "user_id"
             
-            case maxAge = "max_age"
-            
         }
 
-        public init(domain: String, maxAge: Double? = nil, userId: String) {
+        public init(domain: String? = nil, userId: String? = nil) {
             
             self.domain = domain
             
             self.userId = userId
-            
-            self.maxAge = maxAge
             
         }
 
@@ -45,18 +39,20 @@ public extension PlatformClient.ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                domain = try container.decode(String.self, forKey: .domain)
+                do {
+                    domain = try container.decode(String.self, forKey: .domain)
                 
-            
-            
-            
-                userId = try container.decode(String.self, forKey: .userId)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
             
                 do {
-                    maxAge = try container.decode(Double.self, forKey: .maxAge)
+                    userId = try container.decode(String.self, forKey: .userId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,11 +75,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(userId, forKey: .userId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(maxAge, forKey: .maxAge)
             
             
         }

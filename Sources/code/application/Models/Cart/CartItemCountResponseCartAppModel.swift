@@ -10,16 +10,22 @@ public extension ApplicationClient.Cart {
         
         public var userCartItemsCount: Int?
         
+        public var userCartArticleCount: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case userCartItemsCount = "user_cart_items_count"
             
+            case userCartArticleCount = "user_cart_article_count"
+            
         }
 
-        public init(userCartItemsCount: Int? = nil) {
+        public init(userCartArticleCount: Int? = nil, userCartItemsCount: Int? = nil) {
             
             self.userCartItemsCount = userCartItemsCount
+            
+            self.userCartArticleCount = userCartArticleCount
             
         }
 
@@ -38,6 +44,18 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                userCartArticleCount = try container.decode(Int.self, forKey: .userCartArticleCount)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -45,6 +63,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(userCartItemsCount, forKey: .userCartItemsCount)
+            
+            
+            
+            try? container.encodeIfPresent(userCartArticleCount, forKey: .userCartArticleCount)
             
             
         }

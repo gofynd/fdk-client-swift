@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Start file upload.
-        * Description: Inititates the process of uploading a file to storage location, and returns a storage link in response.
+        * Summary: Start file upload
+        * Description: Inititates the process of uploading a file to storage location, and returns a storage link in response at platform level. Please refer group description for more details.
         **/
         public func startUpload(
             namespace: String,
@@ -37,7 +37,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/assets/v2.0/company/\(companyId)/namespaces/\(namespace)/upload/start",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/start",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -67,8 +67,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Complete file upload.
-        * Description: Starts the process of uploading a file to storage location, and returns a storage link in response.
+        * Summary: Complete file upload
+        * Description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database at platform level
         **/
         public func completeUpload(
             namespace: String,
@@ -88,7 +88,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/assets/v2.0/company/\(companyId)/namespaces/\(namespace)/upload/complete",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/complete",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -120,8 +120,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get signed URLs.
-        * Description: Retrieve signed URLs for file access.
+        * Summary: Get signed URLs
+        * Description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored resources inside private bucket.
         **/
         public func getSignUrls(
             body: SignUrlRequest,
@@ -170,8 +170,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Copy files.
-        * Description: Duplicate files to another location.
+        * Summary: Copy files
+        * Description: Handle multiple file uploads, updating progress and providing detailed status reports.
         **/
         public func copyFiles(
             sync: Bool?,
@@ -226,7 +226,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Browse files.
+        * Summary: Browse files
         * Description: View and navigate through available files.
         **/
         public func browse(
@@ -287,22 +287,10 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: Proxy file access.
-        * Description: Access files through a proxy.
+        * Summary: Access files through a proxy
+        * Description: It enables the communication between two entities by directing client requests to the correct server and sending responses back to the client. Please refer group description for more details.
         **/
         public func proxy(
             url: String,
@@ -348,5 +336,12 @@ extension PlatformClient {
                     }
             });
         }
+        
+        
+        
+        
+        
+        
+        
     }
 }

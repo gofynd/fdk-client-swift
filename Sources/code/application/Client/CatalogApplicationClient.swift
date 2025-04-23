@@ -11,65 +11,67 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["getProductDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}") 
+            ulrs["getProductDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/") 
             
-            ulrs["getProductSizesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/sizes") 
+            ulrs["getProductSizesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/sizes/") 
             
-            ulrs["getProductComparisonBySlugs"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/compare") 
+            ulrs["getProductComparisonBySlugs"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/compare/") 
             
-            ulrs["getSimilarComparisonProductBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/similar/compare") 
+            ulrs["getSimilarComparisonProductBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/similar/compare/") 
             
-            ulrs["getComparedFrequentlyProductBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently") 
+            ulrs["getComparedFrequentlyProductBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently/") 
             
-            ulrs["getProductVariantsBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/variants") 
+            ulrs["getProductVariantsBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/variants/") 
             
-            ulrs["getProductStockByIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/stock-status") 
+            ulrs["getProductStockByIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/stock-status/") 
             
-            ulrs["getProductStockForTimeByIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/stock-status/poll") 
+            ulrs["getProductStockForTimeByIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/stock-status/poll/") 
             
-            ulrs["getProducts"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products") 
+            ulrs["getProducts"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/") 
             
-            ulrs["getBrands"] = config.domain.appendAsPath("/service/application/catalog/v1.0/brands") 
+            ulrs["getBrands"] = config.domain.appendAsPath("/service/application/catalog/v1.0/brands/") 
             
-            ulrs["getBrandDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/brands/{slug}") 
+            ulrs["getBrandDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/brands/{slug}/") 
             
-            ulrs["getCategories"] = config.domain.appendAsPath("/service/application/catalog/v1.0/categories") 
+            ulrs["getCategories"] = config.domain.appendAsPath("/service/application/catalog/v1.0/categories/") 
             
-            ulrs["getCategoryDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/categories/{slug}") 
+            ulrs["getCategoryDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/categories/{slug}/") 
             
-            ulrs["getHomeProducts"] = config.domain.appendAsPath("/service/application/catalog/v1.0/home/listing") 
+            ulrs["getHomeProducts"] = config.domain.appendAsPath("/service/application/catalog/v1.0/home/listing/") 
             
-            ulrs["getDepartments"] = config.domain.appendAsPath("/service/application/catalog/v1.0/departments") 
+            ulrs["getDepartments"] = config.domain.appendAsPath("/service/application/catalog/v1.0/departments/") 
             
-            ulrs["getSearchResults"] = config.domain.appendAsPath("/service/application/catalog/v1.0/auto-complete") 
+            ulrs["getSearchResults"] = config.domain.appendAsPath("/service/application/catalog/v1.0/auto-complete/") 
             
-            ulrs["getCollections"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections") 
+            ulrs["getCollections"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/") 
             
-            ulrs["getCollectionItemsBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/{slug}/items") 
+            ulrs["getCollectionItemsBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/{slug}/items/") 
             
-            ulrs["getCollectionDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/{slug}") 
+            ulrs["getCollectionDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/{slug}/") 
             
-            ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}") 
+            ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/") 
             
-            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}") 
+            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
             
-            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}") 
+            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
             
-            ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count") 
+            ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/") 
             
-            ulrs["getFollowIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/ids") 
+            ulrs["getFollowIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/ids/") 
             
-            ulrs["getStores"] = config.domain.appendAsPath("/service/application/catalog/v2.0/locations") 
+            ulrs["getStores"] = config.domain.appendAsPath("/service/application/catalog/v1.0/locations/") 
             
-            ulrs["getInStockLocations"] = config.domain.appendAsPath("/service/application/catalog/v2.0/in-stock/locations") 
+            ulrs["getInStockLocations"] = config.domain.appendAsPath("/service/application/catalog/v1.0/in-stock/locations/") 
             
-            ulrs["getLocationDetailsById"] = config.domain.appendAsPath("/service/application/catalog/v2.0/locations/{location_id}") 
+            ulrs["getLocationDetailsById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/locations/{location_id}/") 
             
-            ulrs["getProductBundlesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v2.0/product-grouping") 
+            ulrs["getProductBundlesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/product-grouping/") 
             
-            ulrs["getProductPriceBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/sizes/price") 
+            ulrs["getProductPriceBySlug"] = config.domain.appendAsPath("/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/") 
             
-            ulrs["getProductSellersBySlug"] = config.domain.appendAsPath("/service/application/catalog/v4.0/products/{slug}/sizes/{size}/sellers") 
+            ulrs["getProductsServiceability"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/serviceability") 
+            
+            ulrs["getProductSellersBySlug"] = config.domain.appendAsPath("/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/") 
             
             self.relativeUrls = ulrs
         }
@@ -83,7 +85,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches detailed product information by slug.
+        * Summary: Get a product
         * Description: Get product details such as price, attributes, HSN code, SKU code, etc.
         **/
         public func getProductDetailBySlug(
@@ -138,7 +140,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves available sizes for a product by slug.
+        * Summary: List sizes
         * Description: Provides detailed information about a product, including its availability (sellable), available sizes with quantities, dimensions, weight, availability status, price details (marked, effective, selling), minimum order quantity (MOQ).
         **/
         public func getProductSizesBySlug(
@@ -198,7 +200,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Compares multiple products by slugs.
+        * Summary: List products for comparison
         * Description: Get all the products that have the same category.
         **/
         public func getProductComparisonBySlugs(
@@ -252,7 +254,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches similar products for comparison.
+        * Summary: List similar products
         * Description: Get all products within the same category as the one specified by the provided slug.
         **/
         public func getSimilarComparisonProductBySlug(
@@ -307,7 +309,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves products frequently compared with a given product.
+        * Summary: List frequent products
         * Description: Get products that are often compared to the product specified by its slug.
         **/
         public func getComparedFrequentlyProductBySlug(
@@ -362,7 +364,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves product variants by slug.
+        * Summary: List product variants
         * Description: Get all available variants of a specific product identified by its slug.
         **/
         public func getProductVariantsBySlug(
@@ -417,11 +419,11 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Checks product stock by IDs.
+        * Summary: Get product stocks
         * Description: Get the current stock status for products identified by their IDs, such as SKU, ALU, EAN, etc.
         **/
         public func getProductStockByIds(
-            itemId: Int?,
+            itemId: String?,
             alu: String?,
             skuCode: String?,
             ean: String?,
@@ -494,7 +496,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches future stock data for products.
+        * Summary: List future stock
         * Description: Get the available stock levels for all products associated with a particular sales channel at a specified future time.
         **/
         public func getProductStockForTimeByIds(
@@ -594,7 +596,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists all products.
+        * Summary: List products
         * Description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria.
         **/
         public func getProducts(
@@ -740,7 +742,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches all available brands.
+        * Summary: List brands
         * Description: Get a list of all the available brands. Filtering can be applied to the department.
         **/
         public func getBrands(
@@ -842,7 +844,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves detailed brand info by slug.
+        * Summary: Get a brand
         * Description: Get metadata of a brand such as name, information, logo, banner, etc.
         **/
         public func getBrandDetailBySlug(
@@ -897,7 +899,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists all product categories.
+        * Summary: List product categories
         * Description: List all available product categories. Also, users can filter the categories by department.
         **/
         public func getCategories(
@@ -954,7 +956,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves category details by slug.
+        * Summary: Get category by slug
         * Description: Get detailed information about a specific product category using its slug and get metadata of a category such as name, information, logo, banner, etc.
         **/
         public func getCategoryDetailBySlug(
@@ -1009,7 +1011,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches homepage-featured products.
+        * Summary: List homepage-featured products
         * Description: List all the products associated with a brand, collection or category in a random order.
         **/
         public func getHomeProducts(
@@ -1112,7 +1114,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists all departments.
+        * Summary: List departments
         * Description: List all departments associated with available products.
         **/
         public func getDepartments(
@@ -1164,7 +1166,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves search result listings.
+        * Summary: List product, brand, category
         * Description: Get products, brands, or categories based on a search query, which can be a partial or full name match.
         **/
         public func getSearchResults(
@@ -1218,7 +1220,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches all available collections.
+        * Summary: List collections
         * Description: List of curated product collections with filtering options based on tags and collection names.
         **/
         public func getCollections(
@@ -1329,7 +1331,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists items in a collection by slug.
+        * Summary: Lists items of collection
         * Description: Fetch items within a particular collection identified by its slug.
         **/
         public func getCollectionItemsBySlug(
@@ -1482,7 +1484,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves collection details by slug.
+        * Summary: Get a collection
         * Description: Get detailed information about a specific collection using its slug.
         **/
         public func getCollectionDetailBySlug(
@@ -1537,7 +1539,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves user's followed listings.
+        * Summary: List followed products, brands
         * Description: Get a list of products or brands the user is following.
         **/
         public func getFollowedListing(
@@ -1638,7 +1640,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Unfollows an item by ID.
+        * Summary: Delete item, brand, product
         * Description: Remove a followed item, brand, or product using its collection ID.
         **/
         public func unfollowById(
@@ -1696,7 +1698,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Follows an item by ID.
+        * Summary: Create item, brand, product
         * Description: Add a product, brand, or item to the user's followed list by collection Id.
         **/
         public func followById(
@@ -1754,12 +1756,12 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves follower count for an item.
+        * Summary: Get follower count
         * Description: Get the total number of followers for a specific item by its ID.
         **/
         public func getFollowerCountById(
             collectionType: String,
-            collectionId: Int,
+            collectionId: String,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FollowerCountResponse?, _ error: FDKError?) -> Void
@@ -1812,7 +1814,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches IDs of followed items.
+        * Summary: List Ids of followed item, brand, product
         * Description: Get the IDs of all items the user is currently following, such as Products, Brands, and Collections.
         **/
         public func getFollowIds(
@@ -1869,7 +1871,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get store meta information.
+        * Summary: List available stores
         * Description: List all stores associated with the sales channel.
         **/
         public func getStores(
@@ -1880,6 +1882,7 @@ extension ApplicationClient {
             range: Int?,
             latitude: Double?,
             longitude: Double?,
+            tags: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
@@ -1913,6 +1916,10 @@ extension ApplicationClient {
             
             if let value = longitude {
                 xQuery["longitude"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -1965,6 +1972,8 @@ extension ApplicationClient {
         
         
         
+        
+        
         /**
         *
         * Summary: get paginator for getStores
@@ -1977,6 +1986,7 @@ extension ApplicationClient {
             range: Int?,
             latitude: Double?,
             longitude: Double?,
+            tags: String?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<StoreListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1990,6 +2000,7 @@ extension ApplicationClient {
                     range: range,
                     latitude: latitude,
                     longitude: longitude,
+                    tags: tags,
                     
                     headers: headers
                 ) { response, error in                    
@@ -2007,7 +2018,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get store meta information.
+        * Summary: List stores with inventory
         * Description: List stores where specified products are currently in stock.
         **/
         public func getInStockLocations(
@@ -2145,7 +2156,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get store meta information.
+        * Summary: Get selling location
         * Description: Get details about a store based on its location Id.
         **/
         public func getLocationDetailsById(
@@ -2200,14 +2211,12 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches product bundles by slug.
+        * Summary: List product bundles
         * Description: Get products bundles to the one specified by its slug.
         **/
         public func getProductBundlesBySlug(
             slug: String?,
-            id: Int?,
-            size: String?,
-            sellerId: Int?,
+            id: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductBundle?, _ error: FDKError?) -> Void
@@ -2221,14 +2230,6 @@ extension ApplicationClient {
             
             if let value = id {
                 xQuery["id"] = value
-            }
-            
-            if let value = size {
-                xQuery["size"] = value
-            }
-            
-            if let value = sellerId {
-                xQuery["seller_id"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2272,13 +2273,81 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: get size price for multiple products
+        * Summary: Get product price
         * Description: Get the price of a product size at all the selling locations near to a PIN Code.
         **/
         public func getProductPriceBySlug(
-            body: ProductSizePriceV1Request,
+            slug: String,
+            size: String,
+            storeId: Int?,
+            moq: Int?,
+            
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductSizePriceResponseV1?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductSizePriceResponseV3?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
+            
+            if let value = moq {
+                xQuery["moq"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["getProductPriceBySlug"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "size" + "}", with: "\(size)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ProductSizePriceResponseV3.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: get size price for multiple products,For serviceability
+        * Description: Get size price for multiple products, For serviceability, with reduced size of response
+        **/
+        public func getProductsServiceability(
+            body: ProductSizePriceServiceabilityRequest,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: ProductSizePriceServiceabilityResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2290,7 +2359,7 @@ extension ApplicationClient {
                 xHeaders.append(contentsOf: headers)
             }
             
-            let fullUrl = relativeUrls["getProductPriceBySlug"] ?? ""
+            let fullUrl = relativeUrls["getProductsServiceability"] ?? ""
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -2309,7 +2378,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductSizePriceResponseV1.self, from: data)
+                        let response = Utility.decode(ProductSizePriceServiceabilityResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2324,26 +2393,21 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get the sellers of a product size at a PIN Code
+        * Summary: List sellers
         * Description: List all sellers offering a specific product identified by its slug and size.
         **/
         public func getProductSellersBySlug(
             slug: String,
             size: String,
-            pincode: String?,
             strategy: String?,
             pageNo: Int?,
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductSizeSellersResponseV4?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductSizeSellersResponseV3?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            
-            if let value = pincode {
-                xQuery["pincode"] = value
-            }
             
             if let value = strategy {
                 xQuery["strategy"] = value
@@ -2387,7 +2451,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductSizeSellersResponseV4.self, from: data)
+                        let response = Utility.decode(ProductSizeSellersResponseV3.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2407,8 +2471,6 @@ extension ApplicationClient {
         
         
         
-        
-        
         /**
         *
         * Summary: get paginator for getProductSellersBySlug
@@ -2417,18 +2479,16 @@ extension ApplicationClient {
         public func getProductSellersBySlugPaginator(
             slug: String,
             size: String,
-            pincode: String?,
             strategy: String?,
             pageSize: Int?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<ProductSizeSellersResponseV4> {
+            ) -> Paginator<ProductSizeSellersResponseV3> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductSizeSellersResponseV4>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<ProductSizeSellersResponseV3>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getProductSellersBySlug(
                     slug: slug,
                     size: size,
-                    pincode: pincode,
                     strategy: strategy,
                     pageNo: paginator.pageNo,
                     pageSize: paginator.pageSize,

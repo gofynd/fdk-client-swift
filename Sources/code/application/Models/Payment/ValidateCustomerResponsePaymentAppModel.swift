@@ -8,13 +8,11 @@ public extension ApplicationClient.Payment {
     */
     class ValidateCustomerResponse: Codable {
         
-        public var data: ValidateCustomer?
+        public var data: [String: Any]?
         
         public var success: Bool
         
         public var message: String
-        
-        public var error: ValidateCustomer?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,19 +23,15 @@ public extension ApplicationClient.Payment {
             
             case message = "message"
             
-            case error = "error"
-            
         }
 
-        public init(data: ValidateCustomer? = nil, error: ValidateCustomer? = nil, message: String, success: Bool) {
+        public init(data: [String: Any]? = nil, message: String, success: Bool) {
             
             self.data = data
             
             self.success = success
             
             self.message = message
-            
-            self.error = error
             
         }
 
@@ -46,7 +40,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                data = try container.decode(ValidateCustomer.self, forKey: .data)
+                data = try container.decode([String: Any].self, forKey: .data)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,18 +60,6 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            do {
-                error = try container.decode(ValidateCustomer.self, forKey: .error)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -93,10 +75,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

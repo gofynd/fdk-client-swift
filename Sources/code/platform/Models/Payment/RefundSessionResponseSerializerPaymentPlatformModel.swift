@@ -12,26 +12,18 @@ public extension PlatformClient.Payment {
     class RefundSessionResponseSerializer: Codable {
         
         
-        public var success: Bool?
+        public var gid: String
         
-        public var message: String?
+        public var status: String
         
-        public var gid: String?
+        public var currency: String
         
-        public var status: String?
+        public var platformRefundDetails: [[String: Any]]
         
-        public var currency: String?
-        
-        public var platformRefundDetails: [[String: Any]]?
-        
-        public var totalRefundAmount: Int?
+        public var totalRefundAmount: Int
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case success = "success"
-            
-            case message = "message"
             
             case gid = "gid"
             
@@ -45,11 +37,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(currency: String? = nil, gid: String? = nil, message: String? = nil, platformRefundDetails: [[String: Any]]? = nil, status: String? = nil, success: Bool? = nil, totalRefundAmount: Int? = nil) {
-            
-            self.success = success
-            
-            self.message = message
+        public init(currency: String, gid: String, platformRefundDetails: [[String: Any]], status: String, totalRefundAmount: Int) {
             
             self.gid = gid
             
@@ -67,103 +55,34 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                gid = try container.decode(String.self, forKey: .gid)
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                status = try container.decode(String.self, forKey: .status)
                 
             
             
-                do {
-                    gid = try container.decode(String.self, forKey: .gid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                currency = try container.decode(String.self, forKey: .currency)
                 
             
             
-                do {
-                    status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                platformRefundDetails = try container.decode([[String: Any]].self, forKey: .platformRefundDetails)
                 
             
             
-                do {
-                    currency = try container.decode(String.self, forKey: .currency)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                totalRefundAmount = try container.decode(Int.self, forKey: .totalRefundAmount)
                 
             
-            
-                do {
-                    platformRefundDetails = try container.decode([[String: Any]].self, forKey: .platformRefundDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalRefundAmount = try container.decode(Int.self, forKey: .totalRefundAmount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             
@@ -206,26 +125,18 @@ public extension PlatformClient.ApplicationClient.Payment {
     class RefundSessionResponseSerializer: Codable {
         
         
-        public var success: Bool?
+        public var gid: String
         
-        public var message: String?
+        public var status: String
         
-        public var gid: String?
+        public var currency: String
         
-        public var status: String?
+        public var platformRefundDetails: [[String: Any]]
         
-        public var currency: String?
-        
-        public var platformRefundDetails: [[String: Any]]?
-        
-        public var totalRefundAmount: Int?
+        public var totalRefundAmount: Int
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case success = "success"
-            
-            case message = "message"
             
             case gid = "gid"
             
@@ -239,11 +150,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(currency: String? = nil, gid: String? = nil, message: String? = nil, platformRefundDetails: [[String: Any]]? = nil, status: String? = nil, success: Bool? = nil, totalRefundAmount: Int? = nil) {
-            
-            self.success = success
-            
-            self.message = message
+        public init(currency: String, gid: String, platformRefundDetails: [[String: Any]], status: String, totalRefundAmount: Int) {
             
             self.gid = gid
             
@@ -261,103 +168,34 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                gid = try container.decode(String.self, forKey: .gid)
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                status = try container.decode(String.self, forKey: .status)
                 
             
             
-                do {
-                    gid = try container.decode(String.self, forKey: .gid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                currency = try container.decode(String.self, forKey: .currency)
                 
             
             
-                do {
-                    status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                platformRefundDetails = try container.decode([[String: Any]].self, forKey: .platformRefundDetails)
                 
             
             
-                do {
-                    currency = try container.decode(String.self, forKey: .currency)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                totalRefundAmount = try container.decode(Int.self, forKey: .totalRefundAmount)
                 
             
-            
-                do {
-                    platformRefundDetails = try container.decode([[String: Any]].self, forKey: .platformRefundDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalRefundAmount = try container.decode(Int.self, forKey: .totalRefundAmount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             

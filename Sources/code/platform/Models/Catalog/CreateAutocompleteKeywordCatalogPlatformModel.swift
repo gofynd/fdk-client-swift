@@ -22,8 +22,6 @@ public extension PlatformClient.Catalog {
         
         public var words: [String]?
         
-        public var action: AutocompleteAction?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension PlatformClient.Catalog {
             
             case words = "words"
             
-            case action = "action"
-            
         }
 
-        public init(action: AutocompleteAction? = nil, appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
+        public init(appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -52,8 +48,6 @@ public extension PlatformClient.Catalog {
             self.results = results
             
             self.words = words
-            
-            self.action = action
             
         }
 
@@ -120,18 +114,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    action = try container.decode(AutocompleteAction.self, forKey: .action)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -160,11 +142,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(words, forKey: .words)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
             
             
         }
@@ -193,8 +170,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var words: [String]?
         
-        public var action: AutocompleteAction?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -208,11 +183,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case words = "words"
             
-            case action = "action"
-            
         }
 
-        public init(action: AutocompleteAction? = nil, appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
+        public init(appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -223,8 +196,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.results = results
             
             self.words = words
-            
-            self.action = action
             
         }
 
@@ -291,18 +262,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    action = try container.decode(AutocompleteAction.self, forKey: .action)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -331,11 +290,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(words, forKey: .words)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
             
             
         }

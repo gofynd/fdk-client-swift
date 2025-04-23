@@ -16,7 +16,7 @@ public extension PlatformClient.Payment {
         
         public var success: Bool
         
-        public var items: [AggregatorVersionItemSchema]?
+        public var items: AggregatorVersionItemSchema?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(items: [AggregatorVersionItemSchema]? = nil, message: String, success: Bool) {
+        public init(items: AggregatorVersionItemSchema? = nil, message: String, success: Bool) {
             
             self.message = message
             
@@ -54,7 +54,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    items = try container.decode([AggregatorVersionItemSchema].self, forKey: .items)
+                    items = try container.decode(AggregatorVersionItemSchema.self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var success: Bool
         
-        public var items: [AggregatorVersionItemSchema]?
+        public var items: AggregatorVersionItemSchema?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(items: [AggregatorVersionItemSchema]? = nil, message: String, success: Bool) {
+        public init(items: AggregatorVersionItemSchema? = nil, message: String, success: Bool) {
             
             self.message = message
             
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    items = try container.decode([AggregatorVersionItemSchema].self, forKey: .items)
+                    items = try container.decode(AggregatorVersionItemSchema.self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

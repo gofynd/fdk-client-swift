@@ -32,8 +32,6 @@ public extension PlatformClient.Content {
         
         public var title: String?
         
-        public var publishDate: String?
-        
         public var seo: SEO?
         
         public var summary: String?
@@ -61,15 +59,13 @@ public extension PlatformClient.Content {
             
             case title = "title"
             
-            case publishDate = "publish_date"
-            
             case seo = "seo"
             
             case summary = "summary"
             
         }
 
-        public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil) {
+        public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil) {
             
             self.application = application
             
@@ -90,8 +86,6 @@ public extension PlatformClient.Content {
             self.tags = tags
             
             self.title = title
-            
-            self.publishDate = publishDate
             
             self.seo = seo
             
@@ -224,18 +218,6 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    publishDate = try container.decode(String.self, forKey: .publishDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     seo = try container.decode(SEO.self, forKey: .seo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -311,11 +293,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
-            try? container.encodeIfPresent(publishDate, forKey: .publishDate)
             
             
             
@@ -364,8 +341,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var title: String?
         
-        public var publishDate: String?
-        
         public var seo: SEO?
         
         public var summary: String?
@@ -393,15 +368,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case title = "title"
             
-            case publishDate = "publish_date"
-            
             case seo = "seo"
             
             case summary = "summary"
             
         }
 
-        public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil) {
+        public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil) {
             
             self.application = application
             
@@ -422,8 +395,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.tags = tags
             
             self.title = title
-            
-            self.publishDate = publishDate
             
             self.seo = seo
             
@@ -556,18 +527,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    publishDate = try container.decode(String.self, forKey: .publishDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     seo = try container.decode(SEO.self, forKey: .seo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -643,11 +602,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
-            try? container.encodeIfPresent(publishDate, forKey: .publishDate)
             
             
             

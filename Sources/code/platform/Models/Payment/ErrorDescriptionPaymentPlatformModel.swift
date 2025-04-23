@@ -28,8 +28,6 @@ public extension PlatformClient.Payment {
         
         public var cancelled: Bool?
         
-        public var description: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,11 +47,9 @@ public extension PlatformClient.Payment {
             
             case cancelled = "cancelled"
             
-            case description = "description"
-            
         }
 
-        public init(amount: Double? = nil, cancelled: Bool? = nil, description: String? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
+        public init(amount: Double? = nil, cancelled: Bool? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
             
             self.msg = msg
             
@@ -70,8 +66,6 @@ public extension PlatformClient.Payment {
             self.expired = expired
             
             self.cancelled = cancelled
-            
-            self.description = description
             
         }
 
@@ -174,18 +168,6 @@ public extension PlatformClient.Payment {
                 }
                 
             
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -229,11 +211,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(cancelled, forKey: .cancelled)
-            
-            
-            
-            
-            try? container.encodeIfPresent(description, forKey: .description)
             
             
         }
@@ -268,8 +245,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var cancelled: Bool?
         
-        public var description: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -289,11 +264,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case cancelled = "cancelled"
             
-            case description = "description"
-            
         }
 
-        public init(amount: Double? = nil, cancelled: Bool? = nil, description: String? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
+        public init(amount: Double? = nil, cancelled: Bool? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
             
             self.msg = msg
             
@@ -310,8 +283,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.expired = expired
             
             self.cancelled = cancelled
-            
-            self.description = description
             
         }
 
@@ -414,18 +385,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -469,11 +428,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(cancelled, forKey: .cancelled)
-            
-            
-            
-            
-            try? container.encodeIfPresent(description, forKey: .description)
             
             
         }

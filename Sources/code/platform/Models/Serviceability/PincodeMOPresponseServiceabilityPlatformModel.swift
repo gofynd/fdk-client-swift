@@ -12,11 +12,11 @@ public extension PlatformClient.Serviceability {
     class PincodeMOPresponse: Codable {
         
         
-        public var batchId: String
-        
         public var success: Bool
         
         public var statusCode: Int
+        
+        public var batchId: String
         
         public var country: String
         
@@ -29,11 +29,11 @@ public extension PlatformClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
-            case batchId = "batch_id"
-            
             case success = "success"
             
             case statusCode = "status_code"
+            
+            case batchId = "batch_id"
             
             case country = "country"
             
@@ -47,11 +47,11 @@ public extension PlatformClient.Serviceability {
 
         public init(action: String, batchId: String, country: String, pincodes: [Int]? = nil, statusCode: Int, success: Bool, updatedPincodes: [PincodeMopUpdateResponse]? = nil) {
             
-            self.batchId = batchId
-            
             self.success = success
             
             self.statusCode = statusCode
+            
+            self.batchId = batchId
             
             self.country = country
             
@@ -67,17 +67,17 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                batchId = try container.decode(String.self, forKey: .batchId)
-                
-            
-            
-            
                 success = try container.decode(Bool.self, forKey: .success)
                 
             
             
             
                 statusCode = try container.decode(Int.self, forKey: .statusCode)
+                
+            
+            
+            
+                batchId = try container.decode(String.self, forKey: .batchId)
                 
             
             
@@ -122,17 +122,17 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
-            
-            
-            
-            
             try? container.encodeIfPresent(success, forKey: .success)
             
             
             
             
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
             
             
             
@@ -171,11 +171,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class PincodeMOPresponse: Codable {
         
         
-        public var batchId: String
-        
         public var success: Bool
         
         public var statusCode: Int
+        
+        public var batchId: String
         
         public var country: String
         
@@ -188,11 +188,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
-            case batchId = "batch_id"
-            
             case success = "success"
             
             case statusCode = "status_code"
+            
+            case batchId = "batch_id"
             
             case country = "country"
             
@@ -206,11 +206,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public init(action: String, batchId: String, country: String, pincodes: [Int]? = nil, statusCode: Int, success: Bool, updatedPincodes: [PincodeMopUpdateResponse]? = nil) {
             
-            self.batchId = batchId
-            
             self.success = success
             
             self.statusCode = statusCode
+            
+            self.batchId = batchId
             
             self.country = country
             
@@ -226,17 +226,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                batchId = try container.decode(String.self, forKey: .batchId)
-                
-            
-            
-            
                 success = try container.decode(Bool.self, forKey: .success)
                 
             
             
             
                 statusCode = try container.decode(Int.self, forKey: .statusCode)
+                
+            
+            
+            
+                batchId = try container.decode(String.self, forKey: .batchId)
                 
             
             
@@ -281,17 +281,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
-            
-            
-            
-            
             try? container.encodeIfPresent(success, forKey: .success)
             
             
             
             
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
             
             
             

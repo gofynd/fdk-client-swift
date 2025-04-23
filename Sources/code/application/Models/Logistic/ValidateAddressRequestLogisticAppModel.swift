@@ -32,8 +32,6 @@ public extension ApplicationClient.Logistic {
         
         public var email: String?
         
-        public var countryIsoCode: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -61,11 +59,9 @@ public extension ApplicationClient.Logistic {
             
             case email = "email"
             
-            case countryIsoCode = "country_iso_code"
-            
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, area: String? = nil, city: String? = nil, countryIsoCode: String? = nil, email: String? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, area: String? = nil, city: String? = nil, email: String? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil) {
             
             self.address = address
             
@@ -90,8 +86,6 @@ public extension ApplicationClient.Logistic {
             self.phone = phone
             
             self.email = email
-            
-            self.countryIsoCode = countryIsoCode
             
         }
 
@@ -242,18 +236,6 @@ public extension ApplicationClient.Logistic {
             }
             
             
-            
-            do {
-                countryIsoCode = try container.decode(String.self, forKey: .countryIsoCode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -305,10 +287,6 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            try? container.encodeIfPresent(countryIsoCode, forKey: .countryIsoCode)
             
             
         }

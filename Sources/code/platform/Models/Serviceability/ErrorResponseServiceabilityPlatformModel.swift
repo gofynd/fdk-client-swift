@@ -18,8 +18,6 @@ public extension PlatformClient.Serviceability {
         
         public var type: String
         
-        public var error: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,19 +27,15 @@ public extension PlatformClient.Serviceability {
             
             case type = "type"
             
-            case error = "error"
-            
         }
 
-        public init(error: String? = nil, message: String, type: String, value: String) {
+        public init(message: String, type: String, value: String) {
             
             self.value = value
             
             self.message = message
             
             self.type = type
-            
-            self.error = error
             
         }
 
@@ -63,18 +57,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                do {
-                    error = try container.decode(String.self, forKey: .error)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +75,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }
@@ -122,8 +99,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var type: String
         
-        public var error: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -133,19 +108,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case type = "type"
             
-            case error = "error"
-            
         }
 
-        public init(error: String? = nil, message: String, type: String, value: String) {
+        public init(message: String, type: String, value: String) {
             
             self.value = value
             
             self.message = message
             
             self.type = type
-            
-            self.error = error
             
         }
 
@@ -167,18 +138,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                do {
-                    error = try container.decode(String.self, forKey: .error)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -197,11 +156,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

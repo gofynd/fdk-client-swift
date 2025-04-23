@@ -36,17 +36,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var articleIds: [Article]
         
-        public var removeArticles: Bool?
-        
         public var autoRemove: Bool?
         
         public var meta: [String: Any]?
         
         public var cartId: String
-        
-        public var allowRefund: Bool?
-        
-        public var distributionLogic: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -73,21 +67,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case articleIds = "article_ids"
             
-            case removeArticles = "remove_articles"
-            
             case autoRemove = "auto_remove"
             
             case meta = "meta"
             
             case cartId = "cart_id"
             
-            case allowRefund = "allow_refund"
-            
-            case distributionLogic = "distribution_logic"
-            
         }
 
-        public init(allowedRefund: Bool? = nil, allowRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, distributionLogic: [String: Any]? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, removeArticles: Bool? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
             
             self.modifiedBy = modifiedBy
             
@@ -111,17 +99,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.articleIds = articleIds
             
-            self.removeArticles = removeArticles
-            
             self.autoRemove = autoRemove
             
             self.meta = meta
             
             self.cartId = cartId
-            
-            self.allowRefund = allowRefund
-            
-            self.distributionLogic = distributionLogic
             
         }
 
@@ -213,18 +195,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    removeArticles = try container.decode(Bool.self, forKey: .removeArticles)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     autoRemove = try container.decode(Bool.self, forKey: .autoRemove)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -251,30 +221,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 cartId = try container.decode(String.self, forKey: .cartId)
                 
             
-            
-            
-                do {
-                    allowRefund = try container.decode(Bool.self, forKey: .allowRefund)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    distributionLogic = try container.decode([String: Any].self, forKey: .distributionLogic)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -338,11 +284,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(removeArticles, forKey: .removeArticles)
-            
-            
-            
-            
             try? container.encodeIfPresent(autoRemove, forKey: .autoRemove)
             
             
@@ -354,16 +295,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(cartId, forKey: .cartId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(allowRefund, forKey: .allowRefund)
-            
-            
-            
-            
-            try? container.encodeIfPresent(distributionLogic, forKey: .distributionLogic)
             
             
         }
