@@ -14,6 +14,8 @@ public extension ApplicationClient.Cart {
         
         public var offerText: String?
         
+        public var offerLabel: String?
+        
         public var promotionGroup: String?
         
         public var mrpPromotion: Bool?
@@ -47,6 +49,8 @@ public extension ApplicationClient.Cart {
             
             case offerText = "offer_text"
             
+            case offerLabel = "offer_label"
+            
             case promotionGroup = "promotion_group"
             
             case mrpPromotion = "mrp_promotion"
@@ -73,13 +77,15 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, discountRules: [DiscountRulesApp]? = nil, floatAmount: String? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, discountRules: [DiscountRulesApp]? = nil, floatAmount: String? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerLabel: String? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.promoId = promoId
             
             self.buyRules = buyRules
             
             self.offerText = offerText
+            
+            self.offerLabel = offerLabel
             
             self.promotionGroup = promotionGroup
             
@@ -137,6 +143,18 @@ public extension ApplicationClient.Cart {
             
             do {
                 offerText = try container.decode(String.self, forKey: .offerText)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                offerLabel = try container.decode(String.self, forKey: .offerLabel)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -305,6 +323,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(offerText, forKey: .offerText)
+            
+            
+            
+            try? container.encodeIfPresent(offerLabel, forKey: .offerLabel)
             
             
             

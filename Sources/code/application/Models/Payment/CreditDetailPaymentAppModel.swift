@@ -12,7 +12,9 @@ public extension ApplicationClient.Payment {
         
         public var isRegistered: Bool
         
-        public var signupUrl: String
+        public var signupUrl: String?
+        
+        public var availableCredit: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,15 +25,19 @@ public extension ApplicationClient.Payment {
             
             case signupUrl = "signup_url"
             
+            case availableCredit = "available_credit"
+            
         }
 
-        public init(isRegistered: Bool, signupUrl: String, status: Bool) {
+        public init(availableCredit: Double? = nil, isRegistered: Bool, signupUrl: String? = nil, status: Bool) {
             
             self.status = status
             
             self.isRegistered = isRegistered
             
             self.signupUrl = signupUrl
+            
+            self.availableCredit = availableCredit
             
         }
 
@@ -49,8 +55,27 @@ public extension ApplicationClient.Payment {
             
             
             
-            signupUrl = try container.decode(String.self, forKey: .signupUrl)
+            do {
+                signupUrl = try container.decode(String.self, forKey: .signupUrl)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                availableCredit = try container.decode(Double.self, forKey: .availableCredit)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -68,6 +93,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(signupUrl, forKey: .signupUrl)
+            
+            
+            
+            try? container.encodeIfPresent(availableCredit, forKey: .availableCredit)
             
             
         }

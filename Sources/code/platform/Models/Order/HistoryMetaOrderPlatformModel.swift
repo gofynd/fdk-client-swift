@@ -58,6 +58,16 @@ public extension PlatformClient.Order {
         
         public var message: String?
         
+        public var prevStoreName: String?
+        
+        public var prevStoreCode: String?
+        
+        public var prevStoreId: String?
+        
+        public var refundTo: String?
+        
+        public var refundInformation: [RefundInformation]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -107,9 +117,19 @@ public extension PlatformClient.Order {
             
             case message = "message"
             
+            case prevStoreName = "prev_store_name"
+            
+            case prevStoreCode = "prev_store_code"
+            
+            case prevStoreId = "prev_store_id"
+            
+            case refundTo = "refund_to"
+            
+            case refundInformation = "refund_information"
+            
         }
 
-        public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil) {
+        public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, prevStoreCode: String? = nil, prevStoreId: String? = nil, prevStoreName: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, refundInformation: [RefundInformation]? = nil, refundTo: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil) {
             
             self.storeId = storeId
             
@@ -156,6 +176,16 @@ public extension PlatformClient.Order {
             self.slug = slug
             
             self.message = message
+            
+            self.prevStoreName = prevStoreName
+            
+            self.prevStoreCode = prevStoreCode
+            
+            self.prevStoreId = prevStoreId
+            
+            self.refundTo = refundTo
+            
+            self.refundInformation = refundInformation
             
         }
 
@@ -438,6 +468,66 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    prevStoreName = try container.decode(String.self, forKey: .prevStoreName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    prevStoreCode = try container.decode(String.self, forKey: .prevStoreCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    prevStoreId = try container.decode(String.self, forKey: .prevStoreId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    refundTo = try container.decode(String.self, forKey: .refundTo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    refundInformation = try container.decode([RefundInformation].self, forKey: .refundInformation)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -556,6 +646,31 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(prevStoreName, forKey: .prevStoreName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(prevStoreCode, forKey: .prevStoreCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(prevStoreId, forKey: .prevStoreId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundTo, forKey: .refundTo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundInformation, forKey: .refundInformation)
             
             
         }
@@ -620,6 +735,16 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var message: String?
         
+        public var prevStoreName: String?
+        
+        public var prevStoreCode: String?
+        
+        public var prevStoreId: String?
+        
+        public var refundTo: String?
+        
+        public var refundInformation: [RefundInformation]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -669,9 +794,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case message = "message"
             
+            case prevStoreName = "prev_store_name"
+            
+            case prevStoreCode = "prev_store_code"
+            
+            case prevStoreId = "prev_store_id"
+            
+            case refundTo = "refund_to"
+            
+            case refundInformation = "refund_information"
+            
         }
 
-        public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil) {
+        public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, prevStoreCode: String? = nil, prevStoreId: String? = nil, prevStoreName: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, refundInformation: [RefundInformation]? = nil, refundTo: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil) {
             
             self.storeId = storeId
             
@@ -718,6 +853,16 @@ public extension PlatformClient.ApplicationClient.Order {
             self.slug = slug
             
             self.message = message
+            
+            self.prevStoreName = prevStoreName
+            
+            self.prevStoreCode = prevStoreCode
+            
+            self.prevStoreId = prevStoreId
+            
+            self.refundTo = refundTo
+            
+            self.refundInformation = refundInformation
             
         }
 
@@ -1000,6 +1145,66 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    prevStoreName = try container.decode(String.self, forKey: .prevStoreName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    prevStoreCode = try container.decode(String.self, forKey: .prevStoreCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    prevStoreId = try container.decode(String.self, forKey: .prevStoreId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    refundTo = try container.decode(String.self, forKey: .refundTo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    refundInformation = try container.decode([RefundInformation].self, forKey: .refundInformation)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1118,6 +1323,31 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(prevStoreName, forKey: .prevStoreName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(prevStoreCode, forKey: .prevStoreCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(prevStoreId, forKey: .prevStoreId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundTo, forKey: .refundTo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundInformation, forKey: .refundInformation)
             
             
         }
