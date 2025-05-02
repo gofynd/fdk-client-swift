@@ -38,7 +38,7 @@ public extension PlatformClient.Order {
         
         public var updatedTs: Int?
         
-        public var status: String?
+        public var status: Bool?
         
         public var storeCode: String?
         
@@ -145,7 +145,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(batchId: String? = nil, bulkActionType: String? = nil, companyId: Int? = nil, createdTs: String? = nil, doInvoiceLabelGenerated: Bool? = nil, failedInvoicedCount: Int? = nil, failedShipments: [String]? = nil, failedShCount: Int? = nil, fileName: String? = nil, fileUrl: String? = nil, id: Int? = nil, invoicelabelDocumentType: String? = nil, invoiceDocumentType: String? = nil, invoiceStatus: String? = nil, isInvoiceable: Bool? = nil, labelDocumentType: String? = nil, lastSelectedInvoiceLabelType: String? = nil, meta: [String: Any]? = nil, shipmentsActionInfo: ShipmentActionInfo? = nil, status: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, successfulInvoicedCount: Int? = nil, successfulShCount: Int? = nil, totalCount: Int? = nil, totalInvoicedCount: Int? = nil, updatedTs: Int? = nil, uploadedBy: String? = nil, uploadedOn: String? = nil, userId: String? = nil, userName: String? = nil) {
+        public init(batchId: String? = nil, bulkActionType: String? = nil, companyId: Int? = nil, createdTs: String? = nil, doInvoiceLabelGenerated: Bool? = nil, failedInvoicedCount: Int? = nil, failedShipments: [String]? = nil, failedShCount: Int? = nil, fileName: String? = nil, fileUrl: String? = nil, id: Int? = nil, invoicelabelDocumentType: String? = nil, invoiceDocumentType: String? = nil, invoiceStatus: String? = nil, isInvoiceable: Bool? = nil, labelDocumentType: String? = nil, lastSelectedInvoiceLabelType: String? = nil, meta: [String: Any]? = nil, shipmentsActionInfo: ShipmentActionInfo? = nil, status: Bool? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, successfulInvoicedCount: Int? = nil, successfulShCount: Int? = nil, totalCount: Int? = nil, totalInvoicedCount: Int? = nil, updatedTs: Int? = nil, uploadedBy: String? = nil, uploadedOn: String? = nil, userId: String? = nil, userName: String? = nil) {
             
             self.storeId = storeId
             
@@ -374,7 +374,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
+                    status = try container.decode(Bool.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -807,7 +807,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var updatedTs: Int?
         
-        public var status: String?
+        public var status: Bool?
         
         public var storeCode: String?
         
@@ -914,7 +914,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(batchId: String? = nil, bulkActionType: String? = nil, companyId: Int? = nil, createdTs: String? = nil, doInvoiceLabelGenerated: Bool? = nil, failedInvoicedCount: Int? = nil, failedShipments: [String]? = nil, failedShCount: Int? = nil, fileName: String? = nil, fileUrl: String? = nil, id: Int? = nil, invoicelabelDocumentType: String? = nil, invoiceDocumentType: String? = nil, invoiceStatus: String? = nil, isInvoiceable: Bool? = nil, labelDocumentType: String? = nil, lastSelectedInvoiceLabelType: String? = nil, meta: [String: Any]? = nil, shipmentsActionInfo: ShipmentActionInfo? = nil, status: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, successfulInvoicedCount: Int? = nil, successfulShCount: Int? = nil, totalCount: Int? = nil, totalInvoicedCount: Int? = nil, updatedTs: Int? = nil, uploadedBy: String? = nil, uploadedOn: String? = nil, userId: String? = nil, userName: String? = nil) {
+        public init(batchId: String? = nil, bulkActionType: String? = nil, companyId: Int? = nil, createdTs: String? = nil, doInvoiceLabelGenerated: Bool? = nil, failedInvoicedCount: Int? = nil, failedShipments: [String]? = nil, failedShCount: Int? = nil, fileName: String? = nil, fileUrl: String? = nil, id: Int? = nil, invoicelabelDocumentType: String? = nil, invoiceDocumentType: String? = nil, invoiceStatus: String? = nil, isInvoiceable: Bool? = nil, labelDocumentType: String? = nil, lastSelectedInvoiceLabelType: String? = nil, meta: [String: Any]? = nil, shipmentsActionInfo: ShipmentActionInfo? = nil, status: Bool? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, successfulInvoicedCount: Int? = nil, successfulShCount: Int? = nil, totalCount: Int? = nil, totalInvoicedCount: Int? = nil, updatedTs: Int? = nil, uploadedBy: String? = nil, uploadedOn: String? = nil, userId: String? = nil, userName: String? = nil) {
             
             self.storeId = storeId
             
@@ -1143,7 +1143,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
+                    status = try container.decode(Bool.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

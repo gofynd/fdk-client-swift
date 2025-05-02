@@ -20,10 +20,6 @@ public extension ApplicationClient.Catalog {
         
         public var action: ProductListingAction
         
-        public var priority: Int?
-        
-        public var customJson: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,13 +35,9 @@ public extension ApplicationClient.Catalog {
             
             case action = "action"
             
-            case priority = "priority"
-            
-            case customJson = "_custom_json"
-            
         }
 
-        public init(action: ProductListingAction, banners: CategoryBanner, childs: [Child]? = nil, name: String, priority: Int? = nil, slug: String, uid: Int, customJson: [String: Any]? = nil) {
+        public init(action: ProductListingAction, banners: CategoryBanner, childs: [Child]? = nil, name: String, slug: String, uid: Int) {
             
             self.uid = uid
             
@@ -58,10 +50,6 @@ public extension ApplicationClient.Catalog {
             self.slug = slug
             
             self.action = action
-            
-            self.priority = priority
-            
-            self.customJson = customJson
             
         }
 
@@ -105,30 +93,6 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
-            do {
-                priority = try container.decode(Int.self, forKey: .priority)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -156,14 +120,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(action, forKey: .action)
-            
-            
-            
-            try? container.encodeIfPresent(priority, forKey: .priority)
-            
-            
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

@@ -26,8 +26,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var discount: Double?
         
-        public var errorEn: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,11 +41,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case discount = "discount"
             
-            case errorEn = "error_en"
-            
         }
 
-        public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, errorEn: String? = nil, nextValidationRequired: Bool? = nil, title: String? = nil, valid: Bool? = nil) {
+        public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, nextValidationRequired: Bool? = nil, title: String? = nil, valid: Bool? = nil) {
             
             self.title = title
             
@@ -60,8 +56,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.code = code
             
             self.discount = discount
-            
-            self.errorEn = errorEn
             
         }
 
@@ -140,18 +134,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    errorEn = try container.decode(String.self, forKey: .errorEn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -185,11 +167,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(discount, forKey: .discount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(errorEn, forKey: .errorEn)
             
             
         }

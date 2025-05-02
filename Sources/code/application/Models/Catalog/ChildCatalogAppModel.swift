@@ -22,8 +22,6 @@ public extension ApplicationClient.Catalog {
         
         public var action: ProductListingAction?
         
-        public var priority: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,11 +39,9 @@ public extension ApplicationClient.Catalog {
             
             case action = "action"
             
-            case priority = "priority"
-            
         }
 
-        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [SecondLevelChild]? = nil, name: String? = nil, priority: Int? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [SecondLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.uid = uid
             
@@ -60,8 +56,6 @@ public extension ApplicationClient.Catalog {
             self.slug = slug
             
             self.action = action
-            
-            self.priority = priority
             
         }
 
@@ -152,18 +146,6 @@ public extension ApplicationClient.Catalog {
             }
             
             
-            
-            do {
-                priority = try container.decode(Int.self, forKey: .priority)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -195,10 +177,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(action, forKey: .action)
-            
-            
-            
-            try? container.encodeIfPresent(priority, forKey: .priority)
             
             
         }

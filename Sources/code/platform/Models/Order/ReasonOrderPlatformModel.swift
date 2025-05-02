@@ -12,59 +12,53 @@ public extension PlatformClient.Order {
     class Reason: Codable {
         
         
+        public var qcType: [String]?
+        
         public var id: Int?
         
-        public var displayName: String
+        public var questionSet: [QuestionSet]?
         
-        public var reasons: [Reason]?
-        
-        public var qcType: [String]
-        
-        public var questionSet: [QuestionSet]
-        
-        public var meta: [String: Any]?
-        
-        public var isActive: Bool?
+        public var displayName: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
-            
-            case displayName = "display_name"
-            
-            case reasons = "reasons"
-            
             case qcType = "qc_type"
+            
+            case id = "id"
             
             case questionSet = "question_set"
             
-            case meta = "meta"
-            
-            case isActive = "is_active"
+            case displayName = "display_name"
             
         }
 
-        public init(displayName: String, id: Int? = nil, isActive: Bool? = nil, meta: [String: Any]? = nil, qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil) {
-            
-            self.id = id
-            
-            self.displayName = displayName
-            
-            self.reasons = reasons
+        public init(displayName: String? = nil, id: Int? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil) {
             
             self.qcType = qcType
             
+            self.id = id
+            
             self.questionSet = questionSet
             
-            self.meta = meta
-            
-            self.isActive = isActive
+            self.displayName = displayName
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    qcType = try container.decode([String].self, forKey: .qcType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -79,35 +73,8 @@ public extension PlatformClient.Order {
                 
             
             
-                displayName = try container.decode(String.self, forKey: .displayName)
-                
-            
-            
-            
                 do {
-                    reasons = try container.decode([Reason].self, forKey: .reasons)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                qcType = try container.decode([String].self, forKey: .qcType)
-                
-            
-            
-            
-                questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
-                
-            
-            
-            
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,7 +86,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    displayName = try container.decode(String.self, forKey: .displayName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,22 +103,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reasons, forKey: .reasons)
-            
-            
-            
-            
             try? container.encodeIfPresent(qcType, forKey: .qcType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -161,12 +118,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }
@@ -185,59 +137,53 @@ public extension PlatformClient.ApplicationClient.Order {
     class Reason: Codable {
         
         
+        public var qcType: [String]?
+        
         public var id: Int?
         
-        public var displayName: String
+        public var questionSet: [QuestionSet]?
         
-        public var reasons: [Reason]?
-        
-        public var qcType: [String]
-        
-        public var questionSet: [QuestionSet]
-        
-        public var meta: [String: Any]?
-        
-        public var isActive: Bool?
+        public var displayName: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
-            
-            case displayName = "display_name"
-            
-            case reasons = "reasons"
-            
             case qcType = "qc_type"
+            
+            case id = "id"
             
             case questionSet = "question_set"
             
-            case meta = "meta"
-            
-            case isActive = "is_active"
+            case displayName = "display_name"
             
         }
 
-        public init(displayName: String, id: Int? = nil, isActive: Bool? = nil, meta: [String: Any]? = nil, qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil) {
-            
-            self.id = id
-            
-            self.displayName = displayName
-            
-            self.reasons = reasons
+        public init(displayName: String? = nil, id: Int? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil) {
             
             self.qcType = qcType
             
+            self.id = id
+            
             self.questionSet = questionSet
             
-            self.meta = meta
-            
-            self.isActive = isActive
+            self.displayName = displayName
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    qcType = try container.decode([String].self, forKey: .qcType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -252,35 +198,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                displayName = try container.decode(String.self, forKey: .displayName)
-                
-            
-            
-            
                 do {
-                    reasons = try container.decode([Reason].self, forKey: .reasons)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                qcType = try container.decode([String].self, forKey: .qcType)
-                
-            
-            
-            
-                questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
-                
-            
-            
-            
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -292,7 +211,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    displayName = try container.decode(String.self, forKey: .displayName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -309,22 +228,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reasons, forKey: .reasons)
-            
-            
-            
-            
             try? container.encodeIfPresent(qcType, forKey: .qcType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -334,12 +243,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }

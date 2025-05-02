@@ -16,14 +16,6 @@ public extension PlatformClient.Serviceability {
         
         public var name: String?
         
-        public var manualPriority: [Int]?
-        
-        public var metaSortPriority: [String: Any]?
-        
-        public var metaConditions: [String: Any]?
-        
-        public var filters: String?
-        
         public var companyId: Int?
         
         public var applicationId: String?
@@ -47,14 +39,6 @@ public extension PlatformClient.Serviceability {
             
             case name = "name"
             
-            case manualPriority = "manual_priority"
-            
-            case metaSortPriority = "meta_sort_priority"
-            
-            case metaConditions = "meta_conditions"
-            
-            case filters = "filters"
-            
             case companyId = "company_id"
             
             case applicationId = "application_id"
@@ -73,19 +57,11 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(applicationId: String? = nil, companyId: Int? = nil, conditions: StoreRuleConditionSchema? = nil, filters: String? = nil, id: String? = nil, isActive: Bool? = nil, manualPriority: [Int]? = nil, metaConditions: [String: Any]? = nil, metaSortPriority: [String: Any]? = nil, name: String? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
+        public init(applicationId: String? = nil, companyId: Int? = nil, conditions: StoreRuleConditionSchema? = nil, id: String? = nil, isActive: Bool? = nil, name: String? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
             
             self.id = id
             
             self.name = name
-            
-            self.manualPriority = manualPriority
-            
-            self.metaSortPriority = metaSortPriority
-            
-            self.metaConditions = metaConditions
-            
-            self.filters = filters
             
             self.companyId = companyId
             
@@ -123,54 +99,6 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    manualPriority = try container.decode([Int].self, forKey: .manualPriority)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    metaSortPriority = try container.decode([String: Any].self, forKey: .metaSortPriority)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    metaConditions = try container.decode([String: Any].self, forKey: .metaConditions)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    filters = try container.decode(String.self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -289,26 +217,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(metaSortPriority, forKey: .metaSortPriority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(metaConditions, forKey: .metaConditions)
-            
-            
-            
-            
-            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
             
@@ -371,14 +279,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var name: String?
         
-        public var manualPriority: [Int]?
-        
-        public var metaSortPriority: [String: Any]?
-        
-        public var metaConditions: [String: Any]?
-        
-        public var filters: String?
-        
         public var companyId: Int?
         
         public var applicationId: String?
@@ -402,14 +302,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case name = "name"
             
-            case manualPriority = "manual_priority"
-            
-            case metaSortPriority = "meta_sort_priority"
-            
-            case metaConditions = "meta_conditions"
-            
-            case filters = "filters"
-            
             case companyId = "company_id"
             
             case applicationId = "application_id"
@@ -428,19 +320,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(applicationId: String? = nil, companyId: Int? = nil, conditions: StoreRuleConditionSchema? = nil, filters: String? = nil, id: String? = nil, isActive: Bool? = nil, manualPriority: [Int]? = nil, metaConditions: [String: Any]? = nil, metaSortPriority: [String: Any]? = nil, name: String? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
+        public init(applicationId: String? = nil, companyId: Int? = nil, conditions: StoreRuleConditionSchema? = nil, id: String? = nil, isActive: Bool? = nil, name: String? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
             
             self.id = id
             
             self.name = name
-            
-            self.manualPriority = manualPriority
-            
-            self.metaSortPriority = metaSortPriority
-            
-            self.metaConditions = metaConditions
-            
-            self.filters = filters
             
             self.companyId = companyId
             
@@ -478,54 +362,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    manualPriority = try container.decode([Int].self, forKey: .manualPriority)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    metaSortPriority = try container.decode([String: Any].self, forKey: .metaSortPriority)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    metaConditions = try container.decode([String: Any].self, forKey: .metaConditions)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    filters = try container.decode(String.self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -644,26 +480,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(metaSortPriority, forKey: .metaSortPriority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(metaConditions, forKey: .metaConditions)
-            
-            
-            
-            
-            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
             

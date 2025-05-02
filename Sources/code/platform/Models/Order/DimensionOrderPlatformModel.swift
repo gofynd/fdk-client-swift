@@ -22,6 +22,8 @@ public extension PlatformClient.Order {
         
         public var width: Double?
         
+        public var deadWeight: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension PlatformClient.Order {
             
             case width = "width"
             
+            case deadWeight = "dead_weight"
+            
         }
 
-        public init(height: Double? = nil, length: Double? = nil, packagingType: String? = nil, weight: Double? = nil, width: Double? = nil) {
+        public init(deadWeight: Double? = nil, height: Double? = nil, length: Double? = nil, packagingType: String? = nil, weight: Double? = nil, width: Double? = nil) {
             
             self.packagingType = packagingType
             
@@ -48,6 +52,8 @@ public extension PlatformClient.Order {
             self.length = length
             
             self.width = width
+            
+            self.deadWeight = deadWeight
             
         }
 
@@ -114,6 +120,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    deadWeight = try container.decode(Double.self, forKey: .deadWeight)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +160,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(width, forKey: .width)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deadWeight, forKey: .deadWeight)
             
             
         }
@@ -170,6 +193,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var width: Double?
         
+        public var deadWeight: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -183,9 +208,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case width = "width"
             
+            case deadWeight = "dead_weight"
+            
         }
 
-        public init(height: Double? = nil, length: Double? = nil, packagingType: String? = nil, weight: Double? = nil, width: Double? = nil) {
+        public init(deadWeight: Double? = nil, height: Double? = nil, length: Double? = nil, packagingType: String? = nil, weight: Double? = nil, width: Double? = nil) {
             
             self.packagingType = packagingType
             
@@ -196,6 +223,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.length = length
             
             self.width = width
+            
+            self.deadWeight = deadWeight
             
         }
 
@@ -262,6 +291,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    deadWeight = try container.decode(Double.self, forKey: .deadWeight)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -290,6 +331,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(width, forKey: .width)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deadWeight, forKey: .deadWeight)
             
             
         }

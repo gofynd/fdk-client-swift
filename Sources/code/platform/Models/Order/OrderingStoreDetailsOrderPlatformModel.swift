@@ -38,10 +38,6 @@ public extension PlatformClient.Order {
         
         public var city: String?
         
-        public var name: String?
-        
-        public var storeEmail: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -71,13 +67,9 @@ public extension PlatformClient.Order {
             
             case city = "city"
             
-            case name = "name"
-            
-            case storeEmail = "store_email"
-            
         }
 
-        public init(address: String? = nil, address1: String? = nil, city: String? = nil, code: String? = nil, contactPerson: String? = nil, country: String? = nil, displayAddress: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil, storeName: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, city: String? = nil, code: String? = nil, contactPerson: String? = nil, country: String? = nil, displayAddress: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeName: String? = nil) {
             
             self.phone = phone
             
@@ -104,10 +96,6 @@ public extension PlatformClient.Order {
             self.state = state
             
             self.city = city
-            
-            self.name = name
-            
-            self.storeEmail = storeEmail
             
         }
 
@@ -270,30 +258,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    storeEmail = try container.decode(String.self, forKey: .storeEmail)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -362,16 +326,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(city, forKey: .city)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
             
             
         }
@@ -416,10 +370,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var city: String?
         
-        public var name: String?
-        
-        public var storeEmail: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -449,13 +399,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case city = "city"
             
-            case name = "name"
-            
-            case storeEmail = "store_email"
-            
         }
 
-        public init(address: String? = nil, address1: String? = nil, city: String? = nil, code: String? = nil, contactPerson: String? = nil, country: String? = nil, displayAddress: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil, storeName: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, city: String? = nil, code: String? = nil, contactPerson: String? = nil, country: String? = nil, displayAddress: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeName: String? = nil) {
             
             self.phone = phone
             
@@ -482,10 +428,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.state = state
             
             self.city = city
-            
-            self.name = name
-            
-            self.storeEmail = storeEmail
             
         }
 
@@ -648,30 +590,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    storeEmail = try container.decode(String.self, forKey: .storeEmail)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -740,16 +658,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(city, forKey: .city)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
             
             
         }

@@ -12,14 +12,6 @@ public extension ApplicationClient.Catalog {
         
         public var col6: String?
         
-        public var col7: String?
-        
-        public var col8: String?
-        
-        public var col9: String?
-        
-        public var col10: String?
-        
         public var col2: String?
         
         public var col4: String?
@@ -35,14 +27,6 @@ public extension ApplicationClient.Catalog {
             
             case col6 = "col_6"
             
-            case col7 = "col_7"
-            
-            case col8 = "col_8"
-            
-            case col9 = "col_9"
-            
-            case col10 = "col_10"
-            
             case col2 = "col_2"
             
             case col4 = "col_4"
@@ -53,19 +37,11 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(col1: String? = nil, col10: String? = nil, col2: String? = nil, col3: String? = nil, col4: String? = nil, col5: String? = nil, col6: String? = nil, col7: String? = nil, col8: String? = nil, col9: String? = nil) {
+        public init(col1: String? = nil, col2: String? = nil, col3: String? = nil, col4: String? = nil, col5: String? = nil, col6: String? = nil) {
             
             self.col3 = col3
             
             self.col6 = col6
-            
-            self.col7 = col7
-            
-            self.col8 = col8
-            
-            self.col9 = col9
-            
-            self.col10 = col10
             
             self.col2 = col2
             
@@ -95,54 +71,6 @@ public extension ApplicationClient.Catalog {
             
             do {
                 col6 = try container.decode(String.self, forKey: .col6)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                col7 = try container.decode(String.self, forKey: .col7)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                col8 = try container.decode(String.self, forKey: .col8)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                col9 = try container.decode(String.self, forKey: .col9)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                col10 = try container.decode(String.self, forKey: .col10)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,22 +139,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(col6, forKey: .col6)
-            
-            
-            
-            try? container.encodeIfPresent(col7, forKey: .col7)
-            
-            
-            
-            try? container.encodeIfPresent(col8, forKey: .col8)
-            
-            
-            
-            try? container.encodeIfPresent(col9, forKey: .col9)
-            
-            
-            
-            try? container.encodeIfPresent(col10, forKey: .col10)
             
             
             

@@ -24,7 +24,7 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var gender: String?
         
-        public var username: String?
+        public var username: String
         
         public var meta: [String: Any]?
         
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(email: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String, rrId: String? = nil, username: String? = nil) {
+        public init(email: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String, rrId: String? = nil, username: String) {
             
             self.phoneNumber = phoneNumber
             
@@ -134,16 +134,9 @@ public extension PlatformClient.ApplicationClient.User {
                 
             
             
-                do {
-                    username = try container.decode(String.self, forKey: .username)
+                username = try container.decode(String.self, forKey: .username)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

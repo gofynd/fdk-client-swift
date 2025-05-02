@@ -30,8 +30,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var offerText: String?
         
-        public var offerLabel: String?
-        
         public var amount: Double?
         
         public var floatAmount: String?
@@ -67,8 +65,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case offerText = "offer_text"
             
-            case offerLabel = "offer_label"
-            
             case amount = "amount"
             
             case floatAmount = "float_amount"
@@ -87,7 +83,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, floatAmount: String? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerLabel: String? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, floatAmount: String? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.articleQuantity = articleQuantity
             
@@ -104,8 +100,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.buyRules = buyRules
             
             self.offerText = offerText
-            
-            self.offerLabel = offerLabel
             
             self.amount = amount
             
@@ -215,18 +209,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     offerText = try container.decode(String.self, forKey: .offerText)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    offerLabel = try container.decode(String.self, forKey: .offerLabel)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -375,11 +357,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(offerText, forKey: .offerText)
-            
-            
-            
-            
-            try? container.encodeIfPresent(offerLabel, forKey: .offerLabel)
             
             
             

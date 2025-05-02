@@ -24,7 +24,7 @@ public extension PlatformClient.Order {
         
         public var invoiceableShipments: [String]?
         
-        public var failedInvoicedShipments: [String: Any]?
+        public var failedInvoicedShipments: [String: String]?
         
         public var processingInvoiceShipments: [String]?
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(failedInvoicedShipments: [String: Any]? = nil, failedShipments: [[String: String]]? = nil, invoice: [String]? = nil, invoiceableShipments: [String]? = nil, label: [String]? = nil, processingInvoiceShipments: [String]? = nil, processingShipments: [String]? = nil, successfulInvoicedShipments: [String]? = nil, successfulShipments: [String]? = nil) {
+        public init(failedInvoicedShipments: [String: String]? = nil, failedShipments: [[String: String]]? = nil, invoice: [String]? = nil, invoiceableShipments: [String]? = nil, label: [String]? = nil, processingInvoiceShipments: [String]? = nil, processingShipments: [String]? = nil, successfulInvoicedShipments: [String]? = nil, successfulShipments: [String]? = nil) {
             
             self.label = label
             
@@ -152,7 +152,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    failedInvoicedShipments = try container.decode([String: Any].self, forKey: .failedInvoicedShipments)
+                    failedInvoicedShipments = try container.decode([String: String].self, forKey: .failedInvoicedShipments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -264,7 +264,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var invoiceableShipments: [String]?
         
-        public var failedInvoicedShipments: [String: Any]?
+        public var failedInvoicedShipments: [String: String]?
         
         public var processingInvoiceShipments: [String]?
         
@@ -293,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(failedInvoicedShipments: [String: Any]? = nil, failedShipments: [[String: String]]? = nil, invoice: [String]? = nil, invoiceableShipments: [String]? = nil, label: [String]? = nil, processingInvoiceShipments: [String]? = nil, processingShipments: [String]? = nil, successfulInvoicedShipments: [String]? = nil, successfulShipments: [String]? = nil) {
+        public init(failedInvoicedShipments: [String: String]? = nil, failedShipments: [[String: String]]? = nil, invoice: [String]? = nil, invoiceableShipments: [String]? = nil, label: [String]? = nil, processingInvoiceShipments: [String]? = nil, processingShipments: [String]? = nil, successfulInvoicedShipments: [String]? = nil, successfulShipments: [String]? = nil) {
             
             self.label = label
             
@@ -392,7 +392,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    failedInvoicedShipments = try container.decode([String: Any].self, forKey: .failedInvoicedShipments)
+                    failedInvoicedShipments = try container.decode([String: String].self, forKey: .failedInvoicedShipments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

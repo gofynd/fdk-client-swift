@@ -12,9 +12,9 @@ public extension PlatformClient.Catalog {
     class ListSizeGuide: Codable {
         
         
-        public var items: [SizeGuideItem]?
+        public var items: [[String: Any]]?
         
-        public var page: PageResponseSchema?
+        public var page: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(items: [SizeGuideItem]? = nil, page: PageResponseSchema? = nil) {
+        public init(items: [[String: Any]]? = nil, page: [String: Any]? = nil) {
             
             self.items = items
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    items = try container.decode([SizeGuideItem].self, forKey: .items)
+                    items = try container.decode([[String: Any]].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    page = try container.decode(PageResponseSchema.self, forKey: .page)
+                    page = try container.decode([String: Any].self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ListSizeGuide: Codable {
         
         
-        public var items: [SizeGuideItem]?
+        public var items: [[String: Any]]?
         
-        public var page: PageResponseSchema?
+        public var page: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(items: [SizeGuideItem]? = nil, page: PageResponseSchema? = nil) {
+        public init(items: [[String: Any]]? = nil, page: [String: Any]? = nil) {
             
             self.items = items
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    items = try container.decode([SizeGuideItem].self, forKey: .items)
+                    items = try container.decode([[String: Any]].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    page = try container.decode(PageResponseSchema.self, forKey: .page)
+                    page = try container.decode([String: Any].self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
