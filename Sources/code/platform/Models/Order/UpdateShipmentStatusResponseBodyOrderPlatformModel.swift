@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class UpdateShipmentStatusResponseBody: Codable {
         
         
-        public var statuses: [StatuesResponse]?
+        public var statuses: [StatuesResponseSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(statuses: [StatuesResponse]? = nil) {
+        public init(statuses: [StatuesResponseSchema]? = nil) {
             
             self.statuses = statuses
             
@@ -32,7 +32,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    statuses = try container.decode([StatuesResponse].self, forKey: .statuses)
+                    statuses = try container.decode([StatuesResponseSchema].self, forKey: .statuses)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class UpdateShipmentStatusResponseBody: Codable {
         
         
-        public var statuses: [StatuesResponse]?
+        public var statuses: [StatuesResponseSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(statuses: [StatuesResponse]? = nil) {
+        public init(statuses: [StatuesResponseSchema]? = nil) {
             
             self.statuses = statuses
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    statuses = try container.decode([StatuesResponse].self, forKey: .statuses)
+                    statuses = try container.decode([StatuesResponseSchema].self, forKey: .statuses)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

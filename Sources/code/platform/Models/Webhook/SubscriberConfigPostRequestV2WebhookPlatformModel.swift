@@ -14,6 +14,8 @@ public extension PlatformClient.Webhook {
         
         public var name: String
         
+        public var type: String?
+        
         public var webhookUrl: String?
         
         public var provider: String
@@ -35,6 +37,8 @@ public extension PlatformClient.Webhook {
             
             case name = "name"
             
+            case type = "type"
+            
             case webhookUrl = "webhook_url"
             
             case provider = "provider"
@@ -53,9 +57,11 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(association: Association, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String, events: [Events], name: String, provider: String, status: SubscriberStatus, webhookUrl: String? = nil) {
+        public init(association: Association, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String, events: [Events], name: String, provider: String, status: SubscriberStatus, type: String? = nil, webhookUrl: String? = nil) {
             
             self.name = name
+            
+            self.type = type
             
             self.webhookUrl = webhookUrl
             
@@ -82,6 +88,18 @@ public extension PlatformClient.Webhook {
                 name = try container.decode(String.self, forKey: .name)
                 
             
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -152,6 +170,11 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             

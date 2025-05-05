@@ -16,6 +16,8 @@ public extension PlatformClient.Catalog {
         
         public var marked: Price1?
         
+        public var selling: Price1?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Catalog {
             
             case marked = "marked"
             
+            case selling = "selling"
+            
         }
 
-        public init(effective: Price1? = nil, marked: Price1? = nil) {
+        public init(effective: Price1? = nil, marked: Price1? = nil, selling: Price1? = nil) {
             
             self.effective = effective
             
             self.marked = marked
+            
+            self.selling = selling
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    selling = try container.decode(Price1.self, forKey: .selling)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +91,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(marked, forKey: .marked)
+            
+            
+            
+            
+            try? container.encodeIfPresent(selling, forKey: .selling)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var marked: Price1?
         
+        public var selling: Price1?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case marked = "marked"
             
+            case selling = "selling"
+            
         }
 
-        public init(effective: Price1? = nil, marked: Price1? = nil) {
+        public init(effective: Price1? = nil, marked: Price1? = nil, selling: Price1? = nil) {
             
             self.effective = effective
             
             self.marked = marked
+            
+            self.selling = selling
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    selling = try container.decode(Price1.self, forKey: .selling)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(marked, forKey: .marked)
+            
+            
+            
+            
+            try? container.encodeIfPresent(selling, forKey: .selling)
             
             
         }

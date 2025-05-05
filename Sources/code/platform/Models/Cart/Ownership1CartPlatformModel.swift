@@ -14,9 +14,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Ownership1: Codable {
         
         
-        public var payableCategory: String
+        public var payableCategory: String?
         
-        public var payableBy: String
+        public var payableBy: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,7 +27,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(payableBy: String, payableCategory: String) {
+        public init(payableBy: String? = nil, payableCategory: String? = nil) {
             
             self.payableCategory = payableCategory
             
@@ -39,14 +39,28 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                payableCategory = try container.decode(String.self, forKey: .payableCategory)
+                do {
+                    payableCategory = try container.decode(String.self, forKey: .payableCategory)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                payableBy = try container.decode(String.self, forKey: .payableBy)
+                do {
+                    payableBy = try container.decode(String.self, forKey: .payableBy)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

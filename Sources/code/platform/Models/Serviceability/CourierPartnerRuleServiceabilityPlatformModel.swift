@@ -18,9 +18,15 @@ public extension PlatformClient.Serviceability {
         
         public var name: String
         
+        public var manualPriority: [String]
+        
+        public var filters: String
+        
         public var conditions: CourierPartnerRuleConditions
         
         public var sort: [String]
+        
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -31,13 +37,19 @@ public extension PlatformClient.Serviceability {
             
             case name = "name"
             
+            case manualPriority = "manual_priority"
+            
+            case filters = "filters"
+            
             case conditions = "conditions"
             
             case sort = "sort"
             
+            case type = "type"
+            
         }
 
-        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String]) {
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, filters: String, isActive: Bool, manualPriority: [String], name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
@@ -45,9 +57,15 @@ public extension PlatformClient.Serviceability {
             
             self.name = name
             
+            self.manualPriority = manualPriority
+            
+            self.filters = filters
+            
             self.conditions = conditions
             
             self.sort = sort
+            
+            self.type = type
             
         }
 
@@ -77,6 +95,16 @@ public extension PlatformClient.Serviceability {
             
             
             
+                manualPriority = try container.decode([String].self, forKey: .manualPriority)
+                
+            
+            
+            
+                filters = try container.decode(String.self, forKey: .filters)
+                
+            
+            
+            
                 conditions = try container.decode(CourierPartnerRuleConditions.self, forKey: .conditions)
                 
             
@@ -85,6 +113,18 @@ public extension PlatformClient.Serviceability {
                 sort = try container.decode([String].self, forKey: .sort)
                 
             
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -108,12 +148,27 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
             try? container.encodeIfPresent(conditions, forKey: .conditions)
             
             
             
             
             try? container.encodeIfPresent(sort, forKey: .sort)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
@@ -138,9 +193,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var name: String
         
+        public var manualPriority: [String]
+        
+        public var filters: String
+        
         public var conditions: CourierPartnerRuleConditions
         
         public var sort: [String]
+        
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -151,13 +212,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case name = "name"
             
+            case manualPriority = "manual_priority"
+            
+            case filters = "filters"
+            
             case conditions = "conditions"
             
             case sort = "sort"
             
+            case type = "type"
+            
         }
 
-        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String]) {
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, filters: String, isActive: Bool, manualPriority: [String], name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
@@ -165,9 +232,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.name = name
             
+            self.manualPriority = manualPriority
+            
+            self.filters = filters
+            
             self.conditions = conditions
             
             self.sort = sort
+            
+            self.type = type
             
         }
 
@@ -197,6 +270,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+                manualPriority = try container.decode([String].self, forKey: .manualPriority)
+                
+            
+            
+            
+                filters = try container.decode(String.self, forKey: .filters)
+                
+            
+            
+            
                 conditions = try container.decode(CourierPartnerRuleConditions.self, forKey: .conditions)
                 
             
@@ -205,6 +288,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 sort = try container.decode([String].self, forKey: .sort)
                 
             
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -228,12 +323,27 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
             try? container.encodeIfPresent(conditions, forKey: .conditions)
             
             
             
             
             try? container.encodeIfPresent(sort, forKey: .sort)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
