@@ -16,15 +16,21 @@ public extension PlatformClient.Order {
         
         public var displayName: String
         
+        public var remarkRequired: Bool?
+        
+        public var showTextArea: Bool?
+        
         public var reasons: [Reason]?
         
         public var qcType: [String]
         
         public var questionSet: [QuestionSet]
         
-        public var meta: [String: Any]?
+        public var meta: [String: Any]
         
-        public var isActive: Bool?
+        public var isActive: Bool
+        
+        public var isDeleted: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -32,6 +38,10 @@ public extension PlatformClient.Order {
             case id = "id"
             
             case displayName = "display_name"
+            
+            case remarkRequired = "remark_required"
+            
+            case showTextArea = "show_text_area"
             
             case reasons = "reasons"
             
@@ -43,13 +53,19 @@ public extension PlatformClient.Order {
             
             case isActive = "is_active"
             
+            case isDeleted = "is_deleted"
+            
         }
 
-        public init(displayName: String, id: Int? = nil, isActive: Bool? = nil, meta: [String: Any]? = nil, qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil) {
+        public init(displayName: String, id: Int? = nil, isActive: Bool, isDeleted: Bool? = nil, meta: [String: Any], qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil, remarkRequired: Bool? = nil, showTextArea: Bool? = nil) {
             
             self.id = id
             
             self.displayName = displayName
+            
+            self.remarkRequired = remarkRequired
+            
+            self.showTextArea = showTextArea
             
             self.reasons = reasons
             
@@ -60,6 +76,8 @@ public extension PlatformClient.Order {
             self.meta = meta
             
             self.isActive = isActive
+            
+            self.isDeleted = isDeleted
             
         }
 
@@ -85,6 +103,30 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    remarkRequired = try container.decode(Bool.self, forKey: .remarkRequired)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     reasons = try container.decode([Reason].self, forKey: .reasons)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -106,20 +148,18 @@ public extension PlatformClient.Order {
             
             
             
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                meta = try container.decode([String: Any].self, forKey: .meta)
                 
             
             
+            
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+            
+            
+            
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    isDeleted = try container.decode(Bool.self, forKey: .isDeleted)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,6 +186,16 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(remarkRequired, forKey: .remarkRequired)
+            
+            
+            
+            
+            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
+            
+            
+            
+            
             try? container.encodeIfPresent(reasons, forKey: .reasons)
             
             
@@ -167,6 +217,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isDeleted, forKey: .isDeleted)
             
             
         }
@@ -189,15 +244,21 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var displayName: String
         
+        public var remarkRequired: Bool?
+        
+        public var showTextArea: Bool?
+        
         public var reasons: [Reason]?
         
         public var qcType: [String]
         
         public var questionSet: [QuestionSet]
         
-        public var meta: [String: Any]?
+        public var meta: [String: Any]
         
-        public var isActive: Bool?
+        public var isActive: Bool
+        
+        public var isDeleted: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -205,6 +266,10 @@ public extension PlatformClient.ApplicationClient.Order {
             case id = "id"
             
             case displayName = "display_name"
+            
+            case remarkRequired = "remark_required"
+            
+            case showTextArea = "show_text_area"
             
             case reasons = "reasons"
             
@@ -216,13 +281,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isActive = "is_active"
             
+            case isDeleted = "is_deleted"
+            
         }
 
-        public init(displayName: String, id: Int? = nil, isActive: Bool? = nil, meta: [String: Any]? = nil, qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil) {
+        public init(displayName: String, id: Int? = nil, isActive: Bool, isDeleted: Bool? = nil, meta: [String: Any], qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil, remarkRequired: Bool? = nil, showTextArea: Bool? = nil) {
             
             self.id = id
             
             self.displayName = displayName
+            
+            self.remarkRequired = remarkRequired
+            
+            self.showTextArea = showTextArea
             
             self.reasons = reasons
             
@@ -233,6 +304,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.meta = meta
             
             self.isActive = isActive
+            
+            self.isDeleted = isDeleted
             
         }
 
@@ -258,6 +331,30 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    remarkRequired = try container.decode(Bool.self, forKey: .remarkRequired)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     reasons = try container.decode([Reason].self, forKey: .reasons)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -279,20 +376,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                meta = try container.decode([String: Any].self, forKey: .meta)
                 
             
             
+            
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+            
+            
+            
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    isDeleted = try container.decode(Bool.self, forKey: .isDeleted)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -319,6 +414,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(remarkRequired, forKey: .remarkRequired)
+            
+            
+            
+            
+            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
+            
+            
+            
+            
             try? container.encodeIfPresent(reasons, forKey: .reasons)
             
             
@@ -340,6 +445,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isDeleted, forKey: .isDeleted)
             
             
         }

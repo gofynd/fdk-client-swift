@@ -15,7 +15,7 @@ extension ApplicationClient {
             
             ulrs["createHistory"] = config.domain.appendAsPath("/service/application/lead/v1.0/ticket/{id}/history") 
             
-            ulrs["createTicket"] = config.domain.appendAsPath("/service/application/lead/v1.0/ticket/") 
+            ulrs["createTicket"] = config.domain.appendAsPath("/service/application/lead/v1.0/ticket") 
             
             ulrs["getCustomForm"] = config.domain.appendAsPath("/service/application/lead/v1.0/form/{slug}") 
             
@@ -88,7 +88,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Log ticket history
+        * Summary: Logs ticket history.
         * Description: Create a history entry for a specific support ticket.
         **/
         public func createHistory(
@@ -257,7 +257,7 @@ extension ApplicationClient {
             slug: String,
             body: CustomFormSubmissionPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SubmitCustomFormDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SubmitCustomFormResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -290,7 +290,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SubmitCustomFormDetails.self, from: data)
+                        let response = Utility.decode(SubmitCustomFormResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

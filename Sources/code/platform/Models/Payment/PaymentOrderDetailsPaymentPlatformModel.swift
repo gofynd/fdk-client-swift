@@ -20,7 +20,7 @@ public extension PlatformClient.Payment {
         
         public var callbackUrl: String?
         
-        public var statusCode: Int
+        public var statusCode: Int?
         
         public var orderId: String?
         
@@ -45,7 +45,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(callbackUrl: String? = nil, data: PaymentOrderData? = nil, message: String, orderId: String? = nil, paymentConfirmUrl: String? = nil, statusCode: Int, success: Bool) {
+        public init(callbackUrl: String? = nil, data: PaymentOrderData? = nil, message: String, orderId: String? = nil, paymentConfirmUrl: String? = nil, statusCode: Int? = nil, success: Bool) {
             
             self.message = message
             
@@ -101,9 +101,16 @@ public extension PlatformClient.Payment {
                 
             
             
-                statusCode = try container.decode(Int.self, forKey: .statusCode)
+                do {
+                    statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -193,7 +200,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var callbackUrl: String?
         
-        public var statusCode: Int
+        public var statusCode: Int?
         
         public var orderId: String?
         
@@ -218,7 +225,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(callbackUrl: String? = nil, data: PaymentOrderData? = nil, message: String, orderId: String? = nil, paymentConfirmUrl: String? = nil, statusCode: Int, success: Bool) {
+        public init(callbackUrl: String? = nil, data: PaymentOrderData? = nil, message: String, orderId: String? = nil, paymentConfirmUrl: String? = nil, statusCode: Int? = nil, success: Bool) {
             
             self.message = message
             
@@ -274,9 +281,16 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                statusCode = try container.decode(Int.self, forKey: .statusCode)
+                do {
+                    statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

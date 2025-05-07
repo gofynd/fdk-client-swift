@@ -22,11 +22,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var parentItemIdentifiers: [[String: String]]?
         
+        public var priceFactoryTypeId: String?
+        
         public var productGroupTags: [String]?
         
         public var articleId: String?
         
-        public var articleAssignment: [String: Any]?
+        public var articleAssignment: ArticleAssignment?
         
         public var storeId: Int?
         
@@ -37,8 +39,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         public var extraMeta: [String: Any]?
         
         public var customJson: [String: Any]?
-        
-        public var forceNewLineItem: Bool?
         
         public var meta: [String: Any]?
         
@@ -57,6 +57,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case parentItemIdentifiers = "parent_item_identifiers"
             
+            case priceFactoryTypeId = "price_factory_type_id"
+            
             case productGroupTags = "product_group_tags"
             
             case articleId = "article_id"
@@ -73,8 +75,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case customJson = "_custom_json"
             
-            case forceNewLineItem = "force_new_line_item"
-            
             case meta = "meta"
             
             case pos = "pos"
@@ -83,7 +83,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, forceNewLineItem: Bool? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, sellerIdentifier: String? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleAssignment: ArticleAssignment? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, priceFactoryTypeId: String? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, sellerIdentifier: String? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.quantity = quantity
             
@@ -92,6 +92,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.sellerId = sellerId
             
             self.parentItemIdentifiers = parentItemIdentifiers
+            
+            self.priceFactoryTypeId = priceFactoryTypeId
             
             self.productGroupTags = productGroupTags
             
@@ -108,8 +110,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.extraMeta = extraMeta
             
             self.customJson = customJson
-            
-            self.forceNewLineItem = forceNewLineItem
             
             self.meta = meta
             
@@ -172,6 +172,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    priceFactoryTypeId = try container.decode(String.self, forKey: .priceFactoryTypeId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     productGroupTags = try container.decode([String].self, forKey: .productGroupTags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -196,7 +208,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    articleAssignment = try container.decode([String: Any].self, forKey: .articleAssignment)
+                    articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -257,18 +269,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     customJson = try container.decode([String: Any].self, forKey: .customJson)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    forceNewLineItem = try container.decode(Bool.self, forKey: .forceNewLineItem)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -341,6 +341,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(priceFactoryTypeId, forKey: .priceFactoryTypeId)
+            
+            
+            
+            
             try? container.encodeIfPresent(productGroupTags, forKey: .productGroupTags)
             
             
@@ -377,11 +382,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            
-            
-            
-            try? container.encodeIfPresent(forceNewLineItem, forKey: .forceNewLineItem)
             
             
             

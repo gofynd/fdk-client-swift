@@ -33,31 +33,31 @@ extension ApplicationClient {
             
             ulrs["getLegalInformation"] = config.domain.appendAsPath("/service/application/content/v1.0/legal") 
             
-            ulrs["getNavigations"] = config.domain.appendAsPath("/service/application/content/v1.0/navigations") 
+            ulrs["getNavigations"] = config.domain.appendAsPath("/service/application/content/v2.0/navigations") 
             
             ulrs["getSEOConfiguration"] = config.domain.appendAsPath("/service/application/content/v1.0/seo") 
             
             ulrs["getSEOMarkupSchemas"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/schema") 
             
+            ulrs["getDefaultSitemapConfig"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/sitemap/default") 
+            
+            ulrs["getSitemaps"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/sitemaps") 
+            
+            ulrs["getSitemap"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/sitemaps/{name}") 
+            
             ulrs["getSupportInformation"] = config.domain.appendAsPath("/service/application/content/v1.0/support") 
             
             ulrs["getTags"] = config.domain.appendAsPath("/service/application/content/v1.0/tags") 
             
-            ulrs["getPage"] = config.domain.appendAsPath("/service/application/content/v2.0/pages/{slug}") 
-            
             ulrs["getPages"] = config.domain.appendAsPath("/service/application/content/v2.0/pages") 
+            
+            ulrs["getPage"] = config.domain.appendAsPath("/service/application/content/v2.0/pages/{slug}") 
             
             ulrs["getCustomObjectBySlug"] = config.domain.appendAsPath("/service/application/content/v2.0/customobjects/definition/{definition_slug}/entries/{slug}") 
             
             ulrs["getCustomFieldsByResourceId"] = config.domain.appendAsPath("/service/application/content/v2.0/customfields/resource/{resource}/{resource_slug}") 
             
-            ulrs["getTranslateUILabels"] = config.domain.appendAsPath("/service/application/content/v1.0/translate-ui-labels") 
-            
-            ulrs["fetchResourceTranslations"] = config.domain.appendAsPath("/service/application/content/v1.0/resource/translations/{type}/{locale}") 
-            
-            ulrs["fetchResourceTranslationsWithPayload"] = config.domain.appendAsPath("/service/application/content/v1.0/resource/translations/{type}/{locale}") 
-            
-            ulrs["getSupportedLanguages"] = config.domain.appendAsPath("/service/application/content/v1.0/languages") 
+            ulrs["getWellKnownUrl"] = config.domain.appendAsPath("/service/application/content/v1.0/well-known/{slug}") 
             
             self.relativeUrls = ulrs
         }
@@ -129,7 +129,6 @@ extension ApplicationClient {
         public func getBlog(
             slug: String,
             rootId: String?,
-            preview: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
@@ -139,10 +138,6 @@ extension ApplicationClient {
             
             if let value = rootId {
                 xQuery["root_id"] = value
-            }
-            
-            if let value = preview {
-                xQuery["preview"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -198,7 +193,7 @@ extension ApplicationClient {
             search: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BlogGetDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BlogGetResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -245,7 +240,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BlogGetDetails.self, from: data)
+                        let response = Utility.decode(BlogGetResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -582,7 +577,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: Get a landing page
-        * Description: Get content of the application's landing page.
+        * Description: Gets the content of the application's landing page.
         **/
         public func getLandingPage(
             
@@ -693,7 +688,7 @@ extension ApplicationClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: NavigationGetDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: NavigationGetResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -732,7 +727,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(NavigationGetDetails.self, from: data)
+                        let response = Utility.decode(NavigationGetResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -861,6 +856,181 @@ extension ApplicationClient {
         
         /**
         *
+        * Summary: Get default sitemap configuration
+        * Description: Retrieves the current default sitemap configuration settings
+        **/
+        public func getDefaultSitemapConfig(
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: DefaultSitemapConfig?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getDefaultSitemapConfig"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DefaultSitemapConfig.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: List sitemap configurations
+        * Description: Retrieve a list of sitemap configurations for a specific company and application. Each configuration contains the sitemap XML data and its activation status. 
+
+        **/
+        public func getSitemaps(
+            pageNo: String,
+            pageSize: String,
+            isActive: Bool?,
+            name: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: SitemapConfigurationList?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["page_no"] = pageNo
+            xQuery["page_size"] = pageSize
+            
+            if let value = isActive {
+                xQuery["is_active"] = value
+            }
+            
+            if let value = name {
+                xQuery["name"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getSitemaps"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SitemapConfigurationList.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get a specific sitemap configuration
+        * Description: Retrieve a specific sitemap configuration by its name. Returns the complete configuration including the sitemap XML data, activation status, and timestamps.
+
+        **/
+        public func getSitemap(
+            name: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: SitemapConfig?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["getSitemap"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "name" + "}", with: "\(name)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SitemapConfig.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
         * Summary: Get customer support information
         * Description: Get customer support contact details. Contact Details can be either a phone number or an email-id or both.
         **/
@@ -965,8 +1135,70 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get a page
-        * Description: Get detailed information for a specific page within the theme.
+        * Summary: Lists pages
+        * Description: Lists all Custom Pages
+        **/
+        public func getPages(
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: PageGetResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getPages"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PageGetResponseSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get page by slug
+        * Description: Get detailed information about a specific page using its slug.
         **/
         public func getPage(
             slug: String,
@@ -1011,68 +1243,6 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PageSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Lists pages
-        * Description: Lists all Custom Pages.
-        **/
-        public func getPages(
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PageGetDetails?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            let fullUrl = relativeUrls["getPages"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: xHeaders,
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageGetDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1203,210 +1373,14 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Translate Ui Labels
-        * Description: Retrieve Translate Ui Labels with filtering options for type, template, and locale settings.
+        * Summary: Get a specific well-known URL
+        * Description: Retrieves the details of a specific well-known URL by its slug.
         **/
-        public func getTranslateUILabels(
-            template: Bool?,
-            templateThemeId: String?,
-            themeId: String?,
-            locale: String?,
-            type: String?,
+        public func getWellKnownUrl(
+            slug: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: TranslateUiLabelsPage?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = template {
-                xQuery["template"] = value
-            }
-            
-            if let value = templateThemeId {
-                xQuery["template_theme_id"] = value
-            }
-            
-            if let value = themeId {
-                xQuery["theme_id"] = value
-            }
-            
-            if let value = locale {
-                xQuery["locale"] = value
-            }
-            
-            if let value = type {
-                xQuery["type"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            let fullUrl = relativeUrls["getTranslateUILabels"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: xHeaders,
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(TranslateUiLabelsPage.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get Resource Translations
-        * Description: Fetch translations for specific resource IDs based on type and locale settings.
-        **/
-        public func fetchResourceTranslations(
-            type: String,
-            locale: String,
-            resourceId: String,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ResourceTranslations?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            xQuery["resource_id"] = resourceId
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            var fullUrl = relativeUrls["fetchResourceTranslations"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "type" + "}", with: "\(type)")
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "locale" + "}", with: "\(locale)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: xHeaders,
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ResourceTranslations.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Post Resource Translations
-        * Description: Submit and retrieve translations for resources using payload data and locale settings.
-        **/
-        public func fetchResourceTranslationsWithPayload(
-            type: String,
-            locale: String,
-            resourceId: String,
-            body: ResourcePayload,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ResourceTranslations?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            xQuery["resource_id"] = resourceId
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            var fullUrl = relativeUrls["fetchResourceTranslationsWithPayload"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "type" + "}", with: "\(type)")
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "locale" + "}", with: "\(locale)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ResourceTranslations.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: List App Languages
-        * Description: Retrieve available languages and their configurations for the specified application.
-        **/
-        public func getSupportedLanguages(
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: WellKnownResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1418,7 +1392,9 @@ extension ApplicationClient {
                 xHeaders.append(contentsOf: headers)
             }
             
-            let fullUrl = relativeUrls["getSupportedLanguages"] ?? ""
+            var fullUrl = relativeUrls["getWellKnownUrl"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1437,7 +1413,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(WellKnownResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

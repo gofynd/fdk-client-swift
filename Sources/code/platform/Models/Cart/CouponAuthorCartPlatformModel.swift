@@ -20,9 +20,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var approvedBy: String?
         
-        public var rejectedBy: String?
-        
         public var reviewedBy: String?
+        
+        public var rejectedBy: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,9 +33,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case approvedBy = "approved_by"
             
-            case rejectedBy = "rejected_by"
-            
             case reviewedBy = "reviewed_by"
+            
+            case rejectedBy = "rejected_by"
             
         }
 
@@ -47,9 +47,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.approvedBy = approvedBy
             
-            self.rejectedBy = rejectedBy
-            
             self.reviewedBy = reviewedBy
+            
+            self.rejectedBy = rejectedBy
             
         }
 
@@ -94,7 +94,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    rejectedBy = try container.decode(String.self, forKey: .rejectedBy)
+                    reviewedBy = try container.decode(String.self, forKey: .reviewedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    reviewedBy = try container.decode(String.self, forKey: .reviewedBy)
+                    rejectedBy = try container.decode(String.self, forKey: .rejectedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,12 +138,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(rejectedBy, forKey: .rejectedBy)
-            
-            
-            
-            
             try? container.encodeIfPresent(reviewedBy, forKey: .reviewedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(rejectedBy, forKey: .rejectedBy)
             
             
         }

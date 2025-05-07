@@ -12,9 +12,9 @@ public extension PlatformClient.Order {
     class TransitionComments: Codable {
         
         
-        public var title: String
+        public var title: String?
         
-        public var message: String
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(message: String, title: String) {
+        public init(message: String? = nil, title: String? = nil) {
             
             self.title = title
             
@@ -37,14 +37,28 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                title = try container.decode(String.self, forKey: .title)
+                do {
+                    title = try container.decode(String.self, forKey: .title)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -77,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class TransitionComments: Codable {
         
         
-        public var title: String
+        public var title: String?
         
-        public var message: String
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(message: String, title: String) {
+        public init(message: String? = nil, title: String? = nil) {
             
             self.title = title
             
@@ -102,14 +116,28 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                title = try container.decode(String.self, forKey: .title)
+                do {
+                    title = try container.decode(String.self, forKey: .title)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

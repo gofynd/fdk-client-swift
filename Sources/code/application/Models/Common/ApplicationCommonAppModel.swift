@@ -22,6 +22,8 @@ public extension ApplicationClient.Common {
         
         public var isInternal: Bool?
         
+        public var isSisEnabled: Bool?
+        
         public var isActive: Bool?
         
         public var id: String?
@@ -75,6 +77,8 @@ public extension ApplicationClient.Common {
             
             case isInternal = "is_internal"
             
+            case isSisEnabled = "is_sis_enabled"
+            
             case isActive = "is_active"
             
             case id = "_id"
@@ -113,7 +117,7 @@ public extension ApplicationClient.Common {
             
         }
 
-        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
+        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, isSisEnabled: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
             
             self.website = website
             
@@ -128,6 +132,8 @@ public extension ApplicationClient.Common {
             self.cacheTtl = cacheTtl
             
             self.isInternal = isInternal
+            
+            self.isSisEnabled = isSisEnabled
             
             self.isActive = isActive
             
@@ -245,6 +251,18 @@ public extension ApplicationClient.Common {
             
             do {
                 isInternal = try container.decode(Bool.self, forKey: .isInternal)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                isSisEnabled = try container.decode(Bool.self, forKey: .isSisEnabled)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -501,6 +519,10 @@ public extension ApplicationClient.Common {
             
             
             try? container.encodeIfPresent(isInternal, forKey: .isInternal)
+            
+            
+            
+            try? container.encodeIfPresent(isSisEnabled, forKey: .isSisEnabled)
             
             
             

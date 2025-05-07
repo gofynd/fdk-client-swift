@@ -12,18 +12,18 @@ public extension PlatformClient.Communication {
     class PayloadSmsProviderStructure: Codable {
         
         
-        public var id: String?
+        public var slug: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case slug = "slug"
             
         }
 
-        public init(id: String? = nil) {
+        public init(slug: String? = nil) {
             
-            self.id = id
+            self.slug = slug
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
         }
@@ -68,18 +68,18 @@ public extension PlatformClient.ApplicationClient.Communication {
     class PayloadSmsProviderStructure: Codable {
         
         
-        public var id: String?
+        public var slug: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case slug = "slug"
             
         }
 
-        public init(id: String? = nil) {
+        public init(slug: String? = nil) {
             
-            self.id = id
+            self.slug = slug
             
         }
 
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
         }

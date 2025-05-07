@@ -12,7 +12,7 @@ public extension ApplicationClient.Payment {
         
         public var data: BeneficiaryRefundOptions
         
-        public var limit: [String: Any]
+        public var limit: RefundOptionsLimit
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(data: BeneficiaryRefundOptions, limit: [String: Any], showBeneficiaryDetails: Bool) {
+        public init(data: BeneficiaryRefundOptions, limit: RefundOptionsLimit, showBeneficiaryDetails: Bool) {
             
             self.showBeneficiaryDetails = showBeneficiaryDetails
             
@@ -49,7 +49,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            limit = try container.decode([String: Any].self, forKey: .limit)
+            limit = try container.decode(RefundOptionsLimit.self, forKey: .limit)
             
             
             

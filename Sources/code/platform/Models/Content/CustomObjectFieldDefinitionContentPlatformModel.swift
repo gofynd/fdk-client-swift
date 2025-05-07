@@ -18,8 +18,6 @@ public extension PlatformClient.Content {
         
         public var namespace: String?
         
-        public var value: [[String: Any]]?
-        
         public var type: String?
         
 
@@ -31,21 +29,17 @@ public extension PlatformClient.Content {
             
             case namespace = "namespace"
             
-            case value = "value"
-            
             case type = "type"
             
         }
 
-        public init(id: String? = nil, namespace: String? = nil, slug: String? = nil, type: String? = nil, value: [[String: Any]]? = nil) {
+        public init(id: String? = nil, namespace: String? = nil, slug: String? = nil, type: String? = nil) {
             
             self.id = id
             
             self.slug = slug
             
             self.namespace = namespace
-            
-            self.value = value
             
             self.type = type
             
@@ -92,18 +86,6 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    value = try container.decode([[String: Any]].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -132,11 +114,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(namespace, forKey: .namespace)
-            
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
@@ -166,8 +143,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var namespace: String?
         
-        public var value: [[String: Any]]?
-        
         public var type: String?
         
 
@@ -179,21 +154,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case namespace = "namespace"
             
-            case value = "value"
-            
             case type = "type"
             
         }
 
-        public init(id: String? = nil, namespace: String? = nil, slug: String? = nil, type: String? = nil, value: [[String: Any]]? = nil) {
+        public init(id: String? = nil, namespace: String? = nil, slug: String? = nil, type: String? = nil) {
             
             self.id = id
             
             self.slug = slug
             
             self.namespace = namespace
-            
-            self.value = value
             
             self.type = type
             
@@ -240,18 +211,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    value = try container.decode([[String: Any]].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -280,11 +239,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(namespace, forKey: .namespace)
-            
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
             
             
             

@@ -14,6 +14,8 @@ public extension PlatformClient.Configuration {
         
         public var name: String?
         
+        public var displayName: String?
+        
         public var id: String?
         
         public var verified: Bool?
@@ -31,6 +33,8 @@ public extension PlatformClient.Configuration {
             
             case name = "name"
             
+            case displayName = "display_name"
+            
             case id = "_id"
             
             case verified = "verified"
@@ -45,9 +49,11 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, message: String? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
+        public init(displayName: String? = nil, isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, message: String? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
             
             self.name = name
+            
+            self.displayName = displayName
             
             self.id = id
             
@@ -69,6 +75,18 @@ public extension PlatformClient.Configuration {
             
                 do {
                     name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,6 +176,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
@@ -208,6 +231,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var name: String?
         
+        public var displayName: String?
+        
         public var id: String?
         
         public var verified: Bool?
@@ -225,6 +250,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case name = "name"
             
+            case displayName = "display_name"
+            
             case id = "_id"
             
             case verified = "verified"
@@ -239,9 +266,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, message: String? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
+        public init(displayName: String? = nil, isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, message: String? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
             
             self.name = name
+            
+            self.displayName = displayName
             
             self.id = id
             
@@ -263,6 +292,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -352,6 +393,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             

@@ -16,6 +16,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var conditions: [Conditions]?
         
+        public var blacklistedUsers: [String]?
+        
         public var error: UserResponseErrorSchema?
         
         public var name: String?
@@ -36,6 +38,10 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var applicationId: String?
         
+        public var tags: [String]?
+        
+        public var category: String?
+        
         public var createdAt: String?
         
         public var modifiedAt: String?
@@ -46,6 +52,8 @@ public extension PlatformClient.ApplicationClient.User {
         public enum CodingKeys: String, CodingKey {
             
             case conditions = "conditions"
+            
+            case blacklistedUsers = "blacklisted_users"
             
             case error = "error"
             
@@ -67,6 +75,10 @@ public extension PlatformClient.ApplicationClient.User {
             
             case applicationId = "application_id"
             
+            case tags = "tags"
+            
+            case category = "category"
+            
             case createdAt = "created_at"
             
             case modifiedAt = "modified_at"
@@ -75,9 +87,11 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(applicationId: String? = nil, conditions: [Conditions]? = nil, createdAt: String? = nil, description: String? = nil, error: UserResponseErrorSchema? = nil, fileUrl: String? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, status: String? = nil, type: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
+        public init(applicationId: String? = nil, blacklistedUsers: [String]? = nil, category: String? = nil, conditions: [Conditions]? = nil, createdAt: String? = nil, description: String? = nil, error: UserResponseErrorSchema? = nil, fileUrl: String? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, status: String? = nil, tags: [String]? = nil, type: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
             
             self.conditions = conditions
+            
+            self.blacklistedUsers = blacklistedUsers
             
             self.error = error
             
@@ -99,6 +113,10 @@ public extension PlatformClient.ApplicationClient.User {
             
             self.applicationId = applicationId
             
+            self.tags = tags
+            
+            self.category = category
+            
             self.createdAt = createdAt
             
             self.modifiedAt = modifiedAt
@@ -113,6 +131,18 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     conditions = try container.decode([Conditions].self, forKey: .conditions)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    blacklistedUsers = try container.decode([String].self, forKey: .blacklistedUsers)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -244,6 +274,30 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    category = try container.decode(String.self, forKey: .category)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     createdAt = try container.decode(String.self, forKey: .createdAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -286,6 +340,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(conditions, forKey: .conditions)
+            
+            
+            
+            
+            try? container.encodeIfPresent(blacklistedUsers, forKey: .blacklistedUsers)
             
             
             
@@ -336,6 +395,16 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(category, forKey: .category)
             
             
             

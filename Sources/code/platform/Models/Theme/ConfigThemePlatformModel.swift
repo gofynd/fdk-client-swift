@@ -18,7 +18,7 @@ public extension PlatformClient.Theme {
         
         public var globalSchema: GlobalSchema?
         
-        public var preset: Preset?
+        public var preset: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension PlatformClient.Theme {
             
         }
 
-        public init(current: String, globalSchema: GlobalSchema? = nil, list: [ThemeConfiguration], preset: Preset? = nil) {
+        public init(current: String, globalSchema: GlobalSchema? = nil, list: [ThemeConfiguration], preset: [String: Any]? = nil) {
             
             self.current = current
             
@@ -72,7 +72,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    preset = try container.decode(Preset.self, forKey: .preset)
+                    preset = try container.decode([String: Any].self, forKey: .preset)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var globalSchema: GlobalSchema?
         
-        public var preset: Preset?
+        public var preset: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -144,7 +144,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
         }
 
-        public init(current: String, globalSchema: GlobalSchema? = nil, list: [ThemeConfiguration], preset: Preset? = nil) {
+        public init(current: String, globalSchema: GlobalSchema? = nil, list: [ThemeConfiguration], preset: [String: Any]? = nil) {
             
             self.current = current
             
@@ -183,7 +183,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    preset = try container.decode(Preset.self, forKey: .preset)
+                    preset = try container.decode([String: Any].self, forKey: .preset)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

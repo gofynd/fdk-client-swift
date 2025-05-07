@@ -16,8 +16,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var brandId: [Int]?
         
-        public var emailDomain: [String]?
-        
         public var companyId: [Int]?
         
         public var storeId: [Int]?
@@ -34,12 +32,12 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var excludeBrandId: [Int]?
         
+        public var emailDomain: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case brandId = "brand_id"
-            
-            case emailDomain = "email_domain"
             
             case companyId = "company_id"
             
@@ -57,13 +55,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case excludeBrandId = "exclude_brand_id"
             
+            case emailDomain = "email_domain"
+            
         }
 
         public init(articleId: [String]? = nil, brandId: [Int]? = nil, categoryId: [Int]? = nil, collectionId: [String]? = nil, companyId: [Int]? = nil, emailDomain: [String]? = nil, excludeBrandId: [Int]? = nil, itemId: [Int]? = nil, storeId: [Int]? = nil, userId: [String]? = nil) {
             
             self.brandId = brandId
-            
-            self.emailDomain = emailDomain
             
             self.companyId = companyId
             
@@ -81,6 +79,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.excludeBrandId = excludeBrandId
             
+            self.emailDomain = emailDomain
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -89,18 +89,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     brandId = try container.decode([Int].self, forKey: .brandId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    emailDomain = try container.decode([String].self, forKey: .emailDomain)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -206,6 +194,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    emailDomain = try container.decode([String].self, forKey: .emailDomain)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -214,11 +214,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(brandId, forKey: .brandId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(emailDomain, forKey: .emailDomain)
             
             
             
@@ -259,6 +254,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(excludeBrandId, forKey: .excludeBrandId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(emailDomain, forKey: .emailDomain)
             
             
         }

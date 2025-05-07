@@ -12,14 +12,6 @@ public extension PlatformClient.Communication {
     class SmsProvider: Codable {
         
         
-        public var token: String?
-        
-        public var senderId: String?
-        
-        public var apiKey: String?
-        
-        public var expiryDate: Int64?
-        
         public var rpt: Int?
         
         public var type: String?
@@ -38,6 +30,8 @@ public extension PlatformClient.Communication {
         
         public var authkey: String?
         
+        public var entityId: String?
+        
         public var application: String?
         
         public var createdAt: String?
@@ -50,14 +44,6 @@ public extension PlatformClient.Communication {
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case token = "token"
-            
-            case senderId = "sender_id"
-            
-            case apiKey = "api_key"
-            
-            case expiryDate = "expiry_date"
             
             case rpt = "rpt"
             
@@ -77,6 +63,8 @@ public extension PlatformClient.Communication {
             
             case authkey = "authkey"
             
+            case entityId = "entity_id"
+            
             case application = "application"
             
             case createdAt = "created_at"
@@ -89,15 +77,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(apiKey: String? = nil, application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, expiryDate: Int64? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, senderId: String? = nil, slug: String? = nil, token: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
-            
-            self.token = token
-            
-            self.senderId = senderId
-            
-            self.apiKey = apiKey
-            
-            self.expiryDate = expiryDate
+        public init(application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, entityId: String? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.rpt = rpt
             
@@ -117,6 +97,8 @@ public extension PlatformClient.Communication {
             
             self.authkey = authkey
             
+            self.entityId = entityId
+            
             self.application = application
             
             self.createdAt = createdAt
@@ -131,54 +113,6 @@ public extension PlatformClient.Communication {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    token = try container.decode(String.self, forKey: .token)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    senderId = try container.decode(String.self, forKey: .senderId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    apiKey = try container.decode(String.self, forKey: .apiKey)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    expiryDate = try container.decode(Int64.self, forKey: .expiryDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -290,6 +224,18 @@ public extension PlatformClient.Communication {
             
             
                 do {
+                    entityId = try container.decode(String.self, forKey: .entityId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     application = try container.decode(String.self, forKey: .application)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -355,26 +301,6 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(token, forKey: .token)
-            
-            
-            
-            
-            try? container.encodeIfPresent(senderId, forKey: .senderId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(apiKey, forKey: .apiKey)
-            
-            
-            
-            
-            try? container.encodeIfPresent(expiryDate, forKey: .expiryDate)
-            
-            
-            
-            
             try? container.encodeIfPresent(rpt, forKey: .rpt)
             
             
@@ -416,6 +342,11 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(authkey, forKey: .authkey)
+            
+            
+            
+            
+            try? container.encodeIfPresent(entityId, forKey: .entityId)
             
             
             
@@ -459,14 +390,6 @@ public extension PlatformClient.ApplicationClient.Communication {
     class SmsProvider: Codable {
         
         
-        public var token: String?
-        
-        public var senderId: String?
-        
-        public var apiKey: String?
-        
-        public var expiryDate: Int64?
-        
         public var rpt: Int?
         
         public var type: String?
@@ -485,6 +408,8 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var authkey: String?
         
+        public var entityId: String?
+        
         public var application: String?
         
         public var createdAt: String?
@@ -497,14 +422,6 @@ public extension PlatformClient.ApplicationClient.Communication {
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case token = "token"
-            
-            case senderId = "sender_id"
-            
-            case apiKey = "api_key"
-            
-            case expiryDate = "expiry_date"
             
             case rpt = "rpt"
             
@@ -524,6 +441,8 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case authkey = "authkey"
             
+            case entityId = "entity_id"
+            
             case application = "application"
             
             case createdAt = "created_at"
@@ -536,15 +455,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(apiKey: String? = nil, application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, expiryDate: Int64? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, senderId: String? = nil, slug: String? = nil, token: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
-            
-            self.token = token
-            
-            self.senderId = senderId
-            
-            self.apiKey = apiKey
-            
-            self.expiryDate = expiryDate
+        public init(application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, entityId: String? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.rpt = rpt
             
@@ -564,6 +475,8 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             self.authkey = authkey
             
+            self.entityId = entityId
+            
             self.application = application
             
             self.createdAt = createdAt
@@ -578,54 +491,6 @@ public extension PlatformClient.ApplicationClient.Communication {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    token = try container.decode(String.self, forKey: .token)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    senderId = try container.decode(String.self, forKey: .senderId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    apiKey = try container.decode(String.self, forKey: .apiKey)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    expiryDate = try container.decode(Int64.self, forKey: .expiryDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -737,6 +602,18 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
+                    entityId = try container.decode(String.self, forKey: .entityId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     application = try container.decode(String.self, forKey: .application)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -802,26 +679,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(token, forKey: .token)
-            
-            
-            
-            
-            try? container.encodeIfPresent(senderId, forKey: .senderId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(apiKey, forKey: .apiKey)
-            
-            
-            
-            
-            try? container.encodeIfPresent(expiryDate, forKey: .expiryDate)
-            
-            
-            
-            
             try? container.encodeIfPresent(rpt, forKey: .rpt)
             
             
@@ -863,6 +720,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(authkey, forKey: .authkey)
+            
+            
+            
+            
+            try? container.encodeIfPresent(entityId, forKey: .entityId)
             
             
             

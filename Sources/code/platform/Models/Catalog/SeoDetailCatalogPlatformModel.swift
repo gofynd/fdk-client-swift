@@ -16,7 +16,7 @@ public extension PlatformClient.Catalog {
         
         public var title: String?
         
-        public var sitemap: [String: Any]?
+        public var sitemap: Sitemap?
         
         public var breadcrumbs: [ApplicationItemSeoBreadcrumbs]?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: [String: Any]? = nil, title: String? = nil) {
+        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: Sitemap? = nil, title: String? = nil) {
             
             self.description = description
             
@@ -86,7 +86,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    sitemap = try container.decode([String: Any].self, forKey: .sitemap)
+                    sitemap = try container.decode(Sitemap.self, forKey: .sitemap)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var title: String?
         
-        public var sitemap: [String: Any]?
+        public var sitemap: Sitemap?
         
         public var breadcrumbs: [ApplicationItemSeoBreadcrumbs]?
         
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: [String: Any]? = nil, title: String? = nil) {
+        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: Sitemap? = nil, title: String? = nil) {
             
             self.description = description
             
@@ -257,7 +257,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    sitemap = try container.decode([String: Any].self, forKey: .sitemap)
+                    sitemap = try container.decode(Sitemap.self, forKey: .sitemap)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

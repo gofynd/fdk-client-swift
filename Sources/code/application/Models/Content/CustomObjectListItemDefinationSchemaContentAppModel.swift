@@ -17,7 +17,7 @@ public extension ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case id = "id"
             
             case name = "name"
             
@@ -25,7 +25,7 @@ public extension ApplicationClient.Content {
             
         }
 
-        public init(name: String? = nil, type: String? = nil, id: String? = nil) {
+        public init(id: String? = nil, name: String? = nil, type: String? = nil) {
             
             self.id = id
             

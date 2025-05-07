@@ -48,6 +48,12 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var address: String?
         
+        public var sector: String?
+        
+        public var stateCode: String?
+        
+        public var geoLocation: GeoLocation?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -85,9 +91,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case address = "address"
             
+            case sector = "sector"
+            
+            case stateCode = "state_code"
+            
+            case geoLocation = "geo_location"
+            
         }
 
-        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, country: String? = nil, email: String? = nil, id: Int? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: Int? = nil, state: String? = nil, storeCode: String? = nil, storeManagerName: String? = nil, uid: Int? = nil) {
+        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, country: String? = nil, email: String? = nil, geoLocation: GeoLocation? = nil, id: Int? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: Int? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, storeCode: String? = nil, storeManagerName: String? = nil, uid: Int? = nil) {
             
             self.country = country
             
@@ -122,6 +134,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.pincode = pincode
             
             self.address = address
+            
+            self.sector = sector
+            
+            self.stateCode = stateCode
+            
+            self.geoLocation = geoLocation
             
         }
 
@@ -332,6 +350,42 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    sector = try container.decode(String.self, forKey: .sector)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    stateCode = try container.decode(String.self, forKey: .stateCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    geoLocation = try container.decode(GeoLocation.self, forKey: .geoLocation)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -420,6 +474,21 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(address, forKey: .address)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sector, forKey: .sector)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(geoLocation, forKey: .geoLocation)
             
             
         }

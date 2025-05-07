@@ -26,6 +26,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var selling: Double?
         
+        public var sellingPrice: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,9 +43,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case selling = "selling"
             
+            case sellingPrice = "selling_price"
+            
         }
 
-        public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
+        public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil, sellingPrice: Double? = nil) {
             
             self.marked = marked
             
@@ -56,6 +60,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.effective = effective
             
             self.selling = selling
+            
+            self.sellingPrice = sellingPrice
             
         }
 
@@ -134,6 +140,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    sellingPrice = try container.decode(Double.self, forKey: .sellingPrice)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -167,6 +185,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(selling, forKey: .selling)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sellingPrice, forKey: .sellingPrice)
             
             
         }

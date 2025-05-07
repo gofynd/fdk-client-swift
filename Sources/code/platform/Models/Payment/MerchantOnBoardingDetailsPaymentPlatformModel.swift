@@ -12,7 +12,7 @@ public extension PlatformClient.Payment {
     class MerchantOnBoardingDetails: Codable {
         
         
-        public var data: [String: Any]
+        public var data: MerchantOnboardingData
         
         public var success: Bool
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(data: [String: Any], success: Bool) {
+        public init(data: MerchantOnboardingData, success: Bool) {
             
             self.data = data
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                data = try container.decode([String: Any].self, forKey: .data)
+                data = try container.decode(MerchantOnboardingData.self, forKey: .data)
                 
             
             
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Payment {
     class MerchantOnBoardingDetails: Codable {
         
         
-        public var data: [String: Any]
+        public var data: MerchantOnboardingData
         
         public var success: Bool
         
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(data: [String: Any], success: Bool) {
+        public init(data: MerchantOnboardingData, success: Bool) {
             
             self.data = data
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                data = try container.decode([String: Any].self, forKey: .data)
+                data = try container.decode(MerchantOnboardingData.self, forKey: .data)
                 
             
             

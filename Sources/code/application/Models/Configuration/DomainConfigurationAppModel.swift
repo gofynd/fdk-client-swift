@@ -18,6 +18,8 @@ public extension ApplicationClient.Configuration {
         
         public var name: String?
         
+        public var displayName: String?
+        
         public var isPredefined: Bool?
         
 
@@ -33,11 +35,13 @@ public extension ApplicationClient.Configuration {
             
             case name = "name"
             
+            case displayName = "display_name"
+            
             case isPredefined = "is_predefined"
             
         }
 
-        public init(isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
+        public init(displayName: String? = nil, isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
             
             self.verified = verified
             
@@ -48,6 +52,8 @@ public extension ApplicationClient.Configuration {
             self.id = id
             
             self.name = name
+            
+            self.displayName = displayName
             
             self.isPredefined = isPredefined
             
@@ -118,6 +124,18 @@ public extension ApplicationClient.Configuration {
             
             
             do {
+                displayName = try container.decode(String.self, forKey: .displayName)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 isPredefined = try container.decode(Bool.self, forKey: .isPredefined)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -151,6 +169,10 @@ public extension ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             

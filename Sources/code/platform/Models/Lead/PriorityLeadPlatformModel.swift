@@ -12,7 +12,7 @@ public extension PlatformClient.Lead {
     class Priority: Codable {
         
         
-        public var key: PriorityEnum
+        public var key: String
         
         public var display: String
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Lead {
             
         }
 
-        public init(color: String, display: String, key: PriorityEnum) {
+        public init(color: String, display: String, key: String) {
             
             self.key = key
             
@@ -43,7 +43,7 @@ public extension PlatformClient.Lead {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                key = try container.decode(PriorityEnum.self, forKey: .key)
+                key = try container.decode(String.self, forKey: .key)
                 
             
             
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Lead {
     class Priority: Codable {
         
         
-        public var key: PriorityEnum
+        public var key: String
         
         public var display: String
         
@@ -110,7 +110,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
         }
 
-        public init(color: String, display: String, key: PriorityEnum) {
+        public init(color: String, display: String, key: String) {
             
             self.key = key
             
@@ -124,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                key = try container.decode(PriorityEnum.self, forKey: .key)
+                key = try container.decode(String.self, forKey: .key)
                 
             
             

@@ -76,6 +76,16 @@ public extension PlatformClient.Order {
         
         public var code: String?
         
+        public var storeAddressJson: [String: Any]?
+        
+        public var id: Double?
+        
+        public var locationType: String?
+        
+        public var companyId: Double?
+        
+        public var storeEmail: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -143,9 +153,19 @@ public extension PlatformClient.Order {
             
             case code = "code"
             
+            case storeAddressJson = "store_address_json"
+            
+            case id = "id"
+            
+            case locationType = "location_type"
+            
+            case companyId = "company_id"
+            
+            case storeEmail = "store_email"
+            
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, code: String? = nil, contactPerson: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdAt: String? = nil, deliveryAddressId: String? = nil, displayAddress: String? = nil, email: String? = nil, geoLocation: [String: Any]? = nil, landmark: String? = nil, latitude: Int? = nil, longitude: Int? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, uid: String? = nil, updatedAt: String? = nil, userId: String? = nil, version: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, code: String? = nil, companyId: Double? = nil, contactPerson: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdAt: String? = nil, deliveryAddressId: String? = nil, displayAddress: String? = nil, email: String? = nil, geoLocation: [String: Any]? = nil, id: Double? = nil, landmark: String? = nil, latitude: Int? = nil, locationType: String? = nil, longitude: Int? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, storeAddressJson: [String: Any]? = nil, storeEmail: String? = nil, uid: String? = nil, updatedAt: String? = nil, userId: String? = nil, version: String? = nil) {
             
             self.phone = phone
             
@@ -210,6 +230,16 @@ public extension PlatformClient.Order {
             self.userId = userId
             
             self.code = code
+            
+            self.storeAddressJson = storeAddressJson
+            
+            self.id = id
+            
+            self.locationType = locationType
+            
+            self.companyId = companyId
+            
+            self.storeEmail = storeEmail
             
         }
 
@@ -600,6 +630,66 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    storeAddressJson = try container.decode([String: Any].self, forKey: .storeAddressJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(Double.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    locationType = try container.decode(String.self, forKey: .locationType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    companyId = try container.decode(Double.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeEmail = try container.decode(String.self, forKey: .storeEmail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -763,6 +853,31 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeAddressJson, forKey: .storeAddressJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(locationType, forKey: .locationType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
             
             
         }
@@ -845,6 +960,16 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var code: String?
         
+        public var storeAddressJson: [String: Any]?
+        
+        public var id: Double?
+        
+        public var locationType: String?
+        
+        public var companyId: Double?
+        
+        public var storeEmail: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -912,9 +1037,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case code = "code"
             
+            case storeAddressJson = "store_address_json"
+            
+            case id = "id"
+            
+            case locationType = "location_type"
+            
+            case companyId = "company_id"
+            
+            case storeEmail = "store_email"
+            
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, code: String? = nil, contactPerson: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdAt: String? = nil, deliveryAddressId: String? = nil, displayAddress: String? = nil, email: String? = nil, geoLocation: [String: Any]? = nil, landmark: String? = nil, latitude: Int? = nil, longitude: Int? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, uid: String? = nil, updatedAt: String? = nil, userId: String? = nil, version: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, code: String? = nil, companyId: Double? = nil, contactPerson: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdAt: String? = nil, deliveryAddressId: String? = nil, displayAddress: String? = nil, email: String? = nil, geoLocation: [String: Any]? = nil, id: Double? = nil, landmark: String? = nil, latitude: Int? = nil, locationType: String? = nil, longitude: Int? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, storeAddressJson: [String: Any]? = nil, storeEmail: String? = nil, uid: String? = nil, updatedAt: String? = nil, userId: String? = nil, version: String? = nil) {
             
             self.phone = phone
             
@@ -979,6 +1114,16 @@ public extension PlatformClient.ApplicationClient.Order {
             self.userId = userId
             
             self.code = code
+            
+            self.storeAddressJson = storeAddressJson
+            
+            self.id = id
+            
+            self.locationType = locationType
+            
+            self.companyId = companyId
+            
+            self.storeEmail = storeEmail
             
         }
 
@@ -1369,6 +1514,66 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    storeAddressJson = try container.decode([String: Any].self, forKey: .storeAddressJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(Double.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    locationType = try container.decode(String.self, forKey: .locationType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    companyId = try container.decode(Double.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeEmail = try container.decode(String.self, forKey: .storeEmail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1532,6 +1737,31 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeAddressJson, forKey: .storeAddressJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(locationType, forKey: .locationType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
             
             
         }

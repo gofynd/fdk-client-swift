@@ -10,7 +10,7 @@ public extension ApplicationClient.Configuration {
         
         public var token: String?
         
-        public var createdBy: [String: Any]?
+        public var createdBy: String?
         
         public var createdAt: String?
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Configuration {
             
         }
 
-        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, token: String? = nil) {
+        public init(createdAt: String? = nil, createdBy: String? = nil, token: String? = nil) {
             
             self.token = token
             
@@ -52,7 +52,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
+                createdBy = try container.decode(String.self, forKey: .createdBy)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -20,6 +20,8 @@ public extension PlatformClient.Payment {
         
         public var success: Bool
         
+        public var error: PaymentLinkError?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +33,11 @@ public extension PlatformClient.Payment {
             
             case success = "success"
             
+            case error = "error"
+            
         }
 
-        public init(message: String, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
+        public init(error: PaymentLinkError? = nil, message: String, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
             
             self.statusCode = statusCode
             
@@ -42,6 +46,8 @@ public extension PlatformClient.Payment {
             self.pollingTimeout = pollingTimeout
             
             self.success = success
+            
+            self.error = error
             
         }
 
@@ -75,6 +81,18 @@ public extension PlatformClient.Payment {
                 
             
             
+            
+                do {
+                    error = try container.decode(PaymentLinkError.self, forKey: .error)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -98,6 +116,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }
@@ -124,6 +147,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var success: Bool
         
+        public var error: PaymentLinkError?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -135,9 +160,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case success = "success"
             
+            case error = "error"
+            
         }
 
-        public init(message: String, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
+        public init(error: PaymentLinkError? = nil, message: String, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
             
             self.statusCode = statusCode
             
@@ -146,6 +173,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.pollingTimeout = pollingTimeout
             
             self.success = success
+            
+            self.error = error
             
         }
 
@@ -179,6 +208,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
+            
+                do {
+                    error = try container.decode(PaymentLinkError.self, forKey: .error)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -202,6 +243,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

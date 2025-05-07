@@ -10,7 +10,7 @@ public extension ApplicationClient.Logistic {
         
         public var items: [StorePromise]?
         
-        public var promise: Promise?
+        public var promise: PromiseDetails?
         
         public var page: Page?
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(items: [StorePromise]? = nil, page: Page? = nil, promise: Promise? = nil) {
+        public init(items: [StorePromise]? = nil, page: Page? = nil, promise: PromiseDetails? = nil) {
             
             self.items = items
             
@@ -52,7 +52,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                promise = try container.decode(Promise.self, forKey: .promise)
+                promise = try container.decode(PromiseDetails.self, forKey: .promise)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

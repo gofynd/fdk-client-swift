@@ -14,16 +14,22 @@ public extension PlatformClient.Configuration {
         
         public var name: String?
         
+        public var displayName: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case name = "name"
             
+            case displayName = "display_name"
+            
         }
 
-        public init(name: String? = nil) {
+        public init(displayName: String? = nil, name: String? = nil) {
             
             self.name = name
+            
+            self.displayName = displayName
             
         }
 
@@ -42,6 +48,18 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -50,6 +68,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }
@@ -70,16 +93,22 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var name: String?
         
+        public var displayName: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case name = "name"
             
+            case displayName = "display_name"
+            
         }
 
-        public init(name: String? = nil) {
+        public init(displayName: String? = nil, name: String? = nil) {
             
             self.name = name
+            
+            self.displayName = displayName
             
         }
 
@@ -98,6 +127,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -106,6 +147,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }

@@ -12,6 +12,12 @@ public extension PlatformClient.Catalog {
     class ProductTemplateExportResponseSchema: Codable {
         
         
+        public var triggerOn: String?
+        
+        public var id: String?
+        
+        public var templateTags: [String: Any]?
+        
         public var completedOn: String?
         
         public var createdBy: UserInfo?
@@ -35,6 +41,12 @@ public extension PlatformClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
+            case triggerOn = "trigger_on"
+            
+            case id = "id"
+            
+            case templateTags = "template_tags"
+            
             case completedOn = "completed_on"
             
             case createdBy = "created_by"
@@ -57,7 +69,13 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(completedOn: String? = nil, createdBy: UserInfo? = nil, filters: [String: Any]? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, type: String? = nil, url: String? = nil) {
+        public init(completedOn: String? = nil, createdBy: UserInfo? = nil, filters: [String: Any]? = nil, id: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, templateTags: [String: Any]? = nil, triggerOn: String? = nil, type: String? = nil, url: String? = nil) {
+            
+            self.triggerOn = triggerOn
+            
+            self.id = id
+            
+            self.templateTags = templateTags
             
             self.completedOn = completedOn
             
@@ -83,6 +101,42 @@ public extension PlatformClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    triggerOn = try container.decode(String.self, forKey: .triggerOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    templateTags = try container.decode([String: Any].self, forKey: .templateTags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -194,6 +248,21 @@ public extension PlatformClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(templateTags, forKey: .templateTags)
+            
             
             
             
@@ -261,6 +330,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductTemplateExportResponseSchema: Codable {
         
         
+        public var triggerOn: String?
+        
+        public var id: String?
+        
+        public var templateTags: [String: Any]?
+        
         public var completedOn: String?
         
         public var createdBy: UserInfo?
@@ -284,6 +359,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
+            case triggerOn = "trigger_on"
+            
+            case id = "id"
+            
+            case templateTags = "template_tags"
+            
             case completedOn = "completed_on"
             
             case createdBy = "created_by"
@@ -306,7 +387,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(completedOn: String? = nil, createdBy: UserInfo? = nil, filters: [String: Any]? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, type: String? = nil, url: String? = nil) {
+        public init(completedOn: String? = nil, createdBy: UserInfo? = nil, filters: [String: Any]? = nil, id: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, templateTags: [String: Any]? = nil, triggerOn: String? = nil, type: String? = nil, url: String? = nil) {
+            
+            self.triggerOn = triggerOn
+            
+            self.id = id
+            
+            self.templateTags = templateTags
             
             self.completedOn = completedOn
             
@@ -332,6 +419,42 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    triggerOn = try container.decode(String.self, forKey: .triggerOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    templateTags = try container.decode([String: Any].self, forKey: .templateTags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -443,6 +566,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(templateTags, forKey: .templateTags)
+            
             
             
             

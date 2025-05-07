@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var url: String?
         
-        public var action: ApplicationCollectionItemSeoAction?
+        public var action: [ApplicationItemSeoAction]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(action: ApplicationCollectionItemSeoAction? = nil, url: String? = nil) {
+        public init(action: [ApplicationItemSeoAction]? = nil, url: String? = nil) {
             
             self.url = url
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    action = try container.decode(ApplicationCollectionItemSeoAction.self, forKey: .action)
+                    action = try container.decode([ApplicationItemSeoAction].self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var url: String?
         
-        public var action: ApplicationCollectionItemSeoAction?
+        public var action: [ApplicationItemSeoAction]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(action: ApplicationCollectionItemSeoAction? = nil, url: String? = nil) {
+        public init(action: [ApplicationItemSeoAction]? = nil, url: String? = nil) {
             
             self.url = url
             
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    action = try container.decode(ApplicationCollectionItemSeoAction.self, forKey: .action)
+                    action = try container.decode([ApplicationItemSeoAction].self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

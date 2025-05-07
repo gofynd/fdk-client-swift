@@ -12,9 +12,13 @@ public extension PlatformClient.Catalog {
     class CollectionImage: Codable {
         
         
-        public var aspectRatio: String
+        public var aspectRatio: String?
         
-        public var url: String
+        public var url: String?
+        
+        public var secureUrl: String?
+        
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,13 +27,21 @@ public extension PlatformClient.Catalog {
             
             case url = "url"
             
+            case secureUrl = "secure_url"
+            
+            case type = "type"
+            
         }
 
-        public init(aspectRatio: String, url: String) {
+        public init(aspectRatio: String? = nil, secureUrl: String? = nil, type: String? = nil, url: String? = nil) {
             
             self.aspectRatio = aspectRatio
             
             self.url = url
+            
+            self.secureUrl = secureUrl
+            
+            self.type = type
             
         }
 
@@ -37,14 +49,52 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                do {
+                    aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                url = try container.decode(String.self, forKey: .url)
+                do {
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    secureUrl = try container.decode(String.self, forKey: .secureUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -59,6 +109,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(url, forKey: .url)
+            
+            
+            
+            
+            try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
@@ -77,9 +137,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionImage: Codable {
         
         
-        public var aspectRatio: String
+        public var aspectRatio: String?
         
-        public var url: String
+        public var url: String?
+        
+        public var secureUrl: String?
+        
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -88,13 +152,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case url = "url"
             
+            case secureUrl = "secure_url"
+            
+            case type = "type"
+            
         }
 
-        public init(aspectRatio: String, url: String) {
+        public init(aspectRatio: String? = nil, secureUrl: String? = nil, type: String? = nil, url: String? = nil) {
             
             self.aspectRatio = aspectRatio
             
             self.url = url
+            
+            self.secureUrl = secureUrl
+            
+            self.type = type
             
         }
 
@@ -102,14 +174,52 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                do {
+                    aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                url = try container.decode(String.self, forKey: .url)
+                do {
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    secureUrl = try container.decode(String.self, forKey: .secureUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -124,6 +234,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(url, forKey: .url)
+            
+            
+            
+            
+            try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }

@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var filters: [CollectionProductFilters]?
         
-        public var operators: [String: String]
+        public var operators: [String: String]?
         
         public var sortOn: [CollectionProductSortOn]?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(filters: [CollectionProductFilters]? = nil, operators: [String: String], sortOn: [CollectionProductSortOn]? = nil) {
+        public init(filters: [CollectionProductFilters]? = nil, operators: [String: String]? = nil, sortOn: [CollectionProductSortOn]? = nil) {
             
             self.filters = filters
             
@@ -55,9 +55,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                operators = try container.decode([String: String].self, forKey: .operators)
+                do {
+                    operators = try container.decode([String: String].self, forKey: .operators)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -109,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var filters: [CollectionProductFilters]?
         
-        public var operators: [String: String]
+        public var operators: [String: String]?
         
         public var sortOn: [CollectionProductSortOn]?
         
@@ -124,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(filters: [CollectionProductFilters]? = nil, operators: [String: String], sortOn: [CollectionProductSortOn]? = nil) {
+        public init(filters: [CollectionProductFilters]? = nil, operators: [String: String]? = nil, sortOn: [CollectionProductSortOn]? = nil) {
             
             self.filters = filters
             
@@ -150,9 +157,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                operators = try container.decode([String: String].self, forKey: .operators)
+                do {
+                    operators = try container.decode([String: String].self, forKey: .operators)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

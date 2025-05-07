@@ -16,7 +16,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var sellerIdentifier: String?
         
-        public var quantity: Int?
+        public var quantity: Double?
         
         public var size: String
         
@@ -59,7 +59,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(amountPaid: Double, discount: Double, extraMeta: [String: Any]? = nil, itemId: Int, priceEffective: Double, priceMarked: Double, promoList: [OverrideCartItemPromo]? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil, size: String) {
+        public init(amountPaid: Double, discount: Double, extraMeta: [String: Any]? = nil, itemId: Int, priceEffective: Double, priceMarked: Double, promoList: [OverrideCartItemPromo]? = nil, quantity: Double? = nil, sellerIdentifier: String? = nil, size: String) {
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    quantity = try container.decode(Int.self, forKey: .quantity)
+                    quantity = try container.decode(Double.self, forKey: .quantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
