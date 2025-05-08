@@ -14,22 +14,16 @@ public extension PlatformClient.Catalog {
         
         public var valid: Bool?
         
-        public var message: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case valid = "valid"
             
-            case message = "message"
-            
         }
 
-        public init(message: String? = nil, valid: Bool? = nil) {
+        public init(valid: Bool? = nil) {
             
             self.valid = valid
-            
-            self.message = message
             
         }
 
@@ -48,18 +42,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -68,11 +50,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(valid, forKey: .valid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }
@@ -93,22 +70,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var valid: Bool?
         
-        public var message: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case valid = "valid"
             
-            case message = "message"
-            
         }
 
-        public init(message: String? = nil, valid: Bool? = nil) {
+        public init(valid: Bool? = nil) {
             
             self.valid = valid
-            
-            self.message = message
             
         }
 
@@ -127,18 +98,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -147,11 +106,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(valid, forKey: .valid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

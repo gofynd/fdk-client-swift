@@ -20,7 +20,7 @@ public extension ApplicationClient.Catalog {
         
         public var companyId: Int?
         
-        public var pageVisibility: [String]?
+        public var pageVisibility: [[String: Any]]?
         
         public var modifiedOn: String
         
@@ -30,27 +30,15 @@ public extension ApplicationClient.Catalog {
         
         public var products: [ProductInGroup]
         
-        public var allowRemove: Bool?
-        
-        public var autoAddToCart: Bool?
-        
-        public var autoSelect: Bool?
-        
-        public var allowIndividualCancel: Bool?
-        
-        public var allowIndividualReturn: Bool?
-        
-        public var preferSingleShipment: Bool?
-        
         public var sameStoreAssignment: Bool?
         
-        public var id: String?
+        public var id: [String: Any]?
         
-        public var name: String
+        public var name: [String: Any]
         
-        public var choice: String?
+        public var choice: [String: Any]?
         
-        public var slug: String?
+        public var slug: [String: Any]?
         
         public var verifiedOn: String?
         
@@ -79,18 +67,6 @@ public extension ApplicationClient.Catalog {
             
             case products = "products"
             
-            case allowRemove = "allow_remove"
-            
-            case autoAddToCart = "auto_add_to_cart"
-            
-            case autoSelect = "auto_select"
-            
-            case allowIndividualCancel = "allow_individual_cancel"
-            
-            case allowIndividualReturn = "allow_individual_return"
-            
-            case preferSingleShipment = "prefer_single_shipment"
-            
             case sameStoreAssignment = "same_store_assignment"
             
             case id = "_id"
@@ -105,7 +81,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(allowIndividualCancel: Bool? = nil, allowIndividualReturn: Bool? = nil, allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, choice: String? = nil, companyId: Int? = nil, createdBy: UserDetail? = nil, createdOn: String, isActive: Bool? = nil, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetail? = nil, modifiedOn: String, name: String, pageVisibility: [String]? = nil, preferSingleShipment: Bool? = nil, products: [ProductInGroup], sameStoreAssignment: Bool? = nil, slug: String? = nil, verifiedBy: UserDetail? = nil, verifiedOn: String? = nil, id: String? = nil) {
+        public init(choice: [String: Any]? = nil, companyId: Int? = nil, createdBy: UserDetail? = nil, createdOn: String, isActive: Bool? = nil, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetail? = nil, modifiedOn: String, name: [String: Any], pageVisibility: [[String: Any]]? = nil, products: [ProductInGroup], sameStoreAssignment: Bool? = nil, slug: [String: Any]? = nil, verifiedBy: UserDetail? = nil, verifiedOn: String? = nil, id: [String: Any]? = nil) {
             
             self.logo = logo
             
@@ -128,18 +104,6 @@ public extension ApplicationClient.Catalog {
             self.modifiedBy = modifiedBy
             
             self.products = products
-            
-            self.allowRemove = allowRemove
-            
-            self.autoAddToCart = autoAddToCart
-            
-            self.autoSelect = autoSelect
-            
-            self.allowIndividualCancel = allowIndividualCancel
-            
-            self.allowIndividualReturn = allowIndividualReturn
-            
-            self.preferSingleShipment = preferSingleShipment
             
             self.sameStoreAssignment = sameStoreAssignment
             
@@ -225,7 +189,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
+                pageVisibility = try container.decode([[String: Any]].self, forKey: .pageVisibility)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -271,78 +235,6 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                allowIndividualCancel = try container.decode(Bool.self, forKey: .allowIndividualCancel)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                allowIndividualReturn = try container.decode(Bool.self, forKey: .allowIndividualReturn)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                preferSingleShipment = try container.decode(Bool.self, forKey: .preferSingleShipment)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -355,7 +247,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                id = try container.decode(String.self, forKey: .id)
+                id = try container.decode([String: Any].self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -366,13 +258,13 @@ public extension ApplicationClient.Catalog {
             
             
             
-            name = try container.decode(String.self, forKey: .name)
+            name = try container.decode([String: Any].self, forKey: .name)
             
             
             
             
             do {
-                choice = try container.decode(String.self, forKey: .choice)
+                choice = try container.decode([String: Any].self, forKey: .choice)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -384,7 +276,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                slug = try container.decode([String: Any].self, forKey: .slug)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -453,30 +345,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(products, forKey: .products)
-            
-            
-            
-            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
-            
-            
-            
-            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
-            
-            
-            
-            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
-            
-            
-            
-            try? container.encodeIfPresent(allowIndividualCancel, forKey: .allowIndividualCancel)
-            
-            
-            
-            try? container.encodeIfPresent(allowIndividualReturn, forKey: .allowIndividualReturn)
-            
-            
-            
-            try? container.encodeIfPresent(preferSingleShipment, forKey: .preferSingleShipment)
             
             
             

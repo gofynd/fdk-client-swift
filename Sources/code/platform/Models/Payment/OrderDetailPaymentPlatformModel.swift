@@ -20,7 +20,7 @@ public extension PlatformClient.Payment {
         
         public var currency: String
         
-        public var aggregatorOrderDetails: AggregatorOrderDetail
+        public var aggregatorOrderDetails: [String: Any]
         
         public var aggregator: String
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(aggregator: String, aggregatorOrderDetails: AggregatorOrderDetail, amount: Int, currency: String, gid: String, status: String) {
+        public init(aggregator: String, aggregatorOrderDetails: [String: Any], amount: Int, currency: String, gid: String, status: String) {
             
             self.gid = gid
             
@@ -81,7 +81,7 @@ public extension PlatformClient.Payment {
             
             
             
-                aggregatorOrderDetails = try container.decode(AggregatorOrderDetail.self, forKey: .aggregatorOrderDetails)
+                aggregatorOrderDetails = try container.decode([String: Any].self, forKey: .aggregatorOrderDetails)
                 
             
             
@@ -149,7 +149,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var currency: String
         
-        public var aggregatorOrderDetails: AggregatorOrderDetail
+        public var aggregatorOrderDetails: [String: Any]
         
         public var aggregator: String
         
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, aggregatorOrderDetails: AggregatorOrderDetail, amount: Int, currency: String, gid: String, status: String) {
+        public init(aggregator: String, aggregatorOrderDetails: [String: Any], amount: Int, currency: String, gid: String, status: String) {
             
             self.gid = gid
             
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                aggregatorOrderDetails = try container.decode(AggregatorOrderDetail.self, forKey: .aggregatorOrderDetails)
+                aggregatorOrderDetails = try container.decode([String: Any].self, forKey: .aggregatorOrderDetails)
                 
             
             

@@ -12,9 +12,9 @@ public extension PlatformClient.Payment {
     class PayoutDetails: Codable {
         
         
-        public var paymentStatus: String?
+        public var paymentStatus: String
         
-        public var users: PayoutUserDetails
+        public var users: [String: Any]
         
         public var aggregator: String
         
@@ -22,7 +22,7 @@ public extension PlatformClient.Payment {
         
         public var isActive: Bool
         
-        public var bankDetails: PayoutBankDetails
+        public var bankDetails: [String: Any]
         
         public var success: Bool
         
@@ -30,7 +30,7 @@ public extension PlatformClient.Payment {
         
         public var created: Bool
         
-        public var payouts: PayoutData?
+        public var payouts: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -57,7 +57,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(aggregator: String, bankDetails: PayoutBankDetails, created: Bool, isActive: Bool, paymentStatus: String? = nil, payouts: PayoutData? = nil, success: Bool, transferType: String, uniqueTransferNo: String, users: PayoutUserDetails) {
+        public init(aggregator: String, bankDetails: [String: Any], created: Bool, isActive: Bool, paymentStatus: String, payouts: [String: Any], success: Bool, transferType: String, uniqueTransferNo: String, users: [String: Any]) {
             
             self.paymentStatus = paymentStatus
             
@@ -85,19 +85,12 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    paymentStatus = try container.decode(String.self, forKey: .paymentStatus)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                paymentStatus = try container.decode(String.self, forKey: .paymentStatus)
                 
             
             
-                users = try container.decode(PayoutUserDetails.self, forKey: .users)
+            
+                users = try container.decode([String: Any].self, forKey: .users)
                 
             
             
@@ -117,7 +110,7 @@ public extension PlatformClient.Payment {
             
             
             
-                bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
+                bankDetails = try container.decode([String: Any].self, forKey: .bankDetails)
                 
             
             
@@ -137,16 +130,9 @@ public extension PlatformClient.Payment {
             
             
             
-                do {
-                    payouts = try container.decode(PayoutData.self, forKey: .payouts)
+                payouts = try container.decode([String: Any].self, forKey: .payouts)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -219,9 +205,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PayoutDetails: Codable {
         
         
-        public var paymentStatus: String?
+        public var paymentStatus: String
         
-        public var users: PayoutUserDetails
+        public var users: [String: Any]
         
         public var aggregator: String
         
@@ -229,7 +215,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var isActive: Bool
         
-        public var bankDetails: PayoutBankDetails
+        public var bankDetails: [String: Any]
         
         public var success: Bool
         
@@ -237,7 +223,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var created: Bool
         
-        public var payouts: PayoutData?
+        public var payouts: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -264,7 +250,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, bankDetails: PayoutBankDetails, created: Bool, isActive: Bool, paymentStatus: String? = nil, payouts: PayoutData? = nil, success: Bool, transferType: String, uniqueTransferNo: String, users: PayoutUserDetails) {
+        public init(aggregator: String, bankDetails: [String: Any], created: Bool, isActive: Bool, paymentStatus: String, payouts: [String: Any], success: Bool, transferType: String, uniqueTransferNo: String, users: [String: Any]) {
             
             self.paymentStatus = paymentStatus
             
@@ -292,19 +278,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    paymentStatus = try container.decode(String.self, forKey: .paymentStatus)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                paymentStatus = try container.decode(String.self, forKey: .paymentStatus)
                 
             
             
-                users = try container.decode(PayoutUserDetails.self, forKey: .users)
+            
+                users = try container.decode([String: Any].self, forKey: .users)
                 
             
             
@@ -324,7 +303,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
+                bankDetails = try container.decode([String: Any].self, forKey: .bankDetails)
                 
             
             
@@ -344,16 +323,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                do {
-                    payouts = try container.decode(PayoutData.self, forKey: .payouts)
+                payouts = try container.decode([String: Any].self, forKey: .payouts)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

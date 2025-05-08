@@ -30,8 +30,6 @@ public extension PlatformClient.Configuration {
         
         public var countryName: String?
         
-        public var subunit: String?
-        
         public var countryCode: String?
         
 
@@ -55,13 +53,11 @@ public extension PlatformClient.Configuration {
             
             case countryName = "country_name"
             
-            case subunit = "subunit"
-            
             case countryCode = "country_code"
             
         }
 
-        public init(code: String? = nil, countryCode: String? = nil, countryName: String? = nil, createdAt: String? = nil, decimalDigits: Int? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, subunit: String? = nil, symbol: String? = nil, id: String? = nil) {
+        public init(code: String? = nil, countryCode: String? = nil, countryName: String? = nil, createdAt: String? = nil, decimalDigits: Int? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, symbol: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -80,8 +76,6 @@ public extension PlatformClient.Configuration {
             self.symbol = symbol
             
             self.countryName = countryName
-            
-            self.subunit = subunit
             
             self.countryCode = countryCode
             
@@ -200,18 +194,6 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    subunit = try container.decode(String.self, forKey: .subunit)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     countryCode = try container.decode(String.self, forKey: .countryCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -270,11 +252,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(countryName, forKey: .countryName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(subunit, forKey: .subunit)
             
             
             
@@ -316,8 +293,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var countryName: String?
         
-        public var subunit: String?
-        
         public var countryCode: String?
         
 
@@ -341,13 +316,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case countryName = "country_name"
             
-            case subunit = "subunit"
-            
             case countryCode = "country_code"
             
         }
 
-        public init(code: String? = nil, countryCode: String? = nil, countryName: String? = nil, createdAt: String? = nil, decimalDigits: Int? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, subunit: String? = nil, symbol: String? = nil, id: String? = nil) {
+        public init(code: String? = nil, countryCode: String? = nil, countryName: String? = nil, createdAt: String? = nil, decimalDigits: Int? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, symbol: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -366,8 +339,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.symbol = symbol
             
             self.countryName = countryName
-            
-            self.subunit = subunit
             
             self.countryCode = countryCode
             
@@ -486,18 +457,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    subunit = try container.decode(String.self, forKey: .subunit)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     countryCode = try container.decode(String.self, forKey: .countryCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -556,11 +515,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(countryName, forKey: .countryName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(subunit, forKey: .subunit)
             
             
             

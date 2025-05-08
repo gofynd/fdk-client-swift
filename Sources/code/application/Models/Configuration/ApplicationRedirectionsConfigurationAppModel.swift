@@ -14,8 +14,6 @@ public extension ApplicationClient.Configuration {
         
         public var type: String?
         
-        public var id: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,19 +23,15 @@ public extension ApplicationClient.Configuration {
             
             case type = "type"
             
-            case id = "_id"
-            
         }
 
-        public init(redirectFrom: String? = nil, redirectTo: String? = nil, type: String? = nil, id: String? = nil) {
+        public init(redirectFrom: String? = nil, redirectTo: String? = nil, type: String? = nil) {
             
             self.redirectFrom = redirectFrom
             
             self.redirectTo = redirectTo
             
             self.type = type
-            
-            self.id = id
             
         }
 
@@ -80,18 +74,6 @@ public extension ApplicationClient.Configuration {
             }
             
             
-            
-            do {
-                id = try container.decode(String.self, forKey: .id)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -107,10 +89,6 @@ public extension ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }

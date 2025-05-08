@@ -12,9 +12,9 @@ public extension PlatformClient.Catalog {
     class CollectionProductFilters: Codable {
         
         
-        public var key: ProductFiltersKey?
+        public var key: ProductFiltersKey
         
-        public var values: [CollectionProductFiltersValue]?
+        public var values: [CollectionProductFiltersValue]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(key: ProductFiltersKey? = nil, values: [CollectionProductFiltersValue]? = nil) {
+        public init(key: ProductFiltersKey, values: [CollectionProductFiltersValue]) {
             
             self.key = key
             
@@ -37,28 +37,14 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    key = try container.decode(ProductFiltersKey.self, forKey: .key)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                key = try container.decode(ProductFiltersKey.self, forKey: .key)
                 
             
             
-                do {
-                    values = try container.decode([CollectionProductFiltersValue].self, forKey: .values)
+            
+                values = try container.decode([CollectionProductFiltersValue].self, forKey: .values)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -91,9 +77,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionProductFilters: Codable {
         
         
-        public var key: ProductFiltersKey?
+        public var key: ProductFiltersKey
         
-        public var values: [CollectionProductFiltersValue]?
+        public var values: [CollectionProductFiltersValue]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(key: ProductFiltersKey? = nil, values: [CollectionProductFiltersValue]? = nil) {
+        public init(key: ProductFiltersKey, values: [CollectionProductFiltersValue]) {
             
             self.key = key
             
@@ -116,28 +102,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    key = try container.decode(ProductFiltersKey.self, forKey: .key)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                key = try container.decode(ProductFiltersKey.self, forKey: .key)
                 
             
             
-                do {
-                    values = try container.decode([CollectionProductFiltersValue].self, forKey: .values)
+            
+                values = try container.decode([CollectionProductFiltersValue].self, forKey: .values)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

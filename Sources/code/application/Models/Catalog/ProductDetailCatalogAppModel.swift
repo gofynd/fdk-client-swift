@@ -10,18 +10,6 @@ public extension ApplicationClient.Catalog {
         
         public var uid: Int?
         
-        public var sizes: [String]?
-        
-        public var identifiers: [String]?
-        
-        public var isTryout: Bool?
-        
-        public var channel: String?
-        
-        public var discountMeta: DiscountMeta?
-        
-        public var variants: [ProductVariantResponseSchema]?
-        
         public var customOrder: ProductDetailCustomOrder?
         
         public var categoryMap: ProductCategoryMap?
@@ -98,10 +86,6 @@ public extension ApplicationClient.Catalog {
         
         public var noOfBoxes: Int?
         
-        public var templateTag: String?
-        
-        public var sellable: Bool?
-        
         public var countryOfOrigin: String?
         
         public var modifiedOn: String?
@@ -110,18 +94,6 @@ public extension ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             
             case uid = "uid"
-            
-            case sizes = "sizes"
-            
-            case identifiers = "identifiers"
-            
-            case isTryout = "is_tryout"
-            
-            case channel = "channel"
-            
-            case discountMeta = "discount_meta"
-            
-            case variants = "variants"
             
             case customOrder = "custom_order"
             
@@ -199,31 +171,15 @@ public extension ApplicationClient.Catalog {
             
             case noOfBoxes = "no_of_boxes"
             
-            case templateTag = "template_tag"
-            
-            case sellable = "sellable"
-            
             case countryOfOrigin = "country_of_origin"
             
             case modifiedOn = "modified_on"
             
         }
 
-        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, channel: String? = nil, color: String? = nil, countryOfOrigin: String? = nil, customOrder: ProductDetailCustomOrder? = nil, department: ProductDepartment? = nil, description: String? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, isTryout: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, modifiedOn: String? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, templateTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, variants: [ProductVariantResponseSchema]? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
+        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, color: String? = nil, countryOfOrigin: String? = nil, customOrder: ProductDetailCustomOrder? = nil, department: ProductDepartment? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, modifiedOn: String? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
             
             self.uid = uid
-            
-            self.sizes = sizes
-            
-            self.identifiers = identifiers
-            
-            self.isTryout = isTryout
-            
-            self.channel = channel
-            
-            self.discountMeta = discountMeta
-            
-            self.variants = variants
             
             self.customOrder = customOrder
             
@@ -301,10 +257,6 @@ public extension ApplicationClient.Catalog {
             
             self.noOfBoxes = noOfBoxes
             
-            self.templateTag = templateTag
-            
-            self.sellable = sellable
-            
             self.countryOfOrigin = countryOfOrigin
             
             self.modifiedOn = modifiedOn
@@ -317,78 +269,6 @@ public extension ApplicationClient.Catalog {
             
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                sizes = try container.decode([String].self, forKey: .sizes)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                identifiers = try container.decode([String].self, forKey: .identifiers)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isTryout = try container.decode(Bool.self, forKey: .isTryout)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                channel = try container.decode(String.self, forKey: .channel)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                variants = try container.decode([ProductVariantResponseSchema].self, forKey: .variants)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -849,30 +729,6 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                templateTag = try container.decode(String.self, forKey: .templateTag)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                sellable = try container.decode(Bool.self, forKey: .sellable)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -902,30 +758,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            
-            
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-            
-            
-            
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-            
-            
-            
-            try? container.encodeIfPresent(isTryout, forKey: .isTryout)
-            
-            
-            
-            try? container.encodeIfPresent(channel, forKey: .channel)
-            
-            
-            
-            try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
-            
-            
-            
-            try? container.encodeIfPresent(variants, forKey: .variants)
             
             
             
@@ -1078,14 +910,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
-            
-            
-            
-            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
-            
-            
-            
-            try? container.encodeIfPresent(sellable, forKey: .sellable)
             
             
             

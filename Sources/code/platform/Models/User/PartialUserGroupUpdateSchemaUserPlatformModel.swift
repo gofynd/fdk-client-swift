@@ -24,10 +24,6 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var userData: [UserGroupUpdateData]?
         
-        public var whitelistedUsers: [String]?
-        
-        public var blacklistedUsers: [String]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,13 +37,9 @@ public extension PlatformClient.ApplicationClient.User {
             
             case userData = "user_data"
             
-            case whitelistedUsers = "whitelisted_users"
-            
-            case blacklistedUsers = "blacklisted_users"
-            
         }
 
-        public init(blacklistedUsers: [String]? = nil, description: String? = nil, fileUrl: String? = nil, name: String? = nil, type: String? = nil, userData: [UserGroupUpdateData]? = nil, whitelistedUsers: [String]? = nil) {
+        public init(description: String? = nil, fileUrl: String? = nil, name: String? = nil, type: String? = nil, userData: [UserGroupUpdateData]? = nil) {
             
             self.type = type
             
@@ -58,10 +50,6 @@ public extension PlatformClient.ApplicationClient.User {
             self.fileUrl = fileUrl
             
             self.userData = userData
-            
-            self.whitelistedUsers = whitelistedUsers
-            
-            self.blacklistedUsers = blacklistedUsers
             
         }
 
@@ -128,30 +116,6 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
-            
-                do {
-                    whitelistedUsers = try container.decode([String].self, forKey: .whitelistedUsers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    blacklistedUsers = try container.decode([String].self, forKey: .blacklistedUsers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -180,16 +144,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(userData, forKey: .userData)
-            
-            
-            
-            
-            try? container.encodeIfPresent(whitelistedUsers, forKey: .whitelistedUsers)
-            
-            
-            
-            
-            try? container.encodeIfPresent(blacklistedUsers, forKey: .blacklistedUsers)
             
             
         }

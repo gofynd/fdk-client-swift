@@ -28,8 +28,6 @@ public extension PlatformClient.Lead {
         
         public var createdAt: String?
         
-        public var v: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,11 +47,9 @@ public extension PlatformClient.Lead {
             
             case createdAt = "created_at"
             
-            case v = "__v"
-            
         }
 
-        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String, v: Double? = nil) {
+        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String) {
             
             self.type = type
             
@@ -70,8 +66,6 @@ public extension PlatformClient.Lead {
             self.updatedAt = updatedAt
             
             self.createdAt = createdAt
-            
-            self.v = v
             
         }
 
@@ -146,18 +140,6 @@ public extension PlatformClient.Lead {
                 }
                 
             
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -201,11 +183,6 @@ public extension PlatformClient.Lead {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -240,8 +217,6 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var createdAt: String?
         
-        public var v: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -261,11 +236,9 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             case createdAt = "created_at"
             
-            case v = "__v"
-            
         }
 
-        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String, v: Double? = nil) {
+        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String) {
             
             self.type = type
             
@@ -282,8 +255,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             self.updatedAt = updatedAt
             
             self.createdAt = createdAt
-            
-            self.v = v
             
         }
 
@@ -358,18 +329,6 @@ public extension PlatformClient.ApplicationClient.Lead {
                 }
                 
             
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -413,11 +372,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

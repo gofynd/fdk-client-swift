@@ -12,34 +12,34 @@ public extension PlatformClient.Order {
     class ProcessManifestRequestSchema: Codable {
         
         
-        public var action: String?
-        
-        public var filters: Filters?
+        public var action: String
         
         public var manifestId: String?
         
-        public var uniqueId: String?
+        public var filters: Filters
+        
+        public var uniqueId: String
         
 
         public enum CodingKeys: String, CodingKey {
             
             case action = "action"
             
-            case filters = "filters"
-            
             case manifestId = "manifest_id"
+            
+            case filters = "filters"
             
             case uniqueId = "unique_id"
             
         }
 
-        public init(action: String? = nil, filters: Filters? = nil, manifestId: String? = nil, uniqueId: String? = nil) {
+        public init(action: String, filters: Filters, manifestId: String? = nil, uniqueId: String) {
             
             self.action = action
             
-            self.filters = filters
-            
             self.manifestId = manifestId
+            
+            self.filters = filters
             
             self.uniqueId = uniqueId
             
@@ -49,28 +49,9 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    action = try container.decode(String.self, forKey: .action)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                action = try container.decode(String.self, forKey: .action)
                 
             
-            
-                do {
-                    filters = try container.decode(Filters.self, forKey: .filters)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -85,16 +66,14 @@ public extension PlatformClient.Order {
                 
             
             
-                do {
-                    uniqueId = try container.decode(String.self, forKey: .uniqueId)
+                filters = try container.decode(Filters.self, forKey: .filters)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+            
+            
+                uniqueId = try container.decode(String.self, forKey: .uniqueId)
                 
+            
             
         }
         
@@ -108,12 +87,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(filters, forKey: .filters)
-            
-            
-            
-            
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
             
@@ -137,34 +116,34 @@ public extension PlatformClient.ApplicationClient.Order {
     class ProcessManifestRequestSchema: Codable {
         
         
-        public var action: String?
-        
-        public var filters: Filters?
+        public var action: String
         
         public var manifestId: String?
         
-        public var uniqueId: String?
+        public var filters: Filters
+        
+        public var uniqueId: String
         
 
         public enum CodingKeys: String, CodingKey {
             
             case action = "action"
             
-            case filters = "filters"
-            
             case manifestId = "manifest_id"
+            
+            case filters = "filters"
             
             case uniqueId = "unique_id"
             
         }
 
-        public init(action: String? = nil, filters: Filters? = nil, manifestId: String? = nil, uniqueId: String? = nil) {
+        public init(action: String, filters: Filters, manifestId: String? = nil, uniqueId: String) {
             
             self.action = action
             
-            self.filters = filters
-            
             self.manifestId = manifestId
+            
+            self.filters = filters
             
             self.uniqueId = uniqueId
             
@@ -174,28 +153,9 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    action = try container.decode(String.self, forKey: .action)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                action = try container.decode(String.self, forKey: .action)
                 
             
-            
-                do {
-                    filters = try container.decode(Filters.self, forKey: .filters)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -210,16 +170,14 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                do {
-                    uniqueId = try container.decode(String.self, forKey: .uniqueId)
+                filters = try container.decode(Filters.self, forKey: .filters)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+            
+            
+                uniqueId = try container.decode(String.self, forKey: .uniqueId)
                 
+            
             
         }
         
@@ -233,12 +191,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(filters, forKey: .filters)
-            
-            
-            
-            
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
             

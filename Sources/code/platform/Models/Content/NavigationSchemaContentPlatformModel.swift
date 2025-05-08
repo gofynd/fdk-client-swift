@@ -34,14 +34,6 @@ public extension PlatformClient.Content {
         
         public var navigation: [NavigationReference]?
         
-        public var assignments: [AssignmentReference]?
-        
-        public var domain: String?
-        
-        public var tags: [String]?
-        
-        public var v: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -67,17 +59,9 @@ public extension PlatformClient.Content {
             
             case navigation = "navigation"
             
-            case assignments = "assignments"
-            
-            case domain = "domain"
-            
-            case tags = "tags"
-            
-            case v = "__v"
-            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, assignments: [AssignmentReference]? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, domain: String? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil, tags: [String]? = nil, version: Double? = nil, id: String? = nil, v: Double? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil, version: Double? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -100,14 +84,6 @@ public extension PlatformClient.Content {
             self.version = version
             
             self.navigation = navigation
-            
-            self.assignments = assignments
-            
-            self.domain = domain
-            
-            self.tags = tags
-            
-            self.v = v
             
         }
 
@@ -246,54 +222,6 @@ public extension PlatformClient.Content {
                 }
                 
             
-            
-                do {
-                    assignments = try container.decode([AssignmentReference].self, forKey: .assignments)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    domain = try container.decode(String.self, forKey: .domain)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -352,26 +280,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(navigation, forKey: .navigation)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignments, forKey: .assignments)
-            
-            
-            
-            
-            try? container.encodeIfPresent(domain, forKey: .domain)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -412,14 +320,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var navigation: [NavigationReference]?
         
-        public var assignments: [AssignmentReference]?
-        
-        public var domain: String?
-        
-        public var tags: [String]?
-        
-        public var v: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -445,17 +345,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case navigation = "navigation"
             
-            case assignments = "assignments"
-            
-            case domain = "domain"
-            
-            case tags = "tags"
-            
-            case v = "__v"
-            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, assignments: [AssignmentReference]? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, domain: String? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil, tags: [String]? = nil, version: Double? = nil, id: String? = nil, v: Double? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil, version: Double? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -478,14 +370,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.version = version
             
             self.navigation = navigation
-            
-            self.assignments = assignments
-            
-            self.domain = domain
-            
-            self.tags = tags
-            
-            self.v = v
             
         }
 
@@ -624,54 +508,6 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
-            
-                do {
-                    assignments = try container.decode([AssignmentReference].self, forKey: .assignments)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    domain = try container.decode(String.self, forKey: .domain)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -730,26 +566,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(navigation, forKey: .navigation)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignments, forKey: .assignments)
-            
-            
-            
-            
-            try? container.encodeIfPresent(domain, forKey: .domain)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

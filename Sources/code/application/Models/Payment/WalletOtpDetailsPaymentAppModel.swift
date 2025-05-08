@@ -8,9 +8,9 @@ public extension ApplicationClient.Payment {
     */
     class WalletOtpDetails: Codable {
         
-        public var requestId: String?
+        public var requestId: String
         
-        public var isVerifiedFlag: Bool
+        public var isVerifiedFlag: String
         
         public var success: Bool?
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(isVerifiedFlag: Bool, requestId: String? = nil, success: Bool? = nil) {
+        public init(isVerifiedFlag: String, requestId: String, success: Bool? = nil) {
             
             self.requestId = requestId
             
@@ -39,19 +39,12 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                requestId = try container.decode(String.self, forKey: .requestId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            requestId = try container.decode(String.self, forKey: .requestId)
             
             
             
-            isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
+            
+            isVerifiedFlag = try container.decode(String.self, forKey: .isVerifiedFlag)
             
             
             

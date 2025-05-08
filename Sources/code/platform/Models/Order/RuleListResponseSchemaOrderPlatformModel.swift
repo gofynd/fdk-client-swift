@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class RuleListResponseSchema: Codable {
         
         
-        public var page: PageInfo?
+        public var page: RMAPageInfo?
         
         public var items: [RuleItem]?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(error: RuleError? = nil, items: [RuleItem]? = nil, page: PageInfo? = nil, success: Bool? = nil) {
+        public init(error: RuleError? = nil, items: [RuleItem]? = nil, page: RMAPageInfo? = nil, success: Bool? = nil) {
             
             self.page = page
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    page = try container.decode(PageInfo.self, forKey: .page)
+                    page = try container.decode(RMAPageInfo.self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,7 +137,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class RuleListResponseSchema: Codable {
         
         
-        public var page: PageInfo?
+        public var page: RMAPageInfo?
         
         public var items: [RuleItem]?
         
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(error: RuleError? = nil, items: [RuleItem]? = nil, page: PageInfo? = nil, success: Bool? = nil) {
+        public init(error: RuleError? = nil, items: [RuleItem]? = nil, page: RMAPageInfo? = nil, success: Bool? = nil) {
             
             self.page = page
             
@@ -175,7 +175,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    page = try container.decode(PageInfo.self, forKey: .page)
+                    page = try container.decode(RMAPageInfo.self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

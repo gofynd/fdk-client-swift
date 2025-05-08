@@ -22,16 +22,6 @@ public extension PlatformClient.Payment {
         
         public var accountHolder: String
         
-        public var address: String?
-        
-        public var comment: String?
-        
-        public var email: String?
-        
-        public var mobile: String?
-        
-        public var beneficiaryId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -45,19 +35,9 @@ public extension PlatformClient.Payment {
             
             case accountHolder = "account_holder"
             
-            case address = "address"
-            
-            case comment = "comment"
-            
-            case email = "email"
-            
-            case mobile = "mobile"
-            
-            case beneficiaryId = "beneficiary_id"
-            
         }
 
-        public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, beneficiaryId: String? = nil, branchName: String, comment: String? = nil, email: String? = nil, ifscCode: String, mobile: String? = nil) {
+        public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
             
             self.ifscCode = ifscCode
             
@@ -68,16 +48,6 @@ public extension PlatformClient.Payment {
             self.bankName = bankName
             
             self.accountHolder = accountHolder
-            
-            self.address = address
-            
-            self.comment = comment
-            
-            self.email = email
-            
-            self.mobile = mobile
-            
-            self.beneficiaryId = beneficiaryId
             
         }
 
@@ -109,66 +79,6 @@ public extension PlatformClient.Payment {
                 
             
             
-            
-                do {
-                    address = try container.decode(String.self, forKey: .address)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    comment = try container.decode(String.self, forKey: .comment)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    email = try container.decode(String.self, forKey: .email)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    mobile = try container.decode(String.self, forKey: .mobile)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -197,31 +107,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-            
-            
-            
-            
-            try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            
-            try? container.encodeIfPresent(comment, forKey: .comment)
-            
-            
-            
-            
-            try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-            
-            
-            
-            
-            try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
             
             
         }
@@ -250,16 +135,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var accountHolder: String
         
-        public var address: String?
-        
-        public var comment: String?
-        
-        public var email: String?
-        
-        public var mobile: String?
-        
-        public var beneficiaryId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -273,19 +148,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case accountHolder = "account_holder"
             
-            case address = "address"
-            
-            case comment = "comment"
-            
-            case email = "email"
-            
-            case mobile = "mobile"
-            
-            case beneficiaryId = "beneficiary_id"
-            
         }
 
-        public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, beneficiaryId: String? = nil, branchName: String, comment: String? = nil, email: String? = nil, ifscCode: String, mobile: String? = nil) {
+        public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
             
             self.ifscCode = ifscCode
             
@@ -296,16 +161,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.bankName = bankName
             
             self.accountHolder = accountHolder
-            
-            self.address = address
-            
-            self.comment = comment
-            
-            self.email = email
-            
-            self.mobile = mobile
-            
-            self.beneficiaryId = beneficiaryId
             
         }
 
@@ -337,66 +192,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-            
-                do {
-                    address = try container.decode(String.self, forKey: .address)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    comment = try container.decode(String.self, forKey: .comment)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    email = try container.decode(String.self, forKey: .email)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    mobile = try container.decode(String.self, forKey: .mobile)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -425,31 +220,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-            
-            
-            
-            
-            try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            
-            try? container.encodeIfPresent(comment, forKey: .comment)
-            
-            
-            
-            
-            try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-            
-            
-            
-            
-            try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
             
             
         }

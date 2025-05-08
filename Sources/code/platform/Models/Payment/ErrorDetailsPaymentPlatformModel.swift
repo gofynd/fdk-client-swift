@@ -12,36 +12,36 @@ public extension PlatformClient.Payment {
     class ErrorDetails: Codable {
         
         
-        public var statusCode: Int?
-        
-        public var message: String?
-        
-        public var success: Bool
+        public var statusCode: Int
         
         public var error: ErrorDescription?
+        
+        public var message: String
+        
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
             case statusCode = "status_code"
             
+            case error = "error"
+            
             case message = "message"
             
             case success = "success"
             
-            case error = "error"
-            
         }
 
-        public init(error: ErrorDescription? = nil, message: String? = nil, statusCode: Int? = nil, success: Bool) {
+        public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
             
             self.statusCode = statusCode
+            
+            self.error = error
             
             self.message = message
             
             self.success = success
-            
-            self.error = error
             
         }
 
@@ -49,31 +49,7 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                success = try container.decode(Bool.self, forKey: .success)
+                statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
             
             
@@ -89,6 +65,16 @@ public extension PlatformClient.Payment {
                 }
                 
             
+            
+                message = try container.decode(String.self, forKey: .message)
+                
+            
+            
+            
+                success = try container.decode(Bool.self, forKey: .success)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -101,17 +87,17 @@ public extension PlatformClient.Payment {
             
             
             
+            try? container.encodeIfPresent(error, forKey: .error)
+            
+            
+            
+            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
             try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }
@@ -130,36 +116,36 @@ public extension PlatformClient.ApplicationClient.Payment {
     class ErrorDetails: Codable {
         
         
-        public var statusCode: Int?
-        
-        public var message: String?
-        
-        public var success: Bool
+        public var statusCode: Int
         
         public var error: ErrorDescription?
+        
+        public var message: String
+        
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
             case statusCode = "status_code"
             
+            case error = "error"
+            
             case message = "message"
             
             case success = "success"
             
-            case error = "error"
-            
         }
 
-        public init(error: ErrorDescription? = nil, message: String? = nil, statusCode: Int? = nil, success: Bool) {
+        public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
             
             self.statusCode = statusCode
+            
+            self.error = error
             
             self.message = message
             
             self.success = success
-            
-            self.error = error
             
         }
 
@@ -167,31 +153,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                success = try container.decode(Bool.self, forKey: .success)
+                statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
             
             
@@ -207,6 +169,16 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
+            
+                message = try container.decode(String.self, forKey: .message)
+                
+            
+            
+            
+                success = try container.decode(Bool.self, forKey: .success)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -219,17 +191,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
+            try? container.encodeIfPresent(error, forKey: .error)
+            
+            
+            
+            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
             try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

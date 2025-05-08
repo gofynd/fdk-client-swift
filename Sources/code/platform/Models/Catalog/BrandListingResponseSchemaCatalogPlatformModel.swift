@@ -16,8 +16,6 @@ public extension PlatformClient.Catalog {
         
         public var page: Page
         
-        public var modifiedOn: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,17 +23,13 @@ public extension PlatformClient.Catalog {
             
             case page = "page"
             
-            case modifiedOn = "modified_on"
-            
         }
 
-        public init(items: [BrandItem]? = nil, modifiedOn: String? = nil, page: Page) {
+        public init(items: [BrandItem]? = nil, page: Page) {
             
             self.items = items
             
             self.page = page
-            
-            self.modifiedOn = modifiedOn
             
         }
 
@@ -59,18 +53,6 @@ public extension PlatformClient.Catalog {
                 
             
             
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -84,11 +66,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }
@@ -111,8 +88,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var page: Page
         
-        public var modifiedOn: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -120,17 +95,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case page = "page"
             
-            case modifiedOn = "modified_on"
-            
         }
 
-        public init(items: [BrandItem]? = nil, modifiedOn: String? = nil, page: Page) {
+        public init(items: [BrandItem]? = nil, page: Page) {
             
             self.items = items
             
             self.page = page
-            
-            self.modifiedOn = modifiedOn
             
         }
 
@@ -154,18 +125,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -179,11 +138,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }

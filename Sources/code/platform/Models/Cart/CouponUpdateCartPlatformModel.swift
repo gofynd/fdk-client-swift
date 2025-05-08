@@ -16,15 +16,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var dateMeta: CouponDateMeta?
         
-        public var couponType: String?
-        
-        public var couponPrefix: String?
-        
-        public var couponCounts: Double?
-        
-        public var medias: [CouponMedias]?
-        
-        public var ownership: Ownership
+        public var ownership: Ownership?
         
         public var author: CouponAuthor?
         
@@ -40,38 +32,32 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var schedule: CouponSchedule?
         
-        public var rule: [Rule]
+        public var rule: [Rule]?
         
-        public var displayMeta: DisplayMeta
+        public var displayMeta: DisplayMeta?
         
         public var code: String
         
+        public var couponType: String?
+        
+        public var couponPrefix: String?
+        
+        public var couponCounts: Int?
+        
+        public var reason: String?
+        
         public var typeSlug: String
         
-        public var identifiers: Identifier
+        public var identifiers: Identifier?
         
-        public var validity: Validity
+        public var validity: Validity?
         
-        public var ruleDefinition: RuleDefinition
-        
-        public var id: String?
-        
-        public var isArchived: Bool?
-        
-        public var isPltBypass: Bool?
+        public var ruleDefinition: RuleDefinition?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case dateMeta = "date_meta"
-            
-            case couponType = "coupon_type"
-            
-            case couponPrefix = "coupon_prefix"
-            
-            case couponCounts = "coupon_counts"
-            
-            case medias = "medias"
             
             case ownership = "ownership"
             
@@ -95,6 +81,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case code = "code"
             
+            case couponType = "coupon_type"
+            
+            case couponPrefix = "coupon_prefix"
+            
+            case couponCounts = "coupon_counts"
+            
+            case reason = "reason"
+            
             case typeSlug = "type_slug"
             
             case identifiers = "identifiers"
@@ -103,25 +97,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case ruleDefinition = "rule_definition"
             
-            case id = "_id"
-            
-            case isArchived = "is_archived"
-            
-            case isPltBypass = "is_plt_bypass"
-            
         }
 
-        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, couponCounts: Double? = nil, couponPrefix: String? = nil, couponType: String? = nil, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta, identifiers: Identifier, isArchived: Bool? = nil, isPltBypass: Bool? = nil, medias: [CouponMedias]? = nil, ownership: Ownership, restrictions: Restrictions? = nil, rule: [Rule], ruleDefinition: RuleDefinition, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity, id: String? = nil, schedule: CouponSchedule? = nil) {
+        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, couponCounts: Int? = nil, couponPrefix: String? = nil, couponType: String? = nil, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta? = nil, identifiers: Identifier? = nil, ownership: Ownership? = nil, reason: String? = nil, restrictions: Restrictions? = nil, rule: [Rule]? = nil, ruleDefinition: RuleDefinition? = nil, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity? = nil, schedule: CouponSchedule? = nil) {
             
             self.dateMeta = dateMeta
-            
-            self.couponType = couponType
-            
-            self.couponPrefix = couponPrefix
-            
-            self.couponCounts = couponCounts
-            
-            self.medias = medias
             
             self.ownership = ownership
             
@@ -145,6 +125,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.code = code
             
+            self.couponType = couponType
+            
+            self.couponPrefix = couponPrefix
+            
+            self.couponCounts = couponCounts
+            
+            self.reason = reason
+            
             self.typeSlug = typeSlug
             
             self.identifiers = identifiers
@@ -152,12 +140,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.validity = validity
             
             self.ruleDefinition = ruleDefinition
-            
-            self.id = id
-            
-            self.isArchived = isArchived
-            
-            self.isPltBypass = isPltBypass
             
         }
 
@@ -178,7 +160,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    couponType = try container.decode(String.self, forKey: .couponType)
+                    ownership = try container.decode(Ownership.self, forKey: .ownership)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,47 +169,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                     
                 }
                 
-            
-            
-                do {
-                    couponPrefix = try container.decode(String.self, forKey: .couponPrefix)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    couponCounts = try container.decode(Double.self, forKey: .couponCounts)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    medias = try container.decode([CouponMedias].self, forKey: .medias)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                ownership = try container.decode(Ownership.self, forKey: .ownership)
-                
-            
             
             
                 do {
@@ -314,14 +255,28 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                rule = try container.decode([Rule].self, forKey: .rule)
+                do {
+                    rule = try container.decode([Rule].self, forKey: .rule)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                displayMeta = try container.decode(DisplayMeta.self, forKey: .displayMeta)
+                do {
+                    displayMeta = try container.decode(DisplayMeta.self, forKey: .displayMeta)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 code = try container.decode(String.self, forKey: .code)
@@ -329,28 +284,61 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+                do {
+                    couponType = try container.decode(String.self, forKey: .couponType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    couponPrefix = try container.decode(String.self, forKey: .couponPrefix)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    couponCounts = try container.decode(Int.self, forKey: .couponCounts)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    reason = try container.decode(String.self, forKey: .reason)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 typeSlug = try container.decode(String.self, forKey: .typeSlug)
                 
             
             
             
-                identifiers = try container.decode(Identifier.self, forKey: .identifiers)
-                
-            
-            
-            
-                validity = try container.decode(Validity.self, forKey: .validity)
-                
-            
-            
-            
-                ruleDefinition = try container.decode(RuleDefinition.self, forKey: .ruleDefinition)
-                
-            
-            
-            
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    identifiers = try container.decode(Identifier.self, forKey: .identifiers)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -362,7 +350,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    isArchived = try container.decode(Bool.self, forKey: .isArchived)
+                    validity = try container.decode(Validity.self, forKey: .validity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -374,7 +362,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    isPltBypass = try container.decode(Bool.self, forKey: .isPltBypass)
+                    ruleDefinition = try container.decode(RuleDefinition.self, forKey: .ruleDefinition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -392,26 +380,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(couponType, forKey: .couponType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(couponPrefix, forKey: .couponPrefix)
-            
-            
-            
-            
-            try? container.encodeIfPresent(couponCounts, forKey: .couponCounts)
-            
-            
-            
-            
-            try? container.encodeIfPresent(medias, forKey: .medias)
             
             
             
@@ -471,6 +439,26 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(couponPrefix, forKey: .couponPrefix)
+            
+            
+            
+            
+            try? container.encodeIfPresent(couponCounts, forKey: .couponCounts)
+            
+            
+            
+            
+            try? container.encodeIfPresent(reason, forKey: .reason)
+            
+            
+            
+            
             try? container.encodeIfPresent(typeSlug, forKey: .typeSlug)
             
             
@@ -487,21 +475,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(ruleDefinition, forKey: .ruleDefinition)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isPltBypass, forKey: .isPltBypass)
             
             
         }

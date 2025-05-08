@@ -16,7 +16,7 @@ public extension PlatformClient.Payment {
         
         public var code: String
         
-        public var success: Bool?
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(code: String, description: String, success: Bool? = nil) {
+        public init(code: String, description: String, success: Bool) {
             
             self.description = description
             
@@ -53,16 +53,9 @@ public extension PlatformClient.Payment {
             
             
             
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                success = try container.decode(Bool.self, forKey: .success)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -104,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var code: String
         
-        public var success: Bool?
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
@@ -117,7 +110,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(code: String, description: String, success: Bool? = nil) {
+        public init(code: String, description: String, success: Bool) {
             
             self.description = description
             
@@ -141,16 +134,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                success = try container.decode(Bool.self, forKey: .success)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

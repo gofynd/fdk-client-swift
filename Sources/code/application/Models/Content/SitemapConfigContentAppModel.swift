@@ -10,8 +10,6 @@ public extension ApplicationClient.Content {
         
         public var name: String?
         
-        public var isActive: Bool?
-        
         public var sitemap: String?
         
         public var createdAt: String?
@@ -23,8 +21,6 @@ public extension ApplicationClient.Content {
             
             case name = "name"
             
-            case isActive = "is_active"
-            
             case sitemap = "sitemap"
             
             case createdAt = "created_at"
@@ -33,11 +29,9 @@ public extension ApplicationClient.Content {
             
         }
 
-        public init(createdAt: String? = nil, isActive: Bool? = nil, name: String? = nil, sitemap: String? = nil, updatedAt: String? = nil) {
+        public init(createdAt: String? = nil, name: String? = nil, sitemap: String? = nil, updatedAt: String? = nil) {
             
             self.name = name
-            
-            self.isActive = isActive
             
             self.sitemap = sitemap
             
@@ -53,18 +47,6 @@ public extension ApplicationClient.Content {
             
             do {
                 name = try container.decode(String.self, forKey: .name)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,10 +99,6 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             

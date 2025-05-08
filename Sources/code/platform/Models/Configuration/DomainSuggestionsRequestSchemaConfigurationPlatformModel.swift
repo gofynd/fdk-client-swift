@@ -14,22 +14,22 @@ public extension PlatformClient.Configuration {
         
         public var domainUrl: String?
         
-        public var isCustomDomain: Bool?
+        public var customDomain: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case domainUrl = "domain_url"
             
-            case isCustomDomain = "is_custom_domain"
+            case customDomain = "custom_domain"
             
         }
 
-        public init(domainUrl: String? = nil, isCustomDomain: Bool? = nil) {
+        public init(customDomain: Bool? = nil, domainUrl: String? = nil) {
             
             self.domainUrl = domainUrl
             
-            self.isCustomDomain = isCustomDomain
+            self.customDomain = customDomain
             
         }
 
@@ -50,7 +50,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    isCustomDomain = try container.decode(Bool.self, forKey: .isCustomDomain)
+                    customDomain = try container.decode(Bool.self, forKey: .customDomain)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(isCustomDomain, forKey: .isCustomDomain)
+            try? container.encodeIfPresent(customDomain, forKey: .customDomain)
             
             
         }
@@ -93,22 +93,22 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var domainUrl: String?
         
-        public var isCustomDomain: Bool?
+        public var customDomain: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case domainUrl = "domain_url"
             
-            case isCustomDomain = "is_custom_domain"
+            case customDomain = "custom_domain"
             
         }
 
-        public init(domainUrl: String? = nil, isCustomDomain: Bool? = nil) {
+        public init(customDomain: Bool? = nil, domainUrl: String? = nil) {
             
             self.domainUrl = domainUrl
             
-            self.isCustomDomain = isCustomDomain
+            self.customDomain = customDomain
             
         }
 
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    isCustomDomain = try container.decode(Bool.self, forKey: .isCustomDomain)
+                    customDomain = try container.decode(Bool.self, forKey: .customDomain)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,7 +151,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(isCustomDomain, forKey: .isCustomDomain)
+            try? container.encodeIfPresent(customDomain, forKey: .customDomain)
             
             
         }

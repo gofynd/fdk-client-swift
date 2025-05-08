@@ -30,8 +30,6 @@ public extension ApplicationClient.Payment {
         
         public var merchantOrderId: String
         
-        public var merchantTransactionId: String?
-        
         public var customerId: String?
         
         public var vpa: String?
@@ -43,8 +41,6 @@ public extension ApplicationClient.Payment {
         public var amount: Int?
         
         public var bqrImage: String?
-        
-        public var uniqueLinkId: String?
         
         public var statusCode: String?
         
@@ -73,8 +69,6 @@ public extension ApplicationClient.Payment {
             
             case merchantOrderId = "merchant_order_id"
             
-            case merchantTransactionId = "merchant_transaction_id"
-            
             case customerId = "customer_id"
             
             case vpa = "vpa"
@@ -87,13 +81,11 @@ public extension ApplicationClient.Payment {
             
             case bqrImage = "bqr_image"
             
-            case uniqueLinkId = "unique_link_id"
-            
             case statusCode = "status_code"
             
         }
 
-        public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, statusCode: String? = nil, success: Bool, timeout: Int? = nil, uniqueLinkId: String? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
+        public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, statusCode: String? = nil, success: Bool, timeout: Int? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
             
             self.status = status
             
@@ -117,8 +109,6 @@ public extension ApplicationClient.Payment {
             
             self.merchantOrderId = merchantOrderId
             
-            self.merchantTransactionId = merchantTransactionId
-            
             self.customerId = customerId
             
             self.vpa = vpa
@@ -130,8 +120,6 @@ public extension ApplicationClient.Payment {
             self.amount = amount
             
             self.bqrImage = bqrImage
-            
-            self.uniqueLinkId = uniqueLinkId
             
             self.statusCode = statusCode
             
@@ -239,18 +227,6 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 customerId = try container.decode(String.self, forKey: .customerId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -323,18 +299,6 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                uniqueLinkId = try container.decode(String.self, forKey: .uniqueLinkId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 statusCode = try container.decode(String.self, forKey: .statusCode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -395,10 +359,6 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
-            
-            
-            
             try? container.encodeIfPresent(customerId, forKey: .customerId)
             
             
@@ -420,10 +380,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(bqrImage, forKey: .bqrImage)
-            
-            
-            
-            try? container.encodeIfPresent(uniqueLinkId, forKey: .uniqueLinkId)
             
             
             

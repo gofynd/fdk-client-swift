@@ -10,7 +10,7 @@ public extension ApplicationClient.Logistic {
         
         public var type: String?
         
-        public var coordinates: [Double]?
+        public var coordinates: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(coordinates: [Double]? = nil, type: String? = nil) {
+        public init(coordinates: [String]? = nil, type: String? = nil) {
             
             self.type = type
             
@@ -46,7 +46,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                coordinates = try container.decode([Double].self, forKey: .coordinates)
+                coordinates = try container.decode([String].self, forKey: .coordinates)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -18,9 +18,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var modifiedBy: String?
         
-        public var rejectedBy: String?
-        
         public var approvedBy: String?
+        
+        public var rejectedBy: String?
         
         public var reviewedBy: String?
         
@@ -31,9 +31,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case modifiedBy = "modified_by"
             
-            case rejectedBy = "rejected_by"
-            
             case approvedBy = "approved_by"
+            
+            case rejectedBy = "rejected_by"
             
             case reviewedBy = "reviewed_by"
             
@@ -45,9 +45,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.modifiedBy = modifiedBy
             
-            self.rejectedBy = rejectedBy
-            
             self.approvedBy = approvedBy
+            
+            self.rejectedBy = rejectedBy
             
             self.reviewedBy = reviewedBy
             
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    rejectedBy = try container.decode(String.self, forKey: .rejectedBy)
+                    approvedBy = try container.decode(String.self, forKey: .approvedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,7 +94,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    approvedBy = try container.decode(String.self, forKey: .approvedBy)
+                    rejectedBy = try container.decode(String.self, forKey: .rejectedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,12 +133,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(rejectedBy, forKey: .rejectedBy)
-            
-            
-            
-            
             try? container.encodeIfPresent(approvedBy, forKey: .approvedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(rejectedBy, forKey: .rejectedBy)
             
             
             

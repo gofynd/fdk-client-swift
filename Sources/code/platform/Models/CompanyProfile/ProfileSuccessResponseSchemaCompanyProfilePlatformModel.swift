@@ -14,8 +14,6 @@ public extension PlatformClient.CompanyProfile {
         
         public var uid: Int?
         
-        public var data: [[String: Any]]?
-        
         public var message: String?
         
         public var success: Bool?
@@ -25,19 +23,15 @@ public extension PlatformClient.CompanyProfile {
             
             case uid = "uid"
             
-            case data = "data"
-            
             case message = "message"
             
             case success = "success"
             
         }
 
-        public init(data: [[String: Any]]? = nil, message: String? = nil, success: Bool? = nil, uid: Int? = nil) {
+        public init(message: String? = nil, success: Bool? = nil, uid: Int? = nil) {
             
             self.uid = uid
-            
-            self.data = data
             
             self.message = message
             
@@ -51,18 +45,6 @@ public extension PlatformClient.CompanyProfile {
             
                 do {
                     uid = try container.decode(Int.self, forKey: .uid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    data = try container.decode([[String: Any]].self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,11 +86,6 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(data, forKey: .data)
             
             
             

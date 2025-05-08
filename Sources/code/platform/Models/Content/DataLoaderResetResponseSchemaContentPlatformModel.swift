@@ -12,18 +12,18 @@ public extension PlatformClient.Content {
     class DataLoaderResetResponseSchema: Codable {
         
         
-        public var resetted: Bool?
+        public var reset: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case resetted = "resetted"
+            case reset = "reset"
             
         }
 
-        public init(resetted: Bool? = nil) {
+        public init(reset: Bool? = nil) {
             
-            self.resetted = resetted
+            self.reset = reset
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    resetted = try container.decode(Bool.self, forKey: .resetted)
+                    reset = try container.decode(Bool.self, forKey: .reset)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(resetted, forKey: .resetted)
+            try? container.encodeIfPresent(reset, forKey: .reset)
             
             
         }
@@ -68,18 +68,18 @@ public extension PlatformClient.ApplicationClient.Content {
     class DataLoaderResetResponseSchema: Codable {
         
         
-        public var resetted: Bool?
+        public var reset: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case resetted = "resetted"
+            case reset = "reset"
             
         }
 
-        public init(resetted: Bool? = nil) {
+        public init(reset: Bool? = nil) {
             
-            self.resetted = resetted
+            self.reset = reset
             
         }
 
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    resetted = try container.decode(Bool.self, forKey: .resetted)
+                    reset = try container.decode(Bool.self, forKey: .reset)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(resetted, forKey: .resetted)
+            try? container.encodeIfPresent(reset, forKey: .reset)
             
             
         }

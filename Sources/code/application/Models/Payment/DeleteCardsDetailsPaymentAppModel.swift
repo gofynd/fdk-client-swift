@@ -8,11 +8,9 @@ public extension ApplicationClient.Payment {
     */
     class DeleteCardsDetails: Codable {
         
-        public var success: Bool?
+        public var success: Bool
         
         public var message: String?
-        
-        public var status: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,17 +19,13 @@ public extension ApplicationClient.Payment {
             
             case message = "message"
             
-            case status = "status"
-            
         }
 
-        public init(message: String? = nil, status: Int? = nil, success: Bool? = nil) {
+        public init(message: String? = nil, success: Bool) {
             
             self.success = success
             
             self.message = message
-            
-            self.status = status
             
         }
 
@@ -39,32 +33,13 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                success = try container.decode(Bool.self, forKey: .success)
+            success = try container.decode(Bool.self, forKey: .success)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
             do {
                 message = try container.decode(String.self, forKey: .message)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                status = try container.decode(Int.self, forKey: .status)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,10 +60,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

@@ -8,8 +8,6 @@ public extension ApplicationClient.Catalog {
     */
     class ProductListingDetail: Codable {
         
-        public var discountMeta: DiscountMeta?
-        
         public var uid: Int?
         
         public var customOrder: ProductDetailCustomOrder?
@@ -101,8 +99,6 @@ public extension ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case discountMeta = "discount_meta"
-            
             case uid = "uid"
             
             case customOrder = "custom_order"
@@ -193,9 +189,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, channel: String? = nil, color: String? = nil, countryOfOrigin: String? = nil, customOrder: ProductDetailCustomOrder? = nil, description: String? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, isTryout: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, modifiedOn: String? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, variants: [ProductVariantListingResponseSchema]? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
-            
-            self.discountMeta = discountMeta
+        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, channel: String? = nil, color: String? = nil, countryOfOrigin: String? = nil, customOrder: ProductDetailCustomOrder? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, isTryout: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, modifiedOn: String? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, variants: [ProductVariantListingResponseSchema]? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
             
             self.uid = uid
             
@@ -289,18 +283,6 @@ public extension ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -827,10 +809,6 @@ public extension ApplicationClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
-            
             
             
             try? container.encodeIfPresent(uid, forKey: .uid)

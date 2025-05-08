@@ -30,8 +30,6 @@ public extension PlatformClient.Payment {
         
         public var merchantOrderId: String
         
-        public var merchantTransactionId: String?
-        
         public var amount: Int?
         
         public var timeout: Int?
@@ -69,8 +67,6 @@ public extension PlatformClient.Payment {
             
             case merchantOrderId = "merchant_order_id"
             
-            case merchantTransactionId = "merchant_transaction_id"
-            
             case amount = "amount"
             
             case timeout = "timeout"
@@ -89,7 +85,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, success: Bool, timeout: Int? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
+        public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, success: Bool, timeout: Int? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
             
             self.razorpayPaymentId = razorpayPaymentId
             
@@ -108,8 +104,6 @@ public extension PlatformClient.Payment {
             self.currency = currency
             
             self.merchantOrderId = merchantOrderId
-            
-            self.merchantTransactionId = merchantTransactionId
             
             self.amount = amount
             
@@ -218,18 +212,6 @@ public extension PlatformClient.Payment {
                 merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
             
-            
-            
-                do {
-                    merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -361,11 +343,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
             
             
             
@@ -442,8 +419,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var merchantOrderId: String
         
-        public var merchantTransactionId: String?
-        
         public var amount: Int?
         
         public var timeout: Int?
@@ -481,8 +456,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case merchantOrderId = "merchant_order_id"
             
-            case merchantTransactionId = "merchant_transaction_id"
-            
             case amount = "amount"
             
             case timeout = "timeout"
@@ -501,7 +474,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, success: Bool, timeout: Int? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
+        public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, success: Bool, timeout: Int? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
             
             self.razorpayPaymentId = razorpayPaymentId
             
@@ -520,8 +493,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.currency = currency
             
             self.merchantOrderId = merchantOrderId
-            
-            self.merchantTransactionId = merchantTransactionId
             
             self.amount = amount
             
@@ -630,18 +601,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
             
-            
-            
-                do {
-                    merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -773,11 +732,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
             
             
             

@@ -30,7 +30,7 @@ public extension PlatformClient.Serviceability {
         
         public var brandIds: IntComparisonOperations?
         
-        public var orderPlaceDate: ArithmeticOperationsV2?
+        public var orderPlaceDate: ArithmeticOperations?
         
         public var storeIds: IntComparisonOperations?
         
@@ -43,10 +43,6 @@ public extension PlatformClient.Serviceability {
         public var shipmentCost: ArithmeticOperations?
         
         public var shipmentVolumetricWeight: ArithmeticOperations?
-        
-        public var companyIds: IntComparisonOperations?
-        
-        public var promiseTypes: StringComparisonOperations?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -83,13 +79,9 @@ public extension PlatformClient.Serviceability {
             
             case shipmentVolumetricWeight = "shipment_volumetric_weight"
             
-            case companyIds = "company_ids"
-            
-            case promiseTypes = "promise_types"
-            
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, companyIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperationsV2? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, promiseTypes: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.forward = forward
             
@@ -122,10 +114,6 @@ public extension PlatformClient.Serviceability {
             self.shipmentCost = shipmentCost
             
             self.shipmentVolumetricWeight = shipmentVolumetricWeight
-            
-            self.companyIds = companyIds
-            
-            self.promiseTypes = promiseTypes
             
         }
 
@@ -242,7 +230,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    orderPlaceDate = try container.decode(ArithmeticOperationsV2.self, forKey: .orderPlaceDate)
+                    orderPlaceDate = try container.decode(ArithmeticOperations.self, forKey: .orderPlaceDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -315,30 +303,6 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     shipmentVolumetricWeight = try container.decode(ArithmeticOperations.self, forKey: .shipmentVolumetricWeight)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    companyIds = try container.decode(IntComparisonOperations.self, forKey: .companyIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    promiseTypes = try container.decode(StringComparisonOperations.self, forKey: .promiseTypes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -431,16 +395,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyIds, forKey: .companyIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(promiseTypes, forKey: .promiseTypes)
             
             
         }
@@ -477,7 +431,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var brandIds: IntComparisonOperations?
         
-        public var orderPlaceDate: ArithmeticOperationsV2?
+        public var orderPlaceDate: ArithmeticOperations?
         
         public var storeIds: IntComparisonOperations?
         
@@ -490,10 +444,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public var shipmentCost: ArithmeticOperations?
         
         public var shipmentVolumetricWeight: ArithmeticOperations?
-        
-        public var companyIds: IntComparisonOperations?
-        
-        public var promiseTypes: StringComparisonOperations?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -530,13 +480,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case shipmentVolumetricWeight = "shipment_volumetric_weight"
             
-            case companyIds = "company_ids"
-            
-            case promiseTypes = "promise_types"
-            
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, companyIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperationsV2? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, promiseTypes: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.forward = forward
             
@@ -569,10 +515,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.shipmentCost = shipmentCost
             
             self.shipmentVolumetricWeight = shipmentVolumetricWeight
-            
-            self.companyIds = companyIds
-            
-            self.promiseTypes = promiseTypes
             
         }
 
@@ -689,7 +631,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    orderPlaceDate = try container.decode(ArithmeticOperationsV2.self, forKey: .orderPlaceDate)
+                    orderPlaceDate = try container.decode(ArithmeticOperations.self, forKey: .orderPlaceDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -762,30 +704,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     shipmentVolumetricWeight = try container.decode(ArithmeticOperations.self, forKey: .shipmentVolumetricWeight)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    companyIds = try container.decode(IntComparisonOperations.self, forKey: .companyIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    promiseTypes = try container.decode(StringComparisonOperations.self, forKey: .promiseTypes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -878,16 +796,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyIds, forKey: .companyIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(promiseTypes, forKey: .promiseTypes)
             
             
         }

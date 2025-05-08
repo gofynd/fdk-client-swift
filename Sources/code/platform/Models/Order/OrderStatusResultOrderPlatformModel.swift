@@ -12,16 +12,12 @@ public extension PlatformClient.Order {
     class OrderStatusResult: Codable {
         
         
-        public var statusCode: Int?
-        
-        public var success: Bool
+        public var success: String
         
         public var result: [OrderStatusData]?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case statusCode = "status_code"
             
             case success = "success"
             
@@ -29,9 +25,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(result: [OrderStatusData]? = nil, statusCode: Int? = nil, success: Bool) {
-            
-            self.statusCode = statusCode
+        public init(result: [OrderStatusData]? = nil, success: String) {
             
             self.success = success
             
@@ -43,19 +37,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                success = try container.decode(Bool.self, forKey: .success)
+                success = try container.decode(String.self, forKey: .success)
                 
             
             
@@ -75,11 +57,6 @@ public extension PlatformClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
-            
             
             
             
@@ -107,16 +84,12 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderStatusResult: Codable {
         
         
-        public var statusCode: Int?
-        
-        public var success: Bool
+        public var success: String
         
         public var result: [OrderStatusData]?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case statusCode = "status_code"
             
             case success = "success"
             
@@ -124,9 +97,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(result: [OrderStatusData]? = nil, statusCode: Int? = nil, success: Bool) {
-            
-            self.statusCode = statusCode
+        public init(result: [OrderStatusData]? = nil, success: String) {
             
             self.success = success
             
@@ -138,19 +109,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                success = try container.decode(Bool.self, forKey: .success)
+                success = try container.decode(String.self, forKey: .success)
                 
             
             
@@ -170,11 +129,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
-            
             
             
             

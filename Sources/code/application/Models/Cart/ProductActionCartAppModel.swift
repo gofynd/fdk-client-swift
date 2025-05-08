@@ -14,7 +14,7 @@ public extension ApplicationClient.Cart {
         
         public var type: String?
         
-        public var page: [String: Any]?
+        public var page: ProductActionPage?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(page: [String: Any]? = nil, query: ActionQuery? = nil, type: String? = nil, url: String? = nil) {
+        public init(page: ProductActionPage? = nil, query: ActionQuery? = nil, type: String? = nil, url: String? = nil) {
             
             self.query = query
             
@@ -82,7 +82,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                page = try container.decode([String: Any].self, forKey: .page)
+                page = try container.decode(ProductActionPage.self, forKey: .page)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

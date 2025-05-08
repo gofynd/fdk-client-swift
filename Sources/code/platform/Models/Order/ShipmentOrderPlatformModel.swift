@@ -16,8 +16,6 @@ public extension PlatformClient.Order {
         
         public var externalShipmentId: String?
         
-        public var externalLocationId: String?
-        
         public var processingDates: ProcessingDates?
         
         public var meta: [String: Any]?
@@ -93,8 +91,6 @@ public extension PlatformClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
-            case externalLocationId = "external_location_id"
-            
             case processingDates = "processing_dates"
             
             case meta = "meta"
@@ -165,13 +161,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, billingAddressJson: Address? = nil, createdAt: String? = nil, creditNoteId: String? = nil, deliveryAddressJson: Address? = nil, deliveryAwbNumber: String? = nil, ewayBillId: String? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfilmentPriority: Int? = nil, fyndOrderId: String? = nil, gst: ShipmentGstDetails? = nil, handOverContactJson: Address? = nil, id: String? = nil, isActive: Bool? = nil, lineItems: [LineItem], locationId: Int? = nil, lockStatus: String? = nil, meta: [String: Any]? = nil, orderType: String? = nil, packagingType: String? = nil, parentId: String? = nil, parentType: String? = nil, pdfLinks: [String: Any]? = nil, previousShipmentId: String? = nil, price: Prices? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil, processAfterConfig: ProcessAfterConfig? = nil, quantity: Double? = nil, status: ShipmentStatusData? = nil, storeInvoiceId: String? = nil, systemMessages: [SystemMessages]? = nil, tags: [Tag]? = nil, type: String? = nil, vertical: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, billingAddressJson: Address? = nil, createdAt: String? = nil, creditNoteId: String? = nil, deliveryAddressJson: Address? = nil, deliveryAwbNumber: String? = nil, ewayBillId: String? = nil, externalShipmentId: String? = nil, fulfilmentPriority: Int? = nil, fyndOrderId: String? = nil, gst: ShipmentGstDetails? = nil, handOverContactJson: Address? = nil, id: String? = nil, isActive: Bool? = nil, lineItems: [LineItem], locationId: Int? = nil, lockStatus: String? = nil, meta: [String: Any]? = nil, orderType: String? = nil, packagingType: String? = nil, parentId: String? = nil, parentType: String? = nil, pdfLinks: [String: Any]? = nil, previousShipmentId: String? = nil, price: Prices? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil, processAfterConfig: ProcessAfterConfig? = nil, quantity: Double? = nil, status: ShipmentStatusData? = nil, storeInvoiceId: String? = nil, systemMessages: [SystemMessages]? = nil, tags: [Tag]? = nil, type: String? = nil, vertical: String? = nil) {
             
             self.lineItems = lineItems
             
             self.externalShipmentId = externalShipmentId
-            
-            self.externalLocationId = externalLocationId
             
             self.processingDates = processingDates
             
@@ -254,18 +248,6 @@ public extension PlatformClient.Order {
             
                 do {
                     externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    externalLocationId = try container.decode(String.self, forKey: .externalLocationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -696,11 +678,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(externalLocationId, forKey: .externalLocationId)
             
             
             
@@ -893,8 +870,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var externalShipmentId: String?
         
-        public var externalLocationId: String?
-        
         public var processingDates: ProcessingDates?
         
         public var meta: [String: Any]?
@@ -970,8 +945,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
-            case externalLocationId = "external_location_id"
-            
             case processingDates = "processing_dates"
             
             case meta = "meta"
@@ -1042,13 +1015,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, billingAddressJson: Address? = nil, createdAt: String? = nil, creditNoteId: String? = nil, deliveryAddressJson: Address? = nil, deliveryAwbNumber: String? = nil, ewayBillId: String? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfilmentPriority: Int? = nil, fyndOrderId: String? = nil, gst: ShipmentGstDetails? = nil, handOverContactJson: Address? = nil, id: String? = nil, isActive: Bool? = nil, lineItems: [LineItem], locationId: Int? = nil, lockStatus: String? = nil, meta: [String: Any]? = nil, orderType: String? = nil, packagingType: String? = nil, parentId: String? = nil, parentType: String? = nil, pdfLinks: [String: Any]? = nil, previousShipmentId: String? = nil, price: Prices? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil, processAfterConfig: ProcessAfterConfig? = nil, quantity: Double? = nil, status: ShipmentStatusData? = nil, storeInvoiceId: String? = nil, systemMessages: [SystemMessages]? = nil, tags: [Tag]? = nil, type: String? = nil, vertical: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, billingAddressJson: Address? = nil, createdAt: String? = nil, creditNoteId: String? = nil, deliveryAddressJson: Address? = nil, deliveryAwbNumber: String? = nil, ewayBillId: String? = nil, externalShipmentId: String? = nil, fulfilmentPriority: Int? = nil, fyndOrderId: String? = nil, gst: ShipmentGstDetails? = nil, handOverContactJson: Address? = nil, id: String? = nil, isActive: Bool? = nil, lineItems: [LineItem], locationId: Int? = nil, lockStatus: String? = nil, meta: [String: Any]? = nil, orderType: String? = nil, packagingType: String? = nil, parentId: String? = nil, parentType: String? = nil, pdfLinks: [String: Any]? = nil, previousShipmentId: String? = nil, price: Prices? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil, processAfterConfig: ProcessAfterConfig? = nil, quantity: Double? = nil, status: ShipmentStatusData? = nil, storeInvoiceId: String? = nil, systemMessages: [SystemMessages]? = nil, tags: [Tag]? = nil, type: String? = nil, vertical: String? = nil) {
             
             self.lineItems = lineItems
             
             self.externalShipmentId = externalShipmentId
-            
-            self.externalLocationId = externalLocationId
             
             self.processingDates = processingDates
             
@@ -1131,18 +1102,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    externalLocationId = try container.decode(String.self, forKey: .externalLocationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1573,11 +1532,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(externalLocationId, forKey: .externalLocationId)
             
             
             

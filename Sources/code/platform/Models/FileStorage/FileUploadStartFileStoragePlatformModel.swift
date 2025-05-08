@@ -22,8 +22,6 @@ public extension PlatformClient.FileStorage {
         
         public var params: [String: Any]?
         
-        public var encKey: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension PlatformClient.FileStorage {
             
             case params = "params"
             
-            case encKey = "enc_key"
-            
         }
 
-        public init(contentType: String, encKey: String? = nil, fileName: String, params: [String: Any]? = nil, size: Int, tags: [String]? = nil) {
+        public init(contentType: String, fileName: String, params: [String: Any]? = nil, size: Int, tags: [String]? = nil) {
             
             self.fileName = fileName
             
@@ -52,8 +48,6 @@ public extension PlatformClient.FileStorage {
             self.tags = tags
             
             self.params = params
-            
-            self.encKey = encKey
             
         }
 
@@ -99,18 +93,6 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
-            
-                do {
-                    encKey = try container.decode(String.self, forKey: .encKey)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -139,11 +121,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(params, forKey: .params)
-            
-            
-            
-            
-            try? container.encodeIfPresent(encKey, forKey: .encKey)
             
             
         }
@@ -172,8 +149,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var params: [String: Any]?
         
-        public var encKey: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -187,11 +162,9 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case params = "params"
             
-            case encKey = "enc_key"
-            
         }
 
-        public init(contentType: String, encKey: String? = nil, fileName: String, params: [String: Any]? = nil, size: Int, tags: [String]? = nil) {
+        public init(contentType: String, fileName: String, params: [String: Any]? = nil, size: Int, tags: [String]? = nil) {
             
             self.fileName = fileName
             
@@ -202,8 +175,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.tags = tags
             
             self.params = params
-            
-            self.encKey = encKey
             
         }
 
@@ -249,18 +220,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
-            
-                do {
-                    encKey = try container.decode(String.self, forKey: .encKey)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -289,11 +248,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(params, forKey: .params)
-            
-            
-            
-            
-            try? container.encodeIfPresent(encKey, forKey: .encKey)
             
             
         }

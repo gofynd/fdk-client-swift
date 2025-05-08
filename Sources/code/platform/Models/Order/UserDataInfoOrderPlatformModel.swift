@@ -32,8 +32,6 @@ public extension PlatformClient.Order {
         
         public var isAnonymousUser: Bool?
         
-        public var avisUserId: String?
-        
         public var name: String?
         
         public var gender: String?
@@ -63,8 +61,6 @@ public extension PlatformClient.Order {
             
             case isAnonymousUser = "is_anonymous_user"
             
-            case avisUserId = "avis_user_id"
-            
             case name = "name"
             
             case gender = "gender"
@@ -73,7 +69,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(avisUserId: String? = nil, countryPhoneCode: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, id: Int? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, meta: String? = nil, mobile: String? = nil, mongoUserId: String? = nil, name: String? = nil, userOid: String? = nil) {
+        public init(countryPhoneCode: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, id: Int? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, meta: String? = nil, mobile: String? = nil, mongoUserId: String? = nil, name: String? = nil, userOid: String? = nil) {
             
             self.id = id
             
@@ -94,8 +90,6 @@ public extension PlatformClient.Order {
             self.meta = meta
             
             self.isAnonymousUser = isAnonymousUser
-            
-            self.avisUserId = avisUserId
             
             self.name = name
             
@@ -230,18 +224,6 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    avisUserId = try container.decode(String.self, forKey: .avisUserId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -329,11 +311,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
-            
-            
-            
-            
-            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
             
             
             
@@ -387,8 +364,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var isAnonymousUser: Bool?
         
-        public var avisUserId: String?
-        
         public var name: String?
         
         public var gender: String?
@@ -418,8 +393,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isAnonymousUser = "is_anonymous_user"
             
-            case avisUserId = "avis_user_id"
-            
             case name = "name"
             
             case gender = "gender"
@@ -428,7 +401,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(avisUserId: String? = nil, countryPhoneCode: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, id: Int? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, meta: String? = nil, mobile: String? = nil, mongoUserId: String? = nil, name: String? = nil, userOid: String? = nil) {
+        public init(countryPhoneCode: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, id: Int? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, meta: String? = nil, mobile: String? = nil, mongoUserId: String? = nil, name: String? = nil, userOid: String? = nil) {
             
             self.id = id
             
@@ -449,8 +422,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.meta = meta
             
             self.isAnonymousUser = isAnonymousUser
-            
-            self.avisUserId = avisUserId
             
             self.name = name
             
@@ -585,18 +556,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    avisUserId = try container.decode(String.self, forKey: .avisUserId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -684,11 +643,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
-            
-            
-            
-            
-            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
             
             
             

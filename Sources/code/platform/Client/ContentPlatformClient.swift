@@ -95,6 +95,7 @@ extension PlatformClient {
         
         
         
+        
         /**
         *
         * Summary: Get custom field types
@@ -665,6 +666,60 @@ extension PlatformClient {
         
         /**
         *
+        * Summary: delete custom fields of given resource and resource slug
+        * Description: Use this API to delete the custom fields for given resource in param.
+        **/
+        public func deleteCustomFieldsByResourceSlug(
+            resource: String,
+            resourceSlug: String,
+            ids: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CustomFieldsDeleteSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["ids"] = ids
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "DELETE",
+                url: "/service/platform/content/v2.0/company/\(companyId)/customfields/resource/\(resource)/\(resourceSlug)",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomFieldsDeleteSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
         * Summary: Create custom object definition
         * Description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource.
         **/
@@ -1193,7 +1248,7 @@ extension PlatformClient {
         * Description: Custom object bulk import and export jobs status and details can be obtained using this endpoint.
         **/
         public func getJobs(
-            pageNo: String,
+            page: String,
             pageSize: String,
             actionType: String,
             
@@ -1202,7 +1257,7 @@ extension PlatformClient {
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            xQuery["page_no"] = pageNo
+            xQuery["page"] = page
             xQuery["page_size"] = pageSize
             xQuery["action_type"] = actionType
             
@@ -1354,7 +1409,7 @@ extension PlatformClient {
             slug: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1372,7 +1427,7 @@ extension PlatformClient {
                 query: nil,
                 body: nil,
                 headers: xHeaders,
-                responseType: "text/csv",
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1382,7 +1437,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data
+                        let response = String(decoding: data, as: UTF8.self)
                         
                         onResponse(response, nil)
                     } else {

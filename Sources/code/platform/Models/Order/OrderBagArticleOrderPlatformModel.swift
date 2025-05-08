@@ -22,12 +22,6 @@ public extension PlatformClient.Order {
         
         public var tags: [String]?
         
-        public var variants: [String: Any]?
-        
-        public var groupInfo: [String: Any]?
-        
-        public var groupInfoIds: [[String: Any]]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,15 +35,9 @@ public extension PlatformClient.Order {
             
             case tags = "tags"
             
-            case variants = "variants"
-            
-            case groupInfo = "group_info"
-            
-            case groupInfoIds = "group_info_ids"
-            
         }
 
-        public init(groupInfo: [String: Any]? = nil, groupInfoIds: [[String: Any]]? = nil, identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, variants: [String: Any]? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil) {
             
             self.identifiers = identifiers
             
@@ -60,12 +48,6 @@ public extension PlatformClient.Order {
             self.size = size
             
             self.tags = tags
-            
-            self.variants = variants
-            
-            self.groupInfo = groupInfo
-            
-            self.groupInfoIds = groupInfoIds
             
         }
 
@@ -132,42 +114,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    variants = try container.decode([String: Any].self, forKey: .variants)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    groupInfo = try container.decode([String: Any].self, forKey: .groupInfo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    groupInfoIds = try container.decode([[String: Any]].self, forKey: .groupInfoIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -196,21 +142,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(variants, forKey: .variants)
-            
-            
-            
-            
-            try? container.encodeIfPresent(groupInfo, forKey: .groupInfo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(groupInfoIds, forKey: .groupInfoIds)
             
             
         }
@@ -239,12 +170,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var tags: [String]?
         
-        public var variants: [String: Any]?
-        
-        public var groupInfo: [String: Any]?
-        
-        public var groupInfoIds: [[String: Any]]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -258,15 +183,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case tags = "tags"
             
-            case variants = "variants"
-            
-            case groupInfo = "group_info"
-            
-            case groupInfoIds = "group_info_ids"
-            
         }
 
-        public init(groupInfo: [String: Any]? = nil, groupInfoIds: [[String: Any]]? = nil, identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, variants: [String: Any]? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil) {
             
             self.identifiers = identifiers
             
@@ -277,12 +196,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.size = size
             
             self.tags = tags
-            
-            self.variants = variants
-            
-            self.groupInfo = groupInfo
-            
-            self.groupInfoIds = groupInfoIds
             
         }
 
@@ -349,42 +262,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    variants = try container.decode([String: Any].self, forKey: .variants)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    groupInfo = try container.decode([String: Any].self, forKey: .groupInfo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    groupInfoIds = try container.decode([[String: Any]].self, forKey: .groupInfoIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -413,21 +290,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(variants, forKey: .variants)
-            
-            
-            
-            
-            try? container.encodeIfPresent(groupInfo, forKey: .groupInfo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(groupInfoIds, forKey: .groupInfoIds)
             
             
         }

@@ -14,9 +14,9 @@ public extension PlatformClient.Catalog {
         
         public var countryCode: String
         
-        public var createdBy: UserInfo?
+        public var createdBy: CreatedBySchema?
         
-        public var modifiedBy: UserInfo?
+        public var modifiedBy: ModifiedBySchema?
         
         public var createdOn: String?
         
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(countryCode: String, createdBy: UserInfo? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], type: String) {
+        public init(countryCode: String, createdBy: CreatedBySchema? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: ModifiedBySchema? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], type: String) {
             
             self.countryCode = countryCode
             
@@ -103,7 +103,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBySchema.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,7 +115,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(ModifiedBySchema.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -281,9 +281,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var countryCode: String
         
-        public var createdBy: UserInfo?
+        public var createdBy: CreatedBySchema?
         
-        public var modifiedBy: UserInfo?
+        public var modifiedBy: ModifiedBySchema?
         
         public var createdOn: String?
         
@@ -332,7 +332,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(countryCode: String, createdBy: UserInfo? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], type: String) {
+        public init(countryCode: String, createdBy: CreatedBySchema? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: ModifiedBySchema? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], type: String) {
             
             self.countryCode = countryCode
             
@@ -370,7 +370,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBySchema.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -382,7 +382,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(ModifiedBySchema.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

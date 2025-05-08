@@ -8,15 +8,15 @@ public extension ApplicationClient.Catalog {
     */
     class ProductDetails: Codable {
         
-        public var templateTag: String?
+        public var templateTag: [String: Any]?
         
         public var ratingCount: Int?
         
-        public var imageNature: String?
+        public var imageNature: [String: Any]?
         
         public var hasVariant: Bool?
         
-        public var description: String?
+        public var description: [String: Any]?
         
         public var outOfStock: Bool?
         
@@ -24,13 +24,13 @@ public extension ApplicationClient.Catalog {
         
         public var groupedAttributes: [String: Any]?
         
-        public var itemCode: String?
+        public var itemCode: [String: Any]?
         
-        public var name: String?
+        public var name: [String: Any]?
         
-        public var countryOfOrigin: String?
+        public var countryOfOrigin: [String: Any]?
         
-        public var shortDescription: String?
+        public var shortDescription: [String: Any]?
         
         public var media: [[String: Any]]?
         
@@ -38,15 +38,15 @@ public extension ApplicationClient.Catalog {
         
         public var isSet: Bool?
         
-        public var images: [String]?
+        public var images: [[String: Any]]?
         
-        public var slug: String?
+        public var slug: [String: Any]?
         
         public var rating: Double?
         
         public var identifier: Identifier?
         
-        public var highlights: [String]?
+        public var highlights: [[String: Any]]?
         
         public var brandUid: Int?
         
@@ -97,7 +97,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(attributes: [String: Any]? = nil, brandUid: Int? = nil, countryOfOrigin: String? = nil, description: String? = nil, groupedAttributes: [String: Any]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, hsnCode: Int? = nil, identifier: Identifier? = nil, images: [String]? = nil, imageNature: String? = nil, isSet: Bool? = nil, itemCode: String? = nil, media: [[String: Any]]? = nil, name: String? = nil, outOfStock: Bool? = nil, rating: Double? = nil, ratingCount: Int? = nil, shortDescription: String? = nil, slug: String? = nil, templateTag: String? = nil) {
+        public init(attributes: [String: Any]? = nil, brandUid: Int? = nil, countryOfOrigin: [String: Any]? = nil, description: [String: Any]? = nil, groupedAttributes: [String: Any]? = nil, hasVariant: Bool? = nil, highlights: [[String: Any]]? = nil, hsnCode: Int? = nil, identifier: Identifier? = nil, images: [[String: Any]]? = nil, imageNature: [String: Any]? = nil, isSet: Bool? = nil, itemCode: [String: Any]? = nil, media: [[String: Any]]? = nil, name: [String: Any]? = nil, outOfStock: Bool? = nil, rating: Double? = nil, ratingCount: Int? = nil, shortDescription: [String: Any]? = nil, slug: [String: Any]? = nil, templateTag: [String: Any]? = nil) {
             
             self.templateTag = templateTag
             
@@ -148,7 +148,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                templateTag = try container.decode(String.self, forKey: .templateTag)
+                templateTag = try container.decode([String: Any].self, forKey: .templateTag)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                imageNature = try container.decode(String.self, forKey: .imageNature)
+                imageNature = try container.decode([String: Any].self, forKey: .imageNature)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -196,7 +196,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                description = try container.decode(String.self, forKey: .description)
+                description = try container.decode([String: Any].self, forKey: .description)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -244,7 +244,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                itemCode = try container.decode(String.self, forKey: .itemCode)
+                itemCode = try container.decode([String: Any].self, forKey: .itemCode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -256,7 +256,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                name = try container.decode(String.self, forKey: .name)
+                name = try container.decode([String: Any].self, forKey: .name)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -268,7 +268,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
+                countryOfOrigin = try container.decode([String: Any].self, forKey: .countryOfOrigin)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -280,7 +280,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                shortDescription = try container.decode(String.self, forKey: .shortDescription)
+                shortDescription = try container.decode([String: Any].self, forKey: .shortDescription)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -328,7 +328,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                images = try container.decode([String].self, forKey: .images)
+                images = try container.decode([[String: Any]].self, forKey: .images)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -340,7 +340,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                slug = try container.decode([String: Any].self, forKey: .slug)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -376,7 +376,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                highlights = try container.decode([String].self, forKey: .highlights)
+                highlights = try container.decode([[String: Any]].self, forKey: .highlights)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -14,66 +14,54 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Page: Codable {
         
         
-        public var hasNext: Bool?
-        
         public var itemTotal: Int?
-        
-        public var current: Int?
         
         public var nextId: String?
         
-        public var page: Int?
+        public var hasPrevious: Bool?
         
-        public var lastId: String?
+        public var hasNext: Bool?
+        
+        public var current: Int?
         
         public var type: String
         
         public var size: Int?
         
-        public var hasPrevious: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
-            case hasNext = "has_next"
-            
             case itemTotal = "item_total"
-            
-            case current = "current"
             
             case nextId = "next_id"
             
-            case page = "page"
+            case hasPrevious = "has_previous"
             
-            case lastId = "last_id"
+            case hasNext = "has_next"
+            
+            case current = "current"
             
             case type = "type"
             
             case size = "size"
             
-            case hasPrevious = "has_previous"
-            
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, lastId: String? = nil, nextId: String? = nil, page: Int? = nil, size: Int? = nil, type: String) {
-            
-            self.hasNext = hasNext
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
             
             self.itemTotal = itemTotal
             
-            self.current = current
-            
             self.nextId = nextId
             
-            self.page = page
+            self.hasPrevious = hasPrevious
             
-            self.lastId = lastId
+            self.hasNext = hasNext
+            
+            self.current = current
             
             self.type = type
             
             self.size = size
-            
-            self.hasPrevious = hasPrevious
             
         }
 
@@ -82,31 +70,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    current = try container.decode(Int.self, forKey: .current)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,7 +94,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    page = try container.decode(Int.self, forKey: .page)
+                    hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +106,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    lastId = try container.decode(String.self, forKey: .lastId)
+                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    current = try container.decode(Int.self, forKey: .current)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -169,18 +145,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -188,17 +152,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
-            
-            
-            
-            
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-            
-            
-            
-            
-            try? container.encodeIfPresent(current, forKey: .current)
             
             
             
@@ -208,12 +162,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
             
             
             
             
-            try? container.encodeIfPresent(lastId, forKey: .lastId)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            
+            
+            
+            
+            try? container.encodeIfPresent(current, forKey: .current)
             
             
             
@@ -224,11 +183,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
             
             
         }

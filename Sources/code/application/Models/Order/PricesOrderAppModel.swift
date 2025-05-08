@@ -8,12 +8,6 @@ public extension ApplicationClient.Order {
     */
     class Prices: Codable {
         
-        public var appliedEmiDiscount: Int?
-        
-        public var appliedInstantDiscount: Int?
-        
-        public var giftPrice: Int?
-        
         public var deliveryCharge: Double?
         
         public var couponValue: Double?
@@ -63,12 +57,6 @@ public extension ApplicationClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
-            case appliedEmiDiscount = "applied_emi_discount"
-            
-            case appliedInstantDiscount = "applied_instant_discount"
-            
-            case giftPrice = "gift_price"
-            
             case deliveryCharge = "delivery_charge"
             
             case couponValue = "coupon_value"
@@ -117,13 +105,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, appliedEmiDiscount: Int? = nil, appliedInstantDiscount: Int? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, giftPrice: Int? = nil, gstTaxPercentage: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
-            
-            self.appliedEmiDiscount = appliedEmiDiscount
-            
-            self.appliedInstantDiscount = appliedInstantDiscount
-            
-            self.giftPrice = giftPrice
+        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstTaxPercentage: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
             
             self.deliveryCharge = deliveryCharge
             
@@ -175,42 +157,6 @@ public extension ApplicationClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                appliedEmiDiscount = try container.decode(Int.self, forKey: .appliedEmiDiscount)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                appliedInstantDiscount = try container.decode(Int.self, forKey: .appliedInstantDiscount)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -492,18 +438,6 @@ public extension ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            try? container.encodeIfPresent(appliedEmiDiscount, forKey: .appliedEmiDiscount)
-            
-            
-            
-            try? container.encodeIfPresent(appliedInstantDiscount, forKey: .appliedInstantDiscount)
-            
-            
-            
-            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
-            
             
             
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)

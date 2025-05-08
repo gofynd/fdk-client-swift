@@ -22,8 +22,6 @@ public extension ApplicationClient.Configuration {
         
         public var isInternal: Bool?
         
-        public var isSisEnabled: Bool?
-        
         public var isActive: Bool?
         
         public var id: String?
@@ -68,8 +66,6 @@ public extension ApplicationClient.Configuration {
         
         public var tokens: [TokenSchema]?
         
-        public var companyCreatedOn: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -86,8 +82,6 @@ public extension ApplicationClient.Configuration {
             case cacheTtl = "cache_ttl"
             
             case isInternal = "is_internal"
-            
-            case isSisEnabled = "is_sis_enabled"
             
             case isActive = "is_active"
             
@@ -133,11 +127,9 @@ public extension ApplicationClient.Configuration {
             
             case tokens = "tokens"
             
-            case companyCreatedOn = "company_created_on"
-            
         }
 
-        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyCreatedOn: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, isSisEnabled: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, mode: String? = nil, modifiedAt: String? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, slug: String? = nil, status: String? = nil, token: String? = nil, tokens: [TokenSchema]? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
+        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, mode: String? = nil, modifiedAt: String? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, slug: String? = nil, status: String? = nil, token: String? = nil, tokens: [TokenSchema]? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
             
             self.website = website
             
@@ -152,8 +144,6 @@ public extension ApplicationClient.Configuration {
             self.cacheTtl = cacheTtl
             
             self.isInternal = isInternal
-            
-            self.isSisEnabled = isSisEnabled
             
             self.isActive = isActive
             
@@ -198,8 +188,6 @@ public extension ApplicationClient.Configuration {
             self.status = status
             
             self.tokens = tokens
-            
-            self.companyCreatedOn = companyCreatedOn
             
         }
 
@@ -281,18 +269,6 @@ public extension ApplicationClient.Configuration {
             
             do {
                 isInternal = try container.decode(Bool.self, forKey: .isInternal)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isSisEnabled = try container.decode(Bool.self, forKey: .isSisEnabled)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -566,18 +542,6 @@ public extension ApplicationClient.Configuration {
             }
             
             
-            
-            do {
-                companyCreatedOn = try container.decode(String.self, forKey: .companyCreatedOn)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -609,10 +573,6 @@ public extension ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(isInternal, forKey: .isInternal)
-            
-            
-            
-            try? container.encodeIfPresent(isSisEnabled, forKey: .isSisEnabled)
             
             
             
@@ -701,10 +661,6 @@ public extension ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(tokens, forKey: .tokens)
-            
-            
-            
-            try? container.encodeIfPresent(companyCreatedOn, forKey: .companyCreatedOn)
             
             
         }
