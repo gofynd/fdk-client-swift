@@ -42,7 +42,7 @@ public extension PlatformClient.Order {
         
         public var dates: Dates?
         
-        public var deliveryAddress: Address?
+        public var deliveryAddress: PlatformDeliveryAddress?
         
         public var deliverySlot: DeliverySlotDetails?
         
@@ -104,8 +104,6 @@ public extension PlatformClient.Order {
         
         public var prices: Prices?
         
-        public var charges: [PriceAdjustmentCharge]?
-        
         public var qcRequired: Bool?
         
         public var quantity: Double?
@@ -116,7 +114,7 @@ public extension PlatformClient.Order {
         
         public var restorePromos: [String: Any]?
         
-        public var rtoAddress: Address?
+        public var rtoAddress: PlatformDeliveryAddress?
         
         public var sellerIdentifier: String?
         
@@ -249,8 +247,6 @@ public extension PlatformClient.Order {
             
             case prices = "prices"
             
-            case charges = "charges"
-            
             case qcRequired = "qc_required"
             
             case quantity = "quantity"
@@ -301,7 +297,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagDetails? = nil, affiliateDetails: AffiliateDetails? = nil, appliedPromos: [[String: Any]]? = nil, article: Article? = nil, articleDetails: ArticleStatusDetails? = nil, bagId: Int? = nil, bagStatus: [BagStatusHistory]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, bagUpdateTime: Double? = nil, brand: Brand? = nil, charges: [PriceAdjustmentCharge]? = nil, company: Company? = nil, currentOperationalStatus: BagStatusHistory? = nil, currentStatus: BagStatusHistory? = nil, dates: Dates? = nil, deliveryAddress: Address? = nil, deliverySlot: DeliverySlotDetails? = nil, displayName: String? = nil, dpDetails: [String: Any]? = nil, einvoiceInfo: [String: Any]? = nil, entityType: String? = nil, fallbackUser: [String: Any]? = nil, financialBreakup: [FinancialBreakup]? = nil, fulfillingStore: Store? = nil, fyndstoreEmp: [String: Any]? = nil, gstDetails: GSTDetailsData? = nil, id: String? = nil, identifier: String? = nil, invoice: InvoiceDetails? = nil, item: Item? = nil, journeyType: String? = nil, lineNumber: Int? = nil, lockStatus: Bool? = nil, manifestId: String? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, noOfBagsOrder: Int? = nil, operationalStatus: String? = nil, order: OrderDetails? = nil, orderingStore: Store? = nil, orderIntegrationId: String? = nil, orderType: String? = nil, orderValue: Double? = nil, originalBagList: [Int]? = nil, parentPromoBags: [String: Any]? = nil, payments: [String: Any]? = nil, paymentMethods: [String: Any]? = nil, paymentType: String? = nil, prices: Prices? = nil, qcRequired: Bool? = nil, quantity: Double? = nil, reasons: [[String: Any]]? = nil, restoreCoupon: Bool? = nil, restorePromos: [String: Any]? = nil, rtoAddress: Address? = nil, sellerIdentifier: String? = nil, shipment: Shipment? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentGst: ShipmentGstDetails? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatusData? = nil, shipmentStatusHistory: [ShipmentStatusData]? = nil, status: BagReturnableCancelableStatus? = nil, tags: [String]? = nil, totalShipmentsInOrder: Int? = nil, totalShipmentBags: Int? = nil, transactionType: String? = nil, type: String? = nil, updatedAt: String? = nil, user: UserDetails? = nil, weight: WeightData? = nil) {
+        public init(affiliateBagDetails: AffiliateBagDetails? = nil, affiliateDetails: AffiliateDetails? = nil, appliedPromos: [[String: Any]]? = nil, article: Article? = nil, articleDetails: ArticleStatusDetails? = nil, bagId: Int? = nil, bagStatus: [BagStatusHistory]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, bagUpdateTime: Double? = nil, brand: Brand? = nil, company: Company? = nil, currentOperationalStatus: BagStatusHistory? = nil, currentStatus: BagStatusHistory? = nil, dates: Dates? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, deliverySlot: DeliverySlotDetails? = nil, displayName: String? = nil, dpDetails: [String: Any]? = nil, einvoiceInfo: [String: Any]? = nil, entityType: String? = nil, fallbackUser: [String: Any]? = nil, financialBreakup: [FinancialBreakup]? = nil, fulfillingStore: Store? = nil, fyndstoreEmp: [String: Any]? = nil, gstDetails: GSTDetailsData? = nil, id: String? = nil, identifier: String? = nil, invoice: InvoiceDetails? = nil, item: Item? = nil, journeyType: String? = nil, lineNumber: Int? = nil, lockStatus: Bool? = nil, manifestId: String? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, noOfBagsOrder: Int? = nil, operationalStatus: String? = nil, order: OrderDetails? = nil, orderingStore: Store? = nil, orderIntegrationId: String? = nil, orderType: String? = nil, orderValue: Double? = nil, originalBagList: [Int]? = nil, parentPromoBags: [String: Any]? = nil, payments: [String: Any]? = nil, paymentMethods: [String: Any]? = nil, paymentType: String? = nil, prices: Prices? = nil, qcRequired: Bool? = nil, quantity: Double? = nil, reasons: [[String: Any]]? = nil, restoreCoupon: Bool? = nil, restorePromos: [String: Any]? = nil, rtoAddress: PlatformDeliveryAddress? = nil, sellerIdentifier: String? = nil, shipment: Shipment? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentGst: ShipmentGstDetails? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatusData? = nil, shipmentStatusHistory: [ShipmentStatusData]? = nil, status: BagReturnableCancelableStatus? = nil, tags: [String]? = nil, totalShipmentsInOrder: Int? = nil, totalShipmentBags: Int? = nil, transactionType: String? = nil, type: String? = nil, updatedAt: String? = nil, user: UserDetails? = nil, weight: WeightData? = nil) {
             
             self.bagUpdateTime = bagUpdateTime
             
@@ -394,8 +390,6 @@ public extension PlatformClient.Order {
             self.payments = payments
             
             self.prices = prices
-            
-            self.charges = charges
             
             self.qcRequired = qcRequired
             
@@ -632,7 +626,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    deliveryAddress = try container.decode(Address.self, forKey: .deliveryAddress)
+                    deliveryAddress = try container.decode(PlatformDeliveryAddress.self, forKey: .deliveryAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1004,18 +998,6 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     qcRequired = try container.decode(Bool.self, forKey: .qcRequired)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1076,7 +1058,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    rtoAddress = try container.decode(Address.self, forKey: .rtoAddress)
+                    rtoAddress = try container.decode(PlatformDeliveryAddress.self, forKey: .rtoAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1535,11 +1517,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(prices, forKey: .prices)
-            
-            
-            
-            
-            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
             
@@ -1708,7 +1685,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var dates: Dates?
         
-        public var deliveryAddress: Address?
+        public var deliveryAddress: PlatformDeliveryAddress?
         
         public var deliverySlot: DeliverySlotDetails?
         
@@ -1770,8 +1747,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var prices: Prices?
         
-        public var charges: [PriceAdjustmentCharge]?
-        
         public var qcRequired: Bool?
         
         public var quantity: Double?
@@ -1782,7 +1757,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var restorePromos: [String: Any]?
         
-        public var rtoAddress: Address?
+        public var rtoAddress: PlatformDeliveryAddress?
         
         public var sellerIdentifier: String?
         
@@ -1915,8 +1890,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case prices = "prices"
             
-            case charges = "charges"
-            
             case qcRequired = "qc_required"
             
             case quantity = "quantity"
@@ -1967,7 +1940,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagDetails? = nil, affiliateDetails: AffiliateDetails? = nil, appliedPromos: [[String: Any]]? = nil, article: Article? = nil, articleDetails: ArticleStatusDetails? = nil, bagId: Int? = nil, bagStatus: [BagStatusHistory]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, bagUpdateTime: Double? = nil, brand: Brand? = nil, charges: [PriceAdjustmentCharge]? = nil, company: Company? = nil, currentOperationalStatus: BagStatusHistory? = nil, currentStatus: BagStatusHistory? = nil, dates: Dates? = nil, deliveryAddress: Address? = nil, deliverySlot: DeliverySlotDetails? = nil, displayName: String? = nil, dpDetails: [String: Any]? = nil, einvoiceInfo: [String: Any]? = nil, entityType: String? = nil, fallbackUser: [String: Any]? = nil, financialBreakup: [FinancialBreakup]? = nil, fulfillingStore: Store? = nil, fyndstoreEmp: [String: Any]? = nil, gstDetails: GSTDetailsData? = nil, id: String? = nil, identifier: String? = nil, invoice: InvoiceDetails? = nil, item: Item? = nil, journeyType: String? = nil, lineNumber: Int? = nil, lockStatus: Bool? = nil, manifestId: String? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, noOfBagsOrder: Int? = nil, operationalStatus: String? = nil, order: OrderDetails? = nil, orderingStore: Store? = nil, orderIntegrationId: String? = nil, orderType: String? = nil, orderValue: Double? = nil, originalBagList: [Int]? = nil, parentPromoBags: [String: Any]? = nil, payments: [String: Any]? = nil, paymentMethods: [String: Any]? = nil, paymentType: String? = nil, prices: Prices? = nil, qcRequired: Bool? = nil, quantity: Double? = nil, reasons: [[String: Any]]? = nil, restoreCoupon: Bool? = nil, restorePromos: [String: Any]? = nil, rtoAddress: Address? = nil, sellerIdentifier: String? = nil, shipment: Shipment? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentGst: ShipmentGstDetails? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatusData? = nil, shipmentStatusHistory: [ShipmentStatusData]? = nil, status: BagReturnableCancelableStatus? = nil, tags: [String]? = nil, totalShipmentsInOrder: Int? = nil, totalShipmentBags: Int? = nil, transactionType: String? = nil, type: String? = nil, updatedAt: String? = nil, user: UserDetails? = nil, weight: WeightData? = nil) {
+        public init(affiliateBagDetails: AffiliateBagDetails? = nil, affiliateDetails: AffiliateDetails? = nil, appliedPromos: [[String: Any]]? = nil, article: Article? = nil, articleDetails: ArticleStatusDetails? = nil, bagId: Int? = nil, bagStatus: [BagStatusHistory]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, bagUpdateTime: Double? = nil, brand: Brand? = nil, company: Company? = nil, currentOperationalStatus: BagStatusHistory? = nil, currentStatus: BagStatusHistory? = nil, dates: Dates? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, deliverySlot: DeliverySlotDetails? = nil, displayName: String? = nil, dpDetails: [String: Any]? = nil, einvoiceInfo: [String: Any]? = nil, entityType: String? = nil, fallbackUser: [String: Any]? = nil, financialBreakup: [FinancialBreakup]? = nil, fulfillingStore: Store? = nil, fyndstoreEmp: [String: Any]? = nil, gstDetails: GSTDetailsData? = nil, id: String? = nil, identifier: String? = nil, invoice: InvoiceDetails? = nil, item: Item? = nil, journeyType: String? = nil, lineNumber: Int? = nil, lockStatus: Bool? = nil, manifestId: String? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, noOfBagsOrder: Int? = nil, operationalStatus: String? = nil, order: OrderDetails? = nil, orderingStore: Store? = nil, orderIntegrationId: String? = nil, orderType: String? = nil, orderValue: Double? = nil, originalBagList: [Int]? = nil, parentPromoBags: [String: Any]? = nil, payments: [String: Any]? = nil, paymentMethods: [String: Any]? = nil, paymentType: String? = nil, prices: Prices? = nil, qcRequired: Bool? = nil, quantity: Double? = nil, reasons: [[String: Any]]? = nil, restoreCoupon: Bool? = nil, restorePromos: [String: Any]? = nil, rtoAddress: PlatformDeliveryAddress? = nil, sellerIdentifier: String? = nil, shipment: Shipment? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentGst: ShipmentGstDetails? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatusData? = nil, shipmentStatusHistory: [ShipmentStatusData]? = nil, status: BagReturnableCancelableStatus? = nil, tags: [String]? = nil, totalShipmentsInOrder: Int? = nil, totalShipmentBags: Int? = nil, transactionType: String? = nil, type: String? = nil, updatedAt: String? = nil, user: UserDetails? = nil, weight: WeightData? = nil) {
             
             self.bagUpdateTime = bagUpdateTime
             
@@ -2060,8 +2033,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.payments = payments
             
             self.prices = prices
-            
-            self.charges = charges
             
             self.qcRequired = qcRequired
             
@@ -2298,7 +2269,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    deliveryAddress = try container.decode(Address.self, forKey: .deliveryAddress)
+                    deliveryAddress = try container.decode(PlatformDeliveryAddress.self, forKey: .deliveryAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2670,18 +2641,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     qcRequired = try container.decode(Bool.self, forKey: .qcRequired)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -2742,7 +2701,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    rtoAddress = try container.decode(Address.self, forKey: .rtoAddress)
+                    rtoAddress = try container.decode(PlatformDeliveryAddress.self, forKey: .rtoAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -3201,11 +3160,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(prices, forKey: .prices)
-            
-            
-            
-            
-            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
             

@@ -16,9 +16,9 @@ public extension PlatformClient.Serviceability {
         
         public var isQc: Bool
         
-        public var pickupCutoff: String?
+        public var pickupCutoff: String
         
-        public var routeCode: String?
+        public var routeCode: String
         
         public var isFirstMile: Bool
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(isFirstMile: Bool, isInstallation: Bool, isLastMile: Bool, isQc: Bool, isReturn: Bool, lmCodLimit: Int, pickupCutoff: String? = nil, routeCode: String? = nil) {
+        public init(isFirstMile: Bool, isInstallation: Bool, isLastMile: Bool, isQc: Bool, isReturn: Bool, lmCodLimit: Int, pickupCutoff: String, routeCode: String) {
             
             self.lmCodLimit = lmCodLimit
             
@@ -83,28 +83,14 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    pickupCutoff = try container.decode(String.self, forKey: .pickupCutoff)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                pickupCutoff = try container.decode(String.self, forKey: .pickupCutoff)
                 
             
             
-                do {
-                    routeCode = try container.decode(String.self, forKey: .routeCode)
+            
+                routeCode = try container.decode(String.self, forKey: .routeCode)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 isFirstMile = try container.decode(Bool.self, forKey: .isFirstMile)
@@ -191,9 +177,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isQc: Bool
         
-        public var pickupCutoff: String?
+        public var pickupCutoff: String
         
-        public var routeCode: String?
+        public var routeCode: String
         
         public var isFirstMile: Bool
         
@@ -224,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(isFirstMile: Bool, isInstallation: Bool, isLastMile: Bool, isQc: Bool, isReturn: Bool, lmCodLimit: Int, pickupCutoff: String? = nil, routeCode: String? = nil) {
+        public init(isFirstMile: Bool, isInstallation: Bool, isLastMile: Bool, isQc: Bool, isReturn: Bool, lmCodLimit: Int, pickupCutoff: String, routeCode: String) {
             
             self.lmCodLimit = lmCodLimit
             
@@ -258,28 +244,14 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    pickupCutoff = try container.decode(String.self, forKey: .pickupCutoff)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                pickupCutoff = try container.decode(String.self, forKey: .pickupCutoff)
                 
             
             
-                do {
-                    routeCode = try container.decode(String.self, forKey: .routeCode)
+            
+                routeCode = try container.decode(String.self, forKey: .routeCode)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 isFirstMile = try container.decode(Bool.self, forKey: .isFirstMile)

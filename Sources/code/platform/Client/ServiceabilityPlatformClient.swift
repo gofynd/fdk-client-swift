@@ -16,6 +16,87 @@ extension PlatformClient {
         
         /**
         *
+        * Summary: Get Localities
+        * Description: Get Localities data.
+        **/
+        public func getLocalities(
+            localityType: String,
+            country: [String]?,
+            state: [String]?,
+            city: [String]?,
+            pageNo: Int?,
+            pageSize: Int?,
+            q: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetLocalities?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = country {
+                xQuery["country"] = value
+            }
+            
+            if let value = state {
+                xQuery["state"] = value
+            }
+            
+            if let value = city {
+                xQuery["city"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/localities/\(localityType)",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetLocalities.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
         * Summary: Get zones
         * Description: Retrieves a list of delivery zones.
         **/
@@ -32,7 +113,7 @@ extension PlatformClient {
             sector: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ListViewResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ListViewResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -100,7 +181,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ListViewResult.self, from: data)
+                        let response = Utility.decode(ListViewResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -122,7 +203,7 @@ extension PlatformClient {
         public func createZone(
             body: CreateZoneData,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ZoneResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ZoneResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -150,7 +231,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ZoneResult.self, from: data)
+                        let response = Utility.decode(ZoneResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -173,7 +254,7 @@ extension PlatformClient {
             zoneId: String,
             body: UpdateZoneData,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ZoneSuccessResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ZoneSuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -201,7 +282,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ZoneSuccessResult.self, from: data)
+                        let response = Utility.decode(ZoneSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -274,7 +355,7 @@ extension PlatformClient {
         public func getAllStores(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetStoresViewResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetStoresViewResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -302,7 +383,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetStoresViewResult.self, from: data)
+                        let response = Utility.decode(GetStoresViewResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -326,7 +407,7 @@ extension PlatformClient {
         * Description: Creates a courier partner account.
         **/
         public func createCourierPartnerAccount(
-            body: CourierAccountDetailsBody,
+            body: CourierAccountRequestBody,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CourierAccount?, _ error: FDKError?) -> Void
         ) {
@@ -383,7 +464,7 @@ extension PlatformClient {
             transportType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CompanyCourierPartnerAccountListResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CompanyCourierPartnerAccountListResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -431,7 +512,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CompanyCourierPartnerAccountListResult.self, from: data)
+                        let response = Utility.decode(CompanyCourierPartnerAccountListResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -452,9 +533,9 @@ extension PlatformClient {
         **/
         public func updateCourierPartnerAccount(
             accountId: String,
-            body: CourierAccountUpdateDetails,
+            body: CourierAccount,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierAccountResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CourierAccountResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -482,7 +563,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CourierAccountResult.self, from: data)
+                        let response = Utility.decode(CourierAccountResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -505,7 +586,7 @@ extension PlatformClient {
             accountId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierAccountResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CourierAccountResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -533,7 +614,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CourierAccountResult.self, from: data)
+                        let response = Utility.decode(CourierAccountResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -544,7 +625,6 @@ extension PlatformClient {
                     }
             });
         }
-        
         
         
         
@@ -663,9 +743,9 @@ Export locality wise CSV files.
         public func bulkTat(
             extensionId: String,
             schemeId: String,
-            body: BulkRegionJobDetails,
+            body: BulkRegionJobSerializer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkRegionResultItemData?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkRegionResponseItemData?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -693,7 +773,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkRegionResultItemData.self, from: data)
+                        let response = Utility.decode(BulkRegionResponseItemData.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -726,7 +806,7 @@ Export locality wise CSV files.
             endDate: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkRegionResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkRegionResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -790,7 +870,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkRegionResult.self, from: data)
+                        let response = Utility.decode(BulkRegionResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -821,9 +901,9 @@ Export locality wise CSV files.
         public func bulkServiceability(
             extensionId: String,
             schemeId: String,
-            body: BulkRegionJobDetails,
+            body: BulkRegionJobSerializer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkRegionResultItemData?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkRegionResponseItemData?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -851,7 +931,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkRegionResultItemData.self, from: data)
+                        let response = Utility.decode(BulkRegionResponseItemData.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -884,7 +964,7 @@ Export locality wise CSV files.
             endDate: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkRegionResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkRegionResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -948,7 +1028,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkRegionResult.self, from: data)
+                        let response = Utility.decode(BulkRegionResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1076,7 +1156,7 @@ Export locality wise CSV files.
         public func createPackageMaterial(
             body: PackageMaterial,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageMaterialResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PackageMaterialResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1104,7 +1184,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PackageMaterialResult.self, from: data)
+                        let response = Utility.decode(PackageMaterialResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1201,7 +1281,7 @@ Export locality wise CSV files.
         public func createPackageMaterialRule(
             body: PackageRule,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageRuleResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PackageRuleResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1229,7 +1309,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PackageRuleResult.self, from: data)
+                        let response = Utility.decode(PackageRuleResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1317,7 +1397,7 @@ Export locality wise CSV files.
             ruleId: String,
             body: PackageRule,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageRuleResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PackageRuleResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1345,7 +1425,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PackageRuleResult.self, from: data)
+                        let response = Utility.decode(PackageRuleResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1368,7 +1448,7 @@ Export locality wise CSV files.
             ruleId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageRuleResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PackageRuleResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1396,7 +1476,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PackageRuleResult.self, from: data)
+                        let response = Utility.decode(PackageRuleResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1419,7 +1499,7 @@ Export locality wise CSV files.
             packageMaterialId: String,
             body: PackageMaterial,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageMaterialResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PackageMaterialResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1447,7 +1527,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PackageMaterialResult.self, from: data)
+                        let response = Utility.decode(PackageMaterialResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1470,7 +1550,7 @@ Export locality wise CSV files.
             packageMaterialId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageMaterialResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PackageMaterialResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1498,7 +1578,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PackageMaterialResult.self, from: data)
+                        let response = Utility.decode(PackageMaterialResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1519,9 +1599,9 @@ Export locality wise CSV files.
         * Description: Retrieves a list selling locations which are best suited to fullfil an order for a customer.
         **/
         public func getOptimalLocations(
-            body: OptimlLocationsDetailsSchema,
+            body: OptimlLocationsRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OptimalLocationsResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OptimalLocationsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1549,7 +1629,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OptimalLocationsResult.self, from: data)
+                        let response = Utility.decode(OptimalLocationsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

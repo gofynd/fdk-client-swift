@@ -12,7 +12,7 @@ public extension PlatformClient.Content {
     class CustomObjectBulkEntry: Codable {
         
         
-        public var items: [JobSchema]?
+        public var items: [CustomObjectJobSchema]?
         
         public var page: Page?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(items: [JobSchema]? = nil, page: Page? = nil) {
+        public init(items: [CustomObjectJobSchema]? = nil, page: Page? = nil) {
             
             self.items = items
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    items = try container.decode([JobSchema].self, forKey: .items)
+                    items = try container.decode([CustomObjectJobSchema].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomObjectBulkEntry: Codable {
         
         
-        public var items: [JobSchema]?
+        public var items: [CustomObjectJobSchema]?
         
         public var page: Page?
         
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(items: [JobSchema]? = nil, page: Page? = nil) {
+        public init(items: [CustomObjectJobSchema]? = nil, page: Page? = nil) {
             
             self.items = items
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    items = try container.decode([JobSchema].self, forKey: .items)
+                    items = try container.decode([CustomObjectJobSchema].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

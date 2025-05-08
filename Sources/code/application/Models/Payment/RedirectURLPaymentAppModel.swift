@@ -10,28 +10,22 @@ public extension ApplicationClient.Payment {
         
         public var status: Bool
         
-        public var redirectUrl: String
-        
-        public var extra: String?
+        public var signupUrl: String
         
 
         public enum CodingKeys: String, CodingKey {
             
             case status = "status"
             
-            case redirectUrl = "redirect_url"
-            
-            case extra = "extra"
+            case signupUrl = "signup_url"
             
         }
 
-        public init(extra: String? = nil, redirectUrl: String, status: Bool) {
+        public init(signupUrl: String, status: Bool) {
             
             self.status = status
             
-            self.redirectUrl = redirectUrl
-            
-            self.extra = extra
+            self.signupUrl = signupUrl
             
         }
 
@@ -44,20 +38,8 @@ public extension ApplicationClient.Payment {
             
             
             
-            redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+            signupUrl = try container.decode(String.self, forKey: .signupUrl)
             
-            
-            
-            
-            do {
-                extra = try container.decode(String.self, forKey: .extra)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }
@@ -70,11 +52,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
-            
-            
-            
-            try? container.encodeIfPresent(extra, forKey: .extra)
+            try? container.encodeIfPresent(signupUrl, forKey: .signupUrl)
             
             
         }

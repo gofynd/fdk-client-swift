@@ -12,24 +12,24 @@ public extension PlatformClient.Content {
     class CustomObjectEntryFieldSchema: Codable {
         
         
-        public var namespace: String?
+        public var definitionId: String?
         
-        public var slug: String?
+        public var value: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case namespace = "namespace"
+            case definitionId = "definition_id"
             
-            case slug = "slug"
+            case value = "value"
             
         }
 
-        public init(namespace: String? = nil, slug: String? = nil) {
+        public init(definitionId: String? = nil, value: [[String: Any]]? = nil) {
             
-            self.namespace = namespace
+            self.definitionId = definitionId
             
-            self.slug = slug
+            self.value = value
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    namespace = try container.decode(String.self, forKey: .namespace)
+                    definitionId = try container.decode(String.self, forKey: .definitionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    value = try container.decode([[String: Any]].self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
+            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
             
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomObjectEntryFieldSchema: Codable {
         
         
-        public var namespace: String?
+        public var definitionId: String?
         
-        public var slug: String?
+        public var value: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case namespace = "namespace"
+            case definitionId = "definition_id"
             
-            case slug = "slug"
+            case value = "value"
             
         }
 
-        public init(namespace: String? = nil, slug: String? = nil) {
+        public init(definitionId: String? = nil, value: [[String: Any]]? = nil) {
             
-            self.namespace = namespace
+            self.definitionId = definitionId
             
-            self.slug = slug
+            self.value = value
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    namespace = try container.decode(String.self, forKey: .namespace)
+                    definitionId = try container.decode(String.self, forKey: .definitionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    value = try container.decode([[String: Any]].self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
+            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
             
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }
