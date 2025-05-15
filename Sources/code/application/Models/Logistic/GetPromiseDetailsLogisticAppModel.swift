@@ -10,7 +10,7 @@ public extension ApplicationClient.Logistic {
         
         public var items: [StorePromise]?
         
-        public var promise: Promise?
+        public var deliveryPromise: Promise?
         
         public var page: Page?
         
@@ -19,17 +19,17 @@ public extension ApplicationClient.Logistic {
             
             case items = "items"
             
-            case promise = "promise"
+            case deliveryPromise = "delivery_promise"
             
             case page = "page"
             
         }
 
-        public init(items: [StorePromise]? = nil, page: Page? = nil, promise: Promise? = nil) {
+        public init(deliveryPromise: Promise? = nil, items: [StorePromise]? = nil, page: Page? = nil) {
             
             self.items = items
             
-            self.promise = promise
+            self.deliveryPromise = deliveryPromise
             
             self.page = page
             
@@ -52,7 +52,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                promise = try container.decode(Promise.self, forKey: .promise)
+                deliveryPromise = try container.decode(Promise.self, forKey: .deliveryPromise)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            try? container.encodeIfPresent(promise, forKey: .promise)
+            try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
             
             
             

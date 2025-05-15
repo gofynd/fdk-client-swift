@@ -12,9 +12,9 @@ public extension PlatformClient.Serviceability {
     class FailureResult: Codable {
         
         
-        public var success: Bool?
+        public var success: Bool
         
-        public var error: [Error]?
+        public var error: [ErrorResult]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(error: [Error]? = nil, success: Bool? = nil) {
+        public init(error: [ErrorResult], success: Bool) {
             
             self.success = success
             
@@ -37,28 +37,14 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             
-                do {
-                    error = try container.decode([Error].self, forKey: .error)
+            
+                error = try container.decode([ErrorResult].self, forKey: .error)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -91,9 +77,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class FailureResult: Codable {
         
         
-        public var success: Bool?
+        public var success: Bool
         
-        public var error: [Error]?
+        public var error: [ErrorResult]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(error: [Error]? = nil, success: Bool? = nil) {
+        public init(error: [ErrorResult], success: Bool) {
             
             self.success = success
             
@@ -116,28 +102,14 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             
-                do {
-                    error = try container.decode([Error].self, forKey: .error)
+            
+                error = try container.decode([ErrorResult].self, forKey: .error)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class ServiceabilityErrorResult: Codable {
         
         
-        public var message: String?
+        public var message: String
         
         public var value: String
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(message: String? = nil, type: String, value: String) {
+        public init(message: String, type: String, value: String) {
             
             self.message = message
             
@@ -43,16 +43,9 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
+                message = try container.decode(String.self, forKey: .message)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 value = try container.decode(String.self, forKey: .value)
@@ -100,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ServiceabilityErrorResult: Codable {
         
         
-        public var message: String?
+        public var message: String
         
         public var value: String
         
@@ -117,7 +110,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(message: String? = nil, type: String, value: String) {
+        public init(message: String, type: String, value: String) {
             
             self.message = message
             
@@ -131,16 +124,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
+                message = try container.decode(String.self, forKey: .message)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 value = try container.decode(String.self, forKey: .value)

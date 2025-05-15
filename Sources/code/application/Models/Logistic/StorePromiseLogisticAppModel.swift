@@ -14,7 +14,7 @@ public extension ApplicationClient.Logistic {
         
         public var name: String?
         
-        public var promise: Promise?
+        public var deliveryPromise: Promise?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,11 +25,11 @@ public extension ApplicationClient.Logistic {
             
             case name = "name"
             
-            case promise = "promise"
+            case deliveryPromise = "delivery_promise"
             
         }
 
-        public init(code: String? = nil, name: String? = nil, promise: Promise? = nil, uid: Int? = nil) {
+        public init(code: String? = nil, deliveryPromise: Promise? = nil, name: String? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
@@ -37,7 +37,7 @@ public extension ApplicationClient.Logistic {
             
             self.name = name
             
-            self.promise = promise
+            self.deliveryPromise = deliveryPromise
             
         }
 
@@ -82,7 +82,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                promise = try container.decode(Promise.self, forKey: .promise)
+                deliveryPromise = try container.decode(Promise.self, forKey: .deliveryPromise)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,7 +110,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            try? container.encodeIfPresent(promise, forKey: .promise)
+            try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
             
             
         }

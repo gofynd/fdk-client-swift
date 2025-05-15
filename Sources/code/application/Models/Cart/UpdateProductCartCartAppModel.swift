@@ -12,8 +12,6 @@ public extension ApplicationClient.Cart {
         
         public var customJson: [String: Any]?
         
-        public var forceNewLineItem: Bool?
-        
         public var quantity: Int?
         
         public var itemSize: String?
@@ -37,8 +35,6 @@ public extension ApplicationClient.Cart {
             
             case customJson = "_custom_json"
             
-            case forceNewLineItem = "force_new_line_item"
-            
             case quantity = "quantity"
             
             case itemSize = "item_size"
@@ -57,13 +53,11 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, forceNewLineItem: Bool? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.extraMeta = extraMeta
             
             self.customJson = customJson
-            
-            self.forceNewLineItem = forceNewLineItem
             
             self.quantity = quantity
             
@@ -101,18 +95,6 @@ public extension ApplicationClient.Cart {
             
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                forceNewLineItem = try container.decode(Bool.self, forKey: .forceNewLineItem)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,10 +204,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            
-            
-            try? container.encodeIfPresent(forceNewLineItem, forKey: .forceNewLineItem)
             
             
             

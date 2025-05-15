@@ -1,10 +1,6 @@
 
 import Foundation
 
-public extension PublicClient.Catalog {
-    
-}
-
 public extension PublicClient.Configuration {
     
 }

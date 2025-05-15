@@ -32,8 +32,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var productGroupTags: [String]?
         
-        public var forceNewLineItem: Bool?
-        
         public var identifier: [String: Any]?
         
         public var mtoQuantity: Int?
@@ -75,8 +73,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case productGroupTags = "product_group_tags"
             
-            case forceNewLineItem = "force_new_line_item"
-            
             case identifier = "identifier"
             
             case mtoQuantity = "mto_quantity"
@@ -99,7 +95,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, forceNewLineItem: Bool? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
+        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -118,8 +114,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.giftCard = giftCard
             
             self.productGroupTags = productGroupTags
-            
-            self.forceNewLineItem = forceNewLineItem
             
             self.identifier = identifier
             
@@ -245,18 +239,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     productGroupTags = try container.decode([String].self, forKey: .productGroupTags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    forceNewLineItem = try container.decode(Bool.self, forKey: .forceNewLineItem)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -434,11 +416,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(productGroupTags, forKey: .productGroupTags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(forceNewLineItem, forKey: .forceNewLineItem)
             
             
             

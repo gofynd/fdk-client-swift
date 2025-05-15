@@ -22,8 +22,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var operation: String
         
-        public var freeGiftItemsOperation: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,11 +33,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case operation = "operation"
             
-            case freeGiftItemsOperation = "free_gift_items_operation"
-            
         }
 
-        public init(freeGiftItems: [FreeGiftItemCreation]? = nil, freeGiftItemsOperation: String? = nil, items: [UpdateProductCart]? = nil, operation: String, userId: String? = nil) {
+        public init(freeGiftItems: [FreeGiftItemCreation]? = nil, items: [UpdateProductCart]? = nil, operation: String, userId: String? = nil) {
             
             self.userId = userId
             
@@ -48,8 +44,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.freeGiftItems = freeGiftItems
             
             self.operation = operation
-            
-            self.freeGiftItemsOperation = freeGiftItemsOperation
             
         }
 
@@ -97,18 +91,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-            
-                do {
-                    freeGiftItemsOperation = try container.decode(String.self, forKey: .freeGiftItemsOperation)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -132,11 +114,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(operation, forKey: .operation)
-            
-            
-            
-            
-            try? container.encodeIfPresent(freeGiftItemsOperation, forKey: .freeGiftItemsOperation)
             
             
         }

@@ -16,8 +16,6 @@ public extension PlatformClient.Serviceability {
         
         public var max: String
         
-        public var attributes: CourierPartnerAttributes?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,17 +23,13 @@ public extension PlatformClient.Serviceability {
             
             case max = "max"
             
-            case attributes = "attributes"
-            
         }
 
-        public init(attributes: CourierPartnerAttributes? = nil, max: String, min: String) {
+        public init(max: String, min: String) {
             
             self.min = min
             
             self.max = max
-            
-            self.attributes = attributes
             
         }
 
@@ -52,18 +46,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                do {
-                    attributes = try container.decode(CourierPartnerAttributes.self, forKey: .attributes)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -77,11 +59,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(max, forKey: .max)
-            
-            
-            
-            
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
             
             
         }
@@ -104,8 +81,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var max: String
         
-        public var attributes: CourierPartnerAttributes?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -113,17 +88,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case max = "max"
             
-            case attributes = "attributes"
-            
         }
 
-        public init(attributes: CourierPartnerAttributes? = nil, max: String, min: String) {
+        public init(max: String, min: String) {
             
             self.min = min
             
             self.max = max
-            
-            self.attributes = attributes
             
         }
 
@@ -140,18 +111,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                do {
-                    attributes = try container.decode(CourierPartnerAttributes.self, forKey: .attributes)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -165,11 +124,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(max, forKey: .max)
-            
-            
-            
-            
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
             
             
         }

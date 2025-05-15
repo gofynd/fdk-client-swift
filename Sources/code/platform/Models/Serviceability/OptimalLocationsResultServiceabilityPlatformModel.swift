@@ -14,7 +14,7 @@ public extension PlatformClient.Serviceability {
         
         public var assignedStores: [OptimalLocationAssignedStoresResult]
         
-        public var faultyArticles: [Error]?
+        public var faultyArticles: [ErrorResult]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(assignedStores: [OptimalLocationAssignedStoresResult], faultyArticles: [Error]? = nil) {
+        public init(assignedStores: [OptimalLocationAssignedStoresResult], faultyArticles: [ErrorResult]? = nil) {
             
             self.assignedStores = assignedStores
             
@@ -43,7 +43,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    faultyArticles = try container.decode([Error].self, forKey: .faultyArticles)
+                    faultyArticles = try container.decode([ErrorResult].self, forKey: .faultyArticles)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var assignedStores: [OptimalLocationAssignedStoresResult]
         
-        public var faultyArticles: [Error]?
+        public var faultyArticles: [ErrorResult]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -97,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(assignedStores: [OptimalLocationAssignedStoresResult], faultyArticles: [Error]? = nil) {
+        public init(assignedStores: [OptimalLocationAssignedStoresResult], faultyArticles: [ErrorResult]? = nil) {
             
             self.assignedStores = assignedStores
             
@@ -115,7 +115,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    faultyArticles = try container.decode([Error].self, forKey: .faultyArticles)
+                    faultyArticles = try container.decode([ErrorResult].self, forKey: .faultyArticles)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

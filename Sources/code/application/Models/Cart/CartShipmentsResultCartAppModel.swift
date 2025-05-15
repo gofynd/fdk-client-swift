@@ -48,8 +48,6 @@ public extension ApplicationClient.Cart {
         
         public var customCartMeta: [String: Any]?
         
-        public var customerId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -93,11 +91,9 @@ public extension ApplicationClient.Cart {
             
             case customCartMeta = "custom_cart_meta"
             
-            case customerId = "customer_id"
-            
         }
 
-        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customerId: String? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, error: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, lastModified: String? = nil, message: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, shipments: [ShipmentResult]? = nil, uid: String? = nil) {
+        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, error: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, lastModified: String? = nil, message: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, shipments: [ShipmentResult]? = nil, uid: String? = nil) {
             
             self.deliveryChargeInfo = deliveryChargeInfo
             
@@ -138,8 +134,6 @@ public extension ApplicationClient.Cart {
             self.uid = uid
             
             self.customCartMeta = customCartMeta
-            
-            self.customerId = customerId
             
         }
 
@@ -386,18 +380,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                customerId = try container.decode(String.self, forKey: .customerId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -481,10 +463,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
-            
-            
-            
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
             
             
         }

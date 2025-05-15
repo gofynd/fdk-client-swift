@@ -942,9 +942,6 @@ extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
             search: String?,
-            startDate: String?,
-            endDate: String?,
-            stage: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BulkInventoryGet?, _ error: FDKError?) -> Void
@@ -962,18 +959,6 @@ extension PlatformClient {
             
             if let value = search {
                 xQuery["search"] = value
-            }
-            
-            if let value = startDate {
-                xQuery["start_date"] = value
-            }
-            
-            if let value = endDate {
-                xQuery["end_date"] = value
-            }
-            
-            if let value = stage {
-                xQuery["stage"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -1015,12 +1000,6 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getInventoryBulkUploadHistory
@@ -1029,9 +1008,6 @@ extension PlatformClient {
         public func getInventoryBulkUploadHistoryPaginator(
             pageSize: Int?,
             search: String?,
-            startDate: String?,
-            endDate: String?,
-            stage: String?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<BulkInventoryGet> {
             let pageSize = pageSize ?? 20
@@ -1041,9 +1017,6 @@ extension PlatformClient {
                     pageNo: paginator.pageNo,
                     pageSize: paginator.pageSize,
                     search: search,
-                    startDate: startDate,
-                    endDate: endDate,
-                    stage: stage,
                     
                     headers: headers
                 ) { response, error in                    
@@ -1373,16 +1346,14 @@ extension PlatformClient {
         * Description: Allows you to download inventory product template data for a specific company in formats like csv and excel.
         **/
         public func downloadInventoryTemplateView(
-            schemaType: String,
-            type: String,
+            itemType: String,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            xQuery["schema_type"] = schemaType
-            xQuery["type"] = type
+            xQuery["item_type"] = itemType
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -1428,7 +1399,6 @@ extension PlatformClient {
         **/
         public func validateProductTemplateSchema(
             itemType: String,
-            schemaType: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: InventoryValidationResponseSchema?, _ error: FDKError?) -> Void
@@ -1436,10 +1406,6 @@ extension PlatformClient {
                         
             var xQuery: [String: Any] = [:] 
             xQuery["item_type"] = itemType
-            
-            if let value = schemaType {
-                xQuery["schema_type"] = value
-            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -1675,7 +1641,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/marketplaces/company-details/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-details/",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -1790,7 +1756,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/marketplaces/location-details/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/location-details/",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -2733,8 +2699,6 @@ extension PlatformClient {
         **/
         public func listProductTemplate(
             department: String,
-            pageNo: Int?,
-            pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TemplatesResponseSchema?, _ error: FDKError?) -> Void
@@ -2742,14 +2706,6 @@ extension PlatformClient {
                         
             var xQuery: [String: Any] = [:] 
             xQuery["department"] = department
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -3355,7 +3311,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -3454,7 +3410,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -4340,7 +4296,7 @@ extension PlatformClient {
         * Description: Users can create a product using this API, associating it with the provided company ID
         **/
         public func createProduct(
-            body: ProductCreateSchemaV2,
+            body: ProductCreateUpdateSchemaV2,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
         ) {
@@ -4575,7 +4531,7 @@ extension PlatformClient {
         **/
         public func deleteProduct(
             itemId: Int,
-            
+            body: DeleteProductRequestBody,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
@@ -4593,7 +4549,7 @@ extension PlatformClient {
                 method: "DELETE",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -4687,7 +4643,7 @@ extension PlatformClient {
         **/
         public func editProduct(
             itemId: Int,
-            body: ProductUpdateSchemaV2,
+            body: ProductCreateUpdateSchemaV2,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
@@ -4873,110 +4829,6 @@ extension PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(InventoryUpdateResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Update an Article Price
-        * Description: enables you to update article price for a specific size and selling location (store). The price updates will be reflected instantly after the API call.
-        **/
-        public func updateLocationPrice(
-            storeId: Int,
-            sellerIdentifier: String,
-            body: LocationPriceRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LocationPriceQuantitySuccessResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/store/\(storeId)/identifier/\(sellerIdentifier)/price",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(LocationPriceQuantitySuccessResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Update an Article Quantity
-        * Description: enables you to update article quantity for a specific size and selling location (store). The quantity updates will be reflected instantly after the API call.
-        **/
-        public func updateLocationQuantity(
-            storeId: Int,
-            sellerIdentifier: String,
-            body: LocationQuantityRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LocationPriceQuantitySuccessResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/store/\(storeId)/identifier/\(sellerIdentifier)/quantity",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(LocationPriceQuantitySuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

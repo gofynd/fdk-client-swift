@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         
         public var questionSet: [QuestionSet]
         
-        public var meta: [String: Any]?
+        public var meta: [String: Any]
         
-        public var isActive: Bool?
+        public var isActive: Bool
         
 
         public enum CodingKeys: String, CodingKey {
@@ -45,7 +45,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(displayName: String, id: Int? = nil, isActive: Bool? = nil, meta: [String: Any]? = nil, qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil) {
+        public init(displayName: String, id: Int? = nil, isActive: Bool, meta: [String: Any], qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil) {
             
             self.id = id
             
@@ -106,28 +106,14 @@ public extension PlatformClient.Order {
             
             
             
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                meta = try container.decode([String: Any].self, forKey: .meta)
                 
             
             
-                do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+            
+                isActive = try container.decode(Bool.self, forKey: .isActive)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -195,9 +181,9 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var questionSet: [QuestionSet]
         
-        public var meta: [String: Any]?
+        public var meta: [String: Any]
         
-        public var isActive: Bool?
+        public var isActive: Bool
         
 
         public enum CodingKeys: String, CodingKey {
@@ -218,7 +204,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(displayName: String, id: Int? = nil, isActive: Bool? = nil, meta: [String: Any]? = nil, qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil) {
+        public init(displayName: String, id: Int? = nil, isActive: Bool, meta: [String: Any], qcType: [String], questionSet: [QuestionSet], reasons: [Reason]? = nil) {
             
             self.id = id
             
@@ -279,28 +265,14 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                meta = try container.decode([String: Any].self, forKey: .meta)
                 
             
             
-                do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+            
+                isActive = try container.decode(Bool.self, forKey: .isActive)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

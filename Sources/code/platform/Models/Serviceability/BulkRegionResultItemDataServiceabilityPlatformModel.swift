@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class BulkRegionResultItemData: Codable {
         
         
-        public var filePath: String
+        public var filePath: String?
         
         public var failed: Int?
         
@@ -33,10 +33,6 @@ public extension PlatformClient.Serviceability {
         public var total: Int?
         
         public var errorFilePath: String?
-        
-        public var modifiedOn: String?
-        
-        public var createdOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -63,13 +59,9 @@ public extension PlatformClient.Serviceability {
             
             case errorFilePath = "error_file_path"
             
-            case modifiedOn = "modified_on"
-            
-            case createdOn = "created_on"
-            
         }
 
-        public init(action: String, batchId: String, country: String, createdOn: String? = nil, errorFilePath: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String, modifiedOn: String? = nil, region: String, status: String, success: Int? = nil, total: Int? = nil) {
+        public init(action: String, batchId: String, country: String, errorFilePath: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, region: String, status: String, success: Int? = nil, total: Int? = nil) {
             
             self.filePath = filePath
             
@@ -93,19 +85,22 @@ public extension PlatformClient.Serviceability {
             
             self.errorFilePath = errorFilePath
             
-            self.modifiedOn = modifiedOn
-            
-            self.createdOn = createdOn
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                filePath = try container.decode(String.self, forKey: .filePath)
+                do {
+                    filePath = try container.decode(String.self, forKey: .filePath)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -192,30 +187,6 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdOn = try container.decode(String.self, forKey: .createdOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -274,16 +245,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(errorFilePath, forKey: .errorFilePath)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
         }
@@ -302,7 +263,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class BulkRegionResultItemData: Codable {
         
         
-        public var filePath: String
+        public var filePath: String?
         
         public var failed: Int?
         
@@ -323,10 +284,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public var total: Int?
         
         public var errorFilePath: String?
-        
-        public var modifiedOn: String?
-        
-        public var createdOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -353,13 +310,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case errorFilePath = "error_file_path"
             
-            case modifiedOn = "modified_on"
-            
-            case createdOn = "created_on"
-            
         }
 
-        public init(action: String, batchId: String, country: String, createdOn: String? = nil, errorFilePath: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String, modifiedOn: String? = nil, region: String, status: String, success: Int? = nil, total: Int? = nil) {
+        public init(action: String, batchId: String, country: String, errorFilePath: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, region: String, status: String, success: Int? = nil, total: Int? = nil) {
             
             self.filePath = filePath
             
@@ -383,19 +336,22 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.errorFilePath = errorFilePath
             
-            self.modifiedOn = modifiedOn
-            
-            self.createdOn = createdOn
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                filePath = try container.decode(String.self, forKey: .filePath)
+                do {
+                    filePath = try container.decode(String.self, forKey: .filePath)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -482,30 +438,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdOn = try container.decode(String.self, forKey: .createdOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -564,16 +496,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(errorFilePath, forKey: .errorFilePath)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
         }

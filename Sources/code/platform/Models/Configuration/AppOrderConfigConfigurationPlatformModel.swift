@@ -18,8 +18,6 @@ public extension PlatformClient.Configuration {
         
         public var message: String?
         
-        public var processingSchedule: ProcessingSchedule?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,19 +27,15 @@ public extension PlatformClient.Configuration {
             
             case message = "message"
             
-            case processingSchedule = "processing_schedule"
-            
         }
 
-        public init(enabled: Bool? = nil, forceReassignment: Bool? = nil, message: String? = nil, processingSchedule: ProcessingSchedule? = nil) {
+        public init(enabled: Bool? = nil, forceReassignment: Bool? = nil, message: String? = nil) {
             
             self.enabled = enabled
             
             self.forceReassignment = forceReassignment
             
             self.message = message
-            
-            self.processingSchedule = processingSchedule
             
         }
 
@@ -84,18 +78,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    processingSchedule = try container.decode(ProcessingSchedule.self, forKey: .processingSchedule)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -114,11 +96,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(processingSchedule, forKey: .processingSchedule)
             
             
         }
@@ -143,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var message: String?
         
-        public var processingSchedule: ProcessingSchedule?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -154,19 +129,15 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case message = "message"
             
-            case processingSchedule = "processing_schedule"
-            
         }
 
-        public init(enabled: Bool? = nil, forceReassignment: Bool? = nil, message: String? = nil, processingSchedule: ProcessingSchedule? = nil) {
+        public init(enabled: Bool? = nil, forceReassignment: Bool? = nil, message: String? = nil) {
             
             self.enabled = enabled
             
             self.forceReassignment = forceReassignment
             
             self.message = message
-            
-            self.processingSchedule = processingSchedule
             
         }
 
@@ -209,18 +180,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    processingSchedule = try container.decode(ProcessingSchedule.self, forKey: .processingSchedule)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -239,11 +198,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(processingSchedule, forKey: .processingSchedule)
             
             
         }

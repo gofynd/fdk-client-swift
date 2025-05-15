@@ -97,11 +97,11 @@ extension ApplicationClient {
             
             ulrs["customerOnboard"] = config.domain.appendAsPath("/service/application/payment/v1.0/credit-onboard/") 
             
+            ulrs["outstandingOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/outstanding-orders/") 
+            
             ulrs["paidOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/paid-orders/") 
             
             ulrs["createPaymentOrder"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment-orders/") 
-            
-            ulrs["validateCustomerAndCreditSummary"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/validate/customer-credits-v2") 
             
             self.relativeUrls = ulrs
         }
@@ -119,6 +119,7 @@ extension ApplicationClient {
         * Description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway.
         **/
         public func getAggregatorsConfig(
+            xApiToken: String?,
             refresh: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
@@ -132,6 +133,10 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
+            
+            if let value = xApiToken {
+                xHeaders.append((key: "x-api-token", value: value))
+            }
             
             
             if let headers = headers {
@@ -2379,16 +2384,18 @@ extension ApplicationClient {
         * Description: Check the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered.
         **/
         public func checkCredit(
-            aggregator: String?,
+            aggregator: String,
+            wallet: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CheckCreditDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
+            xQuery["aggregator"] = aggregator
             
-            if let value = aggregator {
-                xQuery["aggregator"] = value
+            if let value = wallet {
+                xQuery["wallet"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2470,6 +2477,63 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CustomerOnboardingDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Outstanding orders
+        * Description: Get details of orders with outstanding payments.
+        **/
+        public func outstandingOrderDetails(
+            aggregator: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: OutstandingOrderDetails?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["outstandingOrderDetails"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OutstandingOrderDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2579,58 +2643,6 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PaymentOrderDetails.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Verify payment customer and show credit summary
-        * Description: Verify if the user is eligible for payment and also show credit summary if activated.
-        **/
-        public func validateCustomerAndCreditSummary(
-            body: CustomerValidationSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ValidateCustomerCreditSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            let fullUrl = relativeUrls["validateCustomerAndCreditSummary"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ValidateCustomerCreditSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

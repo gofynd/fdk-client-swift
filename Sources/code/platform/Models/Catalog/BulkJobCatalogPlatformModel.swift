@@ -30,8 +30,6 @@ public extension PlatformClient.Catalog {
         
         public var filePath: String?
         
-        public var fileType: String?
-        
         public var isActive: Bool?
         
         public var modifiedBy: UserInfo?
@@ -69,8 +67,6 @@ public extension PlatformClient.Catalog {
             
             case filePath = "file_path"
             
-            case fileType = "file_type"
-            
             case isActive = "is_active"
             
             case modifiedBy = "modified_by"
@@ -89,7 +85,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, fileType: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
             
             self.cancelled = cancelled
             
@@ -108,8 +104,6 @@ public extension PlatformClient.Catalog {
             self.failedRecords = failedRecords
             
             self.filePath = filePath
-            
-            self.fileType = fileType
             
             self.isActive = isActive
             
@@ -217,18 +211,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     filePath = try container.decode(String.self, forKey: .filePath)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    fileType = try container.decode(String.self, forKey: .fileType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -382,11 +364,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(filePath, forKey: .filePath)
-            
-            
-            
-            
-            try? container.encodeIfPresent(fileType, forKey: .fileType)
             
             
             
@@ -463,8 +440,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var filePath: String?
         
-        public var fileType: String?
-        
         public var isActive: Bool?
         
         public var modifiedBy: UserInfo?
@@ -502,8 +477,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case filePath = "file_path"
             
-            case fileType = "file_type"
-            
             case isActive = "is_active"
             
             case modifiedBy = "modified_by"
@@ -522,7 +495,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, fileType: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
             
             self.cancelled = cancelled
             
@@ -541,8 +514,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.failedRecords = failedRecords
             
             self.filePath = filePath
-            
-            self.fileType = fileType
             
             self.isActive = isActive
             
@@ -650,18 +621,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     filePath = try container.decode(String.self, forKey: .filePath)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    fileType = try container.decode(String.self, forKey: .fileType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -815,11 +774,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(filePath, forKey: .filePath)
-            
-            
-            
-            
-            try? container.encodeIfPresent(fileType, forKey: .fileType)
             
             
             

@@ -18,10 +18,6 @@ public extension PlatformClient.Serviceability {
         
         public var width: Double
         
-        public var isDefault: Bool?
-        
-        public var unit: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,23 +27,15 @@ public extension PlatformClient.Serviceability {
             
             case width = "width"
             
-            case isDefault = "is_default"
-            
-            case unit = "unit"
-            
         }
 
-        public init(height: Double, isDefault: Bool? = nil, length: Double, unit: String? = nil, width: Double) {
+        public init(height: Double, length: Double, width: Double) {
             
             self.height = height
             
             self.length = length
             
             self.width = width
-            
-            self.isDefault = isDefault
-            
-            self.unit = unit
             
         }
 
@@ -69,30 +57,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                do {
-                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    unit = try container.decode(String.self, forKey: .unit)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -111,16 +75,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(width, forKey: .width)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-            
-            
-            
-            
-            try? container.encodeIfPresent(unit, forKey: .unit)
             
             
         }
@@ -145,10 +99,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var width: Double
         
-        public var isDefault: Bool?
-        
-        public var unit: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -158,23 +108,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case width = "width"
             
-            case isDefault = "is_default"
-            
-            case unit = "unit"
-            
         }
 
-        public init(height: Double, isDefault: Bool? = nil, length: Double, unit: String? = nil, width: Double) {
+        public init(height: Double, length: Double, width: Double) {
             
             self.height = height
             
             self.length = length
             
             self.width = width
-            
-            self.isDefault = isDefault
-            
-            self.unit = unit
             
         }
 
@@ -196,30 +138,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                do {
-                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    unit = try container.decode(String.self, forKey: .unit)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -238,16 +156,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(width, forKey: .width)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-            
-            
-            
-            
-            try? container.encodeIfPresent(unit, forKey: .unit)
             
             
         }

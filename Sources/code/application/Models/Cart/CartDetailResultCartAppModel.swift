@@ -62,10 +62,6 @@ public extension ApplicationClient.Cart {
         
         public var customCartMeta: [String: Any]?
         
-        public var freeGiftSelectionAvailable: Bool?
-        
-        public var customerId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -123,13 +119,9 @@ public extension ApplicationClient.Cart {
             
             case customCartMeta = "custom_cart_meta"
             
-            case freeGiftSelectionAvailable = "free_gift_selection_available"
-            
-            case customerId = "customer_id"
-            
         }
 
-        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customerId: String? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, freeGiftSelectionAvailable: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, notification: [String: Any]? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
+        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, notification: [String: Any]? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
             
             self.cartId = cartId
             
@@ -184,10 +176,6 @@ public extension ApplicationClient.Cart {
             self.panConfig = panConfig
             
             self.customCartMeta = customCartMeta
-            
-            self.freeGiftSelectionAvailable = freeGiftSelectionAvailable
-            
-            self.customerId = customerId
             
         }
 
@@ -518,30 +506,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                freeGiftSelectionAvailable = try container.decode(Bool.self, forKey: .freeGiftSelectionAvailable)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                customerId = try container.decode(String.self, forKey: .customerId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -653,14 +617,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
-            
-            
-            
-            try? container.encodeIfPresent(freeGiftSelectionAvailable, forKey: .freeGiftSelectionAvailable)
-            
-            
-            
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
             
             
         }

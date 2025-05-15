@@ -30,8 +30,6 @@ public extension PlatformClient.Payment {
         
         public var failureRedirectionUrl: String?
         
-        public var sendCommunication: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -53,11 +51,9 @@ public extension PlatformClient.Payment {
             
             case failureRedirectionUrl = "failure_redirection_url"
             
-            case sendCommunication = "send_communication"
-            
         }
 
-        public init(amount: Double, countryPhoneCode: String? = nil, description: String? = nil, email: String, externalOrderId: String, failureRedirectionUrl: String? = nil, meta: CreatePaymentLinkMeta, mobileNumber: String, sendCommunication: Bool? = nil, successRedirectionUrl: String? = nil) {
+        public init(amount: Double, countryPhoneCode: String? = nil, description: String? = nil, email: String, externalOrderId: String, failureRedirectionUrl: String? = nil, meta: CreatePaymentLinkMeta, mobileNumber: String, successRedirectionUrl: String? = nil) {
             
             self.email = email
             
@@ -76,8 +72,6 @@ public extension PlatformClient.Payment {
             self.successRedirectionUrl = successRedirectionUrl
             
             self.failureRedirectionUrl = failureRedirectionUrl
-            
-            self.sendCommunication = sendCommunication
             
         }
 
@@ -157,18 +151,6 @@ public extension PlatformClient.Payment {
                 }
                 
             
-            
-                do {
-                    sendCommunication = try container.decode(Bool.self, forKey: .sendCommunication)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -217,11 +199,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(failureRedirectionUrl, forKey: .failureRedirectionUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sendCommunication, forKey: .sendCommunication)
             
             
         }
@@ -258,8 +235,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var failureRedirectionUrl: String?
         
-        public var sendCommunication: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -281,11 +256,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case failureRedirectionUrl = "failure_redirection_url"
             
-            case sendCommunication = "send_communication"
-            
         }
 
-        public init(amount: Double, countryPhoneCode: String? = nil, description: String? = nil, email: String, externalOrderId: String, failureRedirectionUrl: String? = nil, meta: CreatePaymentLinkMeta, mobileNumber: String, sendCommunication: Bool? = nil, successRedirectionUrl: String? = nil) {
+        public init(amount: Double, countryPhoneCode: String? = nil, description: String? = nil, email: String, externalOrderId: String, failureRedirectionUrl: String? = nil, meta: CreatePaymentLinkMeta, mobileNumber: String, successRedirectionUrl: String? = nil) {
             
             self.email = email
             
@@ -304,8 +277,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.successRedirectionUrl = successRedirectionUrl
             
             self.failureRedirectionUrl = failureRedirectionUrl
-            
-            self.sendCommunication = sendCommunication
             
         }
 
@@ -385,18 +356,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
-            
-                do {
-                    sendCommunication = try container.decode(Bool.self, forKey: .sendCommunication)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -445,11 +404,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(failureRedirectionUrl, forKey: .failureRedirectionUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sendCommunication, forKey: .sendCommunication)
             
             
         }

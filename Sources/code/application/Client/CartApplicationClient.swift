@@ -19,8 +19,6 @@ extension ApplicationClient {
             
             ulrs["updateCart"] = config.domain.appendAsPath("/service/application/cart/v1.0/detail") 
             
-            ulrs["updateCartBreakup"] = config.domain.appendAsPath("/service/application/cart/v1.0/detail") 
-            
             ulrs["deleteCart"] = config.domain.appendAsPath("/service/application/cart/v1.0/cart_archive") 
             
             ulrs["getItemCount"] = config.domain.appendAsPath("/service/application/cart/v1.0/basic") 
@@ -71,6 +69,8 @@ extension ApplicationClient {
             
             ulrs["checkoutCartV2"] = config.domain.appendAsPath("/service/application/cart/v2.0/checkout") 
             
+            ulrs["getPromotions"] = config.domain.appendAsPath("/service/application/cart/v1.0/promotion") 
+            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -87,7 +87,6 @@ extension ApplicationClient {
         * Description: Get details of a cart linked to a specific customer using a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart.
         **/
         public func getCart(
-            xOrderingSource: OrderingSource?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -136,10 +135,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -241,7 +236,6 @@ extension ApplicationClient {
         * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
         **/
         public func addItems(
-            xOrderingSource: OrderingSource?,
             i: Bool?,
             b: Bool?,
             areaCode: String?,
@@ -280,10 +274,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -328,7 +318,6 @@ extension ApplicationClient {
         * Description: Update cart. Customers can modify added product attributes such as quantity and size, as well as remove items from the cart.
         **/
         public func updateCart(
-            xOrderingSource: OrderingSource?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -373,10 +362,6 @@ extension ApplicationClient {
             
             var xHeaders: [(key: String, value: String)] = []
             
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
-            
             
             if let headers = headers {
                 xHeaders.append(contentsOf: headers)
@@ -387,88 +372,6 @@ extension ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdateCartDetailResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Update store credits into cart and their items
-        * Description: Update cart. Customers can adjust the cart breakup by  applying or removing store credits as needed.
-        **/
-        public func updateCartBreakup(
-            xOrderingSource: OrderingSource?,
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            buyNow: Bool?,
-            cartType: String?,
-            body: UpdateCartBreakup,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdateCartDetailResult?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = id {
-                xQuery["id"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-            if let value = buyNow {
-                xQuery["buy_now"] = value
-            }
-            
-            if let value = cartType {
-                xQuery["cart_type"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            let fullUrl = relativeUrls["updateCartBreakup"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "PATCH",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders: xHeaders,
@@ -623,7 +526,7 @@ extension ApplicationClient {
         public func getCoupons(
             id: String?,
             buyNow: Bool?,
-            productSlug: String?,
+            slug: String?,
             storeId: String?,
             
             headers: [(key: String, value: String)]? = nil,
@@ -640,8 +543,8 @@ extension ApplicationClient {
                 xQuery["buy_now"] = value
             }
             
-            if let value = productSlug {
-                xQuery["product_slug"] = value
+            if let value = slug {
+                xQuery["slug"] = value
             }
             
             if let value = storeId {
@@ -693,7 +596,6 @@ extension ApplicationClient {
         * Description: Apply a coupon code to the cart to trigger discounts on eligible items.
         **/
         public func applyCoupon(
-            xOrderingSource: OrderingSource?,
             i: Bool?,
             b: Bool?,
             p: Bool?,
@@ -732,10 +634,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -780,7 +678,6 @@ extension ApplicationClient {
         * Description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total.
         **/
         public func removeCoupon(
-            xOrderingSource: OrderingSource?,
             id: String?,
             buyNow: Bool?,
             
@@ -799,10 +696,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -919,7 +812,6 @@ extension ApplicationClient {
         * Description: Users can redeem their accumulated reward points and apply them to the items in their cart, thereby availing discounts on their current purchases.
         **/
         public func applyRewardPoints(
-            xOrderingSource: OrderingSource?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -948,10 +840,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -1325,7 +1213,6 @@ extension ApplicationClient {
         * Description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
         **/
         public func selectAddress(
-            xOrderingSource: OrderingSource?,
             cartId: String?,
             buyNow: Bool?,
             i: Bool?,
@@ -1354,10 +1241,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -1402,7 +1285,6 @@ extension ApplicationClient {
         * Description: Select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction.
         **/
         public func selectPaymentMode(
-            xOrderingSource: OrderingSource?,
             id: String?,
             buyNow: Bool?,
             body: UpdateCartPaymentCreation,
@@ -1421,10 +1303,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -1469,7 +1347,6 @@ extension ApplicationClient {
         * Description: Validate the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions.
         **/
         public func validateCouponForPayment(
-            xOrderingSource: OrderingSource?,
             id: String?,
             buyNow: Bool?,
             addressId: String?,
@@ -1538,10 +1415,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -1668,7 +1541,6 @@ extension ApplicationClient {
         * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
         **/
         public func checkoutCart(
-            xOrderingSource: OrderingSource?,
             buyNow: Bool?,
             cartType: String?,
             body: CartCheckoutDetailCreation,
@@ -1687,10 +1559,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -1967,9 +1835,7 @@ extension ApplicationClient {
             promotionGroup: String?,
             storeId: Int?,
             cartType: String?,
-            promotionType: String?,
-            cartId: String?,
-            autoApply: Bool?,
+            sortBy: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PromotionOffersResult?, _ error: FDKError?) -> Void
@@ -1997,16 +1863,8 @@ extension ApplicationClient {
                 xQuery["cart_type"] = value
             }
             
-            if let value = promotionType {
-                xQuery["promotion_type"] = value
-            }
-            
-            if let value = cartId {
-                xQuery["cart_id"] = value
-            }
-            
-            if let value = autoApply {
-                xQuery["auto_apply"] = value
+            if let value = sortBy {
+                xQuery["sort_by"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2182,10 +2040,9 @@ extension ApplicationClient {
         /**
         *
         * Summary: Checkout cart
-        * Description: The checkout cart initiates the order creation process based on the items in the user's cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement.
+        * Description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement.
         **/
         public func checkoutCartV2(
-            xOrderingSource: OrderingSource?,
             buyNow: Bool?,
             cartType: String?,
             body: CartCheckoutDetailV2Creation,
@@ -2204,10 +2061,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
-            }
             
             
             if let headers = headers {
@@ -2234,6 +2087,78 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CartCheckoutResult.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: List all available promotions of the sales channel
+        * Description: List all promotional offers available for the sales channel, including details such as offer text, unique promotion ID, and validity period.
+        **/
+        public func getPromotions(
+            pageSize: Int?,
+            pageNo: Int?,
+            promotionType: String?,
+            isBankOffer: Bool?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: Promotions?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = promotionType {
+                xQuery["promotion_type"] = value
+            }
+            
+            if let value = isBankOffer {
+                xQuery["is_bank_offer"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getPromotions"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(Promotions.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

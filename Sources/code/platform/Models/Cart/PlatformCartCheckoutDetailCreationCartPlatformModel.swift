@@ -76,12 +76,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var cardId: String?
         
-        public var successCallbackUrl: String?
-        
-        public var failureCallbackUrl: String?
-        
-        public var orderTags: [OrderTag]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -147,15 +141,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case cardId = "card_id"
             
-            case successCallbackUrl = "success_callback_url"
-            
-            case failureCallbackUrl = "failure_callback_url"
-            
-            case orderTags = "order_tags"
-            
         }
 
-        public init(addressId: String? = nil, aggregator: String? = nil, billingAddress: [String: Any]? = nil, billingAddressId: String? = nil, callbackUrl: String? = nil, cardId: String? = nil, checkoutMode: String? = nil, customerDetails: CustomerDetails? = nil, customMeta: [CartCheckoutCustomMeta]? = nil, deliveryAddress: [String: Any]? = nil, deviceId: String? = nil, employeeCode: String? = nil, extraMeta: [String: Any]? = nil, failureCallbackUrl: String? = nil, files: [Files]? = nil, id: String, iin: String? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, network: String? = nil, orderingStore: Int? = nil, orderTags: [OrderTag]? = nil, orderType: String, paymentAutoConfirm: Bool? = nil, paymentExtraIdentifiers: [String: Any]? = nil, paymentIdentifier: String? = nil, paymentMode: String, paymentParams: [String: Any]? = nil, pickAtStoreUid: Int? = nil, pos: Bool? = nil, staff: StaffCheckout? = nil, successCallbackUrl: String? = nil, type: String? = nil, userId: String? = nil) {
+        public init(addressId: String? = nil, aggregator: String? = nil, billingAddress: [String: Any]? = nil, billingAddressId: String? = nil, callbackUrl: String? = nil, cardId: String? = nil, checkoutMode: String? = nil, customerDetails: CustomerDetails? = nil, customMeta: [CartCheckoutCustomMeta]? = nil, deliveryAddress: [String: Any]? = nil, deviceId: String? = nil, employeeCode: String? = nil, extraMeta: [String: Any]? = nil, files: [Files]? = nil, id: String, iin: String? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, network: String? = nil, orderingStore: Int? = nil, orderType: String, paymentAutoConfirm: Bool? = nil, paymentExtraIdentifiers: [String: Any]? = nil, paymentIdentifier: String? = nil, paymentMode: String, paymentParams: [String: Any]? = nil, pickAtStoreUid: Int? = nil, pos: Bool? = nil, staff: StaffCheckout? = nil, type: String? = nil, userId: String? = nil) {
             
             self.customMeta = customMeta
             
@@ -218,12 +206,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.type = type
             
             self.cardId = cardId
-            
-            self.successCallbackUrl = successCallbackUrl
-            
-            self.failureCallbackUrl = failureCallbackUrl
-            
-            self.orderTags = orderTags
             
         }
 
@@ -581,42 +563,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    orderTags = try container.decode([OrderTag].self, forKey: .orderTags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -775,21 +721,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(cardId, forKey: .cardId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(successCallbackUrl, forKey: .successCallbackUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orderTags, forKey: .orderTags)
             
             
         }

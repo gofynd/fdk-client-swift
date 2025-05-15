@@ -56,8 +56,6 @@ public extension PlatformClient.Payment {
         
         public var status: String
         
-        public var reason: ReasonDetail?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -105,11 +103,9 @@ public extension PlatformClient.Payment {
             
             case status = "status"
             
-            case reason = "reason"
-            
         }
 
-        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], reason: ReasonDetail? = nil, shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
+        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
             
             self.paymentId = paymentId
             
@@ -154,8 +150,6 @@ public extension PlatformClient.Payment {
             self.meta = meta
             
             self.status = status
-            
-            self.reason = reason
             
         }
 
@@ -342,18 +336,6 @@ public extension PlatformClient.Payment {
                 
             
             
-            
-                do {
-                    reason = try container.decode(ReasonDetail.self, forKey: .reason)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -467,11 +449,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reason, forKey: .reason)
             
             
         }
@@ -534,8 +511,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var status: String
         
-        public var reason: ReasonDetail?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -583,11 +558,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case status = "status"
             
-            case reason = "reason"
-            
         }
 
-        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], reason: ReasonDetail? = nil, shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
+        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
             
             self.paymentId = paymentId
             
@@ -632,8 +605,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.meta = meta
             
             self.status = status
-            
-            self.reason = reason
             
         }
 
@@ -820,18 +791,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-            
-                do {
-                    reason = try container.decode(ReasonDetail.self, forKey: .reason)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -945,11 +904,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reason, forKey: .reason)
             
             
         }

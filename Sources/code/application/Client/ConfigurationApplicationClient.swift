@@ -13,15 +13,15 @@ extension ApplicationClient {
             
             ulrs["getApplication"] = config.domain.appendAsPath("/service/application/configuration/v1.0/application") 
             
-            ulrs["getOwnerInfo"] = config.domain.appendAsPath("/service/application/configuration/v2.0/about") 
+            ulrs["getOwnerInfo"] = config.domain.appendAsPath("/service/application/configuration/v1.0/about") 
             
             ulrs["getBasicDetails"] = config.domain.appendAsPath("/service/application/configuration/v1.0/detail") 
             
             ulrs["getIntegrationTokens"] = config.domain.appendAsPath("/service/application/configuration/v1.0/token") 
             
-            ulrs["getOrderingStores"] = config.domain.appendAsPath("/service/application/configuration/v2.0/ordering-store/stores") 
+            ulrs["getOrderingStores"] = config.domain.appendAsPath("/service/application/configuration/v1.0/ordering-store/stores") 
             
-            ulrs["getStoreDetailById"] = config.domain.appendAsPath("/service/application/configuration/v2.0/ordering-store/stores/{store_id}") 
+            ulrs["getStoreDetailById"] = config.domain.appendAsPath("/service/application/configuration/v1.0/ordering-store/stores/{store_id}") 
             
             ulrs["getFeatures"] = config.domain.appendAsPath("/service/application/configuration/v1.0/feature") 
             
@@ -882,53 +882,6 @@ extension ApplicationClient {
                     }
             });
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getAppStaffList
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getAppStaffListPaginator(
-            pageSize: Int?,
-            orderIncent: Bool?,
-            orderingStore: Int?,
-            user: String?,
-            userName: String?,
-            headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<AppStaffListResponseSchema> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<AppStaffListResponseSchema>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getAppStaffList(
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    orderIncent: orderIncent,
-                    orderingStore: orderingStore,
-                    user: user,
-                    userName: userName,
-                    
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
         
         
         /**

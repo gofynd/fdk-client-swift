@@ -18,10 +18,6 @@ public extension PlatformClient.Serviceability {
         
         public var name: String
         
-        public var manualPriority: [String]
-        
-        public var filters: String
-        
         public var conditions: CourierPartnerRuleConditions
         
         public var sort: [String]
@@ -37,10 +33,6 @@ public extension PlatformClient.Serviceability {
             
             case name = "name"
             
-            case manualPriority = "manual_priority"
-            
-            case filters = "filters"
-            
             case conditions = "conditions"
             
             case sort = "sort"
@@ -49,17 +41,13 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, filters: String, isActive: Bool, manualPriority: [String], name: String, sort: [String], type: String? = nil) {
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
             self.cpList = cpList
             
             self.name = name
-            
-            self.manualPriority = manualPriority
-            
-            self.filters = filters
             
             self.conditions = conditions
             
@@ -91,16 +79,6 @@ public extension PlatformClient.Serviceability {
             
             
                 name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                manualPriority = try container.decode([String].self, forKey: .manualPriority)
-                
-            
-            
-            
-                filters = try container.decode(String.self, forKey: .filters)
                 
             
             
@@ -144,16 +122,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
             
@@ -193,10 +161,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var name: String
         
-        public var manualPriority: [String]
-        
-        public var filters: String
-        
         public var conditions: CourierPartnerRuleConditions
         
         public var sort: [String]
@@ -212,10 +176,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case name = "name"
             
-            case manualPriority = "manual_priority"
-            
-            case filters = "filters"
-            
             case conditions = "conditions"
             
             case sort = "sort"
@@ -224,17 +184,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, filters: String, isActive: Bool, manualPriority: [String], name: String, sort: [String], type: String? = nil) {
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
             self.cpList = cpList
             
             self.name = name
-            
-            self.manualPriority = manualPriority
-            
-            self.filters = filters
             
             self.conditions = conditions
             
@@ -266,16 +222,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                manualPriority = try container.decode([String].self, forKey: .manualPriority)
-                
-            
-            
-            
-                filters = try container.decode(String.self, forKey: .filters)
                 
             
             
@@ -319,16 +265,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
             

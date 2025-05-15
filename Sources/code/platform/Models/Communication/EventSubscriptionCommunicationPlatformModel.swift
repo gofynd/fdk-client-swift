@@ -20,7 +20,7 @@ public extension PlatformClient.Communication {
         
         public var application: String?
         
-        public var event: EventSubscriptionEvents?
+        public var event: String?
         
         public var slug: String?
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, event: EventSubscriptionEvents? = nil, isDefault: Bool? = nil, slug: String? = nil, template: EventSubscriptionTemplate? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, event: String? = nil, isDefault: Bool? = nil, slug: String? = nil, template: EventSubscriptionTemplate? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.template = template
             
@@ -128,7 +128,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    event = try container.decode(EventSubscriptionEvents.self, forKey: .event)
+                    event = try container.decode(String.self, forKey: .event)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -260,7 +260,7 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var application: String?
         
-        public var event: EventSubscriptionEvents?
+        public var event: String?
         
         public var slug: String?
         
@@ -293,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, event: EventSubscriptionEvents? = nil, isDefault: Bool? = nil, slug: String? = nil, template: EventSubscriptionTemplate? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, event: String? = nil, isDefault: Bool? = nil, slug: String? = nil, template: EventSubscriptionTemplate? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.template = template
             
@@ -368,7 +368,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    event = try container.decode(EventSubscriptionEvents.self, forKey: .event)
+                    event = try container.decode(String.self, forKey: .event)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

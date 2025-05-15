@@ -12,8 +12,6 @@ public extension ApplicationClient.Logistic {
         
         public var shipments: [ShipmentCourierPartners]?
         
-        public var deliveryPromise: CourierPartnerPromise?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -21,17 +19,13 @@ public extension ApplicationClient.Logistic {
             
             case shipments = "shipments"
             
-            case deliveryPromise = "delivery_promise"
-            
         }
 
-        public init(courierPartners: [CourierPartners]? = nil, deliveryPromise: CourierPartnerPromise? = nil, shipments: [ShipmentCourierPartners]? = nil) {
+        public init(courierPartners: [CourierPartners]? = nil, shipments: [ShipmentCourierPartners]? = nil) {
             
             self.courierPartners = courierPartners
             
             self.shipments = shipments
-            
-            self.deliveryPromise = deliveryPromise
             
         }
 
@@ -62,18 +56,6 @@ public extension ApplicationClient.Logistic {
             }
             
             
-            
-            do {
-                deliveryPromise = try container.decode(CourierPartnerPromise.self, forKey: .deliveryPromise)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -85,10 +67,6 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(shipments, forKey: .shipments)
-            
-            
-            
-            try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
             
             
         }

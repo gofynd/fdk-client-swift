@@ -60,8 +60,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var customCartMeta: [String: Any]?
         
-        public var customerId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -111,11 +109,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case customCartMeta = "custom_cart_meta"
             
-            case customerId = "customer_id"
-            
         }
 
-        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customerId: String? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, error: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, shipments: [PlatformShipmentDetails]? = nil, staffUserId: String? = nil) {
+        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, error: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, shipments: [PlatformShipmentDetails]? = nil, staffUserId: String? = nil) {
             
             self.couponText = couponText
             
@@ -162,8 +158,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.panNo = panNo
             
             self.customCartMeta = customCartMeta
-            
-            self.customerId = customerId
             
         }
 
@@ -446,18 +440,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    customerId = try container.decode(String.self, forKey: .customerId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -576,11 +558,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
             
             
         }

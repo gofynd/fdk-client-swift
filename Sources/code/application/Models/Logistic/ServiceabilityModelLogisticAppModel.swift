@@ -18,8 +18,6 @@ public extension ApplicationClient.Logistic {
         
         public var isFirstMile: Bool?
         
-        public var isReversePickup: Bool?
-        
         public var isReturn: Bool?
         
         public var isInstallation: Bool?
@@ -39,8 +37,6 @@ public extension ApplicationClient.Logistic {
             
             case isFirstMile = "is_first_mile"
             
-            case isReversePickup = "is_reverse_pickup"
-            
             case isReturn = "is_return"
             
             case isInstallation = "is_installation"
@@ -49,7 +45,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(isFirstMile: Bool? = nil, isInstallation: Bool? = nil, isLastMile: Bool? = nil, isQc: Bool? = nil, isReturn: Bool? = nil, isReversePickup: Bool? = nil, lmCodLimit: Int? = nil, pickupCutoff: String? = nil, routeCode: String? = nil) {
+        public init(isFirstMile: Bool? = nil, isInstallation: Bool? = nil, isLastMile: Bool? = nil, isQc: Bool? = nil, isReturn: Bool? = nil, lmCodLimit: Int? = nil, pickupCutoff: String? = nil, routeCode: String? = nil) {
             
             self.lmCodLimit = lmCodLimit
             
@@ -60,8 +56,6 @@ public extension ApplicationClient.Logistic {
             self.routeCode = routeCode
             
             self.isFirstMile = isFirstMile
-            
-            self.isReversePickup = isReversePickup
             
             self.isReturn = isReturn
             
@@ -136,18 +130,6 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                isReversePickup = try container.decode(Bool.self, forKey: .isReversePickup)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 isReturn = try container.decode(Bool.self, forKey: .isReturn)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -205,10 +187,6 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(isFirstMile, forKey: .isFirstMile)
-            
-            
-            
-            try? container.encodeIfPresent(isReversePickup, forKey: .isReversePickup)
             
             
             

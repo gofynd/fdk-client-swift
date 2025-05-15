@@ -12,11 +12,7 @@ public extension ApplicationClient.Theme {
         
         public var label: String?
         
-        public var canvas: String?
-        
         public var props: [String: Any]?
-        
-        public var customCss: String?
         
         public var blocks: [[String: Any]]?
         
@@ -35,11 +31,7 @@ public extension ApplicationClient.Theme {
             
             case label = "label"
             
-            case canvas = "canvas"
-            
             case props = "props"
-            
-            case customCss = "custom_css"
             
             case blocks = "blocks"
             
@@ -53,17 +45,13 @@ public extension ApplicationClient.Theme {
             
         }
 
-        public init(assets: SectionAssets? = nil, blocks: [[String: Any]]? = nil, canvas: String? = nil, customCss: String? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: SectionSource? = nil) {
+        public init(assets: SectionAssets? = nil, blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: SectionSource? = nil) {
             
             self.name = name
             
             self.label = label
             
-            self.canvas = canvas
-            
             self.props = props
-            
-            self.customCss = customCss
             
             self.blocks = blocks
             
@@ -106,31 +94,7 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                canvas = try container.decode(String.self, forKey: .canvas)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 props = try container.decode([String: Any].self, forKey: .props)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                customCss = try container.decode(String.self, forKey: .customCss)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,15 +178,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            try? container.encodeIfPresent(canvas, forKey: .canvas)
-            
-            
-            
             try? container.encodeIfPresent(props, forKey: .props)
-            
-            
-            
-            try? container.encodeIfPresent(customCss, forKey: .customCss)
             
             
             

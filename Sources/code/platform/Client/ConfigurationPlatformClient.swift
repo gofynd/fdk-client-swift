@@ -161,41 +161,6 @@ extension PlatformClient {
         
         
         
-        
-        /**
-        *
-        * Summary: get paginator for getApplications
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getApplicationsPaginator(
-            pageSize: Int?,
-            q: String?,
-            headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<ApplicationsResponseSchema> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<ApplicationsResponseSchema>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getApplications(
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    q: q,
-                    
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        
         /**
         *
         * Summary: List currencies
@@ -443,7 +408,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/configuration/v2.0/company/\(companyId)/inventory/stores-by-brands",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/stores-by-brands",
                 query: xQuery,
                 body: body.dictionary,
                 headers: xHeaders,

@@ -8,7 +8,7 @@ public extension ApplicationClient.Theme {
     */
     class GlobalSchema: Codable {
         
-        public var props: [Prop]?
+        public var props: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -17,7 +17,7 @@ public extension ApplicationClient.Theme {
             
         }
 
-        public init(props: [Prop]? = nil) {
+        public init(props: [[String: Any]]? = nil) {
             
             self.props = props
             
@@ -28,7 +28,7 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                props = try container.decode([Prop].self, forKey: .props)
+                props = try container.decode([[String: Any]].self, forKey: .props)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

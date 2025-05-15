@@ -46,7 +46,7 @@ public extension ApplicationClient.Catalog {
         
         public var pricePerUnit: ProductStockUnitPriceV3?
         
-        public var pincode: String?
+        public var pincode: Int?
         
         public var marketplaceAttributes: [MarketPlaceSttributesSchemaV3]?
         
@@ -105,7 +105,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, deliveryPromise: PromiseSchema? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pincode: String? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil) {
+        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, deliveryPromise: PromiseSchema? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pincode: Int? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil) {
             
             self.store = store
             
@@ -388,7 +388,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                pincode = try container.decode(Int.self, forKey: .pincode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

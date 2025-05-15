@@ -13,9 +13,17 @@ extension ApplicationClient {
             
             ulrs["getPincodeCity"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/{pincode}") 
             
+            ulrs["getTatProduct"] = config.domain.appendAsPath("/service/application/logistics/v1.0/") 
+            
             ulrs["getAllCountries"] = config.domain.appendAsPath("/service/application/logistics/v1.0/country-list") 
             
+            ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones") 
+            
+            ulrs["getOptimalLocations"] = config.domain.appendAsPath("/service/application/logistics/v1.0/reassign_stores") 
+            
             ulrs["getCourierPartners"] = config.domain.appendAsPath("/service/application/logistics/v1.0/company/{company_id}/application/{application_id}/shipment/courier-partners") 
+            
+            ulrs["getLocations"] = config.domain.appendAsPath("/service/application/logistics/v1.0/locations") 
             
             ulrs["getCountries"] = config.domain.appendAsPath("/service/application/logistics/v2.0/countries") 
             
@@ -48,7 +56,7 @@ extension ApplicationClient {
             pincode: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PincodeDetailsResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PincodeDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -81,7 +89,59 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PincodeDetailsResult.self, from: data)
+                        let response = Utility.decode(PincodeDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get product's turnaround time
+        * Description: Get the estimated delivery time frame for a specific product from a designated store.
+        **/
+        public func getTatProduct(
+            body: TATViewDetails,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: TATViewResult?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getTatProduct"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TATViewResult.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -102,7 +162,7 @@ extension ApplicationClient {
         public func getAllCountries(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CountryResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CountryListResult?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -133,7 +193,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CountryResult.self, from: data)
+                        let response = Utility.decode(CountryListResult.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -148,7 +208,111 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Serviceable Courier Partners
+        * Summary: Get zones
+        * Description: Get the delivery zone associated with a given pincode.
+        **/
+        public func getPincodeZones(
+            body: GetZoneFromPincodeViewDetails,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetZoneFromPincodeViewResult?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getPincodeZones"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetZoneFromPincodeViewResult.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get selling locations
+        * Description: Get optimal fulfillment centre for customers by analyzing their location, product availability, and inventory levels.
+        **/
+        public func getOptimalLocations(
+            body: ReAssignStoreDetails,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: ReAssignStoreResult?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getOptimalLocations"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ReAssignStoreResult.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Serviceable Courier Partners.
         * Description: Get all the serviceable courier partners of a destination and the shipments.
         **/
         public func getCourierPartners(
@@ -206,6 +370,97 @@ extension ApplicationClient {
         
         /**
         *
+        * Summary: Get available selling locations
+        * Description: Get stores available for the application based on Delivery Zones and Order Orchestration rules.
+        **/
+        public func getLocations(
+            xApplicationId: String,
+            xApplicationData: String,
+            country: String?,
+            state: String?,
+            city: String?,
+            pincode: Int?,
+            sector: String?,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetStoreResult?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["x-application-id"] = xApplicationId
+            xQuery["x-application-data"] = xApplicationData
+            
+            if let value = country {
+                xQuery["country"] = value
+            }
+            
+            if let value = state {
+                xQuery["state"] = value
+            }
+            
+            if let value = city {
+                xQuery["city"] = value
+            }
+            
+            if let value = pincode {
+                xQuery["pincode"] = value
+            }
+            
+            if let value = sector {
+                xQuery["sector"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getLocations"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetStoreResult.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
         * Summary: Get countries
         * Description: List of supported countries.
         **/
@@ -215,7 +470,6 @@ extension ApplicationClient {
             pageSize: Int?,
             q: String?,
             hierarchy: String?,
-            phoneCode: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetCountries?, _ error: FDKError?) -> Void
@@ -241,10 +495,6 @@ extension ApplicationClient {
             
             if let value = hierarchy {
                 xQuery["hierarchy"] = value
-            }
-            
-            if let value = phoneCode {
-                xQuery["phone_code"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -347,8 +597,6 @@ extension ApplicationClient {
         * Description: Get delivery promises for both global and store levels based on a specific locality type.
         **/
         public func getDeliveryPromise(
-            xLocationDetail: String,
-            xApplicationData: String,
             pageNo: Int?,
             pageSize: Int?,
             
@@ -367,12 +615,6 @@ extension ApplicationClient {
             }
             
             var xHeaders: [(key: String, value: String)] = []
-            
-            
-            xHeaders.append((key: "x-location-detail", value: xLocationDetail))
-            
-            
-            xHeaders.append((key: "x-application-data", value: xApplicationData))
             
             
             if let headers = headers {
@@ -413,8 +655,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Localities
-        * Description: Get Localities data.
+        * Summary: Get localities
+        * Description: Get geographical data for a specific type of locality based on the provided filters. For instance, obtain a list of cities for a given country and state.
         **/
         public func getLocalities(
             localityType: String,
@@ -424,10 +666,9 @@ extension ApplicationClient {
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
-            sector: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetLocalitiesApp?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetLocalities?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -454,10 +695,6 @@ extension ApplicationClient {
             
             if let value = q {
                 xQuery["q"] = value
-            }
-            
-            if let value = sector {
-                xQuery["sector"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -488,7 +725,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetLocalitiesApp.self, from: data)
+                        let response = Utility.decode(GetLocalities.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -503,7 +740,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Locality API
+        * Summary: Get locality detail
         * Description: Get detailed geographical data for a specific locality, such as a pincode. For example, for a pincode value of 400603, the service returns its parent locations, including city, state, and country details.
         **/
         public func getLocality(
@@ -512,10 +749,9 @@ extension ApplicationClient {
             country: String?,
             state: String?,
             city: String?,
-            sector: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetLocalityApp?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetLocality?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -530,10 +766,6 @@ extension ApplicationClient {
             
             if let value = city {
                 xQuery["city"] = value
-            }
-            
-            if let value = sector {
-                xQuery["sector"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -566,7 +798,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetLocalityApp.self, from: data)
+                        let response = Utility.decode(GetLocality.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

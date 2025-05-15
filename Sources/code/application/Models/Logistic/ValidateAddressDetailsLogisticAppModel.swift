@@ -10,8 +10,6 @@ public extension ApplicationClient.Logistic {
         
         public var address: String?
         
-        public var addressMeta: [String: Any]?
-        
         public var address1: String?
         
         public var address2: String?
@@ -34,14 +32,10 @@ public extension ApplicationClient.Logistic {
         
         public var email: String?
         
-        public var countryIsoCode: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case address = "address"
-            
-            case addressMeta = "address_meta"
             
             case address1 = "address1"
             
@@ -65,15 +59,11 @@ public extension ApplicationClient.Logistic {
             
             case email = "email"
             
-            case countryIsoCode = "country_iso_code"
-            
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressMeta: [String: Any]? = nil, area: String? = nil, city: String? = nil, countryIsoCode: String? = nil, email: String? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, area: String? = nil, city: String? = nil, email: String? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil) {
             
             self.address = address
-            
-            self.addressMeta = addressMeta
             
             self.address1 = address1
             
@@ -97,8 +87,6 @@ public extension ApplicationClient.Logistic {
             
             self.email = email
             
-            self.countryIsoCode = countryIsoCode
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -107,18 +95,6 @@ public extension ApplicationClient.Logistic {
             
             do {
                 address = try container.decode(String.self, forKey: .address)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                addressMeta = try container.decode([String: Any].self, forKey: .addressMeta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -260,18 +236,6 @@ public extension ApplicationClient.Logistic {
             }
             
             
-            
-            do {
-                countryIsoCode = try container.decode(String.self, forKey: .countryIsoCode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -279,10 +243,6 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            try? container.encodeIfPresent(addressMeta, forKey: .addressMeta)
             
             
             
@@ -327,10 +287,6 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            try? container.encodeIfPresent(countryIsoCode, forKey: .countryIsoCode)
             
             
         }

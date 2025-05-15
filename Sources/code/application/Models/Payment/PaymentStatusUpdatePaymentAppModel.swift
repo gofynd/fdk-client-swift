@@ -24,8 +24,6 @@ public extension ApplicationClient.Payment {
         
         public var merchantOrderId: String
         
-        public var virtualId: String?
-        
         public var vpa: String?
         
         public var orderId: String
@@ -59,8 +57,6 @@ public extension ApplicationClient.Payment {
             
             case merchantOrderId = "merchant_order_id"
             
-            case virtualId = "virtual_id"
-            
             case vpa = "vpa"
             
             case orderId = "order_id"
@@ -77,7 +73,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, amount: Int? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, email: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, merchantUrl: String? = nil, method: String, orderId: String, razorpayPaymentId: String? = nil, status: String, virtualId: String? = nil, vpa: String? = nil) {
+        public init(aggregator: String, amount: Int? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, email: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, merchantUrl: String? = nil, method: String, orderId: String, razorpayPaymentId: String? = nil, status: String, vpa: String? = nil) {
             
             self.status = status
             
@@ -94,8 +90,6 @@ public extension ApplicationClient.Payment {
             self.contact = contact
             
             self.merchantOrderId = merchantOrderId
-            
-            self.virtualId = virtualId
             
             self.vpa = vpa
             
@@ -182,18 +176,6 @@ public extension ApplicationClient.Payment {
             
             merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
             
-            
-            
-            
-            do {
-                virtualId = try container.decode(String.self, forKey: .virtualId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -308,10 +290,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-            
-            
-            
-            try? container.encodeIfPresent(virtualId, forKey: .virtualId)
             
             
             
