@@ -12,6 +12,42 @@ import Foundation
 
 
 
+public extension PlatformClient.ApplicationClient.Cart {
+    
+    
+    /*
+        Enum: OrderingSource
+        Used By: Cart
+    */
+    enum OrderingSource: String, Codable {
+        
+        case storefront = "storefront"
+        
+        case storeOsPos = "store_os_pos"
+        
+        case kiosk = "kiosk"
+        
+        case scanGo = "scan_go"
+        
+        case smartTrolley = "smart_trolley"
+        
+        case marketplace = "marketplace"
+        
+        case socialCommerce = "social_commerce"
+        
+        case ondc = "ondc"
+        
+    }
+
+    
+}
+
+
+
+
+
+
+
 public extension PlatformClient.Catalog {
     
     
@@ -81,8 +117,6 @@ public extension PlatformClient.ApplicationClient.Content {
     
     
 }
-
-
 
 
 

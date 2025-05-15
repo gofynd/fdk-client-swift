@@ -20,7 +20,31 @@ public extension PlatformClient.Serviceability {
         
         public var parentIds: [String]?
         
+        public var meta: [String: Any]?
+        
         public var type: String?
+        
+        public var latLong: PincodeLatLongData?
+        
+        public var parentUid: String?
+        
+        public var localities: [LocalityParent]?
+        
+        public var code: String?
+        
+        public var iso2: String?
+        
+        public var iso3: String?
+        
+        public var currency: [String: Any]?
+        
+        public var phoneCode: String?
+        
+        public var hierarchy: [String: Any]?
+        
+        public var latitude: String?
+        
+        public var longitude: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,11 +57,35 @@ public extension PlatformClient.Serviceability {
             
             case parentIds = "parent_ids"
             
+            case meta = "meta"
+            
             case type = "type"
+            
+            case latLong = "lat_long"
+            
+            case parentUid = "parent_uid"
+            
+            case localities = "localities"
+            
+            case code = "code"
+            
+            case iso2 = "iso2"
+            
+            case iso3 = "iso3"
+            
+            case currency = "currency"
+            
+            case phoneCode = "phone_code"
+            
+            case hierarchy = "hierarchy"
+            
+            case latitude = "latitude"
+            
+            case longitude = "longitude"
             
         }
 
-        public init(displayName: String? = nil, id: String? = nil, name: String? = nil, parentIds: [String]? = nil, type: String? = nil) {
+        public init(code: String? = nil, currency: [String: Any]? = nil, displayName: String? = nil, hierarchy: [String: Any]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, latLong: PincodeLatLongData? = nil, localities: [LocalityParent]? = nil, longitude: String? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, phoneCode: String? = nil, type: String? = nil) {
             
             self.id = id
             
@@ -47,7 +95,31 @@ public extension PlatformClient.Serviceability {
             
             self.parentIds = parentIds
             
+            self.meta = meta
+            
             self.type = type
+            
+            self.latLong = latLong
+            
+            self.parentUid = parentUid
+            
+            self.localities = localities
+            
+            self.code = code
+            
+            self.iso2 = iso2
+            
+            self.iso3 = iso3
+            
+            self.currency = currency
+            
+            self.phoneCode = phoneCode
+            
+            self.hierarchy = hierarchy
+            
+            self.latitude = latitude
+            
+            self.longitude = longitude
             
         }
 
@@ -104,7 +176,151 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    latLong = try container.decode(PincodeLatLongData.self, forKey: .latLong)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    parentUid = try container.decode(String.self, forKey: .parentUid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    localities = try container.decode([LocalityParent].self, forKey: .localities)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    code = try container.decode(String.self, forKey: .code)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    iso2 = try container.decode(String.self, forKey: .iso2)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    iso3 = try container.decode(String.self, forKey: .iso3)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currency = try container.decode([String: Any].self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    phoneCode = try container.decode(String.self, forKey: .phoneCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    hierarchy = try container.decode([String: Any].self, forKey: .hierarchy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    latitude = try container.decode(String.self, forKey: .latitude)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    longitude = try container.decode(String.self, forKey: .longitude)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,7 +357,67 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
+            
+            
+            
+            
+            try? container.encodeIfPresent(parentUid, forKey: .parentUid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(localities, forKey: .localities)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            
+            try? container.encodeIfPresent(iso2, forKey: .iso2)
+            
+            
+            
+            
+            try? container.encodeIfPresent(iso3, forKey: .iso3)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(phoneCode, forKey: .phoneCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
+            
+            
+            
+            
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
             
             
         }
@@ -168,7 +444,31 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var parentIds: [String]?
         
+        public var meta: [String: Any]?
+        
         public var type: String?
+        
+        public var latLong: PincodeLatLongData?
+        
+        public var parentUid: String?
+        
+        public var localities: [LocalityParent]?
+        
+        public var code: String?
+        
+        public var iso2: String?
+        
+        public var iso3: String?
+        
+        public var currency: [String: Any]?
+        
+        public var phoneCode: String?
+        
+        public var hierarchy: [String: Any]?
+        
+        public var latitude: String?
+        
+        public var longitude: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -181,11 +481,35 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case parentIds = "parent_ids"
             
+            case meta = "meta"
+            
             case type = "type"
+            
+            case latLong = "lat_long"
+            
+            case parentUid = "parent_uid"
+            
+            case localities = "localities"
+            
+            case code = "code"
+            
+            case iso2 = "iso2"
+            
+            case iso3 = "iso3"
+            
+            case currency = "currency"
+            
+            case phoneCode = "phone_code"
+            
+            case hierarchy = "hierarchy"
+            
+            case latitude = "latitude"
+            
+            case longitude = "longitude"
             
         }
 
-        public init(displayName: String? = nil, id: String? = nil, name: String? = nil, parentIds: [String]? = nil, type: String? = nil) {
+        public init(code: String? = nil, currency: [String: Any]? = nil, displayName: String? = nil, hierarchy: [String: Any]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, latLong: PincodeLatLongData? = nil, localities: [LocalityParent]? = nil, longitude: String? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, phoneCode: String? = nil, type: String? = nil) {
             
             self.id = id
             
@@ -195,7 +519,31 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.parentIds = parentIds
             
+            self.meta = meta
+            
             self.type = type
+            
+            self.latLong = latLong
+            
+            self.parentUid = parentUid
+            
+            self.localities = localities
+            
+            self.code = code
+            
+            self.iso2 = iso2
+            
+            self.iso3 = iso3
+            
+            self.currency = currency
+            
+            self.phoneCode = phoneCode
+            
+            self.hierarchy = hierarchy
+            
+            self.latitude = latitude
+            
+            self.longitude = longitude
             
         }
 
@@ -252,7 +600,151 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    latLong = try container.decode(PincodeLatLongData.self, forKey: .latLong)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    parentUid = try container.decode(String.self, forKey: .parentUid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    localities = try container.decode([LocalityParent].self, forKey: .localities)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    code = try container.decode(String.self, forKey: .code)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    iso2 = try container.decode(String.self, forKey: .iso2)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    iso3 = try container.decode(String.self, forKey: .iso3)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currency = try container.decode([String: Any].self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    phoneCode = try container.decode(String.self, forKey: .phoneCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    hierarchy = try container.decode([String: Any].self, forKey: .hierarchy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    latitude = try container.decode(String.self, forKey: .latitude)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    longitude = try container.decode(String.self, forKey: .longitude)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -289,7 +781,67 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
+            
+            
+            
+            
+            try? container.encodeIfPresent(parentUid, forKey: .parentUid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(localities, forKey: .localities)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            
+            try? container.encodeIfPresent(iso2, forKey: .iso2)
+            
+            
+            
+            
+            try? container.encodeIfPresent(iso3, forKey: .iso3)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(phoneCode, forKey: .phoneCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
+            
+            
+            
+            
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
             
             
         }

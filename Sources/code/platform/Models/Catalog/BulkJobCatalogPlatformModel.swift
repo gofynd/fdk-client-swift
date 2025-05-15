@@ -18,7 +18,7 @@ public extension PlatformClient.Catalog {
         
         public var companyId: Int
         
-        public var createdBy: UserInfo1?
+        public var createdBy: UserInfo?
         
         public var createdOn: String
         
@@ -30,9 +30,11 @@ public extension PlatformClient.Catalog {
         
         public var filePath: String?
         
+        public var fileType: String?
+        
         public var isActive: Bool?
         
-        public var modifiedBy: UserInfo1?
+        public var modifiedBy: UserInfo?
         
         public var modifiedOn: String?
         
@@ -67,6 +69,8 @@ public extension PlatformClient.Catalog {
             
             case filePath = "file_path"
             
+            case fileType = "file_type"
+            
             case isActive = "is_active"
             
             case modifiedBy = "modified_by"
@@ -85,7 +89,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo1? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, fileType: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
             
             self.cancelled = cancelled
             
@@ -104,6 +108,8 @@ public extension PlatformClient.Catalog {
             self.failedRecords = failedRecords
             
             self.filePath = filePath
+            
+            self.fileType = fileType
             
             self.isActive = isActive
             
@@ -157,7 +163,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,6 +228,18 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    fileType = try container.decode(String.self, forKey: .fileType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -234,7 +252,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -364,6 +382,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(filePath, forKey: .filePath)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fileType, forKey: .fileType)
             
             
             
@@ -428,7 +451,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var companyId: Int
         
-        public var createdBy: UserInfo1?
+        public var createdBy: UserInfo?
         
         public var createdOn: String
         
@@ -440,9 +463,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var filePath: String?
         
+        public var fileType: String?
+        
         public var isActive: Bool?
         
-        public var modifiedBy: UserInfo1?
+        public var modifiedBy: UserInfo?
         
         public var modifiedOn: String?
         
@@ -477,6 +502,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case filePath = "file_path"
             
+            case fileType = "file_type"
+            
             case isActive = "is_active"
             
             case modifiedBy = "modified_by"
@@ -495,7 +522,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo1? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, fileType: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
             
             self.cancelled = cancelled
             
@@ -514,6 +541,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.failedRecords = failedRecords
             
             self.filePath = filePath
+            
+            self.fileType = fileType
             
             self.isActive = isActive
             
@@ -567,7 +596,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -632,6 +661,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    fileType = try container.decode(String.self, forKey: .fileType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -644,7 +685,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -774,6 +815,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(filePath, forKey: .filePath)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fileType, forKey: .fileType)
             
             
             

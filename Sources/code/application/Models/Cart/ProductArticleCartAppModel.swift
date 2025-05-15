@@ -38,6 +38,8 @@ public extension ApplicationClient.Cart {
         
         public var uid: String?
         
+        public var forceNewLineItem: Bool?
+        
         public var giftCard: [String: Any]?
         
         public var isGiftVisible: Bool?
@@ -79,6 +81,8 @@ public extension ApplicationClient.Cart {
             
             case uid = "uid"
             
+            case forceNewLineItem = "force_new_line_item"
+            
             case giftCard = "gift_card"
             
             case isGiftVisible = "is_gift_visible"
@@ -89,7 +93,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
+        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, forceNewLineItem: Bool? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
             
             self.price = price
             
@@ -120,6 +124,8 @@ public extension ApplicationClient.Cart {
             self.cartItemMeta = cartItemMeta
             
             self.uid = uid
+            
+            self.forceNewLineItem = forceNewLineItem
             
             self.giftCard = giftCard
             
@@ -316,6 +322,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                forceNewLineItem = try container.decode(Bool.self, forKey: .forceNewLineItem)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 giftCard = try container.decode([String: Any].self, forKey: .giftCard)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -425,6 +443,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+            
+            try? container.encodeIfPresent(forceNewLineItem, forKey: .forceNewLineItem)
             
             
             

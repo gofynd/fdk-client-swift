@@ -24,7 +24,7 @@ public extension PlatformClient.Content {
         
         public var required: Bool?
         
-        public var key: String?
+        public var slug: String?
         
         public var validations: [FieldValidations]?
         
@@ -45,7 +45,7 @@ public extension PlatformClient.Content {
             
             case required = "required"
             
-            case key = "key"
+            case slug = "slug"
             
             case validations = "validations"
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(action: String? = nil, description: String? = nil, id: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(action: String? = nil, description: String? = nil, id: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
             
             self.id = id
             
@@ -67,7 +67,7 @@ public extension PlatformClient.Content {
             
             self.required = required
             
-            self.key = key
+            self.slug = slug
             
             self.validations = validations
             
@@ -152,7 +152,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    key = try container.decode(String.self, forKey: .key)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,7 +223,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -264,7 +264,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var required: Bool?
         
-        public var key: String?
+        public var slug: String?
         
         public var validations: [FieldValidations]?
         
@@ -285,7 +285,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case required = "required"
             
-            case key = "key"
+            case slug = "slug"
             
             case validations = "validations"
             
@@ -293,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(action: String? = nil, description: String? = nil, id: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(action: String? = nil, description: String? = nil, id: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
             
             self.id = id
             
@@ -307,7 +307,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.required = required
             
-            self.key = key
+            self.slug = slug
             
             self.validations = validations
             
@@ -392,7 +392,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    key = try container.decode(String.self, forKey: .key)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -463,7 +463,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             

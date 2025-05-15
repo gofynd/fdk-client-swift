@@ -16,7 +16,11 @@ public extension PlatformClient.Theme {
         
         public var label: String?
         
+        public var canvas: String?
+        
         public var props: [String: Any]?
+        
+        public var customCss: String?
         
         public var blocks: [[String: Any]]?
         
@@ -24,7 +28,7 @@ public extension PlatformClient.Theme {
         
         public var predicate: AvailablePagePredicate?
         
-        public var source: String?
+        public var source: SectionSource?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +37,11 @@ public extension PlatformClient.Theme {
             
             case label = "label"
             
+            case canvas = "canvas"
+            
             case props = "props"
+            
+            case customCss = "custom_css"
             
             case blocks = "blocks"
             
@@ -41,17 +49,21 @@ public extension PlatformClient.Theme {
             
             case predicate = "predicate"
             
-            case source = "source"
+            case source = "__source"
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: String? = nil) {
+        public init(blocks: [[String: Any]]? = nil, canvas: String? = nil, customCss: String? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: SectionSource? = nil) {
             
             self.name = name
             
             self.label = label
             
+            self.canvas = canvas
+            
             self.props = props
+            
+            self.customCss = customCss
             
             self.blocks = blocks
             
@@ -92,7 +104,31 @@ public extension PlatformClient.Theme {
             
             
                 do {
+                    canvas = try container.decode(String.self, forKey: .canvas)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     props = try container.decode([String: Any].self, forKey: .props)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customCss = try container.decode(String.self, forKey: .customCss)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +176,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    source = try container.decode(String.self, forKey: .source)
+                    source = try container.decode(SectionSource.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,7 +203,17 @@ public extension PlatformClient.Theme {
             
             
             
+            try? container.encodeIfPresent(canvas, forKey: .canvas)
+            
+            
+            
+            
             try? container.encodeIfPresent(props, forKey: .props)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customCss, forKey: .customCss)
             
             
             
@@ -210,7 +256,11 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var label: String?
         
+        public var canvas: String?
+        
         public var props: [String: Any]?
+        
+        public var customCss: String?
         
         public var blocks: [[String: Any]]?
         
@@ -218,7 +268,7 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var predicate: AvailablePagePredicate?
         
-        public var source: String?
+        public var source: SectionSource?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -227,7 +277,11 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case label = "label"
             
+            case canvas = "canvas"
+            
             case props = "props"
+            
+            case customCss = "custom_css"
             
             case blocks = "blocks"
             
@@ -235,17 +289,21 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case predicate = "predicate"
             
-            case source = "source"
+            case source = "__source"
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: String? = nil) {
+        public init(blocks: [[String: Any]]? = nil, canvas: String? = nil, customCss: String? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: SectionSource? = nil) {
             
             self.name = name
             
             self.label = label
             
+            self.canvas = canvas
+            
             self.props = props
+            
+            self.customCss = customCss
             
             self.blocks = blocks
             
@@ -286,7 +344,31 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
+                    canvas = try container.decode(String.self, forKey: .canvas)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     props = try container.decode([String: Any].self, forKey: .props)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customCss = try container.decode(String.self, forKey: .customCss)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -334,7 +416,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    source = try container.decode(String.self, forKey: .source)
+                    source = try container.decode(SectionSource.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -361,7 +443,17 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             
+            try? container.encodeIfPresent(canvas, forKey: .canvas)
+            
+            
+            
+            
             try? container.encodeIfPresent(props, forKey: .props)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customCss, forKey: .customCss)
             
             
             

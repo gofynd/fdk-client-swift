@@ -22,7 +22,7 @@ extension PlatformClient {
         public func invalidateShipmentCache(
             body: InvalidateShipmentCachePayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InvalidateShipmentCacheResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: InvalidateShipmentCacheResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -50,7 +50,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(InvalidateShipmentCacheResponse.self, from: data)
+                        let response = Utility.decode(InvalidateShipmentCacheResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -72,7 +72,7 @@ extension PlatformClient {
         public func reassignLocation(
             body: StoreReassign,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: StoreReassignResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: StoreReassignResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -100,7 +100,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(StoreReassignResponse.self, from: data)
+                        let response = Utility.decode(StoreReassignResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -122,7 +122,7 @@ extension PlatformClient {
         public func updateShipmentLock(
             body: UpdateShipmentLockPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdateShipmentLockResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdateShipmentLockResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -150,7 +150,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdateShipmentLockResponse.self, from: data)
+                        let response = Utility.decode(UpdateShipmentLockResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -173,7 +173,7 @@ extension PlatformClient {
             date: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AnnouncementsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AnnouncementsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -205,7 +205,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AnnouncementsResponse.self, from: data)
+                        let response = Utility.decode(AnnouncementsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -222,69 +222,16 @@ extension PlatformClient {
         /**
         *
         * Summary: Update shipment address
-        * Description: Modify the address details of an existing shipment
+        * Description: Update the address details of an existing shipment based on the provided address_category. This operation allows the modification of critical shipment details, potentially affecting delivery/billing accuracy and customer communication.
         **/
         public func updateAddress(
             shipmentId: String,
-            name: String?,
-            address: String?,
-            addressType: String?,
-            pincode: String?,
-            phone: String?,
-            email: String?,
-            landmark: String?,
-            addressCategory: String,
-            city: String?,
-            state: String?,
-            country: String?,
-            
+            body: UpdateAddressRequestBody,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BaseResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BaseResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
-            var xQuery: [String: Any] = [:] 
-            xQuery["shipment_id"] = shipmentId
-            
-            if let value = name {
-                xQuery["name"] = value
-            }
-            
-            if let value = address {
-                xQuery["address"] = value
-            }
-            
-            if let value = addressType {
-                xQuery["address_type"] = value
-            }
-            
-            if let value = pincode {
-                xQuery["pincode"] = value
-            }
-            
-            if let value = phone {
-                xQuery["phone"] = value
-            }
-            
-            if let value = email {
-                xQuery["email"] = value
-            }
-            
-            if let value = landmark {
-                xQuery["landmark"] = value
-            }
-            xQuery["address_category"] = addressCategory
-            
-            if let value = city {
-                xQuery["city"] = value
-            }
-            
-            if let value = state {
-                xQuery["state"] = value
-            }
-            
-            if let value = country {
-                xQuery["country"] = value
-            }
+             
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -294,10 +241,10 @@ extension PlatformClient {
             }
             PlatformAPIClient.execute(
                 config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/delight/update-address",
-                query: xQuery,
-                body: nil,
+                method: "PUT",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/\(shipmentId)/address",
+                query: nil,
+                body: body.dictionary,
                 headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -309,7 +256,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BaseResponse.self, from: data)
+                        let response = Utility.decode(BaseResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -381,7 +328,7 @@ extension PlatformClient {
         public func getRoleBasedActions(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetActionsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetActionsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -409,7 +356,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetActionsResponse.self, from: data)
+                        let response = Utility.decode(GetActionsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -433,7 +380,7 @@ extension PlatformClient {
             bagId: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentHistoryResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -469,7 +416,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentHistoryResponse.self, from: data)
+                        let response = Utility.decode(ShipmentHistoryResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -491,7 +438,7 @@ extension PlatformClient {
         public func postShipmentHistory(
             body: PostShipmentHistory,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentHistoryResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -519,7 +466,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentHistoryResponse.self, from: data)
+                        let response = Utility.decode(ShipmentHistoryResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -541,7 +488,7 @@ extension PlatformClient {
         public func sendSmsNinja(
             body: SendSmsPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BaseResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BaseResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -569,7 +516,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BaseResponse.self, from: data)
+                        let response = Utility.decode(BaseResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -591,7 +538,7 @@ extension PlatformClient {
         public func updatePackagingDimensions(
             body: UpdatePackagingDimensionsPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdatePackagingDimensionsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdatePackagingDimensionsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -619,7 +566,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdatePackagingDimensionsResponse.self, from: data)
+                        let response = Utility.decode(UpdatePackagingDimensionsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -639,14 +586,19 @@ extension PlatformClient {
         * Description: Creates an order
         **/
         public func createOrder(
+            xOrderingSource: String?,
             body: CreateOrderAPI,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateOrderResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CreateOrderResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
             
             var xHeaders: [(key: String, value: String)] = []
+            
+            if let value = xOrderingSource {
+                xHeaders.append((key: "x-ordering-source", value: value))
+            }
             
             
             if let headers = headers {
@@ -669,7 +621,107 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CreateOrderResponse.self, from: data)
+                        let response = Utility.decode(CreateOrderResponseSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get channel configuration
+        * Description: Retrieve configuration settings specific to orders for a channel
+        **/
+        public func getChannelConfig(
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CreateChannelConfigData?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateChannelConfigData.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Create channel configuration
+        * Description: Set up configuration for a channel specific to orders which has implications over how the order fulfilment happens in a channel
+        **/
+        public func createChannelConfig(
+            body: CreateChannelConfigData,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CreateChannelConfigResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateChannelConfigResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -839,7 +891,8 @@ extension PlatformClient {
         * Description: Retrieve next possible states based on logged in user's role
         **/
         public func getAllowedStateTransition(
-            orderingChannel: String,
+            orderingChannel: String?,
+            orderingSource: String?,
             status: String,
             
             headers: [(key: String, value: String)]? = nil,
@@ -847,7 +900,14 @@ extension PlatformClient {
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            xQuery["ordering_channel"] = orderingChannel
+            
+            if let value = orderingChannel {
+                xQuery["ordering_channel"] = value
+            }
+            
+            if let value = orderingSource {
+                xQuery["ordering_source"] = value
+            }
             xQuery["status"] = status
             
             var xHeaders: [(key: String, value: String)] = []
@@ -945,7 +1005,7 @@ extension PlatformClient {
         public func attachOrderUser(
             body: AttachOrderUser,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AttachOrderUserResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AttachOrderUserResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -973,7 +1033,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AttachOrderUserResponse.self, from: data)
+                        let response = Utility.decode(AttachOrderUserResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -995,7 +1055,7 @@ extension PlatformClient {
         public func sendUserMobileOTP(
             body: SendUserMobileOTP,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendUserMobileOtpResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SendUserMobileOtpResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1023,7 +1083,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendUserMobileOtpResponse.self, from: data)
+                        let response = Utility.decode(SendUserMobileOtpResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1045,7 +1105,7 @@ extension PlatformClient {
         public func verifyMobileOTP(
             body: VerifyMobileOTP,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: VerifyOtpResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: VerifyOtpResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1073,7 +1133,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(VerifyOtpResponse.self, from: data)
+                        let response = Utility.decode(VerifyOtpResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1093,9 +1153,9 @@ extension PlatformClient {
         * Description: Downloads shipments/orders present in the provided lane
         **/
         public func downloadLanesReport(
-            body: BulkReportsDownloadRequest,
+            body: BulkReportsDownloadRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkReportsDownloadResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkReportsDownloadResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1123,7 +1183,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkReportsDownloadResponse.self, from: data)
+                        let response = Utility.decode(BulkReportsDownloadResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1145,7 +1205,7 @@ extension PlatformClient {
         public func bulkStateTransistion(
             body: BulkStateTransistionRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkStateTransistionResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkStateTransistionResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1173,7 +1233,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkStateTransistionResponse.self, from: data)
+                        let response = Utility.decode(BulkStateTransistionResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1202,7 +1262,7 @@ extension PlatformClient {
             searchKey: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkListingResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkListingResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1246,7 +1306,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkListingResponse.self, from: data)
+                        let response = Utility.decode(BulkListingResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1269,7 +1329,7 @@ extension PlatformClient {
             batchId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: JobDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: JobDetailsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1297,7 +1357,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(JobDetailsResponse.self, from: data)
+                        let response = Utility.decode(JobDetailsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1323,7 +1383,7 @@ extension PlatformClient {
             reportType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: JobFailedResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: JobFailedResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1357,7 +1417,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(JobFailedResponse.self, from: data)
+                        let response = Utility.decode(JobFailedResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1560,9 +1620,9 @@ extension PlatformClient {
         * Description: Endpoint to save and process order manifests.
         **/
         public func generateProcessManifest(
-            body: ProcessManifestRequest,
+            body: ProcessManifestRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ManifestResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ManifestResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1590,7 +1650,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ManifestResponse.self, from: data)
+                        let response = Utility.decode(ManifestResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1689,7 +1749,7 @@ extension PlatformClient {
         public func dispatchManifests(
             body: DispatchManifest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1717,7 +1777,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1739,7 +1799,7 @@ extension PlatformClient {
         public func uploadConsents(
             body: UploadManifestConsent,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1767,7 +1827,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1790,7 +1850,7 @@ extension PlatformClient {
             view: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ManifestFiltersResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ManifestFiltersResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1819,7 +1879,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ManifestFiltersResponse.self, from: data)
+                        let response = Utility.decode(ManifestFiltersResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1841,7 +1901,7 @@ extension PlatformClient {
         public func eInvoiceRetry(
             body: EInvoiceRetry,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: EInvoiceRetryResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: EInvoiceRetryResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1869,7 +1929,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(EInvoiceRetryResponse.self, from: data)
+                        let response = Utility.decode(EInvoiceRetryResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1895,7 +1955,7 @@ extension PlatformClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierPartnerTrackingResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CourierPartnerTrackingResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1939,7 +1999,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CourierPartnerTrackingResponse.self, from: data)
+                        let response = Utility.decode(CourierPartnerTrackingResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2087,7 +2147,7 @@ extension PlatformClient {
             invoiceType: String,
             body: GenerateInvoiceIDRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GenerateInvoiceIDResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GenerateInvoiceIDResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2115,7 +2175,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GenerateInvoiceIDResponse.self, from: data)
+                        let response = Utility.decode(GenerateInvoiceIDResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2188,7 +2248,7 @@ extension PlatformClient {
         public func addStateManagerConfig(
             body: TransitionConfigPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ConfigUpdatedResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ConfigUpdatedResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2216,7 +2276,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ConfigUpdatedResponse.self, from: data)
+                        let response = Utility.decode(ConfigUpdatedResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2240,6 +2300,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         public func getStateManagerConfig(
             appId: String?,
             orderingChannel: String?,
+            orderingSource: String?,
             entity: String?,
             
             headers: [(key: String, value: String)]? = nil,
@@ -2254,6 +2315,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = orderingChannel {
                 xQuery["ordering_channel"] = value
+            }
+            
+            if let value = orderingSource {
+                xQuery["ordering_source"] = value
             }
             
             if let value = entity {
@@ -2300,12 +2365,64 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
+        * Summary: Update payment details for an order, its shipments and its bags.
+        * Description: Updates the payment mode for an order, its shipments and its bags. This endpoint allows for modifying payment methods, and associated details but not amount.
+        **/
+        public func updatePaymentInfo(
+            body: UpdateShipmentPaymentMode,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/payment/update",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = data.dictionary
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
         * Summary: List shipments
         * Description: Get a list of shipments based on the filters provided
         **/
         public func getShipments(
             lane: String?,
             bagStatus: String?,
+            statusAssigned: String?,
             statusOverrideLane: Bool?,
             timeToDispatch: Int?,
             searchType: String?,
@@ -2314,6 +2431,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
             toDate: String?,
             startDate: String?,
             endDate: String?,
+            statusAssignedStartDate: String?,
+            statusAssignedEndDate: String?,
             dpIds: String?,
             stores: String?,
             salesChannels: String?,
@@ -2335,10 +2454,12 @@ The ESM config stores order processing configuration. Each document in the ESM c
             tags: String?,
             customerId: String?,
             orderType: String?,
+            groupEntity: String?,
             enforceDateFilter: Bool?,
+            fulfillmentType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2349,6 +2470,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = bagStatus {
                 xQuery["bag_status"] = value
+            }
+            
+            if let value = statusAssigned {
+                xQuery["status_assigned"] = value
             }
             
             if let value = statusOverrideLane {
@@ -2381,6 +2506,14 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = endDate {
                 xQuery["end_date"] = value
+            }
+            
+            if let value = statusAssignedStartDate {
+                xQuery["status_assigned_start_date"] = value
+            }
+            
+            if let value = statusAssignedEndDate {
+                xQuery["status_assigned_end_date"] = value
             }
             
             if let value = dpIds {
@@ -2467,8 +2600,16 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["order_type"] = value
             }
             
+            if let value = groupEntity {
+                xQuery["group_entity"] = value
+            }
+            
             if let value = enforceDateFilter {
                 xQuery["enforce_date_filter"] = value
+            }
+            
+            if let value = fulfillmentType {
+                xQuery["fulfillment_type"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2494,7 +2635,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentInternalPlatformViewResponse.self, from: data)
+                        let response = Utility.decode(ShipmentInternalPlatformViewResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2508,9 +2649,180 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Get shipment
+        * Summary: get paginator for getShipments
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getShipmentsPaginator(
+            lane: String?,
+            bagStatus: String?,
+            statusAssigned: String?,
+            statusOverrideLane: Bool?,
+            timeToDispatch: Int?,
+            searchType: String?,
+            searchValue: String?,
+            fromDate: String?,
+            toDate: String?,
+            startDate: String?,
+            endDate: String?,
+            statusAssignedStartDate: String?,
+            statusAssignedEndDate: String?,
+            dpIds: String?,
+            stores: String?,
+            salesChannels: String?,
+            pageSize: Int?,
+            fetchActiveShipment: Bool?,
+            allowInactive: Bool?,
+            excludeLockedShipments: Bool?,
+            paymentMethods: String?,
+            channelShipmentId: String?,
+            channelOrderId: String?,
+            customMeta: String?,
+            orderingChannel: String?,
+            companyAffiliateTag: String?,
+            myOrders: Bool?,
+            platformUserId: String?,
+            sortType: String?,
+            showCrossCompanyData: Bool?,
+            tags: String?,
+            customerId: String?,
+            orderType: String?,
+            groupEntity: String?,
+            enforceDateFilter: Bool?,
+            fulfillmentType: String?,
+            headers: [(key: String, value: String)]? = nil
+            ) -> Paginator<ShipmentInternalPlatformViewResponseSchema> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ShipmentInternalPlatformViewResponseSchema>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getShipments(
+                    lane: lane,
+                    bagStatus: bagStatus,
+                    statusAssigned: statusAssigned,
+                    statusOverrideLane: statusOverrideLane,
+                    timeToDispatch: timeToDispatch,
+                    searchType: searchType,
+                    searchValue: searchValue,
+                    fromDate: fromDate,
+                    toDate: toDate,
+                    startDate: startDate,
+                    endDate: endDate,
+                    statusAssignedStartDate: statusAssignedStartDate,
+                    statusAssignedEndDate: statusAssignedEndDate,
+                    dpIds: dpIds,
+                    stores: stores,
+                    salesChannels: salesChannels,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    fetchActiveShipment: fetchActiveShipment,
+                    allowInactive: allowInactive,
+                    excludeLockedShipments: excludeLockedShipments,
+                    paymentMethods: paymentMethods,
+                    channelShipmentId: channelShipmentId,
+                    channelOrderId: channelOrderId,
+                    customMeta: customMeta,
+                    orderingChannel: orderingChannel,
+                    companyAffiliateTag: companyAffiliateTag,
+                    myOrders: myOrders,
+                    platformUserId: platformUserId,
+                    sortType: sortType,
+                    showCrossCompanyData: showCrossCompanyData,
+                    tags: tags,
+                    customerId: customerId,
+                    orderType: orderType,
+                    groupEntity: groupEntity,
+                    enforceDateFilter: enforceDateFilter,
+                    fulfillmentType: fulfillmentType,
+                    
+                    headers: headers
+                ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get shipment details
         * Description: Get detailed information about a specific shipment
         **/
         public func getShipmentById(
@@ -2520,7 +2832,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             allowInactive: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentInfoResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2564,7 +2876,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentInfoResponse.self, from: data)
+                        let response = Utility.decode(ShipmentInfoResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2589,7 +2901,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             allowInactive: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OrderDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderDetailsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2626,7 +2938,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OrderDetailsResponse.self, from: data)
+                        let response = Utility.decode(OrderDetailsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2667,7 +2979,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             orderType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LaneConfigResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: LaneConfigResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2771,7 +3083,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(LaneConfigResponse.self, from: data)
+                        let response = Utility.decode(LaneConfigResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2788,7 +3100,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         /**
         *
         * Summary: List orders
-        * Description: Get a list of orders based on the filters provided
+        * Description: Get a list of orders based on the filters provided.
         **/
         public func getOrders(
             lane: String?,
@@ -2814,10 +3126,12 @@ The ESM config stores order processing configuration. Each document in the ESM c
             customerId: String?,
             orderType: String?,
             allowInactive: Bool?,
+            groupEntity: String?,
             enforceDateFilter: Bool?,
+            fulfillmentType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderListingResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2914,8 +3228,16 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["allow_inactive"] = value
             }
             
+            if let value = groupEntity {
+                xQuery["group_entity"] = value
+            }
+            
             if let value = enforceDateFilter {
                 xQuery["enforce_date_filter"] = value
+            }
+            
+            if let value = fulfillmentType {
+                xQuery["fulfillment_type"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2941,7 +3263,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OrderListingResponse.self, from: data)
+                        let response = Utility.decode(OrderListingResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2957,6 +3279,133 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getOrders
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getOrdersPaginator(
+            lane: String?,
+            searchType: String?,
+            bagStatus: String?,
+            timeToDispatch: Int?,
+            paymentMethods: String?,
+            tags: String?,
+            searchValue: String?,
+            fromDate: String?,
+            toDate: String?,
+            startDate: String?,
+            endDate: String?,
+            dpIds: String?,
+            stores: String?,
+            salesChannels: String?,
+            pageSize: Int?,
+            isPrioritySort: Bool?,
+            customMeta: String?,
+            myOrders: Bool?,
+            showCrossCompanyData: Bool?,
+            customerId: String?,
+            orderType: String?,
+            allowInactive: Bool?,
+            groupEntity: String?,
+            enforceDateFilter: Bool?,
+            fulfillmentType: String?,
+            headers: [(key: String, value: String)]? = nil
+            ) -> Paginator<OrderListingResponseSchema> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<OrderListingResponseSchema>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getOrders(
+                    lane: lane,
+                    searchType: searchType,
+                    bagStatus: bagStatus,
+                    timeToDispatch: timeToDispatch,
+                    paymentMethods: paymentMethods,
+                    tags: tags,
+                    searchValue: searchValue,
+                    fromDate: fromDate,
+                    toDate: toDate,
+                    startDate: startDate,
+                    endDate: endDate,
+                    dpIds: dpIds,
+                    stores: stores,
+                    salesChannels: salesChannels,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    isPrioritySort: isPrioritySort,
+                    customMeta: customMeta,
+                    myOrders: myOrders,
+                    showCrossCompanyData: showCrossCompanyData,
+                    customerId: customerId,
+                    orderType: orderType,
+                    allowInactive: allowInactive,
+                    groupEntity: groupEntity,
+                    enforceDateFilter: enforceDateFilter,
+                    fulfillmentType: fulfillmentType,
+                    
+                    headers: headers
+                ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        
+        
         /**
         *
         * Summary: List filters
@@ -2967,7 +3416,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             groupEntity: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FiltersResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FiltersResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3000,7 +3449,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FiltersResponse.self, from: data)
+                        let response = Utility.decode(FiltersResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3034,7 +3483,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3110,7 +3559,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileResponse.self, from: data)
+                        let response = Utility.decode(FileResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3132,7 +3581,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         public func getBulkActionTemplate(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkActionTemplateResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkActionTemplateResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3160,7 +3609,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkActionTemplateResponse.self, from: data)
+                        let response = Utility.decode(BulkActionTemplateResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3183,7 +3632,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             templateSlug: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3215,7 +3664,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileResponse.self, from: data)
+                        let response = Utility.decode(FileResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3240,7 +3689,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             state: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PlatformShipmentReasonsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PlatformShipmentReasonsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3268,7 +3717,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PlatformShipmentReasonsResponse.self, from: data)
+                        let response = Utility.decode(PlatformShipmentReasonsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3294,7 +3743,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             channelId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BagDetailsPlatformResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BagDetailsPlatformResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3334,7 +3783,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BagDetailsPlatformResponse.self, from: data)
+                        let response = Utility.decode(BagDetailsPlatformResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3365,7 +3814,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetBagsPlatformResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetBagsPlatformResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3429,7 +3878,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetBagsPlatformResponse.self, from: data)
+                        let response = Utility.decode(GetBagsPlatformResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3454,7 +3903,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             documentType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GeneratePosOrderReceiptResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GeneratePosOrderReceiptResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3490,7 +3939,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GeneratePosOrderReceiptResponse.self, from: data)
+                        let response = Utility.decode(GeneratePosOrderReceiptResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3512,7 +3961,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         public func getAllowedTemplatesForBulk(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AllowedTemplatesResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AllowedTemplatesResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3540,7 +3989,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AllowedTemplatesResponse.self, from: data)
+                        let response = Utility.decode(AllowedTemplatesResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3563,7 +4012,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             templateName: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: TemplateDownloadResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: TemplateDownloadResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3591,7 +4040,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(TemplateDownloadResponse.self, from: data)
+                        let response = Utility.decode(TemplateDownloadResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

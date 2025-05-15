@@ -26,7 +26,7 @@ public extension PlatformClient.Configuration {
         
         public var storeCode: String?
         
-        public var pincode: Int?
+        public var pincode: String?
         
         public var code: String?
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(address: OptedStoreAddress? = nil, code: String? = nil, displayName: String? = nil, name: String? = nil, pincode: Int? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
+        public init(address: OptedStoreAddress? = nil, code: String? = nil, displayName: String? = nil, name: String? = nil, pincode: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
             
             self.address = address
             
@@ -164,7 +164,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    pincode = try container.decode(Int.self, forKey: .pincode)
+                    pincode = try container.decode(String.self, forKey: .pincode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -266,7 +266,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var storeCode: String?
         
-        public var pincode: Int?
+        public var pincode: String?
         
         public var code: String?
         
@@ -293,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(address: OptedStoreAddress? = nil, code: String? = nil, displayName: String? = nil, name: String? = nil, pincode: Int? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
+        public init(address: OptedStoreAddress? = nil, code: String? = nil, displayName: String? = nil, name: String? = nil, pincode: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
             
             self.address = address
             
@@ -404,7 +404,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    pincode = try container.decode(Int.self, forKey: .pincode)
+                    pincode = try container.decode(String.self, forKey: .pincode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
