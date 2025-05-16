@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class ApplicationSelfShipConfig: Codable {
         
         
-        public var selfShip: SelfShipResult?
+        public var selfShip: SelfShipResponse?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(selfShip: SelfShipResult? = nil) {
+        public init(selfShip: SelfShipResponse? = nil) {
             
             self.selfShip = selfShip
             
@@ -32,7 +32,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    selfShip = try container.decode(SelfShipResult.self, forKey: .selfShip)
+                    selfShip = try container.decode(SelfShipResponse.self, forKey: .selfShip)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ApplicationSelfShipConfig: Codable {
         
         
-        public var selfShip: SelfShipResult?
+        public var selfShip: SelfShipResponse?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(selfShip: SelfShipResult? = nil) {
+        public init(selfShip: SelfShipResponse? = nil) {
             
             self.selfShip = selfShip
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    selfShip = try container.decode(SelfShipResult.self, forKey: .selfShip)
+                    selfShip = try container.decode(SelfShipResponse.self, forKey: .selfShip)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

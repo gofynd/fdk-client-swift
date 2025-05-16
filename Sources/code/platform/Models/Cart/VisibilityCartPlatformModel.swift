@@ -14,9 +14,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Visibility: Codable {
         
         
-        public var couponList: Bool?
+        public var couponList: Bool
         
-        public var pdp: Bool?
+        public var pdp: Bool
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,7 +27,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(couponList: Bool? = nil, pdp: Bool? = nil) {
+        public init(couponList: Bool, pdp: Bool) {
             
             self.couponList = couponList
             
@@ -39,28 +39,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    couponList = try container.decode(Bool.self, forKey: .couponList)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                couponList = try container.decode(Bool.self, forKey: .couponList)
                 
             
             
-                do {
-                    pdp = try container.decode(Bool.self, forKey: .pdp)
+            
+                pdp = try container.decode(Bool.self, forKey: .pdp)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

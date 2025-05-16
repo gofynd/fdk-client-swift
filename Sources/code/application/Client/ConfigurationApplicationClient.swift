@@ -113,7 +113,7 @@ extension ApplicationClient {
         public func getOwnerInfo(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ApplicationAboutResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -144,7 +144,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ApplicationAboutResponseSchema.self, from: data)
+                        let response = Utility.decode(ApplicationAboutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -217,7 +217,7 @@ extension ApplicationClient {
         public func getIntegrationTokens(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppTokenResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppTokenResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -248,7 +248,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppTokenResponseSchema.self, from: data)
+                        let response = Utility.decode(AppTokenResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -391,7 +391,7 @@ extension ApplicationClient {
         public func getFeatures(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppFeatureResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -422,7 +422,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppFeatureResponseSchema.self, from: data)
+                        let response = Utility.decode(AppFeatureResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -495,7 +495,7 @@ extension ApplicationClient {
         public func getCurrencies(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CurrenciesResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -526,7 +526,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CurrenciesResponseSchema.self, from: data)
+                        let response = Utility.decode(CurrenciesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -602,7 +602,7 @@ extension ApplicationClient {
         public func getAppCurrencies(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppCurrencyResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppCurrencyResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -633,7 +633,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppCurrencyResponseSchema.self, from: data)
+                        let response = Utility.decode(AppCurrencyResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -654,7 +654,7 @@ extension ApplicationClient {
         public func getLanguages(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LanguageResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -685,7 +685,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(LanguageResponseSchema.self, from: data)
+                        let response = Utility.decode(LanguageResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -704,9 +704,9 @@ extension ApplicationClient {
         * Description: Reset cookie of ordering store.
         **/
         public func getOrderingStoreCookie(
-            body: OrderingStoreSelectRequestSchema,
+            body: OrderingStoreSelectRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -737,7 +737,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessMessageResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -758,7 +758,7 @@ extension ApplicationClient {
         public func removeOrderingStoreCookie(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -789,7 +789,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessMessageResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -816,7 +816,7 @@ extension ApplicationClient {
             userName: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppStaffListResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppStaffListResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -871,7 +871,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppStaffListResponseSchema.self, from: data)
+                        let response = Utility.decode(AppStaffListResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -895,7 +895,7 @@ extension ApplicationClient {
             user: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppStaffResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -938,7 +938,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppStaffResponseSchema.self, from: data)
+                        let response = Utility.decode(AppStaffResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

@@ -22,9 +22,13 @@ public extension PlatformClient.Catalog {
         
         public var minQuantity: Int?
         
+        public var price: Price?
+        
+        public var productDetails: LimitedProductData?
+        
         public var productUid: Int?
         
-        public var productDetails: ProductDetails?
+        public var sizes: [Size]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -39,13 +43,17 @@ public extension PlatformClient.Catalog {
             
             case minQuantity = "min_quantity"
             
-            case productUid = "product_uid"
+            case price = "price"
             
             case productDetails = "product_details"
             
+            case productUid = "product_uid"
+            
+            case sizes = "sizes"
+            
         }
 
-        public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, productDetails: ProductDetails? = nil, productUid: Int? = nil) {
+        public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: Price? = nil, productDetails: LimitedProductData? = nil, productUid: Int? = nil, sizes: [Size]? = nil) {
             
             self.allowRemove = allowRemove
             
@@ -57,9 +65,13 @@ public extension PlatformClient.Catalog {
             
             self.minQuantity = minQuantity
             
-            self.productUid = productUid
+            self.price = price
             
             self.productDetails = productDetails
+            
+            self.productUid = productUid
+            
+            self.sizes = sizes
             
         }
 
@@ -128,6 +140,30 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    price = try container.decode(Price.self, forKey: .price)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    productDetails = try container.decode(LimitedProductData.self, forKey: .productDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     productUid = try container.decode(Int.self, forKey: .productUid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -140,7 +176,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    productDetails = try container.decode(ProductDetails.self, forKey: .productDetails)
+                    sizes = try container.decode([Size].self, forKey: .sizes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -182,12 +218,22 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(productUid, forKey: .productUid)
+            try? container.encodeIfPresent(price, forKey: .price)
             
             
             
             
             try? container.encodeIfPresent(productDetails, forKey: .productDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productUid, forKey: .productUid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
             
             
         }
@@ -216,9 +262,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var minQuantity: Int?
         
+        public var price: Price?
+        
+        public var productDetails: LimitedProductData?
+        
         public var productUid: Int?
         
-        public var productDetails: ProductDetails?
+        public var sizes: [Size]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -233,13 +283,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case minQuantity = "min_quantity"
             
-            case productUid = "product_uid"
+            case price = "price"
             
             case productDetails = "product_details"
             
+            case productUid = "product_uid"
+            
+            case sizes = "sizes"
+            
         }
 
-        public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, productDetails: ProductDetails? = nil, productUid: Int? = nil) {
+        public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: Price? = nil, productDetails: LimitedProductData? = nil, productUid: Int? = nil, sizes: [Size]? = nil) {
             
             self.allowRemove = allowRemove
             
@@ -251,9 +305,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.minQuantity = minQuantity
             
-            self.productUid = productUid
+            self.price = price
             
             self.productDetails = productDetails
+            
+            self.productUid = productUid
+            
+            self.sizes = sizes
             
         }
 
@@ -322,6 +380,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    price = try container.decode(Price.self, forKey: .price)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    productDetails = try container.decode(LimitedProductData.self, forKey: .productDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     productUid = try container.decode(Int.self, forKey: .productUid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -334,7 +416,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    productDetails = try container.decode(ProductDetails.self, forKey: .productDetails)
+                    sizes = try container.decode([Size].self, forKey: .sizes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -376,12 +458,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(productUid, forKey: .productUid)
+            try? container.encodeIfPresent(price, forKey: .price)
             
             
             
             
             try? container.encodeIfPresent(productDetails, forKey: .productDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productUid, forKey: .productUid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
             
             
         }

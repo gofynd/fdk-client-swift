@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class AttributeDetail: Codable {
         
         
-        public var id: [String]?
+        public var departments: [String]?
         
         public var description: String?
         
@@ -21,6 +21,8 @@ public extension PlatformClient.Catalog {
         public var enabledForEndConsumer: Bool?
         
         public var filters: AttributeMasterFilter?
+        
+        public var id: String?
         
         public var isNested: Bool?
         
@@ -37,7 +39,7 @@ public extension PlatformClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case departments = "departments"
             
             case description = "description"
             
@@ -46,6 +48,8 @@ public extension PlatformClient.Catalog {
             case enabledForEndConsumer = "enabled_for_end_consumer"
             
             case filters = "filters"
+            
+            case id = "id"
             
             case isNested = "is_nested"
             
@@ -61,9 +65,9 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil, id: [String]? = nil) {
+        public init(departments: [String]? = nil, description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, id: String? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil) {
             
-            self.id = id
+            self.departments = departments
             
             self.description = description
             
@@ -72,6 +76,8 @@ public extension PlatformClient.Catalog {
             self.enabledForEndConsumer = enabledForEndConsumer
             
             self.filters = filters
+            
+            self.id = id
             
             self.isNested = isNested
             
@@ -92,7 +98,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    id = try container.decode([String].self, forKey: .id)
+                    departments = try container.decode([String].self, forKey: .departments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,6 +147,18 @@ public extension PlatformClient.Catalog {
             
                 do {
                     filters = try container.decode(AttributeMasterFilter.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,7 +247,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(departments, forKey: .departments)
             
             
             
@@ -250,6 +268,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -298,7 +321,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AttributeDetail: Codable {
         
         
-        public var id: [String]?
+        public var departments: [String]?
         
         public var description: String?
         
@@ -307,6 +330,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var enabledForEndConsumer: Bool?
         
         public var filters: AttributeMasterFilter?
+        
+        public var id: String?
         
         public var isNested: Bool?
         
@@ -323,7 +348,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case departments = "departments"
             
             case description = "description"
             
@@ -332,6 +357,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case enabledForEndConsumer = "enabled_for_end_consumer"
             
             case filters = "filters"
+            
+            case id = "id"
             
             case isNested = "is_nested"
             
@@ -347,9 +374,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil, id: [String]? = nil) {
+        public init(departments: [String]? = nil, description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, id: String? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil) {
             
-            self.id = id
+            self.departments = departments
             
             self.description = description
             
@@ -358,6 +385,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.enabledForEndConsumer = enabledForEndConsumer
             
             self.filters = filters
+            
+            self.id = id
             
             self.isNested = isNested
             
@@ -378,7 +407,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    id = try container.decode([String].self, forKey: .id)
+                    departments = try container.decode([String].self, forKey: .departments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -427,6 +456,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     filters = try container.decode(AttributeMasterFilter.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -515,7 +556,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(departments, forKey: .departments)
             
             
             
@@ -536,6 +577,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             

@@ -14,16 +14,6 @@ public extension ApplicationClient.Logistic {
         
         public var displayName: String?
         
-        public var meta: [String: Any]?
-        
-        public var parentUid: String?
-        
-        public var serviceability: [String: Any]?
-        
-        public var code: String?
-        
-        public var customMeta: [String: Any]?
-        
         public var parentIds: [String]?
         
         public var type: String?
@@ -37,39 +27,19 @@ public extension ApplicationClient.Logistic {
             
             case displayName = "display_name"
             
-            case meta = "meta"
-            
-            case parentUid = "parent_uid"
-            
-            case serviceability = "serviceability"
-            
-            case code = "code"
-            
-            case customMeta = "custom_meta"
-            
             case parentIds = "parent_ids"
             
             case type = "type"
             
         }
 
-        public init(code: String? = nil, customMeta: [String: Any]? = nil, displayName: String? = nil, id: String? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, serviceability: [String: Any]? = nil, type: String? = nil) {
+        public init(displayName: String? = nil, id: String? = nil, name: String? = nil, parentIds: [String]? = nil, type: String? = nil) {
             
             self.id = id
             
             self.name = name
             
             self.displayName = displayName
-            
-            self.meta = meta
-            
-            self.parentUid = parentUid
-            
-            self.serviceability = serviceability
-            
-            self.code = code
-            
-            self.customMeta = customMeta
             
             self.parentIds = parentIds
             
@@ -118,66 +88,6 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                parentUid = try container.decode(String.self, forKey: .parentUid)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                serviceability = try container.decode([String: Any].self, forKey: .serviceability)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                code = try container.decode(String.self, forKey: .code)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                customMeta = try container.decode([String: Any].self, forKey: .customMeta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 parentIds = try container.decode([String].self, forKey: .parentIds)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -215,26 +125,6 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            try? container.encodeIfPresent(parentUid, forKey: .parentUid)
-            
-            
-            
-            try? container.encodeIfPresent(serviceability, forKey: .serviceability)
-            
-            
-            
-            try? container.encodeIfPresent(code, forKey: .code)
-            
-            
-            
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
             
             
             

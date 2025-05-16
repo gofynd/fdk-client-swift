@@ -401,7 +401,7 @@ extension ApplicationClient {
             platform: String?,
             body: SendOtpRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtp?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -436,7 +436,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendOtp.self, from: data)
+                        let response = Utility.decode(SendOtpResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1038,7 +1038,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Update password
+        * Summary: Update Password
         * Description: Allow user to change their password.
         **/
         public func updatePassword(
@@ -1097,7 +1097,7 @@ extension ApplicationClient {
             platform: String?,
             body: SendMobileOtpRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtpSuccess?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1132,7 +1132,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendOtpSuccess.self, from: data)
+                        let response = Utility.decode(OtpSuccess.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1154,7 +1154,7 @@ extension ApplicationClient {
             platform: String?,
             body: SendMobileForgotOtpRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtpSuccess?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1189,7 +1189,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendOtpSuccess.self, from: data)
+                        let response = Utility.decode(OtpSuccess.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1204,7 +1204,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Verify mobile OTP
+        * Summary: Verify Mobile OTP
         * Description: Verify one-time password sent to user's mobile.
         **/
         public func verifyMobileOTP(
@@ -2235,7 +2235,7 @@ extension ApplicationClient {
             q: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UserExistsDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UserExistsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2267,7 +2267,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UserExistsDetails.self, from: data)
+                        let response = Utility.decode(UserExistsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2447,7 +2447,7 @@ extension ApplicationClient {
         * Description: Update user attributes.
         **/
         public func updateUserAttributes(
-            body: UpdateUserAttributes,
+            body: UpdateUserAttributesRequest,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
         ) {

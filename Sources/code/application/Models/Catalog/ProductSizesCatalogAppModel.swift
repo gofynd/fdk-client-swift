@@ -26,16 +26,6 @@ public extension ApplicationClient.Catalog {
         
         public var discountMeta: DiscountMeta?
         
-        public var moq: MOQ?
-        
-        public var tags: [String]?
-        
-        public var customOrder: [String: Any]?
-        
-        public var noOfBoxes: Int?
-        
-        public var teaserTag: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,19 +47,9 @@ public extension ApplicationClient.Catalog {
             
             case discountMeta = "discount_meta"
             
-            case moq = "moq"
-            
-            case tags = "tags"
-            
-            case customOrder = "custom_order"
-            
-            case noOfBoxes = "no_of_boxes"
-            
-            case teaserTag = "teaser_tag"
-            
         }
 
-        public init(customOrder: [String: Any]? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, moq: MOQ? = nil, multiSize: Bool? = nil, noOfBoxes: Int? = nil, price: ProductSizesPrice? = nil, pricePerPiece: ProductSizesPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil, tags: [String]? = nil, teaserTag: [String: Any]? = nil) {
+        public init(discount: String? = nil, discountMeta: DiscountMeta? = nil, multiSize: Bool? = nil, price: ProductSizesPrice? = nil, pricePerPiece: ProductSizesPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
             
             self.sizes = sizes
             
@@ -88,16 +68,6 @@ public extension ApplicationClient.Catalog {
             self.stores = stores
             
             self.discountMeta = discountMeta
-            
-            self.moq = moq
-            
-            self.tags = tags
-            
-            self.customOrder = customOrder
-            
-            self.noOfBoxes = noOfBoxes
-            
-            self.teaserTag = teaserTag
             
         }
 
@@ -212,66 +182,6 @@ public extension ApplicationClient.Catalog {
             }
             
             
-            
-            do {
-                moq = try container.decode(MOQ.self, forKey: .moq)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                customOrder = try container.decode([String: Any].self, forKey: .customOrder)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                noOfBoxes = try container.decode(Int.self, forKey: .noOfBoxes)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                teaserTag = try container.decode([String: Any].self, forKey: .teaserTag)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -311,26 +221,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
-            
-            
-            
-            try? container.encodeIfPresent(moq, forKey: .moq)
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            try? container.encodeIfPresent(customOrder, forKey: .customOrder)
-            
-            
-            
-            try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
-            
-            
-            
-            try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
             
             
         }

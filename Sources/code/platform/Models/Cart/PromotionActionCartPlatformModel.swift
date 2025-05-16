@@ -14,9 +14,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PromotionAction: Codable {
         
         
-        public var actionDate: String?
+        public var actionDate: String
         
-        public var actionType: String?
+        public var actionType: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,7 +27,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(actionDate: String? = nil, actionType: String? = nil) {
+        public init(actionDate: String, actionType: String) {
             
             self.actionDate = actionDate
             
@@ -39,28 +39,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    actionDate = try container.decode(String.self, forKey: .actionDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                actionDate = try container.decode(String.self, forKey: .actionDate)
                 
             
             
-                do {
-                    actionType = try container.decode(String.self, forKey: .actionType)
+            
+                actionType = try container.decode(String.self, forKey: .actionType)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
