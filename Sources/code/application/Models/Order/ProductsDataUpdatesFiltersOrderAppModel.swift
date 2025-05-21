@@ -12,6 +12,8 @@ public extension ApplicationClient.Order {
         
         public var identifier: String?
         
+        public var quantity: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Order {
             
             case identifier = "identifier"
             
+            case quantity = "quantity"
+            
         }
 
-        public init(identifier: String? = nil, lineNumber: Int? = nil) {
+        public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
             
             self.lineNumber = lineNumber
             
             self.identifier = identifier
+            
+            self.quantity = quantity
             
         }
 
@@ -56,6 +62,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,6 +85,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+            
+            
+            
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
             
             
         }

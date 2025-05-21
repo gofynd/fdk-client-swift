@@ -22,7 +22,7 @@ extension PlatformClient {
         public func cbsOnboardGet(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetCompanyProfileSerializerResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetCompanyProfileSerializerResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -36,7 +36,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -50,7 +50,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetCompanyProfileSerializerResponse.self, from: data)
+                        let response = Utility.decode(GetCompanyProfileSerializerResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -72,7 +72,7 @@ extension PlatformClient {
         public func updateCompany(
             body: UpdateCompany,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -86,7 +86,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PATCH",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -100,7 +100,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -122,7 +122,7 @@ extension PlatformClient {
         public func getCompanyMetrics(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: MetricsSerializer?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: MetricsSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -150,7 +150,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(MetricsSerializer.self, from: data)
+                        let response = Utility.decode(MetricsSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -173,7 +173,7 @@ extension PlatformClient {
             brandId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetBrandResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -201,7 +201,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
+                        let response = Utility.decode(GetBrandResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -217,14 +217,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: update brand 
+        * Summary: update brand
         * Description: Modify brand details and meta of a specific brand.
         **/
         public func editBrand(
             brandId: String,
-            body: UpdateBrandRequestSerializer,
+            body: UpdateBrandRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -252,7 +252,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -272,9 +272,9 @@ extension PlatformClient {
         * Description: Allows to create a brand associated to a company.
         **/
         public func createBrand(
-            body: CreateBrandRequestSerializer,
+            body: CreateBrandRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -302,7 +302,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -327,7 +327,7 @@ extension PlatformClient {
             q: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CompanyBrandListSerializer?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CompanyBrandListSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -353,7 +353,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/company-brand",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -367,7 +367,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CompanyBrandListSerializer.self, from: data)
+                        let response = Utility.decode(CompanyBrandListSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -392,9 +392,9 @@ extension PlatformClient {
             pageSize: Int?,
             q: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<CompanyBrandListSerializer> {
+            ) -> Paginator<CompanyBrandListSchema> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<CompanyBrandListSerializer>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<CompanyBrandListSchema>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getBrands(
                     pageNo: paginator.pageNo,
@@ -422,9 +422,9 @@ extension PlatformClient {
         * Description: Establish a mapping between a company and a brand.
         **/
         public func createCompanyBrandMapping(
-            body: CompanyBrandPostRequestSerializer,
+            body: CompanyBrandPostRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -438,7 +438,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -452,7 +452,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -482,7 +482,7 @@ extension PlatformClient {
             tags: [String]?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: LocationListSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -528,7 +528,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/location",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -542,7 +542,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(LocationListSerializer.self, from: data)
+                        let response = Utility.decode(LocationListSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -556,70 +556,15 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getLocations
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getLocationsPaginator(
-            storeType: String?,
-            q: String?,
-            stage: String?,
-            pageSize: Int?,
-            locationIds: [Int]?,
-            types: [String]?,
-            tags: [String]?,
-            headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<LocationListSerializer> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<LocationListSerializer>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getLocations(
-                    storeType: storeType,
-                    q: q,
-                    stage: stage,
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    locationIds: locationIds,
-                    types: types,
-                    tags: tags,
-                    
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
         /**
         *
         * Summary: Create company stores
         * Description: Create a new location associated to a company.
         **/
         public func createLocation(
-            body: LocationSerializer,
+            body: LocationSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -633,7 +578,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/location",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -647,7 +592,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -670,7 +615,7 @@ extension PlatformClient {
             locationId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetLocationSerializer?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetLocationSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -684,7 +629,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -698,7 +643,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetLocationSerializer.self, from: data)
+                        let response = Utility.decode(GetLocationSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -719,9 +664,9 @@ extension PlatformClient {
         **/
         public func updateLocation(
             locationId: String,
-            body: LocationSerializer,
+            body: LocationSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -735,7 +680,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -749,7 +694,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -769,9 +714,9 @@ extension PlatformClient {
         * Description: Allows to create locations in bulk at once associated to a company
         **/
         public func createLocationBulk(
-            body: BulkLocationSerializer,
+            body: BulkLocationSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -799,7 +744,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

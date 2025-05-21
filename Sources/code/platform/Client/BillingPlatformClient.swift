@@ -16,7 +16,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Obtain charge details.
+        * Summary: Obtain charge details
         * Description: Retrieve comprehensive details about a specific billing charge.
         **/
         public func getChargeDetails(
@@ -68,7 +68,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Retrieve subscription charge details.
+        * Summary: Retrieve subscription charge details
         * Description: Retrieve detailed information about subscription charges using this API.
         **/
         public func getSubscriptionCharge(
@@ -120,8 +120,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Cancel a subscription charge.
-        * Description: Cancel an ongoing subscription charge for a customer.
+        * Summary: Cancel the extension subscription
+        * Description: Cancel an ongoing extension subscription for the company.
         **/
         public func cancelSubscriptionCharge(
             extensionId: String,
@@ -172,14 +172,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Generate a one-time charge.
+        * Summary: Generate a one-time charge
         * Description: Generate a one-time charge for specific services or products.
         **/
         public func createOneTimeCharge(
             extensionId: String,
             body: CreateOneTimeCharge,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateOneTimeChargeResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CreateOneTimeChargeResponseSchemas?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -207,7 +207,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CreateOneTimeChargeResponse.self, from: data)
+                        let response = Utility.decode(CreateOneTimeChargeResponseSchemas.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -224,13 +224,13 @@ extension PlatformClient {
         /**
         *
         * Summary: Initiate subscription billing
-        * Description: Register a subscription charge for a seller using your extension.
+        * Description: Initiates and registers a subscription charge for a specific extension for a given company.
         **/
         public func createSubscriptionCharge(
             extensionId: String,
             body: CreateSubscriptionCharge,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateSubscriptionResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CreateSubscription?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -258,7 +258,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CreateSubscriptionResponse.self, from: data)
+                        let response = Utility.decode(CreateSubscription.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

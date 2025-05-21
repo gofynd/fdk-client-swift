@@ -16,7 +16,11 @@ public extension PlatformClient.Serviceability {
         
         public var schemeId: String
         
+        public var name: String
+        
         public var weight: ArithmeticOperations
+        
+        public var volumetricWeight: ArithmeticOperations?
         
         public var transportType: String
         
@@ -37,7 +41,11 @@ public extension PlatformClient.Serviceability {
             
             case schemeId = "scheme_id"
             
+            case name = "name"
+            
             case weight = "weight"
+            
+            case volumetricWeight = "volumetric_weight"
             
             case transportType = "transport_type"
             
@@ -53,13 +61,17 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, weight: ArithmeticOperations) {
+        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, name: String, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, volumetricWeight: ArithmeticOperations? = nil, weight: ArithmeticOperations) {
             
             self.extensionId = extensionId
             
             self.schemeId = schemeId
             
+            self.name = name
+            
             self.weight = weight
+            
+            self.volumetricWeight = volumetricWeight
             
             self.transportType = transportType
             
@@ -89,9 +101,26 @@ public extension PlatformClient.Serviceability {
             
             
             
+                name = try container.decode(String.self, forKey: .name)
+                
+            
+            
+            
                 weight = try container.decode(ArithmeticOperations.self, forKey: .weight)
                 
             
+            
+            
+                do {
+                    volumetricWeight = try container.decode(ArithmeticOperations.self, forKey: .volumetricWeight)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 transportType = try container.decode(String.self, forKey: .transportType)
@@ -140,7 +169,17 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(weight, forKey: .weight)
+            
+            
+            
+            
+            try? container.encodeIfPresent(volumetricWeight, forKey: .volumetricWeight)
             
             
             
@@ -193,7 +232,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var schemeId: String
         
+        public var name: String
+        
         public var weight: ArithmeticOperations
+        
+        public var volumetricWeight: ArithmeticOperations?
         
         public var transportType: String
         
@@ -214,7 +257,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case schemeId = "scheme_id"
             
+            case name = "name"
+            
             case weight = "weight"
+            
+            case volumetricWeight = "volumetric_weight"
             
             case transportType = "transport_type"
             
@@ -230,13 +277,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, weight: ArithmeticOperations) {
+        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, name: String, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, volumetricWeight: ArithmeticOperations? = nil, weight: ArithmeticOperations) {
             
             self.extensionId = extensionId
             
             self.schemeId = schemeId
             
+            self.name = name
+            
             self.weight = weight
+            
+            self.volumetricWeight = volumetricWeight
             
             self.transportType = transportType
             
@@ -266,9 +317,26 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+                name = try container.decode(String.self, forKey: .name)
+                
+            
+            
+            
                 weight = try container.decode(ArithmeticOperations.self, forKey: .weight)
                 
             
+            
+            
+                do {
+                    volumetricWeight = try container.decode(ArithmeticOperations.self, forKey: .volumetricWeight)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 transportType = try container.decode(String.self, forKey: .transportType)
@@ -317,7 +385,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(weight, forKey: .weight)
+            
+            
+            
+            
+            try? container.encodeIfPresent(volumetricWeight, forKey: .volumetricWeight)
             
             
             

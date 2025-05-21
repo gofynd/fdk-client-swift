@@ -38,13 +38,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var customJson: [String: Any]?
         
+        public var forceNewLineItem: Bool?
+        
         public var meta: [String: Any]?
         
         public var pos: Bool?
         
         public var sellerIdentifier: String?
-        
-        public var orderType: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -73,17 +73,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case customJson = "_custom_json"
             
+            case forceNewLineItem = "force_new_line_item"
+            
             case meta = "meta"
             
             case pos = "pos"
             
             case sellerIdentifier = "seller_identifier"
             
-            case orderType = "order_type"
-            
         }
 
-        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, orderType: String? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, sellerIdentifier: String? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, forceNewLineItem: Bool? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, sellerIdentifier: String? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.quantity = quantity
             
@@ -109,13 +109,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.customJson = customJson
             
+            self.forceNewLineItem = forceNewLineItem
+            
             self.meta = meta
             
             self.pos = pos
             
             self.sellerIdentifier = sellerIdentifier
-            
-            self.orderType = orderType
             
         }
 
@@ -268,6 +268,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    forceNewLineItem = try container.decode(Bool.self, forKey: .forceNewLineItem)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -293,18 +305,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    orderType = try container.decode(String.self, forKey: .orderType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -381,6 +381,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(forceNewLineItem, forKey: .forceNewLineItem)
+            
+            
+            
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
             
             
@@ -392,11 +397,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
         }

@@ -10,7 +10,7 @@ public extension ApplicationClient.User {
         
         public var email: String?
         
-        public var resendTimer: Int?
+        public var resendTimer: Int64?
         
         public var resendToken: String?
         
@@ -65,7 +65,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil, userExists: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
+        public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, resendTimer: Int64? = nil, resendToken: String? = nil, success: Bool? = nil, userExists: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
             
             self.email = email
             
@@ -112,7 +112,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
+                resendTimer = try container.decode(Int64.self, forKey: .resendTimer)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
