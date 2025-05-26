@@ -44,8 +44,6 @@ public extension PlatformClient.Serviceability {
         
         public var shipmentVolumetricWeight: ArithmeticOperations?
         
-        public var storeCustomerLocation: StringComparisonOperations?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -81,11 +79,9 @@ public extension PlatformClient.Serviceability {
             
             case shipmentVolumetricWeight = "shipment_volumetric_weight"
             
-            case storeCustomerLocation = "store_customer_location"
-            
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeCustomerLocation: StringComparisonOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.forward = forward
             
@@ -118,8 +114,6 @@ public extension PlatformClient.Serviceability {
             self.shipmentCost = shipmentCost
             
             self.shipmentVolumetricWeight = shipmentVolumetricWeight
-            
-            self.storeCustomerLocation = storeCustomerLocation
             
         }
 
@@ -318,18 +312,6 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
-            
-                do {
-                    storeCustomerLocation = try container.decode(StringComparisonOperations.self, forKey: .storeCustomerLocation)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -413,11 +395,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeCustomerLocation, forKey: .storeCustomerLocation)
             
             
         }
@@ -468,8 +445,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var shipmentVolumetricWeight: ArithmeticOperations?
         
-        public var storeCustomerLocation: StringComparisonOperations?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -505,11 +480,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case shipmentVolumetricWeight = "shipment_volumetric_weight"
             
-            case storeCustomerLocation = "store_customer_location"
-            
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeCustomerLocation: StringComparisonOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.forward = forward
             
@@ -542,8 +515,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.shipmentCost = shipmentCost
             
             self.shipmentVolumetricWeight = shipmentVolumetricWeight
-            
-            self.storeCustomerLocation = storeCustomerLocation
             
         }
 
@@ -742,18 +713,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
-            
-                do {
-                    storeCustomerLocation = try container.decode(StringComparisonOperations.self, forKey: .storeCustomerLocation)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -837,11 +796,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeCustomerLocation, forKey: .storeCustomerLocation)
             
             
         }

@@ -22,8 +22,6 @@ public extension PlatformClient.Order {
         
         public var tags: [String]?
         
-        public var customJson: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension PlatformClient.Order {
             
             case tags = "tags"
             
-            case customJson = "_custom_json"
-            
         }
 
-        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil) {
             
             self.identifiers = identifiers
             
@@ -52,8 +48,6 @@ public extension PlatformClient.Order {
             self.size = size
             
             self.tags = tags
-            
-            self.customJson = customJson
             
         }
 
@@ -120,18 +114,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    customJson = try container.decode([String: Any].self, forKey: .customJson)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -160,11 +142,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }
@@ -193,8 +170,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var tags: [String]?
         
-        public var customJson: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -208,11 +183,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case tags = "tags"
             
-            case customJson = "_custom_json"
-            
         }
 
-        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil) {
             
             self.identifiers = identifiers
             
@@ -223,8 +196,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.size = size
             
             self.tags = tags
-            
-            self.customJson = customJson
             
         }
 
@@ -291,18 +262,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    customJson = try container.decode([String: Any].self, forKey: .customJson)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -331,11 +290,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

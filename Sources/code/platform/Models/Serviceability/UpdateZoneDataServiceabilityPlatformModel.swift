@@ -12,25 +12,25 @@ public extension PlatformClient.Serviceability {
     class UpdateZoneData: Codable {
         
         
-        public var zoneId: String?
+        public var zoneId: String
         
-        public var name: String?
+        public var name: String
         
-        public var type: String?
+        public var slug: String
         
-        public var slug: String?
+        public var companyId: Int
         
-        public var geoAreas: [String]?
+        public var isActive: Bool
         
-        public var companyId: Int?
+        public var channels: [GetZoneDataViewChannels]
         
-        public var applicationId: String?
+        public var product: ZoneProductTypes
         
-        public var isActive: Bool?
+        public var storeIds: [Int]
         
-        public var product: ProductSchema?
+        public var regionType: String
         
-        public var stores: StoresSchema?
+        public var mapping: [ZoneMappingType]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -39,45 +39,45 @@ public extension PlatformClient.Serviceability {
             
             case name = "name"
             
-            case type = "type"
-            
             case slug = "slug"
-            
-            case geoAreas = "geo_areas"
             
             case companyId = "company_id"
             
-            case applicationId = "application_id"
-            
             case isActive = "is_active"
+            
+            case channels = "channels"
             
             case product = "product"
             
-            case stores = "stores"
+            case storeIds = "store_ids"
+            
+            case regionType = "region_type"
+            
+            case mapping = "mapping"
             
         }
 
-        public init(applicationId: String? = nil, companyId: Int? = nil, geoAreas: [String]? = nil, isActive: Bool? = nil, name: String? = nil, product: ProductSchema? = nil, slug: String? = nil, stores: StoresSchema? = nil, type: String? = nil, zoneId: String? = nil) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
             self.name = name
             
-            self.type = type
-            
             self.slug = slug
-            
-            self.geoAreas = geoAreas
             
             self.companyId = companyId
             
-            self.applicationId = applicationId
-            
             self.isActive = isActive
+            
+            self.channels = channels
             
             self.product = product
             
-            self.stores = stores
+            self.storeIds = storeIds
+            
+            self.regionType = regionType
+            
+            self.mapping = mapping
             
         }
 
@@ -85,124 +85,54 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    zoneId = try container.decode(String.self, forKey: .zoneId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                zoneId = try container.decode(String.self, forKey: .zoneId)
                 
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                slug = try container.decode(String.self, forKey: .slug)
                 
             
             
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                companyId = try container.decode(Int.self, forKey: .companyId)
                 
             
             
-                do {
-                    geoAreas = try container.decode([String].self, forKey: .geoAreas)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                isActive = try container.decode(Bool.self, forKey: .isActive)
                 
             
             
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                channels = try container.decode([GetZoneDataViewChannels].self, forKey: .channels)
                 
             
             
-                do {
-                    applicationId = try container.decode(String.self, forKey: .applicationId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                product = try container.decode(ZoneProductTypes.self, forKey: .product)
                 
             
             
-                do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
                 
             
             
-                do {
-                    product = try container.decode(ProductSchema.self, forKey: .product)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                regionType = try container.decode(String.self, forKey: .regionType)
                 
             
             
-                do {
-                    stores = try container.decode(StoresSchema.self, forKey: .stores)
+            
+                mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -221,17 +151,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(geoAreas, forKey: .geoAreas)
             
             
             
@@ -241,12 +161,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
-            
-            
-            
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(channels, forKey: .channels)
             
             
             
@@ -256,7 +176,17 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(stores, forKey: .stores)
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(regionType, forKey: .regionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mapping, forKey: .mapping)
             
             
         }
@@ -275,25 +205,25 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class UpdateZoneData: Codable {
         
         
-        public var zoneId: String?
+        public var zoneId: String
         
-        public var name: String?
+        public var name: String
         
-        public var type: String?
+        public var slug: String
         
-        public var slug: String?
+        public var companyId: Int
         
-        public var geoAreas: [String]?
+        public var isActive: Bool
         
-        public var companyId: Int?
+        public var channels: [GetZoneDataViewChannels]
         
-        public var applicationId: String?
+        public var product: ZoneProductTypes
         
-        public var isActive: Bool?
+        public var storeIds: [Int]
         
-        public var product: ProductSchema?
+        public var regionType: String
         
-        public var stores: StoresSchema?
+        public var mapping: [ZoneMappingType]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -302,45 +232,45 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case name = "name"
             
-            case type = "type"
-            
             case slug = "slug"
-            
-            case geoAreas = "geo_areas"
             
             case companyId = "company_id"
             
-            case applicationId = "application_id"
-            
             case isActive = "is_active"
+            
+            case channels = "channels"
             
             case product = "product"
             
-            case stores = "stores"
+            case storeIds = "store_ids"
+            
+            case regionType = "region_type"
+            
+            case mapping = "mapping"
             
         }
 
-        public init(applicationId: String? = nil, companyId: Int? = nil, geoAreas: [String]? = nil, isActive: Bool? = nil, name: String? = nil, product: ProductSchema? = nil, slug: String? = nil, stores: StoresSchema? = nil, type: String? = nil, zoneId: String? = nil) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
             self.name = name
             
-            self.type = type
-            
             self.slug = slug
-            
-            self.geoAreas = geoAreas
             
             self.companyId = companyId
             
-            self.applicationId = applicationId
-            
             self.isActive = isActive
+            
+            self.channels = channels
             
             self.product = product
             
-            self.stores = stores
+            self.storeIds = storeIds
+            
+            self.regionType = regionType
+            
+            self.mapping = mapping
             
         }
 
@@ -348,124 +278,54 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    zoneId = try container.decode(String.self, forKey: .zoneId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                zoneId = try container.decode(String.self, forKey: .zoneId)
                 
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                slug = try container.decode(String.self, forKey: .slug)
                 
             
             
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                companyId = try container.decode(Int.self, forKey: .companyId)
                 
             
             
-                do {
-                    geoAreas = try container.decode([String].self, forKey: .geoAreas)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                isActive = try container.decode(Bool.self, forKey: .isActive)
                 
             
             
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                channels = try container.decode([GetZoneDataViewChannels].self, forKey: .channels)
                 
             
             
-                do {
-                    applicationId = try container.decode(String.self, forKey: .applicationId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                product = try container.decode(ZoneProductTypes.self, forKey: .product)
                 
             
             
-                do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
                 
             
             
-                do {
-                    product = try container.decode(ProductSchema.self, forKey: .product)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                regionType = try container.decode(String.self, forKey: .regionType)
                 
             
             
-                do {
-                    stores = try container.decode(StoresSchema.self, forKey: .stores)
+            
+                mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -484,17 +344,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(geoAreas, forKey: .geoAreas)
             
             
             
@@ -504,12 +354,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
-            
-            
-            
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(channels, forKey: .channels)
             
             
             
@@ -519,7 +369,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(stores, forKey: .stores)
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(regionType, forKey: .regionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mapping, forKey: .mapping)
             
             
         }

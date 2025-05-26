@@ -22,7 +22,7 @@ public extension PublicClient.Partner {
         
         public var extensionId: String?
         
-        public var comingSoon: CommingSoon?
+        public var isComingSoon: Bool?
         
         public var listingInfo: ListingInfo?
         
@@ -37,6 +37,8 @@ public extension PublicClient.Partner {
         public var plans: [Plans]?
         
         public var plansUrl: String?
+        
+        public var reviewInstructions: String?
         
         public var scope: [String]?
         
@@ -59,7 +61,7 @@ public extension PublicClient.Partner {
             
             case extensionId = "extension_id"
             
-            case comingSoon = "coming_soon"
+            case isComingSoon = "is_coming_soon"
             
             case listingInfo = "listing_info"
             
@@ -75,6 +77,8 @@ public extension PublicClient.Partner {
             
             case plansUrl = "plans_url"
             
+            case reviewInstructions = "review_instructions"
+            
             case scope = "scope"
             
             case slug = "slug"
@@ -83,7 +87,7 @@ public extension PublicClient.Partner {
             
         }
 
-        public init(category: CategoryCommon? = nil, comingSoon: CommingSoon? = nil, contactInfo: ContactInfo? = nil, createdAt: String? = nil, currentStatus: String? = nil, details: Details? = nil, extensionId: String? = nil, listingInfo: ListingInfo? = nil, modifiedAt: String? = nil, organization: Organization? = nil, organizationId: String? = nil, plans: [Plans]? = nil, plansUrl: String? = nil, planType: String? = nil, scope: [String]? = nil, slug: String? = nil, id: String? = nil) {
+        public init(category: CategoryCommon? = nil, contactInfo: ContactInfo? = nil, createdAt: String? = nil, currentStatus: String? = nil, details: Details? = nil, extensionId: String? = nil, isComingSoon: Bool? = nil, listingInfo: ListingInfo? = nil, modifiedAt: String? = nil, organization: Organization? = nil, organizationId: String? = nil, plans: [Plans]? = nil, plansUrl: String? = nil, planType: String? = nil, reviewInstructions: String? = nil, scope: [String]? = nil, slug: String? = nil, id: String? = nil) {
             
             self.category = category
             
@@ -97,7 +101,7 @@ public extension PublicClient.Partner {
             
             self.extensionId = extensionId
             
-            self.comingSoon = comingSoon
+            self.isComingSoon = isComingSoon
             
             self.listingInfo = listingInfo
             
@@ -112,6 +116,8 @@ public extension PublicClient.Partner {
             self.plans = plans
             
             self.plansUrl = plansUrl
+            
+            self.reviewInstructions = reviewInstructions
             
             self.scope = scope
             
@@ -198,7 +204,7 @@ public extension PublicClient.Partner {
             
             
                 do {
-                    comingSoon = try container.decode(CommingSoon.self, forKey: .comingSoon)
+                    isComingSoon = try container.decode(Bool.self, forKey: .isComingSoon)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -294,6 +300,18 @@ public extension PublicClient.Partner {
             
             
                 do {
+                    reviewInstructions = try container.decode(String.self, forKey: .reviewInstructions)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     scope = try container.decode([String].self, forKey: .scope)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -358,7 +376,7 @@ public extension PublicClient.Partner {
             
             
             
-            try? container.encodeIfPresent(comingSoon, forKey: .comingSoon)
+            try? container.encodeIfPresent(isComingSoon, forKey: .isComingSoon)
             
             
             
@@ -387,6 +405,10 @@ public extension PublicClient.Partner {
             
             
             try? container.encodeIfPresent(plansUrl, forKey: .plansUrl)
+            
+            
+            
+            try? container.encodeIfPresent(reviewInstructions, forKey: .reviewInstructions)
             
             
             

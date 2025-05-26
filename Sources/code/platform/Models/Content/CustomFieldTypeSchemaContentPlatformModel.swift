@@ -38,10 +38,6 @@ public extension PlatformClient.Content {
         
         public var product: Product?
         
-        public var html: HTML?
-        
-        public var duration: Duration?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -71,13 +67,9 @@ public extension PlatformClient.Content {
             
             case product = "product"
             
-            case html = "html"
-            
-            case duration = "duration"
-            
         }
 
-        public init(booleanType: BooleanType? = nil, date: Date? = nil, datetime: Datetime? = nil, dropdown: Dropdown? = nil, duration: Duration? = nil, file: File? = nil, floatType: FloatType? = nil, html: HTML? = nil, integer: Integer? = nil, json: Json? = nil, metaobject: Metaobject? = nil, product: Product? = nil, stringMultiLine: StringMultiLine? = nil, stringSingleLine: StringSingleLine? = nil, url: Url? = nil) {
+        public init(booleanType: BooleanType? = nil, date: Date? = nil, datetime: Datetime? = nil, dropdown: Dropdown? = nil, file: File? = nil, floatType: FloatType? = nil, integer: Integer? = nil, json: Json? = nil, metaobject: Metaobject? = nil, product: Product? = nil, stringMultiLine: StringMultiLine? = nil, stringSingleLine: StringSingleLine? = nil, url: Url? = nil) {
             
             self.stringSingleLine = stringSingleLine
             
@@ -104,10 +96,6 @@ public extension PlatformClient.Content {
             self.metaobject = metaobject
             
             self.product = product
-            
-            self.html = html
-            
-            self.duration = duration
             
         }
 
@@ -270,30 +258,6 @@ public extension PlatformClient.Content {
                 }
                 
             
-            
-                do {
-                    html = try container.decode(HTML.self, forKey: .html)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    duration = try container.decode(Duration.self, forKey: .duration)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -362,16 +326,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(product, forKey: .product)
-            
-            
-            
-            
-            try? container.encodeIfPresent(html, forKey: .html)
-            
-            
-            
-            
-            try? container.encodeIfPresent(duration, forKey: .duration)
             
             
         }
@@ -416,10 +370,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var product: Product?
         
-        public var html: HTML?
-        
-        public var duration: Duration?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -449,13 +399,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case product = "product"
             
-            case html = "html"
-            
-            case duration = "duration"
-            
         }
 
-        public init(booleanType: BooleanType? = nil, date: Date? = nil, datetime: Datetime? = nil, dropdown: Dropdown? = nil, duration: Duration? = nil, file: File? = nil, floatType: FloatType? = nil, html: HTML? = nil, integer: Integer? = nil, json: Json? = nil, metaobject: Metaobject? = nil, product: Product? = nil, stringMultiLine: StringMultiLine? = nil, stringSingleLine: StringSingleLine? = nil, url: Url? = nil) {
+        public init(booleanType: BooleanType? = nil, date: Date? = nil, datetime: Datetime? = nil, dropdown: Dropdown? = nil, file: File? = nil, floatType: FloatType? = nil, integer: Integer? = nil, json: Json? = nil, metaobject: Metaobject? = nil, product: Product? = nil, stringMultiLine: StringMultiLine? = nil, stringSingleLine: StringSingleLine? = nil, url: Url? = nil) {
             
             self.stringSingleLine = stringSingleLine
             
@@ -482,10 +428,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.metaobject = metaobject
             
             self.product = product
-            
-            self.html = html
-            
-            self.duration = duration
             
         }
 
@@ -648,30 +590,6 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
-            
-                do {
-                    html = try container.decode(HTML.self, forKey: .html)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    duration = try container.decode(Duration.self, forKey: .duration)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -740,16 +658,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(product, forKey: .product)
-            
-            
-            
-            
-            try? container.encodeIfPresent(html, forKey: .html)
-            
-            
-            
-            
-            try? container.encodeIfPresent(duration, forKey: .duration)
             
             
         }

@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class InventorySellerIdentifierResponsePaginated: Codable {
         
         
-        public var items: [InventorySellerResponseSchema]?
+        public var items: [InventorySellerResponse]?
         
         public var page: Page?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(items: [InventorySellerResponseSchema]? = nil, page: Page? = nil) {
+        public init(items: [InventorySellerResponse]? = nil, page: Page? = nil) {
             
             self.items = items
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    items = try container.decode([InventorySellerResponseSchema].self, forKey: .items)
+                    items = try container.decode([InventorySellerResponse].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventorySellerIdentifierResponsePaginated: Codable {
         
         
-        public var items: [InventorySellerResponseSchema]?
+        public var items: [InventorySellerResponse]?
         
         public var page: Page?
         
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(items: [InventorySellerResponseSchema]? = nil, page: Page? = nil) {
+        public init(items: [InventorySellerResponse]? = nil, page: Page? = nil) {
             
             self.items = items
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    items = try container.decode([InventorySellerResponseSchema].self, forKey: .items)
+                    items = try container.decode([InventorySellerResponse].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

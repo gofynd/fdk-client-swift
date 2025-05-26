@@ -12,7 +12,13 @@ public extension PublicClient.Partner {
         
         public var parent: String?
         
+        public var display: String?
+        
+        public var level: Double?
+        
         public var slug: String?
+        
+        public var value: String?
         
         public var id: String?
         
@@ -21,17 +27,29 @@ public extension PublicClient.Partner {
             
             case parent = "parent"
             
+            case display = "display"
+            
+            case level = "level"
+            
             case slug = "slug"
+            
+            case value = "value"
             
             case id = "_id"
             
         }
 
-        public init(parent: String? = nil, slug: String? = nil, id: String? = nil) {
+        public init(display: String? = nil, level: Double? = nil, parent: String? = nil, slug: String? = nil, value: String? = nil, id: String? = nil) {
             
             self.parent = parent
             
+            self.display = display
+            
+            self.level = level
+            
             self.slug = slug
+            
+            self.value = value
             
             self.id = id
             
@@ -54,7 +72,43 @@ public extension PublicClient.Partner {
             
             
                 do {
+                    display = try container.decode(String.self, forKey: .display)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    level = try container.decode(Double.self, forKey: .level)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +140,19 @@ public extension PublicClient.Partner {
             
             
             
+            try? container.encodeIfPresent(display, forKey: .display)
+            
+            
+            
+            try? container.encodeIfPresent(level, forKey: .level)
+            
+            
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             

@@ -82,8 +82,6 @@ public extension PlatformClient.Payment {
         
         public var intentAppErrorList: [String]?
         
-        public var paymentConfirmationElements: [PaymentConfirmationElement]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -157,11 +155,9 @@ public extension PlatformClient.Payment {
             
             case intentAppErrorList = "intent_app_error_list"
             
-            case paymentConfirmationElements = "payment_confirmation_elements"
-            
         }
 
-        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codCharges: Double? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, paymentConfirmationElements: [PaymentConfirmationElement]? = nil, productCodData: ProductCODData? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
+        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codCharges: Double? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, productCodData: ProductCODData? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
             
             self.remainingLimit = remainingLimit
             
@@ -232,8 +228,6 @@ public extension PlatformClient.Payment {
             self.name = name
             
             self.intentAppErrorList = intentAppErrorList
-            
-            self.paymentConfirmationElements = paymentConfirmationElements
             
         }
 
@@ -653,18 +647,6 @@ public extension PlatformClient.Payment {
                 }
                 
             
-            
-                do {
-                    paymentConfirmationElements = try container.decode([PaymentConfirmationElement].self, forKey: .paymentConfirmationElements)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -843,11 +825,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(intentAppErrorList, forKey: .intentAppErrorList)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentConfirmationElements, forKey: .paymentConfirmationElements)
             
             
         }
@@ -936,8 +913,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var intentAppErrorList: [String]?
         
-        public var paymentConfirmationElements: [PaymentConfirmationElement]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -1011,11 +986,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case intentAppErrorList = "intent_app_error_list"
             
-            case paymentConfirmationElements = "payment_confirmation_elements"
-            
         }
 
-        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codCharges: Double? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, paymentConfirmationElements: [PaymentConfirmationElement]? = nil, productCodData: ProductCODData? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
+        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codCharges: Double? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, productCodData: ProductCODData? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
             
             self.remainingLimit = remainingLimit
             
@@ -1086,8 +1059,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.name = name
             
             self.intentAppErrorList = intentAppErrorList
-            
-            self.paymentConfirmationElements = paymentConfirmationElements
             
         }
 
@@ -1507,18 +1478,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
-            
-                do {
-                    paymentConfirmationElements = try container.decode([PaymentConfirmationElement].self, forKey: .paymentConfirmationElements)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1697,11 +1656,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(intentAppErrorList, forKey: .intentAppErrorList)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentConfirmationElements, forKey: .paymentConfirmationElements)
             
             
         }

@@ -40,10 +40,6 @@ public extension PlatformClient.Order {
         
         public var orderPlatform: String?
         
-        public var status: String?
-        
-        public var systemMessages: [SystemMessages]?
-        
         public var orderType: String?
         
         public var fyndOrderId: String?
@@ -51,6 +47,10 @@ public extension PlatformClient.Order {
         public var applicationId: String?
         
         public var externalShipmentId: String?
+        
+        public var customJson: [String: Any]?
+        
+        public var dynamicCharges: [DynamicChargeSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -83,10 +83,6 @@ public extension PlatformClient.Order {
             
             case orderPlatform = "order_platform"
             
-            case status = "status"
-            
-            case systemMessages = "system_messages"
-            
             case orderType = "order_type"
             
             case fyndOrderId = "fynd_order_id"
@@ -95,9 +91,13 @@ public extension PlatformClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
+            case customJson = "custom_json"
+            
+            case dynamicCharges = "dynamic_charges"
+            
         }
 
-        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, status: String? = nil, systemMessages: [SystemMessages]? = nil, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, customJson: [String: Any]? = nil, dynamicCharges: [DynamicChargeSchema]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -127,10 +127,6 @@ public extension PlatformClient.Order {
             
             self.orderPlatform = orderPlatform
             
-            self.status = status
-            
-            self.systemMessages = systemMessages
-            
             self.orderType = orderType
             
             self.fyndOrderId = fyndOrderId
@@ -138,6 +134,10 @@ public extension PlatformClient.Order {
             self.applicationId = applicationId
             
             self.externalShipmentId = externalShipmentId
+            
+            self.customJson = customJson
+            
+            self.dynamicCharges = dynamicCharges
             
         }
 
@@ -279,30 +279,6 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    systemMessages = try container.decode([SystemMessages].self, forKey: .systemMessages)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     orderType = try container.decode(String.self, forKey: .orderType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -340,6 +316,30 @@ public extension PlatformClient.Order {
             
                 do {
                     externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    dynamicCharges = try container.decode([DynamicChargeSchema].self, forKey: .dynamicCharges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -426,16 +426,6 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(systemMessages, forKey: .systemMessages)
-            
-            
-            
-            
             try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
@@ -452,6 +442,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dynamicCharges, forKey: .dynamicCharges)
             
             
         }
@@ -498,10 +498,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderPlatform: String?
         
-        public var status: String?
-        
-        public var systemMessages: [SystemMessages]?
-        
         public var orderType: String?
         
         public var fyndOrderId: String?
@@ -509,6 +505,10 @@ public extension PlatformClient.ApplicationClient.Order {
         public var applicationId: String?
         
         public var externalShipmentId: String?
+        
+        public var customJson: [String: Any]?
+        
+        public var dynamicCharges: [DynamicChargeSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -541,10 +541,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderPlatform = "order_platform"
             
-            case status = "status"
-            
-            case systemMessages = "system_messages"
-            
             case orderType = "order_type"
             
             case fyndOrderId = "fynd_order_id"
@@ -553,9 +549,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
+            case customJson = "custom_json"
+            
+            case dynamicCharges = "dynamic_charges"
+            
         }
 
-        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, status: String? = nil, systemMessages: [SystemMessages]? = nil, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, customJson: [String: Any]? = nil, dynamicCharges: [DynamicChargeSchema]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -585,10 +585,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.orderPlatform = orderPlatform
             
-            self.status = status
-            
-            self.systemMessages = systemMessages
-            
             self.orderType = orderType
             
             self.fyndOrderId = fyndOrderId
@@ -596,6 +592,10 @@ public extension PlatformClient.ApplicationClient.Order {
             self.applicationId = applicationId
             
             self.externalShipmentId = externalShipmentId
+            
+            self.customJson = customJson
+            
+            self.dynamicCharges = dynamicCharges
             
         }
 
@@ -737,30 +737,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    systemMessages = try container.decode([SystemMessages].self, forKey: .systemMessages)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     orderType = try container.decode(String.self, forKey: .orderType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -798,6 +774,30 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    dynamicCharges = try container.decode([DynamicChargeSchema].self, forKey: .dynamicCharges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -884,16 +884,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(systemMessages, forKey: .systemMessages)
-            
-            
-            
-            
             try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
@@ -910,6 +900,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dynamicCharges, forKey: .dynamicCharges)
             
             
         }

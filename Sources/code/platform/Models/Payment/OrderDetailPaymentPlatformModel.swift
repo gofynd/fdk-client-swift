@@ -24,8 +24,6 @@ public extension PlatformClient.Payment {
         
         public var aggregator: String
         
-        public var appliedOffers: [AppliedOffer]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,11 +39,9 @@ public extension PlatformClient.Payment {
             
             case aggregator = "aggregator"
             
-            case appliedOffers = "applied_offers"
-            
         }
 
-        public init(aggregator: String, aggregatorOrderDetails: [String: Any], amount: Int, appliedOffers: [AppliedOffer]? = nil, currency: String, gid: String, status: String) {
+        public init(aggregator: String, aggregatorOrderDetails: [String: Any], amount: Int, currency: String, gid: String, status: String) {
             
             self.gid = gid
             
@@ -58,8 +54,6 @@ public extension PlatformClient.Payment {
             self.aggregatorOrderDetails = aggregatorOrderDetails
             
             self.aggregator = aggregator
-            
-            self.appliedOffers = appliedOffers
             
         }
 
@@ -96,18 +90,6 @@ public extension PlatformClient.Payment {
                 
             
             
-            
-                do {
-                    appliedOffers = try container.decode([AppliedOffer].self, forKey: .appliedOffers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -141,11 +123,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appliedOffers, forKey: .appliedOffers)
             
             
         }
@@ -176,8 +153,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var aggregator: String
         
-        public var appliedOffers: [AppliedOffer]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -193,11 +168,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case aggregator = "aggregator"
             
-            case appliedOffers = "applied_offers"
-            
         }
 
-        public init(aggregator: String, aggregatorOrderDetails: [String: Any], amount: Int, appliedOffers: [AppliedOffer]? = nil, currency: String, gid: String, status: String) {
+        public init(aggregator: String, aggregatorOrderDetails: [String: Any], amount: Int, currency: String, gid: String, status: String) {
             
             self.gid = gid
             
@@ -210,8 +183,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.aggregatorOrderDetails = aggregatorOrderDetails
             
             self.aggregator = aggregator
-            
-            self.appliedOffers = appliedOffers
             
         }
 
@@ -248,18 +219,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-            
-                do {
-                    appliedOffers = try container.decode([AppliedOffer].self, forKey: .appliedOffers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -293,11 +252,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appliedOffers, forKey: .appliedOffers)
             
             
         }

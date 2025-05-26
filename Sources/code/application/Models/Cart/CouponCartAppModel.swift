@@ -14,8 +14,6 @@ public extension ApplicationClient.Cart {
         
         public var title: String?
         
-        public var rule: [DiscountRules]?
-        
         public var minimumCartValue: Double?
         
         public var subTitle: String?
@@ -55,8 +53,6 @@ public extension ApplicationClient.Cart {
             
             case title = "title"
             
-            case rule = "rule"
-            
             case minimumCartValue = "minimum_cart_value"
             
             case subTitle = "sub_title"
@@ -89,15 +85,13 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(couponAmount: Double? = nil, couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, isBankOffer: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, offerText: String? = nil, rule: [DiscountRules]? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
+        public init(couponAmount: Double? = nil, couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, isBankOffer: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, offerText: String? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
             
             self.couponAmount = couponAmount
             
             self.couponValue = couponValue
             
             self.title = title
-            
-            self.rule = rule
             
             self.minimumCartValue = minimumCartValue
             
@@ -161,18 +155,6 @@ public extension ApplicationClient.Cart {
             
             do {
                 title = try container.decode(String.self, forKey: .title)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                rule = try container.decode([DiscountRules].self, forKey: .rule)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -377,10 +359,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            try? container.encodeIfPresent(rule, forKey: .rule)
             
             
             

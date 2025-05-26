@@ -97,14 +97,6 @@ extension ApplicationClient {
             
             ulrs["updateUserAttributes"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/user-attributes") 
             
-            ulrs["sendOTPOnPrimary"] = config.domain.appendAsPath("/service/application/user/profile/v2.0/{entity}/primary/otp/send") 
-            
-            ulrs["verifyOTPonPrimary"] = config.domain.appendAsPath("/service/application/user/profile/v2.0/{entity}/primary/otp/verify") 
-            
-            ulrs["sendOTPForUpdate"] = config.domain.appendAsPath("/service/application/user/profile/v2.0/{entity}/otp/send") 
-            
-            ulrs["verifyOTPForUpdate"] = config.domain.appendAsPath("/service/application/user/profile/v2.0/{entity}/otp/verify") 
-            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -409,7 +401,7 @@ extension ApplicationClient {
             platform: String?,
             body: SendOtpRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtp?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -444,7 +436,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendOtp.self, from: data)
+                        let response = Utility.decode(SendOtpResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1046,7 +1038,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Update password
+        * Summary: Update Password
         * Description: Allow user to change their password.
         **/
         public func updatePassword(
@@ -1105,7 +1097,7 @@ extension ApplicationClient {
             platform: String?,
             body: SendMobileOtpRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtpSuccess?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1140,7 +1132,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendOtpSuccess.self, from: data)
+                        let response = Utility.decode(OtpSuccess.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1162,7 +1154,7 @@ extension ApplicationClient {
             platform: String?,
             body: SendMobileForgotOtpRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtpSuccess?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1197,7 +1189,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendOtpSuccess.self, from: data)
+                        let response = Utility.decode(OtpSuccess.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1212,7 +1204,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Verify mobile OTP
+        * Summary: Verify Mobile OTP
         * Description: Verify one-time password sent to user's mobile.
         **/
         public func verifyMobileOTP(
@@ -2243,7 +2235,7 @@ extension ApplicationClient {
             q: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UserExistsDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UserExistsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2275,7 +2267,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UserExistsDetails.self, from: data)
+                        let response = Utility.decode(UserExistsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2455,7 +2447,7 @@ extension ApplicationClient {
         * Description: Update user attributes.
         **/
         public func updateUserAttributes(
-            body: UpdateUserAttributes,
+            body: UpdateUserAttributesRequest,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
         ) {
@@ -2489,226 +2481,6 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(UserAttributes.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Send OTP to Primary Mobile or Email
-        * Description: Send OTP to primary mobile number or email to verify primary details. Use this to update Email or Mobile, other APIs will be deprecated.
-        **/
-        public func sendOTPOnPrimary(
-            entity: String,
-            body: SendPrimaryOTPRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtpSuccess?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            var fullUrl = relativeUrls["sendOTPOnPrimary"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity" + "}", with: "\(entity)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SendOtpSuccess.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Verify OTP sent to Primary Mobile or Email
-        * Description: Verify OTP sent to primary mobile number or email to verify primary details. User needs to use sendOTPOnPrimary before verifying OTP.
-        **/
-        public func verifyOTPonPrimary(
-            entity: String,
-            body: VerifyPrimaryOTPRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: VerifyPrimaryOTPSuccess?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            var fullUrl = relativeUrls["verifyOTPonPrimary"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity" + "}", with: "\(entity)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(VerifyPrimaryOTPSuccess.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Send OTP to update Mobile or Email
-        * Description: Send OTP to mobile number or email. User needs to use sendOTPOnPrimary and verifyOTPonPrimary before using this method to update details.
-        **/
-        public func sendOTPForUpdate(
-            entity: String,
-            body: SendOTPForUpdateRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendOtpSuccess?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            var fullUrl = relativeUrls["sendOTPForUpdate"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity" + "}", with: "\(entity)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SendOtpSuccess.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Verify OTP sent to Mobile or Email to update primary details.
-        * Description: Verify OTP sent to Mobile number or Email to update primary details. User needs to use sendOTPOnPrimary, verifyOTPonPrimary and sendOTPForUpdate before using this method to verify update details.
-        **/
-        public func verifyOTPForUpdate(
-            entity: String,
-            body: VerifyOTPForUpdateRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            var fullUrl = relativeUrls["verifyOTPForUpdate"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity" + "}", with: "\(entity)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(VerifyOtpSuccess.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

@@ -24,6 +24,8 @@ public extension PlatformClient.Order {
         
         public var externalLineId: String?
         
+        public var dynamicCharges: [DynamicChargeSchema]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension PlatformClient.Order {
             
             case externalLineId = "external_line_id"
             
+            case dynamicCharges = "dynamic_charges"
+            
         }
 
-        public init(charges: [Charge]? = nil, customMessage: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
+        public init(charges: [Charge]? = nil, customMessage: String? = nil, dynamicCharges: [DynamicChargeSchema]? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
             
             self.charges = charges
             
@@ -54,6 +58,8 @@ public extension PlatformClient.Order {
             self.sellerIdentifier = sellerIdentifier
             
             self.externalLineId = externalLineId
+            
+            self.dynamicCharges = dynamicCharges
             
         }
 
@@ -125,6 +131,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    dynamicCharges = try container.decode([DynamicChargeSchema].self, forKey: .dynamicCharges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -158,6 +176,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(externalLineId, forKey: .externalLineId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dynamicCharges, forKey: .dynamicCharges)
             
             
         }
@@ -188,6 +211,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var externalLineId: String?
         
+        public var dynamicCharges: [DynamicChargeSchema]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -203,9 +228,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case externalLineId = "external_line_id"
             
+            case dynamicCharges = "dynamic_charges"
+            
         }
 
-        public init(charges: [Charge]? = nil, customMessage: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
+        public init(charges: [Charge]? = nil, customMessage: String? = nil, dynamicCharges: [DynamicChargeSchema]? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
             
             self.charges = charges
             
@@ -218,6 +245,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.sellerIdentifier = sellerIdentifier
             
             self.externalLineId = externalLineId
+            
+            self.dynamicCharges = dynamicCharges
             
         }
 
@@ -289,6 +318,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    dynamicCharges = try container.decode([DynamicChargeSchema].self, forKey: .dynamicCharges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -322,6 +363,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(externalLineId, forKey: .externalLineId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dynamicCharges, forKey: .dynamicCharges)
             
             
         }

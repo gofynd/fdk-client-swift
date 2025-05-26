@@ -84,7 +84,7 @@ extension PlatformClient {
             slug: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CategoryResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CategoryResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -140,7 +140,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CategoryResponseSchema.self, from: data)
+                        let response = Utility.decode(CategoryResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -177,9 +177,9 @@ extension PlatformClient {
             uids: [Int]?,
             slug: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<CategoryResponseSchema> {
+            ) -> Paginator<CategoryResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<CategoryResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<CategoryResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.listCategories(
                     level: level,
@@ -214,7 +214,7 @@ extension PlatformClient {
             uid: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SingleCategoryResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SingleCategoryResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -242,7 +242,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SingleCategoryResponseSchema.self, from: data)
+                        let response = Utility.decode(SingleCategoryResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -265,7 +265,7 @@ extension PlatformClient {
             sellerAppId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CrossSellingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CrossSellingResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -293,7 +293,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CrossSellingResponseSchema.self, from: data)
+                        let response = Utility.decode(CrossSellingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -322,7 +322,7 @@ extension PlatformClient {
             slug: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DepartmentsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DepartmentsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -378,7 +378,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DepartmentsResponseSchema.self, from: data)
+                        let response = Utility.decode(DepartmentsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -415,9 +415,9 @@ extension PlatformClient {
             isActive: Bool?,
             slug: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<DepartmentsResponseSchema> {
+            ) -> Paginator<DepartmentsResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<DepartmentsResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<DepartmentsResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.listDepartmentsData(
                     pageNo: paginator.pageNo,
@@ -452,7 +452,7 @@ extension PlatformClient {
             uid: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DepartmentsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DepartmentsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -480,7 +480,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DepartmentsResponseSchema.self, from: data)
+                        let response = Utility.decode(DepartmentsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -564,7 +564,7 @@ extension PlatformClient {
         public func bulkHsnCode(
             body: BulkHsnUpsert,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkHsnResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkHsnResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -592,7 +592,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkHsnResponseSchema.self, from: data)
+                        let response = Utility.decode(BulkHsnResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -733,7 +733,7 @@ extension PlatformClient {
             sizeIdentifier: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetInventoriesResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetInventoriesResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -829,7 +829,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetInventoriesResponseSchema.self, from: data)
+                        let response = Utility.decode(GetInventoriesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -894,9 +894,9 @@ extension PlatformClient {
             toDate: String?,
             sizeIdentifier: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<GetInventoriesResponseSchema> {
+            ) -> Paginator<GetInventoriesResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<GetInventoriesResponseSchema>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<GetInventoriesResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getInventories(
                     itemId: itemId,
@@ -942,9 +942,6 @@ extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
             search: String?,
-            startDate: String?,
-            endDate: String?,
-            stage: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BulkInventoryGet?, _ error: FDKError?) -> Void
@@ -962,18 +959,6 @@ extension PlatformClient {
             
             if let value = search {
                 xQuery["search"] = value
-            }
-            
-            if let value = startDate {
-                xQuery["start_date"] = value
-            }
-            
-            if let value = endDate {
-                xQuery["end_date"] = value
-            }
-            
-            if let value = stage {
-                xQuery["stage"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -1015,12 +1000,6 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getInventoryBulkUploadHistory
@@ -1029,9 +1008,6 @@ extension PlatformClient {
         public func getInventoryBulkUploadHistoryPaginator(
             pageSize: Int?,
             search: String?,
-            startDate: String?,
-            endDate: String?,
-            stage: String?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<BulkInventoryGet> {
             let pageSize = pageSize ?? 20
@@ -1041,9 +1017,6 @@ extension PlatformClient {
                     pageNo: paginator.pageNo,
                     pageSize: paginator.pageSize,
                     search: search,
-                    startDate: startDate,
-                    endDate: endDate,
-                    stage: stage,
                     
                     headers: headers
                 ) { response, error in                    
@@ -1066,9 +1039,9 @@ extension PlatformClient {
         * Description: Helps to create a bulk Inventory upload job.
         **/
         public func createBulkInventoryJob(
-            body: BulkInventoryJob,
+            body: BulkJob,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1096,7 +1069,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkResponseSchema.self, from: data)
+                        let response = Utility.decode(BulkResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1119,7 +1092,7 @@ extension PlatformClient {
             batchId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1147,7 +1120,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1168,9 +1141,9 @@ extension PlatformClient {
         **/
         public func createBulkInventory(
             batchId: String,
-            body: InventoryBulkRequestSchema,
+            body: InventoryBulkRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1198,7 +1171,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1268,9 +1241,9 @@ extension PlatformClient {
         * Description: Helps to create a Inventory export job.
         **/
         public func createInventoryExportJob(
-            body: InventoryExportRequestSchema,
+            body: InventoryExportRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InventoryExportResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: InventoryExportResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1298,7 +1271,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(InventoryExportResponseSchema.self, from: data)
+                        let response = Utility.decode(InventoryExportResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1373,16 +1346,14 @@ extension PlatformClient {
         * Description: Allows you to download inventory product template data for a specific company in formats like csv and excel.
         **/
         public func downloadInventoryTemplateView(
-            schemaType: String,
-            type: String,
+            itemType: String,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            xQuery["schema_type"] = schemaType
-            xQuery["type"] = type
+            xQuery["item_type"] = itemType
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -1428,18 +1399,13 @@ extension PlatformClient {
         **/
         public func validateProductTemplateSchema(
             itemType: String,
-            schemaType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InventoryValidationResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: InventoryValidationResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
             xQuery["item_type"] = itemType
-            
-            if let value = schemaType {
-                xQuery["schema_type"] = value
-            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -1464,7 +1430,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(InventoryValidationResponseSchema.self, from: data)
+                        let response = Utility.decode(InventoryValidationResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1486,7 +1452,7 @@ extension PlatformClient {
         public func getOptimalLocations(
             body: AssignStore,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: StoreAssignResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: StoreAssignResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1514,7 +1480,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(StoreAssignResponseSchema.self, from: data)
+                        let response = Utility.decode(StoreAssignResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1675,7 +1641,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/marketplaces/company-details/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-details/",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -1790,7 +1756,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/marketplaces/location-details/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/location-details/",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -1863,7 +1829,7 @@ extension PlatformClient {
             filter: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductAttributesResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductAttributesResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1896,7 +1862,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductAttributesResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductAttributesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1969,11 +1935,9 @@ extension PlatformClient {
         public func getProductBundle(
             q: String?,
             slug: [String]?,
-            pageNo: Int?,
-            pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetProductBundleListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetProductBundleListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1984,14 +1948,6 @@ extension PlatformClient {
             
             if let value = slug {
                 xQuery["slug"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2017,7 +1973,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetProductBundleListingResponseSchema.self, from: data)
+                        let response = Utility.decode(GetProductBundleListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2037,9 +1993,9 @@ extension PlatformClient {
         * Description: Create product bundle in the catalog associated to a specific company
         **/
         public func createProductBundle(
-            body: ProductBundleRequestSchema,
+            body: ProductBundleRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetProductBundleCreateResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2067,7 +2023,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetProductBundleCreateResponseSchema.self, from: data)
+                        let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2090,7 +2046,7 @@ extension PlatformClient {
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetProductBundleResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetProductBundleResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2118,7 +2074,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetProductBundleResponseSchema.self, from: data)
+                        let response = Utility.decode(GetProductBundleResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2139,9 +2095,9 @@ extension PlatformClient {
         **/
         public func updateProductBundle(
             id: String,
-            body: ProductBundleUpdateRequestSchema,
+            body: ProductBundleUpdateRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetProductBundleCreateResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2169,7 +2125,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetProductBundleCreateResponseSchema.self, from: data)
+                        let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2193,7 +2149,7 @@ extension PlatformClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkAssetResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkAssetResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2229,7 +2185,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkAssetResponseSchema.self, from: data)
+                        let response = Utility.decode(BulkAssetResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2251,9 +2207,9 @@ extension PlatformClient {
         public func getProductAssetsInBulkPaginator(
             pageSize: Int?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<BulkAssetResponseSchema> {
+            ) -> Paginator<BulkAssetResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<BulkAssetResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<BulkAssetResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getProductAssetsInBulk(
                     pageNo: paginator.pageNo,
@@ -2282,7 +2238,7 @@ extension PlatformClient {
         public func createProductAssetsInBulk(
             body: ProductBulkAssets,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2310,7 +2266,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2432,7 +2388,7 @@ extension PlatformClient {
         public func createBulkProductUploadJob(
             body: BulkJob,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2460,7 +2416,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkResponseSchema.self, from: data)
+                        let response = Utility.decode(BulkResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2483,7 +2439,7 @@ extension PlatformClient {
             batchId: Int,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2511,7 +2467,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2532,9 +2488,9 @@ extension PlatformClient {
         **/
         public func createProductsInBulk(
             batchId: String,
-            body: BulkProductRequestSchema,
+            body: BulkProductRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2562,7 +2518,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2584,7 +2540,7 @@ extension PlatformClient {
         public func listProductTemplateExportDetails(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductDownloadsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2612,7 +2568,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductDownloadsResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductDownloadsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2634,7 +2590,7 @@ extension PlatformClient {
         public func listHSNCodes(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: HSNCodesResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: HSNCodesResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2662,7 +2618,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(HSNCodesResponseSchema.self, from: data)
+                        let response = Utility.decode(HSNCodesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2684,7 +2640,7 @@ extension PlatformClient {
         public func getProductTags(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductTagsViewResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductTagsViewResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2712,7 +2668,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductTagsViewResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductTagsViewResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2733,23 +2689,13 @@ extension PlatformClient {
         **/
         public func listProductTemplate(
             department: String,
-            pageNo: Int?,
-            pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: TemplatesResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: TemplatesResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
             xQuery["department"] = department
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -2774,7 +2720,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(TemplatesResponseSchema.self, from: data)
+                        let response = Utility.decode(TemplatesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2798,7 +2744,7 @@ extension PlatformClient {
             itemType: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProdcutTemplateCategoriesResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProdcutTemplateCategoriesResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2828,7 +2774,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProdcutTemplateCategoriesResponseSchema.self, from: data)
+                        let response = Utility.decode(ProdcutTemplateCategoriesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2914,7 +2860,7 @@ extension PlatformClient {
             bulk: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: TemplatesValidationResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: TemplatesValidationResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2950,67 +2896,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(TemplatesValidationResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Validate product template
-        * Description: Allows you to list all product templates global validation values for all the fields present in the database for a specific company.
-        **/
-        public func validateProductGlobalTemplate(
-            itemType: String?,
-            bulk: Bool?,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: TemplatesGlobalValidationResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = itemType {
-                xQuery["item_type"] = value
-            }
-            
-            if let value = bulk {
-                xQuery["bulk"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/validation/schema/",
-                query: xQuery,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(TemplatesGlobalValidationResponseSchema.self, from: data)
+                        let response = Utility.decode(TemplatesValidationResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3205,7 +3091,7 @@ extension PlatformClient {
             uid: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3245,7 +3131,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductListingResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3269,7 +3155,7 @@ extension PlatformClient {
             size: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductSizeDeleteResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductSizeDeleteResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3297,7 +3183,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductSizeDeleteResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductSizeDeleteResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3355,7 +3241,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -3438,9 +3324,9 @@ extension PlatformClient {
         public func addInventory(
             itemId: Int,
             size: String,
-            body: InventoryRequestSchema,
+            body: InventoryRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3454,7 +3340,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -3468,7 +3354,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3494,7 +3380,7 @@ extension PlatformClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductVariantsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductVariantsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3530,7 +3416,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductVariantsResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductVariantsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3558,9 +3444,9 @@ extension PlatformClient {
             variantType: String,
             pageSize: Int?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<ProductVariantsResponseSchema> {
+            ) -> Paginator<ProductVariantsResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductVariantsResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<ProductVariantsResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getVariantsOfProducts(
                     itemId: itemId,
@@ -3671,7 +3557,7 @@ extension PlatformClient {
         public func createSizeGuide(
             body: ValidateSizeGuide,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3699,7 +3585,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3722,7 +3608,7 @@ extension PlatformClient {
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SizeGuideResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SizeGuideResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3750,7 +3636,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SizeGuideResponseSchema.self, from: data)
+                        let response = Utility.decode(SizeGuideResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3773,7 +3659,7 @@ extension PlatformClient {
             id: String,
             body: ValidateSizeGuide,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3801,7 +3687,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3955,7 +3841,7 @@ extension PlatformClient {
         public func updateInventories(
             body: InventoryRequestSchemaV2,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InventoryUpdateResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3983,7 +3869,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(InventoryUpdateResponseSchema.self, from: data)
+                        let response = Utility.decode(InventoryUpdateResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4011,7 +3897,7 @@ extension PlatformClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InventoryExportJobListResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: InventoryExportJobListResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -4063,7 +3949,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(InventoryExportJobListResponseSchema.self, from: data)
+                        let response = Utility.decode(InventoryExportJobListResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4083,9 +3969,9 @@ extension PlatformClient {
         * Description: creates export job for inventory data associated with a company
         **/
         public func createInventoryExport(
-            body: InventoryCreateRequestSchema,
+            body: InventoryCreateRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InventoryExportResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: InventoryExportResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -4113,7 +3999,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(InventoryExportResponseSchema.self, from: data)
+                        let response = Utility.decode(InventoryExportResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4340,7 +4226,7 @@ extension PlatformClient {
         * Description: Users can create a product using this API, associating it with the provided company ID
         **/
         public func createProduct(
-            body: ProductCreateSchemaV2,
+            body: ProductCreateUpdateSchemaV2,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
         ) {
@@ -4394,7 +4280,7 @@ extension PlatformClient {
             productType: String,
             body: BulkProductJob,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -4424,7 +4310,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkResponseSchema.self, from: data)
+                        let response = Utility.decode(BulkResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4452,7 +4338,7 @@ extension PlatformClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductDownloadsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -4504,7 +4390,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductDownloadsResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductDownloadsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4526,7 +4412,7 @@ extension PlatformClient {
         public func createProductExportJob(
             body: ProductTemplateDownloadsExport,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductDownloadsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -4554,7 +4440,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductDownloadsResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductDownloadsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4571,13 +4457,13 @@ extension PlatformClient {
         /**
         *
         * Summary: Delete product
-        * Description: Users can delete a product by providing the item_id and company_id.
+        * Description: Users can delete a product using this by providing the itemid.
         **/
         public func deleteProduct(
             itemId: Int,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -4605,7 +4491,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4630,7 +4516,7 @@ extension PlatformClient {
             itemCode: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SingleProductResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SingleProductResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -4666,7 +4552,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SingleProductResponseSchema.self, from: data)
+                        let response = Utility.decode(SingleProductResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4687,9 +4573,9 @@ extension PlatformClient {
         **/
         public func editProduct(
             itemId: Int,
-            body: ProductUpdateSchemaV2,
+            body: ProductCreateUpdateSchemaV2,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -4717,7 +4603,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4792,7 +4678,7 @@ extension PlatformClient {
             sellerIdentifier: String,
             body: InventoryRequestSchemaV2,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InventoryUpdateResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -4820,7 +4706,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(InventoryUpdateResponseSchema.self, from: data)
+                        let response = Utility.decode(InventoryUpdateResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4844,7 +4730,7 @@ extension PlatformClient {
             sellerIdentifier: String,
             body: InventoryRequestSchemaV2,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InventoryUpdateResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -4872,111 +4758,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(InventoryUpdateResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Update an Article Price
-        * Description: enables you to update article price for a specific size and selling location (store). The price updates will be reflected instantly after the API call.
-        **/
-        public func updateLocationPrice(
-            storeId: Int,
-            sellerIdentifier: String,
-            body: LocationPriceRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LocationPriceQuantitySuccessResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/store/\(storeId)/identifier/\(sellerIdentifier)/price",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(LocationPriceQuantitySuccessResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Update an Article Quantity
-        * Description: enables you to update article quantity for a specific size and selling location (store). The quantity updates will be reflected instantly after the API call.
-        **/
-        public func updateLocationQuantity(
-            storeId: Int,
-            sellerIdentifier: String,
-            body: LocationQuantityRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LocationPriceQuantitySuccessResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/store/\(storeId)/identifier/\(sellerIdentifier)/quantity",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(LocationPriceQuantitySuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(InventoryUpdateResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -5047,9 +4829,9 @@ extension PlatformClient {
         **/
         public func updateMarketplaceOptin(
             marketplaceSlug: String,
-            body: UpdateMarketplaceOptinRequestSchema,
+            body: UpdateMarketplaceOptinRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdateMarketplaceOptinResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdateMarketplaceOptinResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -5077,7 +4859,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdateMarketplaceOptinResponseSchema.self, from: data)
+                        let response = Utility.decode(UpdateMarketplaceOptinResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -5098,9 +4880,9 @@ extension PlatformClient {
         **/
         public func createMarketplaceOptin(
             marketplaceSlug: String,
-            body: OptInPostRequestSchema,
+            body: OptInPostRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateMarketplaceOptinResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CreateMarketplaceOptinResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -5128,7 +4910,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CreateMarketplaceOptinResponseSchema.self, from: data)
+                        let response = Utility.decode(CreateMarketplaceOptinResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class TransferModeDetails: Codable {
         
-        public var items: [TransferItemsDetails]
+        public var items: [TransferItemsDetails]?
         
         public var displayName: String
         
@@ -21,7 +21,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(displayName: String, items: [TransferItemsDetails]) {
+        public init(displayName: String, items: [TransferItemsDetails]? = nil) {
             
             self.items = items
             
@@ -33,8 +33,15 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            items = try container.decode([TransferItemsDetails].self, forKey: .items)
+            do {
+                items = try container.decode([TransferItemsDetails].self, forKey: .items)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

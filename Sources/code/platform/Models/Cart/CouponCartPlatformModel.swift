@@ -16,8 +16,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var title: String?
         
-        public var rule: [DiscountRules]?
-        
         public var maxDiscountValue: Double?
         
         public var couponCode: String?
@@ -51,8 +49,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case title = "title"
             
-            case rule = "rule"
-            
             case maxDiscountValue = "max_discount_value"
             
             case couponCode = "coupon_code"
@@ -83,11 +79,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, rule: [DiscountRules]? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
+        public init(couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
             
             self.title = title
-            
-            self.rule = rule
             
             self.maxDiscountValue = maxDiscountValue
             
@@ -125,18 +119,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     title = try container.decode(String.self, forKey: .title)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    rule = try container.decode([DiscountRules].self, forKey: .rule)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -322,11 +304,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
-            try? container.encodeIfPresent(rule, forKey: .rule)
             
             
             

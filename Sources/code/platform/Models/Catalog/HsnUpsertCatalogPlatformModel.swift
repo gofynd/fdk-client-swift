@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var companyId: Int
         
-        public var hs2Code: String?
+        public var hs2Code: String
         
         public var hsnCode: String
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(companyId: Int, hs2Code: String? = nil, hsnCode: String, isActive: Bool? = nil, tax1: Double, tax2: Double? = nil, taxOnEsp: Bool? = nil, taxOnMrp: Bool, threshold1: Double, threshold2: Double? = nil, uid: Int? = nil) {
+        public init(companyId: Int, hs2Code: String, hsnCode: String, isActive: Bool? = nil, tax1: Double, tax2: Double? = nil, taxOnEsp: Bool? = nil, taxOnMrp: Bool, threshold1: Double, threshold2: Double? = nil, uid: Int? = nil) {
             
             self.companyId = companyId
             
@@ -96,16 +96,9 @@ public extension PlatformClient.Catalog {
             
             
             
-                do {
-                    hs2Code = try container.decode(String.self, forKey: .hs2Code)
+                hs2Code = try container.decode(String.self, forKey: .hs2Code)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 hsnCode = try container.decode(String.self, forKey: .hsnCode)
@@ -265,7 +258,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var companyId: Int
         
-        public var hs2Code: String?
+        public var hs2Code: String
         
         public var hsnCode: String
         
@@ -312,7 +305,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(companyId: Int, hs2Code: String? = nil, hsnCode: String, isActive: Bool? = nil, tax1: Double, tax2: Double? = nil, taxOnEsp: Bool? = nil, taxOnMrp: Bool, threshold1: Double, threshold2: Double? = nil, uid: Int? = nil) {
+        public init(companyId: Int, hs2Code: String, hsnCode: String, isActive: Bool? = nil, tax1: Double, tax2: Double? = nil, taxOnEsp: Bool? = nil, taxOnMrp: Bool, threshold1: Double, threshold2: Double? = nil, uid: Int? = nil) {
             
             self.companyId = companyId
             
@@ -347,16 +340,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                do {
-                    hs2Code = try container.decode(String.self, forKey: .hs2Code)
+                hs2Code = try container.decode(String.self, forKey: .hs2Code)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 hsnCode = try container.decode(String.self, forKey: .hsnCode)
