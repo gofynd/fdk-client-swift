@@ -12,6 +12,8 @@ public extension ApplicationClient.Cart {
         
         public var customJson: [String: Any]?
         
+        public var forceNewLineItem: Bool?
+        
         public var quantity: Int?
         
         public var itemSize: String?
@@ -28,12 +30,18 @@ public extension ApplicationClient.Cart {
         
         public var meta: [String: Any]?
         
+        public var fulfillmentOptionSlug: String?
+        
+        public var pickupStoreId: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case extraMeta = "extra_meta"
             
             case customJson = "_custom_json"
+            
+            case forceNewLineItem = "force_new_line_item"
             
             case quantity = "quantity"
             
@@ -51,13 +59,19 @@ public extension ApplicationClient.Cart {
             
             case meta = "meta"
             
+            case fulfillmentOptionSlug = "fulfillment_option_slug"
+            
+            case pickupStoreId = "pickup_store_id"
+            
         }
 
-        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, forceNewLineItem: Bool? = nil, fulfillmentOptionSlug: String? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, pickupStoreId: Int? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.extraMeta = extraMeta
             
             self.customJson = customJson
+            
+            self.forceNewLineItem = forceNewLineItem
             
             self.quantity = quantity
             
@@ -74,6 +88,10 @@ public extension ApplicationClient.Cart {
             self.itemId = itemId
             
             self.meta = meta
+            
+            self.fulfillmentOptionSlug = fulfillmentOptionSlug
+            
+            self.pickupStoreId = pickupStoreId
             
         }
 
@@ -95,6 +113,18 @@ public extension ApplicationClient.Cart {
             
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                forceNewLineItem = try container.decode(Bool.self, forKey: .forceNewLineItem)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,6 +223,30 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                fulfillmentOptionSlug = try container.decode(String.self, forKey: .fulfillmentOptionSlug)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                pickupStoreId = try container.decode(Int.self, forKey: .pickupStoreId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -204,6 +258,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            try? container.encodeIfPresent(forceNewLineItem, forKey: .forceNewLineItem)
             
             
             
@@ -236,6 +294,14 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentOptionSlug, forKey: .fulfillmentOptionSlug)
+            
+            
+            
+            try? container.encodeIfPresent(pickupStoreId, forKey: .pickupStoreId)
             
             
         }

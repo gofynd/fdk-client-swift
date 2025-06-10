@@ -12,9 +12,9 @@ public extension PlatformClient.Order {
     class SmsDataPayload: Codable {
         
         
-        public var shipmentId: Int
+        public var shipmentId: String
         
-        public var phoneNumber: Int
+        public var phoneNumber: String
         
         public var amountPaid: Int?
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: Int, shipmentId: Int) {
+        public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: String, shipmentId: String) {
             
             self.shipmentId = shipmentId
             
@@ -79,12 +79,12 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                shipmentId = try container.decode(Int.self, forKey: .shipmentId)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
             
             
             
-                phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
+                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
             
             
@@ -217,9 +217,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class SmsDataPayload: Codable {
         
         
-        public var shipmentId: Int
+        public var shipmentId: String
         
-        public var phoneNumber: Int
+        public var phoneNumber: String
         
         public var amountPaid: Int?
         
@@ -258,7 +258,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: Int, shipmentId: Int) {
+        public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: String, shipmentId: String) {
             
             self.shipmentId = shipmentId
             
@@ -284,12 +284,12 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                shipmentId = try container.decode(Int.self, forKey: .shipmentId)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
             
             
             
-                phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
+                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
             
             

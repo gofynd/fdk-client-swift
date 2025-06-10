@@ -2077,8 +2077,6 @@ public extension PlatformClient.ApplicationClient.Content {
 
 
 
-
-
 public extension PlatformClient.Theme {
 
     enum PageType: String, Codable, CaseIterable {

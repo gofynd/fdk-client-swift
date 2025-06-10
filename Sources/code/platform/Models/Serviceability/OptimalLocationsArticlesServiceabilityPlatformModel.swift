@@ -16,7 +16,7 @@ public extension PlatformClient.Serviceability {
         
         public var size: String
         
-        public var quantity: String
+        public var quantity: Int
         
         public var groupId: String?
         
@@ -57,7 +57,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(articleAssignment: ArticleAssignment, assignLocations: [Int], groupId: String? = nil, ignoreLocations: [Int], isPrimaryItem: Bool? = nil, itemId: Int, meta: [String: Any]? = nil, quantity: String, sellerId: Int? = nil, size: String) {
+        public init(articleAssignment: ArticleAssignment, assignLocations: [Int], groupId: String? = nil, ignoreLocations: [Int], isPrimaryItem: Bool? = nil, itemId: Int, meta: [String: Any]? = nil, quantity: Int, sellerId: Int? = nil, size: String) {
             
             self.itemId = itemId
             
@@ -95,7 +95,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                quantity = try container.decode(String.self, forKey: .quantity)
+                quantity = try container.decode(Int.self, forKey: .quantity)
                 
             
             
@@ -237,7 +237,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var size: String
         
-        public var quantity: String
+        public var quantity: Int
         
         public var groupId: String?
         
@@ -278,7 +278,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(articleAssignment: ArticleAssignment, assignLocations: [Int], groupId: String? = nil, ignoreLocations: [Int], isPrimaryItem: Bool? = nil, itemId: Int, meta: [String: Any]? = nil, quantity: String, sellerId: Int? = nil, size: String) {
+        public init(articleAssignment: ArticleAssignment, assignLocations: [Int], groupId: String? = nil, ignoreLocations: [Int], isPrimaryItem: Bool? = nil, itemId: Int, meta: [String: Any]? = nil, quantity: Int, sellerId: Int? = nil, size: String) {
             
             self.itemId = itemId
             
@@ -316,7 +316,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                quantity = try container.decode(String.self, forKey: .quantity)
+                quantity = try container.decode(Int.self, forKey: .quantity)
                 
             
             

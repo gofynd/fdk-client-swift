@@ -14,7 +14,7 @@ public extension PlatformClient.Order {
         
         public var forceTransition: Bool?
         
-        public var statuses: [StatuesRequest]?
+        public var statuses: [StatuesRequestSchema]?
         
         public var lockAfterTransition: Bool?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
+        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, statuses: [StatuesRequestSchema]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             
             self.forceTransition = forceTransition
             
@@ -74,7 +74,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                    statuses = try container.decode([StatuesRequestSchema].self, forKey: .statuses)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -185,7 +185,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var forceTransition: Bool?
         
-        public var statuses: [StatuesRequest]?
+        public var statuses: [StatuesRequestSchema]?
         
         public var lockAfterTransition: Bool?
         
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
+        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, statuses: [StatuesRequestSchema]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             
             self.forceTransition = forceTransition
             
@@ -245,7 +245,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                    statuses = try container.decode([StatuesRequestSchema].self, forKey: .statuses)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

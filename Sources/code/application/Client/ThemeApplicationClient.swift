@@ -163,12 +163,17 @@ extension ApplicationClient {
         * Description: Gets the theme configuration and template details of a theme applied to the application.
         **/
         public func getAppliedTheme(
+            filters: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
                         
-             
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = filters {
+                xQuery["filters"] = value
+            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -183,7 +188,7 @@ extension ApplicationClient {
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
@@ -216,12 +221,17 @@ extension ApplicationClient {
         **/
         public func getThemeForPreview(
             themeId: String,
+            filters: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
                         
-             
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = filters {
+                xQuery["filters"] = value
+            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -238,7 +248,7 @@ extension ApplicationClient {
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",

@@ -28,6 +28,8 @@ public extension PlatformClient.Content {
         
         public var content: String?
         
+        public var compatibleEngines: [String]?
+        
         public var pages: [[String: Any]]?
         
         public var source: TagSourceSchema?
@@ -51,13 +53,15 @@ public extension PlatformClient.Content {
             
             case content = "content"
             
+            case compatibleEngines = "compatible_engines"
+            
             case pages = "pages"
             
             case source = "__source"
             
         }
 
-        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
+        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
             
             self.name = name
             
@@ -74,6 +78,8 @@ public extension PlatformClient.Content {
             self.attributes = attributes
             
             self.content = content
+            
+            self.compatibleEngines = compatibleEngines
             
             self.pages = pages
             
@@ -182,6 +188,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    compatibleEngines = try container.decode([String].self, forKey: .compatibleEngines)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     pages = try container.decode([[String: Any]].self, forKey: .pages)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -247,6 +265,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(content, forKey: .content)
+            
+            
+            
+            
+            try? container.encodeIfPresent(compatibleEngines, forKey: .compatibleEngines)
             
             
             
@@ -291,6 +314,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var content: String?
         
+        public var compatibleEngines: [String]?
+        
         public var pages: [[String: Any]]?
         
         public var source: TagSourceSchema?
@@ -314,13 +339,15 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case content = "content"
             
+            case compatibleEngines = "compatible_engines"
+            
             case pages = "pages"
             
             case source = "__source"
             
         }
 
-        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
+        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
             
             self.name = name
             
@@ -337,6 +364,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.attributes = attributes
             
             self.content = content
+            
+            self.compatibleEngines = compatibleEngines
             
             self.pages = pages
             
@@ -445,6 +474,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    compatibleEngines = try container.decode([String].self, forKey: .compatibleEngines)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     pages = try container.decode([[String: Any]].self, forKey: .pages)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -510,6 +551,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(content, forKey: .content)
+            
+            
+            
+            
+            try? container.encodeIfPresent(compatibleEngines, forKey: .compatibleEngines)
             
             
             

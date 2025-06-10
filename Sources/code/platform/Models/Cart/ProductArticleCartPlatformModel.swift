@@ -32,6 +32,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var productGroupTags: [String]?
         
+        public var forceNewLineItem: Bool?
+        
         public var identifier: [String: Any]?
         
         public var mtoQuantity: Int?
@@ -49,6 +51,12 @@ public extension PlatformClient.ApplicationClient.Cart {
         public var size: String?
         
         public var store: StoreInfo?
+        
+        public var fulfillmentOption: FulfillmentOptionSchema?
+        
+        public var pickupStoreDetail: PickupStoreDetailSchema?
+        
+        public var itemIndex: Int?
         
         public var tags: [String]?
         
@@ -73,6 +81,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case productGroupTags = "product_group_tags"
             
+            case forceNewLineItem = "force_new_line_item"
+            
             case identifier = "identifier"
             
             case mtoQuantity = "mto_quantity"
@@ -91,11 +101,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case store = "store"
             
+            case fulfillmentOption = "fulfillment_option"
+            
+            case pickupStoreDetail = "pickup_store_detail"
+            
+            case itemIndex = "item_index"
+            
             case tags = "tags"
             
         }
 
-        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
+        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, forceNewLineItem: Bool? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, itemIndex: Int? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, pickupStoreDetail: PickupStoreDetailSchema? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -115,6 +131,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.productGroupTags = productGroupTags
             
+            self.forceNewLineItem = forceNewLineItem
+            
             self.identifier = identifier
             
             self.mtoQuantity = mtoQuantity
@@ -132,6 +150,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.size = size
             
             self.store = store
+            
+            self.fulfillmentOption = fulfillmentOption
+            
+            self.pickupStoreDetail = pickupStoreDetail
+            
+            self.itemIndex = itemIndex
             
             self.tags = tags
             
@@ -239,6 +263,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     productGroupTags = try container.decode([String].self, forKey: .productGroupTags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    forceNewLineItem = try container.decode(Bool.self, forKey: .forceNewLineItem)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -358,6 +394,42 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    fulfillmentOption = try container.decode(FulfillmentOptionSchema.self, forKey: .fulfillmentOption)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    pickupStoreDetail = try container.decode(PickupStoreDetailSchema.self, forKey: .pickupStoreDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    itemIndex = try container.decode(Int.self, forKey: .itemIndex)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     tags = try container.decode([String].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -420,6 +492,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(forceNewLineItem, forKey: .forceNewLineItem)
+            
+            
+            
+            
             try? container.encodeIfPresent(identifier, forKey: .identifier)
             
             
@@ -461,6 +538,21 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(store, forKey: .store)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentOption, forKey: .fulfillmentOption)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pickupStoreDetail, forKey: .pickupStoreDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemIndex, forKey: .itemIndex)
             
             
             

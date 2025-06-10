@@ -10,16 +10,22 @@ public extension ApplicationClient.Order {
         
         public var showTextArea: Bool?
         
+        public var remarkRequired: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case showTextArea = "show_text_area"
             
+            case remarkRequired = "remark_required"
+            
         }
 
-        public init(showTextArea: Bool? = nil) {
+        public init(remarkRequired: Bool? = nil, showTextArea: Bool? = nil) {
             
             self.showTextArea = showTextArea
+            
+            self.remarkRequired = remarkRequired
             
         }
 
@@ -38,6 +44,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                remarkRequired = try container.decode(Bool.self, forKey: .remarkRequired)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -45,6 +63,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
+            
+            
+            
+            try? container.encodeIfPresent(remarkRequired, forKey: .remarkRequired)
             
             
         }

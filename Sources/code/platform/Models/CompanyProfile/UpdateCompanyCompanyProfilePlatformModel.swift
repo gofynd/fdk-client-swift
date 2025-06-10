@@ -22,7 +22,7 @@ public extension PlatformClient.CompanyProfile {
         
         public var customJson: [String: Any]?
         
-        public var taxes: [CompanyTaxesSerializer1]?
+        public var taxes: [CompanyRequestTaxesSchema]?
         
         public var businessDetails: BusinessDetails?
         
@@ -30,7 +30,7 @@ public extension PlatformClient.CompanyProfile {
         
         public var businessType: String?
         
-        public var addresses: [CreateUpdateAddressSerializer]?
+        public var addresses: [CreateUpdateAddressSchema]?
         
         public var notificationEmails: [String]?
         
@@ -73,7 +73,7 @@ public extension PlatformClient.CompanyProfile {
             
         }
 
-        public init(addresses: [CreateUpdateAddressSerializer]? = nil, businessDetails: BusinessDetails? = nil, businessInfo: String? = nil, businessType: String? = nil, companyType: String? = nil, contactDetails: ContactDetails? = nil, documents: [Document]? = nil, franchiseEnabled: Bool? = nil, name: String? = nil, notificationEmails: [String]? = nil, rejectReason: String? = nil, taxes: [CompanyTaxesSerializer1]? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(addresses: [CreateUpdateAddressSchema]? = nil, businessDetails: BusinessDetails? = nil, businessInfo: String? = nil, businessType: String? = nil, companyType: String? = nil, contactDetails: ContactDetails? = nil, documents: [Document]? = nil, franchiseEnabled: Bool? = nil, name: String? = nil, notificationEmails: [String]? = nil, rejectReason: String? = nil, taxes: [CompanyRequestTaxesSchema]? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.franchiseEnabled = franchiseEnabled
             
@@ -170,7 +170,7 @@ public extension PlatformClient.CompanyProfile {
             
             
                 do {
-                    taxes = try container.decode([CompanyTaxesSerializer1].self, forKey: .taxes)
+                    taxes = try container.decode([CompanyRequestTaxesSchema].self, forKey: .taxes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -218,7 +218,7 @@ public extension PlatformClient.CompanyProfile {
             
             
                 do {
-                    addresses = try container.decode([CreateUpdateAddressSerializer].self, forKey: .addresses)
+                    addresses = try container.decode([CreateUpdateAddressSchema].self, forKey: .addresses)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class ProductTemplateDownloadsExport: Codable {
         
         
-        public var filters: ProductTemplateExportFilterRequest?
+        public var filters: ProductTemplateExportFilterRequestSchema?
         
         public var notificationEmails: [String]?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(filters: ProductTemplateExportFilterRequest? = nil, notificationEmails: [String]? = nil, type: String? = nil) {
+        public init(filters: ProductTemplateExportFilterRequestSchema? = nil, notificationEmails: [String]? = nil, type: String? = nil) {
             
             self.filters = filters
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    filters = try container.decode(ProductTemplateExportFilterRequest.self, forKey: .filters)
+                    filters = try container.decode(ProductTemplateExportFilterRequestSchema.self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,7 +114,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductTemplateDownloadsExport: Codable {
         
         
-        public var filters: ProductTemplateExportFilterRequest?
+        public var filters: ProductTemplateExportFilterRequestSchema?
         
         public var notificationEmails: [String]?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(filters: ProductTemplateExportFilterRequest? = nil, notificationEmails: [String]? = nil, type: String? = nil) {
+        public init(filters: ProductTemplateExportFilterRequestSchema? = nil, notificationEmails: [String]? = nil, type: String? = nil) {
             
             self.filters = filters
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    filters = try container.decode(ProductTemplateExportFilterRequest.self, forKey: .filters)
+                    filters = try container.decode(ProductTemplateExportFilterRequestSchema.self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

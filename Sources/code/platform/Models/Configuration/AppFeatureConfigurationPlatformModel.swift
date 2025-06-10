@@ -30,6 +30,12 @@ public extension PlatformClient.Configuration {
         
         public var order: OrderFeature?
         
+        public var buybox: BuyboxFeature?
+        
+        public var deliveryStrategy: DeliveryStrategy?
+        
+        public var fulfillmentOption: FulfillmentOption?
+        
         public var id: String?
         
         public var app: String?
@@ -61,6 +67,12 @@ public extension PlatformClient.Configuration {
             
             case order = "order"
             
+            case buybox = "buybox"
+            
+            case deliveryStrategy = "delivery_strategy"
+            
+            case fulfillmentOption = "fulfillment_option"
+            
             case id = "_id"
             
             case app = "app"
@@ -73,7 +85,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -92,6 +104,12 @@ public extension PlatformClient.Configuration {
             self.pcr = pcr
             
             self.order = order
+            
+            self.buybox = buybox
+            
+            self.deliveryStrategy = deliveryStrategy
+            
+            self.fulfillmentOption = fulfillmentOption
             
             self.id = id
             
@@ -218,6 +236,42 @@ public extension PlatformClient.Configuration {
             
             
                 do {
+                    buybox = try container.decode(BuyboxFeature.self, forKey: .buybox)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fulfillmentOption = try container.decode(FulfillmentOption.self, forKey: .fulfillmentOption)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -324,6 +378,21 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(order, forKey: .order)
+            
+            
+            
+            
+            try? container.encodeIfPresent(buybox, forKey: .buybox)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentOption, forKey: .fulfillmentOption)
             
             
             
@@ -385,6 +454,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var order: OrderFeature?
         
+        public var buybox: BuyboxFeature?
+        
+        public var deliveryStrategy: DeliveryStrategy?
+        
+        public var fulfillmentOption: FulfillmentOption?
+        
         public var id: String?
         
         public var app: String?
@@ -416,6 +491,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case order = "order"
             
+            case buybox = "buybox"
+            
+            case deliveryStrategy = "delivery_strategy"
+            
+            case fulfillmentOption = "fulfillment_option"
+            
             case id = "_id"
             
             case app = "app"
@@ -428,7 +509,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -447,6 +528,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.pcr = pcr
             
             self.order = order
+            
+            self.buybox = buybox
+            
+            self.deliveryStrategy = deliveryStrategy
+            
+            self.fulfillmentOption = fulfillmentOption
             
             self.id = id
             
@@ -573,6 +660,42 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
+                    buybox = try container.decode(BuyboxFeature.self, forKey: .buybox)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fulfillmentOption = try container.decode(FulfillmentOption.self, forKey: .fulfillmentOption)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -679,6 +802,21 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(order, forKey: .order)
+            
+            
+            
+            
+            try? container.encodeIfPresent(buybox, forKey: .buybox)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentOption, forKey: .fulfillmentOption)
             
             
             

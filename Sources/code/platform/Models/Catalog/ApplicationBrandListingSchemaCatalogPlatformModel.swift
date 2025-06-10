@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var items: [ApplicationBrandListingItemSchema]?
         
-        public var page: Page?
+        public var page: Page
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(items: [ApplicationBrandListingItemSchema]? = nil, page: Page? = nil) {
+        public init(items: [ApplicationBrandListingItemSchema]? = nil, page: Page) {
             
             self.items = items
             
@@ -49,16 +49,9 @@ public extension PlatformClient.Catalog {
                 
             
             
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
+                page = try container.decode(Page.self, forKey: .page)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -93,7 +86,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var items: [ApplicationBrandListingItemSchema]?
         
-        public var page: Page?
+        public var page: Page
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(items: [ApplicationBrandListingItemSchema]? = nil, page: Page? = nil) {
+        public init(items: [ApplicationBrandListingItemSchema]? = nil, page: Page) {
             
             self.items = items
             
@@ -128,16 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
+                page = try container.decode(Page.self, forKey: .page)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
