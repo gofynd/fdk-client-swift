@@ -30,6 +30,8 @@ public extension ApplicationClient.Content {
         
         public var navigation: [NavigationReference]?
         
+        public var v: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension ApplicationClient.Content {
             
             case navigation = "navigation"
             
+            case v = "__v"
+            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil, version: Double? = nil, id: String? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil, version: Double? = nil, id: String? = nil, v: Double? = nil) {
             
             self.id = id
             
@@ -80,6 +84,8 @@ public extension ApplicationClient.Content {
             self.version = version
             
             self.navigation = navigation
+            
+            self.v = v
             
         }
 
@@ -218,6 +224,18 @@ public extension ApplicationClient.Content {
             }
             
             
+            
+            do {
+                v = try container.decode(Double.self, forKey: .v)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -265,6 +283,10 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(navigation, forKey: .navigation)
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

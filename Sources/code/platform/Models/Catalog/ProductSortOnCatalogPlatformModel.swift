@@ -18,6 +18,10 @@ public extension PlatformClient.Catalog {
         
         public var value: String?
         
+        public var display: String?
+        
+        public var logo: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,15 +31,23 @@ public extension PlatformClient.Catalog {
             
             case value = "value"
             
+            case display = "display"
+            
+            case logo = "logo"
+            
         }
 
-        public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
+        public init(display: String? = nil, isSelected: Bool? = nil, logo: String? = nil, name: String? = nil, value: String? = nil) {
             
             self.isSelected = isSelected
             
             self.name = name
             
             self.value = value
+            
+            self.display = display
+            
+            self.logo = logo
             
         }
 
@@ -78,6 +90,30 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    display = try container.decode(String.self, forKey: .display)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    logo = try container.decode(String.self, forKey: .logo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -96,6 +132,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(value, forKey: .value)
+            
+            
+            
+            
+            try? container.encodeIfPresent(display, forKey: .display)
+            
+            
+            
+            
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
         }
@@ -120,6 +166,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var value: String?
         
+        public var display: String?
+        
+        public var logo: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -129,15 +179,23 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case value = "value"
             
+            case display = "display"
+            
+            case logo = "logo"
+            
         }
 
-        public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
+        public init(display: String? = nil, isSelected: Bool? = nil, logo: String? = nil, name: String? = nil, value: String? = nil) {
             
             self.isSelected = isSelected
             
             self.name = name
             
             self.value = value
+            
+            self.display = display
+            
+            self.logo = logo
             
         }
 
@@ -180,6 +238,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    display = try container.decode(String.self, forKey: .display)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    logo = try container.decode(String.self, forKey: .logo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -198,6 +280,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(value, forKey: .value)
+            
+            
+            
+            
+            try? container.encodeIfPresent(display, forKey: .display)
+            
+            
+            
+            
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
         }

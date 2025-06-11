@@ -22,8 +22,6 @@ public extension PlatformClient.Content {
         
         public var type: String?
         
-        public var action: Action?
-        
         public var active: Bool?
         
         public var display: String?
@@ -47,8 +45,6 @@ public extension PlatformClient.Content {
             
             case type = "type"
             
-            case action = "action"
-            
             case active = "active"
             
             case display = "display"
@@ -61,7 +57,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, schedule: CronBasedScheduleSchema? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
+        public init(acl: [String]? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, schedule: CronBasedScheduleSchema? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
             
             self.acl = acl
             
@@ -72,8 +68,6 @@ public extension PlatformClient.Content {
             self.image = image
             
             self.type = type
-            
-            self.action = action
             
             self.active = active
             
@@ -141,18 +135,6 @@ public extension PlatformClient.Content {
             
                 do {
                     type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    action = try container.decode(Action.self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -250,11 +232,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
             
             
             
@@ -308,8 +285,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var type: String?
         
-        public var action: Action?
-        
         public var active: Bool?
         
         public var display: String?
@@ -333,8 +308,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case type = "type"
             
-            case action = "action"
-            
             case active = "active"
             
             case display = "display"
@@ -347,7 +320,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, schedule: CronBasedScheduleSchema? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
+        public init(acl: [String]? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, schedule: CronBasedScheduleSchema? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
             
             self.acl = acl
             
@@ -358,8 +331,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.image = image
             
             self.type = type
-            
-            self.action = action
             
             self.active = active
             
@@ -427,18 +398,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    action = try container.decode(Action.self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -536,11 +495,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
             
             
             

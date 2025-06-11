@@ -8,9 +8,25 @@ public extension ApplicationClient.Order {
     */
     class Shipments: Codable {
         
+        public var advancePaymentConfig: [String: Any]?
+        
+        public var multiMopPayments: [String: Any]?
+        
+        public var multiMopPaymentsList: [[String: Any]]?
+        
+        public var isValidated: Bool?
+        
+        public var isActive: Bool?
+        
+        public var refundInformation: [[String: Any]]?
+        
+        public var currency: Currency?
+        
+        public var currencyInfo: CurrencyInfo?
+        
         public var payment: ShipmentPayment?
         
-        public var paymentInfo: [ShipmentPaymentInfo]?
+        public var paymentInfo: [PaymentInfo]?
         
         public var orderType: String?
         
@@ -88,14 +104,38 @@ public extension ApplicationClient.Order {
         
         public var deliveryDate: String?
         
-        public var order: OrderRequestSchema?
+        public var order: OrderRequest?
+        
+        public var meta: [String: Any]?
+        
+        public var canPayRemainingAmount: Bool?
         
         public var charges: [PriceAdjustmentCharge]?
         
-        public var fulfillmentOption: FulfillmentOption?
+        public var externalShipmentId: String?
+        
+        public var previousShipmentId: String?
+        
+        public var isRefundInitiated: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case advancePaymentConfig = "advance_payment_config"
+            
+            case multiMopPayments = "multi_mop_payments"
+            
+            case multiMopPaymentsList = "multi_mop_payments_list"
+            
+            case isValidated = "is_validated"
+            
+            case isActive = "is_active"
+            
+            case refundInformation = "refund_information"
+            
+            case currency = "currency"
+            
+            case currencyInfo = "currency_info"
             
             case payment = "payment"
             
@@ -179,13 +219,37 @@ public extension ApplicationClient.Order {
             
             case order = "order"
             
+            case meta = "meta"
+            
+            case canPayRemainingAmount = "can_pay_remaining_amount"
+            
             case charges = "charges"
             
-            case fulfillmentOption = "fulfillment_option"
+            case externalShipmentId = "external_shipment_id"
+            
+            case previousShipmentId = "previous_shipment_id"
+            
+            case isRefundInitiated = "is_refund_initiated"
             
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, fulfillmentOption: FulfillmentOption? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, order: OrderRequestSchema? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(advancePaymentConfig: [String: Any]? = nil, awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canPayRemainingAmount: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, externalShipmentId: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, isActive: Bool? = nil, isRefundInitiated: Bool? = nil, isValidated: Bool? = nil, meta: [String: Any]? = nil, multiMopPayments: [String: Any]? = nil, multiMopPaymentsList: [[String: Any]]? = nil, needHelpUrl: String? = nil, order: OrderRequest? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [PaymentInfo]? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, refundInformation: [[String: Any]]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+            
+            self.advancePaymentConfig = advancePaymentConfig
+            
+            self.multiMopPayments = multiMopPayments
+            
+            self.multiMopPaymentsList = multiMopPaymentsList
+            
+            self.isValidated = isValidated
+            
+            self.isActive = isActive
+            
+            self.refundInformation = refundInformation
+            
+            self.currency = currency
+            
+            self.currencyInfo = currencyInfo
             
             self.payment = payment
             
@@ -269,14 +333,118 @@ public extension ApplicationClient.Order {
             
             self.order = order
             
+            self.meta = meta
+            
+            self.canPayRemainingAmount = canPayRemainingAmount
+            
             self.charges = charges
             
-            self.fulfillmentOption = fulfillmentOption
+            self.externalShipmentId = externalShipmentId
+            
+            self.previousShipmentId = previousShipmentId
+            
+            self.isRefundInitiated = isRefundInitiated
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                advancePaymentConfig = try container.decode([String: Any].self, forKey: .advancePaymentConfig)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                multiMopPayments = try container.decode([String: Any].self, forKey: .multiMopPayments)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                multiMopPaymentsList = try container.decode([[String: Any]].self, forKey: .multiMopPaymentsList)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                isValidated = try container.decode(Bool.self, forKey: .isValidated)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                refundInformation = try container.decode([[String: Any]].self, forKey: .refundInformation)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                currency = try container.decode(Currency.self, forKey: .currency)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                currencyInfo = try container.decode(CurrencyInfo.self, forKey: .currencyInfo)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -292,7 +460,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                paymentInfo = try container.decode([ShipmentPaymentInfo].self, forKey: .paymentInfo)
+                paymentInfo = try container.decode([PaymentInfo].self, forKey: .paymentInfo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -760,7 +928,31 @@ public extension ApplicationClient.Order {
             
             
             do {
-                order = try container.decode(OrderRequestSchema.self, forKey: .order)
+                order = try container.decode(OrderRequest.self, forKey: .order)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                canPayRemainingAmount = try container.decode(Bool.self, forKey: .canPayRemainingAmount)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -784,7 +976,31 @@ public extension ApplicationClient.Order {
             
             
             do {
-                fulfillmentOption = try container.decode(FulfillmentOption.self, forKey: .fulfillmentOption)
+                externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                previousShipmentId = try container.decode(String.self, forKey: .previousShipmentId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                isRefundInitiated = try container.decode(Bool.self, forKey: .isRefundInitiated)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -798,6 +1014,38 @@ public extension ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(advancePaymentConfig, forKey: .advancePaymentConfig)
+            
+            
+            
+            try? container.encodeIfPresent(multiMopPayments, forKey: .multiMopPayments)
+            
+            
+            
+            try? container.encodeIfPresent(multiMopPaymentsList, forKey: .multiMopPaymentsList)
+            
+            
+            
+            try? container.encodeIfPresent(isValidated, forKey: .isValidated)
+            
+            
+            
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            try? container.encodeIfPresent(refundInformation, forKey: .refundInformation)
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
+            
             
             
             try? container.encodeIfPresent(payment, forKey: .payment)
@@ -964,11 +1212,27 @@ public extension ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            try? container.encodeIfPresent(canPayRemainingAmount, forKey: .canPayRemainingAmount)
+            
+            
+            
             try? container.encodeIfPresent(charges, forKey: .charges)
             
             
             
-            try? container.encodeIfPresent(fulfillmentOption, forKey: .fulfillmentOption)
+            try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
+            
+            
+            
+            try? container.encodeIfPresent(previousShipmentId, forKey: .previousShipmentId)
+            
+            
+            
+            try? container.encodeIfPresent(isRefundInitiated, forKey: .isRefundInitiated)
             
             
         }

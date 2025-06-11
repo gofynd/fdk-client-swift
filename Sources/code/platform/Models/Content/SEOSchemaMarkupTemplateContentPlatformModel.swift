@@ -24,18 +24,20 @@ public extension PlatformClient.Content {
         
         public var active: Bool?
         
+        public var application: String?
+        
         public var createdAt: String?
         
         public var updatedAt: String?
         
-        public var application: String?
-        
         public var targetJson: [String: Any]?
+        
+        public var v: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case title = "title"
             
@@ -47,17 +49,19 @@ public extension PlatformClient.Content {
             
             case active = "active"
             
+            case application = "application"
+            
             case createdAt = "created_at"
             
             case updatedAt = "updated_at"
             
-            case application = "application"
-            
             case targetJson = "target_json"
+            
+            case v = "__v"
             
         }
 
-        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil) {
+        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
             
             self.id = id
             
@@ -71,13 +75,15 @@ public extension PlatformClient.Content {
             
             self.active = active
             
+            self.application = application
+            
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
             
-            self.application = application
-            
             self.targetJson = targetJson
+            
+            self.v = v
             
         }
 
@@ -158,6 +164,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     createdAt = try container.decode(String.self, forKey: .createdAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -182,7 +200,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    application = try container.decode(String.self, forKey: .application)
+                    targetJson = try container.decode([String: Any].self, forKey: .targetJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +212,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    targetJson = try container.decode([String: Any].self, forKey: .targetJson)
+                    v = try container.decode(Double.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -241,6 +259,11 @@ public extension PlatformClient.Content {
             
             
             
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            
+            
+            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
@@ -251,12 +274,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(application, forKey: .application)
-            
-            
-            
-            
             try? container.encodeIfPresent(targetJson, forKey: .targetJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -287,18 +310,20 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var active: Bool?
         
+        public var application: String?
+        
         public var createdAt: String?
         
         public var updatedAt: String?
         
-        public var application: String?
-        
         public var targetJson: [String: Any]?
+        
+        public var v: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case title = "title"
             
@@ -310,17 +335,19 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case active = "active"
             
+            case application = "application"
+            
             case createdAt = "created_at"
             
             case updatedAt = "updated_at"
             
-            case application = "application"
-            
             case targetJson = "target_json"
+            
+            case v = "__v"
             
         }
 
-        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil) {
+        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
             
             self.id = id
             
@@ -334,13 +361,15 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.active = active
             
+            self.application = application
+            
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
             
-            self.application = application
-            
             self.targetJson = targetJson
+            
+            self.v = v
             
         }
 
@@ -421,6 +450,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     createdAt = try container.decode(String.self, forKey: .createdAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -445,7 +486,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    application = try container.decode(String.self, forKey: .application)
+                    targetJson = try container.decode([String: Any].self, forKey: .targetJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -457,7 +498,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    targetJson = try container.decode([String: Any].self, forKey: .targetJson)
+                    v = try container.decode(Double.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -504,6 +545,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            
+            
+            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
@@ -514,12 +560,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(application, forKey: .application)
-            
-            
-            
-            
             try? container.encodeIfPresent(targetJson, forKey: .targetJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

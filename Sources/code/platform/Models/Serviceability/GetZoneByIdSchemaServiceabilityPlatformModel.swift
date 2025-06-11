@@ -20,15 +20,17 @@ public extension PlatformClient.Serviceability {
         
         public var isActive: Bool
         
-        public var product: ProductSchema
+        public var isOpted: Bool?
         
-        public var stores: StoresSchema
+        public var product: ProductSchema?
         
-        public var createdBy: CreatedBy?
+        public var stores: StoresSchema?
         
-        public var modifiedBy: ModifiedBy?
+        public var createdBy: String?
         
         public var createdOn: String?
+        
+        public var modifiedBy: String?
         
         public var modifiedOn: String?
         
@@ -37,6 +39,8 @@ public extension PlatformClient.Serviceability {
         public var overlappingFileUrl: String?
         
         public var geoAreas: [String]
+        
+        public var type: String
         
         public var overlappingZoneNames: [String]?
         
@@ -51,15 +55,17 @@ public extension PlatformClient.Serviceability {
             
             case isActive = "is_active"
             
+            case isOpted = "is_opted"
+            
             case product = "product"
             
             case stores = "stores"
             
             case createdBy = "created_by"
             
-            case modifiedBy = "modified_by"
-            
             case createdOn = "created_on"
+            
+            case modifiedBy = "modified_by"
             
             case modifiedOn = "modified_on"
             
@@ -69,11 +75,13 @@ public extension PlatformClient.Serviceability {
             
             case geoAreas = "geo_areas"
             
+            case type = "type"
+            
             case overlappingZoneNames = "overlapping_zone_names"
             
         }
 
-        public init(createdBy: CreatedBy? = nil, createdOn: String? = nil, geoAreas: [String], isActive: Bool, modifiedBy: ModifiedBy? = nil, modifiedOn: String? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductSchema, slug: String, stage: String? = nil, stores: StoresSchema, zoneId: String) {
+        public init(createdBy: String? = nil, createdOn: String? = nil, geoAreas: [String], isActive: Bool, isOpted: Bool? = nil, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductSchema? = nil, slug: String, stage: String? = nil, stores: StoresSchema? = nil, type: String, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -83,15 +91,17 @@ public extension PlatformClient.Serviceability {
             
             self.isActive = isActive
             
+            self.isOpted = isOpted
+            
             self.product = product
             
             self.stores = stores
             
             self.createdBy = createdBy
             
-            self.modifiedBy = modifiedBy
-            
             self.createdOn = createdOn
+            
+            self.modifiedBy = modifiedBy
             
             self.modifiedOn = modifiedOn
             
@@ -100,6 +110,8 @@ public extension PlatformClient.Serviceability {
             self.overlappingFileUrl = overlappingFileUrl
             
             self.geoAreas = geoAreas
+            
+            self.type = type
             
             self.overlappingZoneNames = overlappingZoneNames
             
@@ -129,18 +141,8 @@ public extension PlatformClient.Serviceability {
             
             
             
-                product = try container.decode(ProductSchema.self, forKey: .product)
-                
-            
-            
-            
-                stores = try container.decode(StoresSchema.self, forKey: .stores)
-                
-            
-            
-            
                 do {
-                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,7 +154,31 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
+                    product = try container.decode(ProductSchema.self, forKey: .product)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    stores = try container.decode(StoresSchema.self, forKey: .stores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode(String.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,6 +191,18 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     createdOn = try container.decode(String.self, forKey: .createdOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode(String.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,6 +254,11 @@ public extension PlatformClient.Serviceability {
             
             
             
+                type = try container.decode(String.self, forKey: .type)
+                
+            
+            
+            
                 do {
                     overlappingZoneNames = try container.decode([String].self, forKey: .overlappingZoneNames)
                 
@@ -254,6 +297,11 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
+            
+            
+            
+            
             try? container.encodeIfPresent(product, forKey: .product)
             
             
@@ -269,12 +317,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-            
-            
-            
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             
@@ -295,6 +343,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(geoAreas, forKey: .geoAreas)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
@@ -326,15 +379,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isActive: Bool
         
-        public var product: ProductSchema
+        public var isOpted: Bool?
         
-        public var stores: StoresSchema
+        public var product: ProductSchema?
         
-        public var createdBy: CreatedBy?
+        public var stores: StoresSchema?
         
-        public var modifiedBy: ModifiedBy?
+        public var createdBy: String?
         
         public var createdOn: String?
+        
+        public var modifiedBy: String?
         
         public var modifiedOn: String?
         
@@ -343,6 +398,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public var overlappingFileUrl: String?
         
         public var geoAreas: [String]
+        
+        public var type: String
         
         public var overlappingZoneNames: [String]?
         
@@ -357,15 +414,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isActive = "is_active"
             
+            case isOpted = "is_opted"
+            
             case product = "product"
             
             case stores = "stores"
             
             case createdBy = "created_by"
             
-            case modifiedBy = "modified_by"
-            
             case createdOn = "created_on"
+            
+            case modifiedBy = "modified_by"
             
             case modifiedOn = "modified_on"
             
@@ -375,11 +434,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case geoAreas = "geo_areas"
             
+            case type = "type"
+            
             case overlappingZoneNames = "overlapping_zone_names"
             
         }
 
-        public init(createdBy: CreatedBy? = nil, createdOn: String? = nil, geoAreas: [String], isActive: Bool, modifiedBy: ModifiedBy? = nil, modifiedOn: String? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductSchema, slug: String, stage: String? = nil, stores: StoresSchema, zoneId: String) {
+        public init(createdBy: String? = nil, createdOn: String? = nil, geoAreas: [String], isActive: Bool, isOpted: Bool? = nil, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductSchema? = nil, slug: String, stage: String? = nil, stores: StoresSchema? = nil, type: String, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -389,15 +450,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.isActive = isActive
             
+            self.isOpted = isOpted
+            
             self.product = product
             
             self.stores = stores
             
             self.createdBy = createdBy
             
-            self.modifiedBy = modifiedBy
-            
             self.createdOn = createdOn
+            
+            self.modifiedBy = modifiedBy
             
             self.modifiedOn = modifiedOn
             
@@ -406,6 +469,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.overlappingFileUrl = overlappingFileUrl
             
             self.geoAreas = geoAreas
+            
+            self.type = type
             
             self.overlappingZoneNames = overlappingZoneNames
             
@@ -435,18 +500,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                product = try container.decode(ProductSchema.self, forKey: .product)
-                
-            
-            
-            
-                stores = try container.decode(StoresSchema.self, forKey: .stores)
-                
-            
-            
-            
                 do {
-                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -458,7 +513,31 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
+                    product = try container.decode(ProductSchema.self, forKey: .product)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    stores = try container.decode(StoresSchema.self, forKey: .stores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode(String.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -471,6 +550,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     createdOn = try container.decode(String.self, forKey: .createdOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode(String.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -522,6 +613,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+                type = try container.decode(String.self, forKey: .type)
+                
+            
+            
+            
                 do {
                     overlappingZoneNames = try container.decode([String].self, forKey: .overlappingZoneNames)
                 
@@ -560,6 +656,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
+            
+            
+            
+            
             try? container.encodeIfPresent(product, forKey: .product)
             
             
@@ -575,12 +676,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-            
-            
-            
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             
@@ -601,6 +702,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(geoAreas, forKey: .geoAreas)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             

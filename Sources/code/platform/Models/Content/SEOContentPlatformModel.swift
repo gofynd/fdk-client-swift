@@ -22,7 +22,7 @@ public extension PlatformClient.Content {
         
         public var sitemap: SEOSitemap?
         
-        public var breadcrumb: [SEObreadcrumb]?
+        public var breadcrumbs: [SEObreadcrumb]?
         
         public var canonicalUrl: String?
         
@@ -39,13 +39,13 @@ public extension PlatformClient.Content {
             
             case sitemap = "sitemap"
             
-            case breadcrumb = "breadcrumb"
+            case breadcrumbs = "breadcrumbs"
             
             case canonicalUrl = "canonical_url"
             
         }
 
-        public init(breadcrumb: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, image: SEOImage? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil) {
+        public init(breadcrumbs: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, image: SEOImage? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil) {
             
             self.description = description
             
@@ -57,7 +57,7 @@ public extension PlatformClient.Content {
             
             self.sitemap = sitemap
             
-            self.breadcrumb = breadcrumb
+            self.breadcrumbs = breadcrumbs
             
             self.canonicalUrl = canonicalUrl
             
@@ -128,7 +128,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    breadcrumb = try container.decode([SEObreadcrumb].self, forKey: .breadcrumb)
+                    breadcrumbs = try container.decode([SEObreadcrumb].self, forKey: .breadcrumbs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -182,7 +182,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(breadcrumb, forKey: .breadcrumb)
+            try? container.encodeIfPresent(breadcrumbs, forKey: .breadcrumbs)
             
             
             
@@ -216,7 +216,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var sitemap: SEOSitemap?
         
-        public var breadcrumb: [SEObreadcrumb]?
+        public var breadcrumbs: [SEObreadcrumb]?
         
         public var canonicalUrl: String?
         
@@ -233,13 +233,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case sitemap = "sitemap"
             
-            case breadcrumb = "breadcrumb"
+            case breadcrumbs = "breadcrumbs"
             
             case canonicalUrl = "canonical_url"
             
         }
 
-        public init(breadcrumb: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, image: SEOImage? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil) {
+        public init(breadcrumbs: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, image: SEOImage? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil) {
             
             self.description = description
             
@@ -251,7 +251,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.sitemap = sitemap
             
-            self.breadcrumb = breadcrumb
+            self.breadcrumbs = breadcrumbs
             
             self.canonicalUrl = canonicalUrl
             
@@ -322,7 +322,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    breadcrumb = try container.decode([SEObreadcrumb].self, forKey: .breadcrumb)
+                    breadcrumbs = try container.decode([SEObreadcrumb].self, forKey: .breadcrumbs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -376,7 +376,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(breadcrumb, forKey: .breadcrumb)
+            try? container.encodeIfPresent(breadcrumbs, forKey: .breadcrumbs)
             
             
             

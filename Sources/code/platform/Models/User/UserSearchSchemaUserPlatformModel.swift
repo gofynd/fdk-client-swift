@@ -54,10 +54,6 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var status: String?
         
-        public var deletedOn: String?
-        
-        public var consent: UserConsent?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -101,13 +97,9 @@ public extension PlatformClient.ApplicationClient.User {
             
             case status = "status"
             
-            case deletedOn = "deleted_on"
-            
-            case consent = "consent"
-            
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, archive: Bool? = nil, consent: UserConsent? = nil, createdAt: String? = nil, deletedOn: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, status: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, archive: Bool? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, status: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             
             self.applicationId = applicationId
             
@@ -148,10 +140,6 @@ public extension PlatformClient.ApplicationClient.User {
             self.archive = archive
             
             self.status = status
-            
-            self.deletedOn = deletedOn
-            
-            self.consent = consent
             
         }
 
@@ -398,30 +386,6 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
-            
-                do {
-                    deletedOn = try container.decode(String.self, forKey: .deletedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    consent = try container.decode(UserConsent.self, forKey: .consent)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -525,16 +489,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(deletedOn, forKey: .deletedOn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(consent, forKey: .consent)
             
             
         }

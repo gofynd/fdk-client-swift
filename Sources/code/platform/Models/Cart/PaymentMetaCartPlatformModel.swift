@@ -22,8 +22,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var merchantCode: String?
         
-        public var paymentSourceBagId: [String]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,11 +33,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case merchantCode = "merchant_code"
             
-            case paymentSourceBagId = "payment_source_bag_id"
-            
         }
 
-        public init(merchantCode: String? = nil, paymentGateway: String? = nil, paymentIdentifier: String? = nil, paymentSourceBagId: [String]? = nil, type: String? = nil) {
+        public init(merchantCode: String? = nil, paymentGateway: String? = nil, paymentIdentifier: String? = nil, type: String? = nil) {
             
             self.paymentGateway = paymentGateway
             
@@ -48,8 +44,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.paymentIdentifier = paymentIdentifier
             
             self.merchantCode = merchantCode
-            
-            self.paymentSourceBagId = paymentSourceBagId
             
         }
 
@@ -104,18 +98,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    paymentSourceBagId = try container.decode([String].self, forKey: .paymentSourceBagId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -139,11 +121,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentSourceBagId, forKey: .paymentSourceBagId)
             
             
         }

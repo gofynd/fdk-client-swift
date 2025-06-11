@@ -24,13 +24,9 @@ public extension PlatformClient.Catalog {
         
         public var tags: [String]?
         
-        public var mode: String?
-        
         public var totalQuantity: Int?
         
-        public var damagedQuantity: Int?
-        
-        public var notAvailableQuantity: Int?
+        public var sellableQuantity: Int?
         
         public var traceId: String?
         
@@ -49,19 +45,15 @@ public extension PlatformClient.Catalog {
             
             case tags = "tags"
             
-            case mode = "mode"
-            
             case totalQuantity = "total_quantity"
             
-            case damagedQuantity = "damaged_quantity"
-            
-            case notAvailableQuantity = "not_available_quantity"
+            case sellableQuantity = "sellable_quantity"
             
             case traceId = "trace_id"
             
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
+        public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellableQuantity: Int? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
             
             self.expirationDate = expirationDate
             
@@ -75,13 +67,9 @@ public extension PlatformClient.Catalog {
             
             self.tags = tags
             
-            self.mode = mode
-            
             self.totalQuantity = totalQuantity
             
-            self.damagedQuantity = damagedQuantity
-            
-            self.notAvailableQuantity = notAvailableQuantity
+            self.sellableQuantity = sellableQuantity
             
             self.traceId = traceId
             
@@ -150,18 +138,6 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    mode = try container.decode(String.self, forKey: .mode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -174,19 +150,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    damagedQuantity = try container.decode(Int.self, forKey: .damagedQuantity)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    notAvailableQuantity = try container.decode(Int.self, forKey: .notAvailableQuantity)
+                    sellableQuantity = try container.decode(Int.self, forKey: .sellableQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -245,22 +209,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(mode, forKey: .mode)
-            
-            
-            
-            
             try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
             
             
             
             
-            try? container.encodeIfPresent(damagedQuantity, forKey: .damagedQuantity)
-            
-            
-            
-            
-            try? container.encodeIfPresent(notAvailableQuantity, forKey: .notAvailableQuantity)
+            try? container.encodeIfPresent(sellableQuantity, forKey: .sellableQuantity)
             
             
             
@@ -296,13 +250,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var tags: [String]?
         
-        public var mode: String?
-        
         public var totalQuantity: Int?
         
-        public var damagedQuantity: Int?
-        
-        public var notAvailableQuantity: Int?
+        public var sellableQuantity: Int?
         
         public var traceId: String?
         
@@ -321,19 +271,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case tags = "tags"
             
-            case mode = "mode"
-            
             case totalQuantity = "total_quantity"
             
-            case damagedQuantity = "damaged_quantity"
-            
-            case notAvailableQuantity = "not_available_quantity"
+            case sellableQuantity = "sellable_quantity"
             
             case traceId = "trace_id"
             
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
+        public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellableQuantity: Int? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
             
             self.expirationDate = expirationDate
             
@@ -347,13 +293,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.tags = tags
             
-            self.mode = mode
-            
             self.totalQuantity = totalQuantity
             
-            self.damagedQuantity = damagedQuantity
-            
-            self.notAvailableQuantity = notAvailableQuantity
+            self.sellableQuantity = sellableQuantity
             
             self.traceId = traceId
             
@@ -422,18 +364,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    mode = try container.decode(String.self, forKey: .mode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -446,19 +376,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    damagedQuantity = try container.decode(Int.self, forKey: .damagedQuantity)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    notAvailableQuantity = try container.decode(Int.self, forKey: .notAvailableQuantity)
+                    sellableQuantity = try container.decode(Int.self, forKey: .sellableQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -517,22 +435,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(mode, forKey: .mode)
-            
-            
-            
-            
             try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
             
             
             
             
-            try? container.encodeIfPresent(damagedQuantity, forKey: .damagedQuantity)
-            
-            
-            
-            
-            try? container.encodeIfPresent(notAvailableQuantity, forKey: .notAvailableQuantity)
+            try? container.encodeIfPresent(sellableQuantity, forKey: .sellableQuantity)
             
             
             

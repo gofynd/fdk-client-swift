@@ -8,9 +8,9 @@ public extension ApplicationClient.User {
     */
     class EditMobileRequestSchema: Codable {
         
-        public var countryCode: String?
+        public var countryCode: String
         
-        public var phone: String?
+        public var phone: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(countryCode: String? = nil, phone: String? = nil) {
+        public init(countryCode: String, phone: String) {
             
             self.countryCode = countryCode
             
@@ -33,27 +33,13 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            countryCode = try container.decode(String.self, forKey: .countryCode)
             
             
             
-            do {
-                phone = try container.decode(String.self, forKey: .phone)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            phone = try container.decode(String.self, forKey: .phone)
+            
             
             
         }

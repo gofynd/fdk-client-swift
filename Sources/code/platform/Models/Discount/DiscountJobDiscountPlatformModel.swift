@@ -20,7 +20,7 @@ public extension PlatformClient.Discount {
         
         public var isActive: Bool
         
-        public var appIds: [String]
+        public var appId: String
         
         public var jobType: String
         
@@ -36,7 +36,7 @@ public extension PlatformClient.Discount {
         
         public var storeIds: [Int]?
         
-        public var zoneIds: [String]?
+        public var factoryTypeIds: [String]?
         
         public var discountMeta: DiscountMeta?
         
@@ -63,7 +63,7 @@ public extension PlatformClient.Discount {
             
             case isActive = "is_active"
             
-            case appIds = "app_ids"
+            case appId = "app_id"
             
             case jobType = "job_type"
             
@@ -79,7 +79,7 @@ public extension PlatformClient.Discount {
             
             case storeIds = "store_ids"
             
-            case zoneIds = "zone_ids"
+            case factoryTypeIds = "factory_type_ids"
             
             case discountMeta = "discount_meta"
             
@@ -97,7 +97,7 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, zoneIds: [String]? = nil, id: String) {
+        public init(appId: String, brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String? = nil, factoryTypeIds: [String]? = nil, filePath: String? = nil, isActive: Bool, jobType: String, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, id: String) {
             
             self.id = id
             
@@ -107,7 +107,7 @@ public extension PlatformClient.Discount {
             
             self.isActive = isActive
             
-            self.appIds = appIds
+            self.appId = appId
             
             self.jobType = jobType
             
@@ -123,7 +123,7 @@ public extension PlatformClient.Discount {
             
             self.storeIds = storeIds
             
-            self.zoneIds = zoneIds
+            self.factoryTypeIds = factoryTypeIds
             
             self.discountMeta = discountMeta
             
@@ -165,7 +165,7 @@ public extension PlatformClient.Discount {
             
             
             
-                appIds = try container.decode([String].self, forKey: .appIds)
+                appId = try container.decode(String.self, forKey: .appId)
                 
             
             
@@ -241,7 +241,7 @@ public extension PlatformClient.Discount {
             
             
                 do {
-                    zoneIds = try container.decode([String].self, forKey: .zoneIds)
+                    factoryTypeIds = try container.decode([String].self, forKey: .factoryTypeIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -327,7 +327,7 @@ public extension PlatformClient.Discount {
             
             
             
-            try? container.encodeIfPresent(appIds, forKey: .appIds)
+            try? container.encodeIfPresent(appId, forKey: .appId)
             
             
             
@@ -367,7 +367,7 @@ public extension PlatformClient.Discount {
             
             
             
-            try? container.encodeIfPresent(zoneIds, forKey: .zoneIds)
+            try? container.encodeIfPresent(factoryTypeIds, forKey: .factoryTypeIds)
             
             
             

@@ -16,7 +16,7 @@ public extension PlatformClient.Communication {
         
         public var expiry: Int?
         
-        public var template: SendOtpSmsCommsTemplate?
+        public var template: [String: Any]?
         
         public var provider: SendOtpSmsCommsProvider?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(expiry: Int? = nil, otpLength: Int? = nil, provider: SendOtpSmsCommsProvider? = nil, template: SendOtpSmsCommsTemplate? = nil) {
+        public init(expiry: Int? = nil, otpLength: Int? = nil, provider: SendOtpSmsCommsProvider? = nil, template: [String: Any]? = nil) {
             
             self.otpLength = otpLength
             
@@ -74,7 +74,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    template = try container.decode(SendOtpSmsCommsTemplate.self, forKey: .template)
+                    template = try container.decode([String: Any].self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,7 +141,7 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var expiry: Int?
         
-        public var template: SendOtpSmsCommsTemplate?
+        public var template: [String: Any]?
         
         public var provider: SendOtpSmsCommsProvider?
         
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(expiry: Int? = nil, otpLength: Int? = nil, provider: SendOtpSmsCommsProvider? = nil, template: SendOtpSmsCommsTemplate? = nil) {
+        public init(expiry: Int? = nil, otpLength: Int? = nil, provider: SendOtpSmsCommsProvider? = nil, template: [String: Any]? = nil) {
             
             self.otpLength = otpLength
             
@@ -199,7 +199,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    template = try container.decode(SendOtpSmsCommsTemplate.self, forKey: .template)
+                    template = try container.decode([String: Any].self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

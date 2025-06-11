@@ -14,7 +14,7 @@ public extension PlatformClient.Serviceability {
         
         public var statusCode: Int?
         
-        public var error: [String: Any]?
+        public var error: [ErrorResponse]?
         
         public var success: Bool?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(error: [String: Any]? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+        public init(error: [ErrorResponse]? = nil, statusCode: Int? = nil, success: Bool? = nil) {
             
             self.statusCode = statusCode
             
@@ -56,7 +56,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    error = try container.decode([String: Any].self, forKey: .error)
+                    error = try container.decode([ErrorResponse].self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var statusCode: Int?
         
-        public var error: [String: Any]?
+        public var error: [ErrorResponse]?
         
         public var success: Bool?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(error: [String: Any]? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+        public init(error: [ErrorResponse]? = nil, statusCode: Int? = nil, success: Bool? = nil) {
             
             self.statusCode = statusCode
             
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    error = try container.decode([String: Any].self, forKey: .error)
+                    error = try container.decode([ErrorResponse].self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

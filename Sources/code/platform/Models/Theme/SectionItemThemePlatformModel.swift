@@ -18,6 +18,8 @@ public extension PlatformClient.Theme {
         
         public var name: String?
         
+        public var preset: SectionPreset?
+        
         public var label: String?
         
 
@@ -29,17 +31,21 @@ public extension PlatformClient.Theme {
             
             case name = "name"
             
+            case preset = "preset"
+            
             case label = "label"
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, props: [[String: Any]]? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, preset: SectionPreset? = nil, props: [[String: Any]]? = nil) {
             
             self.props = props
             
             self.blocks = blocks
             
             self.name = name
+            
+            self.preset = preset
             
             self.label = label
             
@@ -86,6 +92,18 @@ public extension PlatformClient.Theme {
             
             
                 do {
+                    preset = try container.decode(SectionPreset.self, forKey: .preset)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     label = try container.decode(String.self, forKey: .label)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -114,6 +132,11 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(preset, forKey: .preset)
             
             
             
@@ -143,6 +166,8 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var name: String?
         
+        public var preset: SectionPreset?
+        
         public var label: String?
         
 
@@ -154,17 +179,21 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case name = "name"
             
+            case preset = "preset"
+            
             case label = "label"
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, props: [[String: Any]]? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, preset: SectionPreset? = nil, props: [[String: Any]]? = nil) {
             
             self.props = props
             
             self.blocks = blocks
             
             self.name = name
+            
+            self.preset = preset
             
             self.label = label
             
@@ -211,6 +240,18 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
+                    preset = try container.decode(SectionPreset.self, forKey: .preset)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     label = try container.decode(String.self, forKey: .label)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -239,6 +280,11 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(preset, forKey: .preset)
             
             
             

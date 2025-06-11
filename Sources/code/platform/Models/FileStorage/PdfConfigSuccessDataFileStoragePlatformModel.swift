@@ -28,6 +28,8 @@ public extension PlatformClient.FileStorage {
         
         public var countryCode: String?
         
+        public var defaultTemplate: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -47,9 +49,11 @@ public extension PlatformClient.FileStorage {
             
             case countryCode = "country_code"
             
+            case defaultTemplate = "default_template"
+            
         }
 
-        public init(applicationId: String? = nil, companyId: Int? = nil, countryCode: String? = nil, format: String? = nil, pdfTypeId: Int? = nil, template: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(applicationId: String? = nil, companyId: Int? = nil, countryCode: String? = nil, defaultTemplate: Bool? = nil, format: String? = nil, pdfTypeId: Int? = nil, template: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
@@ -66,6 +70,8 @@ public extension PlatformClient.FileStorage {
             self.v = v
             
             self.countryCode = countryCode
+            
+            self.defaultTemplate = defaultTemplate
             
         }
 
@@ -168,6 +174,18 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    defaultTemplate = try container.decode(Bool.self, forKey: .defaultTemplate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -211,6 +229,11 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(defaultTemplate, forKey: .defaultTemplate)
             
             
         }
@@ -245,6 +268,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var countryCode: String?
         
+        public var defaultTemplate: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -264,9 +289,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case countryCode = "country_code"
             
+            case defaultTemplate = "default_template"
+            
         }
 
-        public init(applicationId: String? = nil, companyId: Int? = nil, countryCode: String? = nil, format: String? = nil, pdfTypeId: Int? = nil, template: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(applicationId: String? = nil, companyId: Int? = nil, countryCode: String? = nil, defaultTemplate: Bool? = nil, format: String? = nil, pdfTypeId: Int? = nil, template: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
@@ -283,6 +310,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.v = v
             
             self.countryCode = countryCode
+            
+            self.defaultTemplate = defaultTemplate
             
         }
 
@@ -385,6 +414,18 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    defaultTemplate = try container.decode(Bool.self, forKey: .defaultTemplate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -428,6 +469,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(defaultTemplate, forKey: .defaultTemplate)
             
             
         }

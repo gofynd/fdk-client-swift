@@ -22,6 +22,8 @@ public extension PlatformClient.Content {
         
         public var supportedValidations: [SupportedValidationsSchema]?
         
+        public var scope: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension PlatformClient.Content {
             
             case supportedValidations = "supported_validations"
             
+            case scope = "scope"
+            
         }
 
-        public init(category: String? = nil, listEnabled: Bool? = nil, name: String? = nil, supportedValidations: [SupportedValidationsSchema]? = nil, type: String? = nil) {
+        public init(category: String? = nil, listEnabled: Bool? = nil, name: String? = nil, scope: [String]? = nil, supportedValidations: [SupportedValidationsSchema]? = nil, type: String? = nil) {
             
             self.name = name
             
@@ -48,6 +52,8 @@ public extension PlatformClient.Content {
             self.type = type
             
             self.supportedValidations = supportedValidations
+            
+            self.scope = scope
             
         }
 
@@ -114,6 +120,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    scope = try container.decode([String].self, forKey: .scope)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +160,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(supportedValidations, forKey: .supportedValidations)
+            
+            
+            
+            
+            try? container.encodeIfPresent(scope, forKey: .scope)
             
             
         }
@@ -170,6 +193,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var supportedValidations: [SupportedValidationsSchema]?
         
+        public var scope: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -183,9 +208,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case supportedValidations = "supported_validations"
             
+            case scope = "scope"
+            
         }
 
-        public init(category: String? = nil, listEnabled: Bool? = nil, name: String? = nil, supportedValidations: [SupportedValidationsSchema]? = nil, type: String? = nil) {
+        public init(category: String? = nil, listEnabled: Bool? = nil, name: String? = nil, scope: [String]? = nil, supportedValidations: [SupportedValidationsSchema]? = nil, type: String? = nil) {
             
             self.name = name
             
@@ -196,6 +223,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.type = type
             
             self.supportedValidations = supportedValidations
+            
+            self.scope = scope
             
         }
 
@@ -262,6 +291,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    scope = try container.decode([String].self, forKey: .scope)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -290,6 +331,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(supportedValidations, forKey: .supportedValidations)
+            
+            
+            
+            
+            try? container.encodeIfPresent(scope, forKey: .scope)
             
             
         }

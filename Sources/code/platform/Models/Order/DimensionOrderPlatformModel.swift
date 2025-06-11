@@ -14,9 +14,9 @@ public extension PlatformClient.Order {
         
         public var packagingType: String?
         
-        public var weight: Double?
+        public var weight: String?
         
-        public var height: Double?
+        public var height: String?
         
         public var length: Double?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(height: Double? = nil, length: Double? = nil, packagingType: String? = nil, weight: Double? = nil, width: Double? = nil) {
+        public init(height: String? = nil, length: Double? = nil, packagingType: String? = nil, weight: String? = nil, width: Double? = nil) {
             
             self.packagingType = packagingType
             
@@ -68,7 +68,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    weight = try container.decode(Double.self, forKey: .weight)
+                    weight = try container.decode(String.self, forKey: .weight)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +80,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    height = try container.decode(Double.self, forKey: .height)
+                    height = try container.decode(String.self, forKey: .height)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,9 +162,9 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var packagingType: String?
         
-        public var weight: Double?
+        public var weight: String?
         
-        public var height: Double?
+        public var height: String?
         
         public var length: Double?
         
@@ -185,7 +185,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(height: Double? = nil, length: Double? = nil, packagingType: String? = nil, weight: Double? = nil, width: Double? = nil) {
+        public init(height: String? = nil, length: Double? = nil, packagingType: String? = nil, weight: String? = nil, width: Double? = nil) {
             
             self.packagingType = packagingType
             
@@ -216,7 +216,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    weight = try container.decode(Double.self, forKey: .weight)
+                    weight = try container.decode(String.self, forKey: .weight)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,7 +228,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    height = try container.decode(Double.self, forKey: .height)
+                    height = try container.decode(String.self, forKey: .height)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

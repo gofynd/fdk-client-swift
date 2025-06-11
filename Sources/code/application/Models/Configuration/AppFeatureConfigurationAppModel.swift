@@ -26,9 +26,7 @@ public extension ApplicationClient.Configuration {
         
         public var order: OrderFeature?
         
-        public var fulfillmentOption: FulfillmentOption?
-        
-        public var deliveryStrategy: DeliveryStrategy?
+        public var buybox: BuyboxFeature?
         
         public var id: String?
         
@@ -39,6 +37,8 @@ public extension ApplicationClient.Configuration {
         public var modifiedAt: String?
         
         public var v: Int?
+        
+        public var pricingStrategy: PricingStrategy?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -61,9 +61,7 @@ public extension ApplicationClient.Configuration {
             
             case order = "order"
             
-            case fulfillmentOption = "fulfillment_option"
-            
-            case deliveryStrategy = "delivery_strategy"
+            case buybox = "buybox"
             
             case id = "_id"
             
@@ -75,9 +73,11 @@ public extension ApplicationClient.Configuration {
             
             case v = "__v"
             
+            case pricingStrategy = "pricing_strategy"
+            
         }
 
-        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, pricingStrategy: PricingStrategy? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -97,9 +97,7 @@ public extension ApplicationClient.Configuration {
             
             self.order = order
             
-            self.fulfillmentOption = fulfillmentOption
-            
-            self.deliveryStrategy = deliveryStrategy
+            self.buybox = buybox
             
             self.id = id
             
@@ -110,6 +108,8 @@ public extension ApplicationClient.Configuration {
             self.modifiedAt = modifiedAt
             
             self.v = v
+            
+            self.pricingStrategy = pricingStrategy
             
         }
 
@@ -226,19 +226,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                fulfillmentOption = try container.decode(FulfillmentOption.self, forKey: .fulfillmentOption)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
+                buybox = try container.decode(BuyboxFeature.self, forKey: .buybox)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -308,6 +296,18 @@ public extension ApplicationClient.Configuration {
             }
             
             
+            
+            do {
+                pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -350,11 +350,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(fulfillmentOption, forKey: .fulfillmentOption)
-            
-            
-            
-            try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
+            try? container.encodeIfPresent(buybox, forKey: .buybox)
             
             
             
@@ -375,6 +371,10 @@ public extension ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
         }

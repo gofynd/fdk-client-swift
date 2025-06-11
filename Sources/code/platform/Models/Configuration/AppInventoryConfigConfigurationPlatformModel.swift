@@ -12,8 +12,6 @@ public extension PlatformClient.Configuration {
     class AppInventoryConfig: Codable {
         
         
-        public var deliveryStrategy: DeliveryStrategy?
-        
         public var brand: InventoryBrand?
         
         public var store: InventoryStore?
@@ -24,24 +22,28 @@ public extension PlatformClient.Configuration {
         
         public var discount: InventoryDiscount?
         
+        public var pricingStrategy: PricingStrategy?
+        
         public var outOfStock: Bool?
         
         public var onlyVerifiedProducts: Bool?
         
         public var franchiseEnabled: Bool?
         
-        public var excludeCategory: [[String: Any]]?
+        public var excludeCategory: [Int]?
         
         public var image: [String]?
         
-        public var companyStore: [[String: Any]]?
+        public var companyStore: [Int]?
         
         public var companyId: Int?
         
+        public var enableZoneOverlapping: Bool?
+        
+        public var sortPopularFirst: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case deliveryStrategy = "delivery_strategy"
             
             case brand = "brand"
             
@@ -52,6 +54,8 @@ public extension PlatformClient.Configuration {
             case price = "price"
             
             case discount = "discount"
+            
+            case pricingStrategy = "pricing_strategy"
             
             case outOfStock = "out_of_stock"
             
@@ -67,11 +71,13 @@ public extension PlatformClient.Configuration {
             
             case companyId = "company_id"
             
+            case enableZoneOverlapping = "enable_zone_overlapping"
+            
+            case sortPopularFirst = "sort_popular_first"
+            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, deliveryStrategy: DeliveryStrategy? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
-            
-            self.deliveryStrategy = deliveryStrategy
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [Int]? = nil, discount: InventoryDiscount? = nil, enableZoneOverlapping: Bool? = nil, excludeCategory: [Int]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, pricingStrategy: PricingStrategy? = nil, sortPopularFirst: Bool? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -82,6 +88,8 @@ public extension PlatformClient.Configuration {
             self.price = price
             
             self.discount = discount
+            
+            self.pricingStrategy = pricingStrategy
             
             self.outOfStock = outOfStock
             
@@ -97,22 +105,14 @@ public extension PlatformClient.Configuration {
             
             self.companyId = companyId
             
+            self.enableZoneOverlapping = enableZoneOverlapping
+            
+            self.sortPopularFirst = sortPopularFirst
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -176,6 +176,18 @@ public extension PlatformClient.Configuration {
             
             
                 do {
+                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -212,7 +224,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    excludeCategory = try container.decode([[String: Any]].self, forKey: .excludeCategory)
+                    excludeCategory = try container.decode([Int].self, forKey: .excludeCategory)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -236,7 +248,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    companyStore = try container.decode([[String: Any]].self, forKey: .companyStore)
+                    companyStore = try container.decode([Int].self, forKey: .companyStore)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -258,15 +270,34 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    enableZoneOverlapping = try container.decode(Bool.self, forKey: .enableZoneOverlapping)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sortPopularFirst = try container.decode(Bool.self, forKey: .sortPopularFirst)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
-            
             
             
             
@@ -291,6 +322,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(discount, forKey: .discount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
             
@@ -326,6 +362,16 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(enableZoneOverlapping, forKey: .enableZoneOverlapping)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sortPopularFirst, forKey: .sortPopularFirst)
             
             
         }
@@ -344,8 +390,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
     class AppInventoryConfig: Codable {
         
         
-        public var deliveryStrategy: DeliveryStrategy?
-        
         public var brand: InventoryBrand?
         
         public var store: InventoryStore?
@@ -356,24 +400,28 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var discount: InventoryDiscount?
         
+        public var pricingStrategy: PricingStrategy?
+        
         public var outOfStock: Bool?
         
         public var onlyVerifiedProducts: Bool?
         
         public var franchiseEnabled: Bool?
         
-        public var excludeCategory: [[String: Any]]?
+        public var excludeCategory: [Int]?
         
         public var image: [String]?
         
-        public var companyStore: [[String: Any]]?
+        public var companyStore: [Int]?
         
         public var companyId: Int?
         
+        public var enableZoneOverlapping: Bool?
+        
+        public var sortPopularFirst: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case deliveryStrategy = "delivery_strategy"
             
             case brand = "brand"
             
@@ -384,6 +432,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             case price = "price"
             
             case discount = "discount"
+            
+            case pricingStrategy = "pricing_strategy"
             
             case outOfStock = "out_of_stock"
             
@@ -399,11 +449,13 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case companyId = "company_id"
             
+            case enableZoneOverlapping = "enable_zone_overlapping"
+            
+            case sortPopularFirst = "sort_popular_first"
+            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, deliveryStrategy: DeliveryStrategy? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
-            
-            self.deliveryStrategy = deliveryStrategy
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [Int]? = nil, discount: InventoryDiscount? = nil, enableZoneOverlapping: Bool? = nil, excludeCategory: [Int]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, pricingStrategy: PricingStrategy? = nil, sortPopularFirst: Bool? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -414,6 +466,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.price = price
             
             self.discount = discount
+            
+            self.pricingStrategy = pricingStrategy
             
             self.outOfStock = outOfStock
             
@@ -429,22 +483,14 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.companyId = companyId
             
+            self.enableZoneOverlapping = enableZoneOverlapping
+            
+            self.sortPopularFirst = sortPopularFirst
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -508,6 +554,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
+                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -544,7 +602,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    excludeCategory = try container.decode([[String: Any]].self, forKey: .excludeCategory)
+                    excludeCategory = try container.decode([Int].self, forKey: .excludeCategory)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -568,7 +626,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    companyStore = try container.decode([[String: Any]].self, forKey: .companyStore)
+                    companyStore = try container.decode([Int].self, forKey: .companyStore)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -590,15 +648,34 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    enableZoneOverlapping = try container.decode(Bool.self, forKey: .enableZoneOverlapping)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sortPopularFirst = try container.decode(Bool.self, forKey: .sortPopularFirst)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
-            
             
             
             
@@ -623,6 +700,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(discount, forKey: .discount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
             
@@ -658,6 +740,16 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(enableZoneOverlapping, forKey: .enableZoneOverlapping)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sortPopularFirst, forKey: .sortPopularFirst)
             
             
         }

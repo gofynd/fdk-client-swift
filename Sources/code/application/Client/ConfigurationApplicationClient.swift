@@ -55,7 +55,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get sales channel
+        * Summary: Fetches application details.
         * Description: Get details of the current sales channel.
         **/
         public func getApplication(
@@ -107,13 +107,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get sales channel owner
+        * Summary: Get sales channel, owner and seller information
         * Description: Get details of the sales channel owner.
         **/
         public func getOwnerInfo(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ApplicationAboutResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -144,7 +144,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ApplicationAboutResponseSchema.self, from: data)
+                        let response = Utility.decode(ApplicationAboutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -159,7 +159,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Sales channel
+        * Summary: Retrieves basic app info.
         * Description: Get basic details of the sales channel.
         **/
         public func getBasicDetails(
@@ -211,13 +211,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get API tokens
+        * Summary: Fetches API tokens.
         * Description: Get tools integration token of the sales channel. For example, Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, and Facebook.
         **/
         public func getIntegrationTokens(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppTokenResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppTokenResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -248,7 +248,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppTokenResponseSchema.self, from: data)
+                        let response = Utility.decode(AppTokenResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -263,7 +263,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List order-enabled selling locations
+        * Summary: Get all deployment stores
         * Description: Get details of all the deployment store locations where the sales channel will be used for order placement.
         **/
         public func getOrderingStores(
@@ -328,9 +328,44 @@ extension ApplicationClient {
         }
         
         
+        
+        
+        
         /**
         *
-        * Summary: Get a selling location
+        * Summary: get paginator for getOrderingStores
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getOrderingStoresPaginator(
+            pageSize: Int?,
+            q: String?,
+            headers: [(key: String, value: String)]? = nil
+            ) -> Paginator<OrderingStores> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<OrderingStores>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getOrderingStores(
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    q: q,
+                    
+                    headers: headers
+                ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get ordering store details
         * Description: Get details of a selling location (store) by its ID.
         **/
         public func getStoreDetailById(
@@ -385,13 +420,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get sales channel features
+        * Summary: Fetches app features.
         * Description: Get configuration of the features of the sales channel.
         **/
         public func getFeatures(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppFeatureResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -422,7 +457,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppFeatureResponseSchema.self, from: data)
+                        let response = Utility.decode(AppFeatureResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -437,7 +472,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get sales channel contact
+        * Summary: Retrieves contact details.
         * Description: Get contact details of the sales channel.
         **/
         public func getContactInfo(
@@ -489,13 +524,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List currencies
+        * Summary: Lists supported currencies.
         * Description: List available currencies.
         **/
         public func getCurrencies(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CurrenciesResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -526,7 +561,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CurrenciesResponseSchema.self, from: data)
+                        let response = Utility.decode(CurrenciesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -541,7 +576,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get a currency
+        * Summary: Fetches currency by ID.
         * Description: Get details of the currency.
         **/
         public func getCurrencyById(
@@ -596,13 +631,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get currency configuration
+        * Summary: Retrieves app-specific currencies.
         * Description: Get currency configuration of the sales channel.
         **/
         public func getAppCurrencies(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppCurrencyResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppCurrencyResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -633,7 +668,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppCurrencyResponseSchema.self, from: data)
+                        let response = Utility.decode(AppCurrencyResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -648,13 +683,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List languages
+        * Summary: Lists available languages.
         * Description: List available languages.
         **/
         public func getLanguages(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LanguageResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -685,7 +720,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(LanguageResponseSchema.self, from: data)
+                        let response = Utility.decode(LanguageResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -700,13 +735,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Create cookies
+        * Summary: Retrieves store selection cookie.
         * Description: Reset cookie of ordering store.
         **/
         public func getOrderingStoreCookie(
-            body: OrderingStoreSelectRequestSchema,
+            body: OrderingStoreSelectRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -737,7 +772,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessMessageResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -752,13 +787,13 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Delete store cookie
+        * Summary: Deletes store cookie.
         * Description: Delete store cookie.
         **/
         public func removeOrderingStoreCookie(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -789,7 +824,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessMessageResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -804,7 +839,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List staff members
+        * Summary: Lists app staff members.
         * Description: List all staff members of the sales channel.
         **/
         public func getAppStaffList(
@@ -816,7 +851,7 @@ extension ApplicationClient {
             userName: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppStaffListResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppStaffListResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -871,7 +906,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppStaffListResponseSchema.self, from: data)
+                        let response = Utility.decode(AppStaffListResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -905,9 +940,9 @@ extension ApplicationClient {
             user: String?,
             userName: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<AppStaffListResponseSchema> {
+            ) -> Paginator<AppStaffListResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<AppStaffListResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<AppStaffListResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getAppStaffList(
                     pageNo: paginator.pageNo,
@@ -933,7 +968,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get staff member
+        * Summary: Fetches detailed staff info.
         * Description: Get a staff user including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the sales channel.
         **/
         public func getAppStaffs(
@@ -942,7 +977,7 @@ extension ApplicationClient {
             user: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AppStaffResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -985,7 +1020,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AppStaffResponseSchema.self, from: data)
+                        let response = Utility.decode(AppStaffResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

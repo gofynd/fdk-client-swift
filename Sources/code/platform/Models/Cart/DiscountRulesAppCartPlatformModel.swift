@@ -14,11 +14,11 @@ public extension PlatformClient.ApplicationClient.Cart {
     class DiscountRulesApp: Codable {
         
         
-        public var offer: [String: Any]?
+        public var offer: PromoDiscountRuleOffer?
         
-        public var rawOffer: [String: Any]?
+        public var rawOffer: PromoDiscountRuleRawOffer?
         
-        public var itemCriteria: [String: Any]?
+        public var itemCriteria: PromoDiscountRuleItemCriteria?
         
         public var matchedBuyRules: [String]?
         
@@ -35,7 +35,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(itemCriteria: [String: Any]? = nil, matchedBuyRules: [String]? = nil, offer: [String: Any]? = nil, rawOffer: [String: Any]? = nil) {
+        public init(itemCriteria: PromoDiscountRuleItemCriteria? = nil, matchedBuyRules: [String]? = nil, offer: PromoDiscountRuleOffer? = nil, rawOffer: PromoDiscountRuleRawOffer? = nil) {
             
             self.offer = offer
             
@@ -52,7 +52,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    offer = try container.decode([String: Any].self, forKey: .offer)
+                    offer = try container.decode(PromoDiscountRuleOffer.self, forKey: .offer)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    rawOffer = try container.decode([String: Any].self, forKey: .rawOffer)
+                    rawOffer = try container.decode(PromoDiscountRuleRawOffer.self, forKey: .rawOffer)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
+                    itemCriteria = try container.decode(PromoDiscountRuleItemCriteria.self, forKey: .itemCriteria)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

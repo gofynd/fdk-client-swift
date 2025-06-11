@@ -22,8 +22,6 @@ public extension PlatformClient.Serviceability {
         
         public var isDefault: Bool
         
-        public var isAllDpsConsidered: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension PlatformClient.Serviceability {
             
             case isDefault = "is_default"
             
-            case isAllDpsConsidered = "is_all_dps_considered"
-            
         }
 
-        public init(description: String, displayName: String, isActive: Bool, isAllDpsConsidered: Bool? = nil, isDefault: Bool, slug: String) {
+        public init(description: String, displayName: String, isActive: Bool, isDefault: Bool, slug: String) {
             
             self.displayName = displayName
             
@@ -52,8 +48,6 @@ public extension PlatformClient.Serviceability {
             self.isActive = isActive
             
             self.isDefault = isDefault
-            
-            self.isAllDpsConsidered = isAllDpsConsidered
             
         }
 
@@ -85,18 +79,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                do {
-                    isAllDpsConsidered = try container.decode(Bool.self, forKey: .isAllDpsConsidered)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -125,11 +107,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isAllDpsConsidered, forKey: .isAllDpsConsidered)
             
             
         }
@@ -158,8 +135,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isDefault: Bool
         
-        public var isAllDpsConsidered: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -173,11 +148,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isDefault = "is_default"
             
-            case isAllDpsConsidered = "is_all_dps_considered"
-            
         }
 
-        public init(description: String, displayName: String, isActive: Bool, isAllDpsConsidered: Bool? = nil, isDefault: Bool, slug: String) {
+        public init(description: String, displayName: String, isActive: Bool, isDefault: Bool, slug: String) {
             
             self.displayName = displayName
             
@@ -188,8 +161,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.isActive = isActive
             
             self.isDefault = isDefault
-            
-            self.isAllDpsConsidered = isAllDpsConsidered
             
         }
 
@@ -221,18 +192,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                do {
-                    isAllDpsConsidered = try container.decode(Bool.self, forKey: .isAllDpsConsidered)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -261,11 +220,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isAllDpsConsidered, forKey: .isAllDpsConsidered)
             
             
         }

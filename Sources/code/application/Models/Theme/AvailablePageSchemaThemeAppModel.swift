@@ -26,6 +26,10 @@ public extension ApplicationClient.Theme {
         
         public var props: [[String: Any]]?
         
+        public var updatedAt: String?
+        
+        public var createdAt: String?
+        
         public var id: String?
         
 
@@ -49,11 +53,15 @@ public extension ApplicationClient.Theme {
             
             case props = "props"
             
+            case updatedAt = "updated_at"
+            
+            case createdAt = "created_at"
+            
             case id = "_id"
             
         }
 
-        public init(path: String? = nil, props: [[String: Any]]? = nil, sections: [AvailablePageSchemaSections]? = nil, sectionsMeta: [AvailablePageSectionMetaAttributes]? = nil, seo: AvailablePageSeo? = nil, text: String? = nil, theme: String? = nil, type: String? = nil, value: String? = nil, id: String? = nil) {
+        public init(createdAt: String? = nil, path: String? = nil, props: [[String: Any]]? = nil, sections: [AvailablePageSchemaSections]? = nil, sectionsMeta: [AvailablePageSectionMetaAttributes]? = nil, seo: AvailablePageSeo? = nil, text: String? = nil, theme: String? = nil, type: String? = nil, updatedAt: String? = nil, value: String? = nil, id: String? = nil) {
             
             self.value = value
             
@@ -72,6 +80,10 @@ public extension ApplicationClient.Theme {
             self.seo = seo
             
             self.props = props
+            
+            self.updatedAt = updatedAt
+            
+            self.createdAt = createdAt
             
             self.id = id
             
@@ -190,6 +202,30 @@ public extension ApplicationClient.Theme {
             
             
             do {
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                createdAt = try container.decode(String.self, forKey: .createdAt)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 id = try container.decode(String.self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -239,6 +275,14 @@ public extension ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(props, forKey: .props)
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             

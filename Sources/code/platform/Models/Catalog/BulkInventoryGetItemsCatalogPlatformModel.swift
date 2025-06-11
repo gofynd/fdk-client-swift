@@ -24,7 +24,7 @@ public extension PlatformClient.Catalog {
         
         public var failed: Int?
         
-        public var failedRecords: [FailedRecord]?
+        public var failedRecords: [String]?
         
         public var filePath: String?
         
@@ -41,10 +41,6 @@ public extension PlatformClient.Catalog {
         public var succeed: Int?
         
         public var total: Int?
-        
-        public var tags: [String]?
-        
-        public var meta: BulkMeta?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -79,13 +75,9 @@ public extension PlatformClient.Catalog {
             
             case total = "total"
             
-            case tags = "tags"
-            
-            case meta = "meta"
-            
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [FailedRecord]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, meta: BulkMeta? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, tags: [String]? = nil, total: Int? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [String]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, total: Int? = nil) {
             
             self.cancelled = cancelled
             
@@ -116,10 +108,6 @@ public extension PlatformClient.Catalog {
             self.succeed = succeed
             
             self.total = total
-            
-            self.tags = tags
-            
-            self.meta = meta
             
         }
 
@@ -200,7 +188,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    failedRecords = try container.decode([FailedRecord].self, forKey: .failedRecords)
+                    failedRecords = try container.decode([String].self, forKey: .failedRecords)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -306,30 +294,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    meta = try container.decode(BulkMeta.self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -408,16 +372,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(total, forKey: .total)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -448,7 +402,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var failed: Int?
         
-        public var failedRecords: [FailedRecord]?
+        public var failedRecords: [String]?
         
         public var filePath: String?
         
@@ -465,10 +419,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var succeed: Int?
         
         public var total: Int?
-        
-        public var tags: [String]?
-        
-        public var meta: BulkMeta?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -503,13 +453,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case total = "total"
             
-            case tags = "tags"
-            
-            case meta = "meta"
-            
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [FailedRecord]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, meta: BulkMeta? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, tags: [String]? = nil, total: Int? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [String]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, total: Int? = nil) {
             
             self.cancelled = cancelled
             
@@ -540,10 +486,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.succeed = succeed
             
             self.total = total
-            
-            self.tags = tags
-            
-            self.meta = meta
             
         }
 
@@ -624,7 +566,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    failedRecords = try container.decode([FailedRecord].self, forKey: .failedRecords)
+                    failedRecords = try container.decode([String].self, forKey: .failedRecords)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -730,30 +672,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    meta = try container.decode(BulkMeta.self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -832,16 +750,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(total, forKey: .total)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

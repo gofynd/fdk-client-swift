@@ -12,6 +12,8 @@ public extension ApplicationClient.FileStorage {
         
         public var urls: [String]
         
+        public var encUrlMapping: [EncryptionMapping]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.FileStorage {
             
             case urls = "urls"
             
+            case encUrlMapping = "enc_url_mapping"
+            
         }
 
-        public init(expiry: Int, urls: [String]) {
+        public init(encUrlMapping: [EncryptionMapping]? = nil, expiry: Int, urls: [String]) {
             
             self.expiry = expiry
             
             self.urls = urls
+            
+            self.encUrlMapping = encUrlMapping
             
         }
 
@@ -42,6 +48,18 @@ public extension ApplicationClient.FileStorage {
             
             
             
+            
+            do {
+                encUrlMapping = try container.decode([EncryptionMapping].self, forKey: .encUrlMapping)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -53,6 +71,10 @@ public extension ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(urls, forKey: .urls)
+            
+            
+            
+            try? container.encodeIfPresent(encUrlMapping, forKey: .encUrlMapping)
             
             
         }

@@ -12,13 +12,11 @@ public extension ApplicationClient.Cart {
         
         public var customJson: [String: Any]?
         
-        public var forceNewLineItem: Bool?
-        
         public var quantity: Int?
         
         public var itemSize: String?
         
-        public var itemIndex: Int?
+        public var itemIndex: Int
         
         public var identifiers: CartProductIdentifer
         
@@ -26,13 +24,11 @@ public extension ApplicationClient.Cart {
         
         public var parentItemIdentifiers: [String: Any]?
         
+        public var priceFactoryTypeId: String?
+        
         public var itemId: Int?
         
         public var meta: [String: Any]?
-        
-        public var fulfillmentOptionSlug: String?
-        
-        public var pickupStoreId: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -40,8 +36,6 @@ public extension ApplicationClient.Cart {
             case extraMeta = "extra_meta"
             
             case customJson = "_custom_json"
-            
-            case forceNewLineItem = "force_new_line_item"
             
             case quantity = "quantity"
             
@@ -55,23 +49,19 @@ public extension ApplicationClient.Cart {
             
             case parentItemIdentifiers = "parent_item_identifiers"
             
+            case priceFactoryTypeId = "price_factory_type_id"
+            
             case itemId = "item_id"
             
             case meta = "meta"
             
-            case fulfillmentOptionSlug = "fulfillment_option_slug"
-            
-            case pickupStoreId = "pickup_store_id"
-            
         }
 
-        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, forceNewLineItem: Bool? = nil, fulfillmentOptionSlug: String? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, pickupStoreId: Int? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, priceFactoryTypeId: String? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.extraMeta = extraMeta
             
             self.customJson = customJson
-            
-            self.forceNewLineItem = forceNewLineItem
             
             self.quantity = quantity
             
@@ -85,13 +75,11 @@ public extension ApplicationClient.Cart {
             
             self.parentItemIdentifiers = parentItemIdentifiers
             
+            self.priceFactoryTypeId = priceFactoryTypeId
+            
             self.itemId = itemId
             
             self.meta = meta
-            
-            self.fulfillmentOptionSlug = fulfillmentOptionSlug
-            
-            self.pickupStoreId = pickupStoreId
             
         }
 
@@ -113,18 +101,6 @@ public extension ApplicationClient.Cart {
             
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                forceNewLineItem = try container.decode(Bool.self, forKey: .forceNewLineItem)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,15 +135,8 @@ public extension ApplicationClient.Cart {
             
             
             
-            do {
-                itemIndex = try container.decode(Int.self, forKey: .itemIndex)
+            itemIndex = try container.decode(Int.self, forKey: .itemIndex)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -201,6 +170,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                priceFactoryTypeId = try container.decode(String.self, forKey: .priceFactoryTypeId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 itemId = try container.decode(Int.self, forKey: .itemId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -223,30 +204,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                fulfillmentOptionSlug = try container.decode(String.self, forKey: .fulfillmentOptionSlug)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                pickupStoreId = try container.decode(Int.self, forKey: .pickupStoreId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -258,10 +215,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            
-            
-            try? container.encodeIfPresent(forceNewLineItem, forKey: .forceNewLineItem)
             
             
             
@@ -289,19 +242,15 @@ public extension ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(priceFactoryTypeId, forKey: .priceFactoryTypeId)
+            
+            
+            
             try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            try? container.encodeIfPresent(fulfillmentOptionSlug, forKey: .fulfillmentOptionSlug)
-            
-            
-            
-            try? container.encodeIfPresent(pickupStoreId, forKey: .pickupStoreId)
             
             
         }

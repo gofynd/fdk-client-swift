@@ -16,8 +16,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var title: String?
         
-        public var rule: [DiscountRules]?
-        
         public var maxDiscountValue: Double?
         
         public var couponCode: String?
@@ -46,12 +44,20 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var couponApplicableMessage: String?
         
+        public var isBankOffer: Bool?
+        
+        public var offerText: String?
+        
+        public var couponAmount: Double?
+        
+        public var tags: [String]?
+        
+        public var medias: [CartCouponMedias]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case title = "title"
-            
-            case rule = "rule"
             
             case maxDiscountValue = "max_discount_value"
             
@@ -81,13 +87,21 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case couponApplicableMessage = "coupon_applicable_message"
             
+            case isBankOffer = "is_bank_offer"
+            
+            case offerText = "offer_text"
+            
+            case couponAmount = "coupon_amount"
+            
+            case tags = "tags"
+            
+            case medias = "medias"
+            
         }
 
-        public init(couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, rule: [DiscountRules]? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
+        public init(couponAmount: Double? = nil, couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, isBankOffer: Bool? = nil, maxDiscountValue: Double? = nil, medias: [CartCouponMedias]? = nil, message: String? = nil, minimumCartValue: Double? = nil, offerText: String? = nil, startDate: String? = nil, subTitle: String? = nil, tags: [String]? = nil, title: String? = nil) {
             
             self.title = title
-            
-            self.rule = rule
             
             self.maxDiscountValue = maxDiscountValue
             
@@ -117,6 +131,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.couponApplicableMessage = couponApplicableMessage
             
+            self.isBankOffer = isBankOffer
+            
+            self.offerText = offerText
+            
+            self.couponAmount = couponAmount
+            
+            self.tags = tags
+            
+            self.medias = medias
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -125,18 +149,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     title = try container.decode(String.self, forKey: .title)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    rule = try container.decode([DiscountRules].self, forKey: .rule)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -314,6 +326,66 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    isBankOffer = try container.decode(Bool.self, forKey: .isBankOffer)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    offerText = try container.decode(String.self, forKey: .offerText)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    couponAmount = try container.decode(Double.self, forKey: .couponAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    medias = try container.decode([CartCouponMedias].self, forKey: .medias)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -322,11 +394,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
-            try? container.encodeIfPresent(rule, forKey: .rule)
             
             
             
@@ -397,6 +464,31 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(couponApplicableMessage, forKey: .couponApplicableMessage)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isBankOffer, forKey: .isBankOffer)
+            
+            
+            
+            
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
+            
+            
+            
+            
+            try? container.encodeIfPresent(couponAmount, forKey: .couponAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(medias, forKey: .medias)
             
             
         }

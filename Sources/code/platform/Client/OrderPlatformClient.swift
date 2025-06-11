@@ -22,7 +22,7 @@ extension PlatformClient {
         public func invalidateShipmentCache(
             body: InvalidateShipmentCachePayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InvalidateShipmentCacheResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: InvalidateShipmentCacheResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -50,7 +50,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(InvalidateShipmentCacheResponseSchema.self, from: data)
+                        let response = Utility.decode(InvalidateShipmentCacheResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -66,13 +66,271 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Reassign location
-        * Description: Reassign the shipment to a another location and update its status to 'Store Reassigned.'
+        * Summary: Refund State Configuration
+        * Description: Refund State Configuration
+        **/
+        public func postRefundStateConfiguration(
+            appId: String,
+            body: PostRefundStateConfiguration,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: PostRefundStateConfigurationResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["app_id"] = appId
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/states/config",
+                query: xQuery,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PostRefundStateConfigurationResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Refund State Configuration
+        * Description: Refund State Configuration
+        **/
+        public func getRefundStateConfiguration(
+            appId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetRefundStateConfigurationResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["app_id"] = appId
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/states/config",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetRefundStateConfigurationResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Refund State Configurationb
+        * Description: refund configuration.
+        **/
+        public func getRefundEnableStateList(
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetRefundStates?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/states",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetRefundStates.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: refund configuration.
+        * Description: refund configuration.
+        **/
+        public func postRefundConfiguration(
+            appId: String,
+            body: RefundStateConfigurationManualSchema,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: RefundStateConfigurationManualSchemaResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["app_id"] = appId
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/config",
+                query: xQuery,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RefundStateConfigurationManualSchemaResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: refund configuration.
+        * Description: refund configuration.
+        **/
+        public func getRefundConfiguration(
+            appId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: RefundStateConfigurationManualSchemaResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["app_id"] = appId
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/config",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RefundStateConfigurationManualSchemaResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Reassign location.
+        * Description: Change the assigned location for an order or shipment.
         **/
         public func reassignLocation(
             body: StoreReassign,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: StoreReassignResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: StoreReassignResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -100,7 +358,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(StoreReassignResponseSchema.self, from: data)
+                        let response = Utility.decode(StoreReassignResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -116,16 +374,42 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update a shipment lock
-        * Description: Modify shipment/bag lock status and update lock/unlock messages.
+        * Summary: Retrieve refund options with amount breakup for  specific shipment and bags.
+        * Description: This API can be used for giving the refund amount with available option of MOPs.
         **/
-        public func updateShipmentLock(
-            body: UpdateShipmentLockPayload,
+        public func getRefundOptions(
+            shipmentId: String,
+            bagIds: String?,
+            state: String?,
+            optinAppId: String?,
+            optinCompanyId: Int?,
+            status: String?,
+            
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdateShipmentLockResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RefundOptionsSchemaResponse?, _ error: FDKError?) -> Void
         ) {
                         
-             
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = bagIds {
+                xQuery["bag_ids"] = value
+            }
+            
+            if let value = state {
+                xQuery["state"] = value
+            }
+            
+            if let value = optinAppId {
+                xQuery["optin_app_id"] = value
+            }
+            
+            if let value = optinCompanyId {
+                xQuery["optin_company_id"] = value
+            }
+            
+            if let value = status {
+                xQuery["status"] = value
+            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -135,10 +419,10 @@ extension PlatformClient {
             }
             PlatformAPIClient.execute(
                 config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/entity/lock-manager",
-                query: nil,
-                body: body.dictionary,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/\(shipmentId)/refund-options",
+                query: xQuery,
+                body: nil,
                 headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -150,7 +434,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdateShipmentLockResponseSchema.self, from: data)
+                        let response = Utility.decode(RefundOptionsSchemaResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -166,14 +450,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List announcements
+        * Summary: Get announcements.
         * Description: Retrieve announcements related to orders fulfilment configured by platform or company admin
         **/
         public func getAnnouncements(
             date: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AnnouncementsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AnnouncementsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -205,7 +489,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AnnouncementsResponseSchema.self, from: data)
+                        let response = Utility.decode(AnnouncementsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -221,17 +505,32 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update shipment address
-        * Description: Update the address details of an existing shipment based on the provided address_category. This operation allows the modification of critical shipment details, potentially affecting delivery/billing accuracy and customer communication.
+        * Summary: Click to call.
+        * Description: Click to call. 
         **/
-        public func updateAddress(
-            shipmentId: String,
-            body: UpdateAddressRequestBody,
+        public func click2Call(
+            caller: String,
+            receiver: String,
+            bagId: String,
+            callerId: String?,
+            method: String?,
+            
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BaseResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: Click2CallResponse?, _ error: FDKError?) -> Void
         ) {
                         
-             
+            var xQuery: [String: Any] = [:] 
+            xQuery["caller"] = caller
+            xQuery["receiver"] = receiver
+            xQuery["bag_id"] = bagId
+            
+            if let value = callerId {
+                xQuery["caller_id"] = value
+            }
+            
+            if let value = method {
+                xQuery["method"] = value
+            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -241,10 +540,10 @@ extension PlatformClient {
             }
             PlatformAPIClient.execute(
                 config: config,
-                method: "PUT",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/\(shipmentId)/address",
-                query: nil,
-                body: body.dictionary,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/ninja/click2call",
+                query: xQuery,
+                body: nil,
                 headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -256,7 +555,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BaseResponseSchema.self, from: data)
+                        let response = Utility.decode(Click2CallResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -272,8 +571,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update a shipment's status
-        * Description: Used for updating a shipment and its status. Can also be used for updating bags present in that shipment.
+        * Summary: Update shipment status.
+        * Description: Shipment state transition or Shipment data update or both.
         **/
         public func updateShipmentStatus(
             body: UpdateShipmentStatusRequestSchema,
@@ -322,65 +621,15 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get role-based actions
-        * Description: Retrieve permissible actions based on user roles such as company_admin,  company_operation, customer_care, and read_only.
-        **/
-        public func getRoleBasedActions(
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetActionsResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/roles",
-                query: nil,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetActionsResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get a shipment's history
-        * Description: Get the history of the shipment
+        * Summary: Get shipment history.
+        * Description: Retrieve the shipment history.
         **/
         public func getShipmentHistory(
             shipmentId: String?,
             bagId: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentHistoryResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -416,7 +665,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentHistoryResponseSchema.self, from: data)
+                        let response = Utility.decode(ShipmentHistoryResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -432,13 +681,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create shipment history
-        * Description: Used to add logs in history for a bag for the provided Shipment ID
+        * Summary: Post shipment history.
+        * Description: Add history records for a shipment.
         **/
         public func postShipmentHistory(
             body: PostShipmentHistory,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentHistoryResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -466,7 +715,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentHistoryResponseSchema.self, from: data)
+                        let response = Utility.decode(ShipmentHistoryResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -482,13 +731,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Send SMS
+        * Summary: Send SMS via Ninja.
         * Description: Send SMS to customer based on the template that is selected
         **/
         public func sendSmsNinja(
             body: SendSmsPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BaseResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SendSmsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -516,7 +765,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BaseResponseSchema.self, from: data)
+                        let response = Utility.decode(SendSmsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -532,13 +781,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update packaging dimensions
-        * Description: Used to modify the packaging dimension of a shipment
+        * Summary: Update packaging dimensions.
+        * Description: Modify the dimensions of packaging.
         **/
         public func updatePackagingDimensions(
             body: UpdatePackagingDimensionsPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdatePackagingDimensionsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdatePackagingDimensionsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -566,162 +815,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdatePackagingDimensionsResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Create order
-        * Description: Creates an order
-        **/
-        public func createOrder(
-            xOrderingSource: String?,
-            body: CreateOrderAPI,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateOrderResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: value))
-            }
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/create-order",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateOrderResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get channel configuration
-        * Description: Retrieve configuration settings specific to orders for a channel
-        **/
-        public func getChannelConfig(
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateChannelConfigData?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
-                query: nil,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateChannelConfigData.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Create channel configuration
-        * Description: Set up configuration for a channel specific to orders which has implications over how the order fulfilment happens in a channel
-        **/
-        public func createChannelConfig(
-            body: CreateChannelConfigData,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateChannelConfigResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateChannelConfigResponseSchema.self, from: data)
+                        let response = Utility.decode(UpdatePackagingDimensionsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -787,57 +881,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Debug order
-        * Description: Used to verify the status of order. It queries error logs, resyncs the shipments if there was an issue with sync etc.
-        **/
-        public func checkOrderStatus(
-            body: OrderStatus,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/debug/order_status",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(OrderStatusResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get state transition map
+        * Summary: Get state transition map.
         * Description: Retrieve a map of state transitions for orders
         **/
         public func getStateTransitionMap(
@@ -887,12 +931,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get allowed state transition
-        * Description: Retrieve next possible states based on logged in user's role
+        * Summary: Get allowed state transition.
+        * Description: Retrieve next possible states based on logged in user.
         **/
         public func getAllowedStateTransition(
-            orderingChannel: String?,
-            orderingSource: String?,
+            orderingChannel: String,
             status: String,
             
             headers: [(key: String, value: String)]? = nil,
@@ -900,14 +943,7 @@ extension PlatformClient {
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            
-            if let value = orderingChannel {
-                xQuery["ordering_channel"] = value
-            }
-            
-            if let value = orderingSource {
-                xQuery["ordering_source"] = value
-            }
+            xQuery["ordering_channel"] = orderingChannel
             xQuery["status"] = status
             
             var xHeaders: [(key: String, value: String)] = []
@@ -949,7 +985,57 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List refund modes
+        * Summary: Fetch credit balance detail.
+        * Description: Retrieve details about credit balance on the basis of customer mobile number
+        **/
+        public func fetchCreditBalanceDetail(
+            body: FetchCreditBalanceRequestPayload,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: FetchCreditBalanceResponsePayload?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/customer-credit-balance",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(FetchCreditBalanceResponsePayload.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Fetch refund mode config.
         * Description: Get list of refund modes to trigger refunds
         **/
         public func fetchRefundModeConfig(
@@ -999,13 +1085,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Attach order to a user
-        * Description: Attach an anonymous order to a customer based on OTP verification
+        * Summary: Attach order user.
+        * Description: Attach order User
         **/
         public func attachOrderUser(
             body: AttachOrderUser,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AttachOrderUserResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AttachOrderUserResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1033,7 +1119,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AttachOrderUserResponseSchema.self, from: data)
+                        let response = Utility.decode(AttachOrderUserResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1049,13 +1135,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Send user mobile OTP
-        * Description: Send a one-time OTP to a customer mobile number
+        * Summary: Send user mobile OTP.
+        * Description: Send a one-time OTP to a users mobile device.
         **/
         public func sendUserMobileOTP(
             body: SendUserMobileOTP,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SendUserMobileOtpResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SendUserMobileOtpResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1083,7 +1169,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SendUserMobileOtpResponseSchema.self, from: data)
+                        let response = Utility.decode(SendUserMobileOtpResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1099,13 +1185,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Verify mobile OTP
-        * Description: Perform OTP verification to link a user to an anonymous order
+        * Summary: Verify Mobile OTP
+        * Description: Verify Mobile OTP
         **/
         public func verifyMobileOTP(
             body: VerifyMobileOTP,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: VerifyOtpResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: VerifyOtpResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1133,7 +1219,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(VerifyOtpResponseSchema.self, from: data)
+                        let response = Utility.decode(VerifyOtpResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1149,13 +1235,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download Lane report
+        * Summary: Downloads lanes shipment/orders.
         * Description: Downloads shipments/orders present in the provided lane
         **/
         public func downloadLanesReport(
-            body: BulkReportsDownloadRequestSchema,
+            body: BulkReportsDownloadRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkReportsDownloadResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkReportsDownloadResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1183,7 +1269,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkReportsDownloadResponseSchema.self, from: data)
+                        let response = Utility.decode(BulkReportsDownloadResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1199,13 +1285,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Upload bulk state transitions file
-        * Description: Performs state transisiton in bulk using the CSV or excel file for the given shipments. The bulk transition CSV or excel template can be downloaded using the seller template download method. Current supported format is excel and CSV.
+        * Summary: Performs State Transisiton in Bulk for the given shipments in the excel/csv file url.
+        * Description: Performs State Transisiton in Bulk for the given shipments in the excel/csv file url.
         **/
         public func bulkStateTransistion(
             body: BulkStateTransistionRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkStateTransistionResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkStateTransistionResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1233,7 +1319,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkStateTransistionResponseSchema.self, from: data)
+                        let response = Utility.decode(BulkStateTransistionResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1249,27 +1335,34 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Lists bulk operations
-        * Description: Get list of bulk operation that is initiated and completed as per the filters provided
+        * Summary: Fetches of previous or running  bulk jobs.
+        * Description: Fetches of previous or running  bulk jobs.
+
         **/
         public func bulkListing(
             pageSize: Int,
             pageNo: Int,
-            startDate: String,
-            endDate: String,
+            startDate: String?,
+            endDate: String?,
             status: String?,
             bulkActionType: String?,
             searchKey: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
             xQuery["page_size"] = pageSize
             xQuery["page_no"] = pageNo
-            xQuery["start_date"] = startDate
-            xQuery["end_date"] = endDate
+            
+            if let value = startDate {
+                xQuery["start_date"] = value
+            }
+            
+            if let value = endDate {
+                xQuery["end_date"] = value
+            }
             
             if let value = status {
                 xQuery["status"] = value
@@ -1306,7 +1399,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkListingResponseSchema.self, from: data)
+                        let response = Utility.decode(BulkListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1322,14 +1415,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get bulk operation details 
-        * Description: Fetches details of the job for the provided batch Id
+        * Summary: Fetches details for the job of the provided batch_id
+        * Description: Fetches details for the job of the provided batch_id
         **/
         public func jobDetails(
             batchId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: JobDetailsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: JobDetailsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1357,7 +1450,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(JobDetailsResponseSchema.self, from: data)
+                        let response = Utility.decode(JobDetailsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1373,7 +1466,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download file used for Bulk operation
+        * Summary: Get the file download URL used for performing bulk operation
         * Description: Get the file download URL used for performing bulk operation
         **/
         public func getFileByStatus(
@@ -1383,7 +1476,7 @@ extension PlatformClient {
             reportType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: JobFailedResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: JobFailedResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1417,7 +1510,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(JobFailedResponseSchema.self, from: data)
+                        let response = Utility.decode(JobFailedResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1433,424 +1526,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List manifest shipments
-        * Description: Get list of shipments tagged to that manifest, the user can also search the shipments on the basis of shipment Id, order Id and AWB number
-        **/
-        public func getManifestShipments(
-            dpIds: String,
-            stores: Int,
-            toDate: String,
-            fromDate: String,
-            dpName: String?,
-            salesChannels: String?,
-            searchType: String?,
-            searchValue: String?,
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ManifestShipmentListing?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            xQuery["dp_ids"] = dpIds
-            xQuery["stores"] = stores
-            xQuery["to_date"] = toDate
-            xQuery["from_date"] = fromDate
-            
-            if let value = dpName {
-                xQuery["dp_name"] = value
-            }
-            
-            if let value = salesChannels {
-                xQuery["sales_channels"] = value
-            }
-            
-            if let value = searchType {
-                xQuery["search_type"] = value
-            }
-            
-            if let value = searchValue {
-                xQuery["search_value"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/shipments-listing",
-                query: xQuery,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ManifestShipmentListing.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: List manifests
-        * Description: Get a list of manifest as per the filter provided
-        **/
-        public func getManifests(
-            status: String?,
-            startDate: String?,
-            endDate: String?,
-            searchType: String?,
-            storeId: Int?,
-            searchValue: String?,
-            dpIds: String?,
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ManifestList?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = status {
-                xQuery["status"] = value
-            }
-            
-            if let value = startDate {
-                xQuery["start_date"] = value
-            }
-            
-            if let value = endDate {
-                xQuery["end_date"] = value
-            }
-            
-            if let value = searchType {
-                xQuery["search_type"] = value
-            }
-            
-            if let value = storeId {
-                xQuery["store_id"] = value
-            }
-            
-            if let value = searchValue {
-                xQuery["search_value"] = value
-            }
-            
-            if let value = dpIds {
-                xQuery["dp_ids"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/listing",
-                query: xQuery,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ManifestList.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Process Order Manifest
-        * Description: Endpoint to save and process order manifests.
-        **/
-        public func generateProcessManifest(
-            body: ProcessManifestRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ManifestResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/process-manifest",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ManifestResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get a manifest
-        * Description: Get details regarding a manifest which can be used to perform further actions on it
-        **/
-        public func getManifestDetails(
-            manifestId: String,
-            dpIds: String?,
-            endDate: String?,
-            startDate: String?,
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ManifestDetails?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            xQuery["manifest_id"] = manifestId
-            
-            if let value = dpIds {
-                xQuery["dp_ids"] = value
-            }
-            
-            if let value = endDate {
-                xQuery["end_date"] = value
-            }
-            
-            if let value = startDate {
-                xQuery["start_date"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/details",
-                query: xQuery,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ManifestDetails.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Dispatch manifest
-        * Description: Updates the status of the manifest to processed and change the status of the shipments in the manifest to dispatch status
-        **/
-        public func dispatchManifests(
-            body: DispatchManifest,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/dispatch",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Upload consent
-        * Description: Uploads the consent signed by courier partner and seller to keep records
-        **/
-        public func uploadConsents(
-            body: UploadManifestConsent,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/uploadConsent",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: List filters
-        * Description: Get supported filter for listing manifests
+        * Summary: get Manifest Filters.
+        * Description: get Manifest Filters.
         **/
         public func getManifestfilters(
             view: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ManifestFiltersResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ManifestFiltersResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1879,7 +1562,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ManifestFiltersResponseSchema.self, from: data)
+                        let response = Utility.decode(ManifestFiltersResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1895,13 +1578,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Retry E-invoice
-        * Description: Reattempt the generation of an E-invoice
+        * Summary: Retry e-invoice after failure
+        * Description: Retry e-invoice after failure
         **/
         public func eInvoiceRetry(
             body: EInvoiceRetry,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: EInvoiceRetryResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: EInvoiceRetryResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1929,7 +1612,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(EInvoiceRetryResponseSchema.self, from: data)
+                        let response = Utility.decode(EInvoiceRetryResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1945,131 +1628,10 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Track shipment
-        * Description: Retrieve courier partner tracking details for a given shipment Id or AWB number
+        * Summary: Get failed order logs according to the filter provided
+        * Description: This endpoint allows users to get failed order logs listing for filters based on order id, user contact number, user email id and sales channel id.
         **/
-        public func trackShipment(
-            shipmentId: String?,
-            awb: String?,
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierPartnerTrackingResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = shipmentId {
-                xQuery["shipment_id"] = value
-            }
-            
-            if let value = awb {
-                xQuery["awb"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
-                query: xQuery,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CourierPartnerTrackingResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Update shipment tracking
-        * Description: Modify courier partner tracking details for a given shipment Id or AWB number
-        **/
-        public func updateShipmentTracking(
-            body: CourierPartnerTrackingDetails,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierPartnerTrackingDetails?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CourierPartnerTrackingDetails.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: List failed order logs
-        * Description: Get failed order logs listing for filters based on order Id, user contact number, user email Id and sales channel Id.
-        **/
-        public func failedOrderLogs(
-            applicationId: String?,
+        public func getFailedOrderLogs(
             pageNo: Int?,
             pageSize: Int?,
             searchType: String?,
@@ -2080,10 +1642,6 @@ extension PlatformClient {
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            
-            if let value = applicationId {
-                xQuery["application_id"] = value
-            }
             
             if let value = pageNo {
                 xQuery["page_no"] = value
@@ -2140,59 +1698,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Generate and attach invoice Id
-        * Description: Generate and attach Invoice Ids against shipments.
-        **/
-        public func generateInvoiceID(
-            invoiceType: String,
-            body: GenerateInvoiceIDRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GenerateInvoiceIDResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/\(invoiceType)/id/generate",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GenerateInvoiceIDResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get failed order log
-        * Description: Get the exact error trace from the log Id provided in the failed order list API response 
+        * Summary: Get failed order logs according to the filter provided
+        * Description: This endpoint allows users to get the exact error trace from the log id provided
         **/
         public func failedOrderLogDetails(
             logId: String,
@@ -2240,15 +1747,74 @@ extension PlatformClient {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Allows esm config updation
-        * Description: Update ESM config
+        * Summary: Get role-based actions.
+        * Description: Retrieve permissible actions based on user roles such as company_admin,  company_operation, customer_care, and read_only.
         **/
-        public func addStateManagerConfig(
-            body: TransitionConfigPayload,
+        public func getRoleBasedActions(
+            
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ConfigUpdatedResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetActionsResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/roles",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetActionsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Update shipment lock.
+        * Description: Modify shipment/bag lock and check status.
+        **/
+        public func updateShipmentLock(
+            body: UpdateShipmentLockPayload,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: UpdateShipmentLockResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2262,7 +1828,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/state/manager/config",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/entity/lock-manager",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -2276,7 +1842,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ConfigUpdatedResponseSchema.self, from: data)
+                        let response = Utility.decode(UpdateShipmentLockResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2292,38 +1858,16 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Retrieves Entity State Manager configuration which includes flags, hooks, and filters, for a specific application within a company's setup.
-        * Description: This endpoint retrieves the ESM (Entity State Manager) configuration for a specific application within a company. The retrieval is based on parameters such as application ID, ordering channel, and entity type.
-The ESM config stores order processing configuration. Each document in the ESM config collection of  Order Management System - OMS's database is a JSON object representing the configuration of a specific application ID. This includes filters, hooks, flags set on different state-transitions.  This configuration is picked and accordingly features are enabled. 
-
+        * Summary: Create order.
+        * Description: Create order.
         **/
-        public func getStateManagerConfig(
-            appId: String?,
-            orderingChannel: String?,
-            orderingSource: String?,
-            entity: String?,
-            
+        public func createOrder(
+            body: CreateOrderAPI,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CreateOrderResponse?, _ error: FDKError?) -> Void
         ) {
                         
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = appId {
-                xQuery["app_id"] = value
-            }
-            
-            if let value = orderingChannel {
-                xQuery["ordering_channel"] = value
-            }
-            
-            if let value = orderingSource {
-                xQuery["ordering_source"] = value
-            }
-            
-            if let value = entity {
-                xQuery["entity"] = value
-            }
+             
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -2333,10 +1877,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
             }
             PlatformAPIClient.execute(
                 config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/state/manager/config",
-                query: xQuery,
-                body: nil,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/create-order",
+                query: nil,
+                body: body.dictionary,
                 headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2348,7 +1892,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(CreateOrderResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2362,16 +1906,15 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         
         
-        
         /**
         *
-        * Summary: Update payment details for an order, its shipments and its bags.
-        * Description: Updates the payment mode for an order, its shipments and its bags. This endpoint allows for modifying payment methods, and associated details but not amount.
+        * Summary: Update shipment status.
+        * Description: Shipment action transition or Shipment data update or both.
         **/
-        public func updatePaymentInfo(
-            body: UpdateShipmentPaymentMode,
+        public func updateShipment(
+            body: UpdateShipmentActionRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdateShipmentStatusResponseBody?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2385,7 +1928,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/payment/update",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/update",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -2399,7 +1942,108 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(UpdateShipmentStatusResponseBody.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Enables the updating of various order properties, including tax_details, meta, and more, providing flexibility and precision in order adjustments.
+        * Description: Enables the updating of various order properties, including tax_details, meta, and more, providing flexibility and precision in order adjustments.
+        **/
+        public func updateOrder(
+            orderId: String,
+            body: OrderUpdatePayload,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: OrderUpdateResponseDetail?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order/\(orderId)",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OrderUpdateResponseDetail.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Consolidates multiple shipments into a single shipment, optimizing logistics and delivery handling.
+        * Description: Consolidates multiple shipments into a single shipment, allowing for optimized logistics and delivery handling.
+        **/
+        public func consolidateShipments(
+            body: ConsolidateShipmentPayload,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: ConsolidateShipmentResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipments/consolidate",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ConsolidateShipmentResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2416,13 +2060,12 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: List shipments
-        * Description: Get a list of shipments based on the filters provided
+        * Summary: Get shipments.
+        * Description: Get Shipments Listing for the company id
         **/
         public func getShipments(
             lane: String?,
             bagStatus: String?,
-            statusAssigned: String?,
             statusOverrideLane: Bool?,
             timeToDispatch: Int?,
             searchType: String?,
@@ -2431,8 +2074,6 @@ The ESM config stores order processing configuration. Each document in the ESM c
             toDate: String?,
             startDate: String?,
             endDate: String?,
-            statusAssignedStartDate: String?,
-            statusAssignedEndDate: String?,
             dpIds: String?,
             stores: String?,
             salesChannels: String?,
@@ -2454,12 +2095,17 @@ The ESM config stores order processing configuration. Each document in the ESM c
             tags: String?,
             customerId: String?,
             orderType: String?,
+            operationalStatus: String?,
+            financialStatus: String?,
+            logisticsStatus: String?,
+            parentViewSlug: String?,
+            childViewSlug: String?,
+            lockStatus: String?,
             groupEntity: String?,
             enforceDateFilter: Bool?,
-            fulfillmentType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2470,10 +2116,6 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = bagStatus {
                 xQuery["bag_status"] = value
-            }
-            
-            if let value = statusAssigned {
-                xQuery["status_assigned"] = value
             }
             
             if let value = statusOverrideLane {
@@ -2506,14 +2148,6 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = endDate {
                 xQuery["end_date"] = value
-            }
-            
-            if let value = statusAssignedStartDate {
-                xQuery["status_assigned_start_date"] = value
-            }
-            
-            if let value = statusAssignedEndDate {
-                xQuery["status_assigned_end_date"] = value
             }
             
             if let value = dpIds {
@@ -2600,16 +2234,36 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["order_type"] = value
             }
             
+            if let value = operationalStatus {
+                xQuery["operational_status"] = value
+            }
+            
+            if let value = financialStatus {
+                xQuery["financial_status"] = value
+            }
+            
+            if let value = logisticsStatus {
+                xQuery["logistics_status"] = value
+            }
+            
+            if let value = parentViewSlug {
+                xQuery["parent_view_slug"] = value
+            }
+            
+            if let value = childViewSlug {
+                xQuery["child_view_slug"] = value
+            }
+            
+            if let value = lockStatus {
+                xQuery["lock_status"] = value
+            }
+            
             if let value = groupEntity {
                 xQuery["group_entity"] = value
             }
             
             if let value = enforceDateFilter {
                 xQuery["enforce_date_filter"] = value
-            }
-            
-            if let value = fulfillmentType {
-                xQuery["fulfillment_type"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2635,7 +2289,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentInternalPlatformViewResponseSchema.self, from: data)
+                        let response = Utility.decode(ShipmentInternalPlatformViewResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2646,6 +2300,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     }
             });
         }
+        
+        
+        
+        
         
         
         
@@ -2727,7 +2385,6 @@ The ESM config stores order processing configuration. Each document in the ESM c
         public func getShipmentsPaginator(
             lane: String?,
             bagStatus: String?,
-            statusAssigned: String?,
             statusOverrideLane: Bool?,
             timeToDispatch: Int?,
             searchType: String?,
@@ -2736,8 +2393,6 @@ The ESM config stores order processing configuration. Each document in the ESM c
             toDate: String?,
             startDate: String?,
             endDate: String?,
-            statusAssignedStartDate: String?,
-            statusAssignedEndDate: String?,
             dpIds: String?,
             stores: String?,
             salesChannels: String?,
@@ -2758,18 +2413,22 @@ The ESM config stores order processing configuration. Each document in the ESM c
             tags: String?,
             customerId: String?,
             orderType: String?,
+            operationalStatus: String?,
+            financialStatus: String?,
+            logisticsStatus: String?,
+            parentViewSlug: String?,
+            childViewSlug: String?,
+            lockStatus: String?,
             groupEntity: String?,
             enforceDateFilter: Bool?,
-            fulfillmentType: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<ShipmentInternalPlatformViewResponseSchema> {
+            ) -> Paginator<ShipmentInternalPlatformViewResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<ShipmentInternalPlatformViewResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<ShipmentInternalPlatformViewResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getShipments(
                     lane: lane,
                     bagStatus: bagStatus,
-                    statusAssigned: statusAssigned,
                     statusOverrideLane: statusOverrideLane,
                     timeToDispatch: timeToDispatch,
                     searchType: searchType,
@@ -2778,8 +2437,6 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     toDate: toDate,
                     startDate: startDate,
                     endDate: endDate,
-                    statusAssignedStartDate: statusAssignedStartDate,
-                    statusAssignedEndDate: statusAssignedEndDate,
                     dpIds: dpIds,
                     stores: stores,
                     salesChannels: salesChannels,
@@ -2801,9 +2458,14 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     tags: tags,
                     customerId: customerId,
                     orderType: orderType,
+                    operationalStatus: operationalStatus,
+                    financialStatus: financialStatus,
+                    logisticsStatus: logisticsStatus,
+                    parentViewSlug: parentViewSlug,
+                    childViewSlug: childViewSlug,
+                    lockStatus: lockStatus,
                     groupEntity: groupEntity,
                     enforceDateFilter: enforceDateFilter,
-                    fulfillmentType: fulfillmentType,
                     
                     headers: headers
                 ) { response, error in                    
@@ -2822,17 +2484,16 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: Get shipment details
-        * Description: Get detailed information about a specific shipment
+        * Summary: Get shipment by ID.
+        * Description: Retrieve detailed information about a specific shipment.
         **/
         public func getShipmentById(
             channelShipmentId: String?,
             shipmentId: String?,
             fetchActiveShipment: Bool?,
-            allowInactive: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentInfoResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2847,10 +2508,6 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = fetchActiveShipment {
                 xQuery["fetch_active_shipment"] = value
-            }
-            
-            if let value = allowInactive {
-                xQuery["allow_inactive"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2876,7 +2533,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ShipmentInfoResponseSchema.self, from: data)
+                        let response = Utility.decode(ShipmentInfoResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2892,8 +2549,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: Get order
-        * Description: Get detailed information about a specific order
+        * Summary: Get order by ID.
+        * Description: Retrieve detailed information about a specific order.
         **/
         public func getOrderById(
             orderId: String,
@@ -2901,7 +2558,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             allowInactive: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OrderDetailsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderDetailsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2938,7 +2595,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OrderDetailsResponseSchema.self, from: data)
+                        let response = Utility.decode(OrderDetailsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2954,8 +2611,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: Get lane configuration
-        * Description: Get configuration settings for lanes
+        * Summary: Get lane configuration.
+        * Description: Get lane config for the order and shipment
         **/
         public func getLaneConfig(
             superLane: String?,
@@ -2979,7 +2636,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             orderType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LaneConfigResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: LaneConfigResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3069,7 +2726,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/order/v1.0/company/\(companyId)/lane-config/",
+                url: "/service/platform/order/v1.0/company/\(companyId)/lane-config",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -3083,7 +2740,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(LaneConfigResponseSchema.self, from: data)
+                        let response = Utility.decode(LaneConfigResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3099,8 +2756,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: List orders
-        * Description: Get a list of orders based on the filters provided.
+        * Summary: Get orders.
+        * Description: Get Orders Listing
         **/
         public func getOrders(
             lane: String?,
@@ -3120,18 +2777,21 @@ The ESM config stores order processing configuration. Each document in the ESM c
             pageNo: Int?,
             pageSize: Int?,
             isPrioritySort: Bool?,
-            customMeta: String?,
+            customMeta: [[String: Any]]?,
             myOrders: Bool?,
             showCrossCompanyData: Bool?,
             customerId: String?,
             orderType: String?,
-            allowInactive: Bool?,
+            operationalStatus: String?,
+            financialStatus: String?,
+            logisticsStatus: String?,
+            parentViewSlug: String?,
+            childViewSlug: String?,
             groupEntity: String?,
             enforceDateFilter: Bool?,
-            fulfillmentType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OrderListingResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3224,8 +2884,24 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["order_type"] = value
             }
             
-            if let value = allowInactive {
-                xQuery["allow_inactive"] = value
+            if let value = operationalStatus {
+                xQuery["operational_status"] = value
+            }
+            
+            if let value = financialStatus {
+                xQuery["financial_status"] = value
+            }
+            
+            if let value = logisticsStatus {
+                xQuery["logistics_status"] = value
+            }
+            
+            if let value = parentViewSlug {
+                xQuery["parent_view_slug"] = value
+            }
+            
+            if let value = childViewSlug {
+                xQuery["child_view_slug"] = value
             }
             
             if let value = groupEntity {
@@ -3234,10 +2910,6 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = enforceDateFilter {
                 xQuery["enforce_date_filter"] = value
-            }
-            
-            if let value = fulfillmentType {
-                xQuery["fulfillment_type"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -3263,7 +2935,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OrderListingResponseSchema.self, from: data)
+                        let response = Utility.decode(OrderListingResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3274,6 +2946,12 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     }
             });
         }
+        
+        
+        
+        
+        
+        
         
         
         
@@ -3347,19 +3025,22 @@ The ESM config stores order processing configuration. Each document in the ESM c
             salesChannels: String?,
             pageSize: Int?,
             isPrioritySort: Bool?,
-            customMeta: String?,
+            customMeta: [[String: Any]]?,
             myOrders: Bool?,
             showCrossCompanyData: Bool?,
             customerId: String?,
             orderType: String?,
-            allowInactive: Bool?,
+            operationalStatus: String?,
+            financialStatus: String?,
+            logisticsStatus: String?,
+            parentViewSlug: String?,
+            childViewSlug: String?,
             groupEntity: String?,
             enforceDateFilter: Bool?,
-            fulfillmentType: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<OrderListingResponseSchema> {
+            ) -> Paginator<OrderListingResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<OrderListingResponseSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<OrderListingResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getOrders(
                     lane: lane,
@@ -3384,10 +3065,13 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     showCrossCompanyData: showCrossCompanyData,
                     customerId: customerId,
                     orderType: orderType,
-                    allowInactive: allowInactive,
+                    operationalStatus: operationalStatus,
+                    financialStatus: financialStatus,
+                    logisticsStatus: logisticsStatus,
+                    parentViewSlug: parentViewSlug,
+                    childViewSlug: childViewSlug,
                     groupEntity: groupEntity,
                     enforceDateFilter: enforceDateFilter,
-                    fulfillmentType: fulfillmentType,
                     
                     headers: headers
                 ) { response, error in                    
@@ -3408,7 +3092,313 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: List filters
+        * Summary: Update User view(Parent view and child view) position
+        * Description: Update User view(Parent view and child view) position
+        **/
+        public func updateUserViewPosition(
+            body: UserViewPosition,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CreateUpdateDeleteResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/order/v1.0/company/\(companyId)/view/position",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateUpdateDeleteResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get custom view for every unique user cross company pair.
+        * Description: Get custom view for every unique user cross company pair.
+        **/
+        public func getUserViews(
+            showIn: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: UserViewsResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["show_in"] = showIn
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order/v1.0/company/\(companyId)/views",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UserViewsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Add custom view for every unique user cross company pair.
+        * Description: Add custom view for every unique user cross company pair.
+        **/
+        public func addUserViews(
+            body: UserViewsResponse,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CreateUpdateDeleteResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order/v1.0/company/\(companyId)/views",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateUpdateDeleteResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Update custom view for every unique user cross company pair.
+        * Description: Update custom view for every unique user cross company pair.
+        **/
+        public func updateUserViews(
+            body: UserViewsResponse,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CreateUpdateDeleteResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/order/v1.0/company/\(companyId)/views",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateUpdateDeleteResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Delete custom view for every unique user cross company pair.
+        * Description: Delete custom view for every unique user cross company pair.
+        **/
+        public func deleteUserViews(
+            viewId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CreateUpdateDeleteResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["view_id"] = viewId
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "DELETE",
+                url: "/service/platform/order/v1.0/company/\(companyId)/views",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateUpdateDeleteResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get global filters for populating filter listing and powering views api.
+        * Description: Get global filters for populating filter listing and powering views api.
+        **/
+        public func getGlobalFilters(
+            showIn: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GlobalFiltersResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["show_in"] = showIn
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order/v1.0/company/\(companyId)/filters",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GlobalFiltersResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get filters.
         * Description: Get supported filters for various listing operations
         **/
         public func getfilters(
@@ -3416,7 +3406,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             groupEntity: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FiltersResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FiltersResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3449,7 +3439,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FiltersResponseSchema.self, from: data)
+                        let response = Utility.decode(FiltersResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3465,7 +3455,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: Generate the report
+        * Summary: Get bulk shipment Excel file.
         * Description: Generates the report which can be filled and uploaded to perform the bulk operation based on the filters provided
         **/
         public func getBulkShipmentExcelFile(
@@ -3483,7 +3473,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: TemplateDownloadResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3559,7 +3549,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileResponseSchema.self, from: data)
+                        let response = Utility.decode(TemplateDownloadResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3575,13 +3565,13 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: List supported templates
+        * Summary: Get bulk action template.
         * Description: Get list of templates so that users can download the required template
         **/
         public func getBulkActionTemplate(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkActionTemplateResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkActionTemplateResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3609,7 +3599,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkActionTemplateResponseSchema.self, from: data)
+                        let response = Utility.decode(BulkActionTemplateResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3625,14 +3615,14 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: Download bulk template
+        * Summary: Download bulk action template.
         * Description: Download bulk seller templates which can be used to perform operations in bulk
         **/
         public func downloadBulkActionTemplate(
             templateSlug: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: TemplateDownloadResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3664,7 +3654,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileResponseSchema.self, from: data)
+                        let response = Utility.decode(TemplateDownloadResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3680,8 +3670,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: List bag cancellation reasons
-        * Description: Get reasons to perform full or partial cancellation of a bag
+        * Summary: Get reasons behind full or partial cancellation of a shipment
+        * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
         **/
         public func getShipmentReasons(
             shipmentId: String,
@@ -3689,7 +3679,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             state: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PlatformShipmentReasonsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PlatformShipmentReasonsResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3717,7 +3707,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PlatformShipmentReasonsResponseSchema.self, from: data)
+                        let response = Utility.decode(PlatformShipmentReasonsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3734,8 +3724,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: Get bag
-        * Description: Retrieve detailed information about a specific bag
+        * Summary: Get bag by ID.
+        * Description: Get Order Bag Details.
         **/
         public func getBagById(
             bagId: String?,
@@ -3743,7 +3733,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             channelId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BagDetailsPlatformResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BagDetailsPlatformResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3769,7 +3759,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/order/v1.0/company/\(companyId)/bag-details/",
+                url: "/service/platform/order/v1.0/company/\(companyId)/bag-details",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -3783,7 +3773,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BagDetailsPlatformResponseSchema.self, from: data)
+                        let response = Utility.decode(BagDetailsPlatformResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3799,8 +3789,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: List bags
-        * Description: Get paginated list of bags based on provided filters
+        * Summary: Get bags.
+        * Description: Get Bags for the order
         **/
         public func getBags(
             bagIds: String?,
@@ -3814,7 +3804,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetBagsPlatformResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetBagsPlatformResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3878,7 +3868,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetBagsPlatformResponseSchema.self, from: data)
+                        let response = Utility.decode(GetBagsPlatformResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3894,7 +3884,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: Generate POS receipt by order Id
+        * Summary: Generate POS receipt by order ID.
         * Description: Create a point-of-sale (POS) receipt for a specific order by order Id.
         **/
         public func generatePOSReceiptByOrderId(
@@ -3903,7 +3893,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             documentType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GeneratePosOrderReceiptResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GeneratePosOrderReceiptResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -3939,7 +3929,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GeneratePosOrderReceiptResponseSchema.self, from: data)
+                        let response = Utility.decode(GeneratePosOrderReceiptResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3955,13 +3945,13 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: List bulk operation templates
-        * Description: Gets all the allowed templates to perform bulk operations.
+        * Summary: Gets All the allowed Templates to perform Bulk Operations.
+        * Description: Gets All the allowed Templates to perform Bulk Operations.
         **/
         public func getAllowedTemplatesForBulk(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AllowedTemplatesResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AllowedTemplatesResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -3989,7 +3979,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AllowedTemplatesResponseSchema.self, from: data)
+                        let response = Utility.decode(AllowedTemplatesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4005,14 +3995,14 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         /**
         *
-        * Summary: Download bulk operation templates
-        * Description: Get the excel or CSV file URL for the template.
+        * Summary: Get the Excel or CSV file URL for the Template.
+        * Description: Get the Excel or CSV file URL for the Template.
         **/
         public func getTemplate(
             templateName: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: TemplateDownloadResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: TemplateDownloadResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -4040,7 +4030,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(TemplateDownloadResponseSchema.self, from: data)
+                        let response = Utility.decode(TemplateDownloadResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

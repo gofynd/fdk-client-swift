@@ -16,13 +16,11 @@ public extension PlatformClient.Order {
         
         public var meta: [String: Any]?
         
-        public var id: Int?
+        public var shipmentStatusId: Int?
         
         public var bagList: [String]?
         
         public var title: String
-        
-        public var displayName: String?
         
         public var createdAt: String?
         
@@ -32,7 +30,7 @@ public extension PlatformClient.Order {
         
         public var statusCreatedAt: String?
         
-        public var updatedTs: String?
+        public var statusCreatedTs: String?
         
         public var status: String
         
@@ -43,13 +41,11 @@ public extension PlatformClient.Order {
             
             case meta = "meta"
             
-            case id = "id"
+            case shipmentStatusId = "shipment_status_id"
             
             case bagList = "bag_list"
             
             case title = "title"
-            
-            case displayName = "display_name"
             
             case createdAt = "created_at"
             
@@ -59,25 +55,23 @@ public extension PlatformClient.Order {
             
             case statusCreatedAt = "status_created_at"
             
-            case updatedTs = "updated_ts"
+            case statusCreatedTs = "status_created_ts"
             
             case status = "status"
             
         }
 
-        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String, statusCreatedAt: String? = nil, title: String, updatedTs: String? = nil) {
+        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, shipmentStatusId: Int? = nil, status: String, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, title: String) {
             
             self.currentShipmentStatus = currentShipmentStatus
             
             self.meta = meta
             
-            self.id = id
+            self.shipmentStatusId = shipmentStatusId
             
             self.bagList = bagList
             
             self.title = title
-            
-            self.displayName = displayName
             
             self.createdAt = createdAt
             
@@ -87,7 +81,7 @@ public extension PlatformClient.Order {
             
             self.statusCreatedAt = statusCreatedAt
             
-            self.updatedTs = updatedTs
+            self.statusCreatedTs = statusCreatedTs
             
             self.status = status
             
@@ -122,7 +116,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    id = try container.decode(Int.self, forKey: .id)
+                    shipmentStatusId = try container.decode(Int.self, forKey: .shipmentStatusId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,18 +142,6 @@ public extension PlatformClient.Order {
                 title = try container.decode(String.self, forKey: .title)
                 
             
-            
-            
-                do {
-                    displayName = try container.decode(String.self, forKey: .displayName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -211,7 +193,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    updatedTs = try container.decode(String.self, forKey: .updatedTs)
+                    statusCreatedTs = try container.decode(String.self, forKey: .statusCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -243,7 +225,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(shipmentStatusId, forKey: .shipmentStatusId)
             
             
             
@@ -254,11 +236,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
@@ -283,7 +260,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
+            try? container.encodeIfPresent(statusCreatedTs, forKey: .statusCreatedTs)
             
             
             
@@ -311,13 +288,11 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var meta: [String: Any]?
         
-        public var id: Int?
+        public var shipmentStatusId: Int?
         
         public var bagList: [String]?
         
         public var title: String
-        
-        public var displayName: String?
         
         public var createdAt: String?
         
@@ -327,7 +302,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var statusCreatedAt: String?
         
-        public var updatedTs: String?
+        public var statusCreatedTs: String?
         
         public var status: String
         
@@ -338,13 +313,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case meta = "meta"
             
-            case id = "id"
+            case shipmentStatusId = "shipment_status_id"
             
             case bagList = "bag_list"
             
             case title = "title"
-            
-            case displayName = "display_name"
             
             case createdAt = "created_at"
             
@@ -354,25 +327,23 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case statusCreatedAt = "status_created_at"
             
-            case updatedTs = "updated_ts"
+            case statusCreatedTs = "status_created_ts"
             
             case status = "status"
             
         }
 
-        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String, statusCreatedAt: String? = nil, title: String, updatedTs: String? = nil) {
+        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, shipmentStatusId: Int? = nil, status: String, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, title: String) {
             
             self.currentShipmentStatus = currentShipmentStatus
             
             self.meta = meta
             
-            self.id = id
+            self.shipmentStatusId = shipmentStatusId
             
             self.bagList = bagList
             
             self.title = title
-            
-            self.displayName = displayName
             
             self.createdAt = createdAt
             
@@ -382,7 +353,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.statusCreatedAt = statusCreatedAt
             
-            self.updatedTs = updatedTs
+            self.statusCreatedTs = statusCreatedTs
             
             self.status = status
             
@@ -417,7 +388,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    id = try container.decode(Int.self, forKey: .id)
+                    shipmentStatusId = try container.decode(Int.self, forKey: .shipmentStatusId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -443,18 +414,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 title = try container.decode(String.self, forKey: .title)
                 
             
-            
-            
-                do {
-                    displayName = try container.decode(String.self, forKey: .displayName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -506,7 +465,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    updatedTs = try container.decode(String.self, forKey: .updatedTs)
+                    statusCreatedTs = try container.decode(String.self, forKey: .statusCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -538,7 +497,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(shipmentStatusId, forKey: .shipmentStatusId)
             
             
             
@@ -549,11 +508,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
@@ -578,7 +532,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
+            try? container.encodeIfPresent(statusCreatedTs, forKey: .statusCreatedTs)
             
             
             

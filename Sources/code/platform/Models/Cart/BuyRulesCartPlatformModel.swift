@@ -14,9 +14,15 @@ public extension PlatformClient.ApplicationClient.Cart {
     class BuyRules: Codable {
         
         
-        public var cartConditions: [String: Any]?
+        public var cartConditions: PromoBuyRuleCartConditions?
         
         public var itemCriteria: [String: Any]?
+        
+        public var allItems: Bool?
+        
+        public var mrpPromo: Bool?
+        
+        public var slug: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,13 +31,25 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case itemCriteria = "item_criteria"
             
+            case allItems = "all_items"
+            
+            case mrpPromo = "mrp_promo"
+            
+            case slug = "slug"
+            
         }
 
-        public init(cartConditions: [String: Any]? = nil, itemCriteria: [String: Any]? = nil) {
+        public init(allItems: Bool? = nil, cartConditions: PromoBuyRuleCartConditions? = nil, itemCriteria: [String: Any]? = nil, mrpPromo: Bool? = nil, slug: String? = nil) {
             
             self.cartConditions = cartConditions
             
             self.itemCriteria = itemCriteria
+            
+            self.allItems = allItems
+            
+            self.mrpPromo = mrpPromo
+            
+            self.slug = slug
             
         }
 
@@ -40,7 +58,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    cartConditions = try container.decode([String: Any].self, forKey: .cartConditions)
+                    cartConditions = try container.decode(PromoBuyRuleCartConditions.self, forKey: .cartConditions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,6 +71,42 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    allItems = try container.decode(Bool.self, forKey: .allItems)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mrpPromo = try container.decode(Bool.self, forKey: .mrpPromo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,6 +129,21 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allItems, forKey: .allItems)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mrpPromo, forKey: .mrpPromo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
         }
