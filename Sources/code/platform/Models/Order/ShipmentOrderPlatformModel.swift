@@ -16,8 +16,6 @@ public extension PlatformClient.Order {
         
         public var externalShipmentId: String?
         
-        public var externalLocationId: String?
-        
         public var processingDates: ProcessingDates?
         
         public var meta: [String: Any]?
@@ -27,6 +25,12 @@ public extension PlatformClient.Order {
         public var locationId: Int?
         
         public var orderType: String?
+        
+        public var tags: [Tag]?
+        
+        public var systemMessages: [SystemMessages]?
+        
+        public var processAfterConfig: ProcessAfterConfig?
         
         public var parentType: String?
         
@@ -55,8 +59,6 @@ public extension PlatformClient.Order {
         public var affiliateShipmentId: String?
         
         public var fyndOrderId: String?
-        
-        public var tags: [String]?
         
         public var createdAt: String?
         
@@ -89,8 +91,6 @@ public extension PlatformClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
-            case externalLocationId = "external_location_id"
-            
             case processingDates = "processing_dates"
             
             case meta = "meta"
@@ -100,6 +100,12 @@ public extension PlatformClient.Order {
             case locationId = "location_id"
             
             case orderType = "order_type"
+            
+            case tags = "tags"
+            
+            case systemMessages = "system_messages"
+            
+            case processAfterConfig = "process_after_config"
             
             case parentType = "parent_type"
             
@@ -129,8 +135,6 @@ public extension PlatformClient.Order {
             
             case fyndOrderId = "fynd_order_id"
             
-            case tags = "tags"
-            
             case createdAt = "created_at"
             
             case deliveryAwbNumber = "delivery_awb_number"
@@ -157,13 +161,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, billingAddressJson: Address? = nil, createdAt: String? = nil, creditNoteId: String? = nil, deliveryAddressJson: Address? = nil, deliveryAwbNumber: String? = nil, ewayBillId: String? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfilmentPriority: Int? = nil, fyndOrderId: String? = nil, gst: ShipmentGstDetails? = nil, handOverContactJson: Address? = nil, id: String? = nil, isActive: Bool? = nil, lineItems: [LineItem], locationId: Int? = nil, lockStatus: String? = nil, meta: [String: Any]? = nil, orderType: String? = nil, packagingType: String? = nil, parentId: String? = nil, parentType: String? = nil, pdfLinks: [String: Any]? = nil, previousShipmentId: String? = nil, price: Prices? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil, quantity: Double? = nil, status: ShipmentStatusData? = nil, storeInvoiceId: String? = nil, tags: [String]? = nil, type: String? = nil, vertical: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, billingAddressJson: Address? = nil, createdAt: String? = nil, creditNoteId: String? = nil, deliveryAddressJson: Address? = nil, deliveryAwbNumber: String? = nil, ewayBillId: String? = nil, externalShipmentId: String? = nil, fulfilmentPriority: Int? = nil, fyndOrderId: String? = nil, gst: ShipmentGstDetails? = nil, handOverContactJson: Address? = nil, id: String? = nil, isActive: Bool? = nil, lineItems: [LineItem], locationId: Int? = nil, lockStatus: String? = nil, meta: [String: Any]? = nil, orderType: String? = nil, packagingType: String? = nil, parentId: String? = nil, parentType: String? = nil, pdfLinks: [String: Any]? = nil, previousShipmentId: String? = nil, price: Prices? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil, processAfterConfig: ProcessAfterConfig? = nil, quantity: Double? = nil, status: ShipmentStatusData? = nil, storeInvoiceId: String? = nil, systemMessages: [SystemMessages]? = nil, tags: [Tag]? = nil, type: String? = nil, vertical: String? = nil) {
             
             self.lineItems = lineItems
             
             self.externalShipmentId = externalShipmentId
-            
-            self.externalLocationId = externalLocationId
             
             self.processingDates = processingDates
             
@@ -174,6 +176,12 @@ public extension PlatformClient.Order {
             self.locationId = locationId
             
             self.orderType = orderType
+            
+            self.tags = tags
+            
+            self.systemMessages = systemMessages
+            
+            self.processAfterConfig = processAfterConfig
             
             self.parentType = parentType
             
@@ -202,8 +210,6 @@ public extension PlatformClient.Order {
             self.affiliateShipmentId = affiliateShipmentId
             
             self.fyndOrderId = fyndOrderId
-            
-            self.tags = tags
             
             self.createdAt = createdAt
             
@@ -242,18 +248,6 @@ public extension PlatformClient.Order {
             
                 do {
                     externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    externalLocationId = try container.decode(String.self, forKey: .externalLocationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -314,6 +308,42 @@ public extension PlatformClient.Order {
             
                 do {
                     orderType = try container.decode(String.self, forKey: .orderType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tags = try container.decode([Tag].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    systemMessages = try container.decode([SystemMessages].self, forKey: .systemMessages)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    processAfterConfig = try container.decode(ProcessAfterConfig.self, forKey: .processAfterConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -493,18 +523,6 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     createdAt = try container.decode(String.self, forKey: .createdAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -664,11 +682,6 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(externalLocationId, forKey: .externalLocationId)
-            
-            
-            
-            
             try? container.encodeIfPresent(processingDates, forKey: .processingDates)
             
             
@@ -690,6 +703,21 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderType, forKey: .orderType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(systemMessages, forKey: .systemMessages)
+            
+            
+            
+            
+            try? container.encodeIfPresent(processAfterConfig, forKey: .processAfterConfig)
             
             
             
@@ -760,11 +788,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
@@ -847,8 +870,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var externalShipmentId: String?
         
-        public var externalLocationId: String?
-        
         public var processingDates: ProcessingDates?
         
         public var meta: [String: Any]?
@@ -858,6 +879,12 @@ public extension PlatformClient.ApplicationClient.Order {
         public var locationId: Int?
         
         public var orderType: String?
+        
+        public var tags: [Tag]?
+        
+        public var systemMessages: [SystemMessages]?
+        
+        public var processAfterConfig: ProcessAfterConfig?
         
         public var parentType: String?
         
@@ -886,8 +913,6 @@ public extension PlatformClient.ApplicationClient.Order {
         public var affiliateShipmentId: String?
         
         public var fyndOrderId: String?
-        
-        public var tags: [String]?
         
         public var createdAt: String?
         
@@ -920,8 +945,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
-            case externalLocationId = "external_location_id"
-            
             case processingDates = "processing_dates"
             
             case meta = "meta"
@@ -931,6 +954,12 @@ public extension PlatformClient.ApplicationClient.Order {
             case locationId = "location_id"
             
             case orderType = "order_type"
+            
+            case tags = "tags"
+            
+            case systemMessages = "system_messages"
+            
+            case processAfterConfig = "process_after_config"
             
             case parentType = "parent_type"
             
@@ -960,8 +989,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case fyndOrderId = "fynd_order_id"
             
-            case tags = "tags"
-            
             case createdAt = "created_at"
             
             case deliveryAwbNumber = "delivery_awb_number"
@@ -988,13 +1015,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, billingAddressJson: Address? = nil, createdAt: String? = nil, creditNoteId: String? = nil, deliveryAddressJson: Address? = nil, deliveryAwbNumber: String? = nil, ewayBillId: String? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfilmentPriority: Int? = nil, fyndOrderId: String? = nil, gst: ShipmentGstDetails? = nil, handOverContactJson: Address? = nil, id: String? = nil, isActive: Bool? = nil, lineItems: [LineItem], locationId: Int? = nil, lockStatus: String? = nil, meta: [String: Any]? = nil, orderType: String? = nil, packagingType: String? = nil, parentId: String? = nil, parentType: String? = nil, pdfLinks: [String: Any]? = nil, previousShipmentId: String? = nil, price: Prices? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil, quantity: Double? = nil, status: ShipmentStatusData? = nil, storeInvoiceId: String? = nil, tags: [String]? = nil, type: String? = nil, vertical: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, billingAddressJson: Address? = nil, createdAt: String? = nil, creditNoteId: String? = nil, deliveryAddressJson: Address? = nil, deliveryAwbNumber: String? = nil, ewayBillId: String? = nil, externalShipmentId: String? = nil, fulfilmentPriority: Int? = nil, fyndOrderId: String? = nil, gst: ShipmentGstDetails? = nil, handOverContactJson: Address? = nil, id: String? = nil, isActive: Bool? = nil, lineItems: [LineItem], locationId: Int? = nil, lockStatus: String? = nil, meta: [String: Any]? = nil, orderType: String? = nil, packagingType: String? = nil, parentId: String? = nil, parentType: String? = nil, pdfLinks: [String: Any]? = nil, previousShipmentId: String? = nil, price: Prices? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil, processAfterConfig: ProcessAfterConfig? = nil, quantity: Double? = nil, status: ShipmentStatusData? = nil, storeInvoiceId: String? = nil, systemMessages: [SystemMessages]? = nil, tags: [Tag]? = nil, type: String? = nil, vertical: String? = nil) {
             
             self.lineItems = lineItems
             
             self.externalShipmentId = externalShipmentId
-            
-            self.externalLocationId = externalLocationId
             
             self.processingDates = processingDates
             
@@ -1005,6 +1030,12 @@ public extension PlatformClient.ApplicationClient.Order {
             self.locationId = locationId
             
             self.orderType = orderType
+            
+            self.tags = tags
+            
+            self.systemMessages = systemMessages
+            
+            self.processAfterConfig = processAfterConfig
             
             self.parentType = parentType
             
@@ -1033,8 +1064,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.affiliateShipmentId = affiliateShipmentId
             
             self.fyndOrderId = fyndOrderId
-            
-            self.tags = tags
             
             self.createdAt = createdAt
             
@@ -1073,18 +1102,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    externalLocationId = try container.decode(String.self, forKey: .externalLocationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1145,6 +1162,42 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     orderType = try container.decode(String.self, forKey: .orderType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tags = try container.decode([Tag].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    systemMessages = try container.decode([SystemMessages].self, forKey: .systemMessages)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    processAfterConfig = try container.decode(ProcessAfterConfig.self, forKey: .processAfterConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1324,18 +1377,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     createdAt = try container.decode(String.self, forKey: .createdAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1495,11 +1536,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(externalLocationId, forKey: .externalLocationId)
-            
-            
-            
-            
             try? container.encodeIfPresent(processingDates, forKey: .processingDates)
             
             
@@ -1521,6 +1557,21 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderType, forKey: .orderType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(systemMessages, forKey: .systemMessages)
+            
+            
+            
+            
+            try? container.encodeIfPresent(processAfterConfig, forKey: .processAfterConfig)
             
             
             
@@ -1591,11 +1642,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             

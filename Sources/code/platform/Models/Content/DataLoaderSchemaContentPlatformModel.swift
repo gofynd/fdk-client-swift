@@ -12,44 +12,24 @@ public extension PlatformClient.Content {
     class DataLoaderSchema: Codable {
         
         
-        public var id: String?
-        
-        public var url: String?
-        
-        public var createdAt: String?
-        
-        public var modifiedAt: String?
-        
-        public var application: String?
-        
-        public var company: String?
-        
         public var name: String?
         
         public var service: String?
         
         public var operationId: String?
         
-        public var isSelected: Bool?
-        
         public var type: String?
+        
+        public var url: String?
+        
+        public var content: String?
         
         public var source: DataLoaderSourceSchema?
         
+        public var id: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "_id"
-            
-            case url = "url"
-            
-            case createdAt = "created_at"
-            
-            case modifiedAt = "modified_at"
-            
-            case application = "application"
-            
-            case company = "company"
             
             case name = "name"
             
@@ -57,27 +37,19 @@ public extension PlatformClient.Content {
             
             case operationId = "operation_id"
             
-            case isSelected = "is_selected"
-            
             case type = "type"
+            
+            case url = "url"
+            
+            case content = "content"
             
             case source = "__source"
             
+            case id = "_id"
+            
         }
 
-        public init(application: String? = nil, company: String? = nil, createdAt: String? = nil, isSelected: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
-            
-            self.id = id
-            
-            self.url = url
-            
-            self.createdAt = createdAt
-            
-            self.modifiedAt = modifiedAt
-            
-            self.application = application
-            
-            self.company = company
+        public init(content: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
             
             self.name = name
             
@@ -85,88 +57,20 @@ public extension PlatformClient.Content {
             
             self.operationId = operationId
             
-            self.isSelected = isSelected
-            
             self.type = type
             
+            self.url = url
+            
+            self.content = content
+            
             self.source = source
+            
+            self.id = id
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    url = try container.decode(String.self, forKey: .url)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdAt = try container.decode(String.self, forKey: .createdAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    application = try container.decode(String.self, forKey: .application)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    company = try container.decode(String.self, forKey: .company)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -206,7 +110,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -218,7 +122,19 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    content = try container.decode(String.self, forKey: .content)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -240,40 +156,22 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(url, forKey: .url)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(application, forKey: .application)
-            
-            
-            
-            
-            try? container.encodeIfPresent(company, forKey: .company)
-            
             
             
             
@@ -292,17 +190,27 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-            
-            
-            
-            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
+            try? container.encodeIfPresent(url, forKey: .url)
+            
+            
+            
+            
+            try? container.encodeIfPresent(content, forKey: .content)
+            
+            
+            
+            
             try? container.encodeIfPresent(source, forKey: .source)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }
@@ -321,44 +229,24 @@ public extension PlatformClient.ApplicationClient.Content {
     class DataLoaderSchema: Codable {
         
         
-        public var id: String?
-        
-        public var url: String?
-        
-        public var createdAt: String?
-        
-        public var modifiedAt: String?
-        
-        public var application: String?
-        
-        public var company: String?
-        
         public var name: String?
         
         public var service: String?
         
         public var operationId: String?
         
-        public var isSelected: Bool?
-        
         public var type: String?
+        
+        public var url: String?
+        
+        public var content: String?
         
         public var source: DataLoaderSourceSchema?
         
+        public var id: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "_id"
-            
-            case url = "url"
-            
-            case createdAt = "created_at"
-            
-            case modifiedAt = "modified_at"
-            
-            case application = "application"
-            
-            case company = "company"
             
             case name = "name"
             
@@ -366,27 +254,19 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case operationId = "operation_id"
             
-            case isSelected = "is_selected"
-            
             case type = "type"
+            
+            case url = "url"
+            
+            case content = "content"
             
             case source = "__source"
             
+            case id = "_id"
+            
         }
 
-        public init(application: String? = nil, company: String? = nil, createdAt: String? = nil, isSelected: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
-            
-            self.id = id
-            
-            self.url = url
-            
-            self.createdAt = createdAt
-            
-            self.modifiedAt = modifiedAt
-            
-            self.application = application
-            
-            self.company = company
+        public init(content: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
             
             self.name = name
             
@@ -394,88 +274,20 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.operationId = operationId
             
-            self.isSelected = isSelected
-            
             self.type = type
             
+            self.url = url
+            
+            self.content = content
+            
             self.source = source
+            
+            self.id = id
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    url = try container.decode(String.self, forKey: .url)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdAt = try container.decode(String.self, forKey: .createdAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    application = try container.decode(String.self, forKey: .application)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    company = try container.decode(String.self, forKey: .company)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -515,7 +327,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -527,7 +339,19 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    content = try container.decode(String.self, forKey: .content)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -549,40 +373,22 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(url, forKey: .url)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(application, forKey: .application)
-            
-            
-            
-            
-            try? container.encodeIfPresent(company, forKey: .company)
-            
             
             
             
@@ -601,17 +407,27 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-            
-            
-            
-            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
+            try? container.encodeIfPresent(url, forKey: .url)
+            
+            
+            
+            
+            try? container.encodeIfPresent(content, forKey: .content)
+            
+            
+            
+            
             try? container.encodeIfPresent(source, forKey: .source)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }

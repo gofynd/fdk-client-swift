@@ -26,9 +26,9 @@ public extension PlatformClient.Serviceability {
         
         public var serviceability: [String: Any]?
         
-        public var code: String?
-        
         public var parentUid: String?
+        
+        public var code: String?
         
         public var iso2: String?
         
@@ -61,9 +61,9 @@ public extension PlatformClient.Serviceability {
             
             case serviceability = "serviceability"
             
-            case code = "code"
-            
             case parentUid = "parent_uid"
+            
+            case code = "code"
             
             case iso2 = "iso2"
             
@@ -97,9 +97,9 @@ public extension PlatformClient.Serviceability {
             
             self.serviceability = serviceability
             
-            self.code = code
-            
             self.parentUid = parentUid
+            
+            self.code = code
             
             self.iso2 = iso2
             
@@ -206,7 +206,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    code = try container.decode(String.self, forKey: .code)
+                    parentUid = try container.decode(String.self, forKey: .parentUid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -218,7 +218,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    parentUid = try container.decode(String.self, forKey: .parentUid)
+                    code = try container.decode(String.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -354,12 +354,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
-            
-            
-            
-            
             try? container.encodeIfPresent(parentUid, forKey: .parentUid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -427,9 +427,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var serviceability: [String: Any]?
         
-        public var code: String?
-        
         public var parentUid: String?
+        
+        public var code: String?
         
         public var iso2: String?
         
@@ -462,9 +462,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case serviceability = "serviceability"
             
-            case code = "code"
-            
             case parentUid = "parent_uid"
+            
+            case code = "code"
             
             case iso2 = "iso2"
             
@@ -498,9 +498,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.serviceability = serviceability
             
-            self.code = code
-            
             self.parentUid = parentUid
+            
+            self.code = code
             
             self.iso2 = iso2
             
@@ -607,7 +607,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    code = try container.decode(String.self, forKey: .code)
+                    parentUid = try container.decode(String.self, forKey: .parentUid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -619,7 +619,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    parentUid = try container.decode(String.self, forKey: .parentUid)
+                    code = try container.decode(String.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -755,12 +755,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
-            
-            
-            
-            
             try? container.encodeIfPresent(parentUid, forKey: .parentUid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             

@@ -16,17 +16,31 @@ public extension PlatformClient.Serviceability {
         
         public var name: String
         
+        public var geoAreas: [GeoArea]
+        
         public var slug: String
         
-        public var storesCount: Int
+        public var stores: ListViewProduct
         
         public var isActive: Bool
         
-        public var regionsCount: Int
+        public var product: ListViewProduct
         
         public var companyId: Int
         
-        public var channels: [ListViewChannels]
+        public var applicationId: String
+        
+        public var createdBy: CreatedBy
+        
+        public var modifiedBy: ModifiedBy
+        
+        public var createdOn: String
+        
+        public var modifiedOn: String
+        
+        public var stage: String?
+        
+        public var summary: Summary?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -35,37 +49,65 @@ public extension PlatformClient.Serviceability {
             
             case name = "name"
             
+            case geoAreas = "geo_areas"
+            
             case slug = "slug"
             
-            case storesCount = "stores_count"
+            case stores = "stores"
             
             case isActive = "is_active"
             
-            case regionsCount = "regions_count"
+            case product = "product"
             
             case companyId = "company_id"
             
-            case channels = "channels"
+            case applicationId = "application_id"
+            
+            case createdBy = "created_by"
+            
+            case modifiedBy = "modified_by"
+            
+            case createdOn = "created_on"
+            
+            case modifiedOn = "modified_on"
+            
+            case stage = "stage"
+            
+            case summary = "summary"
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
+        public init(applicationId: String, companyId: Int, createdBy: CreatedBy, createdOn: String, geoAreas: [GeoArea], isActive: Bool, modifiedBy: ModifiedBy, modifiedOn: String, name: String, product: ListViewProduct, slug: String, stage: String? = nil, stores: ListViewProduct, summary: Summary? = nil, zoneId: String) {
             
             self.zoneId = zoneId
             
             self.name = name
             
+            self.geoAreas = geoAreas
+            
             self.slug = slug
             
-            self.storesCount = storesCount
+            self.stores = stores
             
             self.isActive = isActive
             
-            self.regionsCount = regionsCount
+            self.product = product
             
             self.companyId = companyId
             
-            self.channels = channels
+            self.applicationId = applicationId
+            
+            self.createdBy = createdBy
+            
+            self.modifiedBy = modifiedBy
+            
+            self.createdOn = createdOn
+            
+            self.modifiedOn = modifiedOn
+            
+            self.stage = stage
+            
+            self.summary = summary
             
         }
 
@@ -83,12 +125,17 @@ public extension PlatformClient.Serviceability {
             
             
             
+                geoAreas = try container.decode([GeoArea].self, forKey: .geoAreas)
+                
+            
+            
+            
                 slug = try container.decode(String.self, forKey: .slug)
                 
             
             
             
-                storesCount = try container.decode(Int.self, forKey: .storesCount)
+                stores = try container.decode(ListViewProduct.self, forKey: .stores)
                 
             
             
@@ -98,7 +145,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                regionsCount = try container.decode(Int.self, forKey: .regionsCount)
+                product = try container.decode(ListViewProduct.self, forKey: .product)
                 
             
             
@@ -108,9 +155,53 @@ public extension PlatformClient.Serviceability {
             
             
             
-                channels = try container.decode([ListViewChannels].self, forKey: .channels)
+                applicationId = try container.decode(String.self, forKey: .applicationId)
                 
             
+            
+            
+                createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+            
+            
+            
+                modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
+                
+            
+            
+            
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+                
+            
+            
+            
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+            
+            
+            
+                do {
+                    stage = try container.decode(String.self, forKey: .stage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    summary = try container.decode(Summary.self, forKey: .summary)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -129,12 +220,17 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(geoAreas, forKey: .geoAreas)
+            
+            
+            
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
             
-            try? container.encodeIfPresent(storesCount, forKey: .storesCount)
+            try? container.encodeIfPresent(stores, forKey: .stores)
             
             
             
@@ -144,7 +240,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(regionsCount, forKey: .regionsCount)
+            try? container.encodeIfPresent(product, forKey: .product)
             
             
             
@@ -154,7 +250,37 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(channels, forKey: .channels)
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            
+            
+            
+            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }
@@ -177,17 +303,31 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var name: String
         
+        public var geoAreas: [GeoArea]
+        
         public var slug: String
         
-        public var storesCount: Int
+        public var stores: ListViewProduct
         
         public var isActive: Bool
         
-        public var regionsCount: Int
+        public var product: ListViewProduct
         
         public var companyId: Int
         
-        public var channels: [ListViewChannels]
+        public var applicationId: String
+        
+        public var createdBy: CreatedBy
+        
+        public var modifiedBy: ModifiedBy
+        
+        public var createdOn: String
+        
+        public var modifiedOn: String
+        
+        public var stage: String?
+        
+        public var summary: Summary?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -196,37 +336,65 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case name = "name"
             
+            case geoAreas = "geo_areas"
+            
             case slug = "slug"
             
-            case storesCount = "stores_count"
+            case stores = "stores"
             
             case isActive = "is_active"
             
-            case regionsCount = "regions_count"
+            case product = "product"
             
             case companyId = "company_id"
             
-            case channels = "channels"
+            case applicationId = "application_id"
+            
+            case createdBy = "created_by"
+            
+            case modifiedBy = "modified_by"
+            
+            case createdOn = "created_on"
+            
+            case modifiedOn = "modified_on"
+            
+            case stage = "stage"
+            
+            case summary = "summary"
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
+        public init(applicationId: String, companyId: Int, createdBy: CreatedBy, createdOn: String, geoAreas: [GeoArea], isActive: Bool, modifiedBy: ModifiedBy, modifiedOn: String, name: String, product: ListViewProduct, slug: String, stage: String? = nil, stores: ListViewProduct, summary: Summary? = nil, zoneId: String) {
             
             self.zoneId = zoneId
             
             self.name = name
             
+            self.geoAreas = geoAreas
+            
             self.slug = slug
             
-            self.storesCount = storesCount
+            self.stores = stores
             
             self.isActive = isActive
             
-            self.regionsCount = regionsCount
+            self.product = product
             
             self.companyId = companyId
             
-            self.channels = channels
+            self.applicationId = applicationId
+            
+            self.createdBy = createdBy
+            
+            self.modifiedBy = modifiedBy
+            
+            self.createdOn = createdOn
+            
+            self.modifiedOn = modifiedOn
+            
+            self.stage = stage
+            
+            self.summary = summary
             
         }
 
@@ -244,12 +412,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+                geoAreas = try container.decode([GeoArea].self, forKey: .geoAreas)
+                
+            
+            
+            
                 slug = try container.decode(String.self, forKey: .slug)
                 
             
             
             
-                storesCount = try container.decode(Int.self, forKey: .storesCount)
+                stores = try container.decode(ListViewProduct.self, forKey: .stores)
                 
             
             
@@ -259,7 +432,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                regionsCount = try container.decode(Int.self, forKey: .regionsCount)
+                product = try container.decode(ListViewProduct.self, forKey: .product)
                 
             
             
@@ -269,9 +442,53 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                channels = try container.decode([ListViewChannels].self, forKey: .channels)
+                applicationId = try container.decode(String.self, forKey: .applicationId)
                 
             
+            
+            
+                createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+            
+            
+            
+                modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
+                
+            
+            
+            
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+                
+            
+            
+            
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+            
+            
+            
+                do {
+                    stage = try container.decode(String.self, forKey: .stage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    summary = try container.decode(Summary.self, forKey: .summary)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -290,12 +507,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(geoAreas, forKey: .geoAreas)
+            
+            
+            
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
             
-            try? container.encodeIfPresent(storesCount, forKey: .storesCount)
+            try? container.encodeIfPresent(stores, forKey: .stores)
             
             
             
@@ -305,7 +527,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(regionsCount, forKey: .regionsCount)
+            try? container.encodeIfPresent(product, forKey: .product)
             
             
             
@@ -315,7 +537,37 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(channels, forKey: .channels)
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            
+            
+            
+            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }

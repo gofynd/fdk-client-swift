@@ -16,6 +16,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var size: Int?
         
+        public var total: Int?
+        
         public var itemTotal: Int?
         
         public var hasNext: Bool?
@@ -29,6 +31,8 @@ public extension PlatformClient.ApplicationClient.User {
             
             case size = "size"
             
+            case total = "total"
+            
             case itemTotal = "item_total"
             
             case hasNext = "has_next"
@@ -39,9 +43,11 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, total: Int? = nil, type: String? = nil) {
             
             self.size = size
+            
+            self.total = total
             
             self.itemTotal = itemTotal
             
@@ -59,6 +65,18 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     size = try container.decode(Int.self, forKey: .size)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    total = try container.decode(Int.self, forKey: .total)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,6 +142,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(total, forKey: .total)
             
             
             

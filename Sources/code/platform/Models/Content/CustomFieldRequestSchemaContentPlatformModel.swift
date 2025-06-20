@@ -12,7 +12,7 @@ public extension PlatformClient.Content {
     class CustomFieldRequestSchema: Codable {
         
         
-        public var fields: [[String: Any]]?
+        public var fields: [CustomField]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(fields: [[String: Any]]? = nil) {
+        public init(fields: [CustomField]? = nil) {
             
             self.fields = fields
             
@@ -32,7 +32,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    fields = try container.decode([[String: Any]].self, forKey: .fields)
+                    fields = try container.decode([CustomField].self, forKey: .fields)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomFieldRequestSchema: Codable {
         
         
-        public var fields: [[String: Any]]?
+        public var fields: [CustomField]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(fields: [[String: Any]]? = nil) {
+        public init(fields: [CustomField]? = nil) {
             
             self.fields = fields
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    fields = try container.decode([[String: Any]].self, forKey: .fields)
+                    fields = try container.decode([CustomField].self, forKey: .fields)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

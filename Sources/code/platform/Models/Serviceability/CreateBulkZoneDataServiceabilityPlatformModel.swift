@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class CreateBulkZoneData: Codable {
         
         
-        public var fileUrl: String?
+        public var fileUrl: [String: Any]?
         
         public var productType: String?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(fileUrl: String? = nil, productType: String? = nil) {
+        public init(fileUrl: [String: Any]? = nil, productType: String? = nil) {
             
             self.fileUrl = fileUrl
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    fileUrl = try container.decode(String.self, forKey: .fileUrl)
+                    fileUrl = try container.decode([String: Any].self, forKey: .fileUrl)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CreateBulkZoneData: Codable {
         
         
-        public var fileUrl: String?
+        public var fileUrl: [String: Any]?
         
         public var productType: String?
         
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(fileUrl: String? = nil, productType: String? = nil) {
+        public init(fileUrl: [String: Any]? = nil, productType: String? = nil) {
             
             self.fileUrl = fileUrl
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    fileUrl = try container.decode(String.self, forKey: .fileUrl)
+                    fileUrl = try container.decode([String: Any].self, forKey: .fileUrl)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -20,6 +20,10 @@ public extension PublicClient.Partner {
         
         public var websiteUrl: String?
         
+        public var termsOfService: String?
+        
+        public var countryCode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -33,9 +37,13 @@ public extension PublicClient.Partner {
             
             case websiteUrl = "website_url"
             
+            case termsOfService = "terms_of_service"
+            
+            case countryCode = "country_code"
+            
         }
 
-        public init(email: String? = nil, faqUrl: String? = nil, phone: String? = nil, privacyPolicyUrl: String? = nil, websiteUrl: String? = nil) {
+        public init(countryCode: String? = nil, email: String? = nil, faqUrl: String? = nil, phone: String? = nil, privacyPolicyUrl: String? = nil, termsOfService: String? = nil, websiteUrl: String? = nil) {
             
             self.email = email
             
@@ -46,6 +54,10 @@ public extension PublicClient.Partner {
             self.privacyPolicyUrl = privacyPolicyUrl
             
             self.websiteUrl = websiteUrl
+            
+            self.termsOfService = termsOfService
+            
+            self.countryCode = countryCode
             
         }
 
@@ -112,6 +124,30 @@ public extension PublicClient.Partner {
                 }
                 
             
+            
+                do {
+                    termsOfService = try container.decode(String.self, forKey: .termsOfService)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -135,6 +171,14 @@ public extension PublicClient.Partner {
             
             
             try? container.encodeIfPresent(websiteUrl, forKey: .websiteUrl)
+            
+            
+            
+            try? container.encodeIfPresent(termsOfService, forKey: .termsOfService)
+            
+            
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
         }

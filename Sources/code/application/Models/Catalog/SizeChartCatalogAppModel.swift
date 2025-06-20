@@ -22,6 +22,8 @@ public extension ApplicationClient.Catalog {
         
         public var headers: ColumnHeaders?
         
+        public var id: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension ApplicationClient.Catalog {
             
             case headers = "headers"
             
+            case id = "id"
+            
         }
 
-        public init(description: String? = nil, headers: ColumnHeaders? = nil, image: String? = nil, sizes: [SizeChartValues]? = nil, sizeTip: String? = nil, title: String? = nil, unit: String? = nil) {
+        public init(description: String? = nil, headers: ColumnHeaders? = nil, id: String? = nil, image: String? = nil, sizes: [SizeChartValues]? = nil, sizeTip: String? = nil, title: String? = nil, unit: String? = nil) {
             
             self.unit = unit
             
@@ -56,6 +60,8 @@ public extension ApplicationClient.Catalog {
             self.title = title
             
             self.headers = headers
+            
+            self.id = id
             
         }
 
@@ -146,6 +152,18 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                id = try container.decode(String.self, forKey: .id)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -177,6 +195,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(headers, forKey: .headers)
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }

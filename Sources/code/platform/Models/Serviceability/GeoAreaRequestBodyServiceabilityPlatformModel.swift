@@ -12,6 +12,8 @@ public extension PlatformClient.Serviceability {
     class GeoAreaRequestBody: Codable {
         
         
+        public var isPolygon: Bool?
+        
         public var isActive: Bool
         
         public var name: String
@@ -22,10 +24,12 @@ public extension PlatformClient.Serviceability {
         
         public var areas: [Area]
         
-        public var regionType: String
+        public var regionType: String?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case isPolygon = "is_polygon"
             
             case isActive = "is_active"
             
@@ -41,7 +45,9 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(areas: [Area], isActive: Bool, name: String, regionType: String, slug: String, type: String) {
+        public init(areas: [Area], isActive: Bool, isPolygon: Bool? = nil, name: String, regionType: String? = nil, slug: String, type: String) {
+            
+            self.isPolygon = isPolygon
             
             self.isActive = isActive
             
@@ -59,6 +65,18 @@ public extension PlatformClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    isPolygon = try container.decode(Bool.self, forKey: .isPolygon)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -86,14 +104,26 @@ public extension PlatformClient.Serviceability {
             
             
             
-                regionType = try container.decode(String.self, forKey: .regionType)
+                do {
+                    regionType = try container.decode(String.self, forKey: .regionType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(isPolygon, forKey: .isPolygon)
+            
             
             
             
@@ -141,6 +171,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class GeoAreaRequestBody: Codable {
         
         
+        public var isPolygon: Bool?
+        
         public var isActive: Bool
         
         public var name: String
@@ -151,10 +183,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var areas: [Area]
         
-        public var regionType: String
+        public var regionType: String?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case isPolygon = "is_polygon"
             
             case isActive = "is_active"
             
@@ -170,7 +204,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(areas: [Area], isActive: Bool, name: String, regionType: String, slug: String, type: String) {
+        public init(areas: [Area], isActive: Bool, isPolygon: Bool? = nil, name: String, regionType: String? = nil, slug: String, type: String) {
+            
+            self.isPolygon = isPolygon
             
             self.isActive = isActive
             
@@ -188,6 +224,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    isPolygon = try container.decode(Bool.self, forKey: .isPolygon)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -215,14 +263,26 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                regionType = try container.decode(String.self, forKey: .regionType)
+                do {
+                    regionType = try container.decode(String.self, forKey: .regionType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(isPolygon, forKey: .isPolygon)
+            
             
             
             

@@ -10,9 +10,7 @@ public extension ApplicationClient.Payment {
         
         public var status: Bool
         
-        public var signupUrl: String?
-        
-        public var redirectUrl: String?
+        public var redirectUrl: String
         
         public var extra: String?
         
@@ -21,19 +19,15 @@ public extension ApplicationClient.Payment {
             
             case status = "status"
             
-            case signupUrl = "signup_url"
-            
             case redirectUrl = "redirect_url"
             
             case extra = "extra"
             
         }
 
-        public init(extra: String? = nil, redirectUrl: String? = nil, signupUrl: String? = nil, status: Bool) {
+        public init(extra: String? = nil, redirectUrl: String, status: Bool) {
             
             self.status = status
-            
-            self.signupUrl = signupUrl
             
             self.redirectUrl = redirectUrl
             
@@ -50,27 +44,8 @@ public extension ApplicationClient.Payment {
             
             
             
-            do {
-                signupUrl = try container.decode(String.self, forKey: .signupUrl)
+            redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -92,10 +67,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            try? container.encodeIfPresent(signupUrl, forKey: .signupUrl)
             
             
             

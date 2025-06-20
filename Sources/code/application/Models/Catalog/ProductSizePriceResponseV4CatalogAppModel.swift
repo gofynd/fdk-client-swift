@@ -14,8 +14,6 @@ public extension ApplicationClient.Catalog {
         
         public var isCod: Bool?
         
-        public var journeyWisePromise: [JourneyPromiseObject]?
-        
         public var strategyWiseListing: [StrategyWiseListingSchemaV3]?
         
         public var quantity: Int?
@@ -32,6 +30,8 @@ public extension ApplicationClient.Catalog {
         
         public var set: ProductSetV3?
         
+        public var sellerCount: Int?
+        
         public var pricePerPiece: ProductStockPriceV3?
         
         public var discountMeta: DiscountMeta?
@@ -40,17 +40,13 @@ public extension ApplicationClient.Catalog {
         
         public var longLat: [Double]?
         
+        public var specialBadge: String?
+        
         public var price: ProductStockPriceV3?
         
         public var pricePerUnit: ProductStockUnitPriceV3?
         
         public var pincode: String?
-        
-        public var trader: [String]?
-        
-        public var tags: [String]?
-        
-        public var isServiceable: Bool?
         
         public var marketplaceAttributes: [MarketPlaceSttributesSchemaV3]?
         
@@ -58,15 +54,21 @@ public extension ApplicationClient.Catalog {
         
         public var deliveryPromise: PromiseSchema?
         
-        public var productName: String?
+        public var trader: [Trader]?
         
         public var customJson: [String: Any]?
         
-        public var error: String?
+        public var tags: [String]?
         
-        public var slug: String?
+        public var inventoryUpdatedOn: String?
         
-        public var size: String?
+        public var isServiceable: Bool?
+        
+        public var fulfillmentOption: FulfillmentOptionSchema?
+        
+        public var pickupStoreDetail: PickupStoreDetailSchema?
+        
+        public var totalAvailableQuantity: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -76,8 +78,6 @@ public extension ApplicationClient.Catalog {
             case articleAssignment = "article_assignment"
             
             case isCod = "is_cod"
-            
-            case journeyWisePromise = "journey_wise_promise"
             
             case strategyWiseListing = "strategy_wise_listing"
             
@@ -95,6 +95,8 @@ public extension ApplicationClient.Catalog {
             
             case set = "set"
             
+            case sellerCount = "seller_count"
+            
             case pricePerPiece = "price_per_piece"
             
             case discountMeta = "discount_meta"
@@ -103,17 +105,13 @@ public extension ApplicationClient.Catalog {
             
             case longLat = "long_lat"
             
+            case specialBadge = "special_badge"
+            
             case price = "price"
             
             case pricePerUnit = "price_per_unit"
             
             case pincode = "pincode"
-            
-            case trader = "trader"
-            
-            case tags = "tags"
-            
-            case isServiceable = "is_serviceable"
             
             case marketplaceAttributes = "marketplace_attributes"
             
@@ -121,27 +119,31 @@ public extension ApplicationClient.Catalog {
             
             case deliveryPromise = "delivery_promise"
             
-            case productName = "product_name"
+            case trader = "trader"
             
             case customJson = "_custom_json"
             
-            case error = "error"
+            case tags = "tags"
             
-            case slug = "slug"
+            case inventoryUpdatedOn = "inventory_updated_on"
             
-            case size = "size"
+            case isServiceable = "is_serviceable"
+            
+            case fulfillmentOption = "fulfillment_option"
+            
+            case pickupStoreDetail = "pickup_store_detail"
+            
+            case totalAvailableQuantity = "total_available_quantity"
             
         }
 
-        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, deliveryPromise: PromiseSchema? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, error: String? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, isServiceable: Bool? = nil, itemType: String? = nil, journeyWisePromise: [JourneyPromiseObject]? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pincode: String? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, productName: String? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, set: ProductSetV3? = nil, size: String? = nil, slug: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil, tags: [String]? = nil, trader: [String]? = nil, customJson: [String: Any]? = nil) {
+        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, deliveryPromise: PromiseSchema? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, inventoryUpdatedOn: String? = nil, isCod: Bool? = nil, isGift: Bool? = nil, isServiceable: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pickupStoreDetail: PickupStoreDetailSchema? = nil, pincode: String? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil, tags: [String]? = nil, totalAvailableQuantity: Int? = nil, trader: [Trader]? = nil, customJson: [String: Any]? = nil) {
             
             self.store = store
             
             self.articleAssignment = articleAssignment
             
             self.isCod = isCod
-            
-            self.journeyWisePromise = journeyWisePromise
             
             self.strategyWiseListing = strategyWiseListing
             
@@ -159,6 +161,8 @@ public extension ApplicationClient.Catalog {
             
             self.set = set
             
+            self.sellerCount = sellerCount
+            
             self.pricePerPiece = pricePerPiece
             
             self.discountMeta = discountMeta
@@ -167,17 +171,13 @@ public extension ApplicationClient.Catalog {
             
             self.longLat = longLat
             
+            self.specialBadge = specialBadge
+            
             self.price = price
             
             self.pricePerUnit = pricePerUnit
             
             self.pincode = pincode
-            
-            self.trader = trader
-            
-            self.tags = tags
-            
-            self.isServiceable = isServiceable
             
             self.marketplaceAttributes = marketplaceAttributes
             
@@ -185,15 +185,21 @@ public extension ApplicationClient.Catalog {
             
             self.deliveryPromise = deliveryPromise
             
-            self.productName = productName
+            self.trader = trader
             
             self.customJson = customJson
             
-            self.error = error
+            self.tags = tags
             
-            self.slug = slug
+            self.inventoryUpdatedOn = inventoryUpdatedOn
             
-            self.size = size
+            self.isServiceable = isServiceable
+            
+            self.fulfillmentOption = fulfillmentOption
+            
+            self.pickupStoreDetail = pickupStoreDetail
+            
+            self.totalAvailableQuantity = totalAvailableQuantity
             
         }
 
@@ -227,18 +233,6 @@ public extension ApplicationClient.Catalog {
             
             do {
                 isCod = try container.decode(Bool.self, forKey: .isCod)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                journeyWisePromise = try container.decode([JourneyPromiseObject].self, forKey: .journeyWisePromise)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -346,6 +340,18 @@ public extension ApplicationClient.Catalog {
             
             
             do {
+                sellerCount = try container.decode(Int.self, forKey: .sellerCount)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 pricePerPiece = try container.decode(ProductStockPriceV3.self, forKey: .pricePerPiece)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -394,6 +400,18 @@ public extension ApplicationClient.Catalog {
             
             
             do {
+                specialBadge = try container.decode(String.self, forKey: .specialBadge)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 price = try container.decode(ProductStockPriceV3.self, forKey: .price)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -419,42 +437,6 @@ public extension ApplicationClient.Catalog {
             
             do {
                 pincode = try container.decode(String.self, forKey: .pincode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                trader = try container.decode([String].self, forKey: .trader)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isServiceable = try container.decode(Bool.self, forKey: .isServiceable)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -502,7 +484,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                productName = try container.decode(String.self, forKey: .productName)
+                trader = try container.decode([Trader].self, forKey: .trader)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -526,7 +508,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                error = try container.decode(String.self, forKey: .error)
+                tags = try container.decode([String].self, forKey: .tags)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -538,7 +520,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                inventoryUpdatedOn = try container.decode(String.self, forKey: .inventoryUpdatedOn)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -550,7 +532,43 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                size = try container.decode(String.self, forKey: .size)
+                isServiceable = try container.decode(Bool.self, forKey: .isServiceable)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                fulfillmentOption = try container.decode(FulfillmentOptionSchema.self, forKey: .fulfillmentOption)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                pickupStoreDetail = try container.decode(PickupStoreDetailSchema.self, forKey: .pickupStoreDetail)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                totalAvailableQuantity = try container.decode(Int.self, forKey: .totalAvailableQuantity)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -575,10 +593,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(isCod, forKey: .isCod)
-            
-            
-            
-            try? container.encodeIfPresent(journeyWisePromise, forKey: .journeyWisePromise)
             
             
             
@@ -614,6 +628,10 @@ public extension ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(sellerCount, forKey: .sellerCount)
+            
+            
+            
             try? container.encodeIfPresent(pricePerPiece, forKey: .pricePerPiece)
             
             
@@ -630,6 +648,10 @@ public extension ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(specialBadge, forKey: .specialBadge)
+            
+            
+            
             try? container.encodeIfPresent(price, forKey: .price)
             
             
@@ -639,18 +661,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
-            
-            
-            try? container.encodeIfPresent(trader, forKey: .trader)
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            try? container.encodeIfPresent(isServiceable, forKey: .isServiceable)
             
             
             
@@ -666,7 +676,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(productName, forKey: .productName)
+            try? container.encodeIfPresent(trader, forKey: .trader)
             
             
             
@@ -674,15 +684,27 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(inventoryUpdatedOn, forKey: .inventoryUpdatedOn)
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(isServiceable, forKey: .isServiceable)
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentOption, forKey: .fulfillmentOption)
+            
+            
+            
+            try? container.encodeIfPresent(pickupStoreDetail, forKey: .pickupStoreDetail)
+            
+            
+            
+            try? container.encodeIfPresent(totalAvailableQuantity, forKey: .totalAvailableQuantity)
             
             
         }

@@ -22,7 +22,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var phone: Int?
         
-        public var areaCode: String
+        public var areaCode: String?
         
         public var countryIsoCode: String?
         
@@ -87,7 +87,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String, areaCodeSlug: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, email: String? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: Int? = nil, pincode: Int? = nil, state: String? = nil) {
+        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, email: String? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: Int? = nil, pincode: Int? = nil, state: String? = nil) {
             
             self.country = country
             
@@ -177,9 +177,16 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                areaCode = try container.decode(String.self, forKey: .areaCode)
+                do {
+                    areaCode = try container.decode(String.self, forKey: .areaCode)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

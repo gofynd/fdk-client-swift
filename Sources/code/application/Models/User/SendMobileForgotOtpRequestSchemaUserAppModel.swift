@@ -8,11 +8,11 @@ public extension ApplicationClient.User {
     */
     class SendMobileForgotOtpRequestSchema: Codable {
         
-        public var mobile: String
+        public var mobile: String?
         
-        public var countryCode: String
+        public var countryCode: String?
         
-        public var action: String
+        public var action: String?
         
         public var token: String?
         
@@ -33,7 +33,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(action: String, androidHash: String? = nil, countryCode: String, mobile: String, token: String? = nil) {
+        public init(action: String? = nil, androidHash: String? = nil, countryCode: String? = nil, mobile: String? = nil, token: String? = nil) {
             
             self.mobile = mobile
             
@@ -51,18 +51,39 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            mobile = try container.decode(String.self, forKey: .mobile)
+            do {
+                mobile = try container.decode(String.self, forKey: .mobile)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                countryCode = try container.decode(String.self, forKey: .countryCode)
             
-            countryCode = try container.decode(String.self, forKey: .countryCode)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                action = try container.decode(String.self, forKey: .action)
             
-            action = try container.decode(String.self, forKey: .action)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

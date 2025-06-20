@@ -12,9 +12,9 @@ public extension PlatformClient.Serviceability {
     class ZoneStores: Codable {
         
         
-        public var type: String
+        public var type: [String: Any]
         
-        public var values: [Int]
+        public var values: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(type: String, values: [Int]) {
+        public init(type: [String: Any], values: [String: Any]) {
             
             self.type = type
             
@@ -37,12 +37,12 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
+                type = try container.decode([String: Any].self, forKey: .type)
                 
             
             
             
-                values = try container.decode([Int].self, forKey: .values)
+                values = try container.decode([String: Any].self, forKey: .values)
                 
             
             
@@ -77,9 +77,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ZoneStores: Codable {
         
         
-        public var type: String
+        public var type: [String: Any]
         
-        public var values: [Int]
+        public var values: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(type: String, values: [Int]) {
+        public init(type: [String: Any], values: [String: Any]) {
             
             self.type = type
             
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
+                type = try container.decode([String: Any].self, forKey: .type)
                 
             
             
             
-                values = try container.decode([Int].self, forKey: .values)
+                values = try container.decode([String: Any].self, forKey: .values)
                 
             
             

@@ -21,9 +21,9 @@ extension PlatformClient {
         **/
         public func startUpload(
             namespace: String,
-            body: StartRequest,
+            body: FileUploadStart,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileUpload?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -51,7 +51,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(StartResponse.self, from: data)
+                        let response = Utility.decode(FileUpload.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -72,9 +72,9 @@ extension PlatformClient {
         **/
         public func completeUpload(
             namespace: String,
-            body: StartResponse,
+            body: FileUpload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileUploadComplete?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -102,7 +102,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CompleteResponse.self, from: data)
+                        let response = Utility.decode(FileUploadComplete.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -124,9 +124,9 @@ extension PlatformClient {
         * Description: Retrieve signed URLs for file access.
         **/
         public func getSignUrls(
-            body: SignUrlRequest,
+            body: SignUrl,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SignUrlResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SignUrlResult?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -154,7 +154,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SignUrlResponse.self, from: data)
+                        let response = Utility.decode(SignUrlResult.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -223,7 +223,6 @@ extension PlatformClient {
         
         
         
-        
         /**
         *
         * Summary: Browse files.
@@ -287,18 +286,6 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: Proxy file access.
@@ -308,7 +295,7 @@ extension PlatformClient {
             url: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProxyResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProxyFileAccess?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -337,7 +324,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProxyResponse.self, from: data)
+                        let response = Utility.decode(ProxyFileAccess.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

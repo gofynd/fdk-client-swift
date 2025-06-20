@@ -18,7 +18,9 @@ public extension PlatformClient.Order {
         
         public var entities: [EntitiesDataUpdates]?
         
-        public var repricedProducts: [RepricedProductsDataUpdates]?
+        public var order: [OrderDataUpdates]?
+        
+        public var entityStatus: [EntityStatusDataUpdates]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,11 +31,13 @@ public extension PlatformClient.Order {
             
             case entities = "entities"
             
-            case repricedProducts = "repriced_products"
+            case order = "order"
+            
+            case entityStatus = "entity_status"
             
         }
 
-        public init(entities: [EntitiesDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil, repricedProducts: [RepricedProductsDataUpdates]? = nil) {
+        public init(entities: [EntitiesDataUpdates]? = nil, entityStatus: [EntityStatusDataUpdates]? = nil, order: [OrderDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
             
             self.orderItemStatus = orderItemStatus
             
@@ -41,7 +45,9 @@ public extension PlatformClient.Order {
             
             self.entities = entities
             
-            self.repricedProducts = repricedProducts
+            self.order = order
+            
+            self.entityStatus = entityStatus
             
         }
 
@@ -86,7 +92,19 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    repricedProducts = try container.decode([RepricedProductsDataUpdates].self, forKey: .repricedProducts)
+                    order = try container.decode([OrderDataUpdates].self, forKey: .order)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    entityStatus = try container.decode([EntityStatusDataUpdates].self, forKey: .entityStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,7 +136,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(repricedProducts, forKey: .repricedProducts)
+            try? container.encodeIfPresent(order, forKey: .order)
+            
+            
+            
+            
+            try? container.encodeIfPresent(entityStatus, forKey: .entityStatus)
             
             
         }
@@ -143,7 +166,9 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var entities: [EntitiesDataUpdates]?
         
-        public var repricedProducts: [RepricedProductsDataUpdates]?
+        public var order: [OrderDataUpdates]?
+        
+        public var entityStatus: [EntityStatusDataUpdates]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -154,11 +179,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case entities = "entities"
             
-            case repricedProducts = "repriced_products"
+            case order = "order"
+            
+            case entityStatus = "entity_status"
             
         }
 
-        public init(entities: [EntitiesDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil, repricedProducts: [RepricedProductsDataUpdates]? = nil) {
+        public init(entities: [EntitiesDataUpdates]? = nil, entityStatus: [EntityStatusDataUpdates]? = nil, order: [OrderDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
             
             self.orderItemStatus = orderItemStatus
             
@@ -166,7 +193,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.entities = entities
             
-            self.repricedProducts = repricedProducts
+            self.order = order
+            
+            self.entityStatus = entityStatus
             
         }
 
@@ -211,7 +240,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    repricedProducts = try container.decode([RepricedProductsDataUpdates].self, forKey: .repricedProducts)
+                    order = try container.decode([OrderDataUpdates].self, forKey: .order)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    entityStatus = try container.decode([EntityStatusDataUpdates].self, forKey: .entityStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -243,7 +284,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(repricedProducts, forKey: .repricedProducts)
+            try? container.encodeIfPresent(order, forKey: .order)
+            
+            
+            
+            
+            try? container.encodeIfPresent(entityStatus, forKey: .entityStatus)
             
             
         }

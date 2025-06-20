@@ -12,72 +12,72 @@ public extension PlatformClient.Serviceability {
     class PackageRuleResult: Codable {
         
         
-        public var isActive: Bool?
-        
-        public var companyId: Int
-        
-        public var productId: PackageRuleProduct?
-        
-        public var categoryId: PackageRuleCategory?
-        
-        public var departmentId: PackageRuleDepartmentId?
-        
-        public var productTag: PackageRuleProductTag?
-        
-        public var productAttributes: PackageRuleProductAttributes?
+        public var id: String?
         
         public var name: String
         
+        public var companyId: Int
+        
         public var type: String
         
-        public var id: String?
+        public var isActive: Bool?
+        
+        public var productTag: PackageRuleProductTag?
+        
+        public var productId: PackageRuleProduct?
+        
+        public var departmentId: PackageRuleDepartmentId?
+        
+        public var productAttributes: PackageRuleProductAttributes?
+        
+        public var categoryId: PackageRuleCategory?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case isActive = "is_active"
-            
-            case companyId = "company_id"
-            
-            case productId = "product_id"
-            
-            case categoryId = "category_id"
-            
-            case departmentId = "department_id"
-            
-            case productTag = "product_tag"
-            
-            case productAttributes = "product_attributes"
+            case id = "id"
             
             case name = "name"
             
+            case companyId = "company_id"
+            
             case type = "type"
             
-            case id = "id"
+            case isActive = "is_active"
+            
+            case productTag = "product_tag"
+            
+            case productId = "product_id"
+            
+            case departmentId = "department_id"
+            
+            case productAttributes = "product_attributes"
+            
+            case categoryId = "category_id"
             
         }
 
         public init(categoryId: PackageRuleCategory? = nil, companyId: Int, departmentId: PackageRuleDepartmentId? = nil, id: String? = nil, isActive: Bool? = nil, name: String, productAttributes: PackageRuleProductAttributes? = nil, productId: PackageRuleProduct? = nil, productTag: PackageRuleProductTag? = nil, type: String) {
             
-            self.isActive = isActive
-            
-            self.companyId = companyId
-            
-            self.productId = productId
-            
-            self.categoryId = categoryId
-            
-            self.departmentId = departmentId
-            
-            self.productTag = productTag
-            
-            self.productAttributes = productAttributes
+            self.id = id
             
             self.name = name
             
+            self.companyId = companyId
+            
             self.type = type
             
-            self.id = id
+            self.isActive = isActive
+            
+            self.productTag = productTag
+            
+            self.productId = productId
+            
+            self.departmentId = departmentId
+            
+            self.productAttributes = productAttributes
+            
+            self.categoryId = categoryId
             
         }
 
@@ -86,7 +86,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,6 +95,11 @@ public extension PlatformClient.Serviceability {
                     
                 }
                 
+            
+            
+                name = try container.decode(String.self, forKey: .name)
+                
+            
             
             
                 companyId = try container.decode(Int.self, forKey: .companyId)
@@ -102,32 +107,13 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    productId = try container.decode(PackageRuleProduct.self, forKey: .productId)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
-                    categoryId = try container.decode(PackageRuleCategory.self, forKey: .categoryId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    departmentId = try container.decode(PackageRuleDepartmentId.self, forKey: .departmentId)
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,6 +137,30 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
+                    productId = try container.decode(PackageRuleProduct.self, forKey: .productId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    departmentId = try container.decode(PackageRuleDepartmentId.self, forKey: .departmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     productAttributes = try container.decode(PackageRuleProductAttributes.self, forKey: .productAttributes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -162,18 +172,8 @@ public extension PlatformClient.Serviceability {
                 
             
             
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    categoryId = try container.decode(PackageRuleCategory.self, forKey: .categoryId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -190,37 +190,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(productId, forKey: .productId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(categoryId, forKey: .categoryId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(productTag, forKey: .productTag)
-            
-            
-            
-            
-            try? container.encodeIfPresent(productAttributes, forKey: .productAttributes)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -230,12 +200,42 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productTag, forKey: .productTag)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productId, forKey: .productId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productAttributes, forKey: .productAttributes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(categoryId, forKey: .categoryId)
             
             
         }
@@ -254,72 +254,72 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class PackageRuleResult: Codable {
         
         
-        public var isActive: Bool?
-        
-        public var companyId: Int
-        
-        public var productId: PackageRuleProduct?
-        
-        public var categoryId: PackageRuleCategory?
-        
-        public var departmentId: PackageRuleDepartmentId?
-        
-        public var productTag: PackageRuleProductTag?
-        
-        public var productAttributes: PackageRuleProductAttributes?
+        public var id: String?
         
         public var name: String
         
+        public var companyId: Int
+        
         public var type: String
         
-        public var id: String?
+        public var isActive: Bool?
+        
+        public var productTag: PackageRuleProductTag?
+        
+        public var productId: PackageRuleProduct?
+        
+        public var departmentId: PackageRuleDepartmentId?
+        
+        public var productAttributes: PackageRuleProductAttributes?
+        
+        public var categoryId: PackageRuleCategory?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case isActive = "is_active"
-            
-            case companyId = "company_id"
-            
-            case productId = "product_id"
-            
-            case categoryId = "category_id"
-            
-            case departmentId = "department_id"
-            
-            case productTag = "product_tag"
-            
-            case productAttributes = "product_attributes"
+            case id = "id"
             
             case name = "name"
             
+            case companyId = "company_id"
+            
             case type = "type"
             
-            case id = "id"
+            case isActive = "is_active"
+            
+            case productTag = "product_tag"
+            
+            case productId = "product_id"
+            
+            case departmentId = "department_id"
+            
+            case productAttributes = "product_attributes"
+            
+            case categoryId = "category_id"
             
         }
 
         public init(categoryId: PackageRuleCategory? = nil, companyId: Int, departmentId: PackageRuleDepartmentId? = nil, id: String? = nil, isActive: Bool? = nil, name: String, productAttributes: PackageRuleProductAttributes? = nil, productId: PackageRuleProduct? = nil, productTag: PackageRuleProductTag? = nil, type: String) {
             
-            self.isActive = isActive
-            
-            self.companyId = companyId
-            
-            self.productId = productId
-            
-            self.categoryId = categoryId
-            
-            self.departmentId = departmentId
-            
-            self.productTag = productTag
-            
-            self.productAttributes = productAttributes
+            self.id = id
             
             self.name = name
             
+            self.companyId = companyId
+            
             self.type = type
             
-            self.id = id
+            self.isActive = isActive
+            
+            self.productTag = productTag
+            
+            self.productId = productId
+            
+            self.departmentId = departmentId
+            
+            self.productAttributes = productAttributes
+            
+            self.categoryId = categoryId
             
         }
 
@@ -328,7 +328,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -337,6 +337,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                     
                 }
                 
+            
+            
+                name = try container.decode(String.self, forKey: .name)
+                
+            
             
             
                 companyId = try container.decode(Int.self, forKey: .companyId)
@@ -344,32 +349,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    productId = try container.decode(PackageRuleProduct.self, forKey: .productId)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
-                    categoryId = try container.decode(PackageRuleCategory.self, forKey: .categoryId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    departmentId = try container.decode(PackageRuleDepartmentId.self, forKey: .departmentId)
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -393,6 +379,30 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
+                    productId = try container.decode(PackageRuleProduct.self, forKey: .productId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    departmentId = try container.decode(PackageRuleDepartmentId.self, forKey: .departmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     productAttributes = try container.decode(PackageRuleProductAttributes.self, forKey: .productAttributes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -404,18 +414,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    categoryId = try container.decode(PackageRuleCategory.self, forKey: .categoryId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -432,37 +432,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(productId, forKey: .productId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(categoryId, forKey: .categoryId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(productTag, forKey: .productTag)
-            
-            
-            
-            
-            try? container.encodeIfPresent(productAttributes, forKey: .productAttributes)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -472,12 +442,42 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productTag, forKey: .productTag)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productId, forKey: .productId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productAttributes, forKey: .productAttributes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(categoryId, forKey: .categoryId)
             
             
         }
