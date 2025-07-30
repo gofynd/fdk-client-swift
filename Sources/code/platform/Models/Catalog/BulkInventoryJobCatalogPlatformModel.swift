@@ -18,6 +18,8 @@ public extension PlatformClient.Catalog {
         
         public var filePath: String
         
+        public var tags: [String]?
+        
         public var meta: BulkMeta?
         
 
@@ -29,17 +31,21 @@ public extension PlatformClient.Catalog {
             
             case filePath = "file_path"
             
+            case tags = "tags"
+            
             case meta = "meta"
             
         }
 
-        public init(companyId: String, filePath: String, fileType: String, meta: BulkMeta? = nil) {
+        public init(companyId: String, filePath: String, fileType: String, meta: BulkMeta? = nil, tags: [String]? = nil) {
             
             self.companyId = companyId
             
             self.fileType = fileType
             
             self.filePath = filePath
+            
+            self.tags = tags
             
             self.meta = meta
             
@@ -62,6 +68,18 @@ public extension PlatformClient.Catalog {
                 filePath = try container.decode(String.self, forKey: .filePath)
                 
             
+            
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -93,6 +111,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(filePath, forKey: .filePath)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
@@ -122,6 +145,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var filePath: String
         
+        public var tags: [String]?
+        
         public var meta: BulkMeta?
         
 
@@ -133,17 +158,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case filePath = "file_path"
             
+            case tags = "tags"
+            
             case meta = "meta"
             
         }
 
-        public init(companyId: String, filePath: String, fileType: String, meta: BulkMeta? = nil) {
+        public init(companyId: String, filePath: String, fileType: String, meta: BulkMeta? = nil, tags: [String]? = nil) {
             
             self.companyId = companyId
             
             self.fileType = fileType
             
             self.filePath = filePath
+            
+            self.tags = tags
             
             self.meta = meta
             
@@ -166,6 +195,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 filePath = try container.decode(String.self, forKey: .filePath)
                 
             
+            
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -197,6 +238,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(filePath, forKey: .filePath)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             

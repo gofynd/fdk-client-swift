@@ -48,8 +48,6 @@ public extension PlatformClient.Catalog {
         
         public var trackingUrl: String?
         
-        public var tags: [String]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -89,11 +87,9 @@ public extension PlatformClient.Catalog {
             
             case trackingUrl = "tracking_url"
             
-            case tags = "tags"
-            
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, fileType: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, tags: [String]? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, fileType: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
             
             self.cancelled = cancelled
             
@@ -130,8 +126,6 @@ public extension PlatformClient.Catalog {
             self.total = total
             
             self.trackingUrl = trackingUrl
-            
-            self.tags = tags
             
         }
 
@@ -340,18 +334,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -445,11 +427,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(trackingUrl, forKey: .trackingUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }
@@ -504,8 +481,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var trackingUrl: String?
         
-        public var tags: [String]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -545,11 +520,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case trackingUrl = "tracking_url"
             
-            case tags = "tags"
-            
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, fileType: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, tags: [String]? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, fileType: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int? = nil, trackingUrl: String? = nil) {
             
             self.cancelled = cancelled
             
@@ -586,8 +559,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.total = total
             
             self.trackingUrl = trackingUrl
-            
-            self.tags = tags
             
         }
 
@@ -796,18 +767,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -901,11 +860,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(trackingUrl, forKey: .trackingUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }
