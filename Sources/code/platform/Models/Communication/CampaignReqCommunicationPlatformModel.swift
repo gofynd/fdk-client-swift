@@ -26,6 +26,8 @@ public extension PlatformClient.Communication {
         
         public var type: String?
         
+        public var datasourceType: String?
+        
         public var recordsCount: Int?
         
         public var application: String?
@@ -47,13 +49,15 @@ public extension PlatformClient.Communication {
             
             case type = "type"
             
+            case datasourceType = "datasource_type"
+            
             case recordsCount = "records_count"
             
             case application = "application"
             
         }
 
-        public init(application: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
+        public init(application: String? = nil, datasourceType: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
             
             self.description = description
             
@@ -68,6 +72,8 @@ public extension PlatformClient.Communication {
             self.fileUrl = fileUrl
             
             self.type = type
+            
+            self.datasourceType = datasourceType
             
             self.recordsCount = recordsCount
             
@@ -164,6 +170,18 @@ public extension PlatformClient.Communication {
             
             
                 do {
+                    datasourceType = try container.decode(String.self, forKey: .datasourceType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     recordsCount = try container.decode(Int.self, forKey: .recordsCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -224,6 +242,11 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(datasourceType, forKey: .datasourceType)
             
             
             
@@ -266,6 +289,8 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var type: String?
         
+        public var datasourceType: String?
+        
         public var recordsCount: Int?
         
         public var application: String?
@@ -287,13 +312,15 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case type = "type"
             
+            case datasourceType = "datasource_type"
+            
             case recordsCount = "records_count"
             
             case application = "application"
             
         }
 
-        public init(application: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
+        public init(application: String? = nil, datasourceType: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
             
             self.description = description
             
@@ -308,6 +335,8 @@ public extension PlatformClient.ApplicationClient.Communication {
             self.fileUrl = fileUrl
             
             self.type = type
+            
+            self.datasourceType = datasourceType
             
             self.recordsCount = recordsCount
             
@@ -404,6 +433,18 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
+                    datasourceType = try container.decode(String.self, forKey: .datasourceType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     recordsCount = try container.decode(Int.self, forKey: .recordsCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -464,6 +505,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(datasourceType, forKey: .datasourceType)
             
             
             

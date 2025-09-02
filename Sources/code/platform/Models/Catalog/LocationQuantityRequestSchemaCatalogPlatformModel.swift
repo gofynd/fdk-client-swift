@@ -20,6 +20,8 @@ public extension PlatformClient.Catalog {
         
         public var notAvailableQuantity: Int?
         
+        public var mode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +33,11 @@ public extension PlatformClient.Catalog {
             
             case notAvailableQuantity = "not_available_quantity"
             
+            case mode = "mode"
+            
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil) {
+        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil) {
             
             self.expirationDate = expirationDate
             
@@ -42,6 +46,8 @@ public extension PlatformClient.Catalog {
             self.damagedQuantity = damagedQuantity
             
             self.notAvailableQuantity = notAvailableQuantity
+            
+            self.mode = mode
             
         }
 
@@ -96,6 +102,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    mode = try container.decode(String.self, forKey: .mode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -119,6 +137,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(notAvailableQuantity, forKey: .notAvailableQuantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mode, forKey: .mode)
             
             
         }
@@ -145,6 +168,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var notAvailableQuantity: Int?
         
+        public var mode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -156,9 +181,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case notAvailableQuantity = "not_available_quantity"
             
+            case mode = "mode"
+            
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil) {
+        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil) {
             
             self.expirationDate = expirationDate
             
@@ -167,6 +194,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.damagedQuantity = damagedQuantity
             
             self.notAvailableQuantity = notAvailableQuantity
+            
+            self.mode = mode
             
         }
 
@@ -221,6 +250,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    mode = try container.decode(String.self, forKey: .mode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -244,6 +285,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(notAvailableQuantity, forKey: .notAvailableQuantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mode, forKey: .mode)
             
             
         }

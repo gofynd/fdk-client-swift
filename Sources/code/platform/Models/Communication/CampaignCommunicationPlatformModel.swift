@@ -28,6 +28,8 @@ public extension PlatformClient.Communication {
         
         public var type: String?
         
+        public var datasourceType: String?
+        
         public var name: String?
         
         public var application: String?
@@ -59,6 +61,8 @@ public extension PlatformClient.Communication {
             
             case type = "type"
             
+            case datasourceType = "datasource_type"
+            
             case name = "name"
             
             case application = "application"
@@ -73,7 +77,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, datasource: String? = nil, description: String? = nil, email: CampaignEmail? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, slug: String? = nil, tags: [[String: Any]]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, datasource: String? = nil, datasourceType: String? = nil, description: String? = nil, email: CampaignEmail? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, slug: String? = nil, tags: [[String: Any]]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.recipientHeaders = recipientHeaders
             
@@ -90,6 +94,8 @@ public extension PlatformClient.Communication {
             self.datasource = datasource
             
             self.type = type
+            
+            self.datasourceType = datasourceType
             
             self.name = name
             
@@ -195,6 +201,18 @@ public extension PlatformClient.Communication {
             
                 do {
                     type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    datasourceType = try container.decode(String.self, forKey: .datasourceType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -319,6 +337,11 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(datasourceType, forKey: .datasourceType)
             
             
             
@@ -383,6 +406,8 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var type: String?
         
+        public var datasourceType: String?
+        
         public var name: String?
         
         public var application: String?
@@ -414,6 +439,8 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case type = "type"
             
+            case datasourceType = "datasource_type"
+            
             case name = "name"
             
             case application = "application"
@@ -428,7 +455,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, datasource: String? = nil, description: String? = nil, email: CampaignEmail? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, slug: String? = nil, tags: [[String: Any]]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, datasource: String? = nil, datasourceType: String? = nil, description: String? = nil, email: CampaignEmail? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, slug: String? = nil, tags: [[String: Any]]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.recipientHeaders = recipientHeaders
             
@@ -445,6 +472,8 @@ public extension PlatformClient.ApplicationClient.Communication {
             self.datasource = datasource
             
             self.type = type
+            
+            self.datasourceType = datasourceType
             
             self.name = name
             
@@ -550,6 +579,18 @@ public extension PlatformClient.ApplicationClient.Communication {
             
                 do {
                     type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    datasourceType = try container.decode(String.self, forKey: .datasourceType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -674,6 +715,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(datasourceType, forKey: .datasourceType)
             
             
             
