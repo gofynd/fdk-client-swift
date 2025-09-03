@@ -16,6 +16,8 @@ public extension PlatformClient.Configuration {
         
         public var querySuggestions: QuerySuggestions?
         
+        public var skgIdentification: SkgIdentification?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Configuration {
             
             case querySuggestions = "query_suggestions"
             
+            case skgIdentification = "skg_identification"
+            
         }
 
-        public init(fstIdentification: FstIdentification? = nil, querySuggestions: QuerySuggestions? = nil) {
+        public init(fstIdentification: FstIdentification? = nil, querySuggestions: QuerySuggestions? = nil, skgIdentification: SkgIdentification? = nil) {
             
             self.fstIdentification = fstIdentification
             
             self.querySuggestions = querySuggestions
+            
+            self.skgIdentification = skgIdentification
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    skgIdentification = try container.decode(SkgIdentification.self, forKey: .skgIdentification)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +91,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(querySuggestions, forKey: .querySuggestions)
+            
+            
+            
+            
+            try? container.encodeIfPresent(skgIdentification, forKey: .skgIdentification)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var querySuggestions: QuerySuggestions?
         
+        public var skgIdentification: SkgIdentification?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case querySuggestions = "query_suggestions"
             
+            case skgIdentification = "skg_identification"
+            
         }
 
-        public init(fstIdentification: FstIdentification? = nil, querySuggestions: QuerySuggestions? = nil) {
+        public init(fstIdentification: FstIdentification? = nil, querySuggestions: QuerySuggestions? = nil, skgIdentification: SkgIdentification? = nil) {
             
             self.fstIdentification = fstIdentification
             
             self.querySuggestions = querySuggestions
+            
+            self.skgIdentification = skgIdentification
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    skgIdentification = try container.decode(SkgIdentification.self, forKey: .skgIdentification)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(querySuggestions, forKey: .querySuggestions)
+            
+            
+            
+            
+            try? container.encodeIfPresent(skgIdentification, forKey: .skgIdentification)
             
             
         }
