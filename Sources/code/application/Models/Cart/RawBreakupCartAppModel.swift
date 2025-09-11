@@ -38,6 +38,8 @@ public extension ApplicationClient.Cart {
         
         public var codCharge: Double?
         
+        public var taxes: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -71,9 +73,11 @@ public extension ApplicationClient.Cart {
             
             case codCharge = "cod_charge"
             
+            case taxes = "taxes"
+            
         }
 
-        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mopTotal: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, totalCharge: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
+        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mopTotal: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, taxes: Double? = nil, total: Double? = nil, totalCharge: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
             
             self.vog = vog
             
@@ -104,6 +108,8 @@ public extension ApplicationClient.Cart {
             self.youSaved = youSaved
             
             self.codCharge = codCharge
+            
+            self.taxes = taxes
             
         }
 
@@ -290,6 +296,18 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                taxes = try container.decode(Double.self, forKey: .taxes)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -353,6 +371,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(codCharge, forKey: .codCharge)
+            
+            
+            
+            try? container.encodeIfPresent(taxes, forKey: .taxes)
             
             
         }

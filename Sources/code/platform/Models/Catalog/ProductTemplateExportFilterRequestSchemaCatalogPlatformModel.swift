@@ -14,6 +14,8 @@ public extension PlatformClient.Catalog {
         
         public var brands: [String]?
         
+        public var taxRuleIds: [String]?
+        
         public var catalogueTypes: [String]
         
         public var fromDate: String?
@@ -27,6 +29,8 @@ public extension PlatformClient.Catalog {
             
             case brands = "brands"
             
+            case taxRuleIds = "tax_rule_ids"
+            
             case catalogueTypes = "catalogue_types"
             
             case fromDate = "from_date"
@@ -37,9 +41,11 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(brands: [String]? = nil, catalogueTypes: [String], fromDate: String? = nil, templates: [String], toDate: String? = nil) {
+        public init(brands: [String]? = nil, catalogueTypes: [String], fromDate: String? = nil, taxRuleIds: [String]? = nil, templates: [String], toDate: String? = nil) {
             
             self.brands = brands
+            
+            self.taxRuleIds = taxRuleIds
             
             self.catalogueTypes = catalogueTypes
             
@@ -57,6 +63,18 @@ public extension PlatformClient.Catalog {
             
                 do {
                     brands = try container.decode([String].self, forKey: .brands)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    taxRuleIds = try container.decode([String].self, forKey: .taxRuleIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,6 +126,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(brands, forKey: .brands)
+            
+            
+            
+            
+            try? container.encodeIfPresent(taxRuleIds, forKey: .taxRuleIds)
             
             
             
@@ -148,6 +171,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var brands: [String]?
         
+        public var taxRuleIds: [String]?
+        
         public var catalogueTypes: [String]
         
         public var fromDate: String?
@@ -161,6 +186,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case brands = "brands"
             
+            case taxRuleIds = "tax_rule_ids"
+            
             case catalogueTypes = "catalogue_types"
             
             case fromDate = "from_date"
@@ -171,9 +198,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(brands: [String]? = nil, catalogueTypes: [String], fromDate: String? = nil, templates: [String], toDate: String? = nil) {
+        public init(brands: [String]? = nil, catalogueTypes: [String], fromDate: String? = nil, taxRuleIds: [String]? = nil, templates: [String], toDate: String? = nil) {
             
             self.brands = brands
+            
+            self.taxRuleIds = taxRuleIds
             
             self.catalogueTypes = catalogueTypes
             
@@ -191,6 +220,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     brands = try container.decode([String].self, forKey: .brands)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    taxRuleIds = try container.decode([String].self, forKey: .taxRuleIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -242,6 +283,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(brands, forKey: .brands)
+            
+            
+            
+            
+            try? container.encodeIfPresent(taxRuleIds, forKey: .taxRuleIds)
             
             
             

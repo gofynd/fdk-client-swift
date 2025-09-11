@@ -8604,6 +8604,16 @@ public class PlatformClient {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
             * Summary: Retrieve followed products by user
@@ -8613,7 +8623,6 @@ public class PlatformClient {
             public func getFollowedProducts(
                 userId: String,
                 pageId: String?,
-                pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: FollowedProducts?, _ error: FDKError?) -> Void
@@ -8623,10 +8632,6 @@ public class PlatformClient {
                 
                 if let value = pageId {
                     xQuery["page_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -8663,6 +8668,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             

@@ -28,6 +28,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var allowedRefund: Bool?
         
+        public var minPriceThreshold: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -45,9 +47,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case allowedRefund = "allowed_refund"
             
+            case minPriceThreshold = "min_price_threshold"
+            
         }
 
-        public init(allowedRefund: Bool? = nil, articleId: String, code: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
+        public init(allowedRefund: Bool? = nil, articleId: String, code: String? = nil, meta: [String: Any]? = nil, minPriceThreshold: Double? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
             
             self.value = value
             
@@ -62,6 +66,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.meta = meta
             
             self.allowedRefund = allowedRefund
+            
+            self.minPriceThreshold = minPriceThreshold
             
         }
 
@@ -145,6 +151,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    minPriceThreshold = try container.decode(Double.self, forKey: .minPriceThreshold)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -183,6 +201,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
+            
+            
+            
+            
+            try? container.encodeIfPresent(minPriceThreshold, forKey: .minPriceThreshold)
             
             
         }
