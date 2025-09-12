@@ -12,8 +12,6 @@ public extension PlatformClient.Order {
     class Article: Codable {
         
         
-        public var childDetails: [String: Any]?
-        
         public var sellerIdentifier: String
         
         public var uid: String
@@ -44,10 +42,10 @@ public extension PlatformClient.Order {
         
         public var tags: [String]?
         
+        public var customJson: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case childDetails = "child_details"
             
             case sellerIdentifier = "seller_identifier"
             
@@ -79,11 +77,11 @@ public extension PlatformClient.Order {
             
             case tags = "tags"
             
+            case customJson = "_custom_json"
+            
         }
 
-        public init(childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
-            
-            self.childDetails = childDetails
+        public init(code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, customJson: [String: Any]? = nil, id: String) {
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -115,22 +113,12 @@ public extension PlatformClient.Order {
             
             self.tags = tags
             
+            self.customJson = customJson
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    childDetails = try container.decode([String: Any].self, forKey: .childDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
@@ -277,15 +265,22 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(childDetails, forKey: .childDetails)
-            
             
             
             
@@ -360,6 +355,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }
@@ -378,8 +378,6 @@ public extension PlatformClient.ApplicationClient.Order {
     class Article: Codable {
         
         
-        public var childDetails: [String: Any]?
-        
         public var sellerIdentifier: String
         
         public var uid: String
@@ -410,10 +408,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var tags: [String]?
         
+        public var customJson: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case childDetails = "child_details"
             
             case sellerIdentifier = "seller_identifier"
             
@@ -445,11 +443,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case tags = "tags"
             
+            case customJson = "_custom_json"
+            
         }
 
-        public init(childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
-            
-            self.childDetails = childDetails
+        public init(code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, customJson: [String: Any]? = nil, id: String) {
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -481,22 +479,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.tags = tags
             
+            self.customJson = customJson
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    childDetails = try container.decode([String: Any].self, forKey: .childDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
@@ -643,15 +631,22 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(childDetails, forKey: .childDetails)
-            
             
             
             
@@ -726,6 +721,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

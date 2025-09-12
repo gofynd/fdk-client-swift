@@ -8604,16 +8604,6 @@ public class PlatformClient {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: Retrieve followed products by user
@@ -8623,6 +8613,7 @@ public class PlatformClient {
             public func getFollowedProducts(
                 userId: String,
                 pageId: String?,
+                pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: FollowedProducts?, _ error: FDKError?) -> Void
@@ -8632,6 +8623,10 @@ public class PlatformClient {
                 
                 if let value = pageId {
                     xQuery["page_id"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -8668,8 +8663,6 @@ public class PlatformClient {
                         }
                 });
             }
-            
-            
             
             
             
@@ -23671,7 +23664,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Create extension proxy
-            * Description: Extension proxy can be used to call extension API from storefront and make extension API integration seamless.
+            * Description: Use this endpoint to register a proxy for calling an extension's API from your storefront. This enables your storefront to interact with extension APIs seamlessly, helps enhance and extend your storefront's existing functionality using extensions, and simplifies integration by avoiding CORS issues when accessing extension APIs.
             **/
             public func addProxyPath(
                 extensionId: String,
@@ -23722,7 +23715,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Remove extension proxy
-            * Description: Remove the proxy which are created earlier for the extension.
+            * Description: Remove the proxy that was created earlier for the extension.
             **/
             public func removeProxyPath(
                 extensionId: String,

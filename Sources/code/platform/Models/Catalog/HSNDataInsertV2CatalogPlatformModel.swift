@@ -24,8 +24,6 @@ public extension PlatformClient.Catalog {
         
         public var hsnCode: String
         
-        public var taxRuleId: String?
-        
         public var hsnCodeId: String?
         
         public var modifiedOn: String?
@@ -53,8 +51,6 @@ public extension PlatformClient.Catalog {
             
             case hsnCode = "hsn_code"
             
-            case taxRuleId = "tax_rule_id"
-            
             case hsnCodeId = "hsn_code_id"
             
             case modifiedOn = "modified_on"
@@ -69,7 +65,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(countryCode: String, createdBy: CreatedBySchema? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: ModifiedBySchema? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], taxRuleId: String? = nil, type: String) {
+        public init(countryCode: String, createdBy: CreatedBySchema? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: ModifiedBySchema? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], type: String) {
             
             self.countryCode = countryCode
             
@@ -82,8 +78,6 @@ public extension PlatformClient.Catalog {
             self.description = description
             
             self.hsnCode = hsnCode
-            
-            self.taxRuleId = taxRuleId
             
             self.hsnCodeId = hsnCodeId
             
@@ -152,18 +146,6 @@ public extension PlatformClient.Catalog {
                 hsnCode = try container.decode(String.self, forKey: .hsnCode)
                 
             
-            
-            
-                do {
-                    taxRuleId = try container.decode(String.self, forKey: .taxRuleId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -249,11 +231,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(taxRuleId, forKey: .taxRuleId)
             
             
             
@@ -314,8 +291,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var hsnCode: String
         
-        public var taxRuleId: String?
-        
         public var hsnCodeId: String?
         
         public var modifiedOn: String?
@@ -343,8 +318,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case hsnCode = "hsn_code"
             
-            case taxRuleId = "tax_rule_id"
-            
             case hsnCodeId = "hsn_code_id"
             
             case modifiedOn = "modified_on"
@@ -359,7 +332,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(countryCode: String, createdBy: CreatedBySchema? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: ModifiedBySchema? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], taxRuleId: String? = nil, type: String) {
+        public init(countryCode: String, createdBy: CreatedBySchema? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: ModifiedBySchema? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], type: String) {
             
             self.countryCode = countryCode
             
@@ -372,8 +345,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.description = description
             
             self.hsnCode = hsnCode
-            
-            self.taxRuleId = taxRuleId
             
             self.hsnCodeId = hsnCodeId
             
@@ -442,18 +413,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 hsnCode = try container.decode(String.self, forKey: .hsnCode)
                 
             
-            
-            
-                do {
-                    taxRuleId = try container.decode(String.self, forKey: .taxRuleId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -539,11 +498,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(taxRuleId, forKey: .taxRuleId)
             
             
             

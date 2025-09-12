@@ -28,8 +28,6 @@ public extension PlatformClient.Catalog {
         
         public var highlights: [String: Any]?
         
-        public var hsCode: [String: Any]?
-        
         public var hsnCode: [String: Any]?
         
         public var isActive: [String: Any]?
@@ -91,8 +89,6 @@ public extension PlatformClient.Catalog {
             
             case highlights = "highlights"
             
-            case hsCode = "hs_code"
-            
             case hsnCode = "hsn_code"
             
             case isActive = "is_active"
@@ -137,7 +133,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(brandUid: [String: Any]? = nil, categorySlug: [String: Any]? = nil, command: [String: Any]? = nil, countryOfOrigin: [String: Any]? = nil, currency: [String: Any]? = nil, customOrder: [String: Any]? = nil, description: [String: Any]? = nil, highlights: [String: Any]? = nil, hsnCode: [String: Any]? = nil, hsCode: [String: Any]? = nil, isActive: [String: Any]? = nil, isDependent: [String: Any]? = nil, itemCode: [String: Any]? = nil, itemType: [String: Any]? = nil, media: [String: Any]? = nil, multiSize: [String: Any]? = nil, name: [String: Any]? = nil, noOfBoxes: [String: Any]? = nil, productGroupTag: [String: Any]? = nil, productPublish: [String: Any]? = nil, returnConfig: [String: Any]? = nil, shortDescription: [String: Any]? = nil, sizes: [String: Any]? = nil, sizeGuide: [String: Any]? = nil, slug: [String: Any]? = nil, tags: [String: Any]? = nil, teaserTag: [String: Any]? = nil, trader: [String: Any]? = nil, traderType: [String: Any]? = nil, variants: [String: Any]? = nil) {
+        public init(brandUid: [String: Any]? = nil, categorySlug: [String: Any]? = nil, command: [String: Any]? = nil, countryOfOrigin: [String: Any]? = nil, currency: [String: Any]? = nil, customOrder: [String: Any]? = nil, description: [String: Any]? = nil, highlights: [String: Any]? = nil, hsnCode: [String: Any]? = nil, isActive: [String: Any]? = nil, isDependent: [String: Any]? = nil, itemCode: [String: Any]? = nil, itemType: [String: Any]? = nil, media: [String: Any]? = nil, multiSize: [String: Any]? = nil, name: [String: Any]? = nil, noOfBoxes: [String: Any]? = nil, productGroupTag: [String: Any]? = nil, productPublish: [String: Any]? = nil, returnConfig: [String: Any]? = nil, shortDescription: [String: Any]? = nil, sizes: [String: Any]? = nil, sizeGuide: [String: Any]? = nil, slug: [String: Any]? = nil, tags: [String: Any]? = nil, teaserTag: [String: Any]? = nil, trader: [String: Any]? = nil, traderType: [String: Any]? = nil, variants: [String: Any]? = nil) {
             
             self.brandUid = brandUid
             
@@ -154,8 +150,6 @@ public extension PlatformClient.Catalog {
             self.description = description
             
             self.highlights = highlights
-            
-            self.hsCode = hsCode
             
             self.hsnCode = hsnCode
             
@@ -291,18 +285,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     highlights = try container.decode([String: Any].self, forKey: .highlights)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    hsCode = try container.decode([String: Any].self, forKey: .hsCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -607,11 +589,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(highlights, forKey: .highlights)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hsCode, forKey: .hsCode)
             
             
             
@@ -751,8 +728,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var highlights: [String: Any]?
         
-        public var hsCode: [String: Any]?
-        
         public var hsnCode: [String: Any]?
         
         public var isActive: [String: Any]?
@@ -814,8 +789,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case highlights = "highlights"
             
-            case hsCode = "hs_code"
-            
             case hsnCode = "hsn_code"
             
             case isActive = "is_active"
@@ -860,7 +833,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(brandUid: [String: Any]? = nil, categorySlug: [String: Any]? = nil, command: [String: Any]? = nil, countryOfOrigin: [String: Any]? = nil, currency: [String: Any]? = nil, customOrder: [String: Any]? = nil, description: [String: Any]? = nil, highlights: [String: Any]? = nil, hsnCode: [String: Any]? = nil, hsCode: [String: Any]? = nil, isActive: [String: Any]? = nil, isDependent: [String: Any]? = nil, itemCode: [String: Any]? = nil, itemType: [String: Any]? = nil, media: [String: Any]? = nil, multiSize: [String: Any]? = nil, name: [String: Any]? = nil, noOfBoxes: [String: Any]? = nil, productGroupTag: [String: Any]? = nil, productPublish: [String: Any]? = nil, returnConfig: [String: Any]? = nil, shortDescription: [String: Any]? = nil, sizes: [String: Any]? = nil, sizeGuide: [String: Any]? = nil, slug: [String: Any]? = nil, tags: [String: Any]? = nil, teaserTag: [String: Any]? = nil, trader: [String: Any]? = nil, traderType: [String: Any]? = nil, variants: [String: Any]? = nil) {
+        public init(brandUid: [String: Any]? = nil, categorySlug: [String: Any]? = nil, command: [String: Any]? = nil, countryOfOrigin: [String: Any]? = nil, currency: [String: Any]? = nil, customOrder: [String: Any]? = nil, description: [String: Any]? = nil, highlights: [String: Any]? = nil, hsnCode: [String: Any]? = nil, isActive: [String: Any]? = nil, isDependent: [String: Any]? = nil, itemCode: [String: Any]? = nil, itemType: [String: Any]? = nil, media: [String: Any]? = nil, multiSize: [String: Any]? = nil, name: [String: Any]? = nil, noOfBoxes: [String: Any]? = nil, productGroupTag: [String: Any]? = nil, productPublish: [String: Any]? = nil, returnConfig: [String: Any]? = nil, shortDescription: [String: Any]? = nil, sizes: [String: Any]? = nil, sizeGuide: [String: Any]? = nil, slug: [String: Any]? = nil, tags: [String: Any]? = nil, teaserTag: [String: Any]? = nil, trader: [String: Any]? = nil, traderType: [String: Any]? = nil, variants: [String: Any]? = nil) {
             
             self.brandUid = brandUid
             
@@ -877,8 +850,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.description = description
             
             self.highlights = highlights
-            
-            self.hsCode = hsCode
             
             self.hsnCode = hsnCode
             
@@ -1014,18 +985,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     highlights = try container.decode([String: Any].self, forKey: .highlights)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    hsCode = try container.decode([String: Any].self, forKey: .hsCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1330,11 +1289,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(highlights, forKey: .highlights)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hsCode, forKey: .hsCode)
             
             
             

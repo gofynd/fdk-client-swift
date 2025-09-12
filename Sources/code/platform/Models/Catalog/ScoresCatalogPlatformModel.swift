@@ -5,73 +5,85 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-        Model: ApplicationItemMeta
+        Model: Scores
         Used By: Catalog
     */
 
-    class ApplicationItemMeta: Codable {
+    class Scores: Codable {
         
         
-        public var customJson: [String: Any]?
+        public var popularity: Double?
         
-        public var customMeta: [MetaFields]?
+        public var availability: Double?
         
-        public var altText: [String: Any]?
+        public var conversion: Double?
         
-        public var scores: Scores?
+        public var soldQuantity: Double?
         
-        public var isCod: Bool?
+        public var depth: Double?
         
-        public var isGift: Bool?
+        public var discount: Double?
         
-        public var moq: ApplicationItemMOQ?
+        public var revenue: Double?
         
-        public var seo: ApplicationItemSEO?
+        public var cancelled: Double?
         
-        public var sizePromotionThreshold: SizePromotionThreshold?
+        public var returns: Double?
+        
+        public var catalogue: Double?
+        
+        public var listing: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case customJson = "_custom_json"
+            case popularity = "popularity"
             
-            case customMeta = "_custom_meta"
+            case availability = "availability"
             
-            case altText = "alt_text"
+            case conversion = "conversion"
             
-            case scores = "scores"
+            case soldQuantity = "sold_quantity"
             
-            case isCod = "is_cod"
+            case depth = "depth"
             
-            case isGift = "is_gift"
+            case discount = "discount"
             
-            case moq = "moq"
+            case revenue = "revenue"
             
-            case seo = "seo"
+            case cancelled = "cancelled"
             
-            case sizePromotionThreshold = "size_promotion_threshold"
+            case returns = "returns"
+            
+            case catalogue = "catalogue"
+            
+            case listing = "listing"
             
         }
 
-        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, scores: Scores? = nil, seo: ApplicationItemSEO? = nil, sizePromotionThreshold: SizePromotionThreshold? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
+        public init(availability: Double? = nil, cancelled: Double? = nil, catalogue: Double? = nil, conversion: Double? = nil, depth: Double? = nil, discount: Double? = nil, listing: Double? = nil, popularity: Double? = nil, returns: Double? = nil, revenue: Double? = nil, soldQuantity: Double? = nil) {
             
-            self.customJson = customJson
+            self.popularity = popularity
             
-            self.customMeta = customMeta
+            self.availability = availability
             
-            self.altText = altText
+            self.conversion = conversion
             
-            self.scores = scores
+            self.soldQuantity = soldQuantity
             
-            self.isCod = isCod
+            self.depth = depth
             
-            self.isGift = isGift
+            self.discount = discount
             
-            self.moq = moq
+            self.revenue = revenue
             
-            self.seo = seo
+            self.cancelled = cancelled
             
-            self.sizePromotionThreshold = sizePromotionThreshold
+            self.returns = returns
+            
+            self.catalogue = catalogue
+            
+            self.listing = listing
             
         }
 
@@ -80,7 +92,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                    popularity = try container.decode(Double.self, forKey: .popularity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +104,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
+                    availability = try container.decode(Double.self, forKey: .availability)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +116,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    altText = try container.decode([String: Any].self, forKey: .altText)
+                    conversion = try container.decode(Double.self, forKey: .conversion)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +128,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    scores = try container.decode(Scores.self, forKey: .scores)
+                    soldQuantity = try container.decode(Double.self, forKey: .soldQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,7 +140,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    isCod = try container.decode(Bool.self, forKey: .isCod)
+                    depth = try container.decode(Double.self, forKey: .depth)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +152,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    isGift = try container.decode(Bool.self, forKey: .isGift)
+                    discount = try container.decode(Double.self, forKey: .discount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,7 +164,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    moq = try container.decode(ApplicationItemMOQ.self, forKey: .moq)
+                    revenue = try container.decode(Double.self, forKey: .revenue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +176,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
+                    cancelled = try container.decode(Double.self, forKey: .cancelled)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +188,31 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    sizePromotionThreshold = try container.decode(SizePromotionThreshold.self, forKey: .sizePromotionThreshold)
+                    returns = try container.decode(Double.self, forKey: .returns)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    catalogue = try container.decode(Double.self, forKey: .catalogue)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    listing = try container.decode(Double.self, forKey: .listing)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,47 +229,57 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(popularity, forKey: .popularity)
             
             
             
             
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+            try? container.encodeIfPresent(availability, forKey: .availability)
             
             
             
             
-            try? container.encodeIfPresent(altText, forKey: .altText)
+            try? container.encodeIfPresent(conversion, forKey: .conversion)
             
             
             
             
-            try? container.encodeIfPresent(scores, forKey: .scores)
+            try? container.encodeIfPresent(soldQuantity, forKey: .soldQuantity)
             
             
             
             
-            try? container.encodeIfPresent(isCod, forKey: .isCod)
+            try? container.encodeIfPresent(depth, forKey: .depth)
             
             
             
             
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
+            try? container.encodeIfPresent(discount, forKey: .discount)
             
             
             
             
-            try? container.encodeIfPresent(moq, forKey: .moq)
+            try? container.encodeIfPresent(revenue, forKey: .revenue)
             
             
             
             
-            try? container.encodeIfPresent(seo, forKey: .seo)
+            try? container.encodeIfPresent(cancelled, forKey: .cancelled)
             
             
             
             
-            try? container.encodeIfPresent(sizePromotionThreshold, forKey: .sizePromotionThreshold)
+            try? container.encodeIfPresent(returns, forKey: .returns)
+            
+            
+            
+            
+            try? container.encodeIfPresent(catalogue, forKey: .catalogue)
+            
+            
+            
+            
+            try? container.encodeIfPresent(listing, forKey: .listing)
             
             
         }
@@ -245,73 +291,85 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: ApplicationItemMeta
+        Model: Scores
         Used By: Catalog
     */
 
-    class ApplicationItemMeta: Codable {
+    class Scores: Codable {
         
         
-        public var customJson: [String: Any]?
+        public var popularity: Double?
         
-        public var customMeta: [MetaFields]?
+        public var availability: Double?
         
-        public var altText: [String: Any]?
+        public var conversion: Double?
         
-        public var scores: Scores?
+        public var soldQuantity: Double?
         
-        public var isCod: Bool?
+        public var depth: Double?
         
-        public var isGift: Bool?
+        public var discount: Double?
         
-        public var moq: ApplicationItemMOQ?
+        public var revenue: Double?
         
-        public var seo: ApplicationItemSEO?
+        public var cancelled: Double?
         
-        public var sizePromotionThreshold: SizePromotionThreshold?
+        public var returns: Double?
+        
+        public var catalogue: Double?
+        
+        public var listing: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case customJson = "_custom_json"
+            case popularity = "popularity"
             
-            case customMeta = "_custom_meta"
+            case availability = "availability"
             
-            case altText = "alt_text"
+            case conversion = "conversion"
             
-            case scores = "scores"
+            case soldQuantity = "sold_quantity"
             
-            case isCod = "is_cod"
+            case depth = "depth"
             
-            case isGift = "is_gift"
+            case discount = "discount"
             
-            case moq = "moq"
+            case revenue = "revenue"
             
-            case seo = "seo"
+            case cancelled = "cancelled"
             
-            case sizePromotionThreshold = "size_promotion_threshold"
+            case returns = "returns"
+            
+            case catalogue = "catalogue"
+            
+            case listing = "listing"
             
         }
 
-        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, scores: Scores? = nil, seo: ApplicationItemSEO? = nil, sizePromotionThreshold: SizePromotionThreshold? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
+        public init(availability: Double? = nil, cancelled: Double? = nil, catalogue: Double? = nil, conversion: Double? = nil, depth: Double? = nil, discount: Double? = nil, listing: Double? = nil, popularity: Double? = nil, returns: Double? = nil, revenue: Double? = nil, soldQuantity: Double? = nil) {
             
-            self.customJson = customJson
+            self.popularity = popularity
             
-            self.customMeta = customMeta
+            self.availability = availability
             
-            self.altText = altText
+            self.conversion = conversion
             
-            self.scores = scores
+            self.soldQuantity = soldQuantity
             
-            self.isCod = isCod
+            self.depth = depth
             
-            self.isGift = isGift
+            self.discount = discount
             
-            self.moq = moq
+            self.revenue = revenue
             
-            self.seo = seo
+            self.cancelled = cancelled
             
-            self.sizePromotionThreshold = sizePromotionThreshold
+            self.returns = returns
+            
+            self.catalogue = catalogue
+            
+            self.listing = listing
             
         }
 
@@ -320,7 +378,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                    popularity = try container.decode(Double.self, forKey: .popularity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -332,7 +390,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
+                    availability = try container.decode(Double.self, forKey: .availability)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -344,7 +402,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    altText = try container.decode([String: Any].self, forKey: .altText)
+                    conversion = try container.decode(Double.self, forKey: .conversion)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -356,7 +414,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    scores = try container.decode(Scores.self, forKey: .scores)
+                    soldQuantity = try container.decode(Double.self, forKey: .soldQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -368,7 +426,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    isCod = try container.decode(Bool.self, forKey: .isCod)
+                    depth = try container.decode(Double.self, forKey: .depth)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -380,7 +438,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    isGift = try container.decode(Bool.self, forKey: .isGift)
+                    discount = try container.decode(Double.self, forKey: .discount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -392,7 +450,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    moq = try container.decode(ApplicationItemMOQ.self, forKey: .moq)
+                    revenue = try container.decode(Double.self, forKey: .revenue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -404,7 +462,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
+                    cancelled = try container.decode(Double.self, forKey: .cancelled)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -416,7 +474,31 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    sizePromotionThreshold = try container.decode(SizePromotionThreshold.self, forKey: .sizePromotionThreshold)
+                    returns = try container.decode(Double.self, forKey: .returns)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    catalogue = try container.decode(Double.self, forKey: .catalogue)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    listing = try container.decode(Double.self, forKey: .listing)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -433,47 +515,57 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(popularity, forKey: .popularity)
             
             
             
             
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+            try? container.encodeIfPresent(availability, forKey: .availability)
             
             
             
             
-            try? container.encodeIfPresent(altText, forKey: .altText)
+            try? container.encodeIfPresent(conversion, forKey: .conversion)
             
             
             
             
-            try? container.encodeIfPresent(scores, forKey: .scores)
+            try? container.encodeIfPresent(soldQuantity, forKey: .soldQuantity)
             
             
             
             
-            try? container.encodeIfPresent(isCod, forKey: .isCod)
+            try? container.encodeIfPresent(depth, forKey: .depth)
             
             
             
             
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
+            try? container.encodeIfPresent(discount, forKey: .discount)
             
             
             
             
-            try? container.encodeIfPresent(moq, forKey: .moq)
+            try? container.encodeIfPresent(revenue, forKey: .revenue)
             
             
             
             
-            try? container.encodeIfPresent(seo, forKey: .seo)
+            try? container.encodeIfPresent(cancelled, forKey: .cancelled)
             
             
             
             
-            try? container.encodeIfPresent(sizePromotionThreshold, forKey: .sizePromotionThreshold)
+            try? container.encodeIfPresent(returns, forKey: .returns)
+            
+            
+            
+            
+            try? container.encodeIfPresent(catalogue, forKey: .catalogue)
+            
+            
+            
+            
+            try? container.encodeIfPresent(listing, forKey: .listing)
             
             
         }

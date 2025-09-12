@@ -38,6 +38,8 @@ public extension PlatformClient.Serviceability {
         
         public var companyId: Int?
         
+        public var itemId: Int?
+        
         public var maxWeight: Double?
         
         public var media: [[String: Any]]?
@@ -79,6 +81,8 @@ public extension PlatformClient.Serviceability {
             
             case companyId = "company_id"
             
+            case itemId = "item_id"
+            
             case maxWeight = "max_weight"
             
             case media = "media"
@@ -93,7 +97,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(autoCalculate: Bool? = nil, channels: [PackageChannel]? = nil, companyId: Int? = nil, errorRate: Double? = nil, height: Double? = nil, id: String? = nil, isActive: Bool? = nil, length: Double? = nil, maxWeight: Double? = nil, media: [[String: Any]]? = nil, name: String? = nil, packageType: String? = nil, packageVolWeight: Double? = nil, rules: [PackageRuleSchema]? = nil, size: String? = nil, status: String? = nil, trackInventory: Bool? = nil, weight: Double? = nil, width: Double? = nil) {
+        public init(autoCalculate: Bool? = nil, channels: [PackageChannel]? = nil, companyId: Int? = nil, errorRate: Double? = nil, height: Double? = nil, id: String? = nil, isActive: Bool? = nil, itemId: Int? = nil, length: Double? = nil, maxWeight: Double? = nil, media: [[String: Any]]? = nil, name: String? = nil, packageType: String? = nil, packageVolWeight: Double? = nil, rules: [PackageRuleSchema]? = nil, size: String? = nil, status: String? = nil, trackInventory: Bool? = nil, weight: Double? = nil, width: Double? = nil) {
             
             self.name = name
             
@@ -120,6 +124,8 @@ public extension PlatformClient.Serviceability {
             self.size = size
             
             self.companyId = companyId
+            
+            self.itemId = itemId
             
             self.maxWeight = maxWeight
             
@@ -296,6 +302,18 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
+                    itemId = try container.decode(Int.self, forKey: .itemId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     maxWeight = try container.decode(Double.self, forKey: .maxWeight)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -434,6 +452,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             
@@ -508,6 +531,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var companyId: Int?
         
+        public var itemId: Int?
+        
         public var maxWeight: Double?
         
         public var media: [[String: Any]]?
@@ -549,6 +574,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case companyId = "company_id"
             
+            case itemId = "item_id"
+            
             case maxWeight = "max_weight"
             
             case media = "media"
@@ -563,7 +590,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(autoCalculate: Bool? = nil, channels: [PackageChannel]? = nil, companyId: Int? = nil, errorRate: Double? = nil, height: Double? = nil, id: String? = nil, isActive: Bool? = nil, length: Double? = nil, maxWeight: Double? = nil, media: [[String: Any]]? = nil, name: String? = nil, packageType: String? = nil, packageVolWeight: Double? = nil, rules: [PackageRuleSchema]? = nil, size: String? = nil, status: String? = nil, trackInventory: Bool? = nil, weight: Double? = nil, width: Double? = nil) {
+        public init(autoCalculate: Bool? = nil, channels: [PackageChannel]? = nil, companyId: Int? = nil, errorRate: Double? = nil, height: Double? = nil, id: String? = nil, isActive: Bool? = nil, itemId: Int? = nil, length: Double? = nil, maxWeight: Double? = nil, media: [[String: Any]]? = nil, name: String? = nil, packageType: String? = nil, packageVolWeight: Double? = nil, rules: [PackageRuleSchema]? = nil, size: String? = nil, status: String? = nil, trackInventory: Bool? = nil, weight: Double? = nil, width: Double? = nil) {
             
             self.name = name
             
@@ -590,6 +617,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.size = size
             
             self.companyId = companyId
+            
+            self.itemId = itemId
             
             self.maxWeight = maxWeight
             
@@ -766,6 +795,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
+                    itemId = try container.decode(Int.self, forKey: .itemId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     maxWeight = try container.decode(Double.self, forKey: .maxWeight)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -904,6 +945,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             
