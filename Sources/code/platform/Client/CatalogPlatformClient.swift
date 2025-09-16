@@ -4349,7 +4349,7 @@ extension PlatformClient {
         * Description: Users can create a product using this API, associating it with the provided company ID
         **/
         public func createProduct(
-            body: ProductCreateSchemaV2,
+            body: ProductCreateSchemaV3,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
         ) {
@@ -4365,7 +4365,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/",
+                url: "/service/platform/catalog/v3.0/company/\(companyId)/products/",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -4395,20 +4395,16 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Upload bulk products
-        * Description: Users can create multiple products by providing the required information needed for product creation in a CSV or Excel file format.
+        * Summary: Create product export job
+        * Description: Allows to create a product export job for a company.
         **/
-        public func uploadBulkProducts(
-            department: String,
-            productType: String,
-            body: BulkProductJob,
+        public func createProductExportJob(
+            body: ProductTemplateDownloadsExport,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BulkResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductDownloadsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
-            var xQuery: [String: Any] = [:] 
-            xQuery["department"] = department
-            xQuery["product_type"] = productType
+             
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -4419,8 +4415,8 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/bulk",
-                query: xQuery,
+                url: "/service/platform/catalog/v3.0/company/\(companyId)/products/downloads/",
+                query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
                 responseType: "application/json",
@@ -4433,7 +4429,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkResponseSchema.self, from: data)
+                        let response = Utility.decode(ProductDownloadsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4529,13 +4525,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create product export job
-        * Description: Allows to create a product export job for a company.
+        * Summary: Update a product
+        * Description: Modify the details and settings of an existing product in the catalog.
         **/
-        public func createProductExportJob(
-            body: ProductTemplateDownloadsExport,
+        public func editProduct(
+            itemId: Int,
+            body: ProductUpdateSchemaV3,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductDownloadsResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -4548,8 +4545,8 @@ extension PlatformClient {
             }
             PlatformAPIClient.execute(
                 config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/",
+                method: "PUT",
+                url: "/service/platform/catalog/v3.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -4563,7 +4560,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductDownloadsResponseSchema.self, from: data)
+                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4676,57 +4673,6 @@ extension PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SingleProductResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Update a product
-        * Description: Modify the details and settings of an existing product in the catalog.
-        **/
-        public func editProduct(
-            itemId: Int,
-            body: ProductUpdateSchemaV2,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "PUT",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -5149,6 +5095,682 @@ extension PlatformClient {
             });
         }
         
+        
+        
+        /**
+        *
+        * Summary: Create Tax Rule
+        * Description: Create a tax rule and its version for under a specific company. This also creates a live version of the rule
+        **/
+        public func createTax(
+            body: CreateTaxRequestBody,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CreateTax?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/rules/versions",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateTax.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get all tax rules of a company
+        * Description: Returns array of all tax rules of a company
+        **/
+        public func getAllTaxRules(
+            q: String?,
+            statuses: String?,
+            page: Int?,
+            limit: Int?,
+            versionStatus: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: TaxRules?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = statuses {
+                xQuery["statuses"] = value
+            }
+            
+            if let value = page {
+                xQuery["page"] = value
+            }
+            
+            if let value = limit {
+                xQuery["limit"] = value
+            }
+            
+            if let value = versionStatus {
+                xQuery["version_status"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/rules",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TaxRules.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Update Tax Rule
+        * Description: Update an existing tax rule under a specific company.
+        **/
+        public func updateTaxRule(
+            ruleId: String,
+            body: UpdateTaxRequestBody,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: TaxRule?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/rules/\(ruleId)",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TaxRule.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Delete a tax rule
+        * Description: Deletes a tax rule along with all its versions using the provided rule_id. You can not delete a rule if 1. it is the default tax rule 2. it is applied to any product. You will need to set any other tax rule as default or will need to attach a different tax rule to the products, then only you can delete the rule.
+
+        **/
+        public func deleteTaxRule(
+            ruleId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "DELETE",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/rules/\(ruleId)",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = data.dictionary
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get tax versions for a tax rule
+        * Description: Retrieve versions of a tax rule with support for filtering by query parameters (e.g., live, past, all).
+        **/
+        public func getTaxVersionDetails(
+            ruleId: String,
+            versionStatus: String?,
+            limit: String?,
+            page: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: TaxRuleVersion?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = versionStatus {
+                xQuery["version_status"] = value
+            }
+            
+            if let value = limit {
+                xQuery["limit"] = value
+            }
+            
+            if let value = page {
+                xQuery["page"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/rules/\(ruleId)/versions",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TaxRuleVersion.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Create a tax version
+        * Description: Creates a tax rule using the provided rule_id.
+        **/
+        public func createTaxVersion(
+            ruleId: String,
+            body: CreateTaxVersionRequestBody,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: TaxVersion?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/rules/\(ruleId)/versions",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TaxVersion.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Delete a tax version
+        * Description: Deletes a tax rule using the provided rule_id. On future/scheduled version can be deleted.
+        **/
+        public func deleteTaxVersion(
+            ruleId: String,
+            versionId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "DELETE",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/rules/\(ruleId)/versions/\(versionId)",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = data.dictionary
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Update a tax version
+        * Description: Updates a tax rule using the provided rule_id. You can update any part of a scheduled version but only tax name of live version can be updated.
+        **/
+        public func updateTaxVersion(
+            ruleId: String,
+            versionId: String,
+            body: UpdateTaxVersionRequestBody,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: TaxVersion?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/rules/\(ruleId)/versions/\(versionId)",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TaxVersion.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get HS/SAC codes
+        * Description: Retrieve a list of HS (Harmonized System) or SAC (Service Accounting Code) codes for a company.
+HS codes are used for classifying goods in international trade, while SAC codes are used for classifying services for taxation purposes.
+Supports optional filtering and pagination.
+
+        **/
+        public func getHsCodes(
+            page: Int?,
+            limit: Int?,
+            type: HsTypeEnum?,
+            q: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: HSCodes?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = page {
+                xQuery["page"] = value
+            }
+            
+            if let value = limit {
+                xQuery["limit"] = value
+            }
+            
+            if let value = type {
+                xQuery["type"] = value.rawValue
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/hscodes",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(HSCodes.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Create HS/SAC code
+        * Description: Create HS/SAC code.
+        **/
+        public func createHsCode(
+            body: HSCodeItem,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: HSCodeItem?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/hscodes",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(HSCodeItem.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create tax component name
+        * Description: Tax components represent different types of taxes that may be applied to products or transactions, 
+such as sales tax, value-added tax (VAT), goods and services tax, consumption tax, 
+or other region-specific taxation systems. This endpoint allows companies to define and 
+customize the names of tax components according to their local tax regulations and business requirements.
+
+        **/
+        public func createTaxComponentName(
+            body: CreateTaxComponentNameRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: TaxComponentName?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/component-names",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TaxComponentName.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get component names
+        * Description: Get component names for a company.
+        **/
+        public func getTaxComponentNames(
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetTaxComponents?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/taxes/component-names",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetTaxComponents.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
         
         
     }

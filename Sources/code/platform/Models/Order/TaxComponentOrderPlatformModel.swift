@@ -3,45 +3,45 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: TaxIdentifier
-        Used By: Catalog
+        Model: TaxComponent
+        Used By: Order
     */
 
-    class TaxIdentifier: Codable {
+    class TaxComponent: Codable {
         
         
-        public var taxRuleId: String?
+        public var name: String?
         
-        public var hsnCode: String?
+        public var rate: Double?
         
-        public var hsnCodeId: String?
+        public var taxAmount: Double?
         
-        public var reportingHsn: String?
+        public var taxableAmount: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case taxRuleId = "tax_rule_id"
+            case name = "name"
             
-            case hsnCode = "hsn_code"
+            case rate = "rate"
             
-            case hsnCodeId = "hsn_code_id"
+            case taxAmount = "tax_amount"
             
-            case reportingHsn = "reporting_hsn"
+            case taxableAmount = "taxable_amount"
             
         }
 
-        public init(hsnCode: String? = nil, hsnCodeId: String? = nil, reportingHsn: String? = nil, taxRuleId: String? = nil) {
+        public init(name: String? = nil, rate: Double? = nil, taxableAmount: Double? = nil, taxAmount: Double? = nil) {
             
-            self.taxRuleId = taxRuleId
+            self.name = name
             
-            self.hsnCode = hsnCode
+            self.rate = rate
             
-            self.hsnCodeId = hsnCodeId
+            self.taxAmount = taxAmount
             
-            self.reportingHsn = reportingHsn
+            self.taxableAmount = taxableAmount
             
         }
 
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    taxRuleId = try container.decode(String.self, forKey: .taxRuleId)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    hsnCode = try container.decode(String.self, forKey: .hsnCode)
+                    rate = try container.decode(Double.self, forKey: .rate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +74,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
+                    taxAmount = try container.decode(Double.self, forKey: .taxAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    reportingHsn = try container.decode(String.self, forKey: .reportingHsn)
+                    taxableAmount = try container.decode(Double.self, forKey: .taxableAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,22 +103,22 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(taxRuleId, forKey: .taxRuleId)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
+            try? container.encodeIfPresent(rate, forKey: .rate)
             
             
             
             
-            try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
+            try? container.encodeIfPresent(taxAmount, forKey: .taxAmount)
             
             
             
             
-            try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
+            try? container.encodeIfPresent(taxableAmount, forKey: .taxableAmount)
             
             
         }
@@ -128,45 +128,45 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: TaxIdentifier
-        Used By: Catalog
+        Model: TaxComponent
+        Used By: Order
     */
 
-    class TaxIdentifier: Codable {
+    class TaxComponent: Codable {
         
         
-        public var taxRuleId: String?
+        public var name: String?
         
-        public var hsnCode: String?
+        public var rate: Double?
         
-        public var hsnCodeId: String?
+        public var taxAmount: Double?
         
-        public var reportingHsn: String?
+        public var taxableAmount: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case taxRuleId = "tax_rule_id"
+            case name = "name"
             
-            case hsnCode = "hsn_code"
+            case rate = "rate"
             
-            case hsnCodeId = "hsn_code_id"
+            case taxAmount = "tax_amount"
             
-            case reportingHsn = "reporting_hsn"
+            case taxableAmount = "taxable_amount"
             
         }
 
-        public init(hsnCode: String? = nil, hsnCodeId: String? = nil, reportingHsn: String? = nil, taxRuleId: String? = nil) {
+        public init(name: String? = nil, rate: Double? = nil, taxableAmount: Double? = nil, taxAmount: Double? = nil) {
             
-            self.taxRuleId = taxRuleId
+            self.name = name
             
-            self.hsnCode = hsnCode
+            self.rate = rate
             
-            self.hsnCodeId = hsnCodeId
+            self.taxAmount = taxAmount
             
-            self.reportingHsn = reportingHsn
+            self.taxableAmount = taxableAmount
             
         }
 
@@ -175,7 +175,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    taxRuleId = try container.decode(String.self, forKey: .taxRuleId)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    hsnCode = try container.decode(String.self, forKey: .hsnCode)
+                    rate = try container.decode(Double.self, forKey: .rate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,7 +199,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
+                    taxAmount = try container.decode(Double.self, forKey: .taxAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,7 +211,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    reportingHsn = try container.decode(String.self, forKey: .reportingHsn)
+                    taxableAmount = try container.decode(Double.self, forKey: .taxableAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,22 +228,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(taxRuleId, forKey: .taxRuleId)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
+            try? container.encodeIfPresent(rate, forKey: .rate)
             
             
             
             
-            try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
+            try? container.encodeIfPresent(taxAmount, forKey: .taxAmount)
             
             
             
             
-            try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
+            try? container.encodeIfPresent(taxableAmount, forKey: .taxableAmount)
             
             
         }

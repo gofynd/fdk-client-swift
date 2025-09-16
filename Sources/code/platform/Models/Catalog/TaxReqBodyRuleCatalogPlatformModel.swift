@@ -3,27 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.FileStorage {
+public extension PlatformClient.Catalog {
     /*
-        Model: ProxyFileAccess
-        Used By: FileStorage
+        Model: TaxReqBodyRule
+        Used By: Catalog
     */
 
-    class ProxyFileAccess: Codable {
+    class TaxReqBodyRule: Codable {
         
         
-        public var success: Bool?
+        public var name: String
+        
+        public var description: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case name = "name"
+            
+            case description = "description"
             
         }
 
-        public init(success: Bool? = nil) {
+        public init(description: String? = nil, name: String) {
             
-            self.success = success
+            self.name = name
+            
+            self.description = description
             
         }
 
@@ -31,8 +37,13 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+                name = try container.decode(String.self, forKey: .name)
+                
+            
+            
+            
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +60,12 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
         }
@@ -59,27 +75,33 @@ public extension PlatformClient.FileStorage {
 
 
 
-public extension PlatformClient.ApplicationClient.FileStorage {
+public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: ProxyFileAccess
-        Used By: FileStorage
+        Model: TaxReqBodyRule
+        Used By: Catalog
     */
 
-    class ProxyFileAccess: Codable {
+    class TaxReqBodyRule: Codable {
         
         
-        public var success: Bool?
+        public var name: String
+        
+        public var description: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case name = "name"
+            
+            case description = "description"
             
         }
 
-        public init(success: Bool? = nil) {
+        public init(description: String? = nil, name: String) {
             
-            self.success = success
+            self.name = name
+            
+            self.description = description
             
         }
 
@@ -87,8 +109,13 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+                name = try container.decode(String.self, forKey: .name)
+                
+            
+            
+            
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +132,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
         }

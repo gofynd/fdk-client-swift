@@ -51,12 +51,72 @@ public extension PlatformClient.ApplicationClient.Cart {
 public extension PlatformClient.Catalog {
     
     
+    /*
+        Enum: TaxStatusEnum
+        Used By: Catalog
+    */
+    enum TaxStatusEnum: String, Codable {
+        
+        case active = "ACTIVE"
+        
+        case inactive = "INACTIVE"
+        
+        case deleted = "DELETED"
+        
+    }
+
+    
+    
+    /*
+        Enum: HsTypeEnum
+        Used By: Catalog
+    */
+    enum HsTypeEnum: String, Codable {
+        
+        case hs = "HS"
+        
+        case sac = "SAC"
+        
+    }
+
+    
+    
     
 }
 
 
 
 public extension PlatformClient.ApplicationClient.Catalog {
+    
+    
+    /*
+        Enum: TaxStatusEnum
+        Used By: Catalog
+    */
+    enum TaxStatusEnum: String, Codable {
+        
+        case active = "ACTIVE"
+        
+        case inactive = "INACTIVE"
+        
+        case deleted = "DELETED"
+        
+    }
+
+    
+    
+    /*
+        Enum: HsTypeEnum
+        Used By: Catalog
+    */
+    enum HsTypeEnum: String, Codable {
+        
+        case hs = "HS"
+        
+        case sac = "SAC"
+        
+    }
+
     
     
     
