@@ -12,6 +12,10 @@ public extension ApplicationClient.Cart {
         
         public var subtotal: Double?
         
+        public var engageAmount: Double?
+        
+        public var engageMopAmount: Double?
+        
         public var fyndCash: Double?
         
         public var discount: Double?
@@ -45,6 +49,10 @@ public extension ApplicationClient.Cart {
             
             case subtotal = "subtotal"
             
+            case engageAmount = "engage_amount"
+            
+            case engageMopAmount = "engage_mop_amount"
+            
             case fyndCash = "fynd_cash"
             
             case discount = "discount"
@@ -73,11 +81,15 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mopTotal: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, totalCharge: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
+        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, engageAmount: Double? = nil, engageMopAmount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mopTotal: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, totalCharge: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
             
             self.vog = vog
             
             self.subtotal = subtotal
+            
+            self.engageAmount = engageAmount
+            
+            self.engageMopAmount = engageMopAmount
             
             self.fyndCash = fyndCash
             
@@ -125,6 +137,30 @@ public extension ApplicationClient.Cart {
             
             do {
                 subtotal = try container.decode(Double.self, forKey: .subtotal)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                engageAmount = try container.decode(Double.self, forKey: .engageAmount)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                engageMopAmount = try container.decode(Double.self, forKey: .engageMopAmount)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -301,6 +337,14 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(subtotal, forKey: .subtotal)
+            
+            
+            
+            try? container.encodeIfPresent(engageAmount, forKey: .engageAmount)
+            
+            
+            
+            try? container.encodeIfPresent(engageMopAmount, forKey: .engageMopAmount)
             
             
             

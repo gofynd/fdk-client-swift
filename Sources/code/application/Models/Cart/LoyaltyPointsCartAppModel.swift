@@ -16,6 +16,22 @@ public extension ApplicationClient.Cart {
         
         public var isApplied: Bool?
         
+        public var totalPoints: Double?
+        
+        public var points: Double?
+        
+        public var amount: Double?
+        
+        public var mopAmount: Double?
+        
+        public var earnPoints: Double?
+        
+        public var earnPointsAmount: Double?
+        
+        public var earnTitle: String?
+        
+        public var title: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,9 +43,25 @@ public extension ApplicationClient.Cart {
             
             case isApplied = "is_applied"
             
+            case totalPoints = "total_points"
+            
+            case points = "points"
+            
+            case amount = "amount"
+            
+            case mopAmount = "mop_amount"
+            
+            case earnPoints = "earn_points"
+            
+            case earnPointsAmount = "earn_points_amount"
+            
+            case earnTitle = "earn_title"
+            
+            case title = "title"
+            
         }
 
-        public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, total: Double? = nil) {
+        public init(amount: Double? = nil, applicable: Double? = nil, description: String? = nil, earnPoints: Double? = nil, earnPointsAmount: Double? = nil, earnTitle: String? = nil, isApplied: Bool? = nil, mopAmount: Double? = nil, points: Double? = nil, title: String? = nil, total: Double? = nil, totalPoints: Double? = nil) {
             
             self.total = total
             
@@ -38,6 +70,22 @@ public extension ApplicationClient.Cart {
             self.applicable = applicable
             
             self.isApplied = isApplied
+            
+            self.totalPoints = totalPoints
+            
+            self.points = points
+            
+            self.amount = amount
+            
+            self.mopAmount = mopAmount
+            
+            self.earnPoints = earnPoints
+            
+            self.earnPointsAmount = earnPointsAmount
+            
+            self.earnTitle = earnTitle
+            
+            self.title = title
             
         }
 
@@ -92,6 +140,102 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                totalPoints = try container.decode(Double.self, forKey: .totalPoints)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                points = try container.decode(Double.self, forKey: .points)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                amount = try container.decode(Double.self, forKey: .amount)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                mopAmount = try container.decode(Double.self, forKey: .mopAmount)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                earnPoints = try container.decode(Double.self, forKey: .earnPoints)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                earnPointsAmount = try container.decode(Double.self, forKey: .earnPointsAmount)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                earnTitle = try container.decode(String.self, forKey: .earnTitle)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                title = try container.decode(String.self, forKey: .title)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -111,6 +255,38 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+            
+            
+            
+            try? container.encodeIfPresent(totalPoints, forKey: .totalPoints)
+            
+            
+            
+            try? container.encodeIfPresent(points, forKey: .points)
+            
+            
+            
+            try? container.encodeIfPresent(amount, forKey: .amount)
+            
+            
+            
+            try? container.encodeIfPresent(mopAmount, forKey: .mopAmount)
+            
+            
+            
+            try? container.encodeIfPresent(earnPoints, forKey: .earnPoints)
+            
+            
+            
+            try? container.encodeIfPresent(earnPointsAmount, forKey: .earnPointsAmount)
+            
+            
+            
+            try? container.encodeIfPresent(earnTitle, forKey: .earnTitle)
+            
+            
+            
+            try? container.encodeIfPresent(title, forKey: .title)
             
             
         }

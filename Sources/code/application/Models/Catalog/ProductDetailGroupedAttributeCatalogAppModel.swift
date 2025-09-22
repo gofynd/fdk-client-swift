@@ -10,6 +10,8 @@ public extension ApplicationClient.Catalog {
         
         public var title: String?
         
+        public var id: String?
+        
         public var details: [ProductDetailAttribute]?
         
 
@@ -17,13 +19,17 @@ public extension ApplicationClient.Catalog {
             
             case title = "title"
             
+            case id = "id"
+            
             case details = "details"
             
         }
 
-        public init(details: [ProductDetailAttribute]? = nil, title: String? = nil) {
+        public init(details: [ProductDetailAttribute]? = nil, id: String? = nil, title: String? = nil) {
             
             self.title = title
+            
+            self.id = id
             
             self.details = details
             
@@ -35,6 +41,18 @@ public extension ApplicationClient.Catalog {
             
             do {
                 title = try container.decode(String.self, forKey: .title)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                id = try container.decode(String.self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,6 +81,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             

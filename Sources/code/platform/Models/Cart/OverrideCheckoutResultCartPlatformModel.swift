@@ -14,9 +14,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class OverrideCheckoutResult: Codable {
         
         
-        public var data: [String: Any]
+        public var data: OverrideCheckoutData
         
-        public var cart: [String: Any]
+        public var cart: CheckCart
         
         public var success: String
         
@@ -39,7 +39,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(cart: [String: Any], data: [String: Any], message: String, orderId: String, success: String) {
+        public init(cart: CheckCart, data: OverrideCheckoutData, message: String, orderId: String, success: String) {
             
             self.data = data
             
@@ -57,12 +57,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                data = try container.decode([String: Any].self, forKey: .data)
+                data = try container.decode(OverrideCheckoutData.self, forKey: .data)
                 
             
             
             
-                cart = try container.decode([String: Any].self, forKey: .cart)
+                cart = try container.decode(CheckCart.self, forKey: .cart)
                 
             
             

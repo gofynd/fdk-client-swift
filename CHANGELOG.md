@@ -1,3 +1,620 @@
+# CHANGE LOG (3.9.0) - 2.8.1
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>applyRewardPoints</code>
+
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### applyLoyaltyPoints
+
+- ##### What's New
+	- [Added] method <code>applyLoyaltyPoints</code>
+
+
+
+### Catalog
+
+
+
+#### getProductDetailBySlug
+
+- ##### What's New
+	- [Added] property <code>groupedAttributes[].id</code> of schema <code>ProductDetailGroupedAttribute</code> in response with status code 200
+
+
+#### getProductComparisonBySlugs
+
+- ##### What's New
+	- [Added] property <code>items[].groupedAttributes[].id</code> of schema <code>ProductDetailGroupedAttribute</code> in response with status code 200
+
+
+#### getSimilarComparisonProductBySlug
+
+- ##### What's New
+	- [Added] property <code>items[].groupedAttributes[].id</code> of schema <code>ProductDetailGroupedAttribute</code> in response with status code 200
+
+
+#### getComparedFrequentlyProductBySlug
+
+- ##### What's New
+	- [Added] property <code>similars.items[].groupedAttributes[].id</code> of schema <code>ProductDetailGroupedAttribute</code> in response with status code 200
+
+
+#### getProducts
+
+- ##### What's New
+	- [Added] property <code>items[].groupedAttributes[].id</code> of schema <code>ProductDetailGroupedAttribute</code> in response with status code 200
+
+
+#### getHomeProducts
+
+- ##### What's New
+	- [Added] property <code>items[].groupedAttributes[].id</code> of schema <code>ProductDetailGroupedAttribute</code> in response with status code 200
+
+
+#### getCollectionItemsBySlug
+
+- ##### What's New
+	- [Added] property <code>items[].groupedAttributes[].id</code> of schema <code>ProductDetailGroupedAttribute</code> in response with status code 200
+
+
+#### getFollowedListing
+
+- ##### What's New
+	- [Added] property <code>items[].groupedAttributes[].id</code> of schema <code>ProductDetailGroupedAttribute</code> in response with status code 200
+
+
+### Theme
+
+
+
+#### getPage
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>urlParams</code> (type: <code>string</code>)
+
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### updatePriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>articleIds[].articleIndex</code> of schema <code>Article</code> in request body
+	- [Added] property <code>data[].articleIds[].articleIndex</code> of schema <code>Article</code> in response with status code 200
+
+
+#### addPriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>articleIds[].articleIndex</code> of schema <code>Article</code> in request body
+	- [Added] property <code>data[].articleIds[].articleIndex</code> of schema <code>Article</code> in response with status code 201
+
+
+#### getPriceAdjustments
+
+- ##### What's New
+	- [Added] property <code>data[].articleIds[].articleIndex</code> of schema <code>Article</code> in response with status code 200
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### overrideCart
+
+- ##### What's New
+	- [Added] properties <code>billingAddress.country</code>, <code>billingAddress.state</code>, <code>billingAddress.city</code>, <code>billingAddress.phone</code>, <code>billingAddress.meta</code>, <code>billingAddress.area</code>, <code>billingAddress.name</code>, <code>billingAddress.landmark</code>, <code>billingAddress.email</code>, <code>billingAddress.pincode</code>, <code>billingAddress.address</code>, <code>billingAddress.areaCode</code>, <code>billingAddress.countryIsoCode</code>, <code>billingAddress.countryPhoneCode</code>, <code>billingAddress.addressType</code>, <code>billingAddress.areaCodeSlug</code>, <code>billingAddress.countryCode</code> in request body
+	- [Added] properties <code>shippingAddress.country</code>, <code>shippingAddress.state</code>, <code>shippingAddress.city</code>, <code>shippingAddress.phone</code>, <code>shippingAddress.meta</code>, <code>shippingAddress.area</code>, <code>shippingAddress.name</code>, <code>shippingAddress.landmark</code>, <code>shippingAddress.email</code>, <code>shippingAddress.pincode</code>, <code>shippingAddress.address</code>, <code>shippingAddress.areaCode</code>, <code>shippingAddress.countryIsoCode</code>, <code>shippingAddress.countryPhoneCode</code>, <code>shippingAddress.addressType</code>, <code>shippingAddress.areaCodeSlug</code>, <code>shippingAddress.countryCode</code> in request body
+	- [Added] property <code>deviceId</code> of schema <code>OverrideCheckoutReq</code> in request body
+	- [Added] properties <code>data.amount</code>, <code>data.email</code>, <code>data.contact</code>, <code>data.currency</code>, <code>data.bank</code>, <code>data.method</code>, <code>data.vpa</code>, <code>data.orderId</code>, <code>data.customerId</code>, <code>data.callbackUrl</code> in response with status code 200
+	- [Added] properties <code>cart.id</code>, <code>cart.comment</code>, <code>cart.items</code>, <code>cart.success</code>, <code>cart.message</code>, <code>cart.uid</code>, <code>cart.currency</code>, <code>cart.gstin</code>, <code>cart.couponText</code>, <code>cart.codMessage</code>, <code>cart.storeCode</code>, <code>cart.deliveryPromise</code>, <code>cart.userType</code>, <code>cart.errorMessage</code>, <code>cart.paymentSelectionLock</code>, <code>cart.deliveryChargeInfo</code>, <code>cart.restrictCheckout</code>, <code>cart.orderId</code>, <code>cart.breakupValues</code>, <code>cart.codCharges</code>, <code>cart.isValid</code>, <code>cart.checkoutMode</code>, <code>cart.lastModified</code>, <code>cart.buyNow</code>, <code>cart.deliveryChargeOrderValue</code>, <code>cart.cartId</code>, <code>cart.storeEmps</code>, <code>cart.codAvailable</code>, <code>cart.deliveryCharges</code>, <code>cart.customCartMeta</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### updateCartUser
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### updateShipments
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.engageAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.raw.engageMopAmount</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.points</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.amount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.title</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.totalPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.mopAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPoints</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnPointsAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.earnTitle</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### applyLoyaltyPoints
+
+- ##### What's New
+	- [Added] method <code>applyLoyaltyPoints</code>
+
+
+
 # CHANGE LOG (3.8.0) - 2.8.0
 
 ## Application Client

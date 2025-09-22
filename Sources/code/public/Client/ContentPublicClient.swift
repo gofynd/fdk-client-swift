@@ -562,12 +562,17 @@ extension PublicClient {
         * Description: Fetches complete list of languages supported by the platform with their locale codes and text directions.
         **/
         public func getAllLanguages(
+            isEnabled: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
                         
-             
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = isEnabled {
+                xQuery["is_enabled"] = value
+            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -579,7 +584,7 @@ extension PublicClient {
                 config: config,
                 method: "GET",
                 url: "/service/public/content/languages",
-                query: nil,
+                query: xQuery,
                 extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",

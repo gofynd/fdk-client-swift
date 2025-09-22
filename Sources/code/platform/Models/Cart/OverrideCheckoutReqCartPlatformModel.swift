@@ -18,7 +18,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var paymentMode: String
         
-        public var billingAddress: [String: Any]?
+        public var billingAddress: ShippingAddress?
         
         public var merchantCode: String
         
@@ -36,7 +36,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var orderingStore: Int?
         
-        public var shippingAddress: [String: Any]?
+        public var deviceId: String?
+        
+        public var shippingAddress: ShippingAddress?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -63,11 +65,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case orderingStore = "ordering_store"
             
+            case deviceId = "device_id"
+            
             case shippingAddress = "shipping_address"
             
         }
 
-        public init(aggregator: String, billingAddress: [String: Any]? = nil, callbackUrl: String? = nil, cartId: String, cartItems: [OverrideCartItem], currencyCode: String, merchantCode: String, orderingStore: Int? = nil, orderType: String, paymentIdentifier: String, paymentMode: String, shippingAddress: [String: Any]? = nil) {
+        public init(aggregator: String, billingAddress: ShippingAddress? = nil, callbackUrl: String? = nil, cartId: String, cartItems: [OverrideCartItem], currencyCode: String, deviceId: String? = nil, merchantCode: String, orderingStore: Int? = nil, orderType: String, paymentIdentifier: String, paymentMode: String, shippingAddress: ShippingAddress? = nil) {
             
             self.cartId = cartId
             
@@ -91,6 +95,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.orderingStore = orderingStore
             
+            self.deviceId = deviceId
+            
             self.shippingAddress = shippingAddress
             
         }
@@ -110,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
+                    billingAddress = try container.decode(ShippingAddress.self, forKey: .billingAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +182,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    shippingAddress = try container.decode([String: Any].self, forKey: .shippingAddress)
+                    deviceId = try container.decode(String.self, forKey: .deviceId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    shippingAddress = try container.decode(ShippingAddress.self, forKey: .shippingAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -244,6 +262,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
             
             
             

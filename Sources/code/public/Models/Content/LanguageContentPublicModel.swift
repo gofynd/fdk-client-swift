@@ -20,6 +20,8 @@ public extension PublicClient.Content {
         
         public var displayName: String?
         
+        public var isEnabled: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -33,9 +35,11 @@ public extension PublicClient.Content {
             
             case displayName = "display_name"
             
+            case isEnabled = "is_enabled"
+            
         }
 
-        public init(direction: String, displayName: String? = nil, locale: String, name: String, id: String? = nil) {
+        public init(direction: String, displayName: String? = nil, isEnabled: Bool? = nil, locale: String, name: String, id: String? = nil) {
             
             self.id = id
             
@@ -46,6 +50,8 @@ public extension PublicClient.Content {
             self.name = name
             
             self.displayName = displayName
+            
+            self.isEnabled = isEnabled
             
         }
 
@@ -91,6 +97,18 @@ public extension PublicClient.Content {
                 }
                 
             
+            
+                do {
+                    isEnabled = try container.decode(Bool.self, forKey: .isEnabled)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -114,6 +132,10 @@ public extension PublicClient.Content {
             
             
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            
+            
+            try? container.encodeIfPresent(isEnabled, forKey: .isEnabled)
             
             
         }

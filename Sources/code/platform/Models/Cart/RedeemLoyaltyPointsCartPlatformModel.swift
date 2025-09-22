@@ -1,25 +1,31 @@
 
 
 import Foundation
-public extension ApplicationClient.Cart {
+
+
+
+
+public extension PlatformClient.ApplicationClient.Cart {
     /*
-        Model: RewardPointCreation
+        Model: RedeemLoyaltyPoints
         Used By: Cart
     */
-    class RewardPointCreation: Codable {
+
+    class RedeemLoyaltyPoints: Codable {
         
-        public var points: Bool
+        
+        public var redeemPoints: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case points = "points"
+            case redeemPoints = "redeem_points"
             
         }
 
-        public init(points: Bool) {
+        public init(redeemPoints: Bool) {
             
-            self.points = points
+            self.redeemPoints = redeemPoints
             
         }
 
@@ -27,8 +33,8 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            points = try container.decode(Bool.self, forKey: .points)
-            
+                redeemPoints = try container.decode(Bool.self, forKey: .redeemPoints)
+                
             
             
         }
@@ -37,10 +43,13 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(points, forKey: .points)
+            
+            try? container.encodeIfPresent(redeemPoints, forKey: .redeemPoints)
             
             
         }
         
     }
 }
+
+

@@ -4136,7 +4136,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Checkout cart
-            * Description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement.
+            * Description: The checkout cart initiates the order creation process based on the items in the user’s cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement.
             **/
             public func platformCheckoutCartV2(
                 xOrderingSource: OrderingSource?,
@@ -4236,6 +4236,81 @@ public class PlatformClient {
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v2.0/company/\(companyId)/application/\(applicationId)/payment",
+                    query: xQuery,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CartDetailResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Redeem loyalty points.
+            * Description: Users can redeem their accumulated loyalty points and apply them to the items in their cart, thereby availing discounts on their current purchases.
+            **/
+            public func applyLoyaltyPoints(
+                xOrderingSource: OrderingSource?,
+                id: String?,
+                i: Bool?,
+                b: Bool?,
+                buyNow: Bool?,
+                body: RedeemLoyaltyPoints,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/cart/v2.0/company/\(companyId)/application/\(applicationId)/redeem",
                     query: xQuery,
                     body: body.dictionary,
                     headers: xHeaders,

@@ -33,7 +33,7 @@ extension ApplicationClient {
             
             ulrs["getBulkDiscountOffers"] = config.domain.appendAsPath("/service/application/cart/v1.0/bulk-price") 
             
-            ulrs["applyRewardPoints"] = config.domain.appendAsPath("/service/application/cart/v1.0/redeem/points/") 
+            ulrs["applyLoyaltyPoints"] = config.domain.appendAsPath("/service/application/cart/v1.0/redeem") 
             
             ulrs["getAddresses"] = config.domain.appendAsPath("/service/application/cart/v1.0/address") 
             
@@ -417,7 +417,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: Update store credits into cart and their items
-        * Description: Update cart. Customers can adjust the cart breakup by  applying or removing store credits as needed.
+        * Description: Update cart. Customers can adjust the cart breakup by applying or removing store credits as needed.
         **/
         public func updateCartBreakup(
             xOrderingSource: OrderingSource?,
@@ -915,16 +915,16 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Use reward points
-        * Description: Users can redeem their accumulated reward points and apply them to the items in their cart, thereby availing discounts on their current purchases.
+        * Summary: Use loyalty points
+        * Description: Users can redeem their accumulated loyalty points and apply them to the items in their cart, thereby availing discounts on their current purchases.
         **/
-        public func applyRewardPoints(
+        public func applyLoyaltyPoints(
             xOrderingSource: OrderingSource?,
             id: String?,
             i: Bool?,
             b: Bool?,
             buyNow: Bool?,
-            body: RewardPointCreation,
+            body: RedeemLoyaltyPoints,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
         ) {
@@ -958,7 +958,7 @@ extension ApplicationClient {
                 xHeaders.append(contentsOf: headers)
             }
             
-            let fullUrl = relativeUrls["applyRewardPoints"] ?? ""
+            let fullUrl = relativeUrls["applyLoyaltyPoints"] ?? ""
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -2182,7 +2182,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: Checkout cart
-        * Description: The checkout cart initiates the order creation process based on the items in the user's cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement.
+        * Description: The checkout cart initiates the order creation process based on the items in the user's cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement.
         **/
         public func checkoutCartV2(
             xOrderingSource: OrderingSource?,

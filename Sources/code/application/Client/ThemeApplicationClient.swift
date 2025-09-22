@@ -87,7 +87,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: Get theme page
-        * Description: Get page level configurations, applied sections and seo data of a page by `page_value` received from list pages api.
+        * Description: Get page level configurations, applied sections and seo data of a page by `page_value` received from list pages api. Supports dynamic URL parameter for custom sections.
         **/
         public func getPage(
             themeId: String,
@@ -95,6 +95,7 @@ extension ApplicationClient {
             filters: String?,
             sectionPreviewHash: String?,
             company: Int?,
+            urlParams: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
@@ -112,6 +113,10 @@ extension ApplicationClient {
             
             if let value = company {
                 xQuery["company"] = value
+            }
+            
+            if let value = urlParams {
+                xQuery["url_params"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []

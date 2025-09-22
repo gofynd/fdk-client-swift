@@ -7,73 +7,79 @@ import Foundation
 
 public extension PlatformClient.ApplicationClient.Cart {
     /*
-        Model: Article
+        Model: OverrideCheckoutData
         Used By: Cart
     */
 
-    class Article: Codable {
+    class OverrideCheckoutData: Codable {
         
         
-        public var value: Double?
+        public var amount: Int?
         
-        public var code: String?
+        public var orderId: String?
         
-        public var type: String?
+        public var email: String?
         
-        public var articleId: String
+        public var contact: String?
         
-        public var quantity: Int?
+        public var currency: String?
         
-        public var meta: [String: Any]?
+        public var customerId: String?
         
-        public var allowedRefund: Bool?
+        public var callbackUrl: String?
         
-        public var articleIndex: Int?
+        public var bank: String?
         
-        public var minPriceThreshold: Double?
+        public var method: String?
+        
+        public var vpa: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
+            case amount = "amount"
             
-            case code = "code"
+            case orderId = "order_id"
             
-            case type = "type"
+            case email = "email"
             
-            case articleId = "article_id"
+            case contact = "contact"
             
-            case quantity = "quantity"
+            case currency = "currency"
             
-            case meta = "meta"
+            case customerId = "customer_id"
             
-            case allowedRefund = "allowed_refund"
+            case callbackUrl = "callback_url"
             
-            case articleIndex = "article_index"
+            case bank = "bank"
             
-            case minPriceThreshold = "min_price_threshold"
+            case method = "method"
+            
+            case vpa = "vpa"
             
         }
 
-        public init(allowedRefund: Bool? = nil, articleId: String, articleIndex: Int? = nil, code: String? = nil, meta: [String: Any]? = nil, minPriceThreshold: Double? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
+        public init(amount: Int? = nil, bank: String? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, method: String? = nil, orderId: String? = nil, vpa: String? = nil) {
             
-            self.value = value
+            self.amount = amount
             
-            self.code = code
+            self.orderId = orderId
             
-            self.type = type
+            self.email = email
             
-            self.articleId = articleId
+            self.contact = contact
             
-            self.quantity = quantity
+            self.currency = currency
             
-            self.meta = meta
+            self.customerId = customerId
             
-            self.allowedRefund = allowedRefund
+            self.callbackUrl = callbackUrl
             
-            self.articleIndex = articleIndex
+            self.bank = bank
             
-            self.minPriceThreshold = minPriceThreshold
+            self.method = method
+            
+            self.vpa = vpa
             
         }
 
@@ -82,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    value = try container.decode(Double.self, forKey: .value)
+                    amount = try container.decode(Int.self, forKey: .amount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    code = try container.decode(String.self, forKey: .code)
+                    orderId = try container.decode(String.self, forKey: .orderId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,24 +112,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                articleId = try container.decode(String.self, forKey: .articleId)
-                
-            
-            
-            
-                do {
-                    quantity = try container.decode(Int.self, forKey: .quantity)
+                    email = try container.decode(String.self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    contact = try container.decode(String.self, forKey: .contact)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +136,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    allowedRefund = try container.decode(Bool.self, forKey: .allowedRefund)
+                    currency = try container.decode(String.self, forKey: .currency)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    articleIndex = try container.decode(Int.self, forKey: .articleIndex)
+                    customerId = try container.decode(String.self, forKey: .customerId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -171,7 +160,43 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    minPriceThreshold = try container.decode(Double.self, forKey: .minPriceThreshold)
+                    callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bank = try container.decode(String.self, forKey: .bank)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    method = try container.decode(String.self, forKey: .method)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    vpa = try container.decode(String.self, forKey: .vpa)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,47 +213,52 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
+            try? container.encodeIfPresent(contact, forKey: .contact)
             
             
             
             
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(customerId, forKey: .customerId)
             
             
             
             
-            try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
             
             
             
             
-            try? container.encodeIfPresent(articleIndex, forKey: .articleIndex)
+            try? container.encodeIfPresent(bank, forKey: .bank)
             
             
             
             
-            try? container.encodeIfPresent(minPriceThreshold, forKey: .minPriceThreshold)
+            try? container.encodeIfPresent(method, forKey: .method)
+            
+            
+            
+            
+            try? container.encodeIfPresent(vpa, forKey: .vpa)
             
             
         }
