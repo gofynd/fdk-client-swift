@@ -66,6 +66,8 @@ public extension ApplicationClient.Order {
         
         public var taxes: [TaxComponent]?
         
+        public var loyaltyDiscount: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -127,9 +129,11 @@ public extension ApplicationClient.Order {
             
             case taxes = "taxes"
             
+            case loyaltyDiscount = "loyalty_discount"
+            
         }
 
-        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstFee: Double? = nil, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, identifiers: Identifiers? = nil, itemName: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, size: String? = nil, taxes: [TaxComponent]? = nil, totalUnits: Int? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
+        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstFee: Double? = nil, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, identifiers: Identifiers? = nil, itemName: String? = nil, loyaltyDiscount: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, size: String? = nil, taxes: [TaxComponent]? = nil, totalUnits: Int? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
             
             self.couponValue = couponValue
             
@@ -188,6 +192,8 @@ public extension ApplicationClient.Order {
             self.amountToBeCollected = amountToBeCollected
             
             self.taxes = taxes
+            
+            self.loyaltyDiscount = loyaltyDiscount
             
         }
 
@@ -542,6 +548,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -661,6 +679,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(taxes, forKey: .taxes)
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
         }

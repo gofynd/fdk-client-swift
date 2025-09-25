@@ -1,3 +1,246 @@
+# CHANGE LOG (3.10.0) - 2.8.2
+
+## Application Client
+
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].financialBreakup[].loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].financialBreakup[].loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].financialBreakup[].loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipment.prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipment.bags[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipment.bags[].financialBreakup[].loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### updatePriceAdjustment
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>articleIds[].articleIndex</code> of schema <code>Article</code> in request body
+	- [Breaking] [Deleted] property <code>data[].articleIds[].articleIndex</code> of schema <code>Article</code> in response with status code 200
+
+
+#### addPriceAdjustment
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>articleIds[].articleIndex</code> of schema <code>Article</code> in request body
+	- [Breaking] [Deleted] property <code>data[].articleIds[].articleIndex</code> of schema <code>Article</code> in response with status code 201
+
+
+#### getPriceAdjustments
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data[].articleIds[].articleIndex</code> of schema <code>Article</code> in response with status code 200
+
+
+### CompanyProfile
+
+
+
+#### createLocation
+
+- ##### What's New
+	- [Breaking] [Added] maxLength validator for code in request body
+	- [Breaking] [Added] maxLength validator for name in request body
+	- [Breaking] [Added] maxLength validator for displayName in request body
+
+
+#### updateLocation
+
+- ##### What's New
+	- [Breaking] [Added] maxLength validator for code in request body
+	- [Breaking] [Added] maxLength validator for name in request body
+	- [Breaking] [Added] maxLength validator for displayName in request body
+
+
+#### createLocationBulk
+
+- ##### What's New
+	- [Breaking] [Added] maxLength validator for data[].code in request body
+	- [Breaking] [Added] maxLength validator for data[].name in request body
+	- [Breaking] [Added] maxLength validator for data[].displayName in request body
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] property <code>shipments[].price.loyaltyDiscount</code> of schema <code>Prices</code> in request body
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].bags[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].bags[].financialBreakup[].loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>items[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>items[].bags[].affiliateBagDetails.loyaltyDiscount</code> of schema <code>AffiliateBagDetails</code> in response with status code 200
+	- [Added] property <code>items[].bags[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>items[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>items[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].bags[].affiliateBagDetails.loyaltyDiscount</code> of schema <code>AffiliateBagDetails</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipments[].order.loyaltyDiscountDetails</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].financialBreakup.loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>shipments[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>shipments[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].orderStatus.orderDetails.prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].orderStatus.orderDetails.loyaltyDiscountDetails</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>shipments[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>shipments[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>shipments[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>shipments[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>order.orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>order.loyaltyDiscountDetails</code> of schema <code>OrderData</code> in response with status code 200
+	- [Added] property <code>shipments[].order.loyaltyDiscountDetails</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].financialBreakup.loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>shipments[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>shipments[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].orderStatus.orderDetails.prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].orderStatus.orderDetails.loyaltyDiscountDetails</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>shipments[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>shipments[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>shipments[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>shipments[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].order.loyaltyDiscountDetails</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].financialBreakup.loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>items[].shipments[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].orderStatus.orderDetails.prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].orderStatus.orderDetails.loyaltyDiscountDetails</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>items[].shipments[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].loyaltyDiscountDetails</code> of schema <code>PlatformOrderItems</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].shipments[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].shipments[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] property <code>items[].bags[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].bags[].financialBreakup[].loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>items[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>items[].bags[].affiliateBagDetails.loyaltyDiscount</code> of schema <code>AffiliateBagDetails</code> in response with status code 200
+	- [Added] property <code>items[].bags[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>items[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>items[].orderingCurrencyPrices.loyaltyDiscount</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].bags[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].bags[].affiliateBagDetails.loyaltyDiscount</code> of schema <code>AffiliateBagDetails</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+
+
+#### getBagById
+
+- ##### What's New
+	- [Added] property <code>data.order.prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>data.order.loyaltyDiscountDetails</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Added] property <code>data.prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>data.shipment.price.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>data.affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>data.affiliateBagDetails.loyaltyDiscount</code> of schema <code>AffiliateBagDetails</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>data.affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>data.financialBreakup[].loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.affiliateBagDetails.loyaltyDiscount</code> of schema <code>AffiliateBagDetails</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+
+
+#### getBags
+
+- ##### What's New
+	- [Added] property <code>data.items[].order.prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>data.items[].order.loyaltyDiscountDetails</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Added] property <code>data.items[].prices.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>data.items[].shipment.price.loyaltyDiscount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>data.items[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>data.items[].affiliateBagDetails.loyaltyDiscount</code> of schema <code>AffiliateBagDetails</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>float</code> to property <code>data.items[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Added] property <code>data.items[].financialBreakup[].loyaltyDiscount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.items[].affiliateBagDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.items[].affiliateBagDetails.loyaltyDiscount</code> of schema <code>AffiliateBagDetails</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.items[].affiliateDetails.affiliateMeta.loyaltyDiscount</code> of schema <code>AffiliateMeta</code> in response with status code 200
+
+
 # CHANGE LOG (3.9.0) - 2.8.1
 
 ## Application Client

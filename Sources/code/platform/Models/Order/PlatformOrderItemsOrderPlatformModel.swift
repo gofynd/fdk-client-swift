@@ -42,6 +42,8 @@ public extension PlatformClient.Order {
         
         public var orderingCurrencyPrices: OrderingCurrencyPrices?
         
+        public var loyaltyDiscountDetails: LoyaltyDiscountDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -75,9 +77,11 @@ public extension PlatformClient.Order {
             
             case orderingCurrencyPrices = "ordering_currency_prices"
             
+            case loyaltyDiscountDetails = "loyalty_discount_details"
+            
         }
 
-        public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, prices: Prices? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
+        public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, prices: Prices? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
             
             self.breakupValues = breakupValues
             
@@ -108,6 +112,8 @@ public extension PlatformClient.Order {
             self.prices = prices
             
             self.orderingCurrencyPrices = orderingCurrencyPrices
+            
+            self.loyaltyDiscountDetails = loyaltyDiscountDetails
             
         }
 
@@ -294,6 +300,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    loyaltyDiscountDetails = try container.decode(LoyaltyDiscountDetails.self, forKey: .loyaltyDiscountDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -372,6 +390,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscountDetails, forKey: .loyaltyDiscountDetails)
             
             
         }
@@ -420,6 +443,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderingCurrencyPrices: OrderingCurrencyPrices?
         
+        public var loyaltyDiscountDetails: LoyaltyDiscountDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -453,9 +478,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderingCurrencyPrices = "ordering_currency_prices"
             
+            case loyaltyDiscountDetails = "loyalty_discount_details"
+            
         }
 
-        public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, prices: Prices? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
+        public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, prices: Prices? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
             
             self.breakupValues = breakupValues
             
@@ -486,6 +513,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.prices = prices
             
             self.orderingCurrencyPrices = orderingCurrencyPrices
+            
+            self.loyaltyDiscountDetails = loyaltyDiscountDetails
             
         }
 
@@ -672,6 +701,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    loyaltyDiscountDetails = try container.decode(LoyaltyDiscountDetails.self, forKey: .loyaltyDiscountDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -750,6 +791,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscountDetails, forKey: .loyaltyDiscountDetails)
             
             
         }

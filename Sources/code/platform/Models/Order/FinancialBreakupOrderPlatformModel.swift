@@ -70,6 +70,8 @@ public extension PlatformClient.Order {
         
         public var taxes: [TaxComponent]?
         
+        public var loyaltyDiscount: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -131,9 +133,11 @@ public extension PlatformClient.Order {
             
             case taxes = "taxes"
             
+            case loyaltyDiscount = "loyalty_discount"
+            
         }
 
-        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxes: [TaxComponent]? = nil, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
+        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, loyaltyDiscount: Double? = nil, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxes: [TaxComponent]? = nil, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
             
             self.refundCredit = refundCredit
             
@@ -192,6 +196,8 @@ public extension PlatformClient.Order {
             self.addedToFyndCash = addedToFyndCash
             
             self.taxes = taxes
+            
+            self.loyaltyDiscount = loyaltyDiscount
             
         }
 
@@ -371,6 +377,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -519,6 +537,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(taxes, forKey: .taxes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
         }
@@ -595,6 +618,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var taxes: [TaxComponent]?
         
+        public var loyaltyDiscount: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -656,9 +681,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case taxes = "taxes"
             
+            case loyaltyDiscount = "loyalty_discount"
+            
         }
 
-        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxes: [TaxComponent]? = nil, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
+        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, loyaltyDiscount: Double? = nil, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxes: [TaxComponent]? = nil, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
             
             self.refundCredit = refundCredit
             
@@ -717,6 +744,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.addedToFyndCash = addedToFyndCash
             
             self.taxes = taxes
+            
+            self.loyaltyDiscount = loyaltyDiscount
             
         }
 
@@ -896,6 +925,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1044,6 +1085,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(taxes, forKey: .taxes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
         }

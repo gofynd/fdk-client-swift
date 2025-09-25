@@ -54,6 +54,8 @@ public extension ApplicationClient.Order {
         
         public var amountToBeCollected: Double?
         
+        public var loyaltyDiscount: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -103,9 +105,11 @@ public extension ApplicationClient.Order {
             
             case amountToBeCollected = "amount_to_be_collected"
             
+            case loyaltyDiscount = "loyalty_discount"
+            
         }
 
-        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstTaxPercentage: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
+        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstTaxPercentage: Double? = nil, loyaltyDiscount: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
             
             self.deliveryCharge = deliveryCharge
             
@@ -152,6 +156,8 @@ public extension ApplicationClient.Order {
             self.fyndCredits = fyndCredits
             
             self.amountToBeCollected = amountToBeCollected
+            
+            self.loyaltyDiscount = loyaltyDiscount
             
         }
 
@@ -434,6 +440,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -529,6 +547,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(amountToBeCollected, forKey: .amountToBeCollected)
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
         }

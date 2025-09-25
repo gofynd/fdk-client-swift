@@ -44,6 +44,8 @@ public extension PlatformClient.Order {
         
         public var currency: CurrencySchema?
         
+        public var loyaltyDiscountDetails: LoyaltyDiscountDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -79,9 +81,11 @@ public extension PlatformClient.Order {
             
             case currency = "currency"
             
+            case loyaltyDiscountDetails = "loyalty_discount_details"
+            
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderingChannel = orderingChannel
             
@@ -114,6 +118,8 @@ public extension PlatformClient.Order {
             self.source = source
             
             self.currency = currency
+            
+            self.loyaltyDiscountDetails = loyaltyDiscountDetails
             
         }
 
@@ -298,6 +304,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    loyaltyDiscountDetails = try container.decode(LoyaltyDiscountDetails.self, forKey: .loyaltyDiscountDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -381,6 +399,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscountDetails, forKey: .loyaltyDiscountDetails)
             
             
         }
@@ -431,6 +454,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var currency: CurrencySchema?
         
+        public var loyaltyDiscountDetails: LoyaltyDiscountDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -466,9 +491,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case currency = "currency"
             
+            case loyaltyDiscountDetails = "loyalty_discount_details"
+            
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderingChannel = orderingChannel
             
@@ -501,6 +528,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.source = source
             
             self.currency = currency
+            
+            self.loyaltyDiscountDetails = loyaltyDiscountDetails
             
         }
 
@@ -685,6 +714,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    loyaltyDiscountDetails = try container.decode(LoyaltyDiscountDetails.self, forKey: .loyaltyDiscountDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -768,6 +809,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscountDetails, forKey: .loyaltyDiscountDetails)
             
             
         }
