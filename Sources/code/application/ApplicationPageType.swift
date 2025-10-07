@@ -63,6 +63,7 @@ public extension ApplicationClient.Content {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -206,6 +207,8 @@ public extension ApplicationClient.Content {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
             }
         }
 
@@ -308,6 +311,8 @@ public extension ApplicationClient.Content {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
             }
         }
 
@@ -410,6 +415,8 @@ public extension ApplicationClient.Content {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
             }
         }
 
@@ -511,6 +518,8 @@ public extension ApplicationClient.Content {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
                 return []
             }
         }
@@ -587,6 +596,7 @@ public extension ApplicationClient.Theme {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -730,6 +740,8 @@ public extension ApplicationClient.Theme {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
             }
         }
 
@@ -832,6 +844,8 @@ public extension ApplicationClient.Theme {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
             }
         }
 
@@ -934,6 +948,8 @@ public extension ApplicationClient.Theme {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
             }
         }
 
@@ -1035,6 +1051,8 @@ public extension ApplicationClient.Theme {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
                 return []
             }
         }

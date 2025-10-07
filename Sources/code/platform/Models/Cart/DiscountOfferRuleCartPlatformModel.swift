@@ -5,75 +5,63 @@ import Foundation
 
 
 
-public extension PlatformClient.ApplicationClient.User {
+public extension PlatformClient.ApplicationClient.Cart {
     /*
-        Model: CreateUserRequestSchema
-        Used By: User
+        Model: DiscountOfferRule
+        Used By: Cart
     */
 
-    class CreateUserRequestSchema: Codable {
+    class DiscountOfferRule: Codable {
         
         
-        public var phoneNumber: String?
+        public var discountType: String?
         
-        public var email: String?
+        public var offer: DiscountOffer?
         
-        public var firstName: String?
+        public var itemCriteria: DiscountItemCriteria?
         
-        public var lastName: String?
+        public var buyCondition: String?
         
-        public var gender: String?
+        public var discountedPrice: Double?
         
-        public var username: String?
+        public var matchedBuyRules: [String]?
         
-        public var meta: [String: Any]?
-        
-        public var externalId: String?
-        
-        public var rrId: String?
+        public var meta: ItemSizeMapping?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case phoneNumber = "phone_number"
+            case discountType = "discount_type"
             
-            case email = "email"
+            case offer = "offer"
             
-            case firstName = "first_name"
+            case itemCriteria = "item_criteria"
             
-            case lastName = "last_name"
+            case buyCondition = "buy_condition"
             
-            case gender = "gender"
+            case discountedPrice = "discounted_price"
             
-            case username = "username"
+            case matchedBuyRules = "matched_buy_rules"
             
             case meta = "meta"
             
-            case externalId = "external_id"
-            
-            case rrId = "rr_id"
-            
         }
 
-        public init(email: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String? = nil, rrId: String? = nil, username: String? = nil) {
+        public init(buyCondition: String? = nil, discountedPrice: Double? = nil, discountType: String? = nil, itemCriteria: DiscountItemCriteria? = nil, matchedBuyRules: [String]? = nil, meta: ItemSizeMapping? = nil, offer: DiscountOffer? = nil) {
             
-            self.phoneNumber = phoneNumber
+            self.discountType = discountType
             
-            self.email = email
+            self.offer = offer
             
-            self.firstName = firstName
+            self.itemCriteria = itemCriteria
             
-            self.lastName = lastName
+            self.buyCondition = buyCondition
             
-            self.gender = gender
+            self.discountedPrice = discountedPrice
             
-            self.username = username
+            self.matchedBuyRules = matchedBuyRules
             
             self.meta = meta
-            
-            self.externalId = externalId
-            
-            self.rrId = rrId
             
         }
 
@@ -82,7 +70,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+                    discountType = try container.decode(String.self, forKey: .discountType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,7 +82,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    email = try container.decode(String.self, forKey: .email)
+                    offer = try container.decode(DiscountOffer.self, forKey: .offer)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +94,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    firstName = try container.decode(String.self, forKey: .firstName)
+                    itemCriteria = try container.decode(DiscountItemCriteria.self, forKey: .itemCriteria)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,7 +106,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    lastName = try container.decode(String.self, forKey: .lastName)
+                    buyCondition = try container.decode(String.self, forKey: .buyCondition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,7 +118,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    gender = try container.decode(String.self, forKey: .gender)
+                    discountedPrice = try container.decode(Double.self, forKey: .discountedPrice)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +130,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    username = try container.decode(String.self, forKey: .username)
+                    matchedBuyRules = try container.decode([String].self, forKey: .matchedBuyRules)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,31 +142,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    externalId = try container.decode(String.self, forKey: .externalId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    rrId = try container.decode(String.self, forKey: .rrId)
+                    meta = try container.decode(ItemSizeMapping.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,47 +159,37 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+            try? container.encodeIfPresent(discountType, forKey: .discountType)
             
             
             
             
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(offer, forKey: .offer)
             
             
             
             
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
             
             
             
             
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            try? container.encodeIfPresent(buyCondition, forKey: .buyCondition)
             
             
             
             
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encodeIfPresent(discountedPrice, forKey: .discountedPrice)
             
             
             
             
-            try? container.encodeIfPresent(username, forKey: .username)
+            try? container.encodeIfPresent(matchedBuyRules, forKey: .matchedBuyRules)
             
             
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(externalId, forKey: .externalId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(rrId, forKey: .rrId)
             
             
         }

@@ -16,7 +16,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var id: String?
         
-        public var buyRules: [String: Any]?
+        public var buyRules: BuyRuleItemCriteria?
         
         public var offerText: String?
         
@@ -28,7 +28,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var validTill: String?
         
-        public var discountRules: [[String: Any]]?
+        public var discountRules: [DiscountOfferRule]?
         
         public var freeGiftItems: [FreeGiftItems]?
         
@@ -59,7 +59,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
+        public init(buyRules: BuyRuleItemCriteria? = nil, description: String? = nil, discountRules: [DiscountOfferRule]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
             
             self.id = id
             
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    buyRules = try container.decode([String: Any].self, forKey: .buyRules)
+                    buyRules = try container.decode(BuyRuleItemCriteria.self, forKey: .buyRules)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    discountRules = try container.decode([[String: Any]].self, forKey: .discountRules)
+                    discountRules = try container.decode([DiscountOfferRule].self, forKey: .discountRules)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

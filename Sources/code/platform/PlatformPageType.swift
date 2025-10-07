@@ -63,6 +63,7 @@ public extension PlatformClient.Catalog {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -206,6 +207,8 @@ public extension PlatformClient.Catalog {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
             }
         }
 
@@ -308,6 +311,8 @@ public extension PlatformClient.Catalog {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
             }
         }
 
@@ -410,6 +415,8 @@ public extension PlatformClient.Catalog {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
             }
         }
 
@@ -511,6 +518,8 @@ public extension PlatformClient.Catalog {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
                 return []
             }
         }
@@ -571,6 +580,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -714,6 +724,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
             }
         }
 
@@ -816,6 +828,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
             }
         }
 
@@ -918,6 +932,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
             }
         }
 
@@ -1019,6 +1035,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
                 return []
             }
         }
@@ -1091,6 +1109,7 @@ public extension PlatformClient.Content {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -1234,6 +1253,8 @@ public extension PlatformClient.Content {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
             }
         }
 
@@ -1336,6 +1357,8 @@ public extension PlatformClient.Content {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
             }
         }
 
@@ -1438,6 +1461,8 @@ public extension PlatformClient.Content {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
             }
         }
 
@@ -1539,6 +1564,8 @@ public extension PlatformClient.Content {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
                 return []
             }
         }
@@ -1599,6 +1626,7 @@ public extension PlatformClient.ApplicationClient.Content {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -1742,6 +1770,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
             }
         }
 
@@ -1844,6 +1874,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
             }
         }
 
@@ -1946,6 +1978,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
             }
         }
 
@@ -2047,6 +2081,8 @@ public extension PlatformClient.ApplicationClient.Content {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
                 return []
             }
         }
@@ -2129,6 +2165,7 @@ public extension PlatformClient.Theme {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -2272,6 +2309,8 @@ public extension PlatformClient.Theme {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
             }
         }
 
@@ -2374,6 +2413,8 @@ public extension PlatformClient.Theme {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
             }
         }
 
@@ -2476,6 +2517,8 @@ public extension PlatformClient.Theme {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
             }
         }
 
@@ -2577,6 +2620,8 @@ public extension PlatformClient.Theme {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
                 return []
             }
         }
@@ -2637,6 +2682,7 @@ public extension PlatformClient.ApplicationClient.Theme {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -2780,6 +2826,8 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
             }
         }
 
@@ -2882,6 +2930,8 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
             }
         }
 
@@ -2984,6 +3034,8 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
             }
         }
 
@@ -3085,6 +3137,8 @@ public extension PlatformClient.ApplicationClient.Theme {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
                 return []
             }
         }
