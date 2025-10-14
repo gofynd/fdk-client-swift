@@ -5,55 +5,55 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-        Model: CreateOrderConfig
+        Model: OrderFulfillmentTimelineSchema
         Used By: Order
     */
 
-    class CreateOrderConfig: Codable {
+    class OrderFulfillmentTimelineSchema: Codable {
         
         
-        public var dpConfiguration: DPConfiguration?
+        public var dpPickupSlot: DpPickupSlotSchema?
         
-        public var locationReassignment: Bool?
+        public var dispatchAfterDate: String?
         
-        public var payment: PaymentConfig?
+        public var dispatchByDate: String?
         
-        public var optimalShipmentCreation: Bool?
+        public var confirmByDate: String?
         
-        public var lockStateMessages: [LockStateMessage]?
+        public var customerPickupSlot: CustomerPickupSlotSchema?
         
-        public var integrationType: String?
+        public var packByDate: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case dpConfiguration = "dp_configuration"
+            case dpPickupSlot = "dp_pickup_slot"
             
-            case locationReassignment = "location_reassignment"
+            case dispatchAfterDate = "dispatch_after_date"
             
-            case payment = "payment"
+            case dispatchByDate = "dispatch_by_date"
             
-            case optimalShipmentCreation = "optimal_shipment_creation"
+            case confirmByDate = "confirm_by_date"
             
-            case lockStateMessages = "lock_state_messages"
+            case customerPickupSlot = "customer_pickup_slot"
             
-            case integrationType = "integration_type"
+            case packByDate = "pack_by_date"
             
         }
 
-        public init(dpConfiguration: DPConfiguration? = nil, integrationType: String? = nil, locationReassignment: Bool? = nil, lockStateMessages: [LockStateMessage]? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
+        public init(confirmByDate: String? = nil, customerPickupSlot: CustomerPickupSlotSchema? = nil, dispatchAfterDate: String? = nil, dispatchByDate: String? = nil, dpPickupSlot: DpPickupSlotSchema? = nil, packByDate: String? = nil) {
             
-            self.dpConfiguration = dpConfiguration
+            self.dpPickupSlot = dpPickupSlot
             
-            self.locationReassignment = locationReassignment
+            self.dispatchAfterDate = dispatchAfterDate
             
-            self.payment = payment
+            self.dispatchByDate = dispatchByDate
             
-            self.optimalShipmentCreation = optimalShipmentCreation
+            self.confirmByDate = confirmByDate
             
-            self.lockStateMessages = lockStateMessages
+            self.customerPickupSlot = customerPickupSlot
             
-            self.integrationType = integrationType
+            self.packByDate = packByDate
             
         }
 
@@ -62,7 +62,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
+                    dpPickupSlot = try container.decode(DpPickupSlotSchema.self, forKey: .dpPickupSlot)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +74,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
+                    dispatchAfterDate = try container.decode(String.self, forKey: .dispatchAfterDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    payment = try container.decode(PaymentConfig.self, forKey: .payment)
+                    dispatchByDate = try container.decode(String.self, forKey: .dispatchByDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    optimalShipmentCreation = try container.decode(Bool.self, forKey: .optimalShipmentCreation)
+                    confirmByDate = try container.decode(String.self, forKey: .confirmByDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,7 +110,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    lockStateMessages = try container.decode([LockStateMessage].self, forKey: .lockStateMessages)
+                    customerPickupSlot = try container.decode(CustomerPickupSlotSchema.self, forKey: .customerPickupSlot)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +122,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    integrationType = try container.decode(String.self, forKey: .integrationType)
+                    packByDate = try container.decode(String.self, forKey: .packByDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,32 +139,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
+            try? container.encodeIfPresent(dpPickupSlot, forKey: .dpPickupSlot)
             
             
             
             
-            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
+            try? container.encodeIfPresent(dispatchAfterDate, forKey: .dispatchAfterDate)
             
             
             
             
-            try? container.encodeIfPresent(payment, forKey: .payment)
+            try? container.encodeIfPresent(dispatchByDate, forKey: .dispatchByDate)
             
             
             
             
-            try? container.encodeIfPresent(optimalShipmentCreation, forKey: .optimalShipmentCreation)
+            try? container.encodeIfPresent(confirmByDate, forKey: .confirmByDate)
             
             
             
             
-            try? container.encodeIfPresent(lockStateMessages, forKey: .lockStateMessages)
+            try? container.encodeIfPresent(customerPickupSlot, forKey: .customerPickupSlot)
             
             
             
             
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
+            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
             
             
         }
@@ -176,55 +176,55 @@ public extension PlatformClient.Order {
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: CreateOrderConfig
+        Model: OrderFulfillmentTimelineSchema
         Used By: Order
     */
 
-    class CreateOrderConfig: Codable {
+    class OrderFulfillmentTimelineSchema: Codable {
         
         
-        public var dpConfiguration: DPConfiguration?
+        public var dpPickupSlot: DpPickupSlotSchema?
         
-        public var locationReassignment: Bool?
+        public var dispatchAfterDate: String?
         
-        public var payment: PaymentConfig?
+        public var dispatchByDate: String?
         
-        public var optimalShipmentCreation: Bool?
+        public var confirmByDate: String?
         
-        public var lockStateMessages: [LockStateMessage]?
+        public var customerPickupSlot: CustomerPickupSlotSchema?
         
-        public var integrationType: String?
+        public var packByDate: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case dpConfiguration = "dp_configuration"
+            case dpPickupSlot = "dp_pickup_slot"
             
-            case locationReassignment = "location_reassignment"
+            case dispatchAfterDate = "dispatch_after_date"
             
-            case payment = "payment"
+            case dispatchByDate = "dispatch_by_date"
             
-            case optimalShipmentCreation = "optimal_shipment_creation"
+            case confirmByDate = "confirm_by_date"
             
-            case lockStateMessages = "lock_state_messages"
+            case customerPickupSlot = "customer_pickup_slot"
             
-            case integrationType = "integration_type"
+            case packByDate = "pack_by_date"
             
         }
 
-        public init(dpConfiguration: DPConfiguration? = nil, integrationType: String? = nil, locationReassignment: Bool? = nil, lockStateMessages: [LockStateMessage]? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
+        public init(confirmByDate: String? = nil, customerPickupSlot: CustomerPickupSlotSchema? = nil, dispatchAfterDate: String? = nil, dispatchByDate: String? = nil, dpPickupSlot: DpPickupSlotSchema? = nil, packByDate: String? = nil) {
             
-            self.dpConfiguration = dpConfiguration
+            self.dpPickupSlot = dpPickupSlot
             
-            self.locationReassignment = locationReassignment
+            self.dispatchAfterDate = dispatchAfterDate
             
-            self.payment = payment
+            self.dispatchByDate = dispatchByDate
             
-            self.optimalShipmentCreation = optimalShipmentCreation
+            self.confirmByDate = confirmByDate
             
-            self.lockStateMessages = lockStateMessages
+            self.customerPickupSlot = customerPickupSlot
             
-            self.integrationType = integrationType
+            self.packByDate = packByDate
             
         }
 
@@ -233,7 +233,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
+                    dpPickupSlot = try container.decode(DpPickupSlotSchema.self, forKey: .dpPickupSlot)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -245,7 +245,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
+                    dispatchAfterDate = try container.decode(String.self, forKey: .dispatchAfterDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -257,7 +257,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    payment = try container.decode(PaymentConfig.self, forKey: .payment)
+                    dispatchByDate = try container.decode(String.self, forKey: .dispatchByDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -269,7 +269,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    optimalShipmentCreation = try container.decode(Bool.self, forKey: .optimalShipmentCreation)
+                    confirmByDate = try container.decode(String.self, forKey: .confirmByDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -281,7 +281,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    lockStateMessages = try container.decode([LockStateMessage].self, forKey: .lockStateMessages)
+                    customerPickupSlot = try container.decode(CustomerPickupSlotSchema.self, forKey: .customerPickupSlot)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -293,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    integrationType = try container.decode(String.self, forKey: .integrationType)
+                    packByDate = try container.decode(String.self, forKey: .packByDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -310,32 +310,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
+            try? container.encodeIfPresent(dpPickupSlot, forKey: .dpPickupSlot)
             
             
             
             
-            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
+            try? container.encodeIfPresent(dispatchAfterDate, forKey: .dispatchAfterDate)
             
             
             
             
-            try? container.encodeIfPresent(payment, forKey: .payment)
+            try? container.encodeIfPresent(dispatchByDate, forKey: .dispatchByDate)
             
             
             
             
-            try? container.encodeIfPresent(optimalShipmentCreation, forKey: .optimalShipmentCreation)
+            try? container.encodeIfPresent(confirmByDate, forKey: .confirmByDate)
             
             
             
             
-            try? container.encodeIfPresent(lockStateMessages, forKey: .lockStateMessages)
+            try? container.encodeIfPresent(customerPickupSlot, forKey: .customerPickupSlot)
             
             
             
             
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
+            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
             
             
         }

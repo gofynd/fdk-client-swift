@@ -5,49 +5,43 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-        Model: Charge
+        Model: FulfillmentOptionSchema
         Used By: Order
     */
 
-    class Charge: Codable {
+    class FulfillmentOptionSchema: Codable {
         
         
-        public var amount: AmountSchema
+        public var name: String?
         
-        public var type: String
+        public var slug: String?
         
-        public var name: String
+        public var isDefault: Bool?
         
-        public var code: String?
-        
-        public var tax: Tax?
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case amount = "amount"
+            case name = "name"
+            
+            case slug = "slug"
+            
+            case isDefault = "is_default"
             
             case type = "type"
             
-            case name = "name"
-            
-            case code = "code"
-            
-            case tax = "tax"
-            
         }
 
-        public init(amount: AmountSchema, code: String? = nil, name: String, tax: Tax? = nil, type: String) {
-            
-            self.amount = amount
-            
-            self.type = type
+        public init(isDefault: Bool? = nil, name: String? = nil, slug: String? = nil, type: String? = nil) {
             
             self.name = name
             
-            self.code = code
+            self.slug = slug
             
-            self.tax = tax
+            self.isDefault = isDefault
+            
+            self.type = type
             
         }
 
@@ -55,23 +49,8 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                amount = try container.decode(AmountSchema.self, forKey: .amount)
-                
-            
-            
-            
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
                 do {
-                    code = try container.decode(String.self, forKey: .code)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +62,31 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    tax = try container.decode(Tax.self, forKey: .tax)
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,27 +103,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
             
-            try? container.encodeIfPresent(tax, forKey: .tax)
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
@@ -132,49 +130,43 @@ public extension PlatformClient.Order {
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: Charge
+        Model: FulfillmentOptionSchema
         Used By: Order
     */
 
-    class Charge: Codable {
+    class FulfillmentOptionSchema: Codable {
         
         
-        public var amount: AmountSchema
+        public var name: String?
         
-        public var type: String
+        public var slug: String?
         
-        public var name: String
+        public var isDefault: Bool?
         
-        public var code: String?
-        
-        public var tax: Tax?
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case amount = "amount"
+            case name = "name"
+            
+            case slug = "slug"
+            
+            case isDefault = "is_default"
             
             case type = "type"
             
-            case name = "name"
-            
-            case code = "code"
-            
-            case tax = "tax"
-            
         }
 
-        public init(amount: AmountSchema, code: String? = nil, name: String, tax: Tax? = nil, type: String) {
-            
-            self.amount = amount
-            
-            self.type = type
+        public init(isDefault: Bool? = nil, name: String? = nil, slug: String? = nil, type: String? = nil) {
             
             self.name = name
             
-            self.code = code
+            self.slug = slug
             
-            self.tax = tax
+            self.isDefault = isDefault
+            
+            self.type = type
             
         }
 
@@ -182,23 +174,8 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                amount = try container.decode(AmountSchema.self, forKey: .amount)
-                
-            
-            
-            
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
                 do {
-                    code = try container.decode(String.self, forKey: .code)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +187,31 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    tax = try container.decode(Tax.self, forKey: .tax)
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -227,27 +228,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
             
-            try? container.encodeIfPresent(tax, forKey: .tax)
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }

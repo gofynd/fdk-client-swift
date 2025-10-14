@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: GetProductBundleListingResponseSchema
-        Used By: Catalog
+        Model: OrderingSourceSummary
+        Used By: Order
     */
 
-    class GetProductBundleListingResponseSchema: Codable {
+    class OrderingSourceSummary: Codable {
         
         
-        public var items: [GetProductBundleCreateResponseSchema]?
+        public var text: String?
         
-        public var page: Page?
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case text = "text"
             
-            case page = "page"
+            case value = "value"
             
         }
 
-        public init(items: [GetProductBundleCreateResponseSchema]? = nil, page: Page? = nil) {
+        public init(text: String? = nil, value: String? = nil) {
             
-            self.items = items
+            self.text = text
             
-            self.page = page
+            self.value = value
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    items = try container.decode([GetProductBundleCreateResponseSchema].self, forKey: .items)
+                    text = try container.decode(String.self, forKey: .text)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(text, forKey: .text)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }
@@ -82,33 +82,33 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: GetProductBundleListingResponseSchema
-        Used By: Catalog
+        Model: OrderingSourceSummary
+        Used By: Order
     */
 
-    class GetProductBundleListingResponseSchema: Codable {
+    class OrderingSourceSummary: Codable {
         
         
-        public var items: [GetProductBundleCreateResponseSchema]?
+        public var text: String?
         
-        public var page: Page?
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case text = "text"
             
-            case page = "page"
+            case value = "value"
             
         }
 
-        public init(items: [GetProductBundleCreateResponseSchema]? = nil, page: Page? = nil) {
+        public init(text: String? = nil, value: String? = nil) {
             
-            self.items = items
+            self.text = text
             
-            self.page = page
+            self.value = value
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    items = try container.decode([GetProductBundleCreateResponseSchema].self, forKey: .items)
+                    text = try container.decode(String.self, forKey: .text)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(text, forKey: .text)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }

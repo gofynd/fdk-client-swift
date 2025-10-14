@@ -3,87 +3,81 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: SizeDetails
-        Used By: Catalog
+        Model: CPOptionsSchema
+        Used By: Order
     */
 
-    class SizeDetails: Codable {
+    class CPOptionsSchema: Codable {
         
         
-        public var size: String?
+        public var extensionId: String?
         
-        public var storeCount: Int?
+        public var schemeId: String?
         
-        public var sellableQuantity: Int?
+        public var areaCode: CPAreaCodeSchema?
         
-        public var sellable: Bool?
+        public var isSelfShip: Bool?
         
-        public var sizePriority: Int?
+        public var maxReattemptsForDeliveryAllowed: Int?
         
-        public var identifiers: [Identifier]?
+        public var cpSortKey: String?
         
-        public var price: [String: Any]?
+        public var name: String?
         
-        public var sellerIdentifier: String?
+        public var riderDetails: CPRiderDetailsSchema?
         
-        public var priceTransfer: Double?
+        public var usingOwnCreds: Bool?
         
-        public var trackInventory: Bool?
-        
-        public var bundleDetails: [BundleDetails]?
+        public var qcSupported: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case size = "size"
+            case extensionId = "extension_id"
             
-            case storeCount = "store_count"
+            case schemeId = "scheme_id"
             
-            case sellableQuantity = "sellable_quantity"
+            case areaCode = "area_code"
             
-            case sellable = "sellable"
+            case isSelfShip = "is_self_ship"
             
-            case sizePriority = "size_priority"
+            case maxReattemptsForDeliveryAllowed = "max_reattempts_for_delivery_allowed"
             
-            case identifiers = "identifiers"
+            case cpSortKey = "cp_sort_key"
             
-            case price = "price"
+            case name = "name"
             
-            case sellerIdentifier = "seller_identifier"
+            case riderDetails = "rider_details"
             
-            case priceTransfer = "price_transfer"
+            case usingOwnCreds = "using_own_creds"
             
-            case trackInventory = "track_inventory"
-            
-            case bundleDetails = "bundle_details"
+            case qcSupported = "qc_supported"
             
         }
 
-        public init(bundleDetails: [BundleDetails]? = nil, identifiers: [Identifier]? = nil, price: [String: Any]? = nil, priceTransfer: Double? = nil, sellable: Bool? = nil, sellableQuantity: Int? = nil, sellerIdentifier: String? = nil, size: String? = nil, sizePriority: Int? = nil, storeCount: Int? = nil, trackInventory: Bool? = nil) {
+        public init(areaCode: CPAreaCodeSchema? = nil, cpSortKey: String? = nil, extensionId: String? = nil, isSelfShip: Bool? = nil, maxReattemptsForDeliveryAllowed: Int? = nil, name: String? = nil, qcSupported: Bool? = nil, riderDetails: CPRiderDetailsSchema? = nil, schemeId: String? = nil, usingOwnCreds: Bool? = nil) {
             
-            self.size = size
+            self.extensionId = extensionId
             
-            self.storeCount = storeCount
+            self.schemeId = schemeId
             
-            self.sellableQuantity = sellableQuantity
+            self.areaCode = areaCode
             
-            self.sellable = sellable
+            self.isSelfShip = isSelfShip
             
-            self.sizePriority = sizePriority
+            self.maxReattemptsForDeliveryAllowed = maxReattemptsForDeliveryAllowed
             
-            self.identifiers = identifiers
+            self.cpSortKey = cpSortKey
             
-            self.price = price
+            self.name = name
             
-            self.sellerIdentifier = sellerIdentifier
+            self.riderDetails = riderDetails
             
-            self.priceTransfer = priceTransfer
+            self.usingOwnCreds = usingOwnCreds
             
-            self.trackInventory = trackInventory
-            
-            self.bundleDetails = bundleDetails
+            self.qcSupported = qcSupported
             
         }
 
@@ -92,7 +86,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    size = try container.decode(String.self, forKey: .size)
+                    extensionId = try container.decode(String.self, forKey: .extensionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +98,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    storeCount = try container.decode(Int.self, forKey: .storeCount)
+                    schemeId = try container.decode(String.self, forKey: .schemeId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +110,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    sellableQuantity = try container.decode(Int.self, forKey: .sellableQuantity)
+                    areaCode = try container.decode(CPAreaCodeSchema.self, forKey: .areaCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,7 +122,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    sellable = try container.decode(Bool.self, forKey: .sellable)
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +134,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    sizePriority = try container.decode(Int.self, forKey: .sizePriority)
+                    maxReattemptsForDeliveryAllowed = try container.decode(Int.self, forKey: .maxReattemptsForDeliveryAllowed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,7 +146,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    identifiers = try container.decode([Identifier].self, forKey: .identifiers)
+                    cpSortKey = try container.decode(String.self, forKey: .cpSortKey)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +158,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    price = try container.decode([String: Any].self, forKey: .price)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +170,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+                    riderDetails = try container.decode(CPRiderDetailsSchema.self, forKey: .riderDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,7 +182,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    priceTransfer = try container.decode(Double.self, forKey: .priceTransfer)
+                    usingOwnCreds = try container.decode(Bool.self, forKey: .usingOwnCreds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -200,19 +194,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    trackInventory = try container.decode(Bool.self, forKey: .trackInventory)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    bundleDetails = try container.decode([BundleDetails].self, forKey: .bundleDetails)
+                    qcSupported = try container.decode(Bool.self, forKey: .qcSupported)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,57 +211,52 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(extensionId, forKey: .extensionId)
             
             
             
             
-            try? container.encodeIfPresent(storeCount, forKey: .storeCount)
+            try? container.encodeIfPresent(schemeId, forKey: .schemeId)
             
             
             
             
-            try? container.encodeIfPresent(sellableQuantity, forKey: .sellableQuantity)
+            try? container.encodeIfPresent(areaCode, forKey: .areaCode)
             
             
             
             
-            try? container.encodeIfPresent(sellable, forKey: .sellable)
+            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
             
             
             
             
-            try? container.encodeIfPresent(sizePriority, forKey: .sizePriority)
+            try? container.encodeIfPresent(maxReattemptsForDeliveryAllowed, forKey: .maxReattemptsForDeliveryAllowed)
             
             
             
             
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            try? container.encodeIfPresent(cpSortKey, forKey: .cpSortKey)
             
             
             
             
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            try? container.encodeIfPresent(riderDetails, forKey: .riderDetails)
             
             
             
             
-            try? container.encodeIfPresent(priceTransfer, forKey: .priceTransfer)
+            try? container.encodeIfPresent(usingOwnCreds, forKey: .usingOwnCreds)
             
             
             
             
-            try? container.encodeIfPresent(trackInventory, forKey: .trackInventory)
-            
-            
-            
-            
-            try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
+            try? container.encodeIfPresent(qcSupported, forKey: .qcSupported)
             
             
         }
@@ -289,87 +266,81 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: SizeDetails
-        Used By: Catalog
+        Model: CPOptionsSchema
+        Used By: Order
     */
 
-    class SizeDetails: Codable {
+    class CPOptionsSchema: Codable {
         
         
-        public var size: String?
+        public var extensionId: String?
         
-        public var storeCount: Int?
+        public var schemeId: String?
         
-        public var sellableQuantity: Int?
+        public var areaCode: CPAreaCodeSchema?
         
-        public var sellable: Bool?
+        public var isSelfShip: Bool?
         
-        public var sizePriority: Int?
+        public var maxReattemptsForDeliveryAllowed: Int?
         
-        public var identifiers: [Identifier]?
+        public var cpSortKey: String?
         
-        public var price: [String: Any]?
+        public var name: String?
         
-        public var sellerIdentifier: String?
+        public var riderDetails: CPRiderDetailsSchema?
         
-        public var priceTransfer: Double?
+        public var usingOwnCreds: Bool?
         
-        public var trackInventory: Bool?
-        
-        public var bundleDetails: [BundleDetails]?
+        public var qcSupported: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case size = "size"
+            case extensionId = "extension_id"
             
-            case storeCount = "store_count"
+            case schemeId = "scheme_id"
             
-            case sellableQuantity = "sellable_quantity"
+            case areaCode = "area_code"
             
-            case sellable = "sellable"
+            case isSelfShip = "is_self_ship"
             
-            case sizePriority = "size_priority"
+            case maxReattemptsForDeliveryAllowed = "max_reattempts_for_delivery_allowed"
             
-            case identifiers = "identifiers"
+            case cpSortKey = "cp_sort_key"
             
-            case price = "price"
+            case name = "name"
             
-            case sellerIdentifier = "seller_identifier"
+            case riderDetails = "rider_details"
             
-            case priceTransfer = "price_transfer"
+            case usingOwnCreds = "using_own_creds"
             
-            case trackInventory = "track_inventory"
-            
-            case bundleDetails = "bundle_details"
+            case qcSupported = "qc_supported"
             
         }
 
-        public init(bundleDetails: [BundleDetails]? = nil, identifiers: [Identifier]? = nil, price: [String: Any]? = nil, priceTransfer: Double? = nil, sellable: Bool? = nil, sellableQuantity: Int? = nil, sellerIdentifier: String? = nil, size: String? = nil, sizePriority: Int? = nil, storeCount: Int? = nil, trackInventory: Bool? = nil) {
+        public init(areaCode: CPAreaCodeSchema? = nil, cpSortKey: String? = nil, extensionId: String? = nil, isSelfShip: Bool? = nil, maxReattemptsForDeliveryAllowed: Int? = nil, name: String? = nil, qcSupported: Bool? = nil, riderDetails: CPRiderDetailsSchema? = nil, schemeId: String? = nil, usingOwnCreds: Bool? = nil) {
             
-            self.size = size
+            self.extensionId = extensionId
             
-            self.storeCount = storeCount
+            self.schemeId = schemeId
             
-            self.sellableQuantity = sellableQuantity
+            self.areaCode = areaCode
             
-            self.sellable = sellable
+            self.isSelfShip = isSelfShip
             
-            self.sizePriority = sizePriority
+            self.maxReattemptsForDeliveryAllowed = maxReattemptsForDeliveryAllowed
             
-            self.identifiers = identifiers
+            self.cpSortKey = cpSortKey
             
-            self.price = price
+            self.name = name
             
-            self.sellerIdentifier = sellerIdentifier
+            self.riderDetails = riderDetails
             
-            self.priceTransfer = priceTransfer
+            self.usingOwnCreds = usingOwnCreds
             
-            self.trackInventory = trackInventory
-            
-            self.bundleDetails = bundleDetails
+            self.qcSupported = qcSupported
             
         }
 
@@ -378,7 +349,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    size = try container.decode(String.self, forKey: .size)
+                    extensionId = try container.decode(String.self, forKey: .extensionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -390,7 +361,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    storeCount = try container.decode(Int.self, forKey: .storeCount)
+                    schemeId = try container.decode(String.self, forKey: .schemeId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -402,7 +373,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    sellableQuantity = try container.decode(Int.self, forKey: .sellableQuantity)
+                    areaCode = try container.decode(CPAreaCodeSchema.self, forKey: .areaCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -414,7 +385,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    sellable = try container.decode(Bool.self, forKey: .sellable)
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -426,7 +397,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    sizePriority = try container.decode(Int.self, forKey: .sizePriority)
+                    maxReattemptsForDeliveryAllowed = try container.decode(Int.self, forKey: .maxReattemptsForDeliveryAllowed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -438,7 +409,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    identifiers = try container.decode([Identifier].self, forKey: .identifiers)
+                    cpSortKey = try container.decode(String.self, forKey: .cpSortKey)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -450,7 +421,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    price = try container.decode([String: Any].self, forKey: .price)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -462,7 +433,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+                    riderDetails = try container.decode(CPRiderDetailsSchema.self, forKey: .riderDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -474,7 +445,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    priceTransfer = try container.decode(Double.self, forKey: .priceTransfer)
+                    usingOwnCreds = try container.decode(Bool.self, forKey: .usingOwnCreds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -486,19 +457,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    trackInventory = try container.decode(Bool.self, forKey: .trackInventory)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    bundleDetails = try container.decode([BundleDetails].self, forKey: .bundleDetails)
+                    qcSupported = try container.decode(Bool.self, forKey: .qcSupported)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -515,57 +474,52 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(extensionId, forKey: .extensionId)
             
             
             
             
-            try? container.encodeIfPresent(storeCount, forKey: .storeCount)
+            try? container.encodeIfPresent(schemeId, forKey: .schemeId)
             
             
             
             
-            try? container.encodeIfPresent(sellableQuantity, forKey: .sellableQuantity)
+            try? container.encodeIfPresent(areaCode, forKey: .areaCode)
             
             
             
             
-            try? container.encodeIfPresent(sellable, forKey: .sellable)
+            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
             
             
             
             
-            try? container.encodeIfPresent(sizePriority, forKey: .sizePriority)
+            try? container.encodeIfPresent(maxReattemptsForDeliveryAllowed, forKey: .maxReattemptsForDeliveryAllowed)
             
             
             
             
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            try? container.encodeIfPresent(cpSortKey, forKey: .cpSortKey)
             
             
             
             
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            try? container.encodeIfPresent(riderDetails, forKey: .riderDetails)
             
             
             
             
-            try? container.encodeIfPresent(priceTransfer, forKey: .priceTransfer)
+            try? container.encodeIfPresent(usingOwnCreds, forKey: .usingOwnCreds)
             
             
             
             
-            try? container.encodeIfPresent(trackInventory, forKey: .trackInventory)
-            
-            
-            
-            
-            try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
+            try? container.encodeIfPresent(qcSupported, forKey: .qcSupported)
             
             
         }

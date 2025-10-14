@@ -12,6 +12,10 @@ public extension PlatformClient.Order {
     class CurrencySchema: Codable {
         
         
+        public var orderingCurrency: OrderingCurrencySchema
+        
+        public var conversionRate: ConversionRateSchema
+        
         public var currencyCode: String?
         
         public var currencySymbol: String?
@@ -19,13 +23,21 @@ public extension PlatformClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
+            case orderingCurrency = "ordering_currency"
+            
+            case conversionRate = "conversion_rate"
+            
             case currencyCode = "currency_code"
             
             case currencySymbol = "currency_symbol"
             
         }
 
-        public init(currencyCode: String? = nil, currencySymbol: String? = nil) {
+        public init(conversionRate: ConversionRateSchema, currencyCode: String? = nil, currencySymbol: String? = nil, orderingCurrency: OrderingCurrencySchema) {
+            
+            self.orderingCurrency = orderingCurrency
+            
+            self.conversionRate = conversionRate
             
             self.currencyCode = currencyCode
             
@@ -35,6 +47,16 @@ public extension PlatformClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                orderingCurrency = try container.decode(OrderingCurrencySchema.self, forKey: .orderingCurrency)
+                
+            
+            
+            
+                conversionRate = try container.decode(ConversionRateSchema.self, forKey: .conversionRate)
+                
+            
             
             
                 do {
@@ -64,6 +86,16 @@ public extension PlatformClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(orderingCurrency, forKey: .orderingCurrency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(conversionRate, forKey: .conversionRate)
+            
             
             
             
@@ -91,6 +123,10 @@ public extension PlatformClient.ApplicationClient.Order {
     class CurrencySchema: Codable {
         
         
+        public var orderingCurrency: OrderingCurrencySchema
+        
+        public var conversionRate: ConversionRateSchema
+        
         public var currencyCode: String?
         
         public var currencySymbol: String?
@@ -98,13 +134,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
+            case orderingCurrency = "ordering_currency"
+            
+            case conversionRate = "conversion_rate"
+            
             case currencyCode = "currency_code"
             
             case currencySymbol = "currency_symbol"
             
         }
 
-        public init(currencyCode: String? = nil, currencySymbol: String? = nil) {
+        public init(conversionRate: ConversionRateSchema, currencyCode: String? = nil, currencySymbol: String? = nil, orderingCurrency: OrderingCurrencySchema) {
+            
+            self.orderingCurrency = orderingCurrency
+            
+            self.conversionRate = conversionRate
             
             self.currencyCode = currencyCode
             
@@ -114,6 +158,16 @@ public extension PlatformClient.ApplicationClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                orderingCurrency = try container.decode(OrderingCurrencySchema.self, forKey: .orderingCurrency)
+                
+            
+            
+            
+                conversionRate = try container.decode(ConversionRateSchema.self, forKey: .conversionRate)
+                
+            
             
             
                 do {
@@ -143,6 +197,16 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(orderingCurrency, forKey: .orderingCurrency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(conversionRate, forKey: .conversionRate)
+            
             
             
             

@@ -58,6 +58,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var customOrder: [String: Any]?
         
+        public var itemType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -105,9 +107,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case customOrder = "custom_order"
             
+            case itemType = "item_type"
+            
         }
 
-        public init(article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: [String: Any]? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, key: String? = nil, maxQuantity: ProductMaxQuantityInfo? = nil, message: String? = nil, moq: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
+        public init(article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: [String: Any]? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, itemType: String? = nil, key: String? = nil, maxQuantity: ProductMaxQuantityInfo? = nil, message: String? = nil, moq: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
             
             self.quantity = quantity
             
@@ -152,6 +156,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.promoMeta = promoMeta
             
             self.customOrder = customOrder
+            
+            self.itemType = itemType
             
         }
 
@@ -415,6 +421,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    itemType = try container.decode(String.self, forKey: .itemType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -528,6 +546,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customOrder, forKey: .customOrder)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemType, forKey: .itemType)
             
             
         }

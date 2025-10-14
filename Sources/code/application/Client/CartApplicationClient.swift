@@ -87,7 +87,7 @@ extension ApplicationClient {
         * Description: Get details of a cart linked to a specific customer using a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart.
         **/
         public func getCart(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -138,7 +138,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -241,7 +241,7 @@ extension ApplicationClient {
         * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
         **/
         public func addItems(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             i: Bool?,
             b: Bool?,
             areaCode: String?,
@@ -282,7 +282,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -328,7 +328,7 @@ extension ApplicationClient {
         * Description: Update cart. Customers can modify added product attributes such as quantity and size, as well as remove items from the cart.
         **/
         public func updateCart(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -374,7 +374,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -420,7 +420,7 @@ extension ApplicationClient {
         * Description: Update cart. Customers can adjust the cart breakup by applying or removing store credits as needed.
         **/
         public func updateCartBreakup(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -456,7 +456,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -693,7 +693,7 @@ extension ApplicationClient {
         * Description: Apply a coupon code to the cart to trigger discounts on eligible items.
         **/
         public func applyCoupon(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             i: Bool?,
             b: Bool?,
             p: Bool?,
@@ -734,7 +734,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -780,7 +780,7 @@ extension ApplicationClient {
         * Description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total.
         **/
         public func removeCoupon(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             id: String?,
             buyNow: Bool?,
             
@@ -801,7 +801,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -919,7 +919,7 @@ extension ApplicationClient {
         * Description: Users can redeem their accumulated loyalty points and apply them to the items in their cart, thereby availing discounts on their current purchases.
         **/
         public func applyLoyaltyPoints(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -950,7 +950,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -1325,7 +1325,7 @@ extension ApplicationClient {
         * Description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
         **/
         public func selectAddress(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             cartId: String?,
             buyNow: Bool?,
             i: Bool?,
@@ -1356,7 +1356,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -1402,7 +1402,7 @@ extension ApplicationClient {
         * Description: Select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction.
         **/
         public func selectPaymentMode(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             id: String?,
             buyNow: Bool?,
             body: UpdateCartPaymentCreation,
@@ -1423,7 +1423,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -1469,7 +1469,7 @@ extension ApplicationClient {
         * Description: Validate the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions.
         **/
         public func validateCouponForPayment(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             id: String?,
             buyNow: Bool?,
             addressId: String?,
@@ -1540,7 +1540,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -1668,7 +1668,7 @@ extension ApplicationClient {
         * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
         **/
         public func checkoutCart(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             buyNow: Bool?,
             cartType: String?,
             body: CartCheckoutDetailCreation,
@@ -1689,7 +1689,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             
@@ -2185,7 +2185,7 @@ extension ApplicationClient {
         * Description: The checkout cart initiates the order creation process based on the items in the user's cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement.
         **/
         public func checkoutCartV2(
-            xOrderingSource: OrderingSource?,
+            xOrderingSource: String?,
             buyNow: Bool?,
             cartType: String?,
             body: CartCheckoutDetailV2Creation,
@@ -2206,7 +2206,7 @@ extension ApplicationClient {
             var xHeaders: [(key: String, value: String)] = []
             
             if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                xHeaders.append((key: "x-ordering-source", value: value))
             }
             
             

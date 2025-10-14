@@ -22,6 +22,8 @@ public extension ApplicationClient.Catalog {
         
         public var display: String?
         
+        public var isBundleItem: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension ApplicationClient.Catalog {
             
             case display = "display"
             
+            case isBundleItem = "is_bundle_item"
+            
         }
 
-        public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil, weight: Weight? = nil) {
+        public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, isBundleItem: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil, weight: Weight? = nil) {
             
             self.quantity = quantity
             
@@ -56,6 +60,8 @@ public extension ApplicationClient.Catalog {
             self.value = value
             
             self.display = display
+            
+            self.isBundleItem = isBundleItem
             
         }
 
@@ -146,6 +152,18 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                isBundleItem = try container.decode(Bool.self, forKey: .isBundleItem)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -177,6 +195,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(display, forKey: .display)
+            
+            
+            
+            try? container.encodeIfPresent(isBundleItem, forKey: .isBundleItem)
             
             
         }

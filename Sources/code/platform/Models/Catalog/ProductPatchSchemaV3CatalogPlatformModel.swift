@@ -5,36 +5,20 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-        Model: ProductUpdateSchemaV2
+        Model: ProductPatchSchemaV3
         Used By: Catalog
     */
 
-    class ProductUpdateSchemaV2: Codable {
+    class ProductPatchSchemaV3: Codable {
         
         
         public var customJson: [String: Any]?
         
-        public var action: String?
-        
         public var attributes: [String: Any]?
         
-        public var brandUid: Int
-        
-        public var bulkJobId: String?
-        
-        public var categorySlug: String
-        
-        public var changeRequestId: String?
-        
-        public var companyId: Int
-        
-        public var countryOfOrigin: String
-        
-        public var currency: String
+        public var countryOfOrigin: String?
         
         public var customOrder: CustomOrder?
-        
-        public var departments: [Int]
         
         public var description: String?
         
@@ -44,19 +28,11 @@ public extension PlatformClient.Catalog {
         
         public var isDependent: Bool?
         
-        public var isImageLessProduct: Bool?
-        
-        public var isSet: Bool?
-        
-        public var itemCode: String
-        
-        public var itemType: String
-        
         public var media: [Media]?
         
         public var multiSize: Bool?
         
-        public var name: String
+        public var name: String?
         
         public var netQuantity: NetQuantity?
         
@@ -66,31 +42,25 @@ public extension PlatformClient.Catalog {
         
         public var productPublish: ProductPublish?
         
-        public var requester: String?
-        
-        public var returnConfig: ReturnConfig
+        public var returnConfig: ReturnConfig?
         
         public var shortDescription: String?
         
         public var sizeGuide: String?
         
-        public var sizes: [[String: Any]]
-        
-        public var slug: String
+        public var sizes: [ProductSizePatch]?
         
         public var tags: [String]?
         
-        public var taxIdentifier: TaxIdentifier
+        public var taxIdentifier: TaxIdentifierV3?
         
         public var hsCode: String?
         
         public var teaserTag: TeaserTag?
         
-        public var templateTag: String
+        public var templateTag: String?
         
-        public var trader: [Trader]
-        
-        public var uid: Int?
+        public var trader: [Trader]?
         
         public var variantGroup: [String: Any]?
         
@@ -103,27 +73,11 @@ public extension PlatformClient.Catalog {
             
             case customJson = "_custom_json"
             
-            case action = "action"
-            
             case attributes = "attributes"
-            
-            case brandUid = "brand_uid"
-            
-            case bulkJobId = "bulk_job_id"
-            
-            case categorySlug = "category_slug"
-            
-            case changeRequestId = "change_request_id"
-            
-            case companyId = "company_id"
             
             case countryOfOrigin = "country_of_origin"
             
-            case currency = "currency"
-            
             case customOrder = "custom_order"
-            
-            case departments = "departments"
             
             case description = "description"
             
@@ -132,14 +86,6 @@ public extension PlatformClient.Catalog {
             case isActive = "is_active"
             
             case isDependent = "is_dependent"
-            
-            case isImageLessProduct = "is_image_less_product"
-            
-            case isSet = "is_set"
-            
-            case itemCode = "item_code"
-            
-            case itemType = "item_type"
             
             case media = "media"
             
@@ -155,8 +101,6 @@ public extension PlatformClient.Catalog {
             
             case productPublish = "product_publish"
             
-            case requester = "requester"
-            
             case returnConfig = "return_config"
             
             case shortDescription = "short_description"
@@ -164,8 +108,6 @@ public extension PlatformClient.Catalog {
             case sizeGuide = "size_guide"
             
             case sizes = "sizes"
-            
-            case slug = "slug"
             
             case tags = "tags"
             
@@ -179,8 +121,6 @@ public extension PlatformClient.Catalog {
             
             case trader = "trader"
             
-            case uid = "uid"
-            
             case variantGroup = "variant_group"
             
             case variantMedia = "variant_media"
@@ -189,31 +129,15 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, hsCode: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(attributes: [String: Any]? = nil, countryOfOrigin: String? = nil, customOrder: CustomOrder? = nil, description: String? = nil, highlights: [String]? = nil, hsCode: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, media: [Media]? = nil, multiSize: Bool? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, returnConfig: ReturnConfig? = nil, shortDescription: String? = nil, sizes: [ProductSizePatch]? = nil, sizeGuide: String? = nil, tags: [String]? = nil, taxIdentifier: TaxIdentifierV3? = nil, teaserTag: TeaserTag? = nil, templateTag: String? = nil, trader: [Trader]? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
-            self.action = action
-            
             self.attributes = attributes
-            
-            self.brandUid = brandUid
-            
-            self.bulkJobId = bulkJobId
-            
-            self.categorySlug = categorySlug
-            
-            self.changeRequestId = changeRequestId
-            
-            self.companyId = companyId
             
             self.countryOfOrigin = countryOfOrigin
             
-            self.currency = currency
-            
             self.customOrder = customOrder
-            
-            self.departments = departments
             
             self.description = description
             
@@ -222,14 +146,6 @@ public extension PlatformClient.Catalog {
             self.isActive = isActive
             
             self.isDependent = isDependent
-            
-            self.isImageLessProduct = isImageLessProduct
-            
-            self.isSet = isSet
-            
-            self.itemCode = itemCode
-            
-            self.itemType = itemType
             
             self.media = media
             
@@ -245,8 +161,6 @@ public extension PlatformClient.Catalog {
             
             self.productPublish = productPublish
             
-            self.requester = requester
-            
             self.returnConfig = returnConfig
             
             self.shortDescription = shortDescription
@@ -254,8 +168,6 @@ public extension PlatformClient.Catalog {
             self.sizeGuide = sizeGuide
             
             self.sizes = sizes
-            
-            self.slug = slug
             
             self.tags = tags
             
@@ -268,8 +180,6 @@ public extension PlatformClient.Catalog {
             self.templateTag = templateTag
             
             self.trader = trader
-            
-            self.uid = uid
             
             self.variantGroup = variantGroup
             
@@ -296,18 +206,6 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    action = try container.decode(String.self, forKey: .action)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     attributes = try container.decode([String: Any].self, forKey: .attributes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -319,13 +217,8 @@ public extension PlatformClient.Catalog {
                 
             
             
-                brandUid = try container.decode(Int.self, forKey: .brandUid)
-                
-            
-            
-            
                 do {
-                    bulkJobId = try container.decode(String.self, forKey: .bulkJobId)
+                    countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -334,38 +227,6 @@ public extension PlatformClient.Catalog {
                     
                 }
                 
-            
-            
-                categorySlug = try container.decode(String.self, forKey: .categorySlug)
-                
-            
-            
-            
-                do {
-                    changeRequestId = try container.decode(String.self, forKey: .changeRequestId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
-                
-            
-            
-            
-                countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
-                
-            
-            
-            
-                currency = try container.decode(String.self, forKey: .currency)
-                
-            
             
             
                 do {
@@ -378,11 +239,6 @@ public extension PlatformClient.Catalog {
                     
                 }
                 
-            
-            
-                departments = try container.decode([Int].self, forKey: .departments)
-                
-            
             
             
                 do {
@@ -434,40 +290,6 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    isImageLessProduct = try container.decode(Bool.self, forKey: .isImageLessProduct)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isSet = try container.decode(Bool.self, forKey: .isSet)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                itemCode = try container.decode(String.self, forKey: .itemCode)
-                
-            
-            
-            
-                itemType = try container.decode(String.self, forKey: .itemType)
-                
-            
-            
-            
-                do {
                     media = try container.decode([Media].self, forKey: .media)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -491,9 +313,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                name = try container.decode(String.self, forKey: .name)
+                do {
+                    name = try container.decode(String.self, forKey: .name)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -545,7 +374,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    requester = try container.decode(String.self, forKey: .requester)
+                    returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -554,11 +383,6 @@ public extension PlatformClient.Catalog {
                     
                 }
                 
-            
-            
-                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
-                
-            
             
             
                 do {
@@ -585,14 +409,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                sizes = try container.decode([[String: Any]].self, forKey: .sizes)
+                do {
+                    sizes = try container.decode([ProductSizePatch].self, forKey: .sizes)
                 
-            
-            
-            
-                slug = try container.decode(String.self, forKey: .slug)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
             
                 do {
@@ -607,9 +433,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                taxIdentifier = try container.decode(TaxIdentifier.self, forKey: .taxIdentifier)
+                do {
+                    taxIdentifier = try container.decode(TaxIdentifierV3.self, forKey: .taxIdentifier)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -636,18 +469,20 @@ public extension PlatformClient.Catalog {
                 
             
             
-                templateTag = try container.decode(String.self, forKey: .templateTag)
+                do {
+                    templateTag = try container.decode(String.self, forKey: .templateTag)
                 
-            
-            
-            
-                trader = try container.decode([Trader].self, forKey: .trader)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    trader = try container.decode([Trader].self, forKey: .trader)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -705,37 +540,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(action, forKey: .action)
-            
-            
-            
-            
             try? container.encodeIfPresent(attributes, forKey: .attributes)
-            
-            
-            
-            
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(bulkJobId, forKey: .bulkJobId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(categorySlug, forKey: .categorySlug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(changeRequestId, forKey: .changeRequestId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
@@ -745,17 +550,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
-            
-            
-            
-            
             try? container.encodeIfPresent(customOrder, forKey: .customOrder)
-            
-            
-            
-            
-            try? container.encodeIfPresent(departments, forKey: .departments)
             
             
             
@@ -776,26 +571,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(isDependent, forKey: .isDependent)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isImageLessProduct, forKey: .isImageLessProduct)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
-            
-            
-            
-            
-            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(itemType, forKey: .itemType)
             
             
             
@@ -835,11 +610,6 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(requester, forKey: .requester)
-            
-            
-            
-            
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
             
             
@@ -856,11 +626,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(sizes, forKey: .sizes)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -891,11 +656,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(trader, forKey: .trader)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
@@ -922,36 +682,20 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: ProductUpdateSchemaV2
+        Model: ProductPatchSchemaV3
         Used By: Catalog
     */
 
-    class ProductUpdateSchemaV2: Codable {
+    class ProductPatchSchemaV3: Codable {
         
         
         public var customJson: [String: Any]?
         
-        public var action: String?
-        
         public var attributes: [String: Any]?
         
-        public var brandUid: Int
-        
-        public var bulkJobId: String?
-        
-        public var categorySlug: String
-        
-        public var changeRequestId: String?
-        
-        public var companyId: Int
-        
-        public var countryOfOrigin: String
-        
-        public var currency: String
+        public var countryOfOrigin: String?
         
         public var customOrder: CustomOrder?
-        
-        public var departments: [Int]
         
         public var description: String?
         
@@ -961,19 +705,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var isDependent: Bool?
         
-        public var isImageLessProduct: Bool?
-        
-        public var isSet: Bool?
-        
-        public var itemCode: String
-        
-        public var itemType: String
-        
         public var media: [Media]?
         
         public var multiSize: Bool?
         
-        public var name: String
+        public var name: String?
         
         public var netQuantity: NetQuantity?
         
@@ -983,31 +719,25 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var productPublish: ProductPublish?
         
-        public var requester: String?
-        
-        public var returnConfig: ReturnConfig
+        public var returnConfig: ReturnConfig?
         
         public var shortDescription: String?
         
         public var sizeGuide: String?
         
-        public var sizes: [[String: Any]]
-        
-        public var slug: String
+        public var sizes: [ProductSizePatch]?
         
         public var tags: [String]?
         
-        public var taxIdentifier: TaxIdentifier
+        public var taxIdentifier: TaxIdentifierV3?
         
         public var hsCode: String?
         
         public var teaserTag: TeaserTag?
         
-        public var templateTag: String
+        public var templateTag: String?
         
-        public var trader: [Trader]
-        
-        public var uid: Int?
+        public var trader: [Trader]?
         
         public var variantGroup: [String: Any]?
         
@@ -1020,27 +750,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case customJson = "_custom_json"
             
-            case action = "action"
-            
             case attributes = "attributes"
-            
-            case brandUid = "brand_uid"
-            
-            case bulkJobId = "bulk_job_id"
-            
-            case categorySlug = "category_slug"
-            
-            case changeRequestId = "change_request_id"
-            
-            case companyId = "company_id"
             
             case countryOfOrigin = "country_of_origin"
             
-            case currency = "currency"
-            
             case customOrder = "custom_order"
-            
-            case departments = "departments"
             
             case description = "description"
             
@@ -1049,14 +763,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case isActive = "is_active"
             
             case isDependent = "is_dependent"
-            
-            case isImageLessProduct = "is_image_less_product"
-            
-            case isSet = "is_set"
-            
-            case itemCode = "item_code"
-            
-            case itemType = "item_type"
             
             case media = "media"
             
@@ -1072,8 +778,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case productPublish = "product_publish"
             
-            case requester = "requester"
-            
             case returnConfig = "return_config"
             
             case shortDescription = "short_description"
@@ -1081,8 +785,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case sizeGuide = "size_guide"
             
             case sizes = "sizes"
-            
-            case slug = "slug"
             
             case tags = "tags"
             
@@ -1096,8 +798,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case trader = "trader"
             
-            case uid = "uid"
-            
             case variantGroup = "variant_group"
             
             case variantMedia = "variant_media"
@@ -1106,31 +806,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, hsCode: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(attributes: [String: Any]? = nil, countryOfOrigin: String? = nil, customOrder: CustomOrder? = nil, description: String? = nil, highlights: [String]? = nil, hsCode: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, media: [Media]? = nil, multiSize: Bool? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, returnConfig: ReturnConfig? = nil, shortDescription: String? = nil, sizes: [ProductSizePatch]? = nil, sizeGuide: String? = nil, tags: [String]? = nil, taxIdentifier: TaxIdentifierV3? = nil, teaserTag: TeaserTag? = nil, templateTag: String? = nil, trader: [Trader]? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
-            self.action = action
-            
             self.attributes = attributes
-            
-            self.brandUid = brandUid
-            
-            self.bulkJobId = bulkJobId
-            
-            self.categorySlug = categorySlug
-            
-            self.changeRequestId = changeRequestId
-            
-            self.companyId = companyId
             
             self.countryOfOrigin = countryOfOrigin
             
-            self.currency = currency
-            
             self.customOrder = customOrder
-            
-            self.departments = departments
             
             self.description = description
             
@@ -1139,14 +823,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.isActive = isActive
             
             self.isDependent = isDependent
-            
-            self.isImageLessProduct = isImageLessProduct
-            
-            self.isSet = isSet
-            
-            self.itemCode = itemCode
-            
-            self.itemType = itemType
             
             self.media = media
             
@@ -1162,8 +838,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.productPublish = productPublish
             
-            self.requester = requester
-            
             self.returnConfig = returnConfig
             
             self.shortDescription = shortDescription
@@ -1171,8 +845,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.sizeGuide = sizeGuide
             
             self.sizes = sizes
-            
-            self.slug = slug
             
             self.tags = tags
             
@@ -1185,8 +857,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.templateTag = templateTag
             
             self.trader = trader
-            
-            self.uid = uid
             
             self.variantGroup = variantGroup
             
@@ -1213,18 +883,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    action = try container.decode(String.self, forKey: .action)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     attributes = try container.decode([String: Any].self, forKey: .attributes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1236,13 +894,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                brandUid = try container.decode(Int.self, forKey: .brandUid)
-                
-            
-            
-            
                 do {
-                    bulkJobId = try container.decode(String.self, forKey: .bulkJobId)
+                    countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1251,38 +904,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                     
                 }
                 
-            
-            
-                categorySlug = try container.decode(String.self, forKey: .categorySlug)
-                
-            
-            
-            
-                do {
-                    changeRequestId = try container.decode(String.self, forKey: .changeRequestId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
-                
-            
-            
-            
-                countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
-                
-            
-            
-            
-                currency = try container.decode(String.self, forKey: .currency)
-                
-            
             
             
                 do {
@@ -1295,11 +916,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                     
                 }
                 
-            
-            
-                departments = try container.decode([Int].self, forKey: .departments)
-                
-            
             
             
                 do {
@@ -1351,40 +967,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    isImageLessProduct = try container.decode(Bool.self, forKey: .isImageLessProduct)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isSet = try container.decode(Bool.self, forKey: .isSet)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                itemCode = try container.decode(String.self, forKey: .itemCode)
-                
-            
-            
-            
-                itemType = try container.decode(String.self, forKey: .itemType)
-                
-            
-            
-            
-                do {
                     media = try container.decode([Media].self, forKey: .media)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1408,9 +990,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                name = try container.decode(String.self, forKey: .name)
+                do {
+                    name = try container.decode(String.self, forKey: .name)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -1462,7 +1051,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    requester = try container.decode(String.self, forKey: .requester)
+                    returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1471,11 +1060,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                     
                 }
                 
-            
-            
-                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
-                
-            
             
             
                 do {
@@ -1502,14 +1086,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                sizes = try container.decode([[String: Any]].self, forKey: .sizes)
+                do {
+                    sizes = try container.decode([ProductSizePatch].self, forKey: .sizes)
                 
-            
-            
-            
-                slug = try container.decode(String.self, forKey: .slug)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
             
                 do {
@@ -1524,9 +1110,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                taxIdentifier = try container.decode(TaxIdentifier.self, forKey: .taxIdentifier)
+                do {
+                    taxIdentifier = try container.decode(TaxIdentifierV3.self, forKey: .taxIdentifier)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -1553,18 +1146,20 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                templateTag = try container.decode(String.self, forKey: .templateTag)
+                do {
+                    templateTag = try container.decode(String.self, forKey: .templateTag)
                 
-            
-            
-            
-                trader = try container.decode([Trader].self, forKey: .trader)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    trader = try container.decode([Trader].self, forKey: .trader)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1622,37 +1217,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(action, forKey: .action)
-            
-            
-            
-            
             try? container.encodeIfPresent(attributes, forKey: .attributes)
-            
-            
-            
-            
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(bulkJobId, forKey: .bulkJobId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(categorySlug, forKey: .categorySlug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(changeRequestId, forKey: .changeRequestId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
@@ -1662,17 +1227,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
-            
-            
-            
-            
             try? container.encodeIfPresent(customOrder, forKey: .customOrder)
-            
-            
-            
-            
-            try? container.encodeIfPresent(departments, forKey: .departments)
             
             
             
@@ -1693,26 +1248,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(isDependent, forKey: .isDependent)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isImageLessProduct, forKey: .isImageLessProduct)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
-            
-            
-            
-            
-            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(itemType, forKey: .itemType)
             
             
             
@@ -1752,11 +1287,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(requester, forKey: .requester)
-            
-            
-            
-            
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
             
             
@@ -1773,11 +1303,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(sizes, forKey: .sizes)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -1808,11 +1333,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(trader, forKey: .trader)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             

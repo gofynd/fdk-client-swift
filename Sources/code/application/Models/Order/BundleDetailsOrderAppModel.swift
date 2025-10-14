@@ -1,121 +1,115 @@
 
 
 import Foundation
-public extension ApplicationClient.Catalog {
+public extension ApplicationClient.Order {
     /*
-        Model: ProductGroupingModel
-        Used By: Catalog
+        Model: BundleDetails
+        Used By: Order
     */
-    class ProductGroupingModel: Codable {
+    class BundleDetails: Codable {
         
-        public var logo: String?
+        public var bundleGroupId: String?
         
-        public var isActive: Bool?
+        public var name: String?
         
-        public var meta: [String: Any]?
+        public var slug: String?
         
-        public var verifiedBy: UserDetail?
+        public var bundleCount: Int?
         
-        public var createdOn: String
+        public var articleBundleId: String?
         
-        public var companyId: Int?
+        public var bundleArticleQuantity: Int?
         
-        public var pageVisibility: [[String: Any]]?
+        public var isBase: Bool?
         
-        public var modifiedOn: String
+        public var priceMarked: Double?
         
-        public var createdBy: UserDetail?
+        public var priceEffective: Double?
         
-        public var modifiedBy: UserDetail?
+        public var itemId: Int?
         
-        public var products: [ProductInGroup]
+        public var itemType: String?
         
-        public var sameStoreAssignment: Bool?
+        public var returnConfig: BundleReturnConfig?
         
-        public var id: [String: Any]?
+        public var sellerIdentifier: String?
         
-        public var name: [String: Any]
+        public var images: [String]?
         
-        public var choice: [String: Any]?
+        public var brandName: String?
         
-        public var slug: [String: Any]?
-        
-        public var verifiedOn: String?
+        public var size: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case logo = "logo"
-            
-            case isActive = "is_active"
-            
-            case meta = "meta"
-            
-            case verifiedBy = "verified_by"
-            
-            case createdOn = "created_on"
-            
-            case companyId = "company_id"
-            
-            case pageVisibility = "page_visibility"
-            
-            case modifiedOn = "modified_on"
-            
-            case createdBy = "created_by"
-            
-            case modifiedBy = "modified_by"
-            
-            case products = "products"
-            
-            case sameStoreAssignment = "same_store_assignment"
-            
-            case id = "_id"
+            case bundleGroupId = "bundle_group_id"
             
             case name = "name"
             
-            case choice = "choice"
-            
             case slug = "slug"
             
-            case verifiedOn = "verified_on"
+            case bundleCount = "bundle_count"
+            
+            case articleBundleId = "article_bundle_id"
+            
+            case bundleArticleQuantity = "bundle_article_quantity"
+            
+            case isBase = "is_base"
+            
+            case priceMarked = "price_marked"
+            
+            case priceEffective = "price_effective"
+            
+            case itemId = "item_id"
+            
+            case itemType = "item_type"
+            
+            case returnConfig = "return_config"
+            
+            case sellerIdentifier = "seller_identifier"
+            
+            case images = "images"
+            
+            case brandName = "brand_name"
+            
+            case size = "size"
             
         }
 
-        public init(choice: [String: Any]? = nil, companyId: Int? = nil, createdBy: UserDetail? = nil, createdOn: String, isActive: Bool? = nil, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetail? = nil, modifiedOn: String, name: [String: Any], pageVisibility: [[String: Any]]? = nil, products: [ProductInGroup], sameStoreAssignment: Bool? = nil, slug: [String: Any]? = nil, verifiedBy: UserDetail? = nil, verifiedOn: String? = nil, id: [String: Any]? = nil) {
+        public init(articleBundleId: String? = nil, brandName: String? = nil, bundleArticleQuantity: Int? = nil, bundleCount: Int? = nil, bundleGroupId: String? = nil, images: [String]? = nil, isBase: Bool? = nil, itemId: Int? = nil, itemType: String? = nil, name: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, returnConfig: BundleReturnConfig? = nil, sellerIdentifier: String? = nil, size: String? = nil, slug: String? = nil) {
             
-            self.logo = logo
-            
-            self.isActive = isActive
-            
-            self.meta = meta
-            
-            self.verifiedBy = verifiedBy
-            
-            self.createdOn = createdOn
-            
-            self.companyId = companyId
-            
-            self.pageVisibility = pageVisibility
-            
-            self.modifiedOn = modifiedOn
-            
-            self.createdBy = createdBy
-            
-            self.modifiedBy = modifiedBy
-            
-            self.products = products
-            
-            self.sameStoreAssignment = sameStoreAssignment
-            
-            self.id = id
+            self.bundleGroupId = bundleGroupId
             
             self.name = name
             
-            self.choice = choice
-            
             self.slug = slug
             
-            self.verifiedOn = verifiedOn
+            self.bundleCount = bundleCount
+            
+            self.articleBundleId = articleBundleId
+            
+            self.bundleArticleQuantity = bundleArticleQuantity
+            
+            self.isBase = isBase
+            
+            self.priceMarked = priceMarked
+            
+            self.priceEffective = priceEffective
+            
+            self.itemId = itemId
+            
+            self.itemType = itemType
+            
+            self.returnConfig = returnConfig
+            
+            self.sellerIdentifier = sellerIdentifier
+            
+            self.images = images
+            
+            self.brandName = brandName
+            
+            self.size = size
             
         }
 
@@ -124,7 +118,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                bundleGroupId = try container.decode(String.self, forKey: .bundleGroupId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,7 +130,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                name = try container.decode(String.self, forKey: .name)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,7 +142,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                slug = try container.decode(String.self, forKey: .slug)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,24 +154,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                verifiedBy = try container.decode(UserDetail.self, forKey: .verifiedBy)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            createdOn = try container.decode(String.self, forKey: .createdOn)
-            
-            
-            
-            
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                bundleCount = try container.decode(Int.self, forKey: .bundleCount)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -189,24 +166,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                pageVisibility = try container.decode([[String: Any]].self, forKey: .pageVisibility)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-            
-            
-            
-            
-            do {
-                createdBy = try container.decode(UserDetail.self, forKey: .createdBy)
+                articleBundleId = try container.decode(String.self, forKey: .articleBundleId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -218,24 +178,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                modifiedBy = try container.decode(UserDetail.self, forKey: .modifiedBy)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            products = try container.decode([ProductInGroup].self, forKey: .products)
-            
-            
-            
-            
-            do {
-                sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
+                bundleArticleQuantity = try container.decode(Int.self, forKey: .bundleArticleQuantity)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -247,24 +190,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                id = try container.decode([String: Any].self, forKey: .id)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            name = try container.decode([String: Any].self, forKey: .name)
-            
-            
-            
-            
-            do {
-                choice = try container.decode([String: Any].self, forKey: .choice)
+                isBase = try container.decode(Bool.self, forKey: .isBase)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -276,7 +202,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                slug = try container.decode([String: Any].self, forKey: .slug)
+                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -288,7 +214,91 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
+                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                itemId = try container.decode(Int.self, forKey: .itemId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                itemType = try container.decode(String.self, forKey: .itemType)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                returnConfig = try container.decode(BundleReturnConfig.self, forKey: .returnConfig)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                images = try container.decode([String].self, forKey: .images)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                brandName = try container.decode(String.self, forKey: .brandName)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                size = try container.decode(String.self, forKey: .size)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -304,55 +314,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
-            
-            
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            
-            
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-            
-            
-            try? container.encodeIfPresent(products, forKey: .products)
-            
-            
-            
-            try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(bundleGroupId, forKey: .bundleGroupId)
             
             
             
@@ -360,15 +322,59 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(choice, forKey: .choice)
-            
-            
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+            try? container.encodeIfPresent(bundleCount, forKey: .bundleCount)
+            
+            
+            
+            try? container.encodeIfPresent(articleBundleId, forKey: .articleBundleId)
+            
+            
+            
+            try? container.encodeIfPresent(bundleArticleQuantity, forKey: .bundleArticleQuantity)
+            
+            
+            
+            try? container.encodeIfPresent(isBase, forKey: .isBase)
+            
+            
+            
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+            
+            
+            
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+            
+            
+            
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            
+            
+            
+            try? container.encodeIfPresent(itemType, forKey: .itemType)
+            
+            
+            
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
+            
+            
+            
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            
+            
+            
+            try? container.encodeIfPresent(images, forKey: .images)
+            
+            
+            
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
+            
+            
+            
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
         }

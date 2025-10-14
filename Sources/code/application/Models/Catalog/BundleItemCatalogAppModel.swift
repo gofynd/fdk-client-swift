@@ -3,71 +3,65 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-        Model: ProductInGroup
+        Model: BundleItem
         Used By: Catalog
     */
-    class ProductInGroup: Codable {
+    class BundleItem: Codable {
         
-        public var autoAddToCart: Bool?
+        public var brand: ProductBrand?
         
-        public var maxQuantity: Int
+        public var media: [Media]?
         
-        public var sizes: [Size]?
+        public var netQuantity: Int?
         
-        public var price: ProductGroupPrice?
+        public var size: String?
         
-        public var autoSelect: Bool?
+        public var sellerIdentifiers: [String]?
         
-        public var productDetails: ProductDetails?
+        public var price: Double?
         
-        public var minQuantity: Int?
+        public var priceEffective: Double?
         
-        public var allowRemove: Bool?
-        
-        public var productUid: Int
+        public var currency: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case autoAddToCart = "auto_add_to_cart"
+            case brand = "brand"
             
-            case maxQuantity = "max_quantity"
+            case media = "media"
             
-            case sizes = "sizes"
+            case netQuantity = "net_quantity"
+            
+            case size = "size"
+            
+            case sellerIdentifiers = "seller_identifiers"
             
             case price = "price"
             
-            case autoSelect = "auto_select"
+            case priceEffective = "price_effective"
             
-            case productDetails = "product_details"
-            
-            case minQuantity = "min_quantity"
-            
-            case allowRemove = "allow_remove"
-            
-            case productUid = "product_uid"
+            case currency = "currency"
             
         }
 
-        public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int, minQuantity: Int? = nil, price: ProductGroupPrice? = nil, productDetails: ProductDetails? = nil, productUid: Int, sizes: [Size]? = nil) {
+        public init(brand: ProductBrand? = nil, currency: String? = nil, media: [Media]? = nil, netQuantity: Int? = nil, price: Double? = nil, priceEffective: Double? = nil, sellerIdentifiers: [String]? = nil, size: String? = nil) {
             
-            self.autoAddToCart = autoAddToCart
+            self.brand = brand
             
-            self.maxQuantity = maxQuantity
+            self.media = media
             
-            self.sizes = sizes
+            self.netQuantity = netQuantity
+            
+            self.size = size
+            
+            self.sellerIdentifiers = sellerIdentifiers
             
             self.price = price
             
-            self.autoSelect = autoSelect
+            self.priceEffective = priceEffective
             
-            self.productDetails = productDetails
-            
-            self.minQuantity = minQuantity
-            
-            self.allowRemove = allowRemove
-            
-            self.productUid = productUid
+            self.currency = currency
             
         }
 
@@ -76,24 +70,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
-            
-            
-            
-            
-            do {
-                sizes = try container.decode([Size].self, forKey: .sizes)
+                brand = try container.decode(ProductBrand.self, forKey: .brand)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +82,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                price = try container.decode(ProductGroupPrice.self, forKey: .price)
+                media = try container.decode([Media].self, forKey: .media)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +94,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
+                netQuantity = try container.decode(Int.self, forKey: .netQuantity)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +106,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                productDetails = try container.decode(ProductDetails.self, forKey: .productDetails)
+                size = try container.decode(String.self, forKey: .size)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,7 +118,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,7 +130,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
+                price = try container.decode(Double.self, forKey: .price)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,8 +141,27 @@ public extension ApplicationClient.Catalog {
             
             
             
-            productUid = try container.decode(Int.self, forKey: .productUid)
+            do {
+                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                currency = try container.decode(String.self, forKey: .currency)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -174,15 +170,23 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
+            try? container.encodeIfPresent(brand, forKey: .brand)
             
             
             
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+            try? container.encodeIfPresent(media, forKey: .media)
             
             
             
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(netQuantity, forKey: .netQuantity)
+            
+            
+            
+            try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
             
             
             
@@ -190,23 +194,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
             
             
             
-            try? container.encodeIfPresent(productDetails, forKey: .productDetails)
-            
-            
-            
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-            
-            
-            
-            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
-            
-            
-            
-            try? container.encodeIfPresent(productUid, forKey: .productUid)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
         }

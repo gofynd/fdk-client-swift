@@ -585,8 +585,10 @@ extension PlatformClient {
         * Summary: Create order
         * Description: Creates an order
         **/
-        public func createOrder(
-            xOrderingSource: OrderingSource?,
+        public func createOrderDeprecated(
+            xOrderingSource: String,
+            xApplicationId: String?,
+            xExtensionId: String?,
             body: CreateOrderAPI,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CreateOrderResponseSchema?, _ error: FDKError?) -> Void
@@ -596,8 +598,15 @@ extension PlatformClient {
             
             var xHeaders: [(key: String, value: String)] = []
             
-            if let value = xOrderingSource {
-                xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+            
+            xHeaders.append((key: "x-ordering-source", value: xOrderingSource))
+            
+            if let value = xApplicationId {
+                xHeaders.append((key: "x-application-id", value: value))
+            }
+            
+            if let value = xExtensionId {
+                xHeaders.append((key: "x-extension-id", value: value))
             }
             
             
@@ -892,7 +901,7 @@ extension PlatformClient {
         **/
         public func getAllowedStateTransition(
             orderingChannel: String?,
-            orderingSource: OrderingSource?,
+            orderingSource: String?,
             status: String,
             
             headers: [(key: String, value: String)]? = nil,
@@ -906,7 +915,7 @@ extension PlatformClient {
             }
             
             if let value = orderingSource {
-                xQuery["ordering_source"] = value.rawValue
+                xQuery["ordering_source"] = value
             }
             xQuery["status"] = status
             
@@ -2300,7 +2309,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         public func getStateManagerConfig(
             appId: String?,
             orderingChannel: String?,
-            orderingSource: OrderingSource?,
+            orderingSource: String?,
             entity: String?,
             
             headers: [(key: String, value: String)]? = nil,
@@ -2318,7 +2327,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             }
             
             if let value = orderingSource {
-                xQuery["ordering_source"] = value.rawValue
+                xQuery["ordering_source"] = value
             }
             
             if let value = entity {
@@ -2414,6 +2423,285 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         
         
+        
+        /**
+        *
+        * Summary: Create Order
+        * Description: Creates an order in the OMS. Note: Use the Serviceability API (getShipments) to determine shipments before creating an order. OMS no longer auto-selects fulfillment stores and only creates shipments as provided in the request payload.
+        **/
+        public func createOrder(
+            xOrderingSource: String,
+            xApplicationId: String?,
+            xExtensionId: String?,
+            body: CreateOrderRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            xHeaders.append((key: "x-ordering-source", value: xOrderingSource))
+            
+            if let value = xApplicationId {
+                xHeaders.append((key: "x-application-id", value: value))
+            }
+            
+            if let value = xExtensionId {
+                xHeaders.append((key: "x-extension-id", value: value))
+            }
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/orders",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = data.dictionary
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create channel account
+        * Description: Creates a new channel account for the company. Channel accounts represent  different sales channels or marketplace integrations (e.g., Shopify, custom  marketplaces) through which the company receives and processes orders. Each  account is identified by a unique name and can be used to segregate orders  from different sources.
+        **/
+        public func createAccount(
+            body: CreateAccount,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: Account?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/account",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(Account.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get channel accounts list
+        * Description: Retrieves a paginated list of all channel accounts configured for the company.  Channel accounts represent different sales channels or marketplace integrations  from which orders are received. This endpoint returns account details including  the account ID, company ID, and channel account name for each configured channel.
+        **/
+        public func listAccounts(
+            page: Int?,
+            size: Int?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: AccountsList?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = page {
+                xQuery["page"] = value
+            }
+            
+            if let value = size {
+                xQuery["size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/account",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AccountsList.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get channel account details
+        * Description: Retrieves detailed information about a specific channel account using its unique  identifier. This endpoint returns the complete account details including the  account ID, associated company ID, and the channel account name. Use this to  fetch information about a particular sales channel or marketplace integration.
+        **/
+        public func getAccountById(
+            channelAccountId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: Account?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/account/\(channelAccountId)",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(Account.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Update account
+        * Description: Updates the details of a specific channel account.
+        **/
+        public func updateAccount(
+            channelAccountId: String,
+            body: CreateAccount,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: Account?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/account/\(channelAccountId)",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(Account.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
         /**
         *
         * Summary: List shipments
@@ -2457,6 +2745,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
             groupEntity: String?,
             enforceDateFilter: Bool?,
             fulfillmentType: String?,
+            orderingSource: String?,
+            channelAccountId: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponseSchema?, _ error: FDKError?) -> Void
@@ -2612,6 +2902,14 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["fulfillment_type"] = value
             }
             
+            if let value = orderingSource {
+                xQuery["ordering_source"] = value
+            }
+            
+            if let value = channelAccountId {
+                xQuery["channel_account_id"] = value
+            }
+            
             var xHeaders: [(key: String, value: String)] = []
             
             
@@ -2646,6 +2944,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     }
             });
         }
+        
+        
+        
+        
         
         
         
@@ -2761,6 +3063,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
             groupEntity: String?,
             enforceDateFilter: Bool?,
             fulfillmentType: String?,
+            orderingSource: String?,
+            channelAccountId: String?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ShipmentInternalPlatformViewResponseSchema> {
             let pageSize = pageSize ?? 20
@@ -2804,6 +3108,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     groupEntity: groupEntity,
                     enforceDateFilter: enforceDateFilter,
                     fulfillmentType: fulfillmentType,
+                    orderingSource: orderingSource,
+                    channelAccountId: channelAccountId,
                     
                     headers: headers
                 ) { response, error in                    
@@ -3129,6 +3435,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
             groupEntity: String?,
             enforceDateFilter: Bool?,
             fulfillmentType: String?,
+            orderingSource: String?,
+            channelAccountId: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderListingResponseSchema?, _ error: FDKError?) -> Void
@@ -3240,6 +3548,14 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["fulfillment_type"] = value
             }
             
+            if let value = orderingSource {
+                xQuery["ordering_source"] = value
+            }
+            
+            if let value = channelAccountId {
+                xQuery["channel_account_id"] = value
+            }
+            
             var xHeaders: [(key: String, value: String)] = []
             
             
@@ -3325,6 +3641,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         
         
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getOrders
@@ -3356,6 +3676,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
             groupEntity: String?,
             enforceDateFilter: Bool?,
             fulfillmentType: String?,
+            orderingSource: String?,
+            channelAccountId: String?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<OrderListingResponseSchema> {
             let pageSize = pageSize ?? 20
@@ -3388,6 +3710,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     groupEntity: groupEntity,
                     enforceDateFilter: enforceDateFilter,
                     fulfillmentType: fulfillmentType,
+                    orderingSource: orderingSource,
+                    channelAccountId: channelAccountId,
                     
                     headers: headers
                 ) { response, error in                    

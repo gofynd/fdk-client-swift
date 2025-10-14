@@ -3,81 +3,81 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: GetProductBundleResponseSchema
-        Used By: Catalog
+        Model: LineItemSchema
+        Used By: Order
     */
 
-    class GetProductBundleResponseSchema: Codable {
+    class LineItemSchema: Codable {
         
         
-        public var choice: String?
+        public var sellerIdentifier: String?
         
-        public var companyId: Int?
+        public var paymentMethods: [LineItemPaymentMethodSchema]
         
-        public var isActive: Bool?
+        public var monetaryValues: LineItemMonetaryValuesSchema
         
-        public var logo: String?
+        public var giftDetails: GiftDetailsSchema?
+        
+        public var specialInstructions: String?
+        
+        public var dimension: DimensionSchema?
+        
+        public var quantity: Double?
+        
+        public var externalLineId: String?
+        
+        public var bundleDetails: BundleDetailsSchema?
         
         public var meta: [String: Any]?
-        
-        public var name: String?
-        
-        public var pageVisibility: [String]?
-        
-        public var products: [GetProducts]?
-        
-        public var sameStoreAssignment: Bool?
-        
-        public var slug: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case choice = "choice"
+            case sellerIdentifier = "seller_identifier"
             
-            case companyId = "company_id"
+            case paymentMethods = "payment_methods"
             
-            case isActive = "is_active"
+            case monetaryValues = "monetary_values"
             
-            case logo = "logo"
+            case giftDetails = "gift_details"
+            
+            case specialInstructions = "special_instructions"
+            
+            case dimension = "dimension"
+            
+            case quantity = "quantity"
+            
+            case externalLineId = "external_line_id"
+            
+            case bundleDetails = "bundle_details"
             
             case meta = "meta"
             
-            case name = "name"
-            
-            case pageVisibility = "page_visibility"
-            
-            case products = "products"
-            
-            case sameStoreAssignment = "same_store_assignment"
-            
-            case slug = "slug"
-            
         }
 
-        public init(choice: String? = nil, companyId: Int? = nil, isActive: Bool? = nil, logo: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pageVisibility: [String]? = nil, products: [GetProducts]? = nil, sameStoreAssignment: Bool? = nil, slug: String? = nil) {
+        public init(bundleDetails: BundleDetailsSchema? = nil, dimension: DimensionSchema? = nil, externalLineId: String? = nil, giftDetails: GiftDetailsSchema? = nil, meta: [String: Any]? = nil, monetaryValues: LineItemMonetaryValuesSchema, paymentMethods: [LineItemPaymentMethodSchema], quantity: Double? = nil, sellerIdentifier: String? = nil, specialInstructions: String? = nil) {
             
-            self.choice = choice
+            self.sellerIdentifier = sellerIdentifier
             
-            self.companyId = companyId
+            self.paymentMethods = paymentMethods
             
-            self.isActive = isActive
+            self.monetaryValues = monetaryValues
             
-            self.logo = logo
+            self.giftDetails = giftDetails
+            
+            self.specialInstructions = specialInstructions
+            
+            self.dimension = dimension
+            
+            self.quantity = quantity
+            
+            self.externalLineId = externalLineId
+            
+            self.bundleDetails = bundleDetails
             
             self.meta = meta
-            
-            self.name = name
-            
-            self.pageVisibility = pageVisibility
-            
-            self.products = products
-            
-            self.sameStoreAssignment = sameStoreAssignment
-            
-            self.slug = slug
             
         }
 
@@ -86,7 +86,29 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    choice = try container.decode(String.self, forKey: .choice)
+                    sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                paymentMethods = try container.decode([LineItemPaymentMethodSchema].self, forKey: .paymentMethods)
+                
+            
+            
+            
+                monetaryValues = try container.decode(LineItemMonetaryValuesSchema.self, forKey: .monetaryValues)
+                
+            
+            
+            
+                do {
+                    giftDetails = try container.decode(GiftDetailsSchema.self, forKey: .giftDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +120,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                    specialInstructions = try container.decode(String.self, forKey: .specialInstructions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,7 +132,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    dimension = try container.decode(DimensionSchema.self, forKey: .dimension)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +144,31 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    logo = try container.decode(String.self, forKey: .logo)
+                    quantity = try container.decode(Double.self, forKey: .quantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    externalLineId = try container.decode(String.self, forKey: .externalLineId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bundleDetails = try container.decode(BundleDetailsSchema.self, forKey: .bundleDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,66 +190,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    products = try container.decode([GetProducts].self, forKey: .products)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -211,52 +197,52 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(choice, forKey: .choice)
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
             
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
             
             
             
             
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(monetaryValues, forKey: .monetaryValues)
             
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(specialInstructions, forKey: .specialInstructions)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dimension, forKey: .dimension)
+            
+            
+            
+            
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(externalLineId, forKey: .externalLineId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
             
             
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
-            
-            
-            
-            
-            try? container.encodeIfPresent(products, forKey: .products)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
         }
@@ -266,81 +252,81 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: GetProductBundleResponseSchema
-        Used By: Catalog
+        Model: LineItemSchema
+        Used By: Order
     */
 
-    class GetProductBundleResponseSchema: Codable {
+    class LineItemSchema: Codable {
         
         
-        public var choice: String?
+        public var sellerIdentifier: String?
         
-        public var companyId: Int?
+        public var paymentMethods: [LineItemPaymentMethodSchema]
         
-        public var isActive: Bool?
+        public var monetaryValues: LineItemMonetaryValuesSchema
         
-        public var logo: String?
+        public var giftDetails: GiftDetailsSchema?
+        
+        public var specialInstructions: String?
+        
+        public var dimension: DimensionSchema?
+        
+        public var quantity: Double?
+        
+        public var externalLineId: String?
+        
+        public var bundleDetails: BundleDetailsSchema?
         
         public var meta: [String: Any]?
-        
-        public var name: String?
-        
-        public var pageVisibility: [String]?
-        
-        public var products: [GetProducts]?
-        
-        public var sameStoreAssignment: Bool?
-        
-        public var slug: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case choice = "choice"
+            case sellerIdentifier = "seller_identifier"
             
-            case companyId = "company_id"
+            case paymentMethods = "payment_methods"
             
-            case isActive = "is_active"
+            case monetaryValues = "monetary_values"
             
-            case logo = "logo"
+            case giftDetails = "gift_details"
+            
+            case specialInstructions = "special_instructions"
+            
+            case dimension = "dimension"
+            
+            case quantity = "quantity"
+            
+            case externalLineId = "external_line_id"
+            
+            case bundleDetails = "bundle_details"
             
             case meta = "meta"
             
-            case name = "name"
-            
-            case pageVisibility = "page_visibility"
-            
-            case products = "products"
-            
-            case sameStoreAssignment = "same_store_assignment"
-            
-            case slug = "slug"
-            
         }
 
-        public init(choice: String? = nil, companyId: Int? = nil, isActive: Bool? = nil, logo: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pageVisibility: [String]? = nil, products: [GetProducts]? = nil, sameStoreAssignment: Bool? = nil, slug: String? = nil) {
+        public init(bundleDetails: BundleDetailsSchema? = nil, dimension: DimensionSchema? = nil, externalLineId: String? = nil, giftDetails: GiftDetailsSchema? = nil, meta: [String: Any]? = nil, monetaryValues: LineItemMonetaryValuesSchema, paymentMethods: [LineItemPaymentMethodSchema], quantity: Double? = nil, sellerIdentifier: String? = nil, specialInstructions: String? = nil) {
             
-            self.choice = choice
+            self.sellerIdentifier = sellerIdentifier
             
-            self.companyId = companyId
+            self.paymentMethods = paymentMethods
             
-            self.isActive = isActive
+            self.monetaryValues = monetaryValues
             
-            self.logo = logo
+            self.giftDetails = giftDetails
+            
+            self.specialInstructions = specialInstructions
+            
+            self.dimension = dimension
+            
+            self.quantity = quantity
+            
+            self.externalLineId = externalLineId
+            
+            self.bundleDetails = bundleDetails
             
             self.meta = meta
-            
-            self.name = name
-            
-            self.pageVisibility = pageVisibility
-            
-            self.products = products
-            
-            self.sameStoreAssignment = sameStoreAssignment
-            
-            self.slug = slug
             
         }
 
@@ -349,7 +335,29 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    choice = try container.decode(String.self, forKey: .choice)
+                    sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                paymentMethods = try container.decode([LineItemPaymentMethodSchema].self, forKey: .paymentMethods)
+                
+            
+            
+            
+                monetaryValues = try container.decode(LineItemMonetaryValuesSchema.self, forKey: .monetaryValues)
+                
+            
+            
+            
+                do {
+                    giftDetails = try container.decode(GiftDetailsSchema.self, forKey: .giftDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -361,7 +369,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                    specialInstructions = try container.decode(String.self, forKey: .specialInstructions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -373,7 +381,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    dimension = try container.decode(DimensionSchema.self, forKey: .dimension)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -385,7 +393,31 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    logo = try container.decode(String.self, forKey: .logo)
+                    quantity = try container.decode(Double.self, forKey: .quantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    externalLineId = try container.decode(String.self, forKey: .externalLineId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bundleDetails = try container.decode(BundleDetailsSchema.self, forKey: .bundleDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -407,66 +439,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    products = try container.decode([GetProducts].self, forKey: .products)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -474,52 +446,52 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(choice, forKey: .choice)
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
             
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
             
             
             
             
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(monetaryValues, forKey: .monetaryValues)
             
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(specialInstructions, forKey: .specialInstructions)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dimension, forKey: .dimension)
+            
+            
+            
+            
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(externalLineId, forKey: .externalLineId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
             
             
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
-            
-            
-            
-            
-            try? container.encodeIfPresent(products, forKey: .products)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
         }

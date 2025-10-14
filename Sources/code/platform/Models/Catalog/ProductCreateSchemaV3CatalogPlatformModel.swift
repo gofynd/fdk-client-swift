@@ -96,6 +96,8 @@ public extension PlatformClient.Catalog {
         
         public var hsCode: String?
         
+        public var bundleDetails: [BundleDetails]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -183,9 +185,11 @@ public extension PlatformClient.Catalog {
             
             case hsCode = "hs_code"
             
+            case bundleDetails = "bundle_details"
+            
         }
 
-        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, hsCode: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifierV3, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, bundleDetails: [BundleDetails]? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, hsCode: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifierV3, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -270,6 +274,8 @@ public extension PlatformClient.Catalog {
             self.variants = variants
             
             self.hsCode = hsCode
+            
+            self.bundleDetails = bundleDetails
             
         }
 
@@ -675,6 +681,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    bundleDetails = try container.decode([BundleDetails].self, forKey: .bundleDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -888,6 +906,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(hsCode, forKey: .hsCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
             
             
         }
@@ -990,6 +1013,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var hsCode: String?
         
+        public var bundleDetails: [BundleDetails]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -1077,9 +1102,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case hsCode = "hs_code"
             
+            case bundleDetails = "bundle_details"
+            
         }
 
-        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, hsCode: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifierV3, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, bundleDetails: [BundleDetails]? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, hsCode: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifierV3, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -1164,6 +1191,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.variants = variants
             
             self.hsCode = hsCode
+            
+            self.bundleDetails = bundleDetails
             
         }
 
@@ -1569,6 +1598,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    bundleDetails = try container.decode([BundleDetails].self, forKey: .bundleDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1782,6 +1823,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(hsCode, forKey: .hsCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
             
             
         }

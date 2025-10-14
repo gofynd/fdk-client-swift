@@ -3,23 +3,29 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-        Model: ProductBundle
+        Model: ProductBundleItems
         Used By: Catalog
     */
-    class ProductBundle: Codable {
+    class ProductBundleItems: Codable {
         
-        public var items: [ProductGroupingModel]?
+        public var items: [BundleItem]?
+        
+        public var page: Page?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case items = "items"
             
+            case page = "page"
+            
         }
 
-        public init(items: [ProductGroupingModel]? = nil) {
+        public init(items: [BundleItem]? = nil, page: Page? = nil) {
             
             self.items = items
+            
+            self.page = page
             
         }
 
@@ -28,7 +34,19 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                items = try container.decode([ProductGroupingModel].self, forKey: .items)
+                items = try container.decode([BundleItem].self, forKey: .items)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                page = try container.decode(Page.self, forKey: .page)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,6 +63,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }
