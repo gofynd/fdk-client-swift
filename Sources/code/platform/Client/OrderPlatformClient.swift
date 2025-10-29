@@ -2427,7 +2427,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         /**
         *
         * Summary: Create Order
-        * Description: Creates an order in the OMS. Note: Use the Serviceability API (getShipments) to determine shipments before creating an order. OMS no longer auto-selects fulfillment stores and only creates shipments as provided in the request payload.
+        * Description: Creates an order in the OMS. Note: Use the Serviceability API (<a href='/commerce/sdk/latest/platform/company/serviceability#createShipments'>createShipments</a>) to determine shipments before creating an order.
         **/
         public func createOrder(
             xOrderingSource: String,

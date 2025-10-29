@@ -16,11 +16,11 @@ public extension PlatformClient.Order {
         
         public var length: Int
         
+        public var width: Int
+        
         public var isDefault: Bool
         
         public var unit: String
-        
-        public var width: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,11 +29,11 @@ public extension PlatformClient.Order {
             
             case length = "length"
             
+            case width = "width"
+            
             case isDefault = "is_default"
             
             case unit = "unit"
-            
-            case width = "width"
             
         }
 
@@ -43,11 +43,11 @@ public extension PlatformClient.Order {
             
             self.length = length
             
+            self.width = width
+            
             self.isDefault = isDefault
             
             self.unit = unit
-            
-            self.width = width
             
         }
 
@@ -65,17 +65,17 @@ public extension PlatformClient.Order {
             
             
             
+                width = try container.decode(Int.self, forKey: .width)
+                
+            
+            
+            
                 isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
             
             
             
                 unit = try container.decode(String.self, forKey: .unit)
-                
-            
-            
-            
-                width = try container.decode(Int.self, forKey: .width)
                 
             
             
@@ -96,17 +96,17 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(width, forKey: .width)
+            
+            
+            
+            
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
             
             
             
             
             try? container.encodeIfPresent(unit, forKey: .unit)
-            
-            
-            
-            
-            try? container.encodeIfPresent(width, forKey: .width)
             
             
         }
@@ -129,11 +129,11 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var length: Int
         
+        public var width: Int
+        
         public var isDefault: Bool
         
         public var unit: String
-        
-        public var width: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -142,11 +142,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case length = "length"
             
+            case width = "width"
+            
             case isDefault = "is_default"
             
             case unit = "unit"
-            
-            case width = "width"
             
         }
 
@@ -156,11 +156,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.length = length
             
+            self.width = width
+            
             self.isDefault = isDefault
             
             self.unit = unit
-            
-            self.width = width
             
         }
 
@@ -178,17 +178,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+                width = try container.decode(Int.self, forKey: .width)
+                
+            
+            
+            
                 isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
             
             
             
                 unit = try container.decode(String.self, forKey: .unit)
-                
-            
-            
-            
-                width = try container.decode(Int.self, forKey: .width)
                 
             
             
@@ -209,17 +209,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(width, forKey: .width)
+            
+            
+            
+            
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
             
             
             
             
             try? container.encodeIfPresent(unit, forKey: .unit)
-            
-            
-            
-            
-            try? container.encodeIfPresent(width, forKey: .width)
             
             
         }

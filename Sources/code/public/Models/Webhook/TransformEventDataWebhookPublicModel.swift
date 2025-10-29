@@ -10,6 +10,8 @@ public extension PublicClient.Webhook {
     class TransformEventData: Codable {
         
         
+        public var region: String?
+        
         public var event: InternalTransformEvent?
         
         public var companyId: Double?
@@ -21,6 +23,8 @@ public extension PublicClient.Webhook {
 
         public enum CodingKeys: String, CodingKey {
             
+            case region = "region"
+            
             case event = "event"
             
             case companyId = "company_id"
@@ -31,7 +35,9 @@ public extension PublicClient.Webhook {
             
         }
 
-        public init(companyId: Double? = nil, contains: [String]? = nil, event: InternalTransformEvent? = nil, payload: [String: Any]? = nil) {
+        public init(companyId: Double? = nil, contains: [String]? = nil, event: InternalTransformEvent? = nil, payload: [String: Any]? = nil, region: String? = nil) {
+            
+            self.region = region
             
             self.event = event
             
@@ -45,6 +51,18 @@ public extension PublicClient.Webhook {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    region = try container.decode(String.self, forKey: .region)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -98,6 +116,10 @@ public extension PublicClient.Webhook {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(region, forKey: .region)
+            
             
             
             try? container.encodeIfPresent(event, forKey: .event)
