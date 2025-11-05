@@ -2684,7 +2684,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Add items to cart
-            * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
+            * Description: Adds product items to a customer's shopping cart. If the customer does not have an existing cart, a new one is created automatically. - The `new_cart` flag forces creation of a new cart even if one already exists. - The `default_cart` flag determines whether the item is added to the user's default storefront-visible cart. If `true`, the item is added to the user's default cart that is accessible via the storefront. If `false`, an existing active cart is fetched if available; otherwise, a new hidden cart is created.
             **/
             public func platformAddItems(
                 xOrderingSource: String?,

@@ -18,6 +18,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var newCart: Bool?
         
+        public var defaultCart: Bool?
+        
         public var items: [AddProductCart]?
         
 
@@ -27,15 +29,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case newCart = "new_cart"
             
+            case defaultCart = "default_cart"
+            
             case items = "items"
             
         }
 
-        public init(items: [AddProductCart]? = nil, newCart: Bool? = nil, userId: String? = nil) {
+        public init(defaultCart: Bool? = nil, items: [AddProductCart]? = nil, newCart: Bool? = nil, userId: String? = nil) {
             
             self.userId = userId
             
             self.newCart = newCart
+            
+            self.defaultCart = defaultCart
             
             self.items = items
             
@@ -70,6 +76,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    defaultCart = try container.decode(Bool.self, forKey: .defaultCart)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     items = try container.decode([AddProductCart].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -93,6 +111,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(newCart, forKey: .newCart)
+            
+            
+            
+            
+            try? container.encodeIfPresent(defaultCart, forKey: .defaultCart)
             
             
             

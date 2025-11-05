@@ -48,6 +48,8 @@ public extension PlatformClient.Order {
         
         public var isDraft: Bool?
         
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -87,9 +89,11 @@ public extension PlatformClient.Order {
             
             case isDraft = "is_draft"
             
+            case meta = "meta"
+            
         }
 
-        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
+        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
             
             self.shipments = shipments
             
@@ -126,6 +130,8 @@ public extension PlatformClient.Order {
             self.channelCompanyId = channelCompanyId
             
             self.isDraft = isDraft
+            
+            self.meta = meta
             
         }
 
@@ -320,6 +326,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -413,6 +431,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(isDraft, forKey: .isDraft)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -467,6 +490,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var isDraft: Bool?
         
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -506,9 +531,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isDraft = "is_draft"
             
+            case meta = "meta"
+            
         }
 
-        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
+        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
             
             self.shipments = shipments
             
@@ -545,6 +572,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.channelCompanyId = channelCompanyId
             
             self.isDraft = isDraft
+            
+            self.meta = meta
             
         }
 
@@ -739,6 +768,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -832,6 +873,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(isDraft, forKey: .isDraft)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
