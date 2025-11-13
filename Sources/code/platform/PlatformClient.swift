@@ -29711,7 +29711,7 @@ public class PlatformClient {
                 pageNo: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttributeDefinitionList?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -29783,7 +29783,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = data.dictionary
+                            let response = Utility.decode(UserAttributeDefinitionList.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
