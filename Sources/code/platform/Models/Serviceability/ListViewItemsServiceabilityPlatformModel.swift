@@ -30,9 +30,9 @@ public extension PlatformClient.Serviceability {
         
         public var applicationId: String
         
-        public var createdBy: CreatedBy
+        public var createdBy: CreatedBy?
         
-        public var modifiedBy: ModifiedBy
+        public var modifiedBy: ModifiedBy?
         
         public var createdOn: String
         
@@ -77,7 +77,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(applicationId: String, companyId: Int, createdBy: CreatedBy, createdOn: String, geoAreas: [GeoArea], isActive: Bool, modifiedBy: ModifiedBy, modifiedOn: String, name: String, product: ListViewProduct, slug: String, stage: String? = nil, stores: ListViewProduct, summary: Summary? = nil, zoneId: String) {
+        public init(applicationId: String, companyId: Int, createdBy: CreatedBy? = nil, createdOn: String, geoAreas: [GeoArea], isActive: Bool, modifiedBy: ModifiedBy? = nil, modifiedOn: String, name: String, product: ListViewProduct, slug: String, stage: String? = nil, stores: ListViewProduct, summary: Summary? = nil, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -160,14 +160,28 @@ public extension PlatformClient.Serviceability {
             
             
             
-                createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                do {
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
+                do {
+                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 createdOn = try container.decode(String.self, forKey: .createdOn)
@@ -317,9 +331,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var applicationId: String
         
-        public var createdBy: CreatedBy
+        public var createdBy: CreatedBy?
         
-        public var modifiedBy: ModifiedBy
+        public var modifiedBy: ModifiedBy?
         
         public var createdOn: String
         
@@ -364,7 +378,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(applicationId: String, companyId: Int, createdBy: CreatedBy, createdOn: String, geoAreas: [GeoArea], isActive: Bool, modifiedBy: ModifiedBy, modifiedOn: String, name: String, product: ListViewProduct, slug: String, stage: String? = nil, stores: ListViewProduct, summary: Summary? = nil, zoneId: String) {
+        public init(applicationId: String, companyId: Int, createdBy: CreatedBy? = nil, createdOn: String, geoAreas: [GeoArea], isActive: Bool, modifiedBy: ModifiedBy? = nil, modifiedOn: String, name: String, product: ListViewProduct, slug: String, stage: String? = nil, stores: ListViewProduct, summary: Summary? = nil, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -447,14 +461,28 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                do {
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
+                do {
+                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 createdOn = try container.decode(String.self, forKey: .createdOn)

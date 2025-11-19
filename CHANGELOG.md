@@ -1,3 +1,502 @@
+# CHANGE LOG (3.16.0) - 2.10.0
+
+## Application Client
+
+
+
+### Configuration
+
+
+
+#### getFeatures
+
+- ##### What's New
+	- [Added] property <code>feature.order.enabled</code> of schema <code>OrderFeature</code> in response with status code 200
+	- [Added] property <code>feature.order.message</code> of schema <code>OrderFeature</code> in response with status code 200
+
+
+### Logistic
+
+
+
+#### getCountry
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>meta.applicationFields.addressTemplate.plp</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>fields.addressTemplate.plp</code> made optional in response with status code 200
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].ndrDetails</code> of schema <code>ShipmentInfo</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].shipments[].order</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].gstinCode</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].customMeta</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].returnMeta</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].meta</code> of schema <code>OrderSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].currency</code> of schema <code>OrderSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].userInfo.name</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].userInfo.email</code> of schema <code>UserInfo</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].ndrDetails</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].ndrDetails</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipment.ndrDetails</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### sendOtpToShipmentCustomer
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>eventType</code> (type: <code>string</code>)
+
+
+
+#### updateShipmentStatus
+
+- ##### What's New
+	- [Added] property <code>statuses[].shipments[].transitionComments</code> of schema <code>ShipmentsRequestSchema</code> in request body
+
+
+#### submitDeliveryReattemptRequest
+
+- ##### What's New
+	- [Added] method <code>submitDeliveryReattemptRequest</code>
+
+
+
+### Payment
+
+
+
+#### getAggregatorsConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>rupifi</code> of schema <code>AggregatorsConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>mswipe</code> of schema <code>AggregatorsConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>stripe</code> of schema <code>AggregatorsConfigDetail</code> in response with status code 200
+
+
+#### getPaymentModeRoutes
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.epaylater</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.ajiodhan</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.rupifi</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.mswipe</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.stripe</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.jiopay</code> of schema <code>PaymentFlow</code> in response with status code 200
+
+
+#### getPosPaymentModeRoutes
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.epaylater</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.ajiodhan</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.rupifi</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.mswipe</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.stripe</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.jiopay</code> of schema <code>PaymentFlow</code> in response with status code 200
+
+
+#### getRupifiBannerDetails
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getRupifiBannerDetails</code>
+
+
+
+#### getEpaylaterBannerDetails
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getEpaylaterBannerDetails</code>
+
+
+
+#### getPaymentModeRoutesPaymentLink
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.epaylater</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.ajiodhan</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.rupifi</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.mswipe</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.stripe</code> of schema <code>PaymentFlow</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>paymentOptions.paymentFlows.jiopay</code> of schema <code>PaymentFlow</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] method <code>updateCartBreakup</code>
+
+
+
+### Catalog
+
+
+
+#### getCollectionItems
+
+- ##### What's New
+	- [Breaking] [Deleted] <code>query</code> parameter <code>sortOn</code> (type: <code>string</code>),
+ [Added] <code>query</code> parameter <code>q</code> (type: <code>string</code>)
+	- [Added] Possible values <code>physical_bundle</code> to property <code>items[].itemType</code> of schema <code>CollectionItemV2</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>pageId</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] property <code>filters</code> of schema <code>GetCollectionItemsResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].attributes</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].color</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].description</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].discount</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].highlights</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].price</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].rating</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].sellable</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].similars</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].tryouts</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].type</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].popularity</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].departments</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].tags</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].sizes</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].moq</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].seo</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].variants</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].identifiers</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].hasVariant</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].imageNature</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].productOnlineDate</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promoMeta</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].ratingCount</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].teaserTag</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brandUid</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].categoryUid</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].verificationStatus</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].channelIdentifier</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].categorySlug</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].sizeGuide</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].l3Categories</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].storeIds</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].companyIds</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].l3CategoryNames</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].productGroupTag</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].multiSize</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].isGift</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].isCod</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].isDependent</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].isAvailable</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].variantMedia</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].variantGroup</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].multiCategories</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].templateTag</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].netQuantity</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].customOrder</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].countryOfOrigin</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].customJson</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].itemId</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].customMeta</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].discountPercentage</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].noOfBoxes</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].createdOn</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modifiedOn</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sortOn</code> of schema <code>GetCollectionItemsResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>packaging</code> to <code>virtual_bundle</code> of property <code>items[].itemType</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_dependent</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].category_uid</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].multi_size</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].brand_uid</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].country_of_origin</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].departments</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].image_nature</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].moq</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].seo</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_cod</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_gift</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_available</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].l3_categories</code> made optional in response with status code 200
+	- [Changed] Path From <code>/service/platform/catalog/v1.0/company/{company_id}/application/{application_id}/collections/{id}/items/</code> To <code>/service/platform/catalog/v2.0/company/{company_id}/application/{application_id}/collections/{collection_id}/items/</code>
+
+
+#### getCollectionDetail
+
+- ##### What's New
+	- [Added] property <code>handpickedCollectionItemIds</code> of schema <code>GetCollectionDetailResponseSchema</code> in response with status code 200
+
+
+#### getProductDetailBySlug
+
+- ##### What's New
+	- [Added] Possible values <code>virtual_bundle</code> to property <code>itemType</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] Possible values <code>physical_bundle</code> to property <code>itemType</code> of schema <code>ProductDetail</code> in response with status code 200
+
+
+#### getAppProducts
+
+- ##### What's New
+	- [Added] Possible values <code>virtual_bundle</code> to property <code>items[].itemType</code> of schema <code>RawProduct</code> in response with status code 200
+	- [Added] Possible values <code>physical_bundle</code> to property <code>items[].itemType</code> of schema <code>RawProduct</code> in response with status code 200
+
+
+#### listDepartmentsData
+
+- ##### What's New
+	- [Added] Possible values <code>virtual_bundle</code> to property <code>items[].itemType</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Added] Possible values <code>physical_bundle</code> to property <code>items[].itemType</code> of schema <code>GetDepartment</code> in response with status code 200
+
+
+#### getDepartmentData
+
+- ##### What's New
+	- [Added] Possible values <code>virtual_bundle</code> to property <code>items[].itemType</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Added] Possible values <code>physical_bundle</code> to property <code>items[].itemType</code> of schema <code>GetDepartment</code> in response with status code 200
+
+
+#### getProductSize
+
+- ##### What's New
+	- [Added] Possible values <code>virtual_bundle</code> to property <code>items[].itemType</code> of schema <code>Product</code> in response with status code 200
+	- [Added] Possible values <code>physical_bundle</code> to property <code>items[].itemType</code> of schema <code>Product</code> in response with status code 200
+
+
+### Serviceability
+
+
+
+#### getZones
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].modified_by</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].created_by</code> made optional in response with status code 200
+
+
+#### updatePincodeMopView
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>array</code> to property <code>error</code> of schema <code>PincodeMopBulkError</code> in response with status code 400
+	- [Added] property <code>error[]</code> of schema <code>PincodeMopBulkError</code> in response with status code 400
+
+
+#### updatePincodeBulkView
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>array</code> to property <code>error</code> of schema <code>CommonError</code> in response with status code 400
+	- [Added] property <code>error[]</code> of schema <code>CommonError</code> in response with status code 400
+
+
+#### updateCourierRule
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>CourierPartnerRule</code> in request body
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>CourierPartnerRule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>CourierPartnerRuleResult</code> in response with status code 200
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>CourierPartnerRuleResult</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Changed] <code>filters</code> made optional in request body
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+
+#### getCourierPartnerRule
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>CourierPartnerRuleResult</code> in response with status code 200
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>CourierPartnerRuleResult</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+
+#### createCourierPartnerRule
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>CourierPartnerRule</code> in request body
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>CourierPartnerRule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>CourierPartnerRuleResult</code> in response with status code 200
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>CourierPartnerRuleResult</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Changed] <code>filters</code> made optional in request body
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+
+#### getCourierPartnerRules
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].filters</code> of schema <code>CourierPartnerRuleResult</code> in response with status code 200
+	- [Added] Default value <code>all</code> to property <code>items[].filters</code> of schema <code>CourierPartnerRuleResult</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[].conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[].conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Added] <code>items[].conditions.orderPlaceDate.lte</code>, <code>items[].conditions.orderPlaceDate.gte</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].conditions.orderPlaceDate.lt</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].conditions.orderPlaceDate.gt</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>items[].conditions.orderPlaceDate.lte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>items[].conditions.orderPlaceDate.gte</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+
+#### getStoreRules
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].filters</code> of schema <code>StoreRuleDataSchema</code> in response with status code 200
+	- [Added] Default value <code>all</code> to property <code>items[].filters</code> of schema <code>StoreRuleDataSchema</code> in response with status code 200
+	- [Added] <code>items[].conditions.orderPlaceDate.lte</code>, <code>items[].conditions.orderPlaceDate.gte</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].conditions.orderPlaceDate.lt</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].conditions.orderPlaceDate.gt</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in response with status code 200
+
+
+#### createStoreRules
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>CreateStoreRuleDetailsSchema</code> in request body
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>CreateStoreRuleDetailsSchema</code> in request body
+	- [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>StoreRuleResultSchema</code> in response with status code 200
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>StoreRuleResultSchema</code> in response with status code 200
+	- [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in response with status code 200
+
+
+#### getStoreRule
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>StoreRuleDataSchema</code> in response with status code 200
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>StoreRuleDataSchema</code> in response with status code 200
+	- [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in response with status code 200
+
+
+#### updateStoreRules
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>CreateStoreRuleDetailsSchema</code> in request body
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>CreateStoreRuleDetailsSchema</code> in request body
+	- [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>filters</code> of schema <code>StoreRuleUpdateResultSchema</code> in response with status code 200
+	- [Added] Default value <code>all</code> to property <code>filters</code> of schema <code>StoreRuleUpdateResultSchema</code> in response with status code 200
+	- [Added] <code>conditions.orderPlaceDate.lte</code>, <code>conditions.orderPlaceDate.gte</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in request body
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.lt</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>conditions.orderPlaceDate.gt</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.lte</code> of schema <code>DateOperations</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>conditions.orderPlaceDate.gte</code> of schema <code>DateOperations</code> in response with status code 200
+
+
+#### createShipments
+
+- ##### What's New
+	- [Added] property <code>shipments[].count</code> of schema <code>PlatformShipmentsSchema</code> in response with status code 200
+	- [Added] property <code>shipments[].isCodAvailable</code> of schema <code>PlatformShipmentsSchema</code> in response with status code 200
+
+
 # CHANGE LOG (3.15.0) - 2.9.4
 
 ## Application Client

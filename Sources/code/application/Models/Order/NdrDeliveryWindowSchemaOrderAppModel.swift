@@ -1,37 +1,37 @@
 
 
 import Foundation
-public extension ApplicationClient.Payment {
+public extension ApplicationClient.Order {
     /*
-        Model: EpaylaterBannerData
-        Used By: Payment
+        Model: NdrDeliveryWindowSchema
+        Used By: Order
     */
-    class EpaylaterBannerData: Codable {
+    class NdrDeliveryWindowSchema: Codable {
         
-        public var status: String?
+        public var startDate: String?
         
-        public var message: String?
+        public var endDate: String?
         
-        public var display: Bool
+        public var excludedDates: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
+            case startDate = "start_date"
             
-            case message = "message"
+            case endDate = "end_date"
             
-            case display = "display"
+            case excludedDates = "excluded_dates"
             
         }
 
-        public init(display: Bool, message: String? = nil, status: String? = nil) {
+        public init(endDate: String? = nil, excludedDates: [String]? = nil, startDate: String? = nil) {
             
-            self.status = status
+            self.startDate = startDate
             
-            self.message = message
+            self.endDate = endDate
             
-            self.display = display
+            self.excludedDates = excludedDates
             
         }
 
@@ -40,7 +40,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                status = try container.decode(String.self, forKey: .status)
+                startDate = try container.decode(String.self, forKey: .startDate)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,7 +52,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                message = try container.decode(String.self, forKey: .message)
+                endDate = try container.decode(String.self, forKey: .endDate)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,8 +63,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            display = try container.decode(Bool.self, forKey: .display)
+            do {
+                excludedDates = try container.decode([String].self, forKey: .excludedDates)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -73,15 +80,15 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
             
             
             
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(excludedDates, forKey: .excludedDates)
             
             
         }

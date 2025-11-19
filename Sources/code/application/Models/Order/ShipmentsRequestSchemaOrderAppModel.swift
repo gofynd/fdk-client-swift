@@ -14,6 +14,8 @@ public extension ApplicationClient.Order {
         
         public var dataUpdates: DataUpdates?
         
+        public var transitionComments: [TransitionComments]?
+        
         public var identifier: String
         
 
@@ -25,17 +27,21 @@ public extension ApplicationClient.Order {
             
             case dataUpdates = "data_updates"
             
+            case transitionComments = "transition_comments"
+            
             case identifier = "identifier"
             
         }
 
-        public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil) {
+        public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil, transitionComments: [TransitionComments]? = nil) {
             
             self.reasons = reasons
             
             self.products = products
             
             self.dataUpdates = dataUpdates
+            
+            self.transitionComments = transitionComments
             
             self.identifier = identifier
             
@@ -81,6 +87,18 @@ public extension ApplicationClient.Order {
             
             
             
+            do {
+                transitionComments = try container.decode([TransitionComments].self, forKey: .transitionComments)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
             identifier = try container.decode(String.self, forKey: .identifier)
             
             
@@ -100,6 +118,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
+            
+            
+            
+            try? container.encodeIfPresent(transitionComments, forKey: .transitionComments)
             
             
             

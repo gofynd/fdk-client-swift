@@ -44,6 +44,10 @@ public extension PlatformClient.Serviceability {
         
         public var courierPartners: [ShipmentsCourierPartner]?
         
+        public var count: Int?
+        
+        public var isCodAvailable: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -79,9 +83,13 @@ public extension PlatformClient.Serviceability {
             
             case courierPartners = "courier_partners"
             
+            case count = "count"
+            
+            case isCodAvailable = "is_cod_available"
+            
         }
 
-        public init(articles: [ShipmentsArticle]? = nil, courierPartners: [ShipmentsCourierPartner]? = nil, fulfillmentLocationId: Int? = nil, fulfillmentOption: FulfillmentOptionItem? = nil, fulfillmentTags: [String]? = nil, fulfillmentType: String? = nil, isAutoAssign: Bool? = nil, isEwaybillEnabled: Bool? = nil, isMto: Bool? = nil, mps: Bool? = nil, packaging: Packaging? = nil, promise: ShipmentsPromise? = nil, shipmentType: String? = nil, tags: [String]? = nil, volumetricWeight: Double? = nil, weight: Double? = nil) {
+        public init(articles: [ShipmentsArticle]? = nil, count: Int? = nil, courierPartners: [ShipmentsCourierPartner]? = nil, fulfillmentLocationId: Int? = nil, fulfillmentOption: FulfillmentOptionItem? = nil, fulfillmentTags: [String]? = nil, fulfillmentType: String? = nil, isAutoAssign: Bool? = nil, isCodAvailable: Bool? = nil, isEwaybillEnabled: Bool? = nil, isMto: Bool? = nil, mps: Bool? = nil, packaging: Packaging? = nil, promise: ShipmentsPromise? = nil, shipmentType: String? = nil, tags: [String]? = nil, volumetricWeight: Double? = nil, weight: Double? = nil) {
             
             self.tags = tags
             
@@ -114,6 +122,10 @@ public extension PlatformClient.Serviceability {
             self.fulfillmentLocationId = fulfillmentLocationId
             
             self.courierPartners = courierPartners
+            
+            self.count = count
+            
+            self.isCodAvailable = isCodAvailable
             
         }
 
@@ -312,6 +324,30 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    count = try container.decode(Int.self, forKey: .count)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isCodAvailable = try container.decode(Bool.self, forKey: .isCodAvailable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -395,6 +431,16 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(courierPartners, forKey: .courierPartners)
+            
+            
+            
+            
+            try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
             
             
         }
@@ -445,6 +491,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var courierPartners: [ShipmentsCourierPartner]?
         
+        public var count: Int?
+        
+        public var isCodAvailable: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -480,9 +530,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case courierPartners = "courier_partners"
             
+            case count = "count"
+            
+            case isCodAvailable = "is_cod_available"
+            
         }
 
-        public init(articles: [ShipmentsArticle]? = nil, courierPartners: [ShipmentsCourierPartner]? = nil, fulfillmentLocationId: Int? = nil, fulfillmentOption: FulfillmentOptionItem? = nil, fulfillmentTags: [String]? = nil, fulfillmentType: String? = nil, isAutoAssign: Bool? = nil, isEwaybillEnabled: Bool? = nil, isMto: Bool? = nil, mps: Bool? = nil, packaging: Packaging? = nil, promise: ShipmentsPromise? = nil, shipmentType: String? = nil, tags: [String]? = nil, volumetricWeight: Double? = nil, weight: Double? = nil) {
+        public init(articles: [ShipmentsArticle]? = nil, count: Int? = nil, courierPartners: [ShipmentsCourierPartner]? = nil, fulfillmentLocationId: Int? = nil, fulfillmentOption: FulfillmentOptionItem? = nil, fulfillmentTags: [String]? = nil, fulfillmentType: String? = nil, isAutoAssign: Bool? = nil, isCodAvailable: Bool? = nil, isEwaybillEnabled: Bool? = nil, isMto: Bool? = nil, mps: Bool? = nil, packaging: Packaging? = nil, promise: ShipmentsPromise? = nil, shipmentType: String? = nil, tags: [String]? = nil, volumetricWeight: Double? = nil, weight: Double? = nil) {
             
             self.tags = tags
             
@@ -515,6 +569,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.fulfillmentLocationId = fulfillmentLocationId
             
             self.courierPartners = courierPartners
+            
+            self.count = count
+            
+            self.isCodAvailable = isCodAvailable
             
         }
 
@@ -713,6 +771,30 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    count = try container.decode(Int.self, forKey: .count)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isCodAvailable = try container.decode(Bool.self, forKey: .isCodAvailable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -796,6 +878,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(courierPartners, forKey: .courierPartners)
+            
+            
+            
+            
+            try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
             
             
         }

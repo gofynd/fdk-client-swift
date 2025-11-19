@@ -1,67 +1,61 @@
 
 
 import Foundation
-public extension ApplicationClient.Payment {
+public extension ApplicationClient.Order {
     /*
-        Model: PaymentFlow
-        Used By: Payment
+        Model: NdrDetailsSchema
+        Used By: Order
     */
-    class PaymentFlow: Codable {
+    class NdrDetailsSchema: Codable {
         
-        public var bqrRazorpay: AggregatorRoute?
+        public var showNdrForm: Bool?
         
-        public var fynd: AggregatorRoute?
+        public var nonEditableAddressFields: [String]?
         
-        public var razorpay: AggregatorRoute?
+        public var deliveryScheduledDate: String?
         
-        public var juspay: AggregatorRoute?
+        public var allowedDeliveryWindow: NdrDeliveryWindowSchema?
         
-        public var simpl: AggregatorRoute?
+        public var failureReason: String?
         
-        public var ccavenue: AggregatorRoute?
+        public var deliveryPartnerRemarks: String?
         
-        public var payubiz: AggregatorRoute?
-        
-        public var upiRazorpay: AggregatorRoute?
+        public var customerRemarks: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case bqrRazorpay = "bqr_razorpay"
+            case showNdrForm = "show_ndr_form"
             
-            case fynd = "fynd"
+            case nonEditableAddressFields = "non_editable_address_fields"
             
-            case razorpay = "razorpay"
+            case deliveryScheduledDate = "delivery_scheduled_date"
             
-            case juspay = "juspay"
+            case allowedDeliveryWindow = "allowed_delivery_window"
             
-            case simpl = "simpl"
+            case failureReason = "failure_reason"
             
-            case ccavenue = "ccavenue"
+            case deliveryPartnerRemarks = "delivery_partner_remarks"
             
-            case payubiz = "payubiz"
-            
-            case upiRazorpay = "upi_razorpay"
+            case customerRemarks = "customer_remarks"
             
         }
 
-        public init(bqrRazorpay: AggregatorRoute? = nil, ccavenue: AggregatorRoute? = nil, fynd: AggregatorRoute? = nil, juspay: AggregatorRoute? = nil, payubiz: AggregatorRoute? = nil, razorpay: AggregatorRoute? = nil, simpl: AggregatorRoute? = nil, upiRazorpay: AggregatorRoute? = nil) {
+        public init(allowedDeliveryWindow: NdrDeliveryWindowSchema? = nil, customerRemarks: String? = nil, deliveryPartnerRemarks: String? = nil, deliveryScheduledDate: String? = nil, failureReason: String? = nil, nonEditableAddressFields: [String]? = nil, showNdrForm: Bool? = nil) {
             
-            self.bqrRazorpay = bqrRazorpay
+            self.showNdrForm = showNdrForm
             
-            self.fynd = fynd
+            self.nonEditableAddressFields = nonEditableAddressFields
             
-            self.razorpay = razorpay
+            self.deliveryScheduledDate = deliveryScheduledDate
             
-            self.juspay = juspay
+            self.allowedDeliveryWindow = allowedDeliveryWindow
             
-            self.simpl = simpl
+            self.failureReason = failureReason
             
-            self.ccavenue = ccavenue
+            self.deliveryPartnerRemarks = deliveryPartnerRemarks
             
-            self.payubiz = payubiz
-            
-            self.upiRazorpay = upiRazorpay
+            self.customerRemarks = customerRemarks
             
         }
 
@@ -70,7 +64,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                bqrRazorpay = try container.decode(AggregatorRoute.self, forKey: .bqrRazorpay)
+                showNdrForm = try container.decode(Bool.self, forKey: .showNdrForm)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +76,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                fynd = try container.decode(AggregatorRoute.self, forKey: .fynd)
+                nonEditableAddressFields = try container.decode([String].self, forKey: .nonEditableAddressFields)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,7 +88,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                razorpay = try container.decode(AggregatorRoute.self, forKey: .razorpay)
+                deliveryScheduledDate = try container.decode(String.self, forKey: .deliveryScheduledDate)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +100,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                juspay = try container.decode(AggregatorRoute.self, forKey: .juspay)
+                allowedDeliveryWindow = try container.decode(NdrDeliveryWindowSchema.self, forKey: .allowedDeliveryWindow)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,7 +112,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                simpl = try container.decode(AggregatorRoute.self, forKey: .simpl)
+                failureReason = try container.decode(String.self, forKey: .failureReason)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,7 +124,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                ccavenue = try container.decode(AggregatorRoute.self, forKey: .ccavenue)
+                deliveryPartnerRemarks = try container.decode(String.self, forKey: .deliveryPartnerRemarks)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,19 +136,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                payubiz = try container.decode(AggregatorRoute.self, forKey: .payubiz)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                upiRazorpay = try container.decode(AggregatorRoute.self, forKey: .upiRazorpay)
+                customerRemarks = try container.decode(String.self, forKey: .customerRemarks)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,35 +152,31 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(bqrRazorpay, forKey: .bqrRazorpay)
+            try? container.encodeIfPresent(showNdrForm, forKey: .showNdrForm)
             
             
             
-            try? container.encodeIfPresent(fynd, forKey: .fynd)
+            try? container.encodeIfPresent(nonEditableAddressFields, forKey: .nonEditableAddressFields)
             
             
             
-            try? container.encodeIfPresent(razorpay, forKey: .razorpay)
+            try? container.encodeIfPresent(deliveryScheduledDate, forKey: .deliveryScheduledDate)
             
             
             
-            try? container.encodeIfPresent(juspay, forKey: .juspay)
+            try? container.encodeIfPresent(allowedDeliveryWindow, forKey: .allowedDeliveryWindow)
             
             
             
-            try? container.encodeIfPresent(simpl, forKey: .simpl)
+            try? container.encodeIfPresent(failureReason, forKey: .failureReason)
             
             
             
-            try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
+            try? container.encodeIfPresent(deliveryPartnerRemarks, forKey: .deliveryPartnerRemarks)
             
             
             
-            try? container.encodeIfPresent(payubiz, forKey: .payubiz)
-            
-            
-            
-            try? container.encodeIfPresent(upiRazorpay, forKey: .upiRazorpay)
+            try? container.encodeIfPresent(customerRemarks, forKey: .customerRemarks)
             
             
         }

@@ -10,7 +10,7 @@ public extension ApplicationClient.Order {
         
         public var page: OrderPage?
         
-        public var items: [OrderSchema]?
+        public var items: [OrderInfo]?
         
         public var filters: OrderFilters?
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(filters: OrderFilters? = nil, items: [OrderSchema]? = nil, page: OrderPage? = nil) {
+        public init(filters: OrderFilters? = nil, items: [OrderInfo]? = nil, page: OrderPage? = nil) {
             
             self.page = page
             
@@ -52,7 +52,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                items = try container.decode([OrderSchema].self, forKey: .items)
+                items = try container.decode([OrderInfo].self, forKey: .items)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

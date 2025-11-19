@@ -64,6 +64,8 @@ public extension PlatformClient.Catalog {
         
         public var visibleFacetsKeys: [String]?
         
+        public var handpickedCollectionItemIds: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -119,9 +121,11 @@ public extension PlatformClient.Catalog {
             
             case visibleFacetsKeys = "visible_facets_keys"
             
+            case handpickedCollectionItemIds = "handpicked_collection_item_ids"
+            
         }
 
-        public init(action: [String: Any]? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: ImageUrls? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+        public init(action: [String: Any]? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: ImageUrls? = nil, description: String? = nil, handpickedCollectionItemIds: [String]? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
             
             self.customJson = customJson
             
@@ -174,6 +178,8 @@ public extension PlatformClient.Catalog {
             self.id = id
             
             self.visibleFacetsKeys = visibleFacetsKeys
+            
+            self.handpickedCollectionItemIds = handpickedCollectionItemIds
             
         }
 
@@ -492,6 +498,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    handpickedCollectionItemIds = try container.decode([String].self, forKey: .handpickedCollectionItemIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -625,6 +643,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
+            
+            
+            
+            
+            try? container.encodeIfPresent(handpickedCollectionItemIds, forKey: .handpickedCollectionItemIds)
             
             
         }
@@ -695,6 +718,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var visibleFacetsKeys: [String]?
         
+        public var handpickedCollectionItemIds: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -750,9 +775,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case visibleFacetsKeys = "visible_facets_keys"
             
+            case handpickedCollectionItemIds = "handpicked_collection_item_ids"
+            
         }
 
-        public init(action: [String: Any]? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: ImageUrls? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+        public init(action: [String: Any]? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: ImageUrls? = nil, description: String? = nil, handpickedCollectionItemIds: [String]? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
             
             self.customJson = customJson
             
@@ -805,6 +832,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.id = id
             
             self.visibleFacetsKeys = visibleFacetsKeys
+            
+            self.handpickedCollectionItemIds = handpickedCollectionItemIds
             
         }
 
@@ -1123,6 +1152,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    handpickedCollectionItemIds = try container.decode([String].self, forKey: .handpickedCollectionItemIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1256,6 +1297,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
+            
+            
+            
+            
+            try? container.encodeIfPresent(handpickedCollectionItemIds, forKey: .handpickedCollectionItemIds)
             
             
         }

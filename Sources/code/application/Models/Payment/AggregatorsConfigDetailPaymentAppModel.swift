@@ -18,12 +18,6 @@ public extension ApplicationClient.Payment {
         
         public var payumoney: AggregatorConfigDetail?
         
-        public var rupifi: AggregatorConfigDetail?
-        
-        public var mswipe: AggregatorConfigDetail?
-        
-        public var stripe: AggregatorConfigDetail?
-        
         public var ccavenue: AggregatorConfigDetail?
         
         public var env: String
@@ -41,19 +35,13 @@ public extension ApplicationClient.Payment {
             
             case payumoney = "payumoney"
             
-            case rupifi = "rupifi"
-            
-            case mswipe = "mswipe"
-            
-            case stripe = "stripe"
-            
             case ccavenue = "ccavenue"
             
             case env = "env"
             
         }
 
-        public init(ccavenue: AggregatorConfigDetail? = nil, env: String, juspay: AggregatorConfigDetail? = nil, mswipe: AggregatorConfigDetail? = nil, payumoney: AggregatorConfigDetail? = nil, razorpay: AggregatorConfigDetail? = nil, rupifi: AggregatorConfigDetail? = nil, simpl: AggregatorConfigDetail? = nil, stripe: AggregatorConfigDetail? = nil, success: Bool) {
+        public init(ccavenue: AggregatorConfigDetail? = nil, env: String, juspay: AggregatorConfigDetail? = nil, payumoney: AggregatorConfigDetail? = nil, razorpay: AggregatorConfigDetail? = nil, simpl: AggregatorConfigDetail? = nil, success: Bool) {
             
             self.success = success
             
@@ -64,12 +52,6 @@ public extension ApplicationClient.Payment {
             self.simpl = simpl
             
             self.payumoney = payumoney
-            
-            self.rupifi = rupifi
-            
-            self.mswipe = mswipe
-            
-            self.stripe = stripe
             
             self.ccavenue = ccavenue
             
@@ -135,42 +117,6 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                rupifi = try container.decode(AggregatorConfigDetail.self, forKey: .rupifi)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                mswipe = try container.decode(AggregatorConfigDetail.self, forKey: .mswipe)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                stripe = try container.decode(AggregatorConfigDetail.self, forKey: .stripe)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 ccavenue = try container.decode(AggregatorConfigDetail.self, forKey: .ccavenue)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -209,18 +155,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(payumoney, forKey: .payumoney)
-            
-            
-            
-            try? container.encodeIfPresent(rupifi, forKey: .rupifi)
-            
-            
-            
-            try? container.encodeIfPresent(mswipe, forKey: .mswipe)
-            
-            
-            
-            try? container.encodeIfPresent(stripe, forKey: .stripe)
             
             
             

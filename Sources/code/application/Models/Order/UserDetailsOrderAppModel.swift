@@ -3,47 +3,41 @@
 import Foundation
 public extension ApplicationClient.Order {
     /*
-        Model: ErrorResponseSchema
+        Model: UserDetails
         Used By: Order
     */
-    class ErrorResponseSchema: Codable {
+    class UserDetails: Codable {
         
-        public var code: String?
+        public var firstName: String?
         
-        public var message: String?
+        public var gender: String?
         
-        public var status: Int?
+        public var lastName: String?
         
-        public var exception: String?
-        
-        public var stackTrace: String?
+        public var mobile: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case code = "code"
+            case firstName = "first_name"
             
-            case message = "message"
+            case gender = "gender"
             
-            case status = "status"
+            case lastName = "last_name"
             
-            case exception = "exception"
-            
-            case stackTrace = "stack_trace"
+            case mobile = "mobile"
             
         }
 
-        public init(code: String? = nil, exception: String? = nil, message: String? = nil, stackTrace: String? = nil, status: Int? = nil) {
+        public init(firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil) {
             
-            self.code = code
+            self.firstName = firstName
             
-            self.message = message
+            self.gender = gender
             
-            self.status = status
+            self.lastName = lastName
             
-            self.exception = exception
-            
-            self.stackTrace = stackTrace
+            self.mobile = mobile
             
         }
 
@@ -52,7 +46,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                code = try container.decode(String.self, forKey: .code)
+                firstName = try container.decode(String.self, forKey: .firstName)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +58,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                message = try container.decode(String.self, forKey: .message)
+                gender = try container.decode(String.self, forKey: .gender)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +70,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                lastName = try container.decode(String.self, forKey: .lastName)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,19 +82,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                exception = try container.decode(String.self, forKey: .exception)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                stackTrace = try container.decode(String.self, forKey: .stackTrace)
+                mobile = try container.decode(String.self, forKey: .mobile)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,23 +98,19 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(gender, forKey: .gender)
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
             
             
             
-            try? container.encodeIfPresent(exception, forKey: .exception)
-            
-            
-            
-            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
             
             
         }

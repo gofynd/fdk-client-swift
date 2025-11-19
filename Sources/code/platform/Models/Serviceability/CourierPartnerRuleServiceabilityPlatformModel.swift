@@ -20,7 +20,7 @@ public extension PlatformClient.Serviceability {
         
         public var manualPriority: [String]
         
-        public var filters: String
+        public var filters: String?
         
         public var conditions: CourierPartnerRuleConditions
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, filters: String, isActive: Bool, manualPriority: [String], name: String, sort: [String], type: String? = nil) {
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, filters: String? = nil, isActive: Bool, manualPriority: [String], name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
@@ -100,9 +100,16 @@ public extension PlatformClient.Serviceability {
             
             
             
-                filters = try container.decode(String.self, forKey: .filters)
+                do {
+                    filters = try container.decode(String.self, forKey: .filters)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 conditions = try container.decode(CourierPartnerRuleConditions.self, forKey: .conditions)
@@ -195,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var manualPriority: [String]
         
-        public var filters: String
+        public var filters: String?
         
         public var conditions: CourierPartnerRuleConditions
         
@@ -224,7 +231,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, filters: String, isActive: Bool, manualPriority: [String], name: String, sort: [String], type: String? = nil) {
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, filters: String? = nil, isActive: Bool, manualPriority: [String], name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
@@ -275,9 +282,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                filters = try container.decode(String.self, forKey: .filters)
+                do {
+                    filters = try container.decode(String.self, forKey: .filters)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 conditions = try container.decode(CourierPartnerRuleConditions.self, forKey: .conditions)

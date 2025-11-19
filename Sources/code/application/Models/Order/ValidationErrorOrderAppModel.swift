@@ -1,31 +1,31 @@
 
 
 import Foundation
-public extension ApplicationClient.Payment {
+public extension ApplicationClient.Order {
     /*
-        Model: EpaylaterBannerDetails
-        Used By: Payment
+        Model: ValidationError
+        Used By: Order
     */
-    class EpaylaterBannerDetails: Codable {
+    class ValidationError: Codable {
         
-        public var data: EpaylaterBannerData
+        public var message: String
         
-        public var success: Bool
+        public var field: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case data = "data"
+            case message = "message"
             
-            case success = "success"
+            case field = "field"
             
         }
 
-        public init(data: EpaylaterBannerData, success: Bool) {
+        public init(field: String, message: String) {
             
-            self.data = data
+            self.message = message
             
-            self.success = success
+            self.field = field
             
         }
 
@@ -33,12 +33,12 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            data = try container.decode(EpaylaterBannerData.self, forKey: .data)
+            message = try container.decode(String.self, forKey: .message)
             
             
             
             
-            success = try container.decode(Bool.self, forKey: .success)
+            field = try container.decode(String.self, forKey: .field)
             
             
             
@@ -48,11 +48,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(field, forKey: .field)
             
             
         }

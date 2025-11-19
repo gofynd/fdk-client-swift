@@ -12,20 +12,12 @@ public extension PlatformClient.Serviceability {
     class DateOperations: Codable {
         
         
-        public var lt: String?
+        public var lte: String
         
-        public var gt: String?
-        
-        public var lte: String?
-        
-        public var gte: String?
+        public var gte: String
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case lt = "lt"
-            
-            case gt = "gt"
             
             case lte = "lte"
             
@@ -33,11 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(gt: String? = nil, gte: String? = nil, lt: String? = nil, lte: String? = nil) {
-            
-            self.lt = lt
-            
-            self.gt = gt
+        public init(gte: String, lte: String) {
             
             self.lte = lte
             
@@ -49,67 +37,19 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    lt = try container.decode(String.self, forKey: .lt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                lte = try container.decode(String.self, forKey: .lte)
                 
             
             
-                do {
-                    gt = try container.decode(String.self, forKey: .gt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                gte = try container.decode(String.self, forKey: .gte)
                 
             
-            
-                do {
-                    lte = try container.decode(String.self, forKey: .lte)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    gte = try container.decode(String.self, forKey: .gte)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(lt, forKey: .lt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(gt, forKey: .gt)
-            
             
             
             
@@ -137,20 +77,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class DateOperations: Codable {
         
         
-        public var lt: String?
+        public var lte: String
         
-        public var gt: String?
-        
-        public var lte: String?
-        
-        public var gte: String?
+        public var gte: String
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case lt = "lt"
-            
-            case gt = "gt"
             
             case lte = "lte"
             
@@ -158,11 +90,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(gt: String? = nil, gte: String? = nil, lt: String? = nil, lte: String? = nil) {
-            
-            self.lt = lt
-            
-            self.gt = gt
+        public init(gte: String, lte: String) {
             
             self.lte = lte
             
@@ -174,67 +102,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    lt = try container.decode(String.self, forKey: .lt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                lte = try container.decode(String.self, forKey: .lte)
                 
             
             
-                do {
-                    gt = try container.decode(String.self, forKey: .gt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                gte = try container.decode(String.self, forKey: .gte)
                 
             
-            
-                do {
-                    lte = try container.decode(String.self, forKey: .lte)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    gte = try container.decode(String.self, forKey: .gte)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(lt, forKey: .lt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(gt, forKey: .gt)
-            
             
             
             

@@ -1,31 +1,31 @@
 
 
 import Foundation
-public extension ApplicationClient.Payment {
+public extension ApplicationClient.Order {
     /*
-        Model: RupifiBannerData
-        Used By: Payment
+        Model: TransitionComments
+        Used By: Order
     */
-    class RupifiBannerData: Codable {
+    class TransitionComments: Codable {
         
-        public var status: String?
+        public var title: String?
         
-        public var kycUrl: String?
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
+            case title = "title"
             
-            case kycUrl = "kyc_url"
+            case message = "message"
             
         }
 
-        public init(kycUrl: String? = nil, status: String? = nil) {
+        public init(message: String? = nil, title: String? = nil) {
             
-            self.status = status
+            self.title = title
             
-            self.kycUrl = kycUrl
+            self.message = message
             
         }
 
@@ -34,7 +34,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                status = try container.decode(String.self, forKey: .status)
+                title = try container.decode(String.self, forKey: .title)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                kycUrl = try container.decode(String.self, forKey: .kycUrl)
+                message = try container.decode(String.self, forKey: .message)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(title, forKey: .title)
             
             
             
-            try? container.encodeIfPresent(kycUrl, forKey: .kycUrl)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

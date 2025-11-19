@@ -35,6 +35,8 @@ extension ApplicationClient {
             
             ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/status") 
             
+            ulrs["submitDeliveryReattemptRequest"] = config.domain.appendAsPath("/service/application/order/v1.0/shipments/{shipment_id}/delivery-reattempt") 
+            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -493,12 +495,17 @@ extension ApplicationClient {
         public func sendOtpToShipmentCustomer(
             orderId: String,
             shipmentId: String,
+            eventType: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SendOtpToCustomerResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
-             
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = eventType {
+                xQuery["event_type"] = value
+            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -517,7 +524,7 @@ extension ApplicationClient {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
@@ -757,6 +764,61 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ShipmentApplicationStatusResponseSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Initiates a delivery reattempt request for a given shipment
+        * Description: This operation allows customers to submit a request for reattempting the delivery of a specific shipment  with optional address updates and a new delivery date.
+        **/
+        public func submitDeliveryReattemptRequest(
+            shipmentId: String,
+            body: DeliveryReattemptRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: DeliveryReattemptSuccessResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["submitDeliveryReattemptRequest"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DeliveryReattemptSuccessResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

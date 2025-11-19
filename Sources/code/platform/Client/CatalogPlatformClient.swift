@@ -75,7 +75,7 @@ extension PlatformClient {
         * Description: Retrieve a list of categories data associated to a specific company and queries passed in the request.
         **/
         public func listCategories(
-            level: String?,
+            level: [Int]?,
             department: Int?,
             q: String?,
             pageNo: Int?,
@@ -170,7 +170,7 @@ extension PlatformClient {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func listCategoriesPaginator(
-            level: String?,
+            level: [Int]?,
             department: Int?,
             q: String?,
             pageSize: Int?,

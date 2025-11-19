@@ -2843,6 +2843,81 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Update cart breakup values
+            * Description: Updates the cart breakup based on the enabled features and user preferences.   This endpoint allows customers to modify how their cart totals are calculated —  including options such as applying store credits, loyalty points, discounts,  and other promotional benefits.   The API recalculates and returns the updated breakup reflecting the selected  configurations in real-time.
+            **/
+            public func updateCartBreakup(
+                xOrderingSource: String?,
+                id: String?,
+                i: Bool?,
+                b: Bool?,
+                buyNow: Bool?,
+                body: UpdateCartBreakup,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: UpdateCartDetailResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/detail",
+                    query: xQuery,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(UpdateCartDetailResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Delete a cart
             * Description: Delete all items from the user's cart and resets it to its initial state, providing a clean slate for new selections.
             **/
@@ -5399,77 +5474,6 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: List items of collection
-            * Description: Get items from a collection specified by its id.
-            **/
-            public func getCollectionItems(
-                id: String,
-                sortOn: String?,
-                pageId: String?,
-                pageSize: Int?,
-                pageNo: Int?,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetCollectionItemsResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                var xQuery: [String: Any] = [:] 
-                
-                if let value = sortOn {
-                    xQuery["sort_on"] = value
-                }
-                
-                if let value = pageId {
-                    xQuery["page_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/items/",
-                    query: xQuery,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetCollectionItemsResponseSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
             * Summary: Create items in a collection
             * Description: Adds items to a collection specified by its id
             **/
@@ -5506,6 +5510,72 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(CommonResponseSchemaCollection.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: List items of collection
+            * Description: Get items from a collection specified by its collection_id with enhanced search capabilities.
+            **/
+            public func getCollectionItems(
+                collectionId: String,
+                pageNo: Int?,
+                pageSize: Int?,
+                q: String?,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: GetCollectionItemsResponseSchemaV2?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/collections/\(collectionId)/items/",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetCollectionItemsResponseSchemaV2.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -25056,106 +25126,6 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(RevokeOAuthToken.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Repayment details for BNPL
-            * Description: Retrieve repayment details for Buy Now Pay Later (BNPL) payment
-            **/
-            public func repaymentDetails(
-                body: RepaymentDetailsSerialiserPayAll,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RepaymentDetails?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/repayment-details",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(RepaymentDetails.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Merchant onboarding for BNPL
-            * Description: Initiate the merchant onboarding process for Buy Now Pay Later (BNPL).
-            **/
-            public func merchantOnBoarding(
-                body: MerchantOnBoardingCreation,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: MerchantOnBoardingDetails?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/merchant-onboarding",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(MerchantOnBoardingDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

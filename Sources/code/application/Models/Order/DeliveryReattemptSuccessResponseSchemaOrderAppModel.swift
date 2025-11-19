@@ -3,29 +3,23 @@
 import Foundation
 public extension ApplicationClient.Order {
     /*
-        Model: ApefaceApiError
+        Model: DeliveryReattemptSuccessResponseSchema
         Used By: Order
     */
-    class ApefaceApiError: Codable {
+    class DeliveryReattemptSuccessResponseSchema: Codable {
         
         public var message: String?
-        
-        public var success: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case message = "message"
             
-            case success = "success"
-            
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
+        public init(message: String? = nil) {
             
             self.message = message
-            
-            self.success = success
             
         }
 
@@ -44,18 +38,6 @@ public extension ApplicationClient.Order {
             }
             
             
-            
-            do {
-                success = try container.decode(Bool.self, forKey: .success)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -63,10 +45,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

@@ -30,7 +30,7 @@ public extension PlatformClient.Serviceability {
         
         public var brandIds: IntComparisonOperations?
         
-        public var orderPlaceDate: ArithmeticOperations?
+        public var orderPlaceDate: DateOperations?
         
         public var storeIds: IntComparisonOperations?
         
@@ -85,7 +85,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeCustomerLocation: StringComparisonOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: DateOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeCustomerLocation: StringComparisonOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.forward = forward
             
@@ -236,7 +236,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    orderPlaceDate = try container.decode(ArithmeticOperations.self, forKey: .orderPlaceDate)
+                    orderPlaceDate = try container.decode(DateOperations.self, forKey: .orderPlaceDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -454,7 +454,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var brandIds: IntComparisonOperations?
         
-        public var orderPlaceDate: ArithmeticOperations?
+        public var orderPlaceDate: DateOperations?
         
         public var storeIds: IntComparisonOperations?
         
@@ -509,7 +509,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: ArithmeticOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeCustomerLocation: StringComparisonOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, departmentIds: IntComparisonOperations? = nil, forward: LocationRule? = nil, orderPlaceDate: DateOperations? = nil, paymentMode: StringComparisonOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, reverse: LocationRule? = nil, shipmentCost: ArithmeticOperations? = nil, shipmentVolumetricWeight: ArithmeticOperations? = nil, shipmentWeight: ArithmeticOperations? = nil, storeCustomerLocation: StringComparisonOperations? = nil, storeIds: IntComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.forward = forward
             
@@ -660,7 +660,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    orderPlaceDate = try container.decode(ArithmeticOperations.self, forKey: .orderPlaceDate)
+                    orderPlaceDate = try container.decode(DateOperations.self, forKey: .orderPlaceDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -14,7 +14,7 @@ public extension PlatformClient.Serviceability {
         
         public var articles: [PlatformLocationArticle]
         
-        public var fulfillmentLocationId: Int?
+        public var fulfillmentLocationId: Int
         
         public var fulfillmentTags: [String]?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(articles: [PlatformLocationArticle], fulfillmentLocationId: Int? = nil, fulfillmentTags: [String]? = nil, fulfillmentType: String) {
+        public init(articles: [PlatformLocationArticle], fulfillmentLocationId: Int, fulfillmentTags: [String]? = nil, fulfillmentType: String) {
             
             self.articles = articles
             
@@ -54,16 +54,9 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    fulfillmentLocationId = try container.decode(Int.self, forKey: .fulfillmentLocationId)
+                fulfillmentLocationId = try container.decode(Int.self, forKey: .fulfillmentLocationId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -125,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var articles: [PlatformLocationArticle]
         
-        public var fulfillmentLocationId: Int?
+        public var fulfillmentLocationId: Int
         
         public var fulfillmentTags: [String]?
         
@@ -144,7 +137,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(articles: [PlatformLocationArticle], fulfillmentLocationId: Int? = nil, fulfillmentTags: [String]? = nil, fulfillmentType: String) {
+        public init(articles: [PlatformLocationArticle], fulfillmentLocationId: Int, fulfillmentTags: [String]? = nil, fulfillmentType: String) {
             
             self.articles = articles
             
@@ -165,16 +158,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    fulfillmentLocationId = try container.decode(Int.self, forKey: .fulfillmentLocationId)
+                fulfillmentLocationId = try container.decode(Int.self, forKey: .fulfillmentLocationId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
