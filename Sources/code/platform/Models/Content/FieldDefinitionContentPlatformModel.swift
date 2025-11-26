@@ -5,73 +5,73 @@ import Foundation
 
 public extension PlatformClient.Content {
     /*
-        Model: HandpickedTagSchema
+        Model: FieldDefinition
         Used By: Content
     */
 
-    class HandpickedTagSchema: Codable {
+    class FieldDefinition: Codable {
         
-        
-        public var position: String?
-        
-        public var attributes: [String: Any]?
-        
-        public var compatibleEngines: [String]?
         
         public var name: String?
         
-        public var url: String?
-        
         public var type: String?
         
-        public var subType: String?
+        public var label: String?
         
-        public var content: String?
+        public var placeholder: String?
         
-        public var template: TemplateSchema?
+        public var required: Bool?
+        
+        public var size: String?
+        
+        public var description: String?
+        
+        public var validation: FieldValidation?
+        
+        public var events: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case position = "position"
-            
-            case attributes = "attributes"
-            
-            case compatibleEngines = "compatible_engines"
-            
             case name = "name"
-            
-            case url = "url"
             
             case type = "type"
             
-            case subType = "sub_type"
+            case label = "label"
             
-            case content = "content"
+            case placeholder = "placeholder"
             
-            case template = "template"
+            case required = "required"
+            
+            case size = "size"
+            
+            case description = "description"
+            
+            case validation = "validation"
+            
+            case events = "events"
             
         }
 
-        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, position: String? = nil, subType: String? = nil, template: TemplateSchema? = nil, type: String? = nil, url: String? = nil) {
-            
-            self.position = position
-            
-            self.attributes = attributes
-            
-            self.compatibleEngines = compatibleEngines
+        public init(description: String? = nil, events: [String: Any]? = nil, label: String? = nil, name: String? = nil, placeholder: String? = nil, required: Bool? = nil, size: String? = nil, type: String? = nil, validation: FieldValidation? = nil) {
             
             self.name = name
             
-            self.url = url
-            
             self.type = type
             
-            self.subType = subType
+            self.label = label
             
-            self.content = content
+            self.placeholder = placeholder
             
-            self.template = template
+            self.required = required
+            
+            self.size = size
+            
+            self.description = description
+            
+            self.validation = validation
+            
+            self.events = events
             
         }
 
@@ -80,55 +80,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    position = try container.decode(String.self, forKey: .position)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    attributes = try container.decode([String: Any].self, forKey: .attributes)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    compatibleEngines = try container.decode([String].self, forKey: .compatibleEngines)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    url = try container.decode(String.self, forKey: .url)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,7 +104,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    subType = try container.decode(String.self, forKey: .subType)
+                    label = try container.decode(String.self, forKey: .label)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +116,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    content = try container.decode(String.self, forKey: .content)
+                    placeholder = try container.decode(String.self, forKey: .placeholder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +128,55 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    template = try container.decode(TemplateSchema.self, forKey: .template)
+                    required = try container.decode(Bool.self, forKey: .required)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    size = try container.decode(String.self, forKey: .size)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    validation = try container.decode(FieldValidation.self, forKey: .validation)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    events = try container.decode([String: Any].self, forKey: .events)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,27 +193,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(position, forKey: .position)
-            
-            
-            
-            
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
-            
-            
-            
-            
-            try? container.encodeIfPresent(compatibleEngines, forKey: .compatibleEngines)
-            
-            
-            
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(url, forKey: .url)
             
             
             
@@ -223,17 +203,37 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(subType, forKey: .subType)
+            try? container.encodeIfPresent(label, forKey: .label)
             
             
             
             
-            try? container.encodeIfPresent(content, forKey: .content)
+            try? container.encodeIfPresent(placeholder, forKey: .placeholder)
             
             
             
             
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(required, forKey: .required)
+            
+            
+            
+            
+            try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(validation, forKey: .validation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(events, forKey: .events)
             
             
         }
@@ -245,73 +245,73 @@ public extension PlatformClient.Content {
 
 public extension PlatformClient.ApplicationClient.Content {
     /*
-        Model: HandpickedTagSchema
+        Model: FieldDefinition
         Used By: Content
     */
 
-    class HandpickedTagSchema: Codable {
+    class FieldDefinition: Codable {
         
-        
-        public var position: String?
-        
-        public var attributes: [String: Any]?
-        
-        public var compatibleEngines: [String]?
         
         public var name: String?
         
-        public var url: String?
-        
         public var type: String?
         
-        public var subType: String?
+        public var label: String?
         
-        public var content: String?
+        public var placeholder: String?
         
-        public var template: TemplateSchema?
+        public var required: Bool?
+        
+        public var size: String?
+        
+        public var description: String?
+        
+        public var validation: FieldValidation?
+        
+        public var events: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case position = "position"
-            
-            case attributes = "attributes"
-            
-            case compatibleEngines = "compatible_engines"
-            
             case name = "name"
-            
-            case url = "url"
             
             case type = "type"
             
-            case subType = "sub_type"
+            case label = "label"
             
-            case content = "content"
+            case placeholder = "placeholder"
             
-            case template = "template"
+            case required = "required"
+            
+            case size = "size"
+            
+            case description = "description"
+            
+            case validation = "validation"
+            
+            case events = "events"
             
         }
 
-        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, position: String? = nil, subType: String? = nil, template: TemplateSchema? = nil, type: String? = nil, url: String? = nil) {
-            
-            self.position = position
-            
-            self.attributes = attributes
-            
-            self.compatibleEngines = compatibleEngines
+        public init(description: String? = nil, events: [String: Any]? = nil, label: String? = nil, name: String? = nil, placeholder: String? = nil, required: Bool? = nil, size: String? = nil, type: String? = nil, validation: FieldValidation? = nil) {
             
             self.name = name
             
-            self.url = url
-            
             self.type = type
             
-            self.subType = subType
+            self.label = label
             
-            self.content = content
+            self.placeholder = placeholder
             
-            self.template = template
+            self.required = required
+            
+            self.size = size
+            
+            self.description = description
+            
+            self.validation = validation
+            
+            self.events = events
             
         }
 
@@ -320,55 +320,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    position = try container.decode(String.self, forKey: .position)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    attributes = try container.decode([String: Any].self, forKey: .attributes)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    compatibleEngines = try container.decode([String].self, forKey: .compatibleEngines)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    url = try container.decode(String.self, forKey: .url)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -392,7 +344,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    subType = try container.decode(String.self, forKey: .subType)
+                    label = try container.decode(String.self, forKey: .label)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -404,7 +356,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    content = try container.decode(String.self, forKey: .content)
+                    placeholder = try container.decode(String.self, forKey: .placeholder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -416,7 +368,55 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    template = try container.decode(TemplateSchema.self, forKey: .template)
+                    required = try container.decode(Bool.self, forKey: .required)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    size = try container.decode(String.self, forKey: .size)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    validation = try container.decode(FieldValidation.self, forKey: .validation)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    events = try container.decode([String: Any].self, forKey: .events)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -433,27 +433,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(position, forKey: .position)
-            
-            
-            
-            
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
-            
-            
-            
-            
-            try? container.encodeIfPresent(compatibleEngines, forKey: .compatibleEngines)
-            
-            
-            
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(url, forKey: .url)
             
             
             
@@ -463,17 +443,37 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(subType, forKey: .subType)
+            try? container.encodeIfPresent(label, forKey: .label)
             
             
             
             
-            try? container.encodeIfPresent(content, forKey: .content)
+            try? container.encodeIfPresent(placeholder, forKey: .placeholder)
             
             
             
             
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(required, forKey: .required)
+            
+            
+            
+            
+            try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(validation, forKey: .validation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(events, forKey: .events)
             
             
         }

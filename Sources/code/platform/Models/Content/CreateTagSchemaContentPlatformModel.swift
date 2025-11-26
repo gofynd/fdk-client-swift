@@ -32,6 +32,8 @@ public extension PlatformClient.Content {
         
         public var content: String?
         
+        public var template: TemplateSchema?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension PlatformClient.Content {
             
             case content = "content"
             
+            case template = "template"
+            
         }
 
-        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
+        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, template: TemplateSchema? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
             
             self.name = name
             
@@ -78,6 +82,8 @@ public extension PlatformClient.Content {
             self.pages = pages
             
             self.content = content
+            
+            self.template = template
             
         }
 
@@ -204,6 +210,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    template = try container.decode(TemplateSchema.self, forKey: .template)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -257,6 +275,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(content, forKey: .content)
+            
+            
+            
+            
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
         }
@@ -295,6 +318,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var content: String?
         
+        public var template: TemplateSchema?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -318,9 +343,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case content = "content"
             
+            case template = "template"
+            
         }
 
-        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
+        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, template: TemplateSchema? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
             
             self.name = name
             
@@ -341,6 +368,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.pages = pages
             
             self.content = content
+            
+            self.template = template
             
         }
 
@@ -467,6 +496,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    template = try container.decode(TemplateSchema.self, forKey: .template)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -520,6 +561,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(content, forKey: .content)
+            
+            
+            
+            
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
         }

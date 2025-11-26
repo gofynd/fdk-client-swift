@@ -17390,6 +17390,9 @@ public class PlatformClient {
             **/
             public func getInjectableTags(
                 all: Bool?,
+                pageNo: Int?,
+                pageSize: Int?,
+                search: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
@@ -17399,6 +17402,18 @@ public class PlatformClient {
                 
                 if let value = all {
                     xQuery["all"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = search {
+                    xQuery["search"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -17576,6 +17591,56 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(TagsSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get Script Tags Templates
+            * Description: Retrieve the available script tag templates
+            **/
+            public func getTagsTemplate(
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: TagsTemplateSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/templates",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(TagsTemplateSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

@@ -22,6 +22,10 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var email: String?
         
+        public var hasEmail: Bool?
+        
+        public var hasPhone: Bool?
+        
         public var phone: String?
         
         public var definitionIds: [String]?
@@ -39,6 +43,10 @@ public extension PlatformClient.ApplicationClient.User {
             
             case email = "email"
             
+            case hasEmail = "has_email"
+            
+            case hasPhone = "has_phone"
+            
             case phone = "phone"
             
             case definitionIds = "definition_ids"
@@ -47,7 +55,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(conditions: [UserAttributeFilterRequestConditions], definitionIds: [String]? = nil, email: String? = nil, limit: Int, page: Int, phone: String? = nil, type: String) {
+        public init(conditions: [UserAttributeFilterRequestConditions], definitionIds: [String]? = nil, email: String? = nil, hasEmail: Bool? = nil, hasPhone: Bool? = nil, limit: Int, page: Int, phone: String? = nil, type: String) {
             
             self.type = type
             
@@ -56,6 +64,10 @@ public extension PlatformClient.ApplicationClient.User {
             self.page = page
             
             self.email = email
+            
+            self.hasEmail = hasEmail
+            
+            self.hasPhone = hasPhone
             
             self.phone = phone
             
@@ -86,6 +98,30 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     email = try container.decode(String.self, forKey: .email)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    hasEmail = try container.decode(Bool.self, forKey: .hasEmail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    hasPhone = try container.decode(Bool.self, forKey: .hasPhone)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,6 +183,16 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            
+            try? container.encodeIfPresent(hasEmail, forKey: .hasEmail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(hasPhone, forKey: .hasPhone)
             
             
             
