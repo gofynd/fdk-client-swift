@@ -30,6 +30,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var minPriceThreshold: Double?
         
+        public var articleIndex: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,9 +51,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case minPriceThreshold = "min_price_threshold"
             
+            case articleIndex = "article_index"
+            
         }
 
-        public init(allowedRefund: Bool? = nil, articleId: String, code: String? = nil, meta: [String: Any]? = nil, minPriceThreshold: Double? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
+        public init(allowedRefund: Bool? = nil, articleId: String, articleIndex: Int? = nil, code: String? = nil, meta: [String: Any]? = nil, minPriceThreshold: Double? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
             
             self.value = value
             
@@ -68,6 +72,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.allowedRefund = allowedRefund
             
             self.minPriceThreshold = minPriceThreshold
+            
+            self.articleIndex = articleIndex
             
         }
 
@@ -163,6 +169,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    articleIndex = try container.decode(Int.self, forKey: .articleIndex)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -206,6 +224,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(minPriceThreshold, forKey: .minPriceThreshold)
+            
+            
+            
+            
+            try? container.encodeIfPresent(articleIndex, forKey: .articleIndex)
             
             
         }

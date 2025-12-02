@@ -28786,12 +28786,17 @@ public class PlatformClient {
             * Description: Register and add a new user to the sales channel.
             **/
             public func createUser(
+                verified: Bool?,
                 body: CreateUserRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateUserResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = verified {
+                    xQuery["verified"] = value
+                }
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -28803,7 +28808,7 @@ public class PlatformClient {
                     config: config,
                     method: "POST",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers",
-                    query: nil,
+                    query: xQuery,
                     body: body.dictionary,
                     headers: xHeaders,
                     responseType: "application/json",
