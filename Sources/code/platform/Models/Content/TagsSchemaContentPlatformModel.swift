@@ -20,8 +20,6 @@ public extension PlatformClient.Content {
         
         public var tags: [TagSchema]?
         
-        public var page: Page?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -33,11 +31,9 @@ public extension PlatformClient.Content {
             
             case tags = "tags"
             
-            case page = "page"
-            
         }
 
-        public init(application: String? = nil, company: String? = nil, page: Page? = nil, tags: [TagSchema]? = nil, id: String? = nil) {
+        public init(application: String? = nil, company: String? = nil, tags: [TagSchema]? = nil, id: String? = nil) {
             
             self.application = application
             
@@ -46,8 +42,6 @@ public extension PlatformClient.Content {
             self.company = company
             
             self.tags = tags
-            
-            self.page = page
             
         }
 
@@ -102,18 +96,6 @@ public extension PlatformClient.Content {
                 }
                 
             
-            
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -137,11 +119,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }
@@ -168,8 +145,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var tags: [TagSchema]?
         
-        public var page: Page?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -181,11 +156,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case tags = "tags"
             
-            case page = "page"
-            
         }
 
-        public init(application: String? = nil, company: String? = nil, page: Page? = nil, tags: [TagSchema]? = nil, id: String? = nil) {
+        public init(application: String? = nil, company: String? = nil, tags: [TagSchema]? = nil, id: String? = nil) {
             
             self.application = application
             
@@ -194,8 +167,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.company = company
             
             self.tags = tags
-            
-            self.page = page
             
         }
 
@@ -250,18 +221,6 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
-            
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -285,11 +244,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }
