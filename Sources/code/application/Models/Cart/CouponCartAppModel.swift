@@ -30,6 +30,8 @@ public extension ApplicationClient.Cart {
         
         public var couponCode: String?
         
+        public var couponId: String?
+        
         public var isApplicable: Bool?
         
         public var description: String?
@@ -71,6 +73,8 @@ public extension ApplicationClient.Cart {
             
             case couponCode = "coupon_code"
             
+            case couponId = "coupon_id"
+            
             case isApplicable = "is_applicable"
             
             case description = "description"
@@ -89,7 +93,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(couponAmount: Double? = nil, couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, isBankOffer: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, offerText: String? = nil, rule: [DiscountRules]? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
+        public init(couponAmount: Double? = nil, couponApplicableMessage: String? = nil, couponCode: String? = nil, couponId: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, isBankOffer: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, offerText: String? = nil, rule: [DiscountRules]? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
             
             self.couponAmount = couponAmount
             
@@ -112,6 +116,8 @@ public extension ApplicationClient.Cart {
             self.maxDiscountValue = maxDiscountValue
             
             self.couponCode = couponCode
+            
+            self.couponId = couponId
             
             self.isApplicable = isApplicable
             
@@ -268,6 +274,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                couponId = try container.decode(String.self, forKey: .couponId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 isApplicable = try container.decode(Bool.self, forKey: .isApplicable)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -409,6 +427,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(couponCode, forKey: .couponCode)
+            
+            
+            
+            try? container.encodeIfPresent(couponId, forKey: .couponId)
             
             
             

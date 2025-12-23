@@ -18,6 +18,8 @@ public extension ApplicationClient.Order {
         
         public var currencyCode: String?
         
+        public var subValues: [BreakupValues]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +33,11 @@ public extension ApplicationClient.Order {
             
             case currencyCode = "currency_code"
             
+            case subValues = "sub_values"
+            
         }
 
-        public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, name: String? = nil, value: Double? = nil) {
+        public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, name: String? = nil, subValues: [BreakupValues]? = nil, value: Double? = nil) {
             
             self.value = value
             
@@ -44,6 +48,8 @@ public extension ApplicationClient.Order {
             self.display = display
             
             self.currencyCode = currencyCode
+            
+            self.subValues = subValues
             
         }
 
@@ -110,6 +116,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                subValues = try container.decode([BreakupValues].self, forKey: .subValues)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -133,6 +151,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            
+            
+            
+            try? container.encodeIfPresent(subValues, forKey: .subValues)
             
             
         }

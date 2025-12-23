@@ -52,6 +52,8 @@ public extension PlatformClient.Order {
         
         public var taskTriggerCondition: [String]?
         
+        public var fulfillmentOptionSlug: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -95,9 +97,11 @@ public extension PlatformClient.Order {
             
             case taskTriggerCondition = "task_trigger_condition"
             
+            case fulfillmentOptionSlug = "fulfillment_option_slug"
+            
         }
 
-        public init(autoTriggerDpAssignmentAcf: Bool? = nil, customerCountryCode: String? = nil, fulfillVirtualInvoice: Bool? = nil, isCreditNoteGenerated: Bool? = nil, isHookEnabled: Bool? = nil, isInvoiceIdPresent: Bool? = nil, isNonPosPlatform: Bool? = nil, isPartialTransition: Bool? = nil, isSelfShip: Bool? = nil, isTestOrder: Bool? = nil, lockAfterTransition: Bool? = nil, lockStatus: String? = nil, nextStatus: String? = nil, orderPlatform: String? = nil, orderType: String? = nil, posCreditNoteCheck: Bool? = nil, refundType: String? = nil, resumeTasksAfterUnlock: Bool? = nil, sellerCountryCode: String? = nil, taskTriggerCondition: [String]? = nil) {
+        public init(autoTriggerDpAssignmentAcf: Bool? = nil, customerCountryCode: String? = nil, fulfillmentOptionSlug: String? = nil, fulfillVirtualInvoice: Bool? = nil, isCreditNoteGenerated: Bool? = nil, isHookEnabled: Bool? = nil, isInvoiceIdPresent: Bool? = nil, isNonPosPlatform: Bool? = nil, isPartialTransition: Bool? = nil, isSelfShip: Bool? = nil, isTestOrder: Bool? = nil, lockAfterTransition: Bool? = nil, lockStatus: String? = nil, nextStatus: String? = nil, orderPlatform: String? = nil, orderType: String? = nil, posCreditNoteCheck: Bool? = nil, refundType: String? = nil, resumeTasksAfterUnlock: Bool? = nil, sellerCountryCode: String? = nil, taskTriggerCondition: [String]? = nil) {
             
             self.orderType = orderType
             
@@ -138,6 +142,8 @@ public extension PlatformClient.Order {
             self.isTestOrder = isTestOrder
             
             self.taskTriggerCondition = taskTriggerCondition
+            
+            self.fulfillmentOptionSlug = fulfillmentOptionSlug
             
         }
 
@@ -384,6 +390,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    fulfillmentOptionSlug = try container.decode(String.self, forKey: .fulfillmentOptionSlug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -487,6 +505,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(taskTriggerCondition, forKey: .taskTriggerCondition)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentOptionSlug, forKey: .fulfillmentOptionSlug)
             
             
         }
@@ -545,6 +568,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var taskTriggerCondition: [String]?
         
+        public var fulfillmentOptionSlug: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -588,9 +613,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case taskTriggerCondition = "task_trigger_condition"
             
+            case fulfillmentOptionSlug = "fulfillment_option_slug"
+            
         }
 
-        public init(autoTriggerDpAssignmentAcf: Bool? = nil, customerCountryCode: String? = nil, fulfillVirtualInvoice: Bool? = nil, isCreditNoteGenerated: Bool? = nil, isHookEnabled: Bool? = nil, isInvoiceIdPresent: Bool? = nil, isNonPosPlatform: Bool? = nil, isPartialTransition: Bool? = nil, isSelfShip: Bool? = nil, isTestOrder: Bool? = nil, lockAfterTransition: Bool? = nil, lockStatus: String? = nil, nextStatus: String? = nil, orderPlatform: String? = nil, orderType: String? = nil, posCreditNoteCheck: Bool? = nil, refundType: String? = nil, resumeTasksAfterUnlock: Bool? = nil, sellerCountryCode: String? = nil, taskTriggerCondition: [String]? = nil) {
+        public init(autoTriggerDpAssignmentAcf: Bool? = nil, customerCountryCode: String? = nil, fulfillmentOptionSlug: String? = nil, fulfillVirtualInvoice: Bool? = nil, isCreditNoteGenerated: Bool? = nil, isHookEnabled: Bool? = nil, isInvoiceIdPresent: Bool? = nil, isNonPosPlatform: Bool? = nil, isPartialTransition: Bool? = nil, isSelfShip: Bool? = nil, isTestOrder: Bool? = nil, lockAfterTransition: Bool? = nil, lockStatus: String? = nil, nextStatus: String? = nil, orderPlatform: String? = nil, orderType: String? = nil, posCreditNoteCheck: Bool? = nil, refundType: String? = nil, resumeTasksAfterUnlock: Bool? = nil, sellerCountryCode: String? = nil, taskTriggerCondition: [String]? = nil) {
             
             self.orderType = orderType
             
@@ -631,6 +658,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.isTestOrder = isTestOrder
             
             self.taskTriggerCondition = taskTriggerCondition
+            
+            self.fulfillmentOptionSlug = fulfillmentOptionSlug
             
         }
 
@@ -877,6 +906,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    fulfillmentOptionSlug = try container.decode(String.self, forKey: .fulfillmentOptionSlug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -980,6 +1021,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(taskTriggerCondition, forKey: .taskTriggerCondition)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentOptionSlug, forKey: .fulfillmentOptionSlug)
             
             
         }

@@ -62,6 +62,10 @@ public extension PublicClient.Configuration {
         
         public var slug: String?
         
+        public var region: String?
+        
+        public var regionDetails: RegionDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -117,9 +121,13 @@ public extension PublicClient.Configuration {
             
             case slug = "slug"
             
+            case region = "region"
+            
+            case regionDetails = "region_details"
+            
         }
 
-        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, slug: String? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
+        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, region: String? = nil, regionDetails: RegionDetails? = nil, slug: String? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
             
             self.website = website
             
@@ -172,6 +180,10 @@ public extension PublicClient.Configuration {
             self.domain = domain
             
             self.slug = slug
+            
+            self.region = region
+            
+            self.regionDetails = regionDetails
             
         }
 
@@ -490,6 +502,30 @@ public extension PublicClient.Configuration {
                 }
                 
             
+            
+                do {
+                    region = try container.decode(String.self, forKey: .region)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    regionDetails = try container.decode(RegionDetails.self, forKey: .regionDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -597,6 +633,14 @@ public extension PublicClient.Configuration {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            try? container.encodeIfPresent(region, forKey: .region)
+            
+            
+            
+            try? container.encodeIfPresent(regionDetails, forKey: .regionDetails)
             
             
         }

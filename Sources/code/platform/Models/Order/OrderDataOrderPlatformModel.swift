@@ -16,6 +16,8 @@ public extension PlatformClient.Order {
         
         public var orderingSource: String?
         
+        public var orderingSourceDetails: OrderingSourceDetails?
+        
         public var orderDate: String
         
         public var createdTs: String?
@@ -53,6 +55,8 @@ public extension PlatformClient.Order {
             
             case orderingSource = "ordering_source"
             
+            case orderingSourceDetails = "ordering_source_details"
+            
             case orderDate = "order_date"
             
             case createdTs = "created_ts"
@@ -85,11 +89,13 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderingSourceDetails: OrderingSourceDetails? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderingChannel = orderingChannel
             
             self.orderingSource = orderingSource
+            
+            self.orderingSourceDetails = orderingSourceDetails
             
             self.orderDate = orderDate
             
@@ -141,6 +147,18 @@ public extension PlatformClient.Order {
             
                 do {
                     orderingSource = try container.decode(String.self, forKey: .orderingSource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSourceDetails = try container.decode(OrderingSourceDetails.self, forKey: .orderingSourceDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -329,6 +347,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSourceDetails, forKey: .orderingSourceDetails)
             
             
             
@@ -426,6 +449,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderingSource: String?
         
+        public var orderingSourceDetails: OrderingSourceDetails?
+        
         public var orderDate: String
         
         public var createdTs: String?
@@ -463,6 +488,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderingSource = "ordering_source"
             
+            case orderingSourceDetails = "ordering_source_details"
+            
             case orderDate = "order_date"
             
             case createdTs = "created_ts"
@@ -495,11 +522,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderingSourceDetails: OrderingSourceDetails? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderingChannel = orderingChannel
             
             self.orderingSource = orderingSource
+            
+            self.orderingSourceDetails = orderingSourceDetails
             
             self.orderDate = orderDate
             
@@ -551,6 +580,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     orderingSource = try container.decode(String.self, forKey: .orderingSource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSourceDetails = try container.decode(OrderingSourceDetails.self, forKey: .orderingSourceDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -739,6 +780,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSourceDetails, forKey: .orderingSourceDetails)
             
             
             

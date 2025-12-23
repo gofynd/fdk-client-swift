@@ -71,12 +71,6 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: Get system notifications

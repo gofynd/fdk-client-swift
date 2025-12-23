@@ -62,6 +62,8 @@ public extension PlatformClient.CompanyProfile {
         
         public var bulkShipment: Bool?
         
+        public var multiPieceShipment: Bool?
+        
         public var autoAssignCourierPartner: Bool?
         
 
@@ -117,11 +119,13 @@ public extension PlatformClient.CompanyProfile {
             
             case bulkShipment = "bulk_shipment"
             
+            case multiPieceShipment = "multi_piece_shipment"
+            
             case autoAssignCourierPartner = "auto_assign_courier_partner"
             
         }
 
-        public init(address: AddressSchema, autoAssignCourierPartner: Bool? = nil, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: Int, contactNumbers: [SellerPhoneNumber]? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document], gstCredentials: InvoiceDetailsSchema? = nil, holiday: [HolidaySchemaSchema]? = nil, manager: LocationManagerSchema? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSchema]? = nil, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: AddressSchema, autoAssignCourierPartner: Bool? = nil, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: Int, contactNumbers: [SellerPhoneNumber]? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document], gstCredentials: InvoiceDetailsSchema? = nil, holiday: [HolidaySchemaSchema]? = nil, manager: LocationManagerSchema? = nil, multiPieceShipment: Bool? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSchema]? = nil, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.code = code
             
@@ -172,6 +176,8 @@ public extension PlatformClient.CompanyProfile {
             self.avgOrderProcessingTime = avgOrderProcessingTime
             
             self.bulkShipment = bulkShipment
+            
+            self.multiPieceShipment = multiPieceShipment
             
             self.autoAssignCourierPartner = autoAssignCourierPartner
             
@@ -440,6 +446,18 @@ public extension PlatformClient.CompanyProfile {
             
             
                 do {
+                    multiPieceShipment = try container.decode(Bool.self, forKey: .multiPieceShipment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     autoAssignCourierPartner = try container.decode(Bool.self, forKey: .autoAssignCourierPartner)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -578,6 +596,11 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(bulkShipment, forKey: .bulkShipment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(multiPieceShipment, forKey: .multiPieceShipment)
             
             
             

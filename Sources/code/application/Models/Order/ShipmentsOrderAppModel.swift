@@ -96,6 +96,12 @@ public extension ApplicationClient.Order {
         
         public var ndrDetails: NdrDetailsSchema?
         
+        public var refundModes: [RefundModeData]?
+        
+        public var refundBreakupValues: [BreakupValues]?
+        
+        public var isRefundConfigEnabled: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -187,9 +193,15 @@ public extension ApplicationClient.Order {
             
             case ndrDetails = "ndr_details"
             
+            case refundModes = "refund_modes"
+            
+            case refundBreakupValues = "refund_breakup_values"
+            
+            case isRefundConfigEnabled = "is_refund_config_enabled"
+            
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, fulfillmentOption: FulfillmentOption? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, ndrDetails: NdrDetailsSchema? = nil, needHelpUrl: String? = nil, order: OrderRequestSchema? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, fulfillmentOption: FulfillmentOption? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, isRefundConfigEnabled: Bool? = nil, ndrDetails: NdrDetailsSchema? = nil, needHelpUrl: String? = nil, order: OrderRequestSchema? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundBreakupValues: [BreakupValues]? = nil, refundDetails: [String: Any]? = nil, refundModes: [RefundModeData]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             
             self.payment = payment
             
@@ -278,6 +290,12 @@ public extension ApplicationClient.Order {
             self.fulfillmentOption = fulfillmentOption
             
             self.ndrDetails = ndrDetails
+            
+            self.refundModes = refundModes
+            
+            self.refundBreakupValues = refundBreakupValues
+            
+            self.isRefundConfigEnabled = isRefundConfigEnabled
             
         }
 
@@ -812,6 +830,42 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                refundModes = try container.decode([RefundModeData].self, forKey: .refundModes)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                refundBreakupValues = try container.decode([BreakupValues].self, forKey: .refundBreakupValues)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                isRefundConfigEnabled = try container.decode(Bool.self, forKey: .isRefundConfigEnabled)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -991,6 +1045,18 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(ndrDetails, forKey: .ndrDetails)
+            
+            
+            
+            try? container.encodeIfPresent(refundModes, forKey: .refundModes)
+            
+            
+            
+            try? container.encodeIfPresent(refundBreakupValues, forKey: .refundBreakupValues)
+            
+            
+            
+            try? container.encodeIfPresent(isRefundConfigEnabled, forKey: .isRefundConfigEnabled)
             
             
         }

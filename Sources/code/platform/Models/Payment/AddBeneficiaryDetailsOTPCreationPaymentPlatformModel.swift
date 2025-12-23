@@ -14,6 +14,8 @@ public extension PlatformClient.Payment {
         
         public var orderId: String
         
+        public var shipmentId: String?
+        
         public var details: BankDetailsForOTP
         
 
@@ -21,13 +23,17 @@ public extension PlatformClient.Payment {
             
             case orderId = "order_id"
             
+            case shipmentId = "shipment_id"
+            
             case details = "details"
             
         }
 
-        public init(details: BankDetailsForOTP, orderId: String) {
+        public init(details: BankDetailsForOTP, orderId: String, shipmentId: String? = nil) {
             
             self.orderId = orderId
+            
+            self.shipmentId = shipmentId
             
             self.details = details
             
@@ -42,6 +48,18 @@ public extension PlatformClient.Payment {
             
             
             
+                do {
+                    shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 details = try container.decode(BankDetailsForOTP.self, forKey: .details)
                 
             
@@ -54,6 +72,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
             
@@ -79,6 +102,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var orderId: String
         
+        public var shipmentId: String?
+        
         public var details: BankDetailsForOTP
         
 
@@ -86,13 +111,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case orderId = "order_id"
             
+            case shipmentId = "shipment_id"
+            
             case details = "details"
             
         }
 
-        public init(details: BankDetailsForOTP, orderId: String) {
+        public init(details: BankDetailsForOTP, orderId: String, shipmentId: String? = nil) {
             
             self.orderId = orderId
+            
+            self.shipmentId = shipmentId
             
             self.details = details
             
@@ -107,6 +136,18 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
+                do {
+                    shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 details = try container.decode(BankDetailsForOTP.self, forKey: .details)
                 
             
@@ -119,6 +160,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
             

@@ -2553,10 +2553,9 @@ extension ApplicationClient {
         public func getRefundBeneficiaries(
             orderId: String?,
             shipmentId: String?,
-            filterBy: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: RefundBeneficiaries?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetRefundBeneficiary?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2567,10 +2566,6 @@ extension ApplicationClient {
             
             if let value = shipmentId {
                 xQuery["shipment_id"] = value
-            }
-            
-            if let value = filterBy {
-                xQuery["filter_by"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2599,7 +2594,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RefundBeneficiaries.self, from: data)
+                        let response = Utility.decode(GetRefundBeneficiary.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2730,7 +2725,7 @@ extension ApplicationClient {
             filterBy: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: RefundBeneficiaries?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetRefundBeneficiary?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2773,7 +2768,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RefundBeneficiaries.self, from: data)
+                        let response = Utility.decode(GetRefundBeneficiary.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

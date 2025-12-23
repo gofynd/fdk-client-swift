@@ -18,6 +18,8 @@ public extension PlatformClient.Order {
         
         public var parentPromoBags: [String: Any]?
         
+        public var sellerQcDetails: SellerQcDetails?
+        
         public var financialBreakup: FinancialBreakup?
         
         public var bagConfigs: BagConfigs?
@@ -79,6 +81,8 @@ public extension PlatformClient.Order {
             
             case parentPromoBags = "parent_promo_bags"
             
+            case sellerQcDetails = "seller_qc_details"
+            
             case financialBreakup = "financial_breakup"
             
             case bagConfigs = "bag_configs"
@@ -133,13 +137,15 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil, sellerQcDetails: SellerQcDetails? = nil) {
             
             self.gstDetails = gstDetails
             
             self.bagStatus = bagStatus
             
             self.parentPromoBags = parentPromoBags
+            
+            self.sellerQcDetails = sellerQcDetails
             
             self.financialBreakup = financialBreakup
             
@@ -225,6 +231,18 @@ public extension PlatformClient.Order {
             
                 do {
                     parentPromoBags = try container.decode([String: Any].self, forKey: .parentPromoBags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sellerQcDetails = try container.decode(SellerQcDetails.self, forKey: .sellerQcDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -557,6 +575,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sellerQcDetails, forKey: .sellerQcDetails)
             
             
             
@@ -711,6 +734,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var parentPromoBags: [String: Any]?
         
+        public var sellerQcDetails: SellerQcDetails?
+        
         public var financialBreakup: FinancialBreakup?
         
         public var bagConfigs: BagConfigs?
@@ -772,6 +797,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case parentPromoBags = "parent_promo_bags"
             
+            case sellerQcDetails = "seller_qc_details"
+            
             case financialBreakup = "financial_breakup"
             
             case bagConfigs = "bag_configs"
@@ -826,13 +853,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil, sellerQcDetails: SellerQcDetails? = nil) {
             
             self.gstDetails = gstDetails
             
             self.bagStatus = bagStatus
             
             self.parentPromoBags = parentPromoBags
+            
+            self.sellerQcDetails = sellerQcDetails
             
             self.financialBreakup = financialBreakup
             
@@ -918,6 +947,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     parentPromoBags = try container.decode([String: Any].self, forKey: .parentPromoBags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sellerQcDetails = try container.decode(SellerQcDetails.self, forKey: .sellerQcDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1250,6 +1291,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sellerQcDetails, forKey: .sellerQcDetails)
             
             
             

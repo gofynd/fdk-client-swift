@@ -76,6 +76,8 @@ public extension PlatformClient.CompanyProfile {
         
         public var bulkShipment: Bool?
         
+        public var multiPieceShipment: Bool?
+        
         public var autoAssignCourierPartner: Bool?
         
         public var qcBasedReturnInventorySync: Bool?
@@ -147,13 +149,15 @@ public extension PlatformClient.CompanyProfile {
             
             case bulkShipment = "bulk_shipment"
             
+            case multiPieceShipment = "multi_piece_shipment"
+            
             case autoAssignCourierPartner = "auto_assign_courier_partner"
             
             case qcBasedReturnInventorySync = "qc_based_return_inventory_sync"
             
         }
 
-        public init(address: GetAddressSchema, autoAssignCourierPartner: Bool? = nil, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: GetCompanySchema? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, holiday: [HolidaySchemaSchema]? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSchema]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSchema? = nil, qcBasedReturnInventorySync: Bool? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSchema, autoAssignCourierPartner: Bool? = nil, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: GetCompanySchema? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, holiday: [HolidaySchemaSchema]? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, multiPieceShipment: Bool? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSchema]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSchema? = nil, qcBasedReturnInventorySync: Bool? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.code = code
             
@@ -218,6 +222,8 @@ public extension PlatformClient.CompanyProfile {
             self.avgOrderProcessingTime = avgOrderProcessingTime
             
             self.bulkShipment = bulkShipment
+            
+            self.multiPieceShipment = multiPieceShipment
             
             self.autoAssignCourierPartner = autoAssignCourierPartner
             
@@ -586,6 +592,18 @@ public extension PlatformClient.CompanyProfile {
             
             
                 do {
+                    multiPieceShipment = try container.decode(Bool.self, forKey: .multiPieceShipment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     autoAssignCourierPartner = try container.decode(Bool.self, forKey: .autoAssignCourierPartner)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -771,6 +789,11 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(bulkShipment, forKey: .bulkShipment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(multiPieceShipment, forKey: .multiPieceShipment)
             
             
             

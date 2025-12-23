@@ -18,6 +18,8 @@ public extension PlatformClient.Serviceability {
         
         public var mps: Bool?
         
+        public var b2B: Bool?
+        
         public var ndr: Bool?
         
         public var ndrAttempts: Int?
@@ -61,6 +63,8 @@ public extension PlatformClient.Serviceability {
             
             case mps = "mps"
             
+            case b2B = "b2b"
+            
             case ndr = "ndr"
             
             case ndrAttempts = "ndr_attempts"
@@ -97,13 +101,15 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(coldStorageGoods: Bool? = nil, dangerousGoods: Bool? = nil, doorstepExchange: Bool? = nil, doorstepQc: Bool? = nil, doorstepReturn: Bool? = nil, ewaybill: Bool? = nil, fragileGoods: Bool? = nil, mps: Bool? = nil, multiPickMultiDrop: Bool? = nil, multiPickSingleDrop: Bool? = nil, ndr: Bool? = nil, ndrAttempts: Int? = nil, nonQcShipmentItemQuantity: Int? = nil, openboxDelivery: Bool? = nil, productInstallation: Bool? = nil, qcShipmentItemQuantity: Int? = nil, qr: Bool? = nil, restrictedGoods: Bool? = nil, singlePickMultiDrop: Bool? = nil, statusUpdates: String? = nil) {
+        public init(b2B: Bool? = nil, coldStorageGoods: Bool? = nil, dangerousGoods: Bool? = nil, doorstepExchange: Bool? = nil, doorstepQc: Bool? = nil, doorstepReturn: Bool? = nil, ewaybill: Bool? = nil, fragileGoods: Bool? = nil, mps: Bool? = nil, multiPickMultiDrop: Bool? = nil, multiPickSingleDrop: Bool? = nil, ndr: Bool? = nil, ndrAttempts: Int? = nil, nonQcShipmentItemQuantity: Int? = nil, openboxDelivery: Bool? = nil, productInstallation: Bool? = nil, qcShipmentItemQuantity: Int? = nil, qr: Bool? = nil, restrictedGoods: Bool? = nil, singlePickMultiDrop: Bool? = nil, statusUpdates: String? = nil) {
             
             self.doorstepQc = doorstepQc
             
             self.qr = qr
             
             self.mps = mps
+            
+            self.b2B = b2B
             
             self.ndr = ndr
             
@@ -171,6 +177,18 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     mps = try container.decode(Bool.self, forKey: .mps)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    b2B = try container.decode(Bool.self, forKey: .b2B)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -402,6 +420,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(mps, forKey: .mps)
+            
+            
+            
+            
+            try? container.encodeIfPresent(b2B, forKey: .b2B)
             
             
             
@@ -511,6 +534,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var mps: Bool?
         
+        public var b2B: Bool?
+        
         public var ndr: Bool?
         
         public var ndrAttempts: Int?
@@ -554,6 +579,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case mps = "mps"
             
+            case b2B = "b2b"
+            
             case ndr = "ndr"
             
             case ndrAttempts = "ndr_attempts"
@@ -590,13 +617,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(coldStorageGoods: Bool? = nil, dangerousGoods: Bool? = nil, doorstepExchange: Bool? = nil, doorstepQc: Bool? = nil, doorstepReturn: Bool? = nil, ewaybill: Bool? = nil, fragileGoods: Bool? = nil, mps: Bool? = nil, multiPickMultiDrop: Bool? = nil, multiPickSingleDrop: Bool? = nil, ndr: Bool? = nil, ndrAttempts: Int? = nil, nonQcShipmentItemQuantity: Int? = nil, openboxDelivery: Bool? = nil, productInstallation: Bool? = nil, qcShipmentItemQuantity: Int? = nil, qr: Bool? = nil, restrictedGoods: Bool? = nil, singlePickMultiDrop: Bool? = nil, statusUpdates: String? = nil) {
+        public init(b2B: Bool? = nil, coldStorageGoods: Bool? = nil, dangerousGoods: Bool? = nil, doorstepExchange: Bool? = nil, doorstepQc: Bool? = nil, doorstepReturn: Bool? = nil, ewaybill: Bool? = nil, fragileGoods: Bool? = nil, mps: Bool? = nil, multiPickMultiDrop: Bool? = nil, multiPickSingleDrop: Bool? = nil, ndr: Bool? = nil, ndrAttempts: Int? = nil, nonQcShipmentItemQuantity: Int? = nil, openboxDelivery: Bool? = nil, productInstallation: Bool? = nil, qcShipmentItemQuantity: Int? = nil, qr: Bool? = nil, restrictedGoods: Bool? = nil, singlePickMultiDrop: Bool? = nil, statusUpdates: String? = nil) {
             
             self.doorstepQc = doorstepQc
             
             self.qr = qr
             
             self.mps = mps
+            
+            self.b2B = b2B
             
             self.ndr = ndr
             
@@ -664,6 +693,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     mps = try container.decode(Bool.self, forKey: .mps)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    b2B = try container.decode(Bool.self, forKey: .b2B)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -895,6 +936,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(mps, forKey: .mps)
+            
+            
+            
+            
+            try? container.encodeIfPresent(b2B, forKey: .b2B)
             
             
             

@@ -22,6 +22,8 @@ public extension PlatformClient.Order {
         
         public var transitionComments: [TransitionComments]?
         
+        public var refundModes: [RefundModeTransitionData]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension PlatformClient.Order {
             
             case transitionComments = "transition_comments"
             
+            case refundModes = "refund_modes"
+            
         }
 
-        public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil, transitionComments: [TransitionComments]? = nil) {
+        public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil, refundModes: [RefundModeTransitionData]? = nil, transitionComments: [TransitionComments]? = nil) {
             
             self.identifier = identifier
             
@@ -48,6 +52,8 @@ public extension PlatformClient.Order {
             self.dataUpdates = dataUpdates
             
             self.transitionComments = transitionComments
+            
+            self.refundModes = refundModes
             
         }
 
@@ -107,6 +113,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    refundModes = try container.decode([RefundModeTransitionData].self, forKey: .refundModes)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -135,6 +153,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(transitionComments, forKey: .transitionComments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundModes, forKey: .refundModes)
             
             
         }
@@ -163,6 +186,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var transitionComments: [TransitionComments]?
         
+        public var refundModes: [RefundModeTransitionData]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -176,9 +201,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case transitionComments = "transition_comments"
             
+            case refundModes = "refund_modes"
+            
         }
 
-        public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil, transitionComments: [TransitionComments]? = nil) {
+        public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil, refundModes: [RefundModeTransitionData]? = nil, transitionComments: [TransitionComments]? = nil) {
             
             self.identifier = identifier
             
@@ -189,6 +216,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.dataUpdates = dataUpdates
             
             self.transitionComments = transitionComments
+            
+            self.refundModes = refundModes
             
         }
 
@@ -248,6 +277,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    refundModes = try container.decode([RefundModeTransitionData].self, forKey: .refundModes)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -276,6 +317,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(transitionComments, forKey: .transitionComments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundModes, forKey: .refundModes)
             
             
         }

@@ -28,8 +28,6 @@ public class ApplicationClient {
 
     public let payment: Payment
 
-    public let rewards: Rewards
-
     public let share: Share
 
     public let theme: Theme
@@ -65,8 +63,6 @@ public class ApplicationClient {
         order = Order(config: config)
         
         payment = Payment(config: config)
-        
-        rewards = Rewards(config: config)
         
         share = Share(config: config)
         

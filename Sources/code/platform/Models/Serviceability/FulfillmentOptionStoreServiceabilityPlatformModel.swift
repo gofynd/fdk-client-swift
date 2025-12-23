@@ -14,11 +14,11 @@ public extension PlatformClient.Serviceability {
         
         public var uid: Int?
         
+        public var storeCode: String?
+        
         public var address: Address?
         
         public var companyId: Int?
-        
-        public var displayName: String?
         
         public var name: String?
         
@@ -26,16 +26,32 @@ public extension PlatformClient.Serviceability {
         
         public var tags: [String]?
         
+        public var avgOrderProcessingTime: Int?
+        
+        public var timezone: String?
+        
+        public var holidayList: [[String]]?
+        
+        public var customfields: [String: Any]?
+        
+        public var isOpen: Bool?
+        
+        public var promiseCustomfields: [String: Any]?
+        
+        public var distance: StoreDistance?
+        
+        public var timing: StoreTimingDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case uid = "uid"
             
+            case storeCode = "store_code"
+            
             case address = "address"
             
             case companyId = "company_id"
-            
-            case displayName = "display_name"
             
             case name = "name"
             
@@ -43,23 +59,55 @@ public extension PlatformClient.Serviceability {
             
             case tags = "tags"
             
+            case avgOrderProcessingTime = "avg_order_processing_time"
+            
+            case timezone = "timezone"
+            
+            case holidayList = "holiday_list"
+            
+            case customfields = "customfields"
+            
+            case isOpen = "is_open"
+            
+            case promiseCustomfields = "promise_customfields"
+            
+            case distance = "distance"
+            
+            case timing = "timing"
+            
         }
 
-        public init(address: Address? = nil, companyId: Int? = nil, displayName: String? = nil, name: String? = nil, storeType: String? = nil, tags: [String]? = nil, uid: Int? = nil) {
+        public init(address: Address? = nil, avgOrderProcessingTime: Int? = nil, companyId: Int? = nil, customfields: [String: Any]? = nil, distance: StoreDistance? = nil, holidayList: [[String]]? = nil, isOpen: Bool? = nil, name: String? = nil, promiseCustomfields: [String: Any]? = nil, storeCode: String? = nil, storeType: String? = nil, tags: [String]? = nil, timezone: String? = nil, timing: StoreTimingDetails? = nil, uid: Int? = nil) {
             
             self.uid = uid
+            
+            self.storeCode = storeCode
             
             self.address = address
             
             self.companyId = companyId
-            
-            self.displayName = displayName
             
             self.name = name
             
             self.storeType = storeType
             
             self.tags = tags
+            
+            self.avgOrderProcessingTime = avgOrderProcessingTime
+            
+            self.timezone = timezone
+            
+            self.holidayList = holidayList
+            
+            self.customfields = customfields
+            
+            self.isOpen = isOpen
+            
+            self.promiseCustomfields = promiseCustomfields
+            
+            self.distance = distance
+            
+            self.timing = timing
             
         }
 
@@ -69,6 +117,18 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     uid = try container.decode(Int.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeCode = try container.decode(String.self, forKey: .storeCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,18 +153,6 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    displayName = try container.decode(String.self, forKey: .displayName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,6 +198,102 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    avgOrderProcessingTime = try container.decode(Int.self, forKey: .avgOrderProcessingTime)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    timezone = try container.decode(String.self, forKey: .timezone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    holidayList = try container.decode([[String]].self, forKey: .holidayList)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customfields = try container.decode([String: Any].self, forKey: .customfields)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isOpen = try container.decode(Bool.self, forKey: .isOpen)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    promiseCustomfields = try container.decode([String: Any].self, forKey: .promiseCustomfields)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    distance = try container.decode(StoreDistance.self, forKey: .distance)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    timing = try container.decode(StoreTimingDetails.self, forKey: .timing)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -162,17 +306,17 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            
+            
+            
+            
             try? container.encodeIfPresent(address, forKey: .address)
             
             
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
@@ -188,6 +332,46 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(avgOrderProcessingTime, forKey: .avgOrderProcessingTime)
+            
+            
+            
+            
+            try? container.encodeIfPresent(timezone, forKey: .timezone)
+            
+            
+            
+            
+            try? container.encodeIfPresent(holidayList, forKey: .holidayList)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customfields, forKey: .customfields)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isOpen, forKey: .isOpen)
+            
+            
+            
+            
+            try? container.encodeIfPresent(promiseCustomfields, forKey: .promiseCustomfields)
+            
+            
+            
+            
+            try? container.encodeIfPresent(distance, forKey: .distance)
+            
+            
+            
+            
+            try? container.encodeIfPresent(timing, forKey: .timing)
             
             
         }
@@ -208,11 +392,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var uid: Int?
         
+        public var storeCode: String?
+        
         public var address: Address?
         
         public var companyId: Int?
-        
-        public var displayName: String?
         
         public var name: String?
         
@@ -220,16 +404,32 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var tags: [String]?
         
+        public var avgOrderProcessingTime: Int?
+        
+        public var timezone: String?
+        
+        public var holidayList: [[String]]?
+        
+        public var customfields: [String: Any]?
+        
+        public var isOpen: Bool?
+        
+        public var promiseCustomfields: [String: Any]?
+        
+        public var distance: StoreDistance?
+        
+        public var timing: StoreTimingDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case uid = "uid"
             
+            case storeCode = "store_code"
+            
             case address = "address"
             
             case companyId = "company_id"
-            
-            case displayName = "display_name"
             
             case name = "name"
             
@@ -237,23 +437,55 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case tags = "tags"
             
+            case avgOrderProcessingTime = "avg_order_processing_time"
+            
+            case timezone = "timezone"
+            
+            case holidayList = "holiday_list"
+            
+            case customfields = "customfields"
+            
+            case isOpen = "is_open"
+            
+            case promiseCustomfields = "promise_customfields"
+            
+            case distance = "distance"
+            
+            case timing = "timing"
+            
         }
 
-        public init(address: Address? = nil, companyId: Int? = nil, displayName: String? = nil, name: String? = nil, storeType: String? = nil, tags: [String]? = nil, uid: Int? = nil) {
+        public init(address: Address? = nil, avgOrderProcessingTime: Int? = nil, companyId: Int? = nil, customfields: [String: Any]? = nil, distance: StoreDistance? = nil, holidayList: [[String]]? = nil, isOpen: Bool? = nil, name: String? = nil, promiseCustomfields: [String: Any]? = nil, storeCode: String? = nil, storeType: String? = nil, tags: [String]? = nil, timezone: String? = nil, timing: StoreTimingDetails? = nil, uid: Int? = nil) {
             
             self.uid = uid
+            
+            self.storeCode = storeCode
             
             self.address = address
             
             self.companyId = companyId
-            
-            self.displayName = displayName
             
             self.name = name
             
             self.storeType = storeType
             
             self.tags = tags
+            
+            self.avgOrderProcessingTime = avgOrderProcessingTime
+            
+            self.timezone = timezone
+            
+            self.holidayList = holidayList
+            
+            self.customfields = customfields
+            
+            self.isOpen = isOpen
+            
+            self.promiseCustomfields = promiseCustomfields
+            
+            self.distance = distance
+            
+            self.timing = timing
             
         }
 
@@ -263,6 +495,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     uid = try container.decode(Int.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeCode = try container.decode(String.self, forKey: .storeCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -287,18 +531,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    displayName = try container.decode(String.self, forKey: .displayName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -344,6 +576,102 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    avgOrderProcessingTime = try container.decode(Int.self, forKey: .avgOrderProcessingTime)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    timezone = try container.decode(String.self, forKey: .timezone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    holidayList = try container.decode([[String]].self, forKey: .holidayList)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customfields = try container.decode([String: Any].self, forKey: .customfields)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isOpen = try container.decode(Bool.self, forKey: .isOpen)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    promiseCustomfields = try container.decode([String: Any].self, forKey: .promiseCustomfields)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    distance = try container.decode(StoreDistance.self, forKey: .distance)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    timing = try container.decode(StoreTimingDetails.self, forKey: .timing)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -356,17 +684,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            
+            
+            
+            
             try? container.encodeIfPresent(address, forKey: .address)
             
             
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
@@ -382,6 +710,46 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(avgOrderProcessingTime, forKey: .avgOrderProcessingTime)
+            
+            
+            
+            
+            try? container.encodeIfPresent(timezone, forKey: .timezone)
+            
+            
+            
+            
+            try? container.encodeIfPresent(holidayList, forKey: .holidayList)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customfields, forKey: .customfields)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isOpen, forKey: .isOpen)
+            
+            
+            
+            
+            try? container.encodeIfPresent(promiseCustomfields, forKey: .promiseCustomfields)
+            
+            
+            
+            
+            try? container.encodeIfPresent(distance, forKey: .distance)
+            
+            
+            
+            
+            try? container.encodeIfPresent(timing, forKey: .timing)
             
             
         }

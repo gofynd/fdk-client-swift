@@ -16,56 +16,6 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Invalidate shipment cache
-        * Description: Clear the existing shipment cache data stored in Redis  and serialize the updated data for subsequent use.
-        **/
-        public func invalidateShipmentCache(
-            body: InvalidateShipmentCachePayload,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: InvalidateShipmentCacheResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "PUT",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/update-cache",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(InvalidateShipmentCacheResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
         * Summary: Reassign location
         * Description: Reassign the shipment to a another location and update its status to 'Store Reassigned.'
         **/
@@ -567,70 +517,6 @@ extension PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(UpdatePackagingDimensionsResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Create order
-        * Description: Creates an order
-        **/
-        public func createOrderDeprecated(
-            xOrderingSource: String,
-            xApplicationId: String?,
-            xExtensionId: String?,
-            body: CreateOrderAPI,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateOrderResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            xHeaders.append((key: "x-ordering-source", value: xOrderingSource))
-            
-            if let value = xApplicationId {
-                xHeaders.append((key: "x-application-id", value: value))
-            }
-            
-            if let value = xExtensionId {
-                xHeaders.append((key: "x-extension-id", value: value))
-            }
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/create-order",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateOrderResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2688,6 +2574,159 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     } else if let data = responseData {
                         
                         let response = Utility.decode(Account.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get shipment packages
+        * Description: Retrieve all packages associated with a specific shipment. This endpoint supports  both single-piece and multi-piece shipments.
+        **/
+        public func getShipmentPackages(
+            shipmentId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: PackagesResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/\(shipmentId)/packages",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PackagesResponseSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Create shipment packages
+        * Description: Create new packages for a shipment, enabling Multi-Piece Shipment (MPS) functionality. This operation validates courier partner availability and performs bag breaking  as per number of packages. The system automatically validates MPS eligibility and store  configuration before creating packages. If the store is not eligible for MPS, it will not let the user create packages.
+        **/
+        public func createShipmentPackages(
+            shipmentId: String,
+            body: PackagesSchema,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: BaseResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/\(shipmentId)/packages",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(BaseResponseSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Update shipment packages
+        * Description: Update existing packages for a shipment. This operation replaces all existing  packages with the provided package list. The system validates courier partner  availability and performs bag breaking as per number of packages. Any packages  without IDs will have new unique IDs generated.
+        **/
+        public func updateShipmentPackages(
+            shipmentId: String,
+            body: PackagesSchema,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: BaseResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/\(shipmentId)/packages",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(BaseResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

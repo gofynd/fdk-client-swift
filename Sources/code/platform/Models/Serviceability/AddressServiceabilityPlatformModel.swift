@@ -14,9 +14,13 @@ public extension PlatformClient.Serviceability {
         
         public var address1: String?
         
+        public var address2: String?
+        
         public var country: String?
         
         public var pincode: String?
+        
+        public var postalCode: String?
         
         public var city: String?
         
@@ -28,14 +32,20 @@ public extension PlatformClient.Serviceability {
         
         public var countryCode: String?
         
+        public var latLong: LatLong?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case address1 = "address1"
             
+            case address2 = "address2"
+            
             case country = "country"
             
             case pincode = "pincode"
+            
+            case postalCode = "postal_code"
             
             case city = "city"
             
@@ -47,15 +57,21 @@ public extension PlatformClient.Serviceability {
             
             case countryCode = "country_code"
             
+            case latLong = "lat_long"
+            
         }
 
-        public init(address1: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: String? = nil, state: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, latitude: Double? = nil, latLong: LatLong? = nil, longitude: Double? = nil, pincode: String? = nil, postalCode: String? = nil, state: String? = nil) {
             
             self.address1 = address1
+            
+            self.address2 = address2
             
             self.country = country
             
             self.pincode = pincode
+            
+            self.postalCode = postalCode
             
             self.city = city
             
@@ -67,6 +83,8 @@ public extension PlatformClient.Serviceability {
             
             self.countryCode = countryCode
             
+            self.latLong = latLong
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -75,6 +93,18 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     address1 = try container.decode(String.self, forKey: .address1)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    address2 = try container.decode(String.self, forKey: .address2)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,6 +129,18 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     pincode = try container.decode(String.self, forKey: .pincode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    postalCode = try container.decode(String.self, forKey: .postalCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,6 +210,18 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    latLong = try container.decode(LatLong.self, forKey: .latLong)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -180,12 +234,22 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(address2, forKey: .address2)
+            
+            
+            
+            
             try? container.encodeIfPresent(country, forKey: .country)
             
             
             
             
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(postalCode, forKey: .postalCode)
             
             
             
@@ -211,6 +275,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
             
             
         }
@@ -231,9 +300,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var address1: String?
         
+        public var address2: String?
+        
         public var country: String?
         
         public var pincode: String?
+        
+        public var postalCode: String?
         
         public var city: String?
         
@@ -245,14 +318,20 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var countryCode: String?
         
+        public var latLong: LatLong?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case address1 = "address1"
             
+            case address2 = "address2"
+            
             case country = "country"
             
             case pincode = "pincode"
+            
+            case postalCode = "postal_code"
             
             case city = "city"
             
@@ -264,15 +343,21 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case countryCode = "country_code"
             
+            case latLong = "lat_long"
+            
         }
 
-        public init(address1: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: String? = nil, state: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, latitude: Double? = nil, latLong: LatLong? = nil, longitude: Double? = nil, pincode: String? = nil, postalCode: String? = nil, state: String? = nil) {
             
             self.address1 = address1
+            
+            self.address2 = address2
             
             self.country = country
             
             self.pincode = pincode
+            
+            self.postalCode = postalCode
             
             self.city = city
             
@@ -284,6 +369,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.countryCode = countryCode
             
+            self.latLong = latLong
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -292,6 +379,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     address1 = try container.decode(String.self, forKey: .address1)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    address2 = try container.decode(String.self, forKey: .address2)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -316,6 +415,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     pincode = try container.decode(String.self, forKey: .pincode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    postalCode = try container.decode(String.self, forKey: .postalCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -385,6 +496,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    latLong = try container.decode(LatLong.self, forKey: .latLong)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -397,12 +520,22 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(address2, forKey: .address2)
+            
+            
+            
+            
             try? container.encodeIfPresent(country, forKey: .country)
             
             
             
             
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(postalCode, forKey: .postalCode)
             
             
             
@@ -428,6 +561,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
             
             
         }

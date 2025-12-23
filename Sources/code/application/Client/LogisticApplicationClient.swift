@@ -11,11 +11,7 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["getPincodeCity"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/{pincode}") 
-            
             ulrs["getAllCountries"] = config.domain.appendAsPath("/service/application/logistics/v1.0/country-list") 
-            
-            ulrs["getCourierPartners"] = config.domain.appendAsPath("/service/application/logistics/v1.0/company/{company_id}/application/{application_id}/shipment/courier-partners") 
             
             ulrs["getCountries"] = config.domain.appendAsPath("/service/application/logistics/v2.0/countries") 
             
@@ -31,6 +27,8 @@ extension ApplicationClient {
             
             ulrs["getFulfillmentOptions"] = config.domain.appendAsPath("/service/application/logistics/v1.0/fulfillment-options") 
             
+            ulrs["getFulfillmentOptionStores"] = config.domain.appendAsPath("/service/application/logistics/v1.0/fulfillment-options/{slug}/stores") 
+            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -39,61 +37,6 @@ extension ApplicationClient {
             }
         }
         
-        
-        
-        /**
-        *
-        * Summary: Get pincode details
-        * Description: Get details of a specific pincode, such as obtaining its city and state information.
-        **/
-        public func getPincodeCity(
-            pincode: String,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PincodeDetailsResult?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            var fullUrl = relativeUrls["getPincodeCity"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: xHeaders,
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PincodeDetailsResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
         
         
         /**
@@ -136,64 +79,6 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CountryResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Serviceable Courier Partners
-        * Description: Get all the serviceable courier partners of a destination and the shipments.
-        **/
-        public func getCourierPartners(
-            companyId: Int,
-            applicationId: String,
-            body: ShipmentCourierPartnerDetails,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ShipmentCourierPartnerResult?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            var fullUrl = relativeUrls["getCourierPartners"] ?? ""
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "company_id" + "}", with: "\(companyId)")
-            
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "application_id" + "}", with: "\(applicationId)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ShipmentCourierPartnerResult.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -346,11 +231,10 @@ extension ApplicationClient {
         /**
         *
         * Summary: Get delivery promise
-        * Description: Get delivery promises for both global and store levels based on a specific locality type.
+        * Description: Delivery Promise Configurations involve estimating and communicating the anticipated delivery date or time to customers, taking into account parameters like store processing time, delivery partner time to delivery, and buffer time. This helps establish precise delivery expectations based on both the delivery partner's capabilities and the store's operations.
         **/
         public func getDeliveryPromise(
             xLocationDetail: String,
-            xApplicationData: String,
             pageNo: Int?,
             pageSize: Int?,
             
@@ -372,9 +256,6 @@ extension ApplicationClient {
             
             
             xHeaders.append((key: "x-location-detail", value: xLocationDetail))
-            
-            
-            xHeaders.append((key: "x-application-data", value: xApplicationData))
             
             
             if let headers = headers {
@@ -693,6 +574,71 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(FulfillmentOptionsList.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Fulfillment Option Stores
+        * Description: Fetches a paginated list of stores associated with a given fulfillment option slug.
+        **/
+        public func getFulfillmentOptionStores(
+            slug: String,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: FulfillmentOptionStores?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["getFulfillmentOptionStores"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(FulfillmentOptionStores.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
