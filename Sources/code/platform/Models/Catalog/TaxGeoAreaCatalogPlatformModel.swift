@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-        Model: UpdateTaxVersion
+        Model: TaxGeoArea
         Used By: Catalog
     */
 
-    class UpdateTaxVersion: Codable {
+    class TaxGeoArea: Codable {
         
         
-        public var components: [TaxComponent]
+        public var regions: [String]
         
-        public var applicableDate: String
+        public var country: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case components = "components"
+            case regions = "regions"
             
-            case applicableDate = "applicable_date"
+            case country = "country"
             
         }
 
-        public init(applicableDate: String, components: [TaxComponent]) {
+        public init(country: String, regions: [String]) {
             
-            self.components = components
+            self.regions = regions
             
-            self.applicableDate = applicableDate
+            self.country = country
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                components = try container.decode([TaxComponent].self, forKey: .components)
+                regions = try container.decode([String].self, forKey: .regions)
                 
             
             
             
-                applicableDate = try container.decode(String.self, forKey: .applicableDate)
+                country = try container.decode(String.self, forKey: .country)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(components, forKey: .components)
+            try? container.encodeIfPresent(regions, forKey: .regions)
             
             
             
             
-            try? container.encodeIfPresent(applicableDate, forKey: .applicableDate)
+            try? container.encodeIfPresent(country, forKey: .country)
             
             
         }
@@ -70,31 +70,31 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: UpdateTaxVersion
+        Model: TaxGeoArea
         Used By: Catalog
     */
 
-    class UpdateTaxVersion: Codable {
+    class TaxGeoArea: Codable {
         
         
-        public var components: [TaxComponent]
+        public var regions: [String]
         
-        public var applicableDate: String
+        public var country: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case components = "components"
+            case regions = "regions"
             
-            case applicableDate = "applicable_date"
+            case country = "country"
             
         }
 
-        public init(applicableDate: String, components: [TaxComponent]) {
+        public init(country: String, regions: [String]) {
             
-            self.components = components
+            self.regions = regions
             
-            self.applicableDate = applicableDate
+            self.country = country
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                components = try container.decode([TaxComponent].self, forKey: .components)
+                regions = try container.decode([String].self, forKey: .regions)
                 
             
             
             
-                applicableDate = try container.decode(String.self, forKey: .applicableDate)
+                country = try container.decode(String.self, forKey: .country)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(components, forKey: .components)
+            try? container.encodeIfPresent(regions, forKey: .regions)
             
             
             
             
-            try? container.encodeIfPresent(applicableDate, forKey: .applicableDate)
+            try? container.encodeIfPresent(country, forKey: .country)
             
             
         }

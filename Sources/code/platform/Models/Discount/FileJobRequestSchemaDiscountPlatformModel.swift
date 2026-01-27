@@ -32,6 +32,8 @@ public extension PlatformClient.Discount {
         
         public var storeIds: [Int]?
         
+        public var priceFactoryIds: [String]?
+        
         public var validity: ValidityObject
         
         public var meta: [String: Any]?
@@ -59,13 +61,15 @@ public extension PlatformClient.Discount {
             
             case storeIds = "store_ids"
             
+            case priceFactoryIds = "price_factory_ids"
+            
             case validity = "validity"
             
             case meta = "meta"
             
         }
 
-        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String, meta: [String: Any]? = nil, name: String, storeIds: [Int]? = nil, validity: ValidityObject) {
+        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String, meta: [String: Any]? = nil, name: String, priceFactoryIds: [String]? = nil, storeIds: [Int]? = nil, validity: ValidityObject) {
             
             self.name = name
             
@@ -86,6 +90,8 @@ public extension PlatformClient.Discount {
             self.brandIds = brandIds
             
             self.storeIds = storeIds
+            
+            self.priceFactoryIds = priceFactoryIds
             
             self.validity = validity
             
@@ -175,6 +181,18 @@ public extension PlatformClient.Discount {
                 
             
             
+                do {
+                    priceFactoryIds = try container.decode([String].self, forKey: .priceFactoryIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 validity = try container.decode(ValidityObject.self, forKey: .validity)
                 
             
@@ -244,6 +262,11 @@ public extension PlatformClient.Discount {
             
             
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceFactoryIds, forKey: .priceFactoryIds)
             
             
             

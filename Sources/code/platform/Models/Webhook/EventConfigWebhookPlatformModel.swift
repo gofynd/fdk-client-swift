@@ -28,6 +28,12 @@ public extension PlatformClient.Webhook {
         
         public var eventSchema: [String: Any]?
         
+        public var sunsetDate: String?
+        
+        public var announcementDate: String?
+        
+        public var supportEndDate: String?
+        
         public var group: String?
         
         public var version: String?
@@ -59,6 +65,12 @@ public extension PlatformClient.Webhook {
             
             case eventSchema = "event_schema"
             
+            case sunsetDate = "sunset_date"
+            
+            case announcementDate = "announcement_date"
+            
+            case supportEndDate = "support_end_date"
+            
             case group = "group"
             
             case version = "version"
@@ -73,7 +85,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, group: String? = nil, id: Int? = nil, modifiedBy: String? = nil, subscriberEventMapping: SubscriberEventMapping? = nil, type: String? = nil, updatedOn: String? = nil, version: String? = nil) {
+        public init(announcementDate: String? = nil, createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, group: String? = nil, id: Int? = nil, modifiedBy: String? = nil, subscriberEventMapping: SubscriberEventMapping? = nil, sunsetDate: String? = nil, supportEndDate: String? = nil, type: String? = nil, updatedOn: String? = nil, version: String? = nil) {
             
             self.id = id
             
@@ -90,6 +102,12 @@ public extension PlatformClient.Webhook {
             self.subscriberEventMapping = subscriberEventMapping
             
             self.eventSchema = eventSchema
+            
+            self.sunsetDate = sunsetDate
+            
+            self.announcementDate = announcementDate
+            
+            self.supportEndDate = supportEndDate
             
             self.group = group
             
@@ -195,6 +213,42 @@ public extension PlatformClient.Webhook {
             
                 do {
                     eventSchema = try container.decode([String: Any].self, forKey: .eventSchema)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sunsetDate = try container.decode(String.self, forKey: .sunsetDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    announcementDate = try container.decode(String.self, forKey: .announcementDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    supportEndDate = try container.decode(String.self, forKey: .supportEndDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -319,6 +373,21 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(eventSchema, forKey: .eventSchema)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sunsetDate, forKey: .sunsetDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(announcementDate, forKey: .announcementDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(supportEndDate, forKey: .supportEndDate)
             
             
             

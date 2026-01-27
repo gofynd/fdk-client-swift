@@ -1779,6 +1779,7 @@ public class PlatformClient {
             **/
             public func checkoutCart(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 body: OpenApiPlatformCheckoutReq,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenApiCheckoutResult?, _ error: FDKError?) -> Void
@@ -1790,6 +1791,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
                 
                 
@@ -2594,6 +2599,7 @@ public class PlatformClient {
             **/
             public func getCart(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 id: String?,
                 userId: String?,
                 orderType: String?,
@@ -2642,6 +2648,10 @@ public class PlatformClient {
                     xHeaders.append((key: "x-ordering-source", value: value))
                 }
                 
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
+                }
+                
                 
                 if let headers = headers {
                     xHeaders.append(contentsOf: headers)
@@ -2684,6 +2694,7 @@ public class PlatformClient {
             **/
             public func platformAddItems(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 i: Bool?,
                 b: Bool?,
                 buyNow: Bool?,
@@ -2720,6 +2731,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
                 
                 
@@ -2764,6 +2779,7 @@ public class PlatformClient {
             **/
             public func platformUpdateCart(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 id: String?,
                 i: Bool?,
                 orderType: String?,
@@ -2800,6 +2816,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
                 
                 
@@ -2844,6 +2864,7 @@ public class PlatformClient {
             **/
             public func updateCartBreakup(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 id: String?,
                 i: Bool?,
                 b: Bool?,
@@ -2875,6 +2896,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
                 
                 
@@ -3104,6 +3129,7 @@ public class PlatformClient {
             **/
             public func applyCoupon(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 i: Bool?,
                 b: Bool?,
                 p: Bool?,
@@ -3140,6 +3166,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
                 
                 
@@ -3184,6 +3214,7 @@ public class PlatformClient {
             **/
             public func removeCoupon(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 uid: String?,
                 buyNow: Bool?,
                 
@@ -3205,6 +3236,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
                 
                 
@@ -3577,6 +3612,7 @@ public class PlatformClient {
             **/
             public func selectAddress(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 cartId: String?,
                 buyNow: Bool?,
                 i: Bool?,
@@ -3608,6 +3644,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
                 
                 
@@ -3882,6 +3922,7 @@ public class PlatformClient {
             **/
             public func platformCheckoutCart(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 id: String?,
                 body: PlatformCartCheckoutDetailCreation,
                 headers: [(key: String, value: String)]? = nil,
@@ -3898,6 +3939,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
                 
                 
@@ -4051,6 +4096,7 @@ public class PlatformClient {
             **/
             public func selectPaymentMode(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
                 id: String?,
                 buyNow: Bool?,
                 orderType: String?,
@@ -4077,6 +4123,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
                 
                 
@@ -4396,6 +4446,385 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(CartDetailResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: List of offers
+            * Description: Retrieve a list of all created offers for specific sales channel. It also supports efficient text search and pagination functionalities, ensuring optimized offers listing for streamlined navigation and management.
+            **/
+            public func getOffers(
+                pageNo: Int?,
+                pageSize: Int?,
+                search: String?,
+                mode: String?,
+                type: String?,
+                promoGroup: String?,
+                excludeContractOffers: Bool?,
+                offerId: String?,
+                createdBy: String?,
+                reviewedBy: String?,
+                approvedStartTime: String?,
+                approvedEndTime: String?,
+                status: String?,
+                code: String?,
+                isPublic: Bool?,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: OfferListResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = search {
+                    xQuery["search"] = value
+                }
+                
+                if let value = mode {
+                    xQuery["mode"] = value
+                }
+                
+                if let value = type {
+                    xQuery["type"] = value
+                }
+                
+                if let value = promoGroup {
+                    xQuery["promo_group"] = value
+                }
+                
+                if let value = excludeContractOffers {
+                    xQuery["exclude_contract_offers"] = value
+                }
+                
+                if let value = offerId {
+                    xQuery["offer_id"] = value
+                }
+                
+                if let value = createdBy {
+                    xQuery["created_by"] = value
+                }
+                
+                if let value = reviewedBy {
+                    xQuery["reviewed_by"] = value
+                }
+                
+                if let value = approvedStartTime {
+                    xQuery["approved_start_time"] = value
+                }
+                
+                if let value = approvedEndTime {
+                    xQuery["approved_end_time"] = value
+                }
+                
+                if let value = status {
+                    xQuery["status"] = value
+                }
+                
+                if let value = code {
+                    xQuery["code"] = value
+                }
+                
+                if let value = isPublic {
+                    xQuery["is_public"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/offers",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OfferListResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Create an offer
+            * Description: Creates a new offer based on the selected offer type. Sellers can choose from multiple supported offer types, including percentage value, fixed amount value, bundled discount, buy X get Y items, and more, along with customizable offer criteria to meet specific business requirements.
+            **/
+            public func createOffer(
+                body: OfferSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: OfferSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/offers",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OfferSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get a specific offer
+            * Description: Retrieve details of a specific offer by providing its unique identifier to obtain information such as offer type, rules, validity period and other related information.
+            **/
+            public func getOfferById(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: OfferSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/offers/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OfferSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update existing offer
+            * Description: Update the details of an existing offer by specifying its unique identifier. This includes modifying offer attributes such as discount percentage, validity period, and associated conditions.
+            **/
+            public func updateOffer(
+                id: String,
+                body: OfferSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: OfferSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/offers/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OfferSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Partially update offer
+            * Description: Seller can make partial adjustments of an existing offer by specifying its unique identifier. It enables businesses to modify specific attributes of the offer while preserving other details intact.
+            **/
+            public func updateOfferPartially(
+                id: String,
+                body: OfferPartialUpdate,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/offers/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Delete draft offer
+            * Description: Delete details of a draft offer by providing its unique identifier to delete information such as offer type, rules, validity period and other related information.
+            **/
+            public func deleteOffer(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/offers/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessMessage.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6930,6 +7359,58 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Get prices for specific raw product items
+            * Description: Fetch pricing details for multiple raw products by their item IDs, scoped to a particular company and sales channel.
+            **/
+            public func getAppProductPrices(
+                itemIds: [Int],
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: AppProductPricesSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["item_ids"] = itemIds
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/raw-products/price",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AppProductPricesSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Get product-return configuration
             * Description: Get Product Return configuration set at an sales channel level
             **/
@@ -8907,6 +9388,471 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(FollowProduct.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Retrieve Price Factories for an Application
+            * Description: Fetches a paginated list of price factories configured for the specified application within a company. Supports optional filters such as brand IDs, category IDs, seller identifier, item code, slug, and name to narrow down the results.
+
+            **/
+            public func getPriceFactories(
+                q: String?,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: PriceFactoryListResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price/list",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PriceFactoryListResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Create a Price Factory for an Application
+            * Description: Creates a new price factory configuration for the specified application under a given company. A price factory allows defining region-based or international pricing strategies using fixed or percentage-based adjustments per currency.
+
+            **/
+            public func createPriceFactory(
+                body: CreatePriceFactoryConfigSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Retrieve a Specific Price Factory Configuration
+            * Description: Retrieves detailed information about a specific price factory configuration  for the given application and company, using the unique price factory ID.  This includes currency strategies, adjustment values, zone mapping, and audit metadata.
+
+            **/
+            public func getPriceFactory(
+                priceFactoryId: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: PriceFactoryConfigSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price/\(priceFactoryId)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PriceFactoryConfigSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update an Existing Price Factory Configuration
+            * Description: Allows partial update of an existing price factory configuration  for a specific application and company using the provided price factory ID.  Fields such as name, currencies, pricing strategies, or zone mapping can be modified.
+
+            **/
+            public func updatePriceFactory(
+                priceFactoryId: String,
+                body: UpdatePriceFactoryConfigSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price/\(priceFactoryId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Delete a Price Factory Configuration
+            * Description: Deletes a specific price factory configuration associated with a given company and application.  This action is typically irreversible and will remove the pricing logic tied to the specified price factory ID.
+
+            **/
+            public func deletePriceFactory(
+                priceFactoryId: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price/\(priceFactoryId)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get Products associated with a Price Factory
+            * Description: Retrieves a paginated list of products linked to a specific price factory configuration for the given application and company. This endpoint returns item-level details such as pricing by currency, delivery zones, seller identifiers, media, and size-level configurations. Useful for viewing how pricing strategies are applied across different items.
+
+            **/
+            public func getPriceFactoryProducts(
+                priceFactoryId: String,
+                brandIds: [Int]?,
+                categoryIds: [Int]?,
+                sellerIdentifier: String?,
+                itemCode: String?,
+                slug: String?,
+                name: String?,
+                active: Bool?,
+                pageNo: Int?,
+                pageSize: Int?,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: PriceFactoryProductListResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = brandIds {
+                    xQuery["brand_ids"] = value
+                }
+                
+                if let value = categoryIds {
+                    xQuery["category_ids"] = value
+                }
+                
+                if let value = sellerIdentifier {
+                    xQuery["seller_identifier"] = value
+                }
+                
+                if let value = itemCode {
+                    xQuery["item_code"] = value
+                }
+                
+                if let value = slug {
+                    xQuery["slug"] = value
+                }
+                
+                if let value = name {
+                    xQuery["name"] = value
+                }
+                
+                if let value = active {
+                    xQuery["active"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price/\(priceFactoryId)/products",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PriceFactoryProductListResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update marketplace optin
+            * Description: get price related information of item for given price factory
+            **/
+            public func getPriceFactoryProduct(
+                priceFactoryId: String,
+                itemId: Int,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: PriceFactoryProductResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price/\(priceFactoryId)/products/\(itemId)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PriceFactoryProductResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Partially update price factory product configuration
+            * Description: Updates specific fields in the price factory product configuration. Use this to partially update pricing or status for a given product and size without overwriting the entire configuration.
+
+            **/
+            public func updatePriceFactoryProduct(
+                priceFactoryId: String,
+                itemId: Int,
+                body: UpsertPriceFactoryProductSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price/\(priceFactoryId)/products/\(itemId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -25681,7 +26627,7 @@ public class PlatformClient {
                 device: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentModeConfig?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -25711,7 +26657,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
+                            let response = Utility.decode(PaymentModeConfig.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -25732,7 +26678,7 @@ public class PlatformClient {
             **/
             public func patchMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
-                body: PlatformPaymentModeDetails,
+                body: PlatformConfigPaymentModeDetails,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
             ) {
@@ -26182,6 +27128,57 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(ValidateCustomerCreditSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Save token details for a payment aggregator
+            * Description: Save token and verification status for a specific payment aggregator, such as Apple Pay or others.
+            **/
+            public func saveTokenForAggregator(
+                aggregatorId: String,
+                body: AggregatorToken,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: OperationResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregators/\(aggregatorId)/token",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OperationResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

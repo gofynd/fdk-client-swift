@@ -24,6 +24,8 @@ public extension PlatformClient.Order {
         
         public var externalShipmentId: String?
         
+        public var invoiceId: String?
+        
         public var lineItems: [LineItemSchema]?
         
         public var orderFulfillmentTimeline: OrderFulfillmentTimelineSchema?
@@ -59,6 +61,8 @@ public extension PlatformClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
+            case invoiceId = "invoice_id"
+            
             case lineItems = "line_items"
             
             case orderFulfillmentTimeline = "order_fulfillment_timeline"
@@ -81,7 +85,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(allowProcessingAfter: String? = nil, courierPartnerDetails: CourierPartnerDetailsSchema? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, isMto: Bool? = nil, lineItems: [LineItemSchema]? = nil, locationId: Int? = nil, meta: [String: Any]? = nil, orderFulfillmentTimeline: OrderFulfillmentTimelineSchema? = nil, promiseDetails: PromiseDetailsSchema? = nil, returnLocationId: Int? = nil, shipmentLifecycleMessages: [LifecycleMessageSchema]? = nil, tags: [String]? = nil, taxDetails: TaxDetailsSchema? = nil, type: String? = nil) {
+        public init(allowProcessingAfter: String? = nil, courierPartnerDetails: CourierPartnerDetailsSchema? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, invoiceId: String? = nil, isMto: Bool? = nil, lineItems: [LineItemSchema]? = nil, locationId: Int? = nil, meta: [String: Any]? = nil, orderFulfillmentTimeline: OrderFulfillmentTimelineSchema? = nil, promiseDetails: PromiseDetailsSchema? = nil, returnLocationId: Int? = nil, shipmentLifecycleMessages: [LifecycleMessageSchema]? = nil, tags: [String]? = nil, taxDetails: TaxDetailsSchema? = nil, type: String? = nil) {
             
             self.isMto = isMto
             
@@ -94,6 +98,8 @@ public extension PlatformClient.Order {
             self.fulfillmentOption = fulfillmentOption
             
             self.externalShipmentId = externalShipmentId
+            
+            self.invoiceId = invoiceId
             
             self.lineItems = lineItems
             
@@ -183,6 +189,18 @@ public extension PlatformClient.Order {
             
                 do {
                     externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    invoiceId = try container.decode(String.self, forKey: .invoiceId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -345,6 +363,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
             
             
             
@@ -425,6 +448,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var externalShipmentId: String?
         
+        public var invoiceId: String?
+        
         public var lineItems: [LineItemSchema]?
         
         public var orderFulfillmentTimeline: OrderFulfillmentTimelineSchema?
@@ -460,6 +485,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
+            case invoiceId = "invoice_id"
+            
             case lineItems = "line_items"
             
             case orderFulfillmentTimeline = "order_fulfillment_timeline"
@@ -482,7 +509,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(allowProcessingAfter: String? = nil, courierPartnerDetails: CourierPartnerDetailsSchema? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, isMto: Bool? = nil, lineItems: [LineItemSchema]? = nil, locationId: Int? = nil, meta: [String: Any]? = nil, orderFulfillmentTimeline: OrderFulfillmentTimelineSchema? = nil, promiseDetails: PromiseDetailsSchema? = nil, returnLocationId: Int? = nil, shipmentLifecycleMessages: [LifecycleMessageSchema]? = nil, tags: [String]? = nil, taxDetails: TaxDetailsSchema? = nil, type: String? = nil) {
+        public init(allowProcessingAfter: String? = nil, courierPartnerDetails: CourierPartnerDetailsSchema? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, invoiceId: String? = nil, isMto: Bool? = nil, lineItems: [LineItemSchema]? = nil, locationId: Int? = nil, meta: [String: Any]? = nil, orderFulfillmentTimeline: OrderFulfillmentTimelineSchema? = nil, promiseDetails: PromiseDetailsSchema? = nil, returnLocationId: Int? = nil, shipmentLifecycleMessages: [LifecycleMessageSchema]? = nil, tags: [String]? = nil, taxDetails: TaxDetailsSchema? = nil, type: String? = nil) {
             
             self.isMto = isMto
             
@@ -495,6 +522,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.fulfillmentOption = fulfillmentOption
             
             self.externalShipmentId = externalShipmentId
+            
+            self.invoiceId = invoiceId
             
             self.lineItems = lineItems
             
@@ -584,6 +613,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    invoiceId = try container.decode(String.self, forKey: .invoiceId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -746,6 +787,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
             
             
             

@@ -618,6 +618,7 @@ extension ApplicationClient {
             displaySplit: Bool?,
             advancePayment: Bool?,
             shipmentId: String?,
+            fulfillmentOption: [String]?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentModeRouteDetails?, _ error: FDKError?) -> Void
@@ -657,6 +658,10 @@ extension ApplicationClient {
             
             if let value = shipmentId {
                 xQuery["shipment_id"] = value
+            }
+            
+            if let value = fulfillmentOption {
+                xQuery["fulfillment_option"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []

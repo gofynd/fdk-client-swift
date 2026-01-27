@@ -26,7 +26,15 @@ public extension PlatformClient.Catalog {
         
         public var status: TaxStatusEnum?
         
+        public var regionCode: String?
+        
+        public var storeIds: [Int]?
+        
+        public var region: RegionReference?
+        
         public var components: [TaxComponent]
+        
+        public var scope: TaxVersionScopeEnum?
         
         public var versionStatus: String
         
@@ -47,13 +55,21 @@ public extension PlatformClient.Catalog {
             
             case status = "status"
             
+            case regionCode = "region_code"
+            
+            case storeIds = "store_ids"
+            
+            case region = "region"
+            
             case components = "components"
+            
+            case scope = "scope"
             
             case versionStatus = "version_status"
             
         }
 
-        public init(applicableDate: String, companyId: Int, components: [TaxComponent], createdOn: String, modifiedOn: String, ruleId: String, status: TaxStatusEnum? = nil, versionStatus: String, id: String) {
+        public init(applicableDate: String, companyId: Int, components: [TaxComponent], createdOn: String, modifiedOn: String, region: RegionReference? = nil, regionCode: String? = nil, ruleId: String, scope: TaxVersionScopeEnum? = nil, status: TaxStatusEnum? = nil, storeIds: [Int]? = nil, versionStatus: String, id: String) {
             
             self.id = id
             
@@ -69,7 +85,15 @@ public extension PlatformClient.Catalog {
             
             self.status = status
             
+            self.regionCode = regionCode
+            
+            self.storeIds = storeIds
+            
+            self.region = region
+            
             self.components = components
+            
+            self.scope = scope
             
             self.versionStatus = versionStatus
             
@@ -121,9 +145,57 @@ public extension PlatformClient.Catalog {
                 
             
             
+                do {
+                    regionCode = try container.decode(String.self, forKey: .regionCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeIds = try container.decode([Int].self, forKey: .storeIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    region = try container.decode(RegionReference.self, forKey: .region)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 components = try container.decode([TaxComponent].self, forKey: .components)
                 
             
+            
+            
+                do {
+                    scope = try container.decode(TaxVersionScopeEnum.self, forKey: .scope)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 versionStatus = try container.decode(String.self, forKey: .versionStatus)
@@ -172,7 +244,27 @@ public extension PlatformClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(regionCode, forKey: .regionCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(region, forKey: .region)
+            
+            
+            
+            
             try? container.encodeIfPresent(components, forKey: .components)
+            
+            
+            
+            
+            try? container.encodeIfPresent(scope, forKey: .scope)
             
             
             
@@ -210,7 +302,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var status: TaxStatusEnum?
         
+        public var regionCode: String?
+        
+        public var storeIds: [Int]?
+        
+        public var region: RegionReference?
+        
         public var components: [TaxComponent]
+        
+        public var scope: TaxVersionScopeEnum?
         
         public var versionStatus: String
         
@@ -231,13 +331,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case status = "status"
             
+            case regionCode = "region_code"
+            
+            case storeIds = "store_ids"
+            
+            case region = "region"
+            
             case components = "components"
+            
+            case scope = "scope"
             
             case versionStatus = "version_status"
             
         }
 
-        public init(applicableDate: String, companyId: Int, components: [TaxComponent], createdOn: String, modifiedOn: String, ruleId: String, status: TaxStatusEnum? = nil, versionStatus: String, id: String) {
+        public init(applicableDate: String, companyId: Int, components: [TaxComponent], createdOn: String, modifiedOn: String, region: RegionReference? = nil, regionCode: String? = nil, ruleId: String, scope: TaxVersionScopeEnum? = nil, status: TaxStatusEnum? = nil, storeIds: [Int]? = nil, versionStatus: String, id: String) {
             
             self.id = id
             
@@ -253,7 +361,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.status = status
             
+            self.regionCode = regionCode
+            
+            self.storeIds = storeIds
+            
+            self.region = region
+            
             self.components = components
+            
+            self.scope = scope
             
             self.versionStatus = versionStatus
             
@@ -305,9 +421,57 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
+                do {
+                    regionCode = try container.decode(String.self, forKey: .regionCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeIds = try container.decode([Int].self, forKey: .storeIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    region = try container.decode(RegionReference.self, forKey: .region)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 components = try container.decode([TaxComponent].self, forKey: .components)
                 
             
+            
+            
+                do {
+                    scope = try container.decode(TaxVersionScopeEnum.self, forKey: .scope)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 versionStatus = try container.decode(String.self, forKey: .versionStatus)
@@ -356,7 +520,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(regionCode, forKey: .regionCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(region, forKey: .region)
+            
+            
+            
+            
             try? container.encodeIfPresent(components, forKey: .components)
+            
+            
+            
+            
+            try? container.encodeIfPresent(scope, forKey: .scope)
             
             
             

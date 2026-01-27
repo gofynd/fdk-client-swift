@@ -69,6 +69,7 @@ extension PlatformClient {
         
         
         
+        
         /**
         *
         * Summary: List categories
@@ -4883,7 +4884,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Create Tax Rule
-        * Description: Create a tax rule and its version for under a specific company. This also creates a live version of the rule
+        * Description: Create a tax rule and its version for under a specific company. This also creates a live version of the rule. The API now supports region-specific versions using optional region_type and areas along with the default country-level rule definition.
         **/
         public func createTax(
             body: CreateTaxRequestBody,
@@ -5111,11 +5112,12 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Get tax versions for a tax rule
-        * Description: Retrieve versions of a tax rule with support for filtering by query parameters (e.g., live, past, all).
+        * Description: Retrieve versions of a tax rule with support for filtering by status and text search on region names via the `q` parameter.
         **/
         public func getTaxVersionDetails(
             ruleId: String,
             versionStatus: String?,
+            q: String?,
             limit: String?,
             page: String?,
             
@@ -5127,6 +5129,10 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
             
             if let value = versionStatus {
                 xQuery["version_status"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
             }
             
             if let value = limit {
@@ -5177,7 +5183,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Create a tax version
-        * Description: Creates a tax rule using the provided rule_id.
+        * Description: Creates a tax version using the provided rule_id with support for scheduled applicability and optional region-level overrides.
         **/
         public func createTaxVersion(
             ruleId: String,
@@ -5280,7 +5286,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Update a tax version
-        * Description: Updates a tax rule using the provided rule_id. You can update any part of a scheduled version but only tax name of live version can be updated.
+        * Description: Updates a tax version using the provided rule_id. Scheduled versions support editing of components, applicable dates, and regional overrides while live versions allow limited updates.
         **/
         public func updateTaxVersion(
             ruleId: String,
@@ -5554,6 +5560,14 @@ customize the names of tax components according to their local tax regulations a
                     }
             });
         }
+        
+        
+        
+        
+        
+        
+        
+        
         
         
     }

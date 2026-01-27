@@ -12,6 +12,10 @@ public extension ApplicationClient.Cart {
         
         public var currency: String?
         
+        public var baseCurrency: CurrencyValue?
+        
+        public var orderingCurrency: CurrencyValue?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +23,21 @@ public extension ApplicationClient.Cart {
             
             case currency = "currency"
             
+            case baseCurrency = "base_currency"
+            
+            case orderingCurrency = "ordering_currency"
+            
         }
 
-        public init(currency: String? = nil, value: Double? = nil) {
+        public init(baseCurrency: CurrencyValue? = nil, currency: String? = nil, orderingCurrency: CurrencyValue? = nil, value: Double? = nil) {
             
             self.value = value
             
             self.currency = currency
+            
+            self.baseCurrency = baseCurrency
+            
+            self.orderingCurrency = orderingCurrency
             
         }
 
@@ -56,6 +68,30 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                baseCurrency = try container.decode(CurrencyValue.self, forKey: .baseCurrency)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                orderingCurrency = try container.decode(CurrencyValue.self, forKey: .orderingCurrency)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,6 +103,14 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            try? container.encodeIfPresent(baseCurrency, forKey: .baseCurrency)
+            
+            
+            
+            try? container.encodeIfPresent(orderingCurrency, forKey: .orderingCurrency)
             
             
         }

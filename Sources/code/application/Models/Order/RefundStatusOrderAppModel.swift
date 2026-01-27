@@ -12,6 +12,10 @@ public extension ApplicationClient.Order {
         
         public var status: String?
         
+        public var operationalStatus: String?
+        
+        public var transactionInfo: [RefundTransactionInfo]?
+        
         public var createdTs: String?
         
         public var updatedTs: String?
@@ -25,6 +29,10 @@ public extension ApplicationClient.Order {
             
             case status = "status"
             
+            case operationalStatus = "operational_status"
+            
+            case transactionInfo = "transaction_info"
+            
             case createdTs = "created_ts"
             
             case updatedTs = "updated_ts"
@@ -33,11 +41,15 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(createdTs: String? = nil, id: String? = nil, status: String? = nil, updatedBy: String? = nil, updatedTs: String? = nil) {
+        public init(createdTs: String? = nil, id: String? = nil, operationalStatus: String? = nil, status: String? = nil, transactionInfo: [RefundTransactionInfo]? = nil, updatedBy: String? = nil, updatedTs: String? = nil) {
             
             self.id = id
             
             self.status = status
+            
+            self.operationalStatus = operationalStatus
+            
+            self.transactionInfo = transactionInfo
             
             self.createdTs = createdTs
             
@@ -65,6 +77,30 @@ public extension ApplicationClient.Order {
             
             do {
                 status = try container.decode(String.self, forKey: .status)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                operationalStatus = try container.decode(String.self, forKey: .operationalStatus)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                transactionInfo = try container.decode([RefundTransactionInfo].self, forKey: .transactionInfo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,6 +157,14 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            try? container.encodeIfPresent(operationalStatus, forKey: .operationalStatus)
+            
+            
+            
+            try? container.encodeIfPresent(transactionInfo, forKey: .transactionInfo)
             
             
             

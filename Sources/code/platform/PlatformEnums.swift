@@ -32,6 +32,22 @@ public extension PlatformClient.Catalog {
     
     
     /*
+        Enum: TaxVersionScopeEnum
+        Used By: Catalog
+    */
+    enum TaxVersionScopeEnum: String, Codable {
+        
+        case country = "COUNTRY"
+        
+        case region = "REGION"
+        
+        case store = "STORE"
+        
+    }
+
+    
+    
+    /*
         Enum: HsTypeEnum
         Used By: Catalog
     */
@@ -64,6 +80,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
         case inactive = "INACTIVE"
         
         case deleted = "DELETED"
+        
+    }
+
+    
+    
+    /*
+        Enum: TaxVersionScopeEnum
+        Used By: Catalog
+    */
+    enum TaxVersionScopeEnum: String, Codable {
+        
+        case country = "COUNTRY"
+        
+        case region = "REGION"
+        
+        case store = "STORE"
         
     }
 

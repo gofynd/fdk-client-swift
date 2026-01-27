@@ -26,6 +26,14 @@ public extension PlatformClient.Catalog {
         
         public var status: TaxStatusEnum?
         
+        public var regionType: String?
+        
+        public var areas: TaxGeoArea?
+        
+        public var storeIds: [Int]?
+        
+        public var scope: TaxVersionScopeEnum?
+        
         public var components: [TaxComponentResponseSchema]?
         
 
@@ -45,11 +53,19 @@ public extension PlatformClient.Catalog {
             
             case status = "status"
             
+            case regionType = "region_type"
+            
+            case areas = "areas"
+            
+            case storeIds = "store_ids"
+            
+            case scope = "scope"
+            
             case components = "components"
             
         }
 
-        public init(applicableDate: String? = nil, companyId: Int? = nil, components: [TaxComponentResponseSchema]? = nil, createdOn: String? = nil, modifiedOn: String? = nil, ruleId: String? = nil, status: TaxStatusEnum? = nil, id: String? = nil) {
+        public init(applicableDate: String? = nil, areas: TaxGeoArea? = nil, companyId: Int? = nil, components: [TaxComponentResponseSchema]? = nil, createdOn: String? = nil, modifiedOn: String? = nil, regionType: String? = nil, ruleId: String? = nil, scope: TaxVersionScopeEnum? = nil, status: TaxStatusEnum? = nil, storeIds: [Int]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -64,6 +80,14 @@ public extension PlatformClient.Catalog {
             self.companyId = companyId
             
             self.status = status
+            
+            self.regionType = regionType
+            
+            self.areas = areas
+            
+            self.storeIds = storeIds
+            
+            self.scope = scope
             
             self.components = components
             
@@ -158,6 +182,54 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    regionType = try container.decode(String.self, forKey: .regionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    areas = try container.decode(TaxGeoArea.self, forKey: .areas)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeIds = try container.decode([Int].self, forKey: .storeIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    scope = try container.decode(TaxVersionScopeEnum.self, forKey: .scope)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     components = try container.decode([TaxComponentResponseSchema].self, forKey: .components)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -206,6 +278,26 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(regionType, forKey: .regionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(areas, forKey: .areas)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(scope, forKey: .scope)
             
             
             
@@ -243,6 +335,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var status: TaxStatusEnum?
         
+        public var regionType: String?
+        
+        public var areas: TaxGeoArea?
+        
+        public var storeIds: [Int]?
+        
+        public var scope: TaxVersionScopeEnum?
+        
         public var components: [TaxComponentResponseSchema]?
         
 
@@ -262,11 +362,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case status = "status"
             
+            case regionType = "region_type"
+            
+            case areas = "areas"
+            
+            case storeIds = "store_ids"
+            
+            case scope = "scope"
+            
             case components = "components"
             
         }
 
-        public init(applicableDate: String? = nil, companyId: Int? = nil, components: [TaxComponentResponseSchema]? = nil, createdOn: String? = nil, modifiedOn: String? = nil, ruleId: String? = nil, status: TaxStatusEnum? = nil, id: String? = nil) {
+        public init(applicableDate: String? = nil, areas: TaxGeoArea? = nil, companyId: Int? = nil, components: [TaxComponentResponseSchema]? = nil, createdOn: String? = nil, modifiedOn: String? = nil, regionType: String? = nil, ruleId: String? = nil, scope: TaxVersionScopeEnum? = nil, status: TaxStatusEnum? = nil, storeIds: [Int]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -281,6 +389,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.companyId = companyId
             
             self.status = status
+            
+            self.regionType = regionType
+            
+            self.areas = areas
+            
+            self.storeIds = storeIds
+            
+            self.scope = scope
             
             self.components = components
             
@@ -375,6 +491,54 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    regionType = try container.decode(String.self, forKey: .regionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    areas = try container.decode(TaxGeoArea.self, forKey: .areas)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeIds = try container.decode([Int].self, forKey: .storeIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    scope = try container.decode(TaxVersionScopeEnum.self, forKey: .scope)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     components = try container.decode([TaxComponentResponseSchema].self, forKey: .components)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -423,6 +587,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(regionType, forKey: .regionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(areas, forKey: .areas)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(scope, forKey: .scope)
             
             
             

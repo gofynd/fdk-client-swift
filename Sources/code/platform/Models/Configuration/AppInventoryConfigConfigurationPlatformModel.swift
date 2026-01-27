@@ -24,6 +24,14 @@ public extension PlatformClient.Configuration {
         
         public var discount: InventoryDiscount?
         
+        public var priceStrategy: String?
+        
+        public var international: Bool?
+        
+        public var strategyChangePending: Bool?
+        
+        public var strategyModifiedAt: String?
+        
         public var outOfStock: Bool?
         
         public var onlyVerifiedProducts: Bool?
@@ -53,6 +61,14 @@ public extension PlatformClient.Configuration {
             
             case discount = "discount"
             
+            case priceStrategy = "price_strategy"
+            
+            case international = "international"
+            
+            case strategyChangePending = "strategy_change_pending"
+            
+            case strategyModifiedAt = "strategy_modified_at"
+            
             case outOfStock = "out_of_stock"
             
             case onlyVerifiedProducts = "only_verified_products"
@@ -69,7 +85,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, deliveryStrategy: DeliveryStrategy? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, deliveryStrategy: DeliveryStrategy? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, international: Bool? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, priceStrategy: String? = nil, store: InventoryStore? = nil, strategyChangePending: Bool? = nil, strategyModifiedAt: String? = nil) {
             
             self.deliveryStrategy = deliveryStrategy
             
@@ -82,6 +98,14 @@ public extension PlatformClient.Configuration {
             self.price = price
             
             self.discount = discount
+            
+            self.priceStrategy = priceStrategy
+            
+            self.international = international
+            
+            self.strategyChangePending = strategyChangePending
+            
+            self.strategyModifiedAt = strategyModifiedAt
             
             self.outOfStock = outOfStock
             
@@ -165,6 +189,54 @@ public extension PlatformClient.Configuration {
             
                 do {
                     discount = try container.decode(InventoryDiscount.self, forKey: .discount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceStrategy = try container.decode(String.self, forKey: .priceStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    international = try container.decode(Bool.self, forKey: .international)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    strategyChangePending = try container.decode(Bool.self, forKey: .strategyChangePending)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    strategyModifiedAt = try container.decode(String.self, forKey: .strategyModifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -291,6 +363,26 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(discount, forKey: .discount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceStrategy, forKey: .priceStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(international, forKey: .international)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategyChangePending, forKey: .strategyChangePending)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategyModifiedAt, forKey: .strategyModifiedAt)
             
             
             
@@ -356,6 +448,14 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var discount: InventoryDiscount?
         
+        public var priceStrategy: String?
+        
+        public var international: Bool?
+        
+        public var strategyChangePending: Bool?
+        
+        public var strategyModifiedAt: String?
+        
         public var outOfStock: Bool?
         
         public var onlyVerifiedProducts: Bool?
@@ -385,6 +485,14 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case discount = "discount"
             
+            case priceStrategy = "price_strategy"
+            
+            case international = "international"
+            
+            case strategyChangePending = "strategy_change_pending"
+            
+            case strategyModifiedAt = "strategy_modified_at"
+            
             case outOfStock = "out_of_stock"
             
             case onlyVerifiedProducts = "only_verified_products"
@@ -401,7 +509,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, deliveryStrategy: DeliveryStrategy? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, deliveryStrategy: DeliveryStrategy? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, international: Bool? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, priceStrategy: String? = nil, store: InventoryStore? = nil, strategyChangePending: Bool? = nil, strategyModifiedAt: String? = nil) {
             
             self.deliveryStrategy = deliveryStrategy
             
@@ -414,6 +522,14 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.price = price
             
             self.discount = discount
+            
+            self.priceStrategy = priceStrategy
+            
+            self.international = international
+            
+            self.strategyChangePending = strategyChangePending
+            
+            self.strategyModifiedAt = strategyModifiedAt
             
             self.outOfStock = outOfStock
             
@@ -497,6 +613,54 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     discount = try container.decode(InventoryDiscount.self, forKey: .discount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceStrategy = try container.decode(String.self, forKey: .priceStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    international = try container.decode(Bool.self, forKey: .international)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    strategyChangePending = try container.decode(Bool.self, forKey: .strategyChangePending)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    strategyModifiedAt = try container.decode(String.self, forKey: .strategyModifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -623,6 +787,26 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(discount, forKey: .discount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceStrategy, forKey: .priceStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(international, forKey: .international)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategyChangePending, forKey: .strategyChangePending)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategyModifiedAt, forKey: .strategyModifiedAt)
             
             
             

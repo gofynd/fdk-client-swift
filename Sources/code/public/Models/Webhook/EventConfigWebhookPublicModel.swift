@@ -32,6 +32,12 @@ public extension PublicClient.Webhook {
         
         public var group: String?
         
+        public var sunsetDate: String?
+        
+        public var announcementDate: String?
+        
+        public var supportEndDate: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,9 +63,15 @@ public extension PublicClient.Webhook {
             
             case group = "group"
             
+            case sunsetDate = "sunset_date"
+            
+            case announcementDate = "announcement_date"
+            
+            case supportEndDate = "support_end_date"
+            
         }
 
-        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, group: String? = nil, id: Int? = nil, updatedOn: String? = nil, version: String? = nil) {
+        public init(announcementDate: String? = nil, createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, group: String? = nil, id: Int? = nil, sunsetDate: String? = nil, supportEndDate: String? = nil, updatedOn: String? = nil, version: String? = nil) {
             
             self.id = id
             
@@ -82,6 +94,12 @@ public extension PublicClient.Webhook {
             self.updatedOn = updatedOn
             
             self.group = group
+            
+            self.sunsetDate = sunsetDate
+            
+            self.announcementDate = announcementDate
+            
+            self.supportEndDate = supportEndDate
             
         }
 
@@ -220,6 +238,42 @@ public extension PublicClient.Webhook {
                 }
                 
             
+            
+                do {
+                    sunsetDate = try container.decode(String.self, forKey: .sunsetDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    announcementDate = try container.decode(String.self, forKey: .announcementDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    supportEndDate = try container.decode(String.self, forKey: .supportEndDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -267,6 +321,18 @@ public extension PublicClient.Webhook {
             
             
             try? container.encodeIfPresent(group, forKey: .group)
+            
+            
+            
+            try? container.encodeIfPresent(sunsetDate, forKey: .sunsetDate)
+            
+            
+            
+            try? container.encodeIfPresent(announcementDate, forKey: .announcementDate)
+            
+            
+            
+            try? container.encodeIfPresent(supportEndDate, forKey: .supportEndDate)
             
             
         }
