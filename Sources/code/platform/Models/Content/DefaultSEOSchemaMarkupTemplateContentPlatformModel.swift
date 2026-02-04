@@ -12,7 +12,7 @@ public extension PlatformClient.Content {
     class DefaultSEOSchemaMarkupTemplate: Codable {
         
         
-        public var pageType: String?
+        public var pageType: PageType?
         
         public var schema: String?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil) {
+        public init(pageType: PageType? = nil, schema: String? = nil, targetJson: [String: Any]? = nil) {
             
             self.pageType = pageType
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
+                    pageType = try container.decode(PageType.self, forKey: .pageType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,7 +114,7 @@ public extension PlatformClient.ApplicationClient.Content {
     class DefaultSEOSchemaMarkupTemplate: Codable {
         
         
-        public var pageType: String?
+        public var pageType: PageType?
         
         public var schema: String?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil) {
+        public init(pageType: PageType? = nil, schema: String? = nil, targetJson: [String: Any]? = nil) {
             
             self.pageType = pageType
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
+                    pageType = try container.decode(PageType.self, forKey: .pageType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

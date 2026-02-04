@@ -2313,7 +2313,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         /**
         *
         * Summary: Create Order
-        * Description: Creates an order in the OMS. Note: Use the Serviceability API (<a href='/commerce/sdk/latest/platform/company/serviceability#createShipments'>createShipments</a>) to determine shipments before creating an order.
+        * Description: Creates an order in the OMS. Use the (<a href='https://docs.fynd.com/partners/commerce/sdk/latest/platform/application/serviceability#createShipments'>createShipments API</a>) to determine shipments before creating an order.  Click <a href='https://docs.fynd.com/partners/commerce/miscellaneous/createOrder-useCases'>here</a> to get the use case details.
         **/
         public func createOrder(
             xOrderingSource: String,

@@ -16,7 +16,7 @@ public extension PlatformClient.Content {
         
         public var title: String?
         
-        public var pageType: String?
+        public var pageType: PageType?
         
         public var schema: String?
         
@@ -57,7 +57,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil) {
+        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, pageType: PageType? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil) {
             
             self.id = id
             
@@ -110,7 +110,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
+                    pageType = try container.decode(PageType.self, forKey: .pageType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -279,7 +279,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var title: String?
         
-        public var pageType: String?
+        public var pageType: PageType?
         
         public var schema: String?
         
@@ -320,7 +320,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil) {
+        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, pageType: PageType? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil) {
             
             self.id = id
             
@@ -373,7 +373,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
+                    pageType = try container.decode(PageType.self, forKey: .pageType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

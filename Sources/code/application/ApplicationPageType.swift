@@ -65,6 +65,7 @@ public extension ApplicationClient.Content {
         case locateUs = "locate-us"
         case singlePageCheckout = "single-page-checkout"
         case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -212,6 +213,8 @@ public extension ApplicationClient.Content {
                 return "/cart/checkout"
             case .requestReattempt:
                 return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -318,6 +321,8 @@ public extension ApplicationClient.Content {
                 return "Single Page Checkout"
             case .requestReattempt:
                 return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -424,6 +429,8 @@ public extension ApplicationClient.Content {
                 return []
             case .requestReattempt:
                 return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -529,6 +536,8 @@ public extension ApplicationClient.Content {
             case .singlePageCheckout:
                 return []
             case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -605,6 +614,7 @@ public extension ApplicationClient.Theme {
         case locateUs = "locate-us"
         case singlePageCheckout = "single-page-checkout"
         case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -752,6 +762,8 @@ public extension ApplicationClient.Theme {
                 return "/cart/checkout"
             case .requestReattempt:
                 return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -858,6 +870,8 @@ public extension ApplicationClient.Theme {
                 return "Single Page Checkout"
             case .requestReattempt:
                 return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -964,6 +978,8 @@ public extension ApplicationClient.Theme {
                 return []
             case .requestReattempt:
                 return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -1069,6 +1085,8 @@ public extension ApplicationClient.Theme {
             case .singlePageCheckout:
                 return []
             case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }

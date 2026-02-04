@@ -65,6 +65,7 @@ public extension PlatformClient.Catalog {
         case locateUs = "locate-us"
         case singlePageCheckout = "single-page-checkout"
         case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -212,6 +213,8 @@ public extension PlatformClient.Catalog {
                 return "/cart/checkout"
             case .requestReattempt:
                 return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -318,6 +321,8 @@ public extension PlatformClient.Catalog {
                 return "Single Page Checkout"
             case .requestReattempt:
                 return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -424,6 +429,8 @@ public extension PlatformClient.Catalog {
                 return []
             case .requestReattempt:
                 return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -529,6 +536,8 @@ public extension PlatformClient.Catalog {
             case .singlePageCheckout:
                 return []
             case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -591,6 +600,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         case locateUs = "locate-us"
         case singlePageCheckout = "single-page-checkout"
         case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -738,6 +748,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "/cart/checkout"
             case .requestReattempt:
                 return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -844,6 +856,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "Single Page Checkout"
             case .requestReattempt:
                 return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -950,6 +964,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return []
             case .requestReattempt:
                 return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -1055,6 +1071,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case .singlePageCheckout:
                 return []
             case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -1129,6 +1147,7 @@ public extension PlatformClient.Content {
         case locateUs = "locate-us"
         case singlePageCheckout = "single-page-checkout"
         case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -1276,6 +1295,8 @@ public extension PlatformClient.Content {
                 return "/cart/checkout"
             case .requestReattempt:
                 return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -1382,6 +1403,8 @@ public extension PlatformClient.Content {
                 return "Single Page Checkout"
             case .requestReattempt:
                 return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -1488,6 +1511,8 @@ public extension PlatformClient.Content {
                 return []
             case .requestReattempt:
                 return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -1593,6 +1618,8 @@ public extension PlatformClient.Content {
             case .singlePageCheckout:
                 return []
             case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -1655,6 +1682,7 @@ public extension PlatformClient.ApplicationClient.Content {
         case locateUs = "locate-us"
         case singlePageCheckout = "single-page-checkout"
         case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -1802,6 +1830,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "/cart/checkout"
             case .requestReattempt:
                 return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -1908,6 +1938,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "Single Page Checkout"
             case .requestReattempt:
                 return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -2014,6 +2046,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 return []
             case .requestReattempt:
                 return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -2119,6 +2153,8 @@ public extension PlatformClient.ApplicationClient.Content {
             case .singlePageCheckout:
                 return []
             case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -2201,6 +2237,7 @@ public extension PlatformClient.Theme {
         case locateUs = "locate-us"
         case singlePageCheckout = "single-page-checkout"
         case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -2348,6 +2385,8 @@ public extension PlatformClient.Theme {
                 return "/cart/checkout"
             case .requestReattempt:
                 return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -2454,6 +2493,8 @@ public extension PlatformClient.Theme {
                 return "Single Page Checkout"
             case .requestReattempt:
                 return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -2560,6 +2601,8 @@ public extension PlatformClient.Theme {
                 return []
             case .requestReattempt:
                 return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -2665,6 +2708,8 @@ public extension PlatformClient.Theme {
             case .singlePageCheckout:
                 return []
             case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -2727,6 +2772,7 @@ public extension PlatformClient.ApplicationClient.Theme {
         case locateUs = "locate-us"
         case singlePageCheckout = "single-page-checkout"
         case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -2874,6 +2920,8 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "/cart/checkout"
             case .requestReattempt:
                 return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -2980,6 +3028,8 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "Single Page Checkout"
             case .requestReattempt:
                 return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -3086,6 +3136,8 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return []
             case .requestReattempt:
                 return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -3191,6 +3243,8 @@ public extension PlatformClient.ApplicationClient.Theme {
             case .singlePageCheckout:
                 return []
             case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }

@@ -17565,7 +17565,7 @@ public class PlatformClient {
             * Description: Use this API to List default SEO Markup Schemas
             **/
             public func getDefaultSEOMarkupSchema(
-                pageType: String?,
+                pageType: PageType?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DefaultSchemaComponent?, _ error: FDKError?) -> Void
@@ -17574,7 +17574,7 @@ public class PlatformClient {
                 var xQuery: [String: Any] = [:] 
                 
                 if let value = pageType {
-                    xQuery["page_type"] = value
+                    xQuery["page_type"] = value.rawValue
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []

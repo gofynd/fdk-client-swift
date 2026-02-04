@@ -807,7 +807,7 @@ extension ApplicationClient {
         * Description: Get all SEO Markup schema Templates setup for an application.
         **/
         public func getSEOMarkupSchemas(
-            pageType: String?,
+            pageType: PageType?,
             active: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
@@ -817,7 +817,7 @@ extension ApplicationClient {
             var xQuery: [String: Any] = [:] 
             
             if let value = pageType {
-                xQuery["page_type"] = value
+                xQuery["page_type"] = value.rawValue
             }
             
             if let value = active {

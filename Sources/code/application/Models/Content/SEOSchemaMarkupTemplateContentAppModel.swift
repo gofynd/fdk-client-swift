@@ -12,7 +12,7 @@ public extension ApplicationClient.Content {
         
         public var title: String?
         
-        public var pageType: String?
+        public var pageType: PageType?
         
         public var description: String?
         
@@ -49,7 +49,7 @@ public extension ApplicationClient.Content {
             
         }
 
-        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, pageType: String? = nil, schema: String? = nil, title: String? = nil, updatedAt: String? = nil) {
+        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, pageType: PageType? = nil, schema: String? = nil, title: String? = nil, updatedAt: String? = nil) {
             
             self.id = id
             
@@ -100,7 +100,7 @@ public extension ApplicationClient.Content {
             
             
             do {
-                pageType = try container.decode(String.self, forKey: .pageType)
+                pageType = try container.decode(PageType.self, forKey: .pageType)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
