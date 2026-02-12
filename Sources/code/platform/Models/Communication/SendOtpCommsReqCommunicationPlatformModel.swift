@@ -18,8 +18,6 @@ public extension PlatformClient.Communication {
         
         public var email: SendOtpCommsReqEmail?
         
-        public var additionalVariables: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,19 +27,15 @@ public extension PlatformClient.Communication {
             
             case email = "email"
             
-            case additionalVariables = "additional_variables"
-            
         }
 
-        public init(additionalVariables: [String: Any]? = nil, data: SendOtpCommsReqData? = nil, email: SendOtpCommsReqEmail? = nil, sms: SendOtpCommsReqSms? = nil) {
+        public init(data: SendOtpCommsReqData? = nil, email: SendOtpCommsReqEmail? = nil, sms: SendOtpCommsReqSms? = nil) {
             
             self.data = data
             
             self.sms = sms
             
             self.email = email
-            
-            self.additionalVariables = additionalVariables
             
         }
 
@@ -84,18 +78,6 @@ public extension PlatformClient.Communication {
                 }
                 
             
-            
-                do {
-                    additionalVariables = try container.decode([String: Any].self, forKey: .additionalVariables)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -114,11 +96,6 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            
-            try? container.encodeIfPresent(additionalVariables, forKey: .additionalVariables)
             
             
         }
@@ -143,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var email: SendOtpCommsReqEmail?
         
-        public var additionalVariables: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -154,19 +129,15 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case email = "email"
             
-            case additionalVariables = "additional_variables"
-            
         }
 
-        public init(additionalVariables: [String: Any]? = nil, data: SendOtpCommsReqData? = nil, email: SendOtpCommsReqEmail? = nil, sms: SendOtpCommsReqSms? = nil) {
+        public init(data: SendOtpCommsReqData? = nil, email: SendOtpCommsReqEmail? = nil, sms: SendOtpCommsReqSms? = nil) {
             
             self.data = data
             
             self.sms = sms
             
             self.email = email
-            
-            self.additionalVariables = additionalVariables
             
         }
 
@@ -209,18 +180,6 @@ public extension PlatformClient.ApplicationClient.Communication {
                 }
                 
             
-            
-                do {
-                    additionalVariables = try container.decode([String: Any].self, forKey: .additionalVariables)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -239,11 +198,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            
-            try? container.encodeIfPresent(additionalVariables, forKey: .additionalVariables)
             
             
         }

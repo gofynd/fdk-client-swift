@@ -24,6 +24,8 @@ public extension ApplicationClient.Order {
         
         public var bagsForReorder: [BagsForReorder]?
         
+        public var meta: [String: Any]?
+        
         public var gstinCode: String?
         
         public var userInfo: UserDetails?
@@ -47,13 +49,15 @@ public extension ApplicationClient.Order {
             
             case bagsForReorder = "bags_for_reorder"
             
+            case meta = "meta"
+            
             case gstinCode = "gstin_code"
             
             case userInfo = "user_info"
             
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, gstinCode: String? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [ShipmentInfo]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserDetails? = nil) {
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [ShipmentInfo]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserDetails? = nil) {
             
             self.orderCreatedTime = orderCreatedTime
             
@@ -70,6 +74,8 @@ public extension ApplicationClient.Order {
             self.charges = charges
             
             self.bagsForReorder = bagsForReorder
+            
+            self.meta = meta
             
             self.gstinCode = gstinCode
             
@@ -178,6 +184,18 @@ public extension ApplicationClient.Order {
             
             
             do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 gstinCode = try container.decode(String.self, forKey: .gstinCode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -235,6 +253,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(bagsForReorder, forKey: .bagsForReorder)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             

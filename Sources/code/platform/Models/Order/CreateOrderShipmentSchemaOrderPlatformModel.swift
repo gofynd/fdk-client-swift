@@ -30,7 +30,7 @@ public extension PlatformClient.Order {
         
         public var orderFulfillmentTimeline: OrderFulfillmentTimelineSchema?
         
-        public var locationId: Int?
+        public var locationId: Int
         
         public var externalLocationId: String?
         
@@ -85,7 +85,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(allowProcessingAfter: String? = nil, courierPartnerDetails: CourierPartnerDetailsSchema? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, invoiceId: String? = nil, isMto: Bool? = nil, lineItems: [LineItemSchema]? = nil, locationId: Int? = nil, meta: [String: Any]? = nil, orderFulfillmentTimeline: OrderFulfillmentTimelineSchema? = nil, promiseDetails: PromiseDetailsSchema? = nil, returnLocationId: Int? = nil, shipmentLifecycleMessages: [LifecycleMessageSchema]? = nil, tags: [String]? = nil, taxDetails: TaxDetailsSchema? = nil, type: String? = nil) {
+        public init(allowProcessingAfter: String? = nil, courierPartnerDetails: CourierPartnerDetailsSchema? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, invoiceId: String? = nil, isMto: Bool? = nil, lineItems: [LineItemSchema]? = nil, locationId: Int, meta: [String: Any]? = nil, orderFulfillmentTimeline: OrderFulfillmentTimelineSchema? = nil, promiseDetails: PromiseDetailsSchema? = nil, returnLocationId: Int? = nil, shipmentLifecycleMessages: [LifecycleMessageSchema]? = nil, tags: [String]? = nil, taxDetails: TaxDetailsSchema? = nil, type: String? = nil) {
             
             self.isMto = isMto
             
@@ -235,16 +235,9 @@ public extension PlatformClient.Order {
                 
             
             
-                do {
-                    locationId = try container.decode(Int.self, forKey: .locationId)
+                locationId = try container.decode(Int.self, forKey: .locationId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -454,7 +447,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderFulfillmentTimeline: OrderFulfillmentTimelineSchema?
         
-        public var locationId: Int?
+        public var locationId: Int
         
         public var externalLocationId: String?
         
@@ -509,7 +502,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(allowProcessingAfter: String? = nil, courierPartnerDetails: CourierPartnerDetailsSchema? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, invoiceId: String? = nil, isMto: Bool? = nil, lineItems: [LineItemSchema]? = nil, locationId: Int? = nil, meta: [String: Any]? = nil, orderFulfillmentTimeline: OrderFulfillmentTimelineSchema? = nil, promiseDetails: PromiseDetailsSchema? = nil, returnLocationId: Int? = nil, shipmentLifecycleMessages: [LifecycleMessageSchema]? = nil, tags: [String]? = nil, taxDetails: TaxDetailsSchema? = nil, type: String? = nil) {
+        public init(allowProcessingAfter: String? = nil, courierPartnerDetails: CourierPartnerDetailsSchema? = nil, externalLocationId: String? = nil, externalShipmentId: String? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, invoiceId: String? = nil, isMto: Bool? = nil, lineItems: [LineItemSchema]? = nil, locationId: Int, meta: [String: Any]? = nil, orderFulfillmentTimeline: OrderFulfillmentTimelineSchema? = nil, promiseDetails: PromiseDetailsSchema? = nil, returnLocationId: Int? = nil, shipmentLifecycleMessages: [LifecycleMessageSchema]? = nil, tags: [String]? = nil, taxDetails: TaxDetailsSchema? = nil, type: String? = nil) {
             
             self.isMto = isMto
             
@@ -659,16 +652,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                do {
-                    locationId = try container.decode(Int.self, forKey: .locationId)
+                locationId = try container.decode(Int.self, forKey: .locationId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
