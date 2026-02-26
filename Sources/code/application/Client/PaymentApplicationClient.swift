@@ -716,6 +716,7 @@ extension ApplicationClient {
             refresh: Bool?,
             cardReference: String?,
             orderType: String,
+            fulfillmentOption: [String]?,
             userDetails: String?,
             
             headers: [(key: String, value: String)]? = nil,
@@ -739,6 +740,10 @@ extension ApplicationClient {
                 xQuery["card_reference"] = value
             }
             xQuery["order_type"] = orderType
+            
+            if let value = fulfillmentOption {
+                xQuery["fulfillment_option"] = value
+            }
             
             if let value = userDetails {
                 xQuery["user_details"] = value

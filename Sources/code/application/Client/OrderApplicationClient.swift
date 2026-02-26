@@ -13,6 +13,8 @@ extension ApplicationClient {
             
             ulrs["getRefundModes"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/shipment/{shipment_id}/refund/modes") 
             
+            ulrs["getRefundModesWithPriceBreakup"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/shipment/{shipment_id}/refund/modes") 
+            
             ulrs["getOrders"] = config.domain.appendAsPath("/service/application/order/v1.0/orders") 
             
             ulrs["getOrderById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}") 
@@ -87,6 +89,62 @@ extension ApplicationClient {
                 query: xQuery,
                 extraHeaders: xHeaders,
                 body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RefundOptions.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get refund modes and Refund Price Break for a shipment
+        * Description: Returns a list of available refund options for the given company and shipment.
+
+        **/
+        public func getRefundModesWithPriceBreakup(
+            shipmentId: String,
+            body: RefundModeRequestData,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: RefundOptions?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["getRefundModesWithPriceBreakup"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
