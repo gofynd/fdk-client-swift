@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var rule: TaxReqBodyRule
         
-        public var versions: [TaxReqBodyVersion]
+        public var versions: TaxReqBodyVersion
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(rule: TaxReqBodyRule, versions: [TaxReqBodyVersion]) {
+        public init(rule: TaxReqBodyRule, versions: TaxReqBodyVersion) {
             
             self.rule = rule
             
@@ -42,7 +42,7 @@ public extension PlatformClient.Catalog {
             
             
             
-                versions = try container.decode([TaxReqBodyVersion].self, forKey: .versions)
+                versions = try container.decode(TaxReqBodyVersion.self, forKey: .versions)
                 
             
             
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var rule: TaxReqBodyRule
         
-        public var versions: [TaxReqBodyVersion]
+        public var versions: TaxReqBodyVersion
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(rule: TaxReqBodyRule, versions: [TaxReqBodyVersion]) {
+        public init(rule: TaxReqBodyRule, versions: TaxReqBodyVersion) {
             
             self.rule = rule
             
@@ -107,7 +107,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                versions = try container.decode([TaxReqBodyVersion].self, forKey: .versions)
+                versions = try container.decode(TaxReqBodyVersion.self, forKey: .versions)
                 
             
             

@@ -1669,6 +1669,8 @@ public class PlatformClient {
             **/
             public func fetchAndvalidateCartItems(
                 xOrderingSource: String?,
+                xLocationDetail: String?,
+                xCurrencyCode: String?,
                 body: OpenapiCartDetailsCreation,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenapiCartDetailsResult?, _ error: FDKError?) -> Void
@@ -1680,6 +1682,14 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xLocationDetail {
+                    xHeaders.append((key: "x-location-detail", value: value))
+                }
+                
+                if let value = xCurrencyCode {
+                    xHeaders.append((key: "x-currency-code", value: value))
                 }
                 
                 
@@ -1774,12 +1784,14 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Checkout cart
+            * Summary: Headless Checkout
             * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
             **/
             public func checkoutCart(
                 xOrderingSource: String?,
                 xAnonymousCart: String?,
+                xLocationDetail: String?,
+                xCurrencyCode: String?,
                 body: OpenApiPlatformCheckoutReq,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenApiCheckoutResult?, _ error: FDKError?) -> Void
@@ -1795,6 +1807,14 @@ public class PlatformClient {
                 
                 if let value = xAnonymousCart {
                     xHeaders.append((key: "x-anonymous-cart", value: value))
+                }
+                
+                if let value = xLocationDetail {
+                    xHeaders.append((key: "x-location-detail", value: value))
+                }
+                
+                if let value = xCurrencyCode {
+                    xHeaders.append((key: "x-currency-code", value: value))
                 }
                 
                 
@@ -2266,6 +2286,8 @@ public class PlatformClient {
             **/
             public func overrideCart(
                 xOrderingSource: String?,
+                xLocationDetail: String?,
+                xCurrencyCode: String?,
                 body: OverrideCheckoutReq,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OverrideCheckoutResult?, _ error: FDKError?) -> Void
@@ -2277,6 +2299,14 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xLocationDetail {
+                    xHeaders.append((key: "x-location-detail", value: value))
+                }
+                
+                if let value = xCurrencyCode {
+                    xHeaders.append((key: "x-currency-code", value: value))
                 }
                 
                 
@@ -4261,6 +4291,9 @@ public class PlatformClient {
             **/
             public func platformCheckoutCartV2(
                 xOrderingSource: String?,
+                xAnonymousCart: String?,
+                xLocationDetail: String?,
+                xCurrencyCode: String?,
                 id: String?,
                 body: PlatformCartCheckoutDetailV2Creation,
                 headers: [(key: String, value: String)]? = nil,
@@ -4277,6 +4310,18 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xAnonymousCart {
+                    xHeaders.append((key: "x-anonymous-cart", value: value))
+                }
+                
+                if let value = xLocationDetail {
+                    xHeaders.append((key: "x-location-detail", value: value))
+                }
+                
+                if let value = xCurrencyCode {
+                    xHeaders.append((key: "x-currency-code", value: value))
                 }
                 
                 
@@ -5344,7 +5389,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Update sales channel category
-            * Description: Modify category data related to the sales channel .
+            * Description: Modify category data related to the sales channel.
             **/
             public func updateAppCategory(
                 categoryUid: String,
@@ -9298,7 +9343,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Follow a Specific Product by ID
-            * Description: This endpoint enables a user to follow a specific product identified by its unique item ID for a sales channel.         
+            * Description: This endpoint enables a user to follow a specific product identified by its unique item ID for a sales channel.
 
             **/
             public func followProductById(
@@ -9934,7 +9979,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Update application providers
-            * Description: Modify provider configuration using provider object id .
+            * Description: Modify provider configuration using provider object id.
             **/
             public func updateAppProviders(
                 body: AppProviderReq,
@@ -30218,7 +30263,7 @@ public class PlatformClient {
                 pageNo: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttributeDefinitionsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -30254,7 +30299,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = data.dictionary
+                            let response = Utility.decode(UserAttributeDefinitionsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

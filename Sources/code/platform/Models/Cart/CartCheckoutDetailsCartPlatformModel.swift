@@ -16,7 +16,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var appInterceptUrl: String?
         
-        public var data: [String: Any]?
+        public var data: CartCheckoutDetailsData?
         
         public var cart: CheckCart?
         
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(appInterceptUrl: String? = nil, callbackUrl: String? = nil, cart: CheckCart? = nil, data: [String: Any]? = nil, message: String? = nil, orderId: String? = nil, paymentConfirmUrl: String? = nil, success: Bool? = nil) {
+        public init(appInterceptUrl: String? = nil, callbackUrl: String? = nil, cart: CheckCart? = nil, data: CartCheckoutDetailsData? = nil, message: String? = nil, orderId: String? = nil, paymentConfirmUrl: String? = nil, success: Bool? = nil) {
             
             self.appInterceptUrl = appInterceptUrl
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    data = try container.decode([String: Any].self, forKey: .data)
+                    data = try container.decode(CartCheckoutDetailsData.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

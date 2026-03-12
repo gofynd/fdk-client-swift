@@ -44,6 +44,8 @@ public extension PlatformClient.Catalog {
         
         public var tags: [String]?
         
+        public var errorFileUrl: String?
+        
         public var meta: BulkMeta?
         
 
@@ -81,11 +83,13 @@ public extension PlatformClient.Catalog {
             
             case tags = "tags"
             
+            case errorFileUrl = "error_file_url"
+            
             case meta = "meta"
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [FailedRecord]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, meta: BulkMeta? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, tags: [String]? = nil, total: Int? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, errorFileUrl: String? = nil, failed: Int? = nil, failedRecords: [FailedRecord]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, meta: BulkMeta? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, tags: [String]? = nil, total: Int? = nil) {
             
             self.cancelled = cancelled
             
@@ -118,6 +122,8 @@ public extension PlatformClient.Catalog {
             self.total = total
             
             self.tags = tags
+            
+            self.errorFileUrl = errorFileUrl
             
             self.meta = meta
             
@@ -320,6 +326,18 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    errorFileUrl = try container.decode(String.self, forKey: .errorFileUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode(BulkMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -413,6 +431,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(errorFileUrl, forKey: .errorFileUrl)
             
             
             
@@ -468,6 +491,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var tags: [String]?
         
+        public var errorFileUrl: String?
+        
         public var meta: BulkMeta?
         
 
@@ -505,11 +530,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case tags = "tags"
             
+            case errorFileUrl = "error_file_url"
+            
             case meta = "meta"
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [FailedRecord]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, meta: BulkMeta? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, tags: [String]? = nil, total: Int? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, errorFileUrl: String? = nil, failed: Int? = nil, failedRecords: [FailedRecord]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, meta: BulkMeta? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, tags: [String]? = nil, total: Int? = nil) {
             
             self.cancelled = cancelled
             
@@ -542,6 +569,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.total = total
             
             self.tags = tags
+            
+            self.errorFileUrl = errorFileUrl
             
             self.meta = meta
             
@@ -744,6 +773,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    errorFileUrl = try container.decode(String.self, forKey: .errorFileUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode(BulkMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -837,6 +878,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(errorFileUrl, forKey: .errorFileUrl)
             
             
             

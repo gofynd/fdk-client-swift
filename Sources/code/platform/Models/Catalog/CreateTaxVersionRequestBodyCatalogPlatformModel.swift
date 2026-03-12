@@ -12,6 +12,8 @@ public extension PlatformClient.Catalog {
     class CreateTaxVersionRequestBody: Codable {
         
         
+        public var scope: String?
+        
         public var components: [TaxComponent]
         
         public var applicableDate: String?
@@ -25,6 +27,8 @@ public extension PlatformClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
+            case scope = "scope"
+            
             case components = "components"
             
             case applicableDate = "applicable_date"
@@ -37,7 +41,9 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(applicableDate: String? = nil, areas: TaxGeoArea? = nil, components: [TaxComponent], regionType: String? = nil, storeIds: [Int]? = nil) {
+        public init(applicableDate: String? = nil, areas: TaxGeoArea? = nil, components: [TaxComponent], regionType: String? = nil, scope: String? = nil, storeIds: [Int]? = nil) {
+            
+            self.scope = scope
             
             self.components = components
             
@@ -53,6 +59,18 @@ public extension PlatformClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    scope = try container.decode(String.self, forKey: .scope)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 components = try container.decode([TaxComponent].self, forKey: .components)
@@ -111,6 +129,11 @@ public extension PlatformClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(scope, forKey: .scope)
+            
             
             
             
@@ -153,6 +176,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CreateTaxVersionRequestBody: Codable {
         
         
+        public var scope: String?
+        
         public var components: [TaxComponent]
         
         public var applicableDate: String?
@@ -166,6 +191,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
+            case scope = "scope"
+            
             case components = "components"
             
             case applicableDate = "applicable_date"
@@ -178,7 +205,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(applicableDate: String? = nil, areas: TaxGeoArea? = nil, components: [TaxComponent], regionType: String? = nil, storeIds: [Int]? = nil) {
+        public init(applicableDate: String? = nil, areas: TaxGeoArea? = nil, components: [TaxComponent], regionType: String? = nil, scope: String? = nil, storeIds: [Int]? = nil) {
+            
+            self.scope = scope
             
             self.components = components
             
@@ -194,6 +223,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    scope = try container.decode(String.self, forKey: .scope)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 components = try container.decode([TaxComponent].self, forKey: .components)
@@ -252,6 +293,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(scope, forKey: .scope)
+            
             
             
             

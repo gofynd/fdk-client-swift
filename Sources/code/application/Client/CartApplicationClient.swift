@@ -1220,7 +1220,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: Updates an existing customer address
-        * Description: Customer can modify the details of a previously saved addresses.
+        * Description: Customer can modify the details of a previously saved address.
         **/
         public func updateAddress(
             id: String,
@@ -2194,6 +2194,8 @@ extension ApplicationClient {
         **/
         public func checkoutCartV2(
             xOrderingSource: String?,
+            xLocationDetail: String?,
+            xCurrencyCode: String?,
             buyNow: Bool?,
             cartType: String?,
             body: CartCheckoutDetailV2Creation,
@@ -2215,6 +2217,14 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xLocationDetail {
+                xHeaders.append((key: "x-location-detail", value: value))
+            }
+            
+            if let value = xCurrencyCode {
+                xHeaders.append((key: "x-currency-code", value: value))
             }
             
             

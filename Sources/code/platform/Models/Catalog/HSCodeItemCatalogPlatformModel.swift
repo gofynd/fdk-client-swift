@@ -16,7 +16,7 @@ public extension PlatformClient.Catalog {
         
         public var modifiedOn: String?
         
-        public var type: HsTypeEnum
+        public var type: String
         
         public var companyId: Int?
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(companyId: Int? = nil, countryIso: String? = nil, createdOn: String? = nil, description: String? = nil, hsCode: String, modifiedOn: String? = nil, type: HsTypeEnum, id: String? = nil) {
+        public init(companyId: Int? = nil, countryIso: String? = nil, createdOn: String? = nil, description: String? = nil, hsCode: String, modifiedOn: String? = nil, type: String, id: String? = nil) {
             
             self.createdOn = createdOn
             
@@ -97,7 +97,7 @@ public extension PlatformClient.Catalog {
                 
             
             
-                type = try container.decode(HsTypeEnum.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
@@ -219,7 +219,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var modifiedOn: String?
         
-        public var type: HsTypeEnum
+        public var type: String
         
         public var companyId: Int?
         
@@ -252,7 +252,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(companyId: Int? = nil, countryIso: String? = nil, createdOn: String? = nil, description: String? = nil, hsCode: String, modifiedOn: String? = nil, type: HsTypeEnum, id: String? = nil) {
+        public init(companyId: Int? = nil, countryIso: String? = nil, createdOn: String? = nil, description: String? = nil, hsCode: String, modifiedOn: String? = nil, type: String, id: String? = nil) {
             
             self.createdOn = createdOn
             
@@ -300,7 +300,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                type = try container.decode(HsTypeEnum.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
             
             

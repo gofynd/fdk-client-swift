@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
         
         public var notificationEmails: [String]?
         
-        public var phoneNumber: String
+        public var phoneNumber: String?
         
         public var productReturnConfig: ProductReturnConfigSchema?
         
@@ -121,7 +121,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(address: GetAddressSchema, company: GetCompanySchema? = nil, companyId: Int? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeCode: String, storeType: String? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSchema, company: GetCompanySchema? = nil, companyId: Int? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeCode: String, storeType: String? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -345,9 +345,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+                do {
+                    phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -640,7 +647,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var notificationEmails: [String]?
         
-        public var phoneNumber: String
+        public var phoneNumber: String?
         
         public var productReturnConfig: ProductReturnConfigSchema?
         
@@ -717,7 +724,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(address: GetAddressSchema, company: GetCompanySchema? = nil, companyId: Int? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeCode: String, storeType: String? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSchema, company: GetCompanySchema? = nil, companyId: Int? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeCode: String, storeType: String? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -941,9 +948,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+                do {
+                    phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

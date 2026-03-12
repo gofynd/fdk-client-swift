@@ -54,6 +54,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var v: Int?
         
+        public var options: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -97,9 +99,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             case v = "__v"
             
+            case options = "options"
+            
         }
 
-        public init(applicationId: String? = nil, createdAt: String? = nil, customerEditable: Bool? = nil, description: String? = nil, encrypted: Bool? = nil, icon: String? = nil, isLocked: Bool? = nil, isMultiValue: Bool? = nil, masking: AttributeMaskingProperties? = nil, modifiedAt: String? = nil, name: String? = nil, orderingChannels: [String]? = nil, pinned: Bool? = nil, pinOrder: Int? = nil, registration: AttributeRegistrationProperties? = nil, slug: String? = nil, type: String? = nil, validations: [[String: Any]]? = nil, id: String? = nil, v: Int? = nil) {
+        public init(applicationId: String? = nil, createdAt: String? = nil, customerEditable: Bool? = nil, description: String? = nil, encrypted: Bool? = nil, icon: String? = nil, isLocked: Bool? = nil, isMultiValue: Bool? = nil, masking: AttributeMaskingProperties? = nil, modifiedAt: String? = nil, name: String? = nil, options: [String]? = nil, orderingChannels: [String]? = nil, pinned: Bool? = nil, pinOrder: Int? = nil, registration: AttributeRegistrationProperties? = nil, slug: String? = nil, type: String? = nil, validations: [[String: Any]]? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
@@ -140,6 +144,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.modifiedAt = modifiedAt
             
             self.v = v
+            
+            self.options = options
             
         }
 
@@ -386,6 +392,18 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    options = try container.decode([String].self, forKey: .options)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -489,6 +507,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            
+            try? container.encodeIfPresent(options, forKey: .options)
             
             
         }

@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         
         public var createdOn: String?
         
-        public var filters: InventoryJobFilters
+        public var filters: InventoryJobFilters?
         
-        public var id: String
+        public var id: String?
         
         public var modifiedOn: String?
         
@@ -36,11 +36,11 @@ public extension PlatformClient.Catalog {
         
         public var stats: [String: Any]?
         
-        public var taskId: String
+        public var taskId: String?
         
         public var type: String?
         
-        public var url: String
+        public var url: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(cancelledBy: UserDetail? = nil, cancelledOn: String? = nil, completedOn: String? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, filters: InventoryJobFilters, id: String, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, stats: [String: Any]? = nil, status: String? = nil, taskId: String, type: String? = nil, url: String) {
+        public init(cancelledBy: UserDetail? = nil, cancelledOn: String? = nil, completedOn: String? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, filters: InventoryJobFilters? = nil, id: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, stats: [String: Any]? = nil, status: String? = nil, taskId: String? = nil, type: String? = nil, url: String? = nil) {
             
             self.cancelledBy = cancelledBy
             
@@ -175,14 +175,28 @@ public extension PlatformClient.Catalog {
                 
             
             
-                filters = try container.decode(InventoryJobFilters.self, forKey: .filters)
+                do {
+                    filters = try container.decode(InventoryJobFilters.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                id = try container.decode(String.self, forKey: .id)
+                do {
+                    id = try container.decode(String.self, forKey: .id)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -238,9 +252,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                taskId = try container.decode(String.self, forKey: .taskId)
+                do {
+                    taskId = try container.decode(String.self, forKey: .taskId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -255,9 +276,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                url = try container.decode(String.self, forKey: .url)
+                do {
+                    url = try container.decode(String.self, forKey: .url)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -365,9 +393,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var createdOn: String?
         
-        public var filters: InventoryJobFilters
+        public var filters: InventoryJobFilters?
         
-        public var id: String
+        public var id: String?
         
         public var modifiedOn: String?
         
@@ -379,11 +407,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var stats: [String: Any]?
         
-        public var taskId: String
+        public var taskId: String?
         
         public var type: String?
         
-        public var url: String
+        public var url: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -420,7 +448,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(cancelledBy: UserDetail? = nil, cancelledOn: String? = nil, completedOn: String? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, filters: InventoryJobFilters, id: String, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, stats: [String: Any]? = nil, status: String? = nil, taskId: String, type: String? = nil, url: String) {
+        public init(cancelledBy: UserDetail? = nil, cancelledOn: String? = nil, completedOn: String? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, filters: InventoryJobFilters? = nil, id: String? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, stats: [String: Any]? = nil, status: String? = nil, taskId: String? = nil, type: String? = nil, url: String? = nil) {
             
             self.cancelledBy = cancelledBy
             
@@ -518,14 +546,28 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                filters = try container.decode(InventoryJobFilters.self, forKey: .filters)
+                do {
+                    filters = try container.decode(InventoryJobFilters.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                id = try container.decode(String.self, forKey: .id)
+                do {
+                    id = try container.decode(String.self, forKey: .id)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -581,9 +623,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                taskId = try container.decode(String.self, forKey: .taskId)
+                do {
+                    taskId = try container.decode(String.self, forKey: .taskId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -598,9 +647,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                url = try container.decode(String.self, forKey: .url)
+                do {
+                    url = try container.decode(String.self, forKey: .url)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

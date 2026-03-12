@@ -1,3 +1,390 @@
+# CHANGE LOG (3.20.0) - 2.11.6
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xLocationDetail</code> (type: <code>string</code>)
+
+	- [Added] <code>header</code> parameter <code>xCurrencyCode</code> (type: <code>string</code>)
+
+
+
+### Catalog
+
+
+
+#### getProductPriceBySlug
+
+- ##### What's New
+	- [Added] property <code>store.code</code> of schema <code>StoreV4</code> in response with status code 200
+	- [Added] property <code>store.address</code> of schema <code>StoreV4</code> in response with status code 200
+	- [Added] property <code>store.longLat</code> of schema <code>StoreV4</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] <code>header</code> parameter <code>xLocationDetail</code> (type: <code>string</code>)
+
+	- [Added] <code>header</code> parameter <code>xCurrencyCode</code> (type: <code>string</code>)
+
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xLocationDetail</code> (type: <code>string</code>)
+
+	- [Added] <code>header</code> parameter <code>xCurrencyCode</code> (type: <code>string</code>)
+
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### overrideCart
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] <code>header</code> parameter <code>xLocationDetail</code> (type: <code>string</code>)
+
+	- [Added] <code>header</code> parameter <code>xCurrencyCode</code> (type: <code>string</code>)
+
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 404
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### updateCartUser
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Added] property <code>cart.breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 201
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 201
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### updateShipments
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xAnonymousCart</code> (type: <code>string</code>)
+
+	- [Added] <code>header</code> parameter <code>xLocationDetail</code> (type: <code>string</code>)
+
+	- [Added] <code>header</code> parameter <code>xCurrencyCode</code> (type: <code>string</code>)
+
+	- [Added] properties <code>data.orderId</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>cart.breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+#### applyLoyaltyPoints
+
+- ##### What's New
+	- [Added] property <code>breakupValues.raw.storeCredit</code> of schema <code>RawBreakup</code> in response with status code 200
+	- [Added] property <code>breakupValues.loyaltyPoints.discountAmount</code> of schema <code>LoyaltyPoints</code> in response with status code 200
+
+
+### Catalog
+
+
+
+#### getAppLocations
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].phone_number</code> made optional in response with status code 200
+
+
+#### addInventory
+
+- ##### What's Changed
+	- [Changed] Path From <code>/service/platform/catalog/v2.0/company/{company_id}/products/{item_id}/sizes/{size}</code> To <code>/service/platform/catalog/v1.0/company/{company_id}/products/{item_id}/sizes/{size}</code>
+
+
+#### updateInventories
+
+- ##### What's New
+	- [Added] property <code>payload[].meta</code> of schema <code>InventoryPayload</code> in request body
+	- [Added] property <code>items[].data.meta</code> of schema <code>InventoryPayload</code> in response with status code 200
+	- [Added] property <code>items[].data.meta</code> of schema <code>InventoryPayload</code> in response with status code 400
+
+
+#### listInventoryExport
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>array</code> to property <code>items</code> of schema <code>InventoryExportJobListResponseSchema</code> in response with status code 200
+	- [Added] property <code>items[]</code> of schema <code>InventoryExportJobListResponseSchema</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items</code> of schema <code>InventoryExportJobListResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items</code> made optional in response with status code 200
+
+
+#### getProducts
+
+- ##### What's New
+	- [Added] property <code>items[].sizes[].itemWidth</code> of schema <code>SizeDetails</code> in response with status code 200
+	- [Added] property <code>items[].sizes[].itemLength</code> of schema <code>SizeDetails</code> in response with status code 200
+	- [Added] property <code>items[].sizes[].itemHeight</code> of schema <code>SizeDetails</code> in response with status code 200
+	- [Added] property <code>items[].sizes[].priceEffective</code> of schema <code>SizeDetails</code> in response with status code 200
+	- [Added] property <code>items[].sizes[].itemWeight</code> of schema <code>SizeDetails</code> in response with status code 200
+
+
+#### getProduct
+
+- ##### What's New
+	- [Added] property <code>data.sizes[].itemWidth</code> of schema <code>SizeDetails</code> in response with status code 200
+	- [Added] property <code>data.sizes[].itemLength</code> of schema <code>SizeDetails</code> in response with status code 200
+	- [Added] property <code>data.sizes[].itemHeight</code> of schema <code>SizeDetails</code> in response with status code 200
+	- [Added] property <code>data.sizes[].priceEffective</code> of schema <code>SizeDetails</code> in response with status code 200
+	- [Added] property <code>data.sizes[].itemWeight</code> of schema <code>SizeDetails</code> in response with status code 200
+
+
+#### deleteRealtimeInventory
+
+- ##### What's New
+	- [Added] property <code>payload[].meta</code> of schema <code>InventoryPayload</code> in request body
+	- [Added] property <code>items[].data.meta</code> of schema <code>InventoryPayload</code> in response with status code 200
+	- [Added] property <code>items[].data.meta</code> of schema <code>InventoryPayload</code> in response with status code 400
+
+
+#### updateRealtimeInventory
+
+- ##### What's New
+	- [Added] property <code>payload[].meta</code> of schema <code>InventoryPayload</code> in request body
+	- [Added] property <code>items[].data.meta</code> of schema <code>InventoryPayload</code> in response with status code 200
+	- [Added] property <code>items[].data.meta</code> of schema <code>InventoryPayload</code> in response with status code 400
+
+
+#### createTax
+
+- ##### What's New
+	- [Added] properties <code>versions.scope</code>, <code>versions.components</code>, <code>versions.areas</code>, <code>versions.applicableDate</code>, <code>versions.regionType</code>, <code>versions.storeIds</code> in request body
+	- [Breaking] [Added] <code>versions.components</code> made required in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>versions[]</code> of schema <code>CreateTaxRequestBody</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>versions</code> of schema <code>CreateTaxRequestBody</code> in request body
+
+
+#### deleteTaxRule
+
+- ##### What's New
+	- [Added] property <code>message</code> of schema <code></code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>status</code> of schema <code></code> in response with status code 200
+
+
+#### createTaxVersion
+
+- ##### What's New
+	- [Added] property <code>scope</code> of schema <code>CreateTaxVersionRequestBody</code> in request body
+
+
+#### deleteTaxVersion
+
+- ##### What's New
+	- [Added] property <code>message</code> of schema <code></code> in response with status code 200
+	- [Added] property <code>taxVersionId</code> of schema <code></code> in response with status code 200
+	- [Added] property <code>ruleId</code> of schema <code></code> in response with status code 200
+	- [Added] property <code>deletedOn</code> of schema <code></code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>status</code> of schema <code></code> in response with status code 200
+
+
+#### createTaxComponentName
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>description</code> of schema <code>CreateTaxComponentNameRequestSchema</code> in request body
+
+
+### Serviceability
+
+
+
+#### getCourierPartnerSchemes
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>extensionId</code> (type: <code>string</code>)
+
+
+
+### User
+
+
+
+#### getUserAttributeDefinitions
+
+- ##### What's New
+	- [Added] property <code>items[].options</code> of schema <code>UserAttributeDefinition</code> in response with status code 200
+
+
+#### updateUserAttributeDefinition
+
+- ##### What's New
+	- [Added] property <code>options</code> of schema <code>UserAttributeDefinition</code> in response with status code 200
+
+
+#### getUserAttributeDefinitionById
+
+- ##### What's New
+	- [Added] property <code>options</code> of schema <code>UserAttributeDefinition</code> in response with status code 200
+
+
+#### getUserAttributesForUser
+
+- ##### What's New
+	- [Added] property <code>page.total</code> of schema <code>PaginationSchema</code> in response with status code 200
+	- [Added] property <code>page.itemTotal</code> of schema <code>PaginationSchema</code> in response with status code 200
+	- [Added] property <code>page.hasNext</code> of schema <code>PaginationSchema</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>page.item_total</code> of schema <code></code> in response with status code 200
+	- [Breaking] [Deleted] property <code>page.has_next</code> of schema <code></code> in response with status code 200
+
+
+#### updateUserAttributes
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code>attributes[].value</code> of schema <code>BulkUserAttributeRequestBody</code> in request body
+
+
 # CHANGE LOG (3.19.0) - 2.11.5
 
 ## Application Client

@@ -18,7 +18,7 @@ public extension PlatformClient.Content {
         
         public var featureImage: FeatureImage?
         
-        public var seo: Seo?
+        public var seo: SeoTranslate?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(author: Author? = nil, featureImage: FeatureImage? = nil, seo: Seo? = nil, title: Title? = nil) {
+        public init(author: Author? = nil, featureImage: FeatureImage? = nil, seo: SeoTranslate? = nil, title: Title? = nil) {
             
             self.author = author
             
@@ -86,7 +86,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    seo = try container.decode(Seo.self, forKey: .seo)
+                    seo = try container.decode(SeoTranslate.self, forKey: .seo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -143,7 +143,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var featureImage: FeatureImage?
         
-        public var seo: Seo?
+        public var seo: SeoTranslate?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(author: Author? = nil, featureImage: FeatureImage? = nil, seo: Seo? = nil, title: Title? = nil) {
+        public init(author: Author? = nil, featureImage: FeatureImage? = nil, seo: SeoTranslate? = nil, title: Title? = nil) {
             
             self.author = author
             
@@ -211,7 +211,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    seo = try container.decode(Seo.self, forKey: .seo)
+                    seo = try container.decode(SeoTranslate.self, forKey: .seo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

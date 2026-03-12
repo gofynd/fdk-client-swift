@@ -16,6 +16,10 @@ public extension PlatformClient.Catalog {
         
         public var imageUrls: [String]?
         
+        public var total: Int?
+        
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +27,21 @@ public extension PlatformClient.Catalog {
             
             case imageUrls = "image_urls"
             
+            case total = "total"
+            
+            case meta = "meta"
+            
         }
 
-        public init(comment: String? = nil, imageUrls: [String]? = nil) {
+        public init(comment: String? = nil, imageUrls: [String]? = nil, meta: [String: Any]? = nil, total: Int? = nil) {
             
             self.comment = comment
             
             self.imageUrls = imageUrls
+            
+            self.total = total
+            
+            self.meta = meta
             
         }
 
@@ -60,6 +72,30 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    total = try container.decode(Int.self, forKey: .total)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +109,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(imageUrls, forKey: .imageUrls)
+            
+            
+            
+            
+            try? container.encodeIfPresent(total, forKey: .total)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -95,6 +141,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var imageUrls: [String]?
         
+        public var total: Int?
+        
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +152,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case imageUrls = "image_urls"
             
+            case total = "total"
+            
+            case meta = "meta"
+            
         }
 
-        public init(comment: String? = nil, imageUrls: [String]? = nil) {
+        public init(comment: String? = nil, imageUrls: [String]? = nil, meta: [String: Any]? = nil, total: Int? = nil) {
             
             self.comment = comment
             
             self.imageUrls = imageUrls
+            
+            self.total = total
+            
+            self.meta = meta
             
         }
 
@@ -139,6 +197,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    total = try container.decode(Int.self, forKey: .total)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +234,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(imageUrls, forKey: .imageUrls)
+            
+            
+            
+            
+            try? container.encodeIfPresent(total, forKey: .total)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

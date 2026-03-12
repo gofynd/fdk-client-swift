@@ -44,6 +44,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var convenienceFee: Double?
         
+        public var storeCredit: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -77,9 +79,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case convenienceFee = "convenience_fee"
             
+            case storeCredit = "store_credit"
+            
         }
 
-        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, engageAmount: Double? = nil, engageMopAmount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
+        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, engageAmount: Double? = nil, engageMopAmount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mrpTotal: Double? = nil, storeCredit: Double? = nil, subtotal: Double? = nil, total: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
             
             self.coupon = coupon
             
@@ -110,6 +114,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.subtotal = subtotal
             
             self.convenienceFee = convenienceFee
+            
+            self.storeCredit = storeCredit
             
         }
 
@@ -296,6 +302,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    storeCredit = try container.decode(Double.self, forKey: .storeCredit)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -374,6 +392,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(convenienceFee, forKey: .convenienceFee)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeCredit, forKey: .storeCredit)
             
             
         }

@@ -14,22 +14,16 @@ public extension PlatformClient.Catalog {
         
         public var name: String
         
-        public var description: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case name = "name"
             
-            case description = "description"
-            
         }
 
-        public init(description: String? = nil, name: String) {
+        public init(name: String) {
             
             self.name = name
-            
-            self.description = description
             
         }
 
@@ -41,18 +35,6 @@ public extension PlatformClient.Catalog {
                 
             
             
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -61,11 +43,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(description, forKey: .description)
             
             
         }
@@ -86,22 +63,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var name: String
         
-        public var description: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case name = "name"
             
-            case description = "description"
-            
         }
 
-        public init(description: String? = nil, name: String) {
+        public init(name: String) {
             
             self.name = name
-            
-            self.description = description
             
         }
 
@@ -113,18 +84,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -133,11 +92,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(description, forKey: .description)
             
             
         }

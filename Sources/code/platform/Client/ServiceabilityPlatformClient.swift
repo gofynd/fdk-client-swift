@@ -1188,6 +1188,7 @@ Export locality wise CSV files.
         * Description: Get created Schemes for courier partner
         **/
         public func getCourierPartnerSchemes(
+            extensionId: String?,
             schemeType: String?,
             paymentMode: String?,
             capabilities: [String]?,
@@ -1199,6 +1200,10 @@ Export locality wise CSV files.
         ) {
                         
             var xQuery: [String: Any] = [:] 
+            
+            if let value = extensionId {
+                xQuery["extension_id"] = value
+            }
             
             if let value = schemeType {
                 xQuery["scheme_type"] = value

@@ -20,6 +20,8 @@ public extension PlatformClient.Catalog {
         
         public var tags: [String]?
         
+        public var createdOn: String?
+        
         public var meta: BulkMeta?
         
 
@@ -33,11 +35,13 @@ public extension PlatformClient.Catalog {
             
             case tags = "tags"
             
+            case createdOn = "created_on"
+            
             case meta = "meta"
             
         }
 
-        public init(companyId: String, filePath: String, fileType: String, meta: BulkMeta? = nil, tags: [String]? = nil) {
+        public init(companyId: String, createdOn: String? = nil, filePath: String, fileType: String, meta: BulkMeta? = nil, tags: [String]? = nil) {
             
             self.companyId = companyId
             
@@ -46,6 +50,8 @@ public extension PlatformClient.Catalog {
             self.filePath = filePath
             
             self.tags = tags
+            
+            self.createdOn = createdOn
             
             self.meta = meta
             
@@ -72,6 +78,18 @@ public extension PlatformClient.Catalog {
             
                 do {
                     tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,6 +134,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             
@@ -147,6 +170,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var tags: [String]?
         
+        public var createdOn: String?
+        
         public var meta: BulkMeta?
         
 
@@ -160,11 +185,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case tags = "tags"
             
+            case createdOn = "created_on"
+            
             case meta = "meta"
             
         }
 
-        public init(companyId: String, filePath: String, fileType: String, meta: BulkMeta? = nil, tags: [String]? = nil) {
+        public init(companyId: String, createdOn: String? = nil, filePath: String, fileType: String, meta: BulkMeta? = nil, tags: [String]? = nil) {
             
             self.companyId = companyId
             
@@ -173,6 +200,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.filePath = filePath
             
             self.tags = tags
+            
+            self.createdOn = createdOn
             
             self.meta = meta
             
@@ -199,6 +228,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -243,6 +284,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             

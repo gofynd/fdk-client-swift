@@ -5,11 +5,11 @@ import Foundation
 
 public extension PlatformClient.Content {
     /*
-        Model: Seo
+        Model: SeoTranslate
         Used By: Content
     */
 
-    class Seo: Codable {
+    class SeoTranslate: Codable {
         
         
         public var title: Title?
@@ -130,11 +130,11 @@ public extension PlatformClient.Content {
 
 public extension PlatformClient.ApplicationClient.Content {
     /*
-        Model: Seo
+        Model: SeoTranslate
         Used By: Content
     */
 
-    class Seo: Codable {
+    class SeoTranslate: Codable {
         
         
         public var title: Title?

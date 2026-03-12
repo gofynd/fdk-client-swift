@@ -3051,6 +3051,58 @@ extension PlatformClient {
         
         /**
         *
+        * Summary: Create Inventory
+        * Description: Allows add Inventory for particular size and selling location.
+        **/
+        public func addInventory(
+            itemId: Int,
+            size: String,
+            body: InventoryRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
         * Summary: List inventory by size
         * Description: Retrieve inventory data for a specific company, item ID, and size. The API supports search capabilities based on selling location (store) code and product availability (in stock or not)."
         **/
@@ -3165,58 +3217,6 @@ extension PlatformClient {
             return paginator
         }
         
-        
-        
-        
-        /**
-        *
-        * Summary: Create Inventory
-        * Description: Allows add Inventory for particular size and selling location.
-        **/
-        public func addInventory(
-            itemId: Int,
-            size: String,
-            body: InventoryRequestSchema,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
         
         
         
@@ -4884,7 +4884,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Create Tax Rule
-        * Description: Create a tax rule and its version for under a specific company. This also creates a live version of the rule. The API now supports region-specific versions using optional region_type and areas along with the default country-level rule definition.
+        * Description: Create a tax rule in a company, including its initial (live) version.  The API supports both default (country-level) and region-specific versions by using optional  parameters such as 'region_type' and 'areas'. This enables granular taxation rules scoped to  different geographic regions.
         **/
         public func createTax(
             body: CreateTaxRequestBody,
@@ -4934,7 +4934,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Get all tax rules of a company
-        * Description: Returns array of all tax rules of a company
+        * Description: Retrieves a list of all tax rules defined for a company, along with their details.
         **/
         public func getAllTaxRules(
             q: String?,
@@ -5009,7 +5009,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Update Tax Rule
-        * Description: Update an existing tax rule under a specific company.
+        * Description: Update the details of an existing tax rule for a company.
         **/
         public func updateTaxRule(
             ruleId: String,
@@ -5060,7 +5060,8 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Delete a tax rule
-        * Description: Deletes a tax rule along with all its versions using the provided rule_id. You can not delete a rule if 1. it is the default tax rule 2. it is applied to any product. You will need to set any other tax rule as default or will need to attach a different tax rule to the products, then only you can delete the rule.
+        * Description: Deletes a tax rule and all its associated versions. Note: A rule cannot be deleted if it is set as the default or is currently assigned to any product. 
+To proceed with deletion, ensure you first assign another rule as the default and unlink this rule from all products.
 
         **/
         public func deleteTaxRule(
@@ -5112,7 +5113,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Get tax versions for a tax rule
-        * Description: Retrieve versions of a tax rule with support for filtering by status and text search on region names via the `q` parameter.
+        * Description: Retrieve the versions of a tax rule. You can filter results by version status.
         **/
         public func getTaxVersionDetails(
             ruleId: String,
@@ -5234,7 +5235,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Delete a tax version
-        * Description: Deletes a tax rule using the provided rule_id. On future/scheduled version can be deleted.
+        * Description: Deletes a tax rule using the provided rule_id. Only future/scheduled version can be deleted.
         **/
         public func deleteTaxVersion(
             ruleId: String,
@@ -5286,7 +5287,12 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Update a tax version
-        * Description: Updates a tax version using the provided rule_id. Scheduled versions support editing of components, applicable dates, and regional overrides while live versions allow limited updates.
+        * Description: When updating a tax version, the rules differ depending on whether it is a live version (that is, its applicable_date is now or in the past) or a scheduled version (with an applicable_date in the future). 
+For live versions, only the component names may be modified and only when the corresponding _id also matches, while changes to fields such as applicable_date, scope, store_ids, areas, region_type, and any other properties are not allowed. 
+In contrast, for scheduled (future) versions, you may change the applicable_date using an ISO datetime representing the date and time the version takes effect (at the start of the local day); to avoid changing it, simply pass the current applicable_date value. 
+Components can be added, updated, or removed: new components may omit _id, and omitting a known _id from the request will remove that component. The scope (COUNTRY by default, or STORE or REGION) can be set; for STORE scope, store_ids are required—if not specified, the existing store_ids are used. 
+For REGION scope, areas are required and region_type can be provided or will default to the current setting. In all cases, component names are validated, and only one version per rule may exist for each local day.
+
         **/
         public func updateTaxVersion(
             ruleId: String,
@@ -5338,15 +5344,15 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
         /**
         *
         * Summary: Get HS/SAC codes
-        * Description: Retrieve a list of HS (Harmonized System) or SAC (Service Accounting Code) codes for a company.
-HS codes are used for classifying goods in international trade, while SAC codes are used for classifying services for taxation purposes.
+        * Description: Retrieve a list of Harmonized System (HS)) or Service Accounting Code (SAC)) codes for a company.
+HS codes are used to classify goods in international trade, while SAC codes classify services for taxation purposes.
 Supports optional filtering and pagination.
 
         **/
         public func getHsCodes(
             page: Int?,
             limit: Int?,
-            type: HsTypeEnum?,
+            type: String?,
             q: String?,
             
             headers: [(key: String, value: String)]? = nil,
@@ -5364,7 +5370,7 @@ Supports optional filtering and pagination.
             }
             
             if let value = type {
-                xQuery["type"] = value.rawValue
+                xQuery["type"] = value
             }
             
             if let value = q {
@@ -5411,7 +5417,7 @@ Supports optional filtering and pagination.
         /**
         *
         * Summary: Create HS/SAC code
-        * Description: Create HS/SAC code.
+        * Description: Create a new Harmonized System (HS) or Service Accounting Code (SAC). These codes are used for product and service identification in taxation and compliance processes.
         **/
         public func createHsCode(
             body: HSCodeItem,
@@ -5516,7 +5522,7 @@ customize the names of tax components according to their local tax regulations a
         /**
         *
         * Summary: Get component names
-        * Description: Get component names for a company.
+        * Description: Retrieve the list of all tax component names for a company.
         **/
         public func getTaxComponentNames(
             

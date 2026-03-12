@@ -14,6 +14,16 @@ public extension PlatformClient.Catalog {
         
         public var size: String?
         
+        public var itemWidth: Double?
+        
+        public var itemLength: Double?
+        
+        public var itemHeight: Double?
+        
+        public var priceEffective: Double?
+        
+        public var itemWeight: Double?
+        
         public var storeCount: Int?
         
         public var sellableQuantity: Int?
@@ -39,6 +49,16 @@ public extension PlatformClient.Catalog {
             
             case size = "size"
             
+            case itemWidth = "item_width"
+            
+            case itemLength = "item_length"
+            
+            case itemHeight = "item_height"
+            
+            case priceEffective = "price_effective"
+            
+            case itemWeight = "item_weight"
+            
             case storeCount = "store_count"
             
             case sellableQuantity = "sellable_quantity"
@@ -61,9 +81,19 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(bundleDetails: [BundleDetails]? = nil, identifiers: [Identifier]? = nil, price: [String: Any]? = nil, priceTransfer: Double? = nil, sellable: Bool? = nil, sellableQuantity: Int? = nil, sellerIdentifier: String? = nil, size: String? = nil, sizePriority: Int? = nil, storeCount: Int? = nil, trackInventory: Bool? = nil) {
+        public init(bundleDetails: [BundleDetails]? = nil, identifiers: [Identifier]? = nil, itemHeight: Double? = nil, itemLength: Double? = nil, itemWeight: Double? = nil, itemWidth: Double? = nil, price: [String: Any]? = nil, priceEffective: Double? = nil, priceTransfer: Double? = nil, sellable: Bool? = nil, sellableQuantity: Int? = nil, sellerIdentifier: String? = nil, size: String? = nil, sizePriority: Int? = nil, storeCount: Int? = nil, trackInventory: Bool? = nil) {
             
             self.size = size
+            
+            self.itemWidth = itemWidth
+            
+            self.itemLength = itemLength
+            
+            self.itemHeight = itemHeight
+            
+            self.priceEffective = priceEffective
+            
+            self.itemWeight = itemWeight
             
             self.storeCount = storeCount
             
@@ -93,6 +123,66 @@ public extension PlatformClient.Catalog {
             
                 do {
                     size = try container.decode(String.self, forKey: .size)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    itemWidth = try container.decode(Double.self, forKey: .itemWidth)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    itemLength = try container.decode(Double.self, forKey: .itemLength)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    itemHeight = try container.decode(Double.self, forKey: .itemHeight)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    itemWeight = try container.decode(Double.self, forKey: .itemWeight)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -230,6 +320,31 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemWidth, forKey: .itemWidth)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemLength, forKey: .itemLength)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemHeight, forKey: .itemHeight)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemWeight, forKey: .itemWeight)
             
             
             
@@ -300,6 +415,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var size: String?
         
+        public var itemWidth: Double?
+        
+        public var itemLength: Double?
+        
+        public var itemHeight: Double?
+        
+        public var priceEffective: Double?
+        
+        public var itemWeight: Double?
+        
         public var storeCount: Int?
         
         public var sellableQuantity: Int?
@@ -325,6 +450,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case size = "size"
             
+            case itemWidth = "item_width"
+            
+            case itemLength = "item_length"
+            
+            case itemHeight = "item_height"
+            
+            case priceEffective = "price_effective"
+            
+            case itemWeight = "item_weight"
+            
             case storeCount = "store_count"
             
             case sellableQuantity = "sellable_quantity"
@@ -347,9 +482,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(bundleDetails: [BundleDetails]? = nil, identifiers: [Identifier]? = nil, price: [String: Any]? = nil, priceTransfer: Double? = nil, sellable: Bool? = nil, sellableQuantity: Int? = nil, sellerIdentifier: String? = nil, size: String? = nil, sizePriority: Int? = nil, storeCount: Int? = nil, trackInventory: Bool? = nil) {
+        public init(bundleDetails: [BundleDetails]? = nil, identifiers: [Identifier]? = nil, itemHeight: Double? = nil, itemLength: Double? = nil, itemWeight: Double? = nil, itemWidth: Double? = nil, price: [String: Any]? = nil, priceEffective: Double? = nil, priceTransfer: Double? = nil, sellable: Bool? = nil, sellableQuantity: Int? = nil, sellerIdentifier: String? = nil, size: String? = nil, sizePriority: Int? = nil, storeCount: Int? = nil, trackInventory: Bool? = nil) {
             
             self.size = size
+            
+            self.itemWidth = itemWidth
+            
+            self.itemLength = itemLength
+            
+            self.itemHeight = itemHeight
+            
+            self.priceEffective = priceEffective
+            
+            self.itemWeight = itemWeight
             
             self.storeCount = storeCount
             
@@ -379,6 +524,66 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     size = try container.decode(String.self, forKey: .size)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    itemWidth = try container.decode(Double.self, forKey: .itemWidth)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    itemLength = try container.decode(Double.self, forKey: .itemLength)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    itemHeight = try container.decode(Double.self, forKey: .itemHeight)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    itemWeight = try container.decode(Double.self, forKey: .itemWeight)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -516,6 +721,31 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemWidth, forKey: .itemWidth)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemLength, forKey: .itemLength)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemHeight, forKey: .itemHeight)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemWeight, forKey: .itemWeight)
             
             
             

@@ -8,7 +8,7 @@ public extension ApplicationClient.Catalog {
     */
     class ProductSizePriceResponseV4: Codable {
         
-        public var store: StoreV3?
+        public var store: StoreV4?
         
         public var articleAssignment: ArticleAssignmentV3?
         
@@ -137,7 +137,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, deliveryPromise: PromiseSchema? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, inventoryUpdatedOn: String? = nil, isCod: Bool? = nil, isGift: Bool? = nil, isServiceable: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pickupStoreDetail: PickupStoreDetailSchema? = nil, pincode: String? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil, tags: [String]? = nil, totalAvailableQuantity: Int? = nil, trader: [Trader]? = nil, customJson: [String: Any]? = nil) {
+        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, deliveryPromise: PromiseSchema? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, fulfillmentOption: FulfillmentOptionSchema? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, inventoryUpdatedOn: String? = nil, isCod: Bool? = nil, isGift: Bool? = nil, isServiceable: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pickupStoreDetail: PickupStoreDetailSchema? = nil, pincode: String? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV4? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil, tags: [String]? = nil, totalAvailableQuantity: Int? = nil, trader: [Trader]? = nil, customJson: [String: Any]? = nil) {
             
             self.store = store
             
@@ -208,7 +208,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                store = try container.decode(StoreV3.self, forKey: .store)
+                store = try container.decode(StoreV4.self, forKey: .store)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

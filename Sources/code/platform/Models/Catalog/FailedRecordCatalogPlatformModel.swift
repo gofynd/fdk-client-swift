@@ -16,6 +16,8 @@ public extension PlatformClient.Catalog {
         
         public var message: String?
         
+        public var data: [InventoryRecord]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Catalog {
             
             case message = "message"
             
+            case data = "data"
+            
         }
 
-        public init(identifiers: String? = nil, message: String? = nil) {
+        public init(data: [InventoryRecord]? = nil, identifiers: String? = nil, message: String? = nil) {
             
             self.identifiers = identifiers
             
             self.message = message
+            
+            self.data = data
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    data = try container.decode([InventoryRecord].self, forKey: .data)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +91,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var message: String?
         
+        public var data: [InventoryRecord]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case message = "message"
             
+            case data = "data"
+            
         }
 
-        public init(identifiers: String? = nil, message: String? = nil) {
+        public init(data: [InventoryRecord]? = nil, identifiers: String? = nil, message: String? = nil) {
             
             self.identifiers = identifiers
             
             self.message = message
+            
+            self.data = data
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    data = try container.decode([InventoryRecord].self, forKey: .data)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }
