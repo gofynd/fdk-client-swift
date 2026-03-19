@@ -20,6 +20,8 @@ public extension ApplicationClient.Order {
         
         public var shipmentId: String?
         
+        public var affiliateShipmentId: String?
+        
         public var shipmentStatus: ShipmentStatus?
         
         public var trackUrl: String?
@@ -103,6 +105,8 @@ public extension ApplicationClient.Order {
             
             case shipmentId = "shipment_id"
             
+            case affiliateShipmentId = "affiliate_shipment_id"
+            
             case shipmentStatus = "shipment_status"
             
             case trackUrl = "track_url"
@@ -173,7 +177,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, fulfillmentOption: FulfillmentOption? = nil, invoice: Invoice? = nil, ndrDetails: NdrDetailsSchema? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(affiliateShipmentId: String? = nil, awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, fulfillmentOption: FulfillmentOption? = nil, invoice: Invoice? = nil, ndrDetails: NdrDetailsSchema? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             
             self.orderId = orderId
             
@@ -186,6 +190,8 @@ public extension ApplicationClient.Order {
             self.shipmentCreatedTs = shipmentCreatedTs
             
             self.shipmentId = shipmentId
+            
+            self.affiliateShipmentId = affiliateShipmentId
             
             self.shipmentStatus = shipmentStatus
             
@@ -323,6 +329,18 @@ public extension ApplicationClient.Order {
             
             do {
                 shipmentId = try container.decode(String.self, forKey: .shipmentId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -767,6 +785,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
+            
+            
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
             
             
             

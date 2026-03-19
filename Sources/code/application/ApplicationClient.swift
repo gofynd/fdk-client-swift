@@ -34,8 +34,6 @@ public class ApplicationClient {
 
     public let user: User
 
-    public let webhook: Webhook
-
     public init(config: ApplicationConfig) {
         self.config = config
 
@@ -69,8 +67,6 @@ public class ApplicationClient {
         theme = Theme(config: config)
         
         user = User(config: config)
-        
-        webhook = Webhook(config: config)
         
     }
 

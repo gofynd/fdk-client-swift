@@ -20,6 +20,8 @@ public extension PlatformClient.Communication {
         
         public var to: String?
         
+        public var additionalTemplateVariables: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +33,11 @@ public extension PlatformClient.Communication {
             
             case to = "to"
             
+            case additionalTemplateVariables = "additional_template_variables"
+            
         }
 
-        public init(countryCode: String? = nil, mobile: String? = nil, sendSameOtpToChannel: Bool? = nil, to: String? = nil) {
+        public init(additionalTemplateVariables: [String: Any]? = nil, countryCode: String? = nil, mobile: String? = nil, sendSameOtpToChannel: Bool? = nil, to: String? = nil) {
             
             self.sendSameOtpToChannel = sendSameOtpToChannel
             
@@ -42,6 +46,8 @@ public extension PlatformClient.Communication {
             self.countryCode = countryCode
             
             self.to = to
+            
+            self.additionalTemplateVariables = additionalTemplateVariables
             
         }
 
@@ -96,6 +102,18 @@ public extension PlatformClient.Communication {
                 }
                 
             
+            
+                do {
+                    additionalTemplateVariables = try container.decode([String: Any].self, forKey: .additionalTemplateVariables)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -119,6 +137,11 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(to, forKey: .to)
+            
+            
+            
+            
+            try? container.encodeIfPresent(additionalTemplateVariables, forKey: .additionalTemplateVariables)
             
             
         }
@@ -145,6 +168,8 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var to: String?
         
+        public var additionalTemplateVariables: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -156,9 +181,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case to = "to"
             
+            case additionalTemplateVariables = "additional_template_variables"
+            
         }
 
-        public init(countryCode: String? = nil, mobile: String? = nil, sendSameOtpToChannel: Bool? = nil, to: String? = nil) {
+        public init(additionalTemplateVariables: [String: Any]? = nil, countryCode: String? = nil, mobile: String? = nil, sendSameOtpToChannel: Bool? = nil, to: String? = nil) {
             
             self.sendSameOtpToChannel = sendSameOtpToChannel
             
@@ -167,6 +194,8 @@ public extension PlatformClient.ApplicationClient.Communication {
             self.countryCode = countryCode
             
             self.to = to
+            
+            self.additionalTemplateVariables = additionalTemplateVariables
             
         }
 
@@ -221,6 +250,18 @@ public extension PlatformClient.ApplicationClient.Communication {
                 }
                 
             
+            
+                do {
+                    additionalTemplateVariables = try container.decode([String: Any].self, forKey: .additionalTemplateVariables)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -244,6 +285,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(to, forKey: .to)
+            
+            
+            
+            
+            try? container.encodeIfPresent(additionalTemplateVariables, forKey: .additionalTemplateVariables)
             
             
         }

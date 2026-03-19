@@ -1095,5 +1095,3 @@ public extension ApplicationClient.Theme {
 
 
 
-
-

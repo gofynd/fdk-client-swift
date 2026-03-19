@@ -24,6 +24,8 @@ public extension ApplicationClient.Order {
         
         public var shipmentId: String?
         
+        public var affiliateShipmentId: String?
+        
         public var fulfillingStore: FulfillingStore?
         
         public var customMeta: [[String: Any]]?
@@ -123,6 +125,8 @@ public extension ApplicationClient.Order {
             
             case shipmentId = "shipment_id"
             
+            case affiliateShipmentId = "affiliate_shipment_id"
+            
             case fulfillingStore = "fulfilling_store"
             
             case customMeta = "custom_meta"
@@ -205,7 +209,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, fulfillmentOption: FulfillmentOption? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, isRefundConfigEnabled: Bool? = nil, meta: [String: Any]? = nil, ndrDetails: NdrDetailsSchema? = nil, needHelpUrl: String? = nil, order: OrderRequestSchema? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundBreakupValues: [BreakupValues]? = nil, refundDetails: [String: Any]? = nil, refundModes: [RefundModeData]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(affiliateShipmentId: String? = nil, awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, fulfillmentOption: FulfillmentOption? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, isRefundConfigEnabled: Bool? = nil, meta: [String: Any]? = nil, ndrDetails: NdrDetailsSchema? = nil, needHelpUrl: String? = nil, order: OrderRequestSchema? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundBreakupValues: [BreakupValues]? = nil, refundDetails: [String: Any]? = nil, refundModes: [RefundModeData]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             
             self.payment = payment
             
@@ -222,6 +226,8 @@ public extension ApplicationClient.Order {
             self.userInfo = userInfo
             
             self.shipmentId = shipmentId
+            
+            self.affiliateShipmentId = affiliateShipmentId
             
             self.fulfillingStore = fulfillingStore
             
@@ -395,6 +401,18 @@ public extension ApplicationClient.Order {
             
             do {
                 shipmentId = try container.decode(String.self, forKey: .shipmentId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -919,6 +937,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
+            
+            
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
             
             
             
