@@ -252,6 +252,7 @@ extension ApplicationClient {
             xOrderingSource: String?,
             i: Bool?,
             b: Bool?,
+            includeCartCalculation: Bool?,
             areaCode: String?,
             buyNow: Bool?,
             id: String?,
@@ -269,6 +270,10 @@ extension ApplicationClient {
             
             if let value = b {
                 xQuery["b"] = value
+            }
+            
+            if let value = includeCartCalculation {
+                xQuery["include_cart_calculation"] = value
             }
             
             if let value = areaCode {
@@ -340,6 +345,7 @@ extension ApplicationClient {
             id: String?,
             i: Bool?,
             b: Bool?,
+            includeCartCalculation: Bool?,
             areaCode: String?,
             buyNow: Bool?,
             cartType: String?,
@@ -361,6 +367,10 @@ extension ApplicationClient {
             
             if let value = b {
                 xQuery["b"] = value
+            }
+            
+            if let value = includeCartCalculation {
+                xQuery["include_cart_calculation"] = value
             }
             
             if let value = areaCode {

@@ -32,6 +32,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var articleIndex: Int?
         
+        public var identifier: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -53,9 +55,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case articleIndex = "article_index"
             
+            case identifier = "identifier"
+            
         }
 
-        public init(allowedRefund: Bool? = nil, articleId: String, articleIndex: Int? = nil, code: String? = nil, meta: [String: Any]? = nil, minPriceThreshold: Double? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
+        public init(allowedRefund: Bool? = nil, articleId: String, articleIndex: Int? = nil, code: String? = nil, identifier: String? = nil, meta: [String: Any]? = nil, minPriceThreshold: Double? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
             
             self.value = value
             
@@ -74,6 +78,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.minPriceThreshold = minPriceThreshold
             
             self.articleIndex = articleIndex
+            
+            self.identifier = identifier
             
         }
 
@@ -181,6 +187,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    identifier = try container.decode(String.self, forKey: .identifier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -229,6 +247,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(articleIndex, forKey: .articleIndex)
+            
+            
+            
+            
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
             
             
         }

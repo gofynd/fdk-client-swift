@@ -2727,6 +2727,7 @@ public class PlatformClient {
                 xAnonymousCart: String?,
                 i: Bool?,
                 b: Bool?,
+                includeCartCalculation: Bool?,
                 buyNow: Bool?,
                 orderType: String?,
                 id: String?,
@@ -2743,6 +2744,10 @@ public class PlatformClient {
                 
                 if let value = b {
                     xQuery["b"] = value
+                }
+                
+                if let value = includeCartCalculation {
+                    xQuery["include_cart_calculation"] = value
                 }
                 
                 if let value = buyNow {
@@ -2814,6 +2819,7 @@ public class PlatformClient {
                 i: Bool?,
                 orderType: String?,
                 b: Bool?,
+                includeCartCalculation: Bool?,
                 buyNow: Bool?,
                 body: PlatformUpdateCartDetails,
                 headers: [(key: String, value: String)]? = nil,
@@ -2836,6 +2842,10 @@ public class PlatformClient {
                 
                 if let value = b {
                     xQuery["b"] = value
+                }
+                
+                if let value = includeCartCalculation {
+                    xQuery["include_cart_calculation"] = value
                 }
                 
                 if let value = buyNow {
@@ -2898,6 +2908,7 @@ public class PlatformClient {
                 id: String?,
                 i: Bool?,
                 b: Bool?,
+                includeCartCalculation: Bool?,
                 buyNow: Bool?,
                 body: UpdateCartBreakup,
                 headers: [(key: String, value: String)]? = nil,
@@ -2916,6 +2927,10 @@ public class PlatformClient {
                 
                 if let value = b {
                     xQuery["b"] = value
+                }
+                
+                if let value = includeCartCalculation {
+                    xQuery["include_cart_calculation"] = value
                 }
                 
                 if let value = buyNow {
