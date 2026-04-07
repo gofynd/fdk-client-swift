@@ -5,37 +5,37 @@ import Foundation
 
 public extension PlatformClient.Serviceability {
     /*
-        Model: ProductSchema
+        Model: StorePolygonServiceabilityFeature
         Used By: Serviceability
     */
 
-    class ProductSchema: Codable {
+    class StorePolygonServiceabilityFeature: Codable {
         
         
         public var type: String
         
-        public var values: [[String: Any]]
+        public var properties: [String: Any]?
         
-        public var action: String?
+        public var geometry: StorePolygonServiceabilityGeometry
         
 
         public enum CodingKeys: String, CodingKey {
             
             case type = "type"
             
-            case values = "values"
+            case properties = "properties"
             
-            case action = "action"
+            case geometry = "geometry"
             
         }
 
-        public init(action: String? = nil, type: String, values: [[String: Any]]) {
+        public init(geometry: StorePolygonServiceabilityGeometry, properties: [String: Any]? = nil, type: String) {
             
             self.type = type
             
-            self.values = values
+            self.properties = properties
             
-            self.action = action
+            self.geometry = geometry
             
         }
 
@@ -48,13 +48,8 @@ public extension PlatformClient.Serviceability {
             
             
             
-                values = try container.decode([[String: Any]].self, forKey: .values)
-                
-            
-            
-            
                 do {
-                    action = try container.decode(String.self, forKey: .action)
+                    properties = try container.decode([String: Any].self, forKey: .properties)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,6 +58,11 @@ public extension PlatformClient.Serviceability {
                     
                 }
                 
+            
+            
+                geometry = try container.decode(StorePolygonServiceabilityGeometry.self, forKey: .geometry)
+                
+            
             
         }
         
@@ -76,12 +76,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(properties, forKey: .properties)
             
             
             
             
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(geometry, forKey: .geometry)
             
             
         }
@@ -93,37 +93,37 @@ public extension PlatformClient.Serviceability {
 
 public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-        Model: ProductSchema
+        Model: StorePolygonServiceabilityFeature
         Used By: Serviceability
     */
 
-    class ProductSchema: Codable {
+    class StorePolygonServiceabilityFeature: Codable {
         
         
         public var type: String
         
-        public var values: [[String: Any]]
+        public var properties: [String: Any]?
         
-        public var action: String?
+        public var geometry: StorePolygonServiceabilityGeometry
         
 
         public enum CodingKeys: String, CodingKey {
             
             case type = "type"
             
-            case values = "values"
+            case properties = "properties"
             
-            case action = "action"
+            case geometry = "geometry"
             
         }
 
-        public init(action: String? = nil, type: String, values: [[String: Any]]) {
+        public init(geometry: StorePolygonServiceabilityGeometry, properties: [String: Any]? = nil, type: String) {
             
             self.type = type
             
-            self.values = values
+            self.properties = properties
             
-            self.action = action
+            self.geometry = geometry
             
         }
 
@@ -136,13 +136,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                values = try container.decode([[String: Any]].self, forKey: .values)
-                
-            
-            
-            
                 do {
-                    action = try container.decode(String.self, forKey: .action)
+                    properties = try container.decode([String: Any].self, forKey: .properties)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,6 +146,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                     
                 }
                 
+            
+            
+                geometry = try container.decode(StorePolygonServiceabilityGeometry.self, forKey: .geometry)
+                
+            
             
         }
         
@@ -164,12 +164,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(properties, forKey: .properties)
             
             
             
             
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(geometry, forKey: .geometry)
             
             
         }

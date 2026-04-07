@@ -5,37 +5,31 @@ import Foundation
 
 public extension PlatformClient.Serviceability {
     /*
-        Model: ProductSchema
+        Model: StorePolygonServiceabilityStoreSummary
         Used By: Serviceability
     */
 
-    class ProductSchema: Codable {
+    class StorePolygonServiceabilityStoreSummary: Codable {
         
         
-        public var type: String
+        public var storeCode: String
         
-        public var values: [[String: Any]]
-        
-        public var action: String?
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case type = "type"
+            case storeCode = "store_code"
             
-            case values = "values"
-            
-            case action = "action"
+            case name = "name"
             
         }
 
-        public init(action: String? = nil, type: String, values: [[String: Any]]) {
+        public init(name: String? = nil, storeCode: String) {
             
-            self.type = type
+            self.storeCode = storeCode
             
-            self.values = values
-            
-            self.action = action
+            self.name = name
             
         }
 
@@ -43,18 +37,13 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
                 
             
             
             
                 do {
-                    action = try container.decode(String.self, forKey: .action)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,17 +60,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
             
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }
@@ -93,37 +77,31 @@ public extension PlatformClient.Serviceability {
 
 public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-        Model: ProductSchema
+        Model: StorePolygonServiceabilityStoreSummary
         Used By: Serviceability
     */
 
-    class ProductSchema: Codable {
+    class StorePolygonServiceabilityStoreSummary: Codable {
         
         
-        public var type: String
+        public var storeCode: String
         
-        public var values: [[String: Any]]
-        
-        public var action: String?
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case type = "type"
+            case storeCode = "store_code"
             
-            case values = "values"
-            
-            case action = "action"
+            case name = "name"
             
         }
 
-        public init(action: String? = nil, type: String, values: [[String: Any]]) {
+        public init(name: String? = nil, storeCode: String) {
             
-            self.type = type
+            self.storeCode = storeCode
             
-            self.values = values
-            
-            self.action = action
+            self.name = name
             
         }
 
@@ -131,18 +109,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
                 
             
             
             
                 do {
-                    action = try container.decode(String.self, forKey: .action)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,17 +132,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
             
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

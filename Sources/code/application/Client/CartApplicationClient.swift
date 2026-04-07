@@ -2482,10 +2482,11 @@ extension ApplicationClient {
         /**
         *
         * Summary: List eligible offer products
-        * Description: List all products eligible for the given offer id.
+        * Description: List all products eligible for the given offer. Lookup can be done by offer_code (takes priority) or offer_id. At least one must be provided.
         **/
         public func getProductsByOfferId(
-            offerId: String,
+            offerCode: String?,
+            offerId: String?,
             page: Int?,
             pageSize: Int?,
             
@@ -2494,7 +2495,14 @@ extension ApplicationClient {
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            xQuery["offer_id"] = offerId
+            
+            if let value = offerCode {
+                xQuery["offer_code"] = value
+            }
+            
+            if let value = offerId {
+                xQuery["offer_id"] = value
+            }
             
             if let value = page {
                 xQuery["page"] = value

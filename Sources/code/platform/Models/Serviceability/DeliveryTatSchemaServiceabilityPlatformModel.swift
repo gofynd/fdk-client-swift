@@ -5,37 +5,31 @@ import Foundation
 
 public extension PlatformClient.Serviceability {
     /*
-        Model: ProductSchema
+        Model: DeliveryTatSchema
         Used By: Serviceability
     */
 
-    class ProductSchema: Codable {
+    class DeliveryTatSchema: Codable {
         
         
-        public var type: String
+        public var min: Int?
         
-        public var values: [[String: Any]]
-        
-        public var action: String?
+        public var max: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case type = "type"
+            case min = "min"
             
-            case values = "values"
-            
-            case action = "action"
+            case max = "max"
             
         }
 
-        public init(action: String? = nil, type: String, values: [[String: Any]]) {
+        public init(max: Int? = nil, min: Int? = nil) {
             
-            self.type = type
+            self.min = min
             
-            self.values = values
-            
-            self.action = action
+            self.max = max
             
         }
 
@@ -43,18 +37,20 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
+                do {
+                    min = try container.decode(Int.self, forKey: .min)
                 
-            
-            
-            
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
             
                 do {
-                    action = try container.decode(String.self, forKey: .action)
+                    max = try container.decode(Int.self, forKey: .max)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,17 +67,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(min, forKey: .min)
             
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(max, forKey: .max)
             
             
         }
@@ -93,37 +84,31 @@ public extension PlatformClient.Serviceability {
 
 public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-        Model: ProductSchema
+        Model: DeliveryTatSchema
         Used By: Serviceability
     */
 
-    class ProductSchema: Codable {
+    class DeliveryTatSchema: Codable {
         
         
-        public var type: String
+        public var min: Int?
         
-        public var values: [[String: Any]]
-        
-        public var action: String?
+        public var max: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case type = "type"
+            case min = "min"
             
-            case values = "values"
-            
-            case action = "action"
+            case max = "max"
             
         }
 
-        public init(action: String? = nil, type: String, values: [[String: Any]]) {
+        public init(max: Int? = nil, min: Int? = nil) {
             
-            self.type = type
+            self.min = min
             
-            self.values = values
-            
-            self.action = action
+            self.max = max
             
         }
 
@@ -131,18 +116,20 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
+                do {
+                    min = try container.decode(Int.self, forKey: .min)
                 
-            
-            
-            
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
             
                 do {
-                    action = try container.decode(String.self, forKey: .action)
+                    max = try container.decode(Int.self, forKey: .max)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,17 +146,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(min, forKey: .min)
             
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(max, forKey: .max)
             
             
         }
