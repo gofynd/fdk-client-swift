@@ -5,31 +5,25 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-        Model: CPConfigurationSchema
+        Model: CourierPartnerResponseSchema
         Used By: Order
     */
 
-    class CPConfigurationSchema: Codable {
+    class CourierPartnerResponseSchema: Codable {
         
         
-        public var shippingBy: String
-        
-        public var logisticsBy: String?
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case shippingBy = "shipping_by"
-            
-            case logisticsBy = "logistics_by"
+            case message = "message"
             
         }
 
-        public init(logisticsBy: String? = nil, shippingBy: String) {
+        public init(message: String? = nil) {
             
-            self.shippingBy = shippingBy
-            
-            self.logisticsBy = logisticsBy
+            self.message = message
             
         }
 
@@ -37,13 +31,8 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                shippingBy = try container.decode(String.self, forKey: .shippingBy)
-                
-            
-            
-            
                 do {
-                    logisticsBy = try container.decode(String.self, forKey: .logisticsBy)
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,12 +49,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(shippingBy, forKey: .shippingBy)
-            
-            
-            
-            
-            try? container.encodeIfPresent(logisticsBy, forKey: .logisticsBy)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }
@@ -77,31 +61,25 @@ public extension PlatformClient.Order {
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: CPConfigurationSchema
+        Model: CourierPartnerResponseSchema
         Used By: Order
     */
 
-    class CPConfigurationSchema: Codable {
+    class CourierPartnerResponseSchema: Codable {
         
         
-        public var shippingBy: String
-        
-        public var logisticsBy: String?
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case shippingBy = "shipping_by"
-            
-            case logisticsBy = "logistics_by"
+            case message = "message"
             
         }
 
-        public init(logisticsBy: String? = nil, shippingBy: String) {
+        public init(message: String? = nil) {
             
-            self.shippingBy = shippingBy
-            
-            self.logisticsBy = logisticsBy
+            self.message = message
             
         }
 
@@ -109,13 +87,8 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                shippingBy = try container.decode(String.self, forKey: .shippingBy)
-                
-            
-            
-            
                 do {
-                    logisticsBy = try container.decode(String.self, forKey: .logisticsBy)
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,12 +105,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(shippingBy, forKey: .shippingBy)
-            
-            
-            
-            
-            try? container.encodeIfPresent(logisticsBy, forKey: .logisticsBy)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

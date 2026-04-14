@@ -96,6 +96,7 @@ extension ApplicationClient {
         **/
         public func getCart(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -147,6 +148,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             
@@ -250,6 +255,7 @@ extension ApplicationClient {
         **/
         public func addItems(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             i: Bool?,
             b: Bool?,
             includeCartCalculation: Bool?,
@@ -298,6 +304,10 @@ extension ApplicationClient {
                 xHeaders.append((key: "x-ordering-source", value: value))
             }
             
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
+            }
+            
             
             if let headers = headers {
                 xHeaders.append(contentsOf: headers)
@@ -342,6 +352,7 @@ extension ApplicationClient {
         **/
         public func updateCart(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -395,6 +406,10 @@ extension ApplicationClient {
                 xHeaders.append((key: "x-ordering-source", value: value))
             }
             
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
+            }
+            
             
             if let headers = headers {
                 xHeaders.append(contentsOf: headers)
@@ -439,6 +454,7 @@ extension ApplicationClient {
         **/
         public func updateCartBreakup(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -475,6 +491,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             
@@ -712,6 +732,7 @@ extension ApplicationClient {
         **/
         public func applyCoupon(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             i: Bool?,
             b: Bool?,
             p: Bool?,
@@ -753,6 +774,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             
@@ -799,6 +824,7 @@ extension ApplicationClient {
         **/
         public func removeCoupon(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             id: String?,
             buyNow: Bool?,
             
@@ -820,6 +846,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             
@@ -938,6 +968,7 @@ extension ApplicationClient {
         **/
         public func applyLoyaltyPoints(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             id: String?,
             i: Bool?,
             b: Bool?,
@@ -969,6 +1000,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             
@@ -1344,6 +1379,7 @@ extension ApplicationClient {
         **/
         public func selectAddress(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             cartId: String?,
             buyNow: Bool?,
             i: Bool?,
@@ -1375,6 +1411,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             
@@ -1421,6 +1461,7 @@ extension ApplicationClient {
         **/
         public func selectPaymentMode(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             id: String?,
             buyNow: Bool?,
             body: UpdateCartPaymentCreation,
@@ -1442,6 +1483,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             
@@ -1488,6 +1533,7 @@ extension ApplicationClient {
         **/
         public func validateCouponForPayment(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             id: String?,
             buyNow: Bool?,
             addressId: String?,
@@ -1559,6 +1605,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             
@@ -1687,6 +1737,7 @@ extension ApplicationClient {
         **/
         public func checkoutCart(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             buyNow: Bool?,
             cartType: String?,
             body: CartCheckoutDetailCreation,
@@ -1708,6 +1759,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             
@@ -2204,6 +2259,7 @@ extension ApplicationClient {
         **/
         public func checkoutCartV2(
             xOrderingSource: String?,
+            xOrderingSourceType: String?,
             xLocationDetail: String?,
             xCurrencyCode: String?,
             buyNow: Bool?,
@@ -2227,6 +2283,10 @@ extension ApplicationClient {
             
             if let value = xOrderingSource {
                 xHeaders.append((key: "x-ordering-source", value: value))
+            }
+            
+            if let value = xOrderingSourceType {
+                xHeaders.append((key: "x-ordering-source-type", value: value))
             }
             
             if let value = xLocationDetail {

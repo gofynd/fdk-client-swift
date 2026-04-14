@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-        Model: CPConfigurationSchema
+        Model: CourierPartnerErrorSchema
         Used By: Order
     */
 
-    class CPConfigurationSchema: Codable {
+    class CourierPartnerErrorSchema: Codable {
         
         
-        public var shippingBy: String
+        public var message: String?
         
-        public var logisticsBy: String?
+        public var error: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case shippingBy = "shipping_by"
+            case message = "message"
             
-            case logisticsBy = "logistics_by"
+            case error = "error"
             
         }
 
-        public init(logisticsBy: String? = nil, shippingBy: String) {
+        public init(error: String? = nil, message: String? = nil) {
             
-            self.shippingBy = shippingBy
+            self.message = message
             
-            self.logisticsBy = logisticsBy
+            self.error = error
             
         }
 
@@ -37,13 +37,20 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                shippingBy = try container.decode(String.self, forKey: .shippingBy)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
                 do {
-                    logisticsBy = try container.decode(String.self, forKey: .logisticsBy)
+                    error = try container.decode(String.self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(shippingBy, forKey: .shippingBy)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(logisticsBy, forKey: .logisticsBy)
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }
@@ -77,31 +84,31 @@ public extension PlatformClient.Order {
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: CPConfigurationSchema
+        Model: CourierPartnerErrorSchema
         Used By: Order
     */
 
-    class CPConfigurationSchema: Codable {
+    class CourierPartnerErrorSchema: Codable {
         
         
-        public var shippingBy: String
+        public var message: String?
         
-        public var logisticsBy: String?
+        public var error: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case shippingBy = "shipping_by"
+            case message = "message"
             
-            case logisticsBy = "logistics_by"
+            case error = "error"
             
         }
 
-        public init(logisticsBy: String? = nil, shippingBy: String) {
+        public init(error: String? = nil, message: String? = nil) {
             
-            self.shippingBy = shippingBy
+            self.message = message
             
-            self.logisticsBy = logisticsBy
+            self.error = error
             
         }
 
@@ -109,13 +116,20 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                shippingBy = try container.decode(String.self, forKey: .shippingBy)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
                 do {
-                    logisticsBy = try container.decode(String.self, forKey: .logisticsBy)
+                    error = try container.decode(String.self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(shippingBy, forKey: .shippingBy)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(logisticsBy, forKey: .logisticsBy)
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

@@ -1669,6 +1669,7 @@ public class PlatformClient {
             **/
             public func fetchAndvalidateCartItems(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xLocationDetail: String?,
                 xCurrencyCode: String?,
                 body: OpenapiCartDetailsCreation,
@@ -1682,6 +1683,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xLocationDetail {
@@ -1734,6 +1739,7 @@ public class PlatformClient {
             **/
             public func checkCartServiceability(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 body: OpenApiCartServiceabilityCreation,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenApiCartServiceabilityResult?, _ error: FDKError?) -> Void
@@ -1745,6 +1751,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 
@@ -1789,6 +1799,7 @@ public class PlatformClient {
             **/
             public func checkoutCart(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 xLocationDetail: String?,
                 xCurrencyCode: String?,
@@ -1803,6 +1814,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -2286,6 +2301,7 @@ public class PlatformClient {
             **/
             public func overrideCart(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xLocationDetail: String?,
                 xCurrencyCode: String?,
                 body: OverrideCheckoutReq,
@@ -2299,6 +2315,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xLocationDetail {
@@ -2629,6 +2649,7 @@ public class PlatformClient {
             **/
             public func getCart(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 id: String?,
                 userId: String?,
@@ -2678,6 +2699,10 @@ public class PlatformClient {
                     xHeaders.append((key: "x-ordering-source", value: value))
                 }
                 
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
+                }
+                
                 if let value = xAnonymousCart {
                     xHeaders.append((key: "x-anonymous-cart", value: value))
                 }
@@ -2724,6 +2749,7 @@ public class PlatformClient {
             **/
             public func platformAddItems(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 i: Bool?,
                 b: Bool?,
@@ -2766,6 +2792,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -2814,6 +2844,7 @@ public class PlatformClient {
             **/
             public func platformUpdateCart(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 id: String?,
                 i: Bool?,
@@ -2856,6 +2887,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -2904,6 +2939,7 @@ public class PlatformClient {
             **/
             public func updateCartBreakup(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 id: String?,
                 i: Bool?,
@@ -2941,6 +2977,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -3174,6 +3214,7 @@ public class PlatformClient {
             **/
             public func applyCoupon(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 i: Bool?,
                 b: Bool?,
@@ -3211,6 +3252,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -3259,6 +3304,7 @@ public class PlatformClient {
             **/
             public func removeCoupon(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 uid: String?,
                 buyNow: Bool?,
@@ -3281,6 +3327,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -3657,6 +3707,7 @@ public class PlatformClient {
             **/
             public func selectAddress(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 cartId: String?,
                 buyNow: Bool?,
@@ -3689,6 +3740,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -3967,6 +4022,7 @@ public class PlatformClient {
             **/
             public func platformCheckoutCart(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 id: String?,
                 body: PlatformCartCheckoutDetailCreation,
@@ -3984,6 +4040,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -4141,6 +4201,7 @@ public class PlatformClient {
             **/
             public func selectPaymentMode(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 id: String?,
                 buyNow: Bool?,
@@ -4168,6 +4229,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -4216,6 +4281,7 @@ public class PlatformClient {
             **/
             public func validateCouponForPayment(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 id: String?,
                 buyNow: Bool?,
                 addressId: String?,
@@ -4264,6 +4330,10 @@ public class PlatformClient {
                     xHeaders.append((key: "x-ordering-source", value: value))
                 }
                 
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
+                }
+                
                 
                 if let headers = headers {
                     xHeaders.append(contentsOf: headers)
@@ -4306,6 +4376,7 @@ public class PlatformClient {
             **/
             public func platformCheckoutCartV2(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 xAnonymousCart: String?,
                 xLocationDetail: String?,
                 xCurrencyCode: String?,
@@ -4325,6 +4396,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 if let value = xAnonymousCart {
@@ -4381,6 +4456,7 @@ public class PlatformClient {
             **/
             public func selectPaymentModeV2(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 id: String?,
                 buyNow: Bool?,
                 orderType: String?,
@@ -4407,6 +4483,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 
@@ -4451,6 +4531,7 @@ public class PlatformClient {
             **/
             public func applyLoyaltyPoints(
                 xOrderingSource: String?,
+                xOrderingSourceType: String?,
                 id: String?,
                 i: Bool?,
                 b: Bool?,
@@ -4482,6 +4563,10 @@ public class PlatformClient {
                 
                 if let value = xOrderingSource {
                     xHeaders.append((key: "x-ordering-source", value: value))
+                }
+                
+                if let value = xOrderingSourceType {
+                    xHeaders.append((key: "x-ordering-source-type", value: value))
                 }
                 
                 
@@ -18049,56 +18134,6 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Update HTML tag
-            * Description: Modify settings for an injectable tag.
-            **/
-            public func updateInjectableTag(
-                body: CreateTagRequestSchema,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(TagsSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
             * Summary: Get all HTML tags
             * Description: Retrieve a list of injectable tags.
             **/
@@ -24804,6 +24839,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             

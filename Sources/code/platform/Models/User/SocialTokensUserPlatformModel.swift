@@ -20,6 +20,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var google: Google?
         
+        public var apple: Apple?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,15 +31,19 @@ public extension PlatformClient.ApplicationClient.User {
             
             case google = "google"
             
+            case apple = "apple"
+            
         }
 
-        public init(accountKit: Accountkit? = nil, facebook: Facebook? = nil, google: Google? = nil) {
+        public init(accountKit: Accountkit? = nil, apple: Apple? = nil, facebook: Facebook? = nil, google: Google? = nil) {
             
             self.facebook = facebook
             
             self.accountKit = accountKit
             
             self.google = google
+            
+            self.apple = apple
             
         }
 
@@ -80,6 +86,18 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    apple = try container.decode(Apple.self, forKey: .apple)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -98,6 +116,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(google, forKey: .google)
+            
+            
+            
+            
+            try? container.encodeIfPresent(apple, forKey: .apple)
             
             
         }

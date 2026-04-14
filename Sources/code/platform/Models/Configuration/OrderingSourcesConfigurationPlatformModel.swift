@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Configuration {
     /*
-        Model: CreateTaxRequestBody
-        Used By: Catalog
+        Model: OrderingSources
+        Used By: Configuration
     */
 
-    class CreateTaxRequestBody: Codable {
+    class OrderingSources: Codable {
         
         
-        public var rule: TaxReqBodyRule
+        public var key: String
         
-        public var versions: [TaxReqBodyVersion]
+        public var name: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case rule = "rule"
+            case key = "key"
             
-            case versions = "versions"
+            case name = "name"
             
         }
 
-        public init(rule: TaxReqBodyRule, versions: [TaxReqBodyVersion]) {
+        public init(key: String, name: String) {
             
-            self.rule = rule
+            self.key = key
             
-            self.versions = versions
+            self.name = name
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                rule = try container.decode(TaxReqBodyRule.self, forKey: .rule)
+                key = try container.decode(String.self, forKey: .key)
                 
             
             
             
-                versions = try container.decode([TaxReqBodyVersion].self, forKey: .versions)
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(rule, forKey: .rule)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
             
-            try? container.encodeIfPresent(versions, forKey: .versions)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }
@@ -68,33 +68,33 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Configuration {
     /*
-        Model: CreateTaxRequestBody
-        Used By: Catalog
+        Model: OrderingSources
+        Used By: Configuration
     */
 
-    class CreateTaxRequestBody: Codable {
+    class OrderingSources: Codable {
         
         
-        public var rule: TaxReqBodyRule
+        public var key: String
         
-        public var versions: [TaxReqBodyVersion]
+        public var name: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case rule = "rule"
+            case key = "key"
             
-            case versions = "versions"
+            case name = "name"
             
         }
 
-        public init(rule: TaxReqBodyRule, versions: [TaxReqBodyVersion]) {
+        public init(key: String, name: String) {
             
-            self.rule = rule
+            self.key = key
             
-            self.versions = versions
+            self.name = name
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                rule = try container.decode(TaxReqBodyRule.self, forKey: .rule)
+                key = try container.decode(String.self, forKey: .key)
                 
             
             
             
-                versions = try container.decode([TaxReqBodyVersion].self, forKey: .versions)
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(rule, forKey: .rule)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
             
-            try? container.encodeIfPresent(versions, forKey: .versions)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

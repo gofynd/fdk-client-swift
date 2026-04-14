@@ -26,7 +26,7 @@ public extension PlatformClient.Order {
         
         public var qcSupported: Bool?
         
-        public var usingOwnCreds: Bool
+        public var usingOwnCreds: Bool?
         
         public var maxReattemptsForDeliveryAllowed: Int?
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(cpOptions: [CPOptionsSchema]? = nil, cpSortKey: String? = nil, extensionId: String, isSelfShip: Bool? = nil, maxReattemptsForDeliveryAllowed: Int? = nil, name: String, qcSupported: Bool? = nil, riderDetails: CPRiderDetailsSchema? = nil, schemeId: String, tatToDeliverTheShipment: CPTatToDeliverTheShipmentSchema? = nil, usingOwnCreds: Bool) {
+        public init(cpOptions: [CPOptionsSchema]? = nil, cpSortKey: String? = nil, extensionId: String, isSelfShip: Bool? = nil, maxReattemptsForDeliveryAllowed: Int? = nil, name: String, qcSupported: Bool? = nil, riderDetails: CPRiderDetailsSchema? = nil, schemeId: String, tatToDeliverTheShipment: CPTatToDeliverTheShipmentSchema? = nil, usingOwnCreds: Bool? = nil) {
             
             self.cpSortKey = cpSortKey
             
@@ -154,9 +154,16 @@ public extension PlatformClient.Order {
                 
             
             
-                usingOwnCreds = try container.decode(Bool.self, forKey: .usingOwnCreds)
+                do {
+                    usingOwnCreds = try container.decode(Bool.self, forKey: .usingOwnCreds)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -284,7 +291,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var qcSupported: Bool?
         
-        public var usingOwnCreds: Bool
+        public var usingOwnCreds: Bool?
         
         public var maxReattemptsForDeliveryAllowed: Int?
         
@@ -319,7 +326,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(cpOptions: [CPOptionsSchema]? = nil, cpSortKey: String? = nil, extensionId: String, isSelfShip: Bool? = nil, maxReattemptsForDeliveryAllowed: Int? = nil, name: String, qcSupported: Bool? = nil, riderDetails: CPRiderDetailsSchema? = nil, schemeId: String, tatToDeliverTheShipment: CPTatToDeliverTheShipmentSchema? = nil, usingOwnCreds: Bool) {
+        public init(cpOptions: [CPOptionsSchema]? = nil, cpSortKey: String? = nil, extensionId: String, isSelfShip: Bool? = nil, maxReattemptsForDeliveryAllowed: Int? = nil, name: String, qcSupported: Bool? = nil, riderDetails: CPRiderDetailsSchema? = nil, schemeId: String, tatToDeliverTheShipment: CPTatToDeliverTheShipmentSchema? = nil, usingOwnCreds: Bool? = nil) {
             
             self.cpSortKey = cpSortKey
             
@@ -412,9 +419,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                usingOwnCreds = try container.decode(Bool.self, forKey: .usingOwnCreds)
+                do {
+                    usingOwnCreds = try container.decode(Bool.self, forKey: .usingOwnCreds)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

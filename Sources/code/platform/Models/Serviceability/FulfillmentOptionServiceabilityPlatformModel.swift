@@ -28,6 +28,8 @@ public extension PlatformClient.Serviceability {
         
         public var status: String?
         
+        public var defaultFor: FulfillmentOptionDefaultFor?
+        
         public var businessUnit: [BusinessUnit]?
         
         public var fulfillmentStores: FulfillmentStores?
@@ -57,6 +59,8 @@ public extension PlatformClient.Serviceability {
             
             case status = "status"
             
+            case defaultFor = "default_for"
+            
             case businessUnit = "business_unit"
             
             case fulfillmentStores = "fulfillment_stores"
@@ -69,7 +73,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(applicationId: String? = nil, businessUnit: [BusinessUnit]? = nil, companyId: Int? = nil, cpSchemes: CourierPartnerSchemes? = nil, description: String? = nil, fulfillmentStores: FulfillmentStores? = nil, id: String? = nil, isDefault: Bool? = nil, name: String? = nil, products: FulfillmentProducts? = nil, slug: String? = nil, status: String? = nil, type: String? = nil) {
+        public init(applicationId: String? = nil, businessUnit: [BusinessUnit]? = nil, companyId: Int? = nil, cpSchemes: CourierPartnerSchemes? = nil, defaultFor: FulfillmentOptionDefaultFor? = nil, description: String? = nil, fulfillmentStores: FulfillmentStores? = nil, id: String? = nil, isDefault: Bool? = nil, name: String? = nil, products: FulfillmentProducts? = nil, slug: String? = nil, status: String? = nil, type: String? = nil) {
             
             self.name = name
             
@@ -86,6 +90,8 @@ public extension PlatformClient.Serviceability {
             self.type = type
             
             self.status = status
+            
+            self.defaultFor = defaultFor
             
             self.businessUnit = businessUnit
             
@@ -200,6 +206,18 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
+                    defaultFor = try container.decode(FulfillmentOptionDefaultFor.self, forKey: .defaultFor)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     businessUnit = try container.decode([BusinessUnit].self, forKey: .businessUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -301,6 +319,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(defaultFor, forKey: .defaultFor)
             
             
             
@@ -360,6 +383,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var status: String?
         
+        public var defaultFor: FulfillmentOptionDefaultFor?
+        
         public var businessUnit: [BusinessUnit]?
         
         public var fulfillmentStores: FulfillmentStores?
@@ -389,6 +414,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case status = "status"
             
+            case defaultFor = "default_for"
+            
             case businessUnit = "business_unit"
             
             case fulfillmentStores = "fulfillment_stores"
@@ -401,7 +428,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(applicationId: String? = nil, businessUnit: [BusinessUnit]? = nil, companyId: Int? = nil, cpSchemes: CourierPartnerSchemes? = nil, description: String? = nil, fulfillmentStores: FulfillmentStores? = nil, id: String? = nil, isDefault: Bool? = nil, name: String? = nil, products: FulfillmentProducts? = nil, slug: String? = nil, status: String? = nil, type: String? = nil) {
+        public init(applicationId: String? = nil, businessUnit: [BusinessUnit]? = nil, companyId: Int? = nil, cpSchemes: CourierPartnerSchemes? = nil, defaultFor: FulfillmentOptionDefaultFor? = nil, description: String? = nil, fulfillmentStores: FulfillmentStores? = nil, id: String? = nil, isDefault: Bool? = nil, name: String? = nil, products: FulfillmentProducts? = nil, slug: String? = nil, status: String? = nil, type: String? = nil) {
             
             self.name = name
             
@@ -418,6 +445,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.type = type
             
             self.status = status
+            
+            self.defaultFor = defaultFor
             
             self.businessUnit = businessUnit
             
@@ -532,6 +561,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
+                    defaultFor = try container.decode(FulfillmentOptionDefaultFor.self, forKey: .defaultFor)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     businessUnit = try container.decode([BusinessUnit].self, forKey: .businessUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -633,6 +674,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(defaultFor, forKey: .defaultFor)
             
             
             

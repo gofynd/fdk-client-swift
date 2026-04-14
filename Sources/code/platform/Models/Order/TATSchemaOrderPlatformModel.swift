@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: CreateTaxRequestBody
-        Used By: Catalog
+        Model: TATSchema
+        Used By: Order
     */
 
-    class CreateTaxRequestBody: Codable {
+    class TATSchema: Codable {
         
         
-        public var rule: TaxReqBodyRule
+        public var min: Int
         
-        public var versions: [TaxReqBodyVersion]
+        public var max: Int
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case rule = "rule"
+            case min = "min"
             
-            case versions = "versions"
+            case max = "max"
             
         }
 
-        public init(rule: TaxReqBodyRule, versions: [TaxReqBodyVersion]) {
+        public init(max: Int, min: Int) {
             
-            self.rule = rule
+            self.min = min
             
-            self.versions = versions
+            self.max = max
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                rule = try container.decode(TaxReqBodyRule.self, forKey: .rule)
+                min = try container.decode(Int.self, forKey: .min)
                 
             
             
             
-                versions = try container.decode([TaxReqBodyVersion].self, forKey: .versions)
+                max = try container.decode(Int.self, forKey: .max)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(rule, forKey: .rule)
+            try? container.encodeIfPresent(min, forKey: .min)
             
             
             
             
-            try? container.encodeIfPresent(versions, forKey: .versions)
+            try? container.encodeIfPresent(max, forKey: .max)
             
             
         }
@@ -68,33 +68,33 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: CreateTaxRequestBody
-        Used By: Catalog
+        Model: TATSchema
+        Used By: Order
     */
 
-    class CreateTaxRequestBody: Codable {
+    class TATSchema: Codable {
         
         
-        public var rule: TaxReqBodyRule
+        public var min: Int
         
-        public var versions: [TaxReqBodyVersion]
+        public var max: Int
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case rule = "rule"
+            case min = "min"
             
-            case versions = "versions"
+            case max = "max"
             
         }
 
-        public init(rule: TaxReqBodyRule, versions: [TaxReqBodyVersion]) {
+        public init(max: Int, min: Int) {
             
-            self.rule = rule
+            self.min = min
             
-            self.versions = versions
+            self.max = max
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                rule = try container.decode(TaxReqBodyRule.self, forKey: .rule)
+                min = try container.decode(Int.self, forKey: .min)
                 
             
             
             
-                versions = try container.decode([TaxReqBodyVersion].self, forKey: .versions)
+                max = try container.decode(Int.self, forKey: .max)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(rule, forKey: .rule)
+            try? container.encodeIfPresent(min, forKey: .min)
             
             
             
             
-            try? container.encodeIfPresent(versions, forKey: .versions)
+            try? container.encodeIfPresent(max, forKey: .max)
             
             
         }

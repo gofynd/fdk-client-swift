@@ -36,6 +36,8 @@ public extension PlatformClient.Configuration {
         
         public var deliveryStrategy: DeliveryStrategy?
         
+        public var orderingSources: [OrderingSources]?
+        
         public var priceStrategy: String?
         
         public var international: Bool?
@@ -83,6 +85,8 @@ public extension PlatformClient.Configuration {
             
             case deliveryStrategy = "delivery_strategy"
             
+            case orderingSources = "ordering_sources"
+            
             case priceStrategy = "price_strategy"
             
             case international = "international"
@@ -105,7 +109,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, international: Bool? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, priceStrategy: String? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, security: SecurityFeature? = nil, strategyChangePending: Bool? = nil, strategyModifiedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, international: Bool? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, orderingSources: [OrderingSources]? = nil, pcr: PcrFeature? = nil, priceStrategy: String? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, security: SecurityFeature? = nil, strategyChangePending: Bool? = nil, strategyModifiedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -130,6 +134,8 @@ public extension PlatformClient.Configuration {
             self.buybox = buybox
             
             self.deliveryStrategy = deliveryStrategy
+            
+            self.orderingSources = orderingSources
             
             self.priceStrategy = priceStrategy
             
@@ -291,6 +297,18 @@ public extension PlatformClient.Configuration {
             
                 do {
                     deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSources = try container.decode([OrderingSources].self, forKey: .orderingSources)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -483,6 +501,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSources, forKey: .orderingSources)
             
             
             
@@ -575,6 +598,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var deliveryStrategy: DeliveryStrategy?
         
+        public var orderingSources: [OrderingSources]?
+        
         public var priceStrategy: String?
         
         public var international: Bool?
@@ -622,6 +647,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case deliveryStrategy = "delivery_strategy"
             
+            case orderingSources = "ordering_sources"
+            
             case priceStrategy = "price_strategy"
             
             case international = "international"
@@ -644,7 +671,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, international: Bool? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, priceStrategy: String? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, security: SecurityFeature? = nil, strategyChangePending: Bool? = nil, strategyModifiedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, international: Bool? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, orderingSources: [OrderingSources]? = nil, pcr: PcrFeature? = nil, priceStrategy: String? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, security: SecurityFeature? = nil, strategyChangePending: Bool? = nil, strategyModifiedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -669,6 +696,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.buybox = buybox
             
             self.deliveryStrategy = deliveryStrategy
+            
+            self.orderingSources = orderingSources
             
             self.priceStrategy = priceStrategy
             
@@ -830,6 +859,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSources = try container.decode([OrderingSources].self, forKey: .orderingSources)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1022,6 +1063,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSources, forKey: .orderingSources)
             
             
             
