@@ -18,6 +18,8 @@ public extension ApplicationClient.Catalog {
         
         public var sellerIdentifiers: [String]?
         
+        public var allIdentifiers: [String]?
+        
         public var value: String?
         
         public var display: String?
@@ -37,6 +39,8 @@ public extension ApplicationClient.Catalog {
             
             case sellerIdentifiers = "seller_identifiers"
             
+            case allIdentifiers = "all_identifiers"
+            
             case value = "value"
             
             case display = "display"
@@ -45,7 +49,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, isBundleItem: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil, weight: Weight? = nil) {
+        public init(allIdentifiers: [String]? = nil, dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, isBundleItem: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil, weight: Weight? = nil) {
             
             self.quantity = quantity
             
@@ -56,6 +60,8 @@ public extension ApplicationClient.Catalog {
             self.isAvailable = isAvailable
             
             self.sellerIdentifiers = sellerIdentifiers
+            
+            self.allIdentifiers = allIdentifiers
             
             self.value = value
             
@@ -130,6 +136,18 @@ public extension ApplicationClient.Catalog {
             
             
             do {
+                allIdentifiers = try container.decode([String].self, forKey: .allIdentifiers)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 value = try container.decode(String.self, forKey: .value)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -187,6 +205,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
+            
+            
+            
+            try? container.encodeIfPresent(allIdentifiers, forKey: .allIdentifiers)
             
             
             

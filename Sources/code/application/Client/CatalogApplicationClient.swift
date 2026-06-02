@@ -276,7 +276,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: List sizes
-        * Description: Provides detailed information about a product, including its availability (sellable), available sizes with quantities, dimensions, weight, availability status, price details (marked, effective, selling), minimum order quantity (MOQ).
+        * Description: Provides detailed information about a product, including its availability (sellable), available sizes with quantities, dimensions, weight, availability status, price details (marked, effective, selling), minimum order quantity (MOQ). Each size includes `seller_identifiers` (primary identifiers) and `all_identifiers` (primary and non-primary seller identifiers combined).
         **/
         public func getProductSizesBySlug(
             slug: String,

@@ -38,6 +38,10 @@ public extension PlatformClient.Serviceability {
         
         public var isMto: Bool
         
+        public var isMps: Bool?
+        
+        public var isB2B: Bool?
+        
         public var ignoreSchemeIds: [String]
         
         public var error: [String: Any]?
@@ -71,13 +75,17 @@ public extension PlatformClient.Serviceability {
             
             case isMto = "is_mto"
             
+            case isMps = "is_mps"
+            
+            case isB2B = "is_b2b"
+            
             case ignoreSchemeIds = "ignore_scheme_ids"
             
             case error = "error"
             
         }
 
-        public init(articles: [CourierPartnerShipmentsArticles], courierPartners: [ShipmentCourierPartnersResult]? = nil, error: [String: Any]? = nil, fromServiceability: LocationDetailsServiceability, fulfillmentId: Int, fulfillmentTags: [String], fulfillmentType: String, ignoreSchemeIds: [String], isAutoAssign: Bool? = nil, isCodAvailable: Bool? = nil, isMto: Bool, meta: CourierPartnerShipmentsMeta? = nil, promise: PromiseObject? = nil, volumetricWeight: Int? = nil, weight: Int? = nil) {
+        public init(articles: [CourierPartnerShipmentsArticles], courierPartners: [ShipmentCourierPartnersResult]? = nil, error: [String: Any]? = nil, fromServiceability: LocationDetailsServiceability, fulfillmentId: Int, fulfillmentTags: [String], fulfillmentType: String, ignoreSchemeIds: [String], isAutoAssign: Bool? = nil, isB2B: Bool? = nil, isCodAvailable: Bool? = nil, isMps: Bool? = nil, isMto: Bool, meta: CourierPartnerShipmentsMeta? = nil, promise: PromiseObject? = nil, volumetricWeight: Int? = nil, weight: Int? = nil) {
             
             self.promise = promise
             
@@ -104,6 +112,10 @@ public extension PlatformClient.Serviceability {
             self.articles = articles
             
             self.isMto = isMto
+            
+            self.isMps = isMps
+            
+            self.isB2B = isB2B
             
             self.ignoreSchemeIds = ignoreSchemeIds
             
@@ -229,6 +241,30 @@ public extension PlatformClient.Serviceability {
             
             
             
+                do {
+                    isMps = try container.decode(Bool.self, forKey: .isMps)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isB2B = try container.decode(Bool.self, forKey: .isB2B)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 ignoreSchemeIds = try container.decode([String].self, forKey: .ignoreSchemeIds)
                 
             
@@ -313,6 +349,16 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(isMto, forKey: .isMto)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isMps, forKey: .isMps)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isB2B, forKey: .isB2B)
             
             
             
@@ -367,6 +413,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isMto: Bool
         
+        public var isMps: Bool?
+        
+        public var isB2B: Bool?
+        
         public var ignoreSchemeIds: [String]
         
         public var error: [String: Any]?
@@ -400,13 +450,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isMto = "is_mto"
             
+            case isMps = "is_mps"
+            
+            case isB2B = "is_b2b"
+            
             case ignoreSchemeIds = "ignore_scheme_ids"
             
             case error = "error"
             
         }
 
-        public init(articles: [CourierPartnerShipmentsArticles], courierPartners: [ShipmentCourierPartnersResult]? = nil, error: [String: Any]? = nil, fromServiceability: LocationDetailsServiceability, fulfillmentId: Int, fulfillmentTags: [String], fulfillmentType: String, ignoreSchemeIds: [String], isAutoAssign: Bool? = nil, isCodAvailable: Bool? = nil, isMto: Bool, meta: CourierPartnerShipmentsMeta? = nil, promise: PromiseObject? = nil, volumetricWeight: Int? = nil, weight: Int? = nil) {
+        public init(articles: [CourierPartnerShipmentsArticles], courierPartners: [ShipmentCourierPartnersResult]? = nil, error: [String: Any]? = nil, fromServiceability: LocationDetailsServiceability, fulfillmentId: Int, fulfillmentTags: [String], fulfillmentType: String, ignoreSchemeIds: [String], isAutoAssign: Bool? = nil, isB2B: Bool? = nil, isCodAvailable: Bool? = nil, isMps: Bool? = nil, isMto: Bool, meta: CourierPartnerShipmentsMeta? = nil, promise: PromiseObject? = nil, volumetricWeight: Int? = nil, weight: Int? = nil) {
             
             self.promise = promise
             
@@ -433,6 +487,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.articles = articles
             
             self.isMto = isMto
+            
+            self.isMps = isMps
+            
+            self.isB2B = isB2B
             
             self.ignoreSchemeIds = ignoreSchemeIds
             
@@ -558,6 +616,30 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+                do {
+                    isMps = try container.decode(Bool.self, forKey: .isMps)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isB2B = try container.decode(Bool.self, forKey: .isB2B)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 ignoreSchemeIds = try container.decode([String].self, forKey: .ignoreSchemeIds)
                 
             
@@ -642,6 +724,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(isMto, forKey: .isMto)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isMps, forKey: .isMps)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isB2B, forKey: .isB2B)
             
             
             

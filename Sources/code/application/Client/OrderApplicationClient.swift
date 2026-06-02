@@ -181,6 +181,8 @@ extension ApplicationClient {
             toDate: String?,
             startDate: String?,
             endDate: String?,
+            startDatetime: String?,
+            endDatetime: String?,
             customMeta: String?,
             allowInactive: Bool?,
             
@@ -216,6 +218,14 @@ extension ApplicationClient {
             
             if let value = endDate {
                 xQuery["end_date"] = value
+            }
+            
+            if let value = startDatetime {
+                xQuery["start_datetime"] = value
+            }
+            
+            if let value = endDatetime {
+                xQuery["end_datetime"] = value
             }
             
             if let value = customMeta {

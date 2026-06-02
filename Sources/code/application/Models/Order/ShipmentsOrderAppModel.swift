@@ -36,6 +36,8 @@ public extension ApplicationClient.Order {
         
         public var invoice: Invoice?
         
+        public var creditNote: CreditNote?
+        
         public var showTrackLink: Bool?
         
         public var refundDetails: [String: Any]?
@@ -137,6 +139,8 @@ public extension ApplicationClient.Order {
             
             case invoice = "invoice"
             
+            case creditNote = "credit_note"
+            
             case showTrackLink = "show_track_link"
             
             case refundDetails = "refund_details"
@@ -209,7 +213,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(affiliateShipmentId: String? = nil, awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, fulfillmentOption: FulfillmentOption? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, isRefundConfigEnabled: Bool? = nil, meta: [String: Any]? = nil, ndrDetails: NdrDetailsSchema? = nil, needHelpUrl: String? = nil, order: OrderRequestSchema? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundBreakupValues: [BreakupValues]? = nil, refundDetails: [String: Any]? = nil, refundModes: [RefundModeData]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(affiliateShipmentId: String? = nil, awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, creditNote: CreditNote? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, fulfillmentOption: FulfillmentOption? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, isRefundConfigEnabled: Bool? = nil, meta: [String: Any]? = nil, ndrDetails: NdrDetailsSchema? = nil, needHelpUrl: String? = nil, order: OrderRequestSchema? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundBreakupValues: [BreakupValues]? = nil, refundDetails: [String: Any]? = nil, refundModes: [RefundModeData]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             
             self.payment = payment
             
@@ -238,6 +242,8 @@ public extension ApplicationClient.Order {
             self.comment = comment
             
             self.invoice = invoice
+            
+            self.creditNote = creditNote
             
             self.showTrackLink = showTrackLink
             
@@ -473,6 +479,18 @@ public extension ApplicationClient.Order {
             
             do {
                 invoice = try container.decode(Invoice.self, forKey: .invoice)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                creditNote = try container.decode(CreditNote.self, forKey: .creditNote)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -961,6 +979,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(invoice, forKey: .invoice)
+            
+            
+            
+            try? container.encodeIfPresent(creditNote, forKey: .creditNote)
             
             
             

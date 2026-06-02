@@ -16,6 +16,8 @@ public extension PlatformClient.Serviceability {
         
         public var page: Page
         
+        public var foDetails: FoDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Serviceability {
             
             case page = "page"
             
+            case foDetails = "fo_details"
+            
         }
 
-        public init(items: [ListViewItems], page: Page) {
+        public init(foDetails: FoDetails? = nil, items: [ListViewItems], page: Page) {
             
             self.items = items
             
             self.page = page
+            
+            self.foDetails = foDetails
             
         }
 
@@ -46,6 +52,18 @@ public extension PlatformClient.Serviceability {
                 
             
             
+            
+                do {
+                    foDetails = try container.decode(FoDetails.self, forKey: .foDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -59,6 +77,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(page, forKey: .page)
+            
+            
+            
+            
+            try? container.encodeIfPresent(foDetails, forKey: .foDetails)
             
             
         }
@@ -81,6 +104,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var page: Page
         
+        public var foDetails: FoDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -88,13 +113,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case page = "page"
             
+            case foDetails = "fo_details"
+            
         }
 
-        public init(items: [ListViewItems], page: Page) {
+        public init(foDetails: FoDetails? = nil, items: [ListViewItems], page: Page) {
             
             self.items = items
             
             self.page = page
+            
+            self.foDetails = foDetails
             
         }
 
@@ -111,6 +140,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
+            
+                do {
+                    foDetails = try container.decode(FoDetails.self, forKey: .foDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -124,6 +165,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(page, forKey: .page)
+            
+            
+            
+            
+            try? container.encodeIfPresent(foDetails, forKey: .foDetails)
             
             
         }
