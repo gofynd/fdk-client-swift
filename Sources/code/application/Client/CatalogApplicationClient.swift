@@ -2420,7 +2420,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: List sellers
-        * Description: List all sellers offering a specific product identified by its slug and size.
+        * Description: List all sellers offering a specific product identified by its slug and size. Optionally filter the seller list by store name, seller name, or store code using the `q` query parameter.
         **/
         public func getProductSellersBySlug(
             slug: String,
@@ -2429,6 +2429,7 @@ extension ApplicationClient {
             fulfillmentOptionSlug: String?,
             pageNo: Int?,
             pageSize: Int?,
+            q: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductSizeSellersResponseV4?, _ error: FDKError?) -> Void
@@ -2450,6 +2451,10 @@ extension ApplicationClient {
             
             if let value = pageSize {
                 xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2504,6 +2509,8 @@ extension ApplicationClient {
         
         
         
+        
+        
         /**
         *
         * Summary: get paginator for getProductSellersBySlug
@@ -2515,6 +2522,7 @@ extension ApplicationClient {
             strategy: String?,
             fulfillmentOptionSlug: String?,
             pageSize: Int?,
+            q: String?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ProductSizeSellersResponseV4> {
             let pageSize = pageSize ?? 20
@@ -2527,6 +2535,7 @@ extension ApplicationClient {
                     fulfillmentOptionSlug: fulfillmentOptionSlug,
                     pageNo: paginator.pageNo,
                     pageSize: paginator.pageSize,
+                    q: q,
                     
                     headers: headers
                 ) { response, error in                    

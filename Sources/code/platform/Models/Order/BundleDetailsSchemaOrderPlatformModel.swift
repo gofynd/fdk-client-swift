@@ -12,23 +12,23 @@ public extension PlatformClient.Order {
     class BundleDetailsSchema: Codable {
         
         
-        public var isBase: Bool?
+        public var isBase: Bool
         
-        public var images: [String]?
+        public var images: [String]
         
-        public var groupId: String?
+        public var groupId: String
         
-        public var name: String?
+        public var name: String
         
-        public var itemType: String?
+        public var itemType: String
         
-        public var itemId: Int?
+        public var itemId: Int
         
-        public var itemCode: String?
+        public var itemCode: String
         
-        public var itemName: String?
+        public var itemName: String
         
-        public var sellerIdentifier: String?
+        public var sellerIdentifier: String
         
         public var bundleArticleQuantity: Int?
         
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(brandName: String? = nil, bundleArticleQuantity: Int? = nil, groupId: String? = nil, images: [String]? = nil, isBase: Bool? = nil, itemCode: String? = nil, itemId: Int? = nil, itemName: String? = nil, itemType: String? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil) {
+        public init(brandName: String? = nil, bundleArticleQuantity: Int? = nil, groupId: String, images: [String], isBase: Bool, itemCode: String, itemId: Int, itemName: String, itemType: String, name: String, sellerIdentifier: String, size: String? = nil) {
             
             self.isBase = isBase
             
@@ -97,112 +97,49 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    isBase = try container.decode(Bool.self, forKey: .isBase)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                isBase = try container.decode(Bool.self, forKey: .isBase)
                 
             
             
-                do {
-                    images = try container.decode([String].self, forKey: .images)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                images = try container.decode([String].self, forKey: .images)
                 
             
             
-                do {
-                    groupId = try container.decode(String.self, forKey: .groupId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                groupId = try container.decode(String.self, forKey: .groupId)
                 
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
-                do {
-                    itemType = try container.decode(String.self, forKey: .itemType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                itemType = try container.decode(String.self, forKey: .itemType)
                 
             
             
-                do {
-                    itemId = try container.decode(Int.self, forKey: .itemId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                itemId = try container.decode(Int.self, forKey: .itemId)
                 
             
             
-                do {
-                    itemCode = try container.decode(String.self, forKey: .itemCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                itemCode = try container.decode(String.self, forKey: .itemCode)
                 
             
             
-                do {
-                    itemName = try container.decode(String.self, forKey: .itemName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                itemName = try container.decode(String.self, forKey: .itemName)
                 
             
             
-                do {
-                    sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+            
+                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -321,23 +258,23 @@ public extension PlatformClient.ApplicationClient.Order {
     class BundleDetailsSchema: Codable {
         
         
-        public var isBase: Bool?
+        public var isBase: Bool
         
-        public var images: [String]?
+        public var images: [String]
         
-        public var groupId: String?
+        public var groupId: String
         
-        public var name: String?
+        public var name: String
         
-        public var itemType: String?
+        public var itemType: String
         
-        public var itemId: Int?
+        public var itemId: Int
         
-        public var itemCode: String?
+        public var itemCode: String
         
-        public var itemName: String?
+        public var itemName: String
         
-        public var sellerIdentifier: String?
+        public var sellerIdentifier: String
         
         public var bundleArticleQuantity: Int?
         
@@ -374,7 +311,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(brandName: String? = nil, bundleArticleQuantity: Int? = nil, groupId: String? = nil, images: [String]? = nil, isBase: Bool? = nil, itemCode: String? = nil, itemId: Int? = nil, itemName: String? = nil, itemType: String? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil) {
+        public init(brandName: String? = nil, bundleArticleQuantity: Int? = nil, groupId: String, images: [String], isBase: Bool, itemCode: String, itemId: Int, itemName: String, itemType: String, name: String, sellerIdentifier: String, size: String? = nil) {
             
             self.isBase = isBase
             
@@ -406,112 +343,49 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    isBase = try container.decode(Bool.self, forKey: .isBase)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                isBase = try container.decode(Bool.self, forKey: .isBase)
                 
             
             
-                do {
-                    images = try container.decode([String].self, forKey: .images)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                images = try container.decode([String].self, forKey: .images)
                 
             
             
-                do {
-                    groupId = try container.decode(String.self, forKey: .groupId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                groupId = try container.decode(String.self, forKey: .groupId)
                 
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
-                do {
-                    itemType = try container.decode(String.self, forKey: .itemType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                itemType = try container.decode(String.self, forKey: .itemType)
                 
             
             
-                do {
-                    itemId = try container.decode(Int.self, forKey: .itemId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                itemId = try container.decode(Int.self, forKey: .itemId)
                 
             
             
-                do {
-                    itemCode = try container.decode(String.self, forKey: .itemCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                itemCode = try container.decode(String.self, forKey: .itemCode)
                 
             
             
-                do {
-                    itemName = try container.decode(String.self, forKey: .itemName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                itemName = try container.decode(String.self, forKey: .itemName)
                 
             
             
-                do {
-                    sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+            
+                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
