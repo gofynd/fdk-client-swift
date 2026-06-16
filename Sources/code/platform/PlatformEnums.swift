@@ -10,8 +10,6 @@ import Foundation
 
 
 
-
-
 public extension PlatformClient.Catalog {
     
     
