@@ -109,6 +109,8 @@ extension ApplicationClient {
             
             ulrs["addRefundBeneficiaryUsingOTPSession"] = config.domain.appendAsPath("/service/application/payment/v2.0/refund/user/beneficiary-otp") 
             
+            ulrs["getOrderTransactions"] = config.domain.appendAsPath("/service/application/payment/v1.0/orders/{order_id}/transactions") 
+            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -718,6 +720,7 @@ extension ApplicationClient {
             orderType: String,
             fulfillmentOption: [String]?,
             userDetails: String?,
+            displaySplit: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentModeRouteDetails?, _ error: FDKError?) -> Void
@@ -747,6 +750,10 @@ extension ApplicationClient {
             
             if let value = userDetails {
                 xQuery["user_details"] = value
+            }
+            
+            if let value = displaySplit {
+                xQuery["display_split"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2831,6 +2838,61 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(AddBeneficiaryResponseDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: List all transactions for an order
+        * Description: Returns all payment transactions for the given order ID, ordered by creation timestamp ascending. Each entry includes merchant transaction ID, payment mode name, logo, amount, latest status, and created_on.
+        **/
+        public func getOrderTransactions(
+            orderId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: OrderTransactionList?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["getOrderTransactions"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OrderTransactionList.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

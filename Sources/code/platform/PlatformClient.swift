@@ -14441,6 +14441,41 @@ public class PlatformClient {
             
             
             
+            
+            
+            /**
+            *
+            * Summary: get paginator for getStaffOrderingStores
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getStaffOrderingStoresPaginator(
+                pageSize: Int?,
+                q: String?,
+                headers: [(key: String, value: String)]? = nil
+                ) -> Paginator<OrderingStoresResponseSchema> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<OrderingStoresResponseSchema>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getStaffOrderingStores(
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        q: q,
+                        
+                        headers: headers
+                    ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
             /**
             *
             * Summary: Get ordering store signed cookie
@@ -24594,6 +24629,56 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
+            
+            /**
+            *
+            * Summary: Atomically add or remove products on zones (concurrency-safe)
+            * Description: Synchronously adds or removes products on one or more zones. Each item is applied with an atomic MongoDB array operator (`$addToSet` for add, `$pull` for remove) rather than a read-modify-write of the whole product list, so concurrent writes to the same zone never lose each other's changes. `product_type` must match the existing zone's product type. Product ids are not validated against the catalog (this is a synchronous API; callers send already-known ids). Returns a per-item status and a summary; per-item failures (e.g. zone not found, product type mismatch) do not fail the whole request.
+            **/
+            public func patchZoneProductsAtomic(
+                body: ZoneProductsAtomicPatchDetails,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: ZoneProductsAtomicPatchResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/logistics/v2.0/company/\(companyId)/application/\(applicationId)/zones/bulk/products/patch",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ZoneProductsAtomicPatchResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
         }
         
         
@@ -27465,6 +27550,58 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Update order metadata
+            * Description: Update metadata associated with a payment order. Use this to set or update PAN (Permanent Account Number) for an order.
+            **/
+            public func updateOrderMeta(
+                orderId: String,
+                body: OrderMetaUpdate,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: OrderMetaResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["order_id"] = orderId
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/order/meta",
+                    query: xQuery,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OrderMetaResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Get app version for  Aggregator
             * Description: Get app version required for Payment Mode or sub payment mode for an Aggregator.if merchant required any PG payment mode after certain version for mobile app.
             **/
@@ -27667,6 +27804,57 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(OperationResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: List all transactions for an order
+            * Description: Returns all payment transactions associated with the given order ID, ordered by creation timestamp ascending. Each entry includes the merchant transaction ID, payment mode name, logo URL (small, falling back to large), transaction amount, latest status, and creation timestamp.
+            **/
+            public func getOrderTransactions(
+                orderId: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: OrderTransactionList?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/orders/\(orderId)/transactions",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OrderTransactionList.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

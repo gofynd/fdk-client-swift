@@ -3,63 +3,57 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Payment {
     /*
-        Model: LocationQuantityRequestSchema
-        Used By: Catalog
+        Model: OrderTransactionItem
+        Used By: Payment
     */
 
-    class LocationQuantityRequestSchema: Codable {
+    class OrderTransactionItem: Codable {
         
         
-        public var expirationDate: String?
+        public var transactionId: String?
         
-        public var totalQuantity: Int?
+        public var paymentMode: String?
         
-        public var damagedQuantity: Int?
+        public var logo: String?
         
-        public var notAvailableQuantity: Int?
+        public var amount: Double?
         
-        public var mode: String?
+        public var status: String?
         
-        public var transactionType: String?
-        
-        public var transaction: InventoryTransaction?
+        public var createdOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case expirationDate = "expiration_date"
+            case transactionId = "transaction_id"
             
-            case totalQuantity = "total_quantity"
+            case paymentMode = "payment_mode"
             
-            case damagedQuantity = "damaged_quantity"
+            case logo = "logo"
             
-            case notAvailableQuantity = "not_available_quantity"
+            case amount = "amount"
             
-            case mode = "mode"
+            case status = "status"
             
-            case transactionType = "transaction_type"
-            
-            case transaction = "transaction"
+            case createdOn = "created_on"
             
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil, transaction: InventoryTransaction? = nil, transactionType: String? = nil) {
+        public init(amount: Double? = nil, createdOn: String? = nil, logo: String? = nil, paymentMode: String? = nil, status: String? = nil, transactionId: String? = nil) {
             
-            self.expirationDate = expirationDate
+            self.transactionId = transactionId
             
-            self.totalQuantity = totalQuantity
+            self.paymentMode = paymentMode
             
-            self.damagedQuantity = damagedQuantity
+            self.logo = logo
             
-            self.notAvailableQuantity = notAvailableQuantity
+            self.amount = amount
             
-            self.mode = mode
+            self.status = status
             
-            self.transactionType = transactionType
-            
-            self.transaction = transaction
+            self.createdOn = createdOn
             
         }
 
@@ -68,7 +62,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    expirationDate = try container.decode(String.self, forKey: .expirationDate)
+                    transactionId = try container.decode(String.self, forKey: .transactionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +74,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
+                    paymentMode = try container.decode(String.self, forKey: .paymentMode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +86,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    damagedQuantity = try container.decode(Int.self, forKey: .damagedQuantity)
+                    logo = try container.decode(String.self, forKey: .logo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +98,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    notAvailableQuantity = try container.decode(Int.self, forKey: .notAvailableQuantity)
+                    amount = try container.decode(Double.self, forKey: .amount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +110,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    mode = try container.decode(String.self, forKey: .mode)
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,19 +122,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    transactionType = try container.decode(String.self, forKey: .transactionType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,37 +139,32 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
             
             
             
             
-            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encodeIfPresent(damagedQuantity, forKey: .damagedQuantity)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encodeIfPresent(notAvailableQuantity, forKey: .notAvailableQuantity)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encodeIfPresent(mode, forKey: .mode)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(transaction, forKey: .transaction)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
         }
@@ -197,63 +174,57 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Payment {
     /*
-        Model: LocationQuantityRequestSchema
-        Used By: Catalog
+        Model: OrderTransactionItem
+        Used By: Payment
     */
 
-    class LocationQuantityRequestSchema: Codable {
+    class OrderTransactionItem: Codable {
         
         
-        public var expirationDate: String?
+        public var transactionId: String?
         
-        public var totalQuantity: Int?
+        public var paymentMode: String?
         
-        public var damagedQuantity: Int?
+        public var logo: String?
         
-        public var notAvailableQuantity: Int?
+        public var amount: Double?
         
-        public var mode: String?
+        public var status: String?
         
-        public var transactionType: String?
-        
-        public var transaction: InventoryTransaction?
+        public var createdOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case expirationDate = "expiration_date"
+            case transactionId = "transaction_id"
             
-            case totalQuantity = "total_quantity"
+            case paymentMode = "payment_mode"
             
-            case damagedQuantity = "damaged_quantity"
+            case logo = "logo"
             
-            case notAvailableQuantity = "not_available_quantity"
+            case amount = "amount"
             
-            case mode = "mode"
+            case status = "status"
             
-            case transactionType = "transaction_type"
-            
-            case transaction = "transaction"
+            case createdOn = "created_on"
             
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil, transaction: InventoryTransaction? = nil, transactionType: String? = nil) {
+        public init(amount: Double? = nil, createdOn: String? = nil, logo: String? = nil, paymentMode: String? = nil, status: String? = nil, transactionId: String? = nil) {
             
-            self.expirationDate = expirationDate
+            self.transactionId = transactionId
             
-            self.totalQuantity = totalQuantity
+            self.paymentMode = paymentMode
             
-            self.damagedQuantity = damagedQuantity
+            self.logo = logo
             
-            self.notAvailableQuantity = notAvailableQuantity
+            self.amount = amount
             
-            self.mode = mode
+            self.status = status
             
-            self.transactionType = transactionType
-            
-            self.transaction = transaction
+            self.createdOn = createdOn
             
         }
 
@@ -262,7 +233,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    expirationDate = try container.decode(String.self, forKey: .expirationDate)
+                    transactionId = try container.decode(String.self, forKey: .transactionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -274,7 +245,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
+                    paymentMode = try container.decode(String.self, forKey: .paymentMode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -286,7 +257,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    damagedQuantity = try container.decode(Int.self, forKey: .damagedQuantity)
+                    logo = try container.decode(String.self, forKey: .logo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -298,7 +269,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    notAvailableQuantity = try container.decode(Int.self, forKey: .notAvailableQuantity)
+                    amount = try container.decode(Double.self, forKey: .amount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -310,7 +281,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    mode = try container.decode(String.self, forKey: .mode)
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -322,19 +293,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    transactionType = try container.decode(String.self, forKey: .transactionType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -351,37 +310,32 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
             
             
             
             
-            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encodeIfPresent(damagedQuantity, forKey: .damagedQuantity)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encodeIfPresent(notAvailableQuantity, forKey: .notAvailableQuantity)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encodeIfPresent(mode, forKey: .mode)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(transaction, forKey: .transaction)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
         }

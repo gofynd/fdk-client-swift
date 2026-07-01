@@ -48,6 +48,8 @@ public extension ApplicationClient.Configuration {
         
         public var v: Int?
         
+        public var buybox: BuyBoxFeature?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -91,9 +93,11 @@ public extension ApplicationClient.Configuration {
             
             case v = "__v"
             
+            case buybox = "buybox"
+            
         }
 
-        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, international: Bool? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, orderingSources: [OrderingSources]? = nil, pcr: PcrFeature? = nil, priceStrategy: String? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, security: SecurityFeature? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, buybox: BuyBoxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, international: Bool? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, orderingSources: [OrderingSources]? = nil, pcr: PcrFeature? = nil, priceStrategy: String? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, security: SecurityFeature? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -134,6 +138,8 @@ public extension ApplicationClient.Configuration {
             self.modifiedAt = modifiedAt
             
             self.v = v
+            
+            self.buybox = buybox
             
         }
 
@@ -380,6 +386,18 @@ public extension ApplicationClient.Configuration {
             }
             
             
+            
+            do {
+                buybox = try container.decode(BuyBoxFeature.self, forKey: .buybox)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -463,6 +481,10 @@ public extension ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            try? container.encodeIfPresent(buybox, forKey: .buybox)
             
             
         }

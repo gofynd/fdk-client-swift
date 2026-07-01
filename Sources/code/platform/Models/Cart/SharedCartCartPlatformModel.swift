@@ -52,6 +52,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var gstin: String?
         
+        public var shipToGstDetails: ShipToGstDetails?
+        
         public var customCartMeta: [String: Any]?
         
 
@@ -95,11 +97,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case gstin = "gstin"
             
+            case shipToGstDetails = "ship_to_gst_details"
+            
             case customCartMeta = "custom_cart_meta"
             
         }
 
-        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, sharedCartDetails: SharedCartDetails? = nil, uid: String? = nil) {
+        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, sharedCartDetails: SharedCartDetails? = nil, shipToGstDetails: ShipToGstDetails? = nil, uid: String? = nil) {
             
             self.couponText = couponText
             
@@ -138,6 +142,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.cartId = cartId
             
             self.gstin = gstin
+            
+            self.shipToGstDetails = shipToGstDetails
             
             self.customCartMeta = customCartMeta
             
@@ -376,6 +382,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    shipToGstDetails = try container.decode(ShipToGstDetails.self, forKey: .shipToGstDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     customCartMeta = try container.decode([String: Any].self, forKey: .customCartMeta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -484,6 +502,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipToGstDetails, forKey: .shipToGstDetails)
             
             
             

@@ -32,6 +32,8 @@ public extension ApplicationClient.Cart {
         
         public var gstin: String?
         
+        public var shipToGstDetails: ShipToGstDetails?
+        
         public var sharedCartDetails: SharedCartDetails?
         
         public var restrictCheckout: Bool?
@@ -75,6 +77,8 @@ public extension ApplicationClient.Cart {
             
             case gstin = "gstin"
             
+            case shipToGstDetails = "ship_to_gst_details"
+            
             case sharedCartDetails = "shared_cart_details"
             
             case restrictCheckout = "restrict_checkout"
@@ -93,7 +97,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, sharedCartDetails: SharedCartDetails? = nil, uid: String? = nil) {
+        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, sharedCartDetails: SharedCartDetails? = nil, shipToGstDetails: ShipToGstDetails? = nil, uid: String? = nil) {
             
             self.checkoutMode = checkoutMode
             
@@ -118,6 +122,8 @@ public extension ApplicationClient.Cart {
             self.message = message
             
             self.gstin = gstin
+            
+            self.shipToGstDetails = shipToGstDetails
             
             self.sharedCartDetails = sharedCartDetails
             
@@ -286,6 +292,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                shipToGstDetails = try container.decode(ShipToGstDetails.self, forKey: .shipToGstDetails)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 sharedCartDetails = try container.decode(SharedCartDetails.self, forKey: .sharedCartDetails)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -431,6 +449,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            try? container.encodeIfPresent(shipToGstDetails, forKey: .shipToGstDetails)
             
             
             

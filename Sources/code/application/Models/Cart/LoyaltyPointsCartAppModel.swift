@@ -32,6 +32,8 @@ public extension ApplicationClient.Cart {
         
         public var title: String?
         
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -59,9 +61,11 @@ public extension ApplicationClient.Cart {
             
             case title = "title"
             
+            case meta = "meta"
+            
         }
 
-        public init(amount: Double? = nil, applicable: Double? = nil, description: String? = nil, earnPoints: Double? = nil, earnPointsAmount: Double? = nil, earnTitle: String? = nil, isApplied: Bool? = nil, mopAmount: Double? = nil, points: Double? = nil, title: String? = nil, total: Double? = nil, totalPoints: Double? = nil) {
+        public init(amount: Double? = nil, applicable: Double? = nil, description: String? = nil, earnPoints: Double? = nil, earnPointsAmount: Double? = nil, earnTitle: String? = nil, isApplied: Bool? = nil, meta: [String: Any]? = nil, mopAmount: Double? = nil, points: Double? = nil, title: String? = nil, total: Double? = nil, totalPoints: Double? = nil) {
             
             self.total = total
             
@@ -86,6 +90,8 @@ public extension ApplicationClient.Cart {
             self.earnTitle = earnTitle
             
             self.title = title
+            
+            self.meta = meta
             
         }
 
@@ -236,6 +242,18 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -287,6 +305,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

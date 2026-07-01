@@ -20,6 +20,10 @@ public extension PlatformClient.Catalog {
         
         public var user: [String: Any]?
         
+        public var transactionType: String?
+        
+        public var transaction: InventoryTransaction?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +35,13 @@ public extension PlatformClient.Catalog {
             
             case user = "user"
             
+            case transactionType = "transaction_type"
+            
+            case transaction = "transaction"
+            
         }
 
-        public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
+        public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], transaction: InventoryTransaction? = nil, transactionType: String? = nil, user: [String: Any]? = nil) {
             
             self.batchId = batchId
             
@@ -42,6 +50,10 @@ public extension PlatformClient.Catalog {
             self.sizes = sizes
             
             self.user = user
+            
+            self.transactionType = transactionType
+            
+            self.transaction = transaction
             
         }
 
@@ -75,6 +87,30 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    transactionType = try container.decode(String.self, forKey: .transactionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -98,6 +134,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(user, forKey: .user)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
         }
@@ -124,6 +170,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var user: [String: Any]?
         
+        public var transactionType: String?
+        
+        public var transaction: InventoryTransaction?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -135,9 +185,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case user = "user"
             
+            case transactionType = "transaction_type"
+            
+            case transaction = "transaction"
+            
         }
 
-        public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
+        public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], transaction: InventoryTransaction? = nil, transactionType: String? = nil, user: [String: Any]? = nil) {
             
             self.batchId = batchId
             
@@ -146,6 +200,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.sizes = sizes
             
             self.user = user
+            
+            self.transactionType = transactionType
+            
+            self.transaction = transaction
             
         }
 
@@ -179,6 +237,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    transactionType = try container.decode(String.self, forKey: .transactionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -202,6 +284,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(user, forKey: .user)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
         }

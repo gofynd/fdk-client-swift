@@ -3,29 +3,29 @@
 import Foundation
 public extension ApplicationClient.Cart {
     /*
-        Model: RedeemLoyaltyPoints
+        Model: ShipToGstDetails
         Used By: Cart
     */
-    class RedeemLoyaltyPoints: Codable {
+    class ShipToGstDetails: Codable {
         
-        public var redeemPoints: Bool
+        public var gstin: String?
         
-        public var meta: [String: Any]?
+        public var tradeName: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case redeemPoints = "redeem_points"
+            case gstin = "gstin"
             
-            case meta = "meta"
+            case tradeName = "trade_name"
             
         }
 
-        public init(meta: [String: Any]? = nil, redeemPoints: Bool) {
+        public init(gstin: String? = nil, tradeName: String? = nil) {
             
-            self.redeemPoints = redeemPoints
+            self.gstin = gstin
             
-            self.meta = meta
+            self.tradeName = tradeName
             
         }
 
@@ -33,13 +33,20 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            redeemPoints = try container.decode(Bool.self, forKey: .redeemPoints)
+            do {
+                gstin = try container.decode(String.self, forKey: .gstin)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                tradeName = try container.decode(String.self, forKey: .tradeName)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,11 +62,11 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(redeemPoints, forKey: .redeemPoints)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(tradeName, forKey: .tradeName)
             
             
         }
