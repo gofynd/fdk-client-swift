@@ -12,6 +12,8 @@ public extension ApplicationClient.Order {
         
         public var success: Bool?
         
+        public var ruleId: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Order {
             
             case success = "success"
             
+            case ruleId = "rule_id"
+            
         }
 
-        public init(reasons: [BagReasons]? = nil, success: Bool? = nil) {
+        public init(reasons: [BagReasons]? = nil, ruleId: Int? = nil, success: Bool? = nil) {
             
             self.reasons = reasons
             
             self.success = success
+            
+            self.ruleId = ruleId
             
         }
 
@@ -56,6 +62,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                ruleId = try container.decode(Int.self, forKey: .ruleId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,6 +85,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            try? container.encodeIfPresent(ruleId, forKey: .ruleId)
             
             
         }

@@ -14,7 +14,7 @@ public extension PlatformClient.ApplicationClient.Cart {
     class UpdateUserCartMapping: Codable {
         
         
-        public var userId: String
+        public var userId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,7 +23,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(userId: String) {
+        public init(userId: String? = nil) {
             
             self.userId = userId
             
@@ -33,9 +33,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                userId = try container.decode(String.self, forKey: .userId)
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

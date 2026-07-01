@@ -20,6 +20,8 @@ public extension PlatformClient.Content {
         
         public var required: Bool?
         
+        public var meta: SupportedValidationsMetaSchema?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +33,11 @@ public extension PlatformClient.Content {
             
             case required = "required"
             
+            case meta = "meta"
+            
         }
 
-        public init(display: String? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil) {
+        public init(display: String? = nil, meta: SupportedValidationsMetaSchema? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil) {
             
             self.name = name
             
@@ -42,6 +46,8 @@ public extension PlatformClient.Content {
             self.display = display
             
             self.required = required
+            
+            self.meta = meta
             
         }
 
@@ -96,6 +102,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode(SupportedValidationsMetaSchema.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -119,6 +137,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(required, forKey: .required)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -145,6 +168,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var required: Bool?
         
+        public var meta: SupportedValidationsMetaSchema?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -156,9 +181,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case required = "required"
             
+            case meta = "meta"
+            
         }
 
-        public init(display: String? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil) {
+        public init(display: String? = nil, meta: SupportedValidationsMetaSchema? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil) {
             
             self.name = name
             
@@ -167,6 +194,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.display = display
             
             self.required = required
+            
+            self.meta = meta
             
         }
 
@@ -221,6 +250,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode(SupportedValidationsMetaSchema.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -244,6 +285,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(required, forKey: .required)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

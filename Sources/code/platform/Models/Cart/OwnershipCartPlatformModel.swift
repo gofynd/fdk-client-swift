@@ -16,7 +16,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var payableCategory: String
         
-        public var payableBy: String
+        public var payableBy: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,7 +27,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(payableBy: String, payableCategory: String) {
+        public init(payableBy: String? = nil, payableCategory: String) {
             
             self.payableCategory = payableCategory
             
@@ -44,9 +44,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-                payableBy = try container.decode(String.self, forKey: .payableBy)
+                do {
+                    payableBy = try container.decode(String.self, forKey: .payableBy)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

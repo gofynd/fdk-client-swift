@@ -8,54 +8,60 @@ public extension ApplicationClient.Cart {
     */
     class ProductPrice: Codable {
         
-        public var marked: Double?
-        
-        public var addOn: Double?
-        
-        public var currencyCode: String?
-        
         public var currencySymbol: String?
-        
-        public var effective: Double?
         
         public var selling: Double?
         
-        public var sellingPrice: Double?
+        public var currencyCode: String?
+        
+        public var addOn: Double?
+        
+        public var effective: Double?
+        
+        public var marked: Double?
+        
+        public var finalPrice: Double?
+        
+        public var discount: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case marked = "marked"
-            
-            case addOn = "add_on"
-            
-            case currencyCode = "currency_code"
-            
             case currencySymbol = "currency_symbol"
-            
-            case effective = "effective"
             
             case selling = "selling"
             
-            case sellingPrice = "selling_price"
+            case currencyCode = "currency_code"
+            
+            case addOn = "add_on"
+            
+            case effective = "effective"
+            
+            case marked = "marked"
+            
+            case finalPrice = "final_price"
+            
+            case discount = "discount"
             
         }
 
-        public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil, sellingPrice: Double? = nil) {
-            
-            self.marked = marked
-            
-            self.addOn = addOn
-            
-            self.currencyCode = currencyCode
+        public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, discount: Double? = nil, effective: Double? = nil, finalPrice: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
             
             self.currencySymbol = currencySymbol
             
-            self.effective = effective
-            
             self.selling = selling
             
-            self.sellingPrice = sellingPrice
+            self.currencyCode = currencyCode
+            
+            self.addOn = addOn
+            
+            self.effective = effective
+            
+            self.marked = marked
+            
+            self.finalPrice = finalPrice
+            
+            self.discount = discount
             
         }
 
@@ -64,55 +70,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                addOn = try container.decode(Double.self, forKey: .addOn)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                effective = try container.decode(Double.self, forKey: .effective)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,7 +94,67 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                sellingPrice = try container.decode(Double.self, forKey: .sellingPrice)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                addOn = try container.decode(Double.self, forKey: .addOn)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                effective = try container.decode(Double.self, forKey: .effective)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                marked = try container.decode(Double.self, forKey: .marked)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                finalPrice = try container.decode(Double.self, forKey: .finalPrice)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                discount = try container.decode(Double.self, forKey: .discount)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,23 +170,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(marked, forKey: .marked)
-            
-            
-            
-            try? container.encodeIfPresent(addOn, forKey: .addOn)
-            
-            
-            
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-            
-            
-            
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-            
-            
-            
-            try? container.encodeIfPresent(effective, forKey: .effective)
             
             
             
@@ -176,7 +178,27 @@ public extension ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(sellingPrice, forKey: .sellingPrice)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            
+            
+            
+            try? container.encodeIfPresent(addOn, forKey: .addOn)
+            
+            
+            
+            try? container.encodeIfPresent(effective, forKey: .effective)
+            
+            
+            
+            try? container.encodeIfPresent(marked, forKey: .marked)
+            
+            
+            
+            try? container.encodeIfPresent(finalPrice, forKey: .finalPrice)
+            
+            
+            
+            try? container.encodeIfPresent(discount, forKey: .discount)
             
             
         }

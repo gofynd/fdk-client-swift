@@ -43,8 +43,8 @@ public extension PlatformClient.Catalog {
         case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
-        case profileEmails = "profile-emails"
-        case profilePhones = "profile-phones"
+        case profileEmail = "profile-email"
+        case profilePhone = "profile-phone"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
         case settings = "settings"
@@ -63,6 +63,9 @@ public extension PlatformClient.Catalog {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
+        case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -166,9 +169,9 @@ public extension PlatformClient.Catalog {
                 return "/profile/details"
             case .profileCompany:
                 return "/profile/company"
-            case .profileEmails:
+            case .profileEmail:
                 return "/profile/email"
-            case .profilePhones:
+            case .profilePhone:
                 return "/profile/phone"
             case .rateUs:
                 return "/rate-us"
@@ -206,6 +209,12 @@ public extension PlatformClient.Catalog {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
+            case .requestReattempt:
+                return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -268,10 +277,10 @@ public extension PlatformClient.Catalog {
                 return "Basic Profile"
             case .profileCompany:
                 return "Profile Company"
-            case .profileEmails:
-                return "Profile Emails"
-            case .profilePhones:
-                return "Profile Phones"
+            case .profileEmail:
+                return "Profile Email"
+            case .profilePhone:
+                return "Profile Phone"
             case .rateUs:
                 return "Rate Us"
             case .referEarn:
@@ -308,6 +317,12 @@ public extension PlatformClient.Catalog {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
+            case .requestReattempt:
+                return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -370,9 +385,9 @@ public extension PlatformClient.Catalog {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -410,6 +425,12 @@ public extension PlatformClient.Catalog {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -472,9 +493,9 @@ public extension PlatformClient.Catalog {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -511,6 +532,12 @@ public extension PlatformClient.Catalog {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -551,8 +578,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
-        case profileEmails = "profile-emails"
-        case profilePhones = "profile-phones"
+        case profileEmail = "profile-email"
+        case profilePhone = "profile-phone"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
         case settings = "settings"
@@ -571,6 +598,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
+        case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -674,9 +704,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "/profile/details"
             case .profileCompany:
                 return "/profile/company"
-            case .profileEmails:
+            case .profileEmail:
                 return "/profile/email"
-            case .profilePhones:
+            case .profilePhone:
                 return "/profile/phone"
             case .rateUs:
                 return "/rate-us"
@@ -714,6 +744,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
+            case .requestReattempt:
+                return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -776,10 +812,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "Basic Profile"
             case .profileCompany:
                 return "Profile Company"
-            case .profileEmails:
-                return "Profile Emails"
-            case .profilePhones:
-                return "Profile Phones"
+            case .profileEmail:
+                return "Profile Email"
+            case .profilePhone:
+                return "Profile Phone"
             case .rateUs:
                 return "Rate Us"
             case .referEarn:
@@ -816,6 +852,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
+            case .requestReattempt:
+                return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -878,9 +920,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -918,6 +960,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -980,9 +1028,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -1019,6 +1067,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -1071,8 +1125,8 @@ public extension PlatformClient.Content {
         case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
-        case profileEmails = "profile-emails"
-        case profilePhones = "profile-phones"
+        case profileEmail = "profile-email"
+        case profilePhone = "profile-phone"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
         case settings = "settings"
@@ -1091,6 +1145,9 @@ public extension PlatformClient.Content {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
+        case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -1194,9 +1251,9 @@ public extension PlatformClient.Content {
                 return "/profile/details"
             case .profileCompany:
                 return "/profile/company"
-            case .profileEmails:
+            case .profileEmail:
                 return "/profile/email"
-            case .profilePhones:
+            case .profilePhone:
                 return "/profile/phone"
             case .rateUs:
                 return "/rate-us"
@@ -1234,6 +1291,12 @@ public extension PlatformClient.Content {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
+            case .requestReattempt:
+                return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -1296,10 +1359,10 @@ public extension PlatformClient.Content {
                 return "Basic Profile"
             case .profileCompany:
                 return "Profile Company"
-            case .profileEmails:
-                return "Profile Emails"
-            case .profilePhones:
-                return "Profile Phones"
+            case .profileEmail:
+                return "Profile Email"
+            case .profilePhone:
+                return "Profile Phone"
             case .rateUs:
                 return "Rate Us"
             case .referEarn:
@@ -1336,6 +1399,12 @@ public extension PlatformClient.Content {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
+            case .requestReattempt:
+                return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -1398,9 +1467,9 @@ public extension PlatformClient.Content {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -1438,6 +1507,12 @@ public extension PlatformClient.Content {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -1500,9 +1575,9 @@ public extension PlatformClient.Content {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -1539,6 +1614,12 @@ public extension PlatformClient.Content {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -1579,8 +1660,8 @@ public extension PlatformClient.ApplicationClient.Content {
         case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
-        case profileEmails = "profile-emails"
-        case profilePhones = "profile-phones"
+        case profileEmail = "profile-email"
+        case profilePhone = "profile-phone"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
         case settings = "settings"
@@ -1599,6 +1680,9 @@ public extension PlatformClient.ApplicationClient.Content {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
+        case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -1702,9 +1786,9 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "/profile/details"
             case .profileCompany:
                 return "/profile/company"
-            case .profileEmails:
+            case .profileEmail:
                 return "/profile/email"
-            case .profilePhones:
+            case .profilePhone:
                 return "/profile/phone"
             case .rateUs:
                 return "/rate-us"
@@ -1742,6 +1826,12 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
+            case .requestReattempt:
+                return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -1804,10 +1894,10 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "Basic Profile"
             case .profileCompany:
                 return "Profile Company"
-            case .profileEmails:
-                return "Profile Emails"
-            case .profilePhones:
-                return "Profile Phones"
+            case .profileEmail:
+                return "Profile Email"
+            case .profilePhone:
+                return "Profile Phone"
             case .rateUs:
                 return "Rate Us"
             case .referEarn:
@@ -1844,6 +1934,12 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
+            case .requestReattempt:
+                return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -1906,9 +2002,9 @@ public extension PlatformClient.ApplicationClient.Content {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -1946,6 +2042,12 @@ public extension PlatformClient.ApplicationClient.Content {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -2008,9 +2110,9 @@ public extension PlatformClient.ApplicationClient.Content {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -2048,14 +2150,16 @@ public extension PlatformClient.ApplicationClient.Content {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return []
+            case .files:
+                return []
             }
         }
     }
 }
-
-
-
-
 
 
 
@@ -2111,8 +2215,8 @@ public extension PlatformClient.Theme {
         case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
-        case profileEmails = "profile-emails"
-        case profilePhones = "profile-phones"
+        case profileEmail = "profile-email"
+        case profilePhone = "profile-phone"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
         case settings = "settings"
@@ -2131,6 +2235,9 @@ public extension PlatformClient.Theme {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
+        case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -2234,9 +2341,9 @@ public extension PlatformClient.Theme {
                 return "/profile/details"
             case .profileCompany:
                 return "/profile/company"
-            case .profileEmails:
+            case .profileEmail:
                 return "/profile/email"
-            case .profilePhones:
+            case .profilePhone:
                 return "/profile/phone"
             case .rateUs:
                 return "/rate-us"
@@ -2274,6 +2381,12 @@ public extension PlatformClient.Theme {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
+            case .requestReattempt:
+                return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -2336,10 +2449,10 @@ public extension PlatformClient.Theme {
                 return "Basic Profile"
             case .profileCompany:
                 return "Profile Company"
-            case .profileEmails:
-                return "Profile Emails"
-            case .profilePhones:
-                return "Profile Phones"
+            case .profileEmail:
+                return "Profile Email"
+            case .profilePhone:
+                return "Profile Phone"
             case .rateUs:
                 return "Rate Us"
             case .referEarn:
@@ -2376,6 +2489,12 @@ public extension PlatformClient.Theme {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
+            case .requestReattempt:
+                return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -2438,9 +2557,9 @@ public extension PlatformClient.Theme {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -2478,6 +2597,12 @@ public extension PlatformClient.Theme {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -2540,9 +2665,9 @@ public extension PlatformClient.Theme {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -2579,6 +2704,12 @@ public extension PlatformClient.Theme {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }
@@ -2619,8 +2750,8 @@ public extension PlatformClient.ApplicationClient.Theme {
         case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
-        case profileEmails = "profile-emails"
-        case profilePhones = "profile-phones"
+        case profileEmail = "profile-email"
+        case profilePhone = "profile-phone"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
         case settings = "settings"
@@ -2639,6 +2770,9 @@ public extension PlatformClient.ApplicationClient.Theme {
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
         case locateUs = "locate-us"
+        case singlePageCheckout = "single-page-checkout"
+        case requestReattempt = "request-reattempt"
+        case files = "files"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -2742,9 +2876,9 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "/profile/details"
             case .profileCompany:
                 return "/profile/company"
-            case .profileEmails:
+            case .profileEmail:
                 return "/profile/email"
-            case .profilePhones:
+            case .profilePhone:
                 return "/profile/phone"
             case .rateUs:
                 return "/rate-us"
@@ -2782,6 +2916,12 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "/cart/order-status"
             case .locateUs:
                 return "/locate-us"
+            case .singlePageCheckout:
+                return "/cart/checkout"
+            case .requestReattempt:
+                return "/reattempt/shipment/:shipmentId"
+            case .files:
+                return "/files/:file_name"
             }
         }
 
@@ -2844,10 +2984,10 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "Basic Profile"
             case .profileCompany:
                 return "Profile Company"
-            case .profileEmails:
-                return "Profile Emails"
-            case .profilePhones:
-                return "Profile Phones"
+            case .profileEmail:
+                return "Profile Email"
+            case .profilePhone:
+                return "Profile Phone"
             case .rateUs:
                 return "Rate Us"
             case .referEarn:
@@ -2884,6 +3024,12 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "Order status"
             case .locateUs:
                 return "Locate us"
+            case .singlePageCheckout:
+                return "Single Page Checkout"
+            case .requestReattempt:
+                return "Request Reattempt"
+            case .files:
+                return "Files"
             }
         }
 
@@ -2946,9 +3092,9 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -2986,6 +3132,12 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return []
             case .locateUs:
                 return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return [(name: "shipmentId", required: true)]
+            case .files:
+                return [(name: "file_name", required: true)]
             }
         }
 
@@ -3048,9 +3200,9 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return []
             case .profileCompany:
                 return []
-            case .profileEmails:
+            case .profileEmail:
                 return []
-            case .profilePhones:
+            case .profilePhone:
                 return []
             case .rateUs:
                 return []
@@ -3087,6 +3239,12 @@ public extension PlatformClient.ApplicationClient.Theme {
             case .orderStatus:
                 return []
             case .locateUs:
+                return []
+            case .singlePageCheckout:
+                return []
+            case .requestReattempt:
+                return []
+            case .files:
                 return []
             }
         }

@@ -8,9 +8,9 @@ public extension ApplicationClient.User {
     */
     class VerifyMobileForgotOtpRequestSchema: Codable {
         
-        public var requestId: String
+        public var requestId: String?
         
-        public var otp: String
+        public var otp: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(otp: String, requestId: String) {
+        public init(otp: String? = nil, requestId: String? = nil) {
             
             self.requestId = requestId
             
@@ -33,13 +33,27 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            requestId = try container.decode(String.self, forKey: .requestId)
+            do {
+                requestId = try container.decode(String.self, forKey: .requestId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                otp = try container.decode(String.self, forKey: .otp)
             
-            otp = try container.decode(String.self, forKey: .otp)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }

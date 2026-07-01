@@ -12,8 +12,6 @@ public extension ApplicationClient.User {
         
         public var otp: Bool?
         
-        public var via: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -21,17 +19,13 @@ public extension ApplicationClient.User {
             
             case otp = "otp"
             
-            case via = "via"
-            
         }
 
-        public init(otp: Bool? = nil, password: Bool? = nil, via: String? = nil) {
+        public init(otp: Bool? = nil, password: Bool? = nil) {
             
             self.password = password
             
             self.otp = otp
-            
-            self.via = via
             
         }
 
@@ -62,18 +56,6 @@ public extension ApplicationClient.User {
             }
             
             
-            
-            do {
-                via = try container.decode(String.self, forKey: .via)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -85,10 +67,6 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(otp, forKey: .otp)
-            
-            
-            
-            try? container.encodeIfPresent(via, forKey: .via)
             
             
         }

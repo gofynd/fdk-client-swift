@@ -16,45 +16,45 @@ public extension PlatformClient.Content {
         
         public var application: String?
         
-        public var platform: String?
+        public var componentIds: [String]?
         
-        public var title: String?
-        
-        public var slug: String?
-        
-        public var type: String?
-        
-        public var tags: [String]?
+        public var content: [[String: Any]]?
         
         public var contentPath: String?
-        
-        public var orientation: String?
-        
-        public var description: String?
-        
-        public var published: Bool?
         
         public var createdBy: CreatedBySchema?
         
         public var dateMeta: DateMeta?
         
+        public var description: String?
+        
         public var featureImage: Asset?
+        
+        public var pageMeta: [[String: Any]]?
         
         public var schedule: ScheduleSchema?
         
-        public var pageMeta: [PageMeta]?
+        public var customJson: [String: Any]?
+        
+        public var orientation: String?
+        
+        public var platform: String?
+        
+        public var published: Bool?
+        
+        public var slug: String?
+        
+        public var tags: [String]?
+        
+        public var title: String?
+        
+        public var type: String?
         
         public var seo: SEO?
         
-        public var componentIds: [String]?
+        public var visibility: [String: Any]?
         
         public var archived: Bool?
-        
-        public var v: Int?
-        
-        public var content: [PageContent]?
-        
-        public var sanitizedContent: [SanitizedContent]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -63,93 +63,93 @@ public extension PlatformClient.Content {
             
             case application = "application"
             
-            case platform = "platform"
+            case componentIds = "component_ids"
             
-            case title = "title"
-            
-            case slug = "slug"
-            
-            case type = "type"
-            
-            case tags = "tags"
+            case content = "content"
             
             case contentPath = "content_path"
-            
-            case orientation = "orientation"
-            
-            case description = "description"
-            
-            case published = "published"
             
             case createdBy = "created_by"
             
             case dateMeta = "date_meta"
             
-            case featureImage = "feature_image"
+            case description = "description"
             
-            case schedule = "_schedule"
+            case featureImage = "feature_image"
             
             case pageMeta = "page_meta"
             
+            case schedule = "_schedule"
+            
+            case customJson = "_custom_json"
+            
+            case orientation = "orientation"
+            
+            case platform = "platform"
+            
+            case published = "published"
+            
+            case slug = "slug"
+            
+            case tags = "tags"
+            
+            case title = "title"
+            
+            case type = "type"
+            
             case seo = "seo"
             
-            case componentIds = "component_ids"
+            case visibility = "visibility"
             
             case archived = "archived"
             
-            case v = "__v"
-            
-            case content = "content"
-            
-            case sanitizedContent = "sanitized_content"
-            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, componentIds: [String]? = nil, content: [PageContent]? = nil, contentPath: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, pageMeta: [PageMeta]? = nil, platform: String? = nil, published: Bool? = nil, sanitizedContent: [SanitizedContent]? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, id: String? = nil, schedule: ScheduleSchema? = nil, v: Int? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, componentIds: [String]? = nil, content: [[String: Any]]? = nil, contentPath: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, pageMeta: [[String: Any]]? = nil, platform: String? = nil, published: Bool? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, visibility: [String: Any]? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
             
             self.id = id
             
             self.application = application
             
-            self.platform = platform
+            self.componentIds = componentIds
             
-            self.title = title
-            
-            self.slug = slug
-            
-            self.type = type
-            
-            self.tags = tags
+            self.content = content
             
             self.contentPath = contentPath
-            
-            self.orientation = orientation
-            
-            self.description = description
-            
-            self.published = published
             
             self.createdBy = createdBy
             
             self.dateMeta = dateMeta
             
-            self.featureImage = featureImage
+            self.description = description
             
-            self.schedule = schedule
+            self.featureImage = featureImage
             
             self.pageMeta = pageMeta
             
+            self.schedule = schedule
+            
+            self.customJson = customJson
+            
+            self.orientation = orientation
+            
+            self.platform = platform
+            
+            self.published = published
+            
+            self.slug = slug
+            
+            self.tags = tags
+            
+            self.title = title
+            
+            self.type = type
+            
             self.seo = seo
             
-            self.componentIds = componentIds
+            self.visibility = visibility
             
             self.archived = archived
-            
-            self.v = v
-            
-            self.content = content
-            
-            self.sanitizedContent = sanitizedContent
             
         }
 
@@ -182,7 +182,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    platform = try container.decode(String.self, forKey: .platform)
+                    componentIds = try container.decode([String].self, forKey: .componentIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,43 +194,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    title = try container.decode(String.self, forKey: .title)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
+                    content = try container.decode([[String: Any]].self, forKey: .content)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -243,42 +207,6 @@ public extension PlatformClient.Content {
             
                 do {
                     contentPath = try container.decode(String.self, forKey: .contentPath)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    orientation = try container.decode(String.self, forKey: .orientation)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    published = try container.decode(Bool.self, forKey: .published)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -314,7 +242,31 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     featureImage = try container.decode(Asset.self, forKey: .featureImage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    pageMeta = try container.decode([[String: Any]].self, forKey: .pageMeta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -338,7 +290,91 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    pageMeta = try container.decode([PageMeta].self, forKey: .pageMeta)
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orientation = try container.decode(String.self, forKey: .orientation)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    platform = try container.decode(String.self, forKey: .platform)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    published = try container.decode(Bool.self, forKey: .published)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    title = try container.decode(String.self, forKey: .title)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -362,7 +398,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    componentIds = try container.decode([String].self, forKey: .componentIds)
+                    visibility = try container.decode([String: Any].self, forKey: .visibility)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -375,42 +411,6 @@ public extension PlatformClient.Content {
             
                 do {
                     archived = try container.decode(Bool.self, forKey: .archived)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    v = try container.decode(Int.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    content = try container.decode([PageContent].self, forKey: .content)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    sanitizedContent = try container.decode([SanitizedContent].self, forKey: .sanitizedContent)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -437,47 +437,17 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(platform, forKey: .platform)
+            try? container.encodeIfPresent(componentIds, forKey: .componentIds)
             
             
             
             
-            try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
+            try? container.encodeIfPresent(content, forKey: .content)
             
             
             
             
             try? container.encodeIfPresent(contentPath, forKey: .contentPath)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orientation, forKey: .orientation)
-            
-            
-            
-            
-            try? container.encodeIfPresent(description, forKey: .description)
-            
-            
-            
-            
-            try? container.encodeIfPresent(published, forKey: .published)
             
             
             
@@ -492,12 +462,12 @@ public extension PlatformClient.Content {
             
             
             
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
             try? container.encodeIfPresent(featureImage, forKey: .featureImage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
             
             
             
@@ -507,32 +477,62 @@ public extension PlatformClient.Content {
             
             
             
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orientation, forKey: .orientation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            
+            
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
             try? container.encodeIfPresent(seo, forKey: .seo)
             
             
             
             
-            try? container.encodeIfPresent(componentIds, forKey: .componentIds)
+            try? container.encodeIfPresent(visibility, forKey: .visibility)
             
             
             
             
             try? container.encodeIfPresent(archived, forKey: .archived)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(content, forKey: .content)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sanitizedContent, forKey: .sanitizedContent)
             
             
         }
@@ -555,45 +555,45 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var application: String?
         
-        public var platform: String?
+        public var componentIds: [String]?
         
-        public var title: String?
-        
-        public var slug: String?
-        
-        public var type: String?
-        
-        public var tags: [String]?
+        public var content: [[String: Any]]?
         
         public var contentPath: String?
-        
-        public var orientation: String?
-        
-        public var description: String?
-        
-        public var published: Bool?
         
         public var createdBy: CreatedBySchema?
         
         public var dateMeta: DateMeta?
         
+        public var description: String?
+        
         public var featureImage: Asset?
+        
+        public var pageMeta: [[String: Any]]?
         
         public var schedule: ScheduleSchema?
         
-        public var pageMeta: [PageMeta]?
+        public var customJson: [String: Any]?
+        
+        public var orientation: String?
+        
+        public var platform: String?
+        
+        public var published: Bool?
+        
+        public var slug: String?
+        
+        public var tags: [String]?
+        
+        public var title: String?
+        
+        public var type: String?
         
         public var seo: SEO?
         
-        public var componentIds: [String]?
+        public var visibility: [String: Any]?
         
         public var archived: Bool?
-        
-        public var v: Int?
-        
-        public var content: [PageContent]?
-        
-        public var sanitizedContent: [SanitizedContent]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -602,93 +602,93 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case application = "application"
             
-            case platform = "platform"
+            case componentIds = "component_ids"
             
-            case title = "title"
-            
-            case slug = "slug"
-            
-            case type = "type"
-            
-            case tags = "tags"
+            case content = "content"
             
             case contentPath = "content_path"
-            
-            case orientation = "orientation"
-            
-            case description = "description"
-            
-            case published = "published"
             
             case createdBy = "created_by"
             
             case dateMeta = "date_meta"
             
-            case featureImage = "feature_image"
+            case description = "description"
             
-            case schedule = "_schedule"
+            case featureImage = "feature_image"
             
             case pageMeta = "page_meta"
             
+            case schedule = "_schedule"
+            
+            case customJson = "_custom_json"
+            
+            case orientation = "orientation"
+            
+            case platform = "platform"
+            
+            case published = "published"
+            
+            case slug = "slug"
+            
+            case tags = "tags"
+            
+            case title = "title"
+            
+            case type = "type"
+            
             case seo = "seo"
             
-            case componentIds = "component_ids"
+            case visibility = "visibility"
             
             case archived = "archived"
             
-            case v = "__v"
-            
-            case content = "content"
-            
-            case sanitizedContent = "sanitized_content"
-            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, componentIds: [String]? = nil, content: [PageContent]? = nil, contentPath: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, pageMeta: [PageMeta]? = nil, platform: String? = nil, published: Bool? = nil, sanitizedContent: [SanitizedContent]? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, id: String? = nil, schedule: ScheduleSchema? = nil, v: Int? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, componentIds: [String]? = nil, content: [[String: Any]]? = nil, contentPath: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, pageMeta: [[String: Any]]? = nil, platform: String? = nil, published: Bool? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, visibility: [String: Any]? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
             
             self.id = id
             
             self.application = application
             
-            self.platform = platform
+            self.componentIds = componentIds
             
-            self.title = title
-            
-            self.slug = slug
-            
-            self.type = type
-            
-            self.tags = tags
+            self.content = content
             
             self.contentPath = contentPath
-            
-            self.orientation = orientation
-            
-            self.description = description
-            
-            self.published = published
             
             self.createdBy = createdBy
             
             self.dateMeta = dateMeta
             
-            self.featureImage = featureImage
+            self.description = description
             
-            self.schedule = schedule
+            self.featureImage = featureImage
             
             self.pageMeta = pageMeta
             
+            self.schedule = schedule
+            
+            self.customJson = customJson
+            
+            self.orientation = orientation
+            
+            self.platform = platform
+            
+            self.published = published
+            
+            self.slug = slug
+            
+            self.tags = tags
+            
+            self.title = title
+            
+            self.type = type
+            
             self.seo = seo
             
-            self.componentIds = componentIds
+            self.visibility = visibility
             
             self.archived = archived
-            
-            self.v = v
-            
-            self.content = content
-            
-            self.sanitizedContent = sanitizedContent
             
         }
 
@@ -721,7 +721,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    platform = try container.decode(String.self, forKey: .platform)
+                    componentIds = try container.decode([String].self, forKey: .componentIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -733,43 +733,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    title = try container.decode(String.self, forKey: .title)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
+                    content = try container.decode([[String: Any]].self, forKey: .content)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -782,42 +746,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     contentPath = try container.decode(String.self, forKey: .contentPath)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    orientation = try container.decode(String.self, forKey: .orientation)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    published = try container.decode(Bool.self, forKey: .published)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -853,7 +781,31 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     featureImage = try container.decode(Asset.self, forKey: .featureImage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    pageMeta = try container.decode([[String: Any]].self, forKey: .pageMeta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -877,7 +829,91 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    pageMeta = try container.decode([PageMeta].self, forKey: .pageMeta)
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orientation = try container.decode(String.self, forKey: .orientation)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    platform = try container.decode(String.self, forKey: .platform)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    published = try container.decode(Bool.self, forKey: .published)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    title = try container.decode(String.self, forKey: .title)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -901,7 +937,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    componentIds = try container.decode([String].self, forKey: .componentIds)
+                    visibility = try container.decode([String: Any].self, forKey: .visibility)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -914,42 +950,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     archived = try container.decode(Bool.self, forKey: .archived)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    v = try container.decode(Int.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    content = try container.decode([PageContent].self, forKey: .content)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    sanitizedContent = try container.decode([SanitizedContent].self, forKey: .sanitizedContent)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -976,47 +976,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(platform, forKey: .platform)
+            try? container.encodeIfPresent(componentIds, forKey: .componentIds)
             
             
             
             
-            try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
+            try? container.encodeIfPresent(content, forKey: .content)
             
             
             
             
             try? container.encodeIfPresent(contentPath, forKey: .contentPath)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orientation, forKey: .orientation)
-            
-            
-            
-            
-            try? container.encodeIfPresent(description, forKey: .description)
-            
-            
-            
-            
-            try? container.encodeIfPresent(published, forKey: .published)
             
             
             
@@ -1031,12 +1001,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
             try? container.encodeIfPresent(featureImage, forKey: .featureImage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
             
             
             
@@ -1046,32 +1016,62 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orientation, forKey: .orientation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            
+            
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
             try? container.encodeIfPresent(seo, forKey: .seo)
             
             
             
             
-            try? container.encodeIfPresent(componentIds, forKey: .componentIds)
+            try? container.encodeIfPresent(visibility, forKey: .visibility)
             
             
             
             
             try? container.encodeIfPresent(archived, forKey: .archived)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(content, forKey: .content)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sanitizedContent, forKey: .sanitizedContent)
             
             
         }

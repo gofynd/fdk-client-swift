@@ -8,7 +8,7 @@ public extension ApplicationClient.User {
     */
     class EditProfileRequestSchema: Codable {
         
-        public var ci: Bool?
+        public var encryptOtp: Bool?
         
         public var firstName: String?
         
@@ -32,10 +32,12 @@ public extension ApplicationClient.User {
         
         public var registerToken: String?
         
+        public var consent: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case ci = "ci"
+            case encryptOtp = "encrypt_otp"
             
             case firstName = "first_name"
             
@@ -59,11 +61,13 @@ public extension ApplicationClient.User {
             
             case registerToken = "register_token"
             
+            case consent = "consent"
+            
         }
 
-        public init(androidHash: String? = nil, ci: Bool? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
+        public init(androidHash: String? = nil, consent: Bool? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, encryptOtp: Bool? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
             
-            self.ci = ci
+            self.encryptOtp = encryptOtp
             
             self.firstName = firstName
             
@@ -87,6 +91,8 @@ public extension ApplicationClient.User {
             
             self.registerToken = registerToken
             
+            self.consent = consent
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -94,7 +100,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                ci = try container.decode(Bool.self, forKey: .ci)
+                encryptOtp = try container.decode(Bool.self, forKey: .encryptOtp)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -236,13 +242,25 @@ public extension ApplicationClient.User {
             }
             
             
+            
+            do {
+                consent = try container.decode(Bool.self, forKey: .consent)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(ci, forKey: .ci)
+            try? container.encodeIfPresent(encryptOtp, forKey: .encryptOtp)
             
             
             
@@ -287,6 +305,10 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+            
+            
+            try? container.encodeIfPresent(consent, forKey: .consent)
             
             
         }

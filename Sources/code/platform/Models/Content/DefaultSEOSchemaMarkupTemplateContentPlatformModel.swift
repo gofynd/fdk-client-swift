@@ -12,9 +12,11 @@ public extension PlatformClient.Content {
     class DefaultSEOSchemaMarkupTemplate: Codable {
         
         
-        public var pageType: String?
+        public var pageType: PageType?
         
         public var schema: String?
+        
+        public var targetJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,13 +25,17 @@ public extension PlatformClient.Content {
             
             case schema = "schema"
             
+            case targetJson = "target_json"
+            
         }
 
-        public init(pageType: String? = nil, schema: String? = nil) {
+        public init(pageType: PageType? = nil, schema: String? = nil, targetJson: [String: Any]? = nil) {
             
             self.pageType = pageType
             
             self.schema = schema
+            
+            self.targetJson = targetJson
             
         }
 
@@ -38,7 +44,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
+                    pageType = try container.decode(PageType.self, forKey: .pageType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,6 +57,18 @@ public extension PlatformClient.Content {
             
                 do {
                     schema = try container.decode(String.self, forKey: .schema)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    targetJson = try container.decode([String: Any].self, forKey: .targetJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,6 +91,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(schema, forKey: .schema)
+            
+            
+            
+            
+            try? container.encodeIfPresent(targetJson, forKey: .targetJson)
             
             
         }
@@ -91,9 +114,11 @@ public extension PlatformClient.ApplicationClient.Content {
     class DefaultSEOSchemaMarkupTemplate: Codable {
         
         
-        public var pageType: String?
+        public var pageType: PageType?
         
         public var schema: String?
+        
+        public var targetJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case schema = "schema"
             
+            case targetJson = "target_json"
+            
         }
 
-        public init(pageType: String? = nil, schema: String? = nil) {
+        public init(pageType: PageType? = nil, schema: String? = nil, targetJson: [String: Any]? = nil) {
             
             self.pageType = pageType
             
             self.schema = schema
+            
+            self.targetJson = targetJson
             
         }
 
@@ -117,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
+                    pageType = try container.decode(PageType.self, forKey: .pageType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,6 +159,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     schema = try container.decode(String.self, forKey: .schema)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    targetJson = try container.decode([String: Any].self, forKey: .targetJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(schema, forKey: .schema)
+            
+            
+            
+            
+            try? container.encodeIfPresent(targetJson, forKey: .targetJson)
             
             
         }

@@ -14,22 +14,22 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PromotionPartialUpdate: Codable {
         
         
-        public var publish: Bool?
+        public var archive: Bool?
         
         public var schedule: PromotionSchedule?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case publish = "publish"
+            case archive = "archive"
             
             case schedule = "schedule"
             
         }
 
-        public init(publish: Bool? = nil, schedule: PromotionSchedule? = nil) {
+        public init(archive: Bool? = nil, schedule: PromotionSchedule? = nil) {
             
-            self.publish = publish
+            self.archive = archive
             
             self.schedule = schedule
             
@@ -40,7 +40,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    publish = try container.decode(Bool.self, forKey: .publish)
+                    archive = try container.decode(Bool.self, forKey: .archive)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(publish, forKey: .publish)
+            try? container.encodeIfPresent(archive, forKey: .archive)
             
             
             

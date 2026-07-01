@@ -16,21 +16,21 @@ public extension PlatformClient.Serviceability {
         
         public var filePath: String?
         
-        public var total: Int?
+        public var total: [String: Any]?
         
-        public var failed: Int?
+        public var failed: [String: Any]?
         
         public var errorFileUrl: String?
         
-        public var action: String?
+        public var action: [String: Any]?
         
-        public var updatedAt: String?
+        public var updatedAt: [String: Any]?
         
-        public var updatedBy: String?
+        public var updatedBy: [String: Any]?
         
-        public var type: String?
+        public var type: [String: Any]?
         
-        public var stage: String?
+        public var stage: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -57,7 +57,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(action: String? = nil, batchId: String? = nil, errorFileUrl: String? = nil, failed: Int? = nil, filePath: String? = nil, stage: String? = nil, total: Int? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil) {
+        public init(action: [String: Any]? = nil, batchId: String? = nil, errorFileUrl: String? = nil, failed: [String: Any]? = nil, filePath: String? = nil, stage: [String: Any]? = nil, total: [String: Any]? = nil, type: [String: Any]? = nil, updatedAt: [String: Any]? = nil, updatedBy: [String: Any]? = nil) {
             
             self.batchId = batchId
             
@@ -110,7 +110,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    total = try container.decode(Int.self, forKey: .total)
+                    total = try container.decode([String: Any].self, forKey: .total)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +122,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    failed = try container.decode(Int.self, forKey: .failed)
+                    failed = try container.decode([String: Any].self, forKey: .failed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,7 +146,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    action = try container.decode(String.self, forKey: .action)
+                    action = try container.decode([String: Any].self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    updatedAt = try container.decode([String: Any].self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +170,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    updatedBy = try container.decode(String.self, forKey: .updatedBy)
+                    updatedBy = try container.decode([String: Any].self, forKey: .updatedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -182,7 +182,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    type = try container.decode([String: Any].self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    stage = try container.decode(String.self, forKey: .stage)
+                    stage = try container.decode([String: Any].self, forKey: .stage)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -279,21 +279,21 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var filePath: String?
         
-        public var total: Int?
+        public var total: [String: Any]?
         
-        public var failed: Int?
+        public var failed: [String: Any]?
         
         public var errorFileUrl: String?
         
-        public var action: String?
+        public var action: [String: Any]?
         
-        public var updatedAt: String?
+        public var updatedAt: [String: Any]?
         
-        public var updatedBy: String?
+        public var updatedBy: [String: Any]?
         
-        public var type: String?
+        public var type: [String: Any]?
         
-        public var stage: String?
+        public var stage: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -320,7 +320,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(action: String? = nil, batchId: String? = nil, errorFileUrl: String? = nil, failed: Int? = nil, filePath: String? = nil, stage: String? = nil, total: Int? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil) {
+        public init(action: [String: Any]? = nil, batchId: String? = nil, errorFileUrl: String? = nil, failed: [String: Any]? = nil, filePath: String? = nil, stage: [String: Any]? = nil, total: [String: Any]? = nil, type: [String: Any]? = nil, updatedAt: [String: Any]? = nil, updatedBy: [String: Any]? = nil) {
             
             self.batchId = batchId
             
@@ -373,7 +373,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    total = try container.decode(Int.self, forKey: .total)
+                    total = try container.decode([String: Any].self, forKey: .total)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -385,7 +385,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    failed = try container.decode(Int.self, forKey: .failed)
+                    failed = try container.decode([String: Any].self, forKey: .failed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -409,7 +409,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    action = try container.decode(String.self, forKey: .action)
+                    action = try container.decode([String: Any].self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -421,7 +421,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    updatedAt = try container.decode([String: Any].self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -433,7 +433,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    updatedBy = try container.decode(String.self, forKey: .updatedBy)
+                    updatedBy = try container.decode([String: Any].self, forKey: .updatedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -445,7 +445,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    type = try container.decode([String: Any].self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -457,7 +457,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    stage = try container.decode(String.self, forKey: .stage)
+                    stage = try container.decode([String: Any].self, forKey: .stage)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

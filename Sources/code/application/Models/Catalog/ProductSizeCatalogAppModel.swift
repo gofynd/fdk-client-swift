@@ -22,7 +22,7 @@ public extension ApplicationClient.Catalog {
         
         public var display: String?
         
-        public var set: ProductSetV3?
+        public var isBundleItem: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -41,11 +41,11 @@ public extension ApplicationClient.Catalog {
             
             case display = "display"
             
-            case set = "set"
+            case isBundleItem = "is_bundle_item"
             
         }
 
-        public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, set: ProductSetV3? = nil, value: String? = nil, weight: Weight? = nil) {
+        public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, isBundleItem: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil, weight: Weight? = nil) {
             
             self.quantity = quantity
             
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             
             self.display = display
             
-            self.set = set
+            self.isBundleItem = isBundleItem
             
         }
 
@@ -154,7 +154,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                set = try container.decode(ProductSetV3.self, forKey: .set)
+                isBundleItem = try container.decode(Bool.self, forKey: .isBundleItem)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -198,7 +198,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(set, forKey: .set)
+            try? container.encodeIfPresent(isBundleItem, forKey: .isBundleItem)
             
             
         }

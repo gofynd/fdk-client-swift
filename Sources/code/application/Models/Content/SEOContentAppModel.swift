@@ -18,7 +18,7 @@ public extension ApplicationClient.Content {
         
         public var sitemap: SEOSitemap?
         
-        public var breadcrumbs: [SEObreadcrumb]?
+        public var breadcrumb: [SEObreadcrumb]?
         
         public var canonicalUrl: String?
         
@@ -35,13 +35,13 @@ public extension ApplicationClient.Content {
             
             case sitemap = "sitemap"
             
-            case breadcrumbs = "breadcrumbs"
+            case breadcrumb = "breadcrumb"
             
             case canonicalUrl = "canonical_url"
             
         }
 
-        public init(breadcrumbs: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, image: SEOImage? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil) {
+        public init(breadcrumb: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, image: SEOImage? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil) {
             
             self.description = description
             
@@ -53,7 +53,7 @@ public extension ApplicationClient.Content {
             
             self.sitemap = sitemap
             
-            self.breadcrumbs = breadcrumbs
+            self.breadcrumb = breadcrumb
             
             self.canonicalUrl = canonicalUrl
             
@@ -124,7 +124,7 @@ public extension ApplicationClient.Content {
             
             
             do {
-                breadcrumbs = try container.decode([SEObreadcrumb].self, forKey: .breadcrumbs)
+                breadcrumb = try container.decode([SEObreadcrumb].self, forKey: .breadcrumb)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(breadcrumbs, forKey: .breadcrumbs)
+            try? container.encodeIfPresent(breadcrumb, forKey: .breadcrumb)
             
             
             

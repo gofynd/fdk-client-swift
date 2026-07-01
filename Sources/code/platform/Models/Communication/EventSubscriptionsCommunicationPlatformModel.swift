@@ -12,7 +12,7 @@ public extension PlatformClient.Communication {
     class EventSubscriptions: Codable {
         
         
-        public var items: [EventSubscriptionObj]?
+        public var items: [EventSubscription]?
         
         public var page: Page?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(items: [EventSubscriptionObj]? = nil, page: Page? = nil) {
+        public init(items: [EventSubscription]? = nil, page: Page? = nil) {
             
             self.items = items
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    items = try container.decode([EventSubscriptionObj].self, forKey: .items)
+                    items = try container.decode([EventSubscription].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.ApplicationClient.Communication {
     class EventSubscriptions: Codable {
         
         
-        public var items: [EventSubscriptionObj]?
+        public var items: [EventSubscription]?
         
         public var page: Page?
         
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(items: [EventSubscriptionObj]? = nil, page: Page? = nil) {
+        public init(items: [EventSubscription]? = nil, page: Page? = nil) {
             
             self.items = items
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    items = try container.decode([EventSubscriptionObj].self, forKey: .items)
+                    items = try container.decode([EventSubscription].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

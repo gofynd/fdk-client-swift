@@ -14,9 +14,9 @@ public extension PlatformClient.Billing {
         
         public var message: String?
         
-        public var code: [String: Any]?
+        public var code: Int?
         
-        public var success: [String: Any]?
+        public var success: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(code: [String: Any]? = nil, message: String? = nil, success: [String: Any]? = nil) {
+        public init(code: Int? = nil, message: String? = nil, success: Bool? = nil) {
             
             self.message = message
             
@@ -56,7 +56,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    code = try container.decode([String: Any].self, forKey: .code)
+                    code = try container.decode(Int.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    success = try container.decode([String: Any].self, forKey: .success)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

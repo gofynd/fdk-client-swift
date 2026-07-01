@@ -18,6 +18,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var lastName: String?
         
+        public var dob: String?
+        
         public var gender: String?
         
         public var externalId: String?
@@ -37,6 +39,8 @@ public extension PlatformClient.ApplicationClient.User {
             
             case lastName = "last_name"
             
+            case dob = "dob"
+            
             case gender = "gender"
             
             case externalId = "external_id"
@@ -51,11 +55,13 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(emails: [UserEmails]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [UserPhoneNumbers]? = nil, rrId: String? = nil) {
+        public init(dob: String? = nil, emails: [UserEmails]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [UserPhoneNumbers]? = nil, rrId: String? = nil) {
             
             self.firstName = firstName
             
             self.lastName = lastName
+            
+            self.dob = dob
             
             self.gender = gender
             
@@ -89,6 +95,18 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     lastName = try container.decode(String.self, forKey: .lastName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    dob = try container.decode(String.self, forKey: .dob)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,6 +201,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(lastName, forKey: .lastName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dob, forKey: .dob)
             
             
             

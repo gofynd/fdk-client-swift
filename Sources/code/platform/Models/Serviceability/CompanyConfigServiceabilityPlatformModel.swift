@@ -14,6 +14,8 @@ public extension PlatformClient.Serviceability {
         
         public var companyId: Int?
         
+        public var isRateCardEnabled: Bool?
+        
         public var sort: [String]?
         
         public var logisticsAsActual: String?
@@ -23,15 +25,19 @@ public extension PlatformClient.Serviceability {
             
             case companyId = "company_id"
             
+            case isRateCardEnabled = "is_rate_card_enabled"
+            
             case sort = "sort"
             
             case logisticsAsActual = "logistics_as_actual"
             
         }
 
-        public init(companyId: Int? = nil, logisticsAsActual: String? = nil, sort: [String]? = nil) {
+        public init(companyId: Int? = nil, isRateCardEnabled: Bool? = nil, logisticsAsActual: String? = nil, sort: [String]? = nil) {
             
             self.companyId = companyId
+            
+            self.isRateCardEnabled = isRateCardEnabled
             
             self.sort = sort
             
@@ -45,6 +51,18 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isRateCardEnabled = try container.decode(Bool.self, forKey: .isRateCardEnabled)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,6 +104,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isRateCardEnabled, forKey: .isRateCardEnabled)
             
             
             
@@ -116,6 +139,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var companyId: Int?
         
+        public var isRateCardEnabled: Bool?
+        
         public var sort: [String]?
         
         public var logisticsAsActual: String?
@@ -125,15 +150,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case companyId = "company_id"
             
+            case isRateCardEnabled = "is_rate_card_enabled"
+            
             case sort = "sort"
             
             case logisticsAsActual = "logistics_as_actual"
             
         }
 
-        public init(companyId: Int? = nil, logisticsAsActual: String? = nil, sort: [String]? = nil) {
+        public init(companyId: Int? = nil, isRateCardEnabled: Bool? = nil, logisticsAsActual: String? = nil, sort: [String]? = nil) {
             
             self.companyId = companyId
+            
+            self.isRateCardEnabled = isRateCardEnabled
             
             self.sort = sort
             
@@ -147,6 +176,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isRateCardEnabled = try container.decode(Bool.self, forKey: .isRateCardEnabled)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,6 +229,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isRateCardEnabled, forKey: .isRateCardEnabled)
             
             
             

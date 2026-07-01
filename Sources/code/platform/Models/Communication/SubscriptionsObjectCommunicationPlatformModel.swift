@@ -14,10 +14,6 @@ public extension PlatformClient.Communication {
         
         public var id: String?
         
-        public var event: String?
-        
-        public var slug: String?
-        
         public var template: TemplateObject?
         
 
@@ -25,21 +21,13 @@ public extension PlatformClient.Communication {
             
             case id = "_id"
             
-            case event = "event"
-            
-            case slug = "slug"
-            
             case template = "template"
             
         }
 
-        public init(event: String? = nil, slug: String? = nil, template: TemplateObject? = nil, id: String? = nil) {
+        public init(template: TemplateObject? = nil, id: String? = nil) {
             
             self.id = id
-            
-            self.event = event
-            
-            self.slug = slug
             
             self.template = template
             
@@ -51,30 +39,6 @@ public extension PlatformClient.Communication {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    event = try container.decode(String.self, forKey: .event)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,16 +68,6 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(event, forKey: .event)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -139,10 +93,6 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var id: String?
         
-        public var event: String?
-        
-        public var slug: String?
-        
         public var template: TemplateObject?
         
 
@@ -150,21 +100,13 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case id = "_id"
             
-            case event = "event"
-            
-            case slug = "slug"
-            
             case template = "template"
             
         }
 
-        public init(event: String? = nil, slug: String? = nil, template: TemplateObject? = nil, id: String? = nil) {
+        public init(template: TemplateObject? = nil, id: String? = nil) {
             
             self.id = id
-            
-            self.event = event
-            
-            self.slug = slug
             
             self.template = template
             
@@ -176,30 +118,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    event = try container.decode(String.self, forKey: .event)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,16 +147,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(event, forKey: .event)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             

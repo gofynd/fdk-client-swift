@@ -14,13 +14,13 @@ public extension ApplicationClient.Catalog {
         
         public var company: CompanyStore?
         
-        public var manager: StoreManagerSerializer?
+        public var manager: StoreManagerSchema?
         
         public var storeCode: String?
         
         public var timing: [StoreTiming]?
         
-        public var address: StoreAddressSerializer?
+        public var address: StoreAddressSchema?
         
         public var customJson: [String: Any]?
         
@@ -28,11 +28,33 @@ public extension ApplicationClient.Catalog {
         
         public var contactNumbers: [SellerPhoneNumber]?
         
+        public var additionalContacts: [ContactDetails]?
+        
         public var companyId: Int?
         
         public var displayName: String?
         
         public var storeType: String?
+        
+        public var autoInvoice: Bool?
+        
+        public var creditNote: Bool?
+        
+        public var stage: String?
+        
+        public var gstCredentials: GSTCredentials?
+        
+        public var productReturnConfig: ProductReturnConfig?
+        
+        public var avgOrderProcessingTime: OrderProcessingTime?
+        
+        public var bulkShipment: Bool?
+        
+        public var defaultOrderAcceptanceTiming: Bool?
+        
+        public var orderAcceptanceTiming: [OrderTiming]?
+        
+        public var autoAssignCourierPartner: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -57,15 +79,37 @@ public extension ApplicationClient.Catalog {
             
             case contactNumbers = "contact_numbers"
             
+            case additionalContacts = "additional_contacts"
+            
             case companyId = "company_id"
             
             case displayName = "display_name"
             
             case storeType = "store_type"
             
+            case autoInvoice = "auto_invoice"
+            
+            case creditNote = "credit_note"
+            
+            case stage = "stage"
+            
+            case gstCredentials = "gst_credentials"
+            
+            case productReturnConfig = "product_return_config"
+            
+            case avgOrderProcessingTime = "avg_order_processing_time"
+            
+            case bulkShipment = "bulk_shipment"
+            
+            case defaultOrderAcceptanceTiming = "default_order_acceptance_timing"
+            
+            case orderAcceptanceTiming = "order_acceptance_timing"
+            
+            case autoAssignCourierPartner = "auto_assign_courier_partner"
+            
         }
 
-        public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, companyId: Int? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, displayName: String? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, timing: [StoreTiming]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(additionalContacts: [ContactDetails]? = nil, address: StoreAddressSchema? = nil, autoAssignCourierPartner: Bool? = nil, autoInvoice: Bool? = nil, avgOrderProcessingTime: OrderProcessingTime? = nil, bulkShipment: Bool? = nil, company: CompanyStore? = nil, companyId: Int? = nil, contactNumbers: [SellerPhoneNumber]? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, departments: [StoreDepartments]? = nil, displayName: String? = nil, gstCredentials: GSTCredentials? = nil, manager: StoreManagerSchema? = nil, name: String? = nil, orderAcceptanceTiming: [OrderTiming]? = nil, productReturnConfig: ProductReturnConfig? = nil, stage: String? = nil, storeCode: String? = nil, storeType: String? = nil, timing: [StoreTiming]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.uid = uid
             
@@ -87,11 +131,33 @@ public extension ApplicationClient.Catalog {
             
             self.contactNumbers = contactNumbers
             
+            self.additionalContacts = additionalContacts
+            
             self.companyId = companyId
             
             self.displayName = displayName
             
             self.storeType = storeType
+            
+            self.autoInvoice = autoInvoice
+            
+            self.creditNote = creditNote
+            
+            self.stage = stage
+            
+            self.gstCredentials = gstCredentials
+            
+            self.productReturnConfig = productReturnConfig
+            
+            self.avgOrderProcessingTime = avgOrderProcessingTime
+            
+            self.bulkShipment = bulkShipment
+            
+            self.defaultOrderAcceptanceTiming = defaultOrderAcceptanceTiming
+            
+            self.orderAcceptanceTiming = orderAcceptanceTiming
+            
+            self.autoAssignCourierPartner = autoAssignCourierPartner
             
         }
 
@@ -136,7 +202,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                manager = try container.decode(StoreManagerSerializer.self, forKey: .manager)
+                manager = try container.decode(StoreManagerSchema.self, forKey: .manager)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +238,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
+                address = try container.decode(StoreAddressSchema.self, forKey: .address)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -220,6 +286,18 @@ public extension ApplicationClient.Catalog {
             
             
             do {
+                additionalContacts = try container.decode([ContactDetails].self, forKey: .additionalContacts)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -245,6 +323,126 @@ public extension ApplicationClient.Catalog {
             
             do {
                 storeType = try container.decode(String.self, forKey: .storeType)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                autoInvoice = try container.decode(Bool.self, forKey: .autoInvoice)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                creditNote = try container.decode(Bool.self, forKey: .creditNote)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                stage = try container.decode(String.self, forKey: .stage)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                gstCredentials = try container.decode(GSTCredentials.self, forKey: .gstCredentials)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                productReturnConfig = try container.decode(ProductReturnConfig.self, forKey: .productReturnConfig)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                avgOrderProcessingTime = try container.decode(OrderProcessingTime.self, forKey: .avgOrderProcessingTime)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                bulkShipment = try container.decode(Bool.self, forKey: .bulkShipment)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                defaultOrderAcceptanceTiming = try container.decode(Bool.self, forKey: .defaultOrderAcceptanceTiming)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                orderAcceptanceTiming = try container.decode([OrderTiming].self, forKey: .orderAcceptanceTiming)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                autoAssignCourierPartner = try container.decode(Bool.self, forKey: .autoAssignCourierPartner)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -300,6 +498,10 @@ public extension ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(additionalContacts, forKey: .additionalContacts)
+            
+            
+            
             try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
@@ -309,6 +511,46 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(storeType, forKey: .storeType)
+            
+            
+            
+            try? container.encodeIfPresent(autoInvoice, forKey: .autoInvoice)
+            
+            
+            
+            try? container.encodeIfPresent(creditNote, forKey: .creditNote)
+            
+            
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            
+            
+            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
+            
+            
+            
+            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
+            
+            
+            
+            try? container.encodeIfPresent(avgOrderProcessingTime, forKey: .avgOrderProcessingTime)
+            
+            
+            
+            try? container.encodeIfPresent(bulkShipment, forKey: .bulkShipment)
+            
+            
+            
+            try? container.encodeIfPresent(defaultOrderAcceptanceTiming, forKey: .defaultOrderAcceptanceTiming)
+            
+            
+            
+            try? container.encodeIfPresent(orderAcceptanceTiming, forKey: .orderAcceptanceTiming)
+            
+            
+            
+            try? container.encodeIfPresent(autoAssignCourierPartner, forKey: .autoAssignCourierPartner)
             
             
         }

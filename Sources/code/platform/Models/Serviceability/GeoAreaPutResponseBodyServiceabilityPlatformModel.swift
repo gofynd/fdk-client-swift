@@ -16,6 +16,8 @@ public extension PlatformClient.Serviceability {
         
         public var geoareaId: String?
         
+        public var isPolygon: Bool?
+        
         public var slug: String?
         
         public var isActive: Bool?
@@ -30,9 +32,9 @@ public extension PlatformClient.Serviceability {
         
         public var modifiedOn: String?
         
-        public var createdBy: String?
+        public var createdBy: CreatedBy?
         
-        public var modifiedBy: String?
+        public var modifiedBy: ModifiedBy?
         
         public var uploadType: String?
         
@@ -42,6 +44,8 @@ public extension PlatformClient.Serviceability {
             case name = "name"
             
             case geoareaId = "geoarea_id"
+            
+            case isPolygon = "is_polygon"
             
             case slug = "slug"
             
@@ -65,11 +69,13 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(areas: [Area]? = nil, createdBy: String? = nil, createdOn: String? = nil, geoareaId: String? = nil, isActive: Bool? = nil, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String? = nil, regionType: String? = nil, slug: String? = nil, type: String? = nil, uploadType: String? = nil) {
+        public init(areas: [Area]? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, geoareaId: String? = nil, isActive: Bool? = nil, isPolygon: Bool? = nil, modifiedBy: ModifiedBy? = nil, modifiedOn: String? = nil, name: String? = nil, regionType: String? = nil, slug: String? = nil, type: String? = nil, uploadType: String? = nil) {
             
             self.name = name
             
             self.geoareaId = geoareaId
+            
+            self.isPolygon = isPolygon
             
             self.slug = slug
             
@@ -111,6 +117,18 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     geoareaId = try container.decode(String.self, forKey: .geoareaId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isPolygon = try container.decode(Bool.self, forKey: .isPolygon)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -206,7 +224,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -218,7 +236,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    modifiedBy = try container.decode(String.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -253,6 +271,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(geoareaId, forKey: .geoareaId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isPolygon, forKey: .isPolygon)
             
             
             
@@ -325,6 +348,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var geoareaId: String?
         
+        public var isPolygon: Bool?
+        
         public var slug: String?
         
         public var isActive: Bool?
@@ -339,9 +364,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var modifiedOn: String?
         
-        public var createdBy: String?
+        public var createdBy: CreatedBy?
         
-        public var modifiedBy: String?
+        public var modifiedBy: ModifiedBy?
         
         public var uploadType: String?
         
@@ -351,6 +376,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             case name = "name"
             
             case geoareaId = "geoarea_id"
+            
+            case isPolygon = "is_polygon"
             
             case slug = "slug"
             
@@ -374,11 +401,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(areas: [Area]? = nil, createdBy: String? = nil, createdOn: String? = nil, geoareaId: String? = nil, isActive: Bool? = nil, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String? = nil, regionType: String? = nil, slug: String? = nil, type: String? = nil, uploadType: String? = nil) {
+        public init(areas: [Area]? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, geoareaId: String? = nil, isActive: Bool? = nil, isPolygon: Bool? = nil, modifiedBy: ModifiedBy? = nil, modifiedOn: String? = nil, name: String? = nil, regionType: String? = nil, slug: String? = nil, type: String? = nil, uploadType: String? = nil) {
             
             self.name = name
             
             self.geoareaId = geoareaId
+            
+            self.isPolygon = isPolygon
             
             self.slug = slug
             
@@ -420,6 +449,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     geoareaId = try container.decode(String.self, forKey: .geoareaId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isPolygon = try container.decode(Bool.self, forKey: .isPolygon)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -515,7 +556,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -527,7 +568,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    modifiedBy = try container.decode(String.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -562,6 +603,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(geoareaId, forKey: .geoareaId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isPolygon, forKey: .isPolygon)
             
             
             

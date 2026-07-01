@@ -16,8 +16,6 @@ public extension PlatformClient.Catalog {
         
         public var brand: ProductBrand?
         
-        public var color: String?
-        
         public var description: String?
         
         public var discount: String?
@@ -54,7 +52,7 @@ public extension PlatformClient.Catalog {
         
         public var similars: [String]?
         
-        public var slug: String
+        public var slug: String?
         
         public var teaserTag: [String: Any]?
         
@@ -84,8 +82,6 @@ public extension PlatformClient.Catalog {
             case attributes = "attributes"
             
             case brand = "brand"
-            
-            case color = "color"
             
             case description = "description"
             
@@ -149,13 +145,11 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(action: PageAction? = nil, allCompanyIds: [Int]? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ApplicationCategoryItem]? = nil, collections: [String]? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, isCustomOrder: Bool? = nil, isTryout: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: [String: Any]? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, customMeta: [String]? = nil) {
+        public init(action: PageAction? = nil, allCompanyIds: [Int]? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ApplicationCategoryItem]? = nil, collections: [String]? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, isCustomOrder: Bool? = nil, isTryout: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String? = nil, teaserTag: [String: Any]? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, customMeta: [String]? = nil) {
             
             self.attributes = attributes
             
             self.brand = brand
-            
-            self.color = color
             
             self.description = description
             
@@ -237,18 +231,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     brand = try container.decode(ProductBrand.self, forKey: .brand)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    color = try container.decode(String.self, forKey: .color)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -475,9 +457,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                slug = try container.decode(String.self, forKey: .slug)
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -624,11 +613,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(brand, forKey: .brand)
-            
-            
-            
-            
-            try? container.encodeIfPresent(color, forKey: .color)
             
             
             
@@ -801,8 +785,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var brand: ProductBrand?
         
-        public var color: String?
-        
         public var description: String?
         
         public var discount: String?
@@ -839,7 +821,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var similars: [String]?
         
-        public var slug: String
+        public var slug: String?
         
         public var teaserTag: [String: Any]?
         
@@ -869,8 +851,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case attributes = "attributes"
             
             case brand = "brand"
-            
-            case color = "color"
             
             case description = "description"
             
@@ -934,13 +914,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(action: PageAction? = nil, allCompanyIds: [Int]? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ApplicationCategoryItem]? = nil, collections: [String]? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, isCustomOrder: Bool? = nil, isTryout: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: [String: Any]? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, customMeta: [String]? = nil) {
+        public init(action: PageAction? = nil, allCompanyIds: [Int]? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ApplicationCategoryItem]? = nil, collections: [String]? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, isCustomOrder: Bool? = nil, isTryout: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String? = nil, teaserTag: [String: Any]? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, customMeta: [String]? = nil) {
             
             self.attributes = attributes
             
             self.brand = brand
-            
-            self.color = color
             
             self.description = description
             
@@ -1022,18 +1000,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     brand = try container.decode(ProductBrand.self, forKey: .brand)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    color = try container.decode(String.self, forKey: .color)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1260,9 +1226,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                slug = try container.decode(String.self, forKey: .slug)
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -1409,11 +1382,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(brand, forKey: .brand)
-            
-            
-            
-            
-            try? container.encodeIfPresent(color, forKey: .color)
             
             
             

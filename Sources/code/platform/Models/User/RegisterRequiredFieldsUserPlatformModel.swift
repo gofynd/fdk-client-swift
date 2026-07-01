@@ -18,8 +18,6 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var mobile: RegisterRequiredFieldsMobile?
         
-        public var password: PlatformPassword?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,17 +25,13 @@ public extension PlatformClient.ApplicationClient.User {
             
             case mobile = "mobile"
             
-            case password = "password"
-            
         }
 
-        public init(email: RegisterRequiredFieldsEmail? = nil, mobile: RegisterRequiredFieldsMobile? = nil, password: PlatformPassword? = nil) {
+        public init(email: RegisterRequiredFieldsEmail? = nil, mobile: RegisterRequiredFieldsMobile? = nil) {
             
             self.email = email
             
             self.mobile = mobile
-            
-            self.password = password
             
         }
 
@@ -68,18 +62,6 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
-            
-                do {
-                    password = try container.decode(PlatformPassword.self, forKey: .password)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +75,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-            
-            
-            
-            
-            try? container.encodeIfPresent(password, forKey: .password)
             
             
         }

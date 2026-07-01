@@ -18,9 +18,7 @@ public extension PlatformClient.Lead {
         
         public var statuses: [Status]
         
-        public var assignees: [[String: Any]]?
-        
-        public var allCategories: [String: Any]?
+        public var assignees: [[String: Any]]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,11 +31,9 @@ public extension PlatformClient.Lead {
             
             case assignees = "assignees"
             
-            case allCategories = "all_categories"
-            
         }
 
-        public init(allCategories: [String: Any]? = nil, assignees: [[String: Any]]? = nil, categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
+        public init(assignees: [[String: Any]], categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
             
             self.priorities = priorities
             
@@ -46,8 +42,6 @@ public extension PlatformClient.Lead {
             self.statuses = statuses
             
             self.assignees = assignees
-            
-            self.allCategories = allCategories
             
         }
 
@@ -77,28 +71,9 @@ public extension PlatformClient.Lead {
             
             
             
-                do {
-                    assignees = try container.decode([[String: Any]].self, forKey: .assignees)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                assignees = try container.decode([[String: Any]].self, forKey: .assignees)
                 
             
-            
-                do {
-                    allCategories = try container.decode([String: Any].self, forKey: .allCategories)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -123,11 +98,6 @@ public extension PlatformClient.Lead {
             
             
             try? container.encodeIfPresent(assignees, forKey: .assignees)
-            
-            
-            
-            
-            try? container.encodeIfPresent(allCategories, forKey: .allCategories)
             
             
         }
@@ -152,9 +122,7 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var statuses: [Status]
         
-        public var assignees: [[String: Any]]?
-        
-        public var allCategories: [String: Any]?
+        public var assignees: [[String: Any]]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -167,11 +135,9 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             case assignees = "assignees"
             
-            case allCategories = "all_categories"
-            
         }
 
-        public init(allCategories: [String: Any]? = nil, assignees: [[String: Any]]? = nil, categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
+        public init(assignees: [[String: Any]], categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
             
             self.priorities = priorities
             
@@ -180,8 +146,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             self.statuses = statuses
             
             self.assignees = assignees
-            
-            self.allCategories = allCategories
             
         }
 
@@ -211,28 +175,9 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             
-                do {
-                    assignees = try container.decode([[String: Any]].self, forKey: .assignees)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                assignees = try container.decode([[String: Any]].self, forKey: .assignees)
                 
             
-            
-                do {
-                    allCategories = try container.decode([String: Any].self, forKey: .allCategories)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -257,11 +202,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(assignees, forKey: .assignees)
-            
-            
-            
-            
-            try? container.encodeIfPresent(allCategories, forKey: .allCategories)
             
             
         }

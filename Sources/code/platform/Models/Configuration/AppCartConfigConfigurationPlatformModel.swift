@@ -28,6 +28,10 @@ public extension PlatformClient.Configuration {
         
         public var panCard: PanCardConfig?
         
+        public var engageEnabled: Bool?
+        
+        public var offerEnabled: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -47,9 +51,13 @@ public extension PlatformClient.Configuration {
             
             case panCard = "pan_card"
             
+            case engageEnabled = "engage_enabled"
+            
+            case offerEnabled = "offer_enabled"
+            
         }
 
-        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, internationalDeliveryCharges: InternationalDeliveryCharges? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
+        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, engageEnabled: Bool? = nil, internationalDeliveryCharges: InternationalDeliveryCharges? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, offerEnabled: Bool? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
             
             self.deliveryCharges = deliveryCharges
             
@@ -66,6 +74,10 @@ public extension PlatformClient.Configuration {
             self.revenueEngineCoupon = revenueEngineCoupon
             
             self.panCard = panCard
+            
+            self.engageEnabled = engageEnabled
+            
+            self.offerEnabled = offerEnabled
             
         }
 
@@ -168,6 +180,30 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    engageEnabled = try container.decode(Bool.self, forKey: .engageEnabled)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    offerEnabled = try container.decode(Bool.self, forKey: .offerEnabled)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -211,6 +247,16 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(panCard, forKey: .panCard)
+            
+            
+            
+            
+            try? container.encodeIfPresent(engageEnabled, forKey: .engageEnabled)
+            
+            
+            
+            
+            try? container.encodeIfPresent(offerEnabled, forKey: .offerEnabled)
             
             
         }
@@ -245,6 +291,10 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var panCard: PanCardConfig?
         
+        public var engageEnabled: Bool?
+        
+        public var offerEnabled: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -264,9 +314,13 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case panCard = "pan_card"
             
+            case engageEnabled = "engage_enabled"
+            
+            case offerEnabled = "offer_enabled"
+            
         }
 
-        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, internationalDeliveryCharges: InternationalDeliveryCharges? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
+        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, engageEnabled: Bool? = nil, internationalDeliveryCharges: InternationalDeliveryCharges? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, offerEnabled: Bool? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
             
             self.deliveryCharges = deliveryCharges
             
@@ -283,6 +337,10 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.revenueEngineCoupon = revenueEngineCoupon
             
             self.panCard = panCard
+            
+            self.engageEnabled = engageEnabled
+            
+            self.offerEnabled = offerEnabled
             
         }
 
@@ -385,6 +443,30 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    engageEnabled = try container.decode(Bool.self, forKey: .engageEnabled)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    offerEnabled = try container.decode(Bool.self, forKey: .offerEnabled)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -428,6 +510,16 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(panCard, forKey: .panCard)
+            
+            
+            
+            
+            try? container.encodeIfPresent(engageEnabled, forKey: .engageEnabled)
+            
+            
+            
+            
+            try? container.encodeIfPresent(offerEnabled, forKey: .offerEnabled)
             
             
         }

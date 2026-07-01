@@ -16,15 +16,15 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Search for applications.
-        * Description: Provide application name or domain url
+        * Summary: List sales channel categories
+        * Description: This API retrieves details for a specific sales channel based on the provided search criteria. The search can be performed using the name of the sales channel
         **/
         public func searchApplication(
             authorization: String?,
             query: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ApplicationResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ApplicationResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -60,7 +60,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ApplicationResponse.self, from: data)
+                        let response = Utility.decode(ApplicationResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -76,7 +76,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get company locations.
+        * Summary: Get company locations
         * Description: Retrieve a list of locations associated with the company.
         **/
         public func getLocations(

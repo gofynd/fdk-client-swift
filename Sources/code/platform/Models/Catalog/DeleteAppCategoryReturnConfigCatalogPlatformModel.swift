@@ -12,30 +12,18 @@ public extension PlatformClient.Catalog {
     class DeleteAppCategoryReturnConfig: Codable {
         
         
-        public var appId: String
-        
         public var categoryIds: [Int]
-        
-        public var companyId: Int
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case appId = "app_id"
-            
             case categoryIds = "category_ids"
-            
-            case companyId = "company_id"
             
         }
 
-        public init(appId: String, categoryIds: [Int], companyId: Int) {
-            
-            self.appId = appId
+        public init(categoryIds: [Int]) {
             
             self.categoryIds = categoryIds
-            
-            self.companyId = companyId
             
         }
 
@@ -43,17 +31,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                appId = try container.decode(String.self, forKey: .appId)
-                
-            
-            
-            
                 categoryIds = try container.decode([Int].self, forKey: .categoryIds)
-                
-            
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
                 
             
             
@@ -64,17 +42,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(appId, forKey: .appId)
-            
-            
-            
-            
             try? container.encodeIfPresent(categoryIds, forKey: .categoryIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }
@@ -93,30 +61,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class DeleteAppCategoryReturnConfig: Codable {
         
         
-        public var appId: String
-        
         public var categoryIds: [Int]
-        
-        public var companyId: Int
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case appId = "app_id"
-            
             case categoryIds = "category_ids"
-            
-            case companyId = "company_id"
             
         }
 
-        public init(appId: String, categoryIds: [Int], companyId: Int) {
-            
-            self.appId = appId
+        public init(categoryIds: [Int]) {
             
             self.categoryIds = categoryIds
-            
-            self.companyId = companyId
             
         }
 
@@ -124,17 +80,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                appId = try container.decode(String.self, forKey: .appId)
-                
-            
-            
-            
                 categoryIds = try container.decode([Int].self, forKey: .categoryIds)
-                
-            
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
                 
             
             
@@ -145,17 +91,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(appId, forKey: .appId)
-            
-            
-            
-            
             try? container.encodeIfPresent(categoryIds, forKey: .categoryIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }

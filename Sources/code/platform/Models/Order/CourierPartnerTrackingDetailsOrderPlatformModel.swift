@@ -18,7 +18,7 @@ public extension PlatformClient.Order {
         
         public var dpName: String
         
-        public var dpStatus: String
+        public var dpStatus: String?
         
         public var dpStatusUpdatedAt: String
         
@@ -30,7 +30,7 @@ public extension PlatformClient.Order {
         
         public var meta: [String: Any]?
         
-        public var operationalStatus: String
+        public var operationalStatus: String?
         
         public var promisedDeliveryDate: String?
         
@@ -69,7 +69,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(awb: String, dpLocation: String? = nil, dpName: String, dpStatus: String, dpStatusUpdatedAt: String, estimatedDeliveryDate: String? = nil, id: Int? = nil, journey: String, meta: [String: Any]? = nil, operationalStatus: String, promisedDeliveryDate: String? = nil, remark: String? = nil, shipmentId: String) {
+        public init(awb: String, dpLocation: String? = nil, dpName: String, dpStatus: String? = nil, dpStatusUpdatedAt: String, estimatedDeliveryDate: String? = nil, id: Int? = nil, journey: String, meta: [String: Any]? = nil, operationalStatus: String? = nil, promisedDeliveryDate: String? = nil, remark: String? = nil, shipmentId: String) {
             
             self.awb = awb
             
@@ -125,9 +125,16 @@ public extension PlatformClient.Order {
             
             
             
-                dpStatus = try container.decode(String.self, forKey: .dpStatus)
+                do {
+                    dpStatus = try container.decode(String.self, forKey: .dpStatus)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 dpStatusUpdatedAt = try container.decode(String.self, forKey: .dpStatusUpdatedAt)
@@ -176,9 +183,16 @@ public extension PlatformClient.Order {
                 
             
             
-                operationalStatus = try container.decode(String.self, forKey: .operationalStatus)
+                do {
+                    operationalStatus = try container.decode(String.self, forKey: .operationalStatus)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -301,7 +315,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var dpName: String
         
-        public var dpStatus: String
+        public var dpStatus: String?
         
         public var dpStatusUpdatedAt: String
         
@@ -313,7 +327,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var meta: [String: Any]?
         
-        public var operationalStatus: String
+        public var operationalStatus: String?
         
         public var promisedDeliveryDate: String?
         
@@ -352,7 +366,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(awb: String, dpLocation: String? = nil, dpName: String, dpStatus: String, dpStatusUpdatedAt: String, estimatedDeliveryDate: String? = nil, id: Int? = nil, journey: String, meta: [String: Any]? = nil, operationalStatus: String, promisedDeliveryDate: String? = nil, remark: String? = nil, shipmentId: String) {
+        public init(awb: String, dpLocation: String? = nil, dpName: String, dpStatus: String? = nil, dpStatusUpdatedAt: String, estimatedDeliveryDate: String? = nil, id: Int? = nil, journey: String, meta: [String: Any]? = nil, operationalStatus: String? = nil, promisedDeliveryDate: String? = nil, remark: String? = nil, shipmentId: String) {
             
             self.awb = awb
             
@@ -408,9 +422,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                dpStatus = try container.decode(String.self, forKey: .dpStatus)
+                do {
+                    dpStatus = try container.decode(String.self, forKey: .dpStatus)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 dpStatusUpdatedAt = try container.decode(String.self, forKey: .dpStatusUpdatedAt)
@@ -459,9 +480,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                operationalStatus = try container.decode(String.self, forKey: .operationalStatus)
+                do {
+                    operationalStatus = try container.decode(String.self, forKey: .operationalStatus)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

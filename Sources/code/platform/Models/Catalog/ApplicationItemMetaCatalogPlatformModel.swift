@@ -18,6 +18,8 @@ public extension PlatformClient.Catalog {
         
         public var altText: [String: Any]?
         
+        public var scores: Scores?
+        
         public var isCod: Bool?
         
         public var isGift: Bool?
@@ -37,6 +39,8 @@ public extension PlatformClient.Catalog {
             
             case altText = "alt_text"
             
+            case scores = "scores"
+            
             case isCod = "is_cod"
             
             case isGift = "is_gift"
@@ -49,13 +53,15 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, sizePromotionThreshold: SizePromotionThreshold? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
+        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, scores: Scores? = nil, seo: ApplicationItemSEO? = nil, sizePromotionThreshold: SizePromotionThreshold? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
             
             self.customJson = customJson
             
             self.customMeta = customMeta
             
             self.altText = altText
+            
+            self.scores = scores
             
             self.isCod = isCod
             
@@ -99,6 +105,18 @@ public extension PlatformClient.Catalog {
             
                 do {
                     altText = try container.decode([String: Any].self, forKey: .altText)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    scores = try container.decode(Scores.self, forKey: .scores)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,6 +204,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(altText, forKey: .altText)
+            
+            
+            
+            
+            try? container.encodeIfPresent(scores, forKey: .scores)
             
             
             
@@ -235,6 +258,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var altText: [String: Any]?
         
+        public var scores: Scores?
+        
         public var isCod: Bool?
         
         public var isGift: Bool?
@@ -254,6 +279,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case altText = "alt_text"
             
+            case scores = "scores"
+            
             case isCod = "is_cod"
             
             case isGift = "is_gift"
@@ -266,13 +293,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, sizePromotionThreshold: SizePromotionThreshold? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
+        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, scores: Scores? = nil, seo: ApplicationItemSEO? = nil, sizePromotionThreshold: SizePromotionThreshold? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
             
             self.customJson = customJson
             
             self.customMeta = customMeta
             
             self.altText = altText
+            
+            self.scores = scores
             
             self.isCod = isCod
             
@@ -316,6 +345,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     altText = try container.decode([String: Any].self, forKey: .altText)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    scores = try container.decode(Scores.self, forKey: .scores)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -403,6 +444,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(altText, forKey: .altText)
+            
+            
+            
+            
+            try? container.encodeIfPresent(scores, forKey: .scores)
             
             
             

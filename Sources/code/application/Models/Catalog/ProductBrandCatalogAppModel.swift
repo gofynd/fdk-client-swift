@@ -16,8 +16,6 @@ public extension ApplicationClient.Catalog {
         
         public var name: String?
         
-        public var type: String?
-        
         public var action: ProductListingAction?
         
         public var customJson: [String: Any]?
@@ -33,15 +31,13 @@ public extension ApplicationClient.Catalog {
             
             case name = "name"
             
-            case type = "type"
-            
             case action = "action"
             
             case customJson = "_custom_json"
             
         }
 
-        public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.uid = uid
             
@@ -50,8 +46,6 @@ public extension ApplicationClient.Catalog {
             self.description = description
             
             self.name = name
-            
-            self.type = type
             
             self.action = action
             
@@ -112,18 +106,6 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                type = try container.decode(String.self, forKey: .type)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 action = try container.decode(ProductListingAction.self, forKey: .action)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -165,10 +147,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
             
             
             

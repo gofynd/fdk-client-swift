@@ -16,15 +16,13 @@ public extension ApplicationClient.Lead {
         
         public var createdOn: CreatedOn?
         
-        public var createdBy: String?
+        public var createdBy: [String: Any]?
         
         public var id: String
         
         public var updatedAt: String?
         
         public var createdAt: String?
-        
-        public var v: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -45,11 +43,9 @@ public extension ApplicationClient.Lead {
             
             case createdAt = "created_at"
             
-            case v = "__v"
-            
         }
 
-        public init(createdAt: String? = nil, createdBy: String? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String, v: Double? = nil) {
+        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String) {
             
             self.type = type
             
@@ -66,8 +62,6 @@ public extension ApplicationClient.Lead {
             self.updatedAt = updatedAt
             
             self.createdAt = createdAt
-            
-            self.v = v
             
         }
 
@@ -103,7 +97,7 @@ public extension ApplicationClient.Lead {
             
             
             do {
-                createdBy = try container.decode(String.self, forKey: .createdBy)
+                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,18 +127,6 @@ public extension ApplicationClient.Lead {
             
             do {
                 createdAt = try container.decode(String.self, forKey: .createdAt)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                v = try container.decode(Double.self, forKey: .v)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -189,10 +171,6 @@ public extension ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

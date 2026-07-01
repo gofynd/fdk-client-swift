@@ -22,9 +22,9 @@ public extension PlatformClient.Serviceability {
         
         public var sort: [String]?
         
-        public var manualPriority: [Int]?
-        
         public var metaSortPriority: [String: Any]?
+        
+        public var manualPriority: [Int]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -39,9 +39,9 @@ public extension PlatformClient.Serviceability {
             
             case sort = "sort"
             
-            case manualPriority = "manual_priority"
-            
             case metaSortPriority = "meta_sort_priority"
+            
+            case manualPriority = "manual_priority"
             
         }
 
@@ -57,9 +57,9 @@ public extension PlatformClient.Serviceability {
             
             self.sort = sort
             
-            self.manualPriority = manualPriority
-            
             self.metaSortPriority = metaSortPriority
+            
+            self.manualPriority = manualPriority
             
         }
 
@@ -128,7 +128,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    manualPriority = try container.decode([Int].self, forKey: .manualPriority)
+                    metaSortPriority = try container.decode([String: Any].self, forKey: .metaSortPriority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +140,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    metaSortPriority = try container.decode([String: Any].self, forKey: .metaSortPriority)
+                    manualPriority = try container.decode([Int].self, forKey: .manualPriority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -182,12 +182,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
             try? container.encodeIfPresent(metaSortPriority, forKey: .metaSortPriority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
             
             
         }
@@ -216,9 +216,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var sort: [String]?
         
-        public var manualPriority: [Int]?
-        
         public var metaSortPriority: [String: Any]?
+        
+        public var manualPriority: [Int]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -233,9 +233,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case sort = "sort"
             
-            case manualPriority = "manual_priority"
-            
             case metaSortPriority = "meta_sort_priority"
+            
+            case manualPriority = "manual_priority"
             
         }
 
@@ -251,9 +251,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.sort = sort
             
-            self.manualPriority = manualPriority
-            
             self.metaSortPriority = metaSortPriority
+            
+            self.manualPriority = manualPriority
             
         }
 
@@ -322,7 +322,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    manualPriority = try container.decode([Int].self, forKey: .manualPriority)
+                    metaSortPriority = try container.decode([String: Any].self, forKey: .metaSortPriority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -334,7 +334,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    metaSortPriority = try container.decode([String: Any].self, forKey: .metaSortPriority)
+                    manualPriority = try container.decode([Int].self, forKey: .manualPriority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -376,12 +376,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
             try? container.encodeIfPresent(metaSortPriority, forKey: .metaSortPriority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
             
             
         }

@@ -20,6 +20,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var itemCriteria: ItemCriteria
         
+        public var meta: ItemSizeMapping?
+        
         public var offer: DiscountOffer
         
 
@@ -31,17 +33,21 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case itemCriteria = "item_criteria"
             
+            case meta = "meta"
+            
             case offer = "offer"
             
         }
 
-        public init(buyCondition: String, discountType: String, itemCriteria: ItemCriteria, offer: DiscountOffer) {
+        public init(buyCondition: String, discountType: String, itemCriteria: ItemCriteria, meta: ItemSizeMapping? = nil, offer: DiscountOffer) {
             
             self.discountType = discountType
             
             self.buyCondition = buyCondition
             
             self.itemCriteria = itemCriteria
+            
+            self.meta = meta
             
             self.offer = offer
             
@@ -66,6 +72,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+                do {
+                    meta = try container.decode(ItemSizeMapping.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 offer = try container.decode(DiscountOffer.self, forKey: .offer)
                 
             
@@ -88,6 +106,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             

@@ -18,6 +18,8 @@ public class ApplicationClient {
 
     public let fileStorage: FileStorage
 
+    public let finance: Finance
+
     public let lead: Lead
 
     public let logistic: Logistic
@@ -26,15 +28,11 @@ public class ApplicationClient {
 
     public let payment: Payment
 
-    public let rewards: Rewards
-
     public let share: Share
 
     public let theme: Theme
 
     public let user: User
-
-    public let webhook: Webhook
 
     public init(config: ApplicationConfig) {
         self.config = config
@@ -54,6 +52,8 @@ public class ApplicationClient {
         
         fileStorage = FileStorage(config: config)
         
+        finance = Finance(config: config)
+        
         lead = Lead(config: config)
         
         logistic = Logistic(config: config)
@@ -62,15 +62,11 @@ public class ApplicationClient {
         
         payment = Payment(config: config)
         
-        rewards = Rewards(config: config)
-        
         share = Share(config: config)
         
         theme = Theme(config: config)
         
         user = User(config: config)
-        
-        webhook = Webhook(config: config)
         
     }
 

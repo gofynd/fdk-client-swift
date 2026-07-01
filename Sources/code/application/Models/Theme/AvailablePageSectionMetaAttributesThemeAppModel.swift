@@ -10,16 +10,22 @@ public extension ApplicationClient.Theme {
         
         public var attributes: [String: Any]?
         
+        public var canvas: CanvasItem?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case attributes = "attributes"
             
+            case canvas = "canvas"
+            
         }
 
-        public init(attributes: [String: Any]? = nil) {
+        public init(attributes: [String: Any]? = nil, canvas: CanvasItem? = nil) {
             
             self.attributes = attributes
+            
+            self.canvas = canvas
             
         }
 
@@ -38,6 +44,18 @@ public extension ApplicationClient.Theme {
             }
             
             
+            
+            do {
+                canvas = try container.decode(CanvasItem.self, forKey: .canvas)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -45,6 +63,10 @@ public extension ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(attributes, forKey: .attributes)
+            
+            
+            
+            try? container.encodeIfPresent(canvas, forKey: .canvas)
             
             
         }

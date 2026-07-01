@@ -12,9 +12,9 @@ public extension PlatformClient.Serviceability {
     class AreaExpanded: Codable {
         
         
-        public var country: Country
+        public var country: Country?
         
-        public var regions: [Region]
+        public var regions: [Region]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(country: Country, regions: [Region]) {
+        public init(country: Country? = nil, regions: [Region]? = nil) {
             
             self.country = country
             
@@ -37,14 +37,28 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                country = try container.decode(Country.self, forKey: .country)
+                do {
+                    country = try container.decode(Country.self, forKey: .country)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                regions = try container.decode([Region].self, forKey: .regions)
+                do {
+                    regions = try container.decode([Region].self, forKey: .regions)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -77,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class AreaExpanded: Codable {
         
         
-        public var country: Country
+        public var country: Country?
         
-        public var regions: [Region]
+        public var regions: [Region]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(country: Country, regions: [Region]) {
+        public init(country: Country? = nil, regions: [Region]? = nil) {
             
             self.country = country
             
@@ -102,14 +116,28 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                country = try container.decode(Country.self, forKey: .country)
+                do {
+                    country = try container.decode(Country.self, forKey: .country)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                regions = try container.decode([Region].self, forKey: .regions)
+                do {
+                    regions = try container.decode([Region].self, forKey: .regions)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

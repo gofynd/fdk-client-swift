@@ -24,6 +24,10 @@ public extension PlatformClient.Order {
         
         public var isCustomerReturnAllowed: Bool
         
+        public var isBundleItem: Bool?
+        
+        public var bundleDetails: BundleDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +43,13 @@ public extension PlatformClient.Order {
             
             case isCustomerReturnAllowed = "is_customer_return_allowed"
             
+            case isBundleItem = "is_bundle_item"
+            
+            case bundleDetails = "bundle_details"
+            
         }
 
-        public init(allowForceReturn: Bool, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
+        public init(allowForceReturn: Bool, bundleDetails: BundleDetails? = nil, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isBundleItem: Bool? = nil, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
             
             self.isReturnable = isReturnable
             
@@ -54,6 +62,10 @@ public extension PlatformClient.Order {
             self.enableTracking = enableTracking
             
             self.isCustomerReturnAllowed = isCustomerReturnAllowed
+            
+            self.isBundleItem = isBundleItem
+            
+            self.bundleDetails = bundleDetails
             
         }
 
@@ -90,6 +102,30 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                do {
+                    isBundleItem = try container.decode(Bool.self, forKey: .isBundleItem)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bundleDetails = try container.decode(BundleDetails.self, forKey: .bundleDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -123,6 +159,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isBundleItem, forKey: .isBundleItem)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
             
             
         }
@@ -153,6 +199,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var isCustomerReturnAllowed: Bool
         
+        public var isBundleItem: Bool?
+        
+        public var bundleDetails: BundleDetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -168,9 +218,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isCustomerReturnAllowed = "is_customer_return_allowed"
             
+            case isBundleItem = "is_bundle_item"
+            
+            case bundleDetails = "bundle_details"
+            
         }
 
-        public init(allowForceReturn: Bool, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
+        public init(allowForceReturn: Bool, bundleDetails: BundleDetails? = nil, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isBundleItem: Bool? = nil, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
             
             self.isReturnable = isReturnable
             
@@ -183,6 +237,10 @@ public extension PlatformClient.ApplicationClient.Order {
             self.enableTracking = enableTracking
             
             self.isCustomerReturnAllowed = isCustomerReturnAllowed
+            
+            self.isBundleItem = isBundleItem
+            
+            self.bundleDetails = bundleDetails
             
         }
 
@@ -219,6 +277,30 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                do {
+                    isBundleItem = try container.decode(Bool.self, forKey: .isBundleItem)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bundleDetails = try container.decode(BundleDetails.self, forKey: .bundleDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -252,6 +334,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isBundleItem, forKey: .isBundleItem)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
             
             
         }

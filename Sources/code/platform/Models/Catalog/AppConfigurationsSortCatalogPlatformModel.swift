@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var appId: String
         
-        public var defaultKey: String?
+        public var defaultKey: String
         
         public var isActive: Bool
         
@@ -27,6 +27,10 @@ public extension PlatformClient.Catalog {
         public var name: String?
         
         public var priority: Int
+        
+        public var weights: SortWeights?
+        
+        public var cohorts: CohortSortingConfiguration?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -47,9 +51,13 @@ public extension PlatformClient.Catalog {
             
             case priority = "priority"
             
+            case weights = "weights"
+            
+            case cohorts = "cohorts"
+            
         }
 
-        public init(appId: String, defaultKey: String? = nil, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
+        public init(appId: String, cohorts: CohortSortingConfiguration? = nil, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, weights: SortWeights? = nil) {
             
             self.appId = appId
             
@@ -67,6 +75,10 @@ public extension PlatformClient.Catalog {
             
             self.priority = priority
             
+            self.weights = weights
+            
+            self.cohorts = cohorts
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,16 +90,9 @@ public extension PlatformClient.Catalog {
             
             
             
-                do {
-                    defaultKey = try container.decode(String.self, forKey: .defaultKey)
+                defaultKey = try container.decode(String.self, forKey: .defaultKey)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -133,6 +138,30 @@ public extension PlatformClient.Catalog {
                 
             
             
+            
+                do {
+                    weights = try container.decode(SortWeights.self, forKey: .weights)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    cohorts = try container.decode(CohortSortingConfiguration.self, forKey: .cohorts)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -176,6 +205,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(weights, forKey: .weights)
+            
+            
+            
+            
+            try? container.encodeIfPresent(cohorts, forKey: .cohorts)
             
             
         }
@@ -196,7 +235,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var appId: String
         
-        public var defaultKey: String?
+        public var defaultKey: String
         
         public var isActive: Bool
         
@@ -209,6 +248,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var name: String?
         
         public var priority: Int
+        
+        public var weights: SortWeights?
+        
+        public var cohorts: CohortSortingConfiguration?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -229,9 +272,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case priority = "priority"
             
+            case weights = "weights"
+            
+            case cohorts = "cohorts"
+            
         }
 
-        public init(appId: String, defaultKey: String? = nil, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
+        public init(appId: String, cohorts: CohortSortingConfiguration? = nil, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, weights: SortWeights? = nil) {
             
             self.appId = appId
             
@@ -249,6 +296,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.priority = priority
             
+            self.weights = weights
+            
+            self.cohorts = cohorts
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -260,16 +311,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                do {
-                    defaultKey = try container.decode(String.self, forKey: .defaultKey)
+                defaultKey = try container.decode(String.self, forKey: .defaultKey)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -315,6 +359,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
+            
+                do {
+                    weights = try container.decode(SortWeights.self, forKey: .weights)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    cohorts = try container.decode(CohortSortingConfiguration.self, forKey: .cohorts)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -358,6 +426,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(weights, forKey: .weights)
+            
+            
+            
+            
+            try? container.encodeIfPresent(cohorts, forKey: .cohorts)
             
             
         }

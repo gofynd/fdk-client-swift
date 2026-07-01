@@ -16,28 +16,34 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var facebook: Facebook?
         
-        public var accountkit: Accountkit?
+        public var accountKit: Accountkit?
         
         public var google: Google?
+        
+        public var apple: Apple?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case facebook = "facebook"
             
-            case accountkit = "accountkit"
+            case accountKit = "account_kit"
             
             case google = "google"
             
+            case apple = "apple"
+            
         }
 
-        public init(accountkit: Accountkit? = nil, facebook: Facebook? = nil, google: Google? = nil) {
+        public init(accountKit: Accountkit? = nil, apple: Apple? = nil, facebook: Facebook? = nil, google: Google? = nil) {
             
             self.facebook = facebook
             
-            self.accountkit = accountkit
+            self.accountKit = accountKit
             
             self.google = google
+            
+            self.apple = apple
             
         }
 
@@ -58,7 +64,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    accountkit = try container.decode(Accountkit.self, forKey: .accountkit)
+                    accountKit = try container.decode(Accountkit.self, forKey: .accountKit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,6 +86,18 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    apple = try container.decode(Apple.self, forKey: .apple)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -92,12 +110,17 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             
-            try? container.encodeIfPresent(accountkit, forKey: .accountkit)
+            try? container.encodeIfPresent(accountKit, forKey: .accountKit)
             
             
             
             
             try? container.encodeIfPresent(google, forKey: .google)
+            
+            
+            
+            
+            try? container.encodeIfPresent(apple, forKey: .apple)
             
             
         }

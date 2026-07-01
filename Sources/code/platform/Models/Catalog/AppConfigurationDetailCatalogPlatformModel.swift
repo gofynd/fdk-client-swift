@@ -12,9 +12,7 @@ public extension PlatformClient.Catalog {
     class AppConfigurationDetail: Codable {
         
         
-        public var id: String?
-        
-        public var appId: String?
+        public var appId: String
         
         public var attributes: [AttributeDetailsGroup]?
         
@@ -34,8 +32,6 @@ public extension PlatformClient.Catalog {
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "id"
             
             case appId = "app_id"
             
@@ -57,9 +53,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(appId: String? = nil, attributes: [AttributeDetailsGroup]? = nil, id: String? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
-            
-            self.id = id
+        public init(appId: String, attributes: [AttributeDetailsGroup]? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
             
             self.appId = appId
             
@@ -85,28 +79,9 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                appId = try container.decode(String.self, forKey: .appId)
                 
             
-            
-                do {
-                    appId = try container.decode(String.self, forKey: .appId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -180,11 +155,6 @@ public extension PlatformClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -247,9 +217,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AppConfigurationDetail: Codable {
         
         
-        public var id: String?
-        
-        public var appId: String?
+        public var appId: String
         
         public var attributes: [AttributeDetailsGroup]?
         
@@ -269,8 +237,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "id"
             
             case appId = "app_id"
             
@@ -292,9 +258,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(appId: String? = nil, attributes: [AttributeDetailsGroup]? = nil, id: String? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
-            
-            self.id = id
+        public init(appId: String, attributes: [AttributeDetailsGroup]? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
             
             self.appId = appId
             
@@ -320,28 +284,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                appId = try container.decode(String.self, forKey: .appId)
                 
             
-            
-                do {
-                    appId = try container.decode(String.self, forKey: .appId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -415,11 +360,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             

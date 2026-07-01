@@ -12,36 +12,30 @@ public extension PlatformClient.Catalog {
     class ProductPrice: Codable {
         
         
-        public var selling: ProductMinMaxPrice?
+        public var zoneType: String?
         
-        public var effective: ProductMinMaxPrice?
+        public var zoneIdentifier: String?
         
-        public var marked: ProductMinMaxPrice?
-        
-        public var currency: String?
+        public var currencyPrices: [CurrencyPrice]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case selling = "selling"
+            case zoneType = "zone_type"
             
-            case effective = "effective"
+            case zoneIdentifier = "zone_identifier"
             
-            case marked = "marked"
-            
-            case currency = "currency"
+            case currencyPrices = "currency_prices"
             
         }
 
-        public init(currency: String? = nil, effective: ProductMinMaxPrice? = nil, marked: ProductMinMaxPrice? = nil, selling: ProductMinMaxPrice? = nil) {
+        public init(currencyPrices: [CurrencyPrice]? = nil, zoneIdentifier: String? = nil, zoneType: String? = nil) {
             
-            self.selling = selling
+            self.zoneType = zoneType
             
-            self.effective = effective
+            self.zoneIdentifier = zoneIdentifier
             
-            self.marked = marked
-            
-            self.currency = currency
+            self.currencyPrices = currencyPrices
             
         }
 
@@ -50,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    selling = try container.decode(ProductMinMaxPrice.self, forKey: .selling)
+                    zoneType = try container.decode(String.self, forKey: .zoneType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +56,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    effective = try container.decode(ProductMinMaxPrice.self, forKey: .effective)
+                    zoneIdentifier = try container.decode(String.self, forKey: .zoneIdentifier)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,19 +68,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    marked = try container.decode(ProductMinMaxPrice.self, forKey: .marked)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    currency = try container.decode(String.self, forKey: .currency)
+                    currencyPrices = try container.decode([CurrencyPrice].self, forKey: .currencyPrices)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,22 +85,17 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(selling, forKey: .selling)
+            try? container.encodeIfPresent(zoneType, forKey: .zoneType)
             
             
             
             
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(zoneIdentifier, forKey: .zoneIdentifier)
             
             
             
             
-            try? container.encodeIfPresent(marked, forKey: .marked)
-            
-            
-            
-            
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(currencyPrices, forKey: .currencyPrices)
             
             
         }
@@ -137,36 +114,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductPrice: Codable {
         
         
-        public var selling: ProductMinMaxPrice?
+        public var zoneType: String?
         
-        public var effective: ProductMinMaxPrice?
+        public var zoneIdentifier: String?
         
-        public var marked: ProductMinMaxPrice?
-        
-        public var currency: String?
+        public var currencyPrices: [CurrencyPrice]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case selling = "selling"
+            case zoneType = "zone_type"
             
-            case effective = "effective"
+            case zoneIdentifier = "zone_identifier"
             
-            case marked = "marked"
-            
-            case currency = "currency"
+            case currencyPrices = "currency_prices"
             
         }
 
-        public init(currency: String? = nil, effective: ProductMinMaxPrice? = nil, marked: ProductMinMaxPrice? = nil, selling: ProductMinMaxPrice? = nil) {
+        public init(currencyPrices: [CurrencyPrice]? = nil, zoneIdentifier: String? = nil, zoneType: String? = nil) {
             
-            self.selling = selling
+            self.zoneType = zoneType
             
-            self.effective = effective
+            self.zoneIdentifier = zoneIdentifier
             
-            self.marked = marked
-            
-            self.currency = currency
+            self.currencyPrices = currencyPrices
             
         }
 
@@ -175,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    selling = try container.decode(ProductMinMaxPrice.self, forKey: .selling)
+                    zoneType = try container.decode(String.self, forKey: .zoneType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    effective = try container.decode(ProductMinMaxPrice.self, forKey: .effective)
+                    zoneIdentifier = try container.decode(String.self, forKey: .zoneIdentifier)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,19 +170,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    marked = try container.decode(ProductMinMaxPrice.self, forKey: .marked)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    currency = try container.decode(String.self, forKey: .currency)
+                    currencyPrices = try container.decode([CurrencyPrice].self, forKey: .currencyPrices)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,22 +187,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(selling, forKey: .selling)
+            try? container.encodeIfPresent(zoneType, forKey: .zoneType)
             
             
             
             
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(zoneIdentifier, forKey: .zoneIdentifier)
             
             
             
             
-            try? container.encodeIfPresent(marked, forKey: .marked)
-            
-            
-            
-            
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(currencyPrices, forKey: .currencyPrices)
             
             
         }

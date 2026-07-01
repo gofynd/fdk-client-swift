@@ -14,7 +14,7 @@ public extension PlatformClient.Order {
         
         public var affiliateId: String
         
-        public var sellerId: Int
+        public var sellerId: String
         
         public var customerMobileNumber: String
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String, customerMobileNumber: String, sellerId: Int) {
+        public init(affiliateId: String, customerMobileNumber: String, sellerId: String) {
             
             self.affiliateId = affiliateId
             
@@ -48,7 +48,7 @@ public extension PlatformClient.Order {
             
             
             
-                sellerId = try container.decode(Int.self, forKey: .sellerId)
+                sellerId = try container.decode(String.self, forKey: .sellerId)
                 
             
             
@@ -95,7 +95,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var affiliateId: String
         
-        public var sellerId: Int
+        public var sellerId: String
         
         public var customerMobileNumber: String
         
@@ -110,7 +110,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String, customerMobileNumber: String, sellerId: Int) {
+        public init(affiliateId: String, customerMobileNumber: String, sellerId: String) {
             
             self.affiliateId = affiliateId
             
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                sellerId = try container.decode(Int.self, forKey: .sellerId)
+                sellerId = try container.decode(String.self, forKey: .sellerId)
                 
             
             

@@ -14,6 +14,8 @@ public extension ApplicationClient.Catalog {
         
         public var count: Int?
         
+        public var code: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,15 +25,19 @@ public extension ApplicationClient.Catalog {
             
             case count = "count"
             
+            case code = "code"
+            
         }
 
-        public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(code: String? = nil, count: Int? = nil, name: String? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
             self.name = name
             
             self.count = count
+            
+            self.code = code
             
         }
 
@@ -74,6 +80,18 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                code = try container.decode(String.self, forKey: .code)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -89,6 +107,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
         }

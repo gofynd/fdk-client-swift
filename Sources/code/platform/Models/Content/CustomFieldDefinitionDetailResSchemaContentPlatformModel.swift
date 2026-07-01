@@ -12,15 +12,13 @@ public extension PlatformClient.Content {
     class CustomFieldDefinitionDetailResSchema: Codable {
         
         
-        public var creator: String?
-        
         public var resource: String?
         
         public var name: String?
         
         public var namespace: String?
         
-        public var key: String?
+        public var slug: String?
         
         public var description: String?
         
@@ -31,10 +29,6 @@ public extension PlatformClient.Content {
         public var companyId: String?
         
         public var applicationId: String?
-        
-        public var createdBy: String?
-        
-        public var updatedBy: String?
         
         public var required: Bool?
         
@@ -51,15 +45,13 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case creator = "creator"
-            
             case resource = "resource"
             
             case name = "name"
             
             case namespace = "namespace"
             
-            case key = "key"
+            case slug = "slug"
             
             case description = "description"
             
@@ -71,15 +63,11 @@ public extension PlatformClient.Content {
             
             case applicationId = "application_id"
             
-            case createdBy = "created_by"
-            
-            case updatedBy = "updated_by"
-            
             case required = "required"
             
             case isDeleted = "is_deleted"
             
-            case id = "_id"
+            case id = "id"
             
             case validations = "validations"
             
@@ -89,9 +77,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, description: String? = nil, isDeleted: Bool? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, required: Bool? = nil, resource: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, validations: [[String: Any]]? = nil, id: String? = nil) {
-            
-            self.creator = creator
+        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, isDeleted: Bool? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, required: Bool? = nil, resource: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, validations: [[String: Any]]? = nil) {
             
             self.resource = resource
             
@@ -99,7 +85,7 @@ public extension PlatformClient.Content {
             
             self.namespace = namespace
             
-            self.key = key
+            self.slug = slug
             
             self.description = description
             
@@ -110,10 +96,6 @@ public extension PlatformClient.Content {
             self.companyId = companyId
             
             self.applicationId = applicationId
-            
-            self.createdBy = createdBy
-            
-            self.updatedBy = updatedBy
             
             self.required = required
             
@@ -131,18 +113,6 @@ public extension PlatformClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    creator = try container.decode(String.self, forKey: .creator)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -182,7 +152,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    key = try container.decode(String.self, forKey: .key)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -243,30 +213,6 @@ public extension PlatformClient.Content {
             
                 do {
                     applicationId = try container.decode(String.self, forKey: .applicationId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    updatedBy = try container.decode(String.self, forKey: .updatedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -355,11 +301,6 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(creator, forKey: .creator)
-            
-            
-            
-            
             try? container.encodeIfPresent(resource, forKey: .resource)
             
             
@@ -375,7 +316,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -401,16 +342,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            
-            
-            
-            try? container.encodeIfPresent(updatedBy, forKey: .updatedBy)
             
             
             
@@ -459,15 +390,13 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomFieldDefinitionDetailResSchema: Codable {
         
         
-        public var creator: String?
-        
         public var resource: String?
         
         public var name: String?
         
         public var namespace: String?
         
-        public var key: String?
+        public var slug: String?
         
         public var description: String?
         
@@ -478,10 +407,6 @@ public extension PlatformClient.ApplicationClient.Content {
         public var companyId: String?
         
         public var applicationId: String?
-        
-        public var createdBy: String?
-        
-        public var updatedBy: String?
         
         public var required: Bool?
         
@@ -498,15 +423,13 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case creator = "creator"
-            
             case resource = "resource"
             
             case name = "name"
             
             case namespace = "namespace"
             
-            case key = "key"
+            case slug = "slug"
             
             case description = "description"
             
@@ -518,15 +441,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case applicationId = "application_id"
             
-            case createdBy = "created_by"
-            
-            case updatedBy = "updated_by"
-            
             case required = "required"
             
             case isDeleted = "is_deleted"
             
-            case id = "_id"
+            case id = "id"
             
             case validations = "validations"
             
@@ -536,9 +455,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, description: String? = nil, isDeleted: Bool? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, required: Bool? = nil, resource: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, validations: [[String: Any]]? = nil, id: String? = nil) {
-            
-            self.creator = creator
+        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, isDeleted: Bool? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, required: Bool? = nil, resource: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, validations: [[String: Any]]? = nil) {
             
             self.resource = resource
             
@@ -546,7 +463,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.namespace = namespace
             
-            self.key = key
+            self.slug = slug
             
             self.description = description
             
@@ -557,10 +474,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.companyId = companyId
             
             self.applicationId = applicationId
-            
-            self.createdBy = createdBy
-            
-            self.updatedBy = updatedBy
             
             self.required = required
             
@@ -578,18 +491,6 @@ public extension PlatformClient.ApplicationClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    creator = try container.decode(String.self, forKey: .creator)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -629,7 +530,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    key = try container.decode(String.self, forKey: .key)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -690,30 +591,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     applicationId = try container.decode(String.self, forKey: .applicationId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    updatedBy = try container.decode(String.self, forKey: .updatedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -802,11 +679,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(creator, forKey: .creator)
-            
-            
-            
-            
             try? container.encodeIfPresent(resource, forKey: .resource)
             
             
@@ -822,7 +694,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -848,16 +720,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            
-            
-            
-            try? container.encodeIfPresent(updatedBy, forKey: .updatedBy)
             
             
             

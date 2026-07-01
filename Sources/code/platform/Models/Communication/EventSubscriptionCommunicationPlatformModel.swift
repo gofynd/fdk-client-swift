@@ -20,9 +20,7 @@ public extension PlatformClient.Communication {
         
         public var application: String?
         
-        public var category: String?
-        
-        public var event: [String: Any]?
+        public var event: EventSubscriptionEvents?
         
         public var slug: String?
         
@@ -43,8 +41,6 @@ public extension PlatformClient.Communication {
             
             case application = "application"
             
-            case category = "category"
-            
             case event = "event"
             
             case slug = "slug"
@@ -57,7 +53,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(application: String? = nil, category: String? = nil, createdAt: String? = nil, event: [String: Any]? = nil, isDefault: Bool? = nil, slug: String? = nil, template: EventSubscriptionTemplate? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, event: EventSubscriptionEvents? = nil, isDefault: Bool? = nil, slug: String? = nil, template: EventSubscriptionTemplate? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.template = template
             
@@ -66,8 +62,6 @@ public extension PlatformClient.Communication {
             self.id = id
             
             self.application = application
-            
-            self.category = category
             
             self.event = event
             
@@ -134,19 +128,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    category = try container.decode(String.self, forKey: .category)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    event = try container.decode([String: Any].self, forKey: .event)
+                    event = try container.decode(EventSubscriptionEvents.self, forKey: .event)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -227,11 +209,6 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(application, forKey: .application)
-            
-            
-            
-            
-            try? container.encodeIfPresent(category, forKey: .category)
             
             
             
@@ -283,9 +260,7 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var application: String?
         
-        public var category: String?
-        
-        public var event: [String: Any]?
+        public var event: EventSubscriptionEvents?
         
         public var slug: String?
         
@@ -306,8 +281,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case application = "application"
             
-            case category = "category"
-            
             case event = "event"
             
             case slug = "slug"
@@ -320,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(application: String? = nil, category: String? = nil, createdAt: String? = nil, event: [String: Any]? = nil, isDefault: Bool? = nil, slug: String? = nil, template: EventSubscriptionTemplate? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, event: EventSubscriptionEvents? = nil, isDefault: Bool? = nil, slug: String? = nil, template: EventSubscriptionTemplate? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.template = template
             
@@ -329,8 +302,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             self.id = id
             
             self.application = application
-            
-            self.category = category
             
             self.event = event
             
@@ -397,19 +368,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    category = try container.decode(String.self, forKey: .category)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    event = try container.decode([String: Any].self, forKey: .event)
+                    event = try container.decode(EventSubscriptionEvents.self, forKey: .event)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -490,11 +449,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(application, forKey: .application)
-            
-            
-            
-            
-            try? container.encodeIfPresent(category, forKey: .category)
             
             
             

@@ -18,7 +18,7 @@ public extension ApplicationClient.Order {
         
         public var appliedPromos: [AppliedPromos]?
         
-        public var quantity: Double?
+        public var quantity: Int?
         
         public var prices: Prices?
         
@@ -45,6 +45,10 @@ public extension ApplicationClient.Order {
         public var article: Article?
         
         public var charges: [PriceAdjustmentCharge]?
+        
+        public var isBundleItem: Bool?
+        
+        public var bundleDetails: BundleDetails?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -87,9 +91,13 @@ public extension ApplicationClient.Order {
             
             case charges = "charges"
             
+            case isBundleItem = "is_bundle_item"
+            
+            case bundleDetails = "bundle_details"
+            
         }
 
-        public init(appliedPromos: [AppliedPromos]? = nil, article: Article? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, prices: Prices? = nil, quantity: Double? = nil, returnableDate: String? = nil, sellerIdentifier: String? = nil) {
+        public init(appliedPromos: [AppliedPromos]? = nil, article: Article? = nil, bundleDetails: BundleDetails? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, isBundleItem: Bool? = nil, item: Item? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, prices: Prices? = nil, quantity: Int? = nil, returnableDate: String? = nil, sellerIdentifier: String? = nil) {
             
             self.deliveryDate = deliveryDate
             
@@ -128,6 +136,10 @@ public extension ApplicationClient.Order {
             self.article = article
             
             self.charges = charges
+            
+            self.isBundleItem = isBundleItem
+            
+            self.bundleDetails = bundleDetails
             
         }
 
@@ -196,7 +208,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                quantity = try container.decode(Double.self, forKey: .quantity)
+                quantity = try container.decode(Int.self, forKey: .quantity)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -362,6 +374,30 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                isBundleItem = try container.decode(Bool.self, forKey: .isBundleItem)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                bundleDetails = try container.decode(BundleDetails.self, forKey: .bundleDetails)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -441,6 +477,14 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(charges, forKey: .charges)
+            
+            
+            
+            try? container.encodeIfPresent(isBundleItem, forKey: .isBundleItem)
+            
+            
+            
+            try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
             
             
         }

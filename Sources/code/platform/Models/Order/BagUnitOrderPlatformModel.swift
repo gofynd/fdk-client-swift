@@ -50,6 +50,8 @@ public extension PlatformClient.Order {
         
         public var prices: Prices?
         
+        public var orderingCurrencyPrices: OrderingCurrencyPrices?
+        
         public var dates: Dates?
         
         public var currentStatus: BagStatusHistory
@@ -101,6 +103,8 @@ public extension PlatformClient.Order {
             
             case prices = "prices"
             
+            case orderingCurrencyPrices = "ordering_currency_prices"
+            
             case dates = "dates"
             
             case currentStatus = "current_status"
@@ -113,7 +117,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagDetails? = nil, article: Article? = nil, bagExpiryDate: String? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, bagType: String? = nil, brand: ShipmentListingBrand? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentOperationalStatus: BagStatusHistory, currentStatus: BagStatusHistory, dates: Dates? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: [FinancialBreakup], gst: GSTDetailsData? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, prices: Prices? = nil, productQuantity: Int, reasons: [[String: Any]]? = nil, size: String? = nil, status: BagReturnableCancelableStatus) {
+        public init(affiliateBagDetails: AffiliateBagDetails? = nil, article: Article? = nil, bagExpiryDate: String? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, bagType: String? = nil, brand: ShipmentListingBrand? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentOperationalStatus: BagStatusHistory, currentStatus: BagStatusHistory, dates: Dates? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: [FinancialBreakup], gst: GSTDetailsData? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, prices: Prices? = nil, productQuantity: Int, reasons: [[String: Any]]? = nil, size: String? = nil, status: BagReturnableCancelableStatus) {
             
             self.bagType = bagType
             
@@ -152,6 +156,8 @@ public extension PlatformClient.Order {
             self.meta = meta
             
             self.prices = prices
+            
+            self.orderingCurrencyPrices = orderingCurrencyPrices
             
             self.dates = dates
             
@@ -377,6 +383,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    orderingCurrencyPrices = try container.decode(OrderingCurrencyPrices.self, forKey: .orderingCurrencyPrices)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     dates = try container.decode(Dates.self, forKey: .dates)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -512,6 +530,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(prices, forKey: .prices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
             
             
             
@@ -593,6 +616,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var prices: Prices?
         
+        public var orderingCurrencyPrices: OrderingCurrencyPrices?
+        
         public var dates: Dates?
         
         public var currentStatus: BagStatusHistory
@@ -644,6 +669,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case prices = "prices"
             
+            case orderingCurrencyPrices = "ordering_currency_prices"
+            
             case dates = "dates"
             
             case currentStatus = "current_status"
@@ -656,7 +683,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagDetails? = nil, article: Article? = nil, bagExpiryDate: String? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, bagType: String? = nil, brand: ShipmentListingBrand? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentOperationalStatus: BagStatusHistory, currentStatus: BagStatusHistory, dates: Dates? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: [FinancialBreakup], gst: GSTDetailsData? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, prices: Prices? = nil, productQuantity: Int, reasons: [[String: Any]]? = nil, size: String? = nil, status: BagReturnableCancelableStatus) {
+        public init(affiliateBagDetails: AffiliateBagDetails? = nil, article: Article? = nil, bagExpiryDate: String? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, bagType: String? = nil, brand: ShipmentListingBrand? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentOperationalStatus: BagStatusHistory, currentStatus: BagStatusHistory, dates: Dates? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: [FinancialBreakup], gst: GSTDetailsData? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, prices: Prices? = nil, productQuantity: Int, reasons: [[String: Any]]? = nil, size: String? = nil, status: BagReturnableCancelableStatus) {
             
             self.bagType = bagType
             
@@ -695,6 +722,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.meta = meta
             
             self.prices = prices
+            
+            self.orderingCurrencyPrices = orderingCurrencyPrices
             
             self.dates = dates
             
@@ -920,6 +949,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    orderingCurrencyPrices = try container.decode(OrderingCurrencyPrices.self, forKey: .orderingCurrencyPrices)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     dates = try container.decode(Dates.self, forKey: .dates)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1055,6 +1096,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(prices, forKey: .prices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
             
             
             

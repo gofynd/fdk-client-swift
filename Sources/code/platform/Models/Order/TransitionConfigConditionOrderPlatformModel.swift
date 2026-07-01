@@ -14,7 +14,9 @@ public extension PlatformClient.Order {
         
         public var appId: String
         
-        public var orderingChannel: String
+        public var orderingChannel: String?
+        
+        public var orderingSource: String?
         
         public var entity: String
         
@@ -25,15 +27,19 @@ public extension PlatformClient.Order {
             
             case orderingChannel = "ordering_channel"
             
+            case orderingSource = "ordering_source"
+            
             case entity = "entity"
             
         }
 
-        public init(appId: String, entity: String, orderingChannel: String) {
+        public init(appId: String, entity: String, orderingChannel: String? = nil, orderingSource: String? = nil) {
             
             self.appId = appId
             
             self.orderingChannel = orderingChannel
+            
+            self.orderingSource = orderingSource
             
             self.entity = entity
             
@@ -48,9 +54,28 @@ public extension PlatformClient.Order {
             
             
             
-                orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                do {
+                    orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 entity = try container.decode(String.self, forKey: .entity)
@@ -70,6 +95,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
             
             
             
@@ -95,7 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var appId: String
         
-        public var orderingChannel: String
+        public var orderingChannel: String?
+        
+        public var orderingSource: String?
         
         public var entity: String
         
@@ -106,15 +138,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderingChannel = "ordering_channel"
             
+            case orderingSource = "ordering_source"
+            
             case entity = "entity"
             
         }
 
-        public init(appId: String, entity: String, orderingChannel: String) {
+        public init(appId: String, entity: String, orderingChannel: String? = nil, orderingSource: String? = nil) {
             
             self.appId = appId
             
             self.orderingChannel = orderingChannel
+            
+            self.orderingSource = orderingSource
             
             self.entity = entity
             
@@ -129,9 +165,28 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                do {
+                    orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 entity = try container.decode(String.self, forKey: .entity)
@@ -151,6 +206,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
             
             
             

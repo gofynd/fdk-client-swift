@@ -46,10 +46,6 @@ public extension ApplicationClient.Theme {
         
         public var companyId: Double?
         
-        public var src: String?
-        
-        public var globalSections: [[String: Any]]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -91,13 +87,9 @@ public extension ApplicationClient.Theme {
             
             case companyId = "company_id"
             
-            case src = "src"
-            
-            case globalSections = "global_sections"
-            
         }
 
-        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, companyId: Double? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, globalSections: [[String: Any]]? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: ThemeMeta? = nil, name: String? = nil, src: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, themeType: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, companyId: Double? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: ThemeMeta? = nil, name: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, themeType: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
             
             self.font = font
             
@@ -136,10 +128,6 @@ public extension ApplicationClient.Theme {
             self.themeType = themeType
             
             self.companyId = companyId
-            
-            self.src = src
-            
-            self.globalSections = globalSections
             
         }
 
@@ -374,30 +362,6 @@ public extension ApplicationClient.Theme {
             }
             
             
-            
-            do {
-                src = try container.decode(String.self, forKey: .src)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                globalSections = try container.decode([[String: Any]].self, forKey: .globalSections)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -477,14 +441,6 @@ public extension ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            try? container.encodeIfPresent(src, forKey: .src)
-            
-            
-            
-            try? container.encodeIfPresent(globalSections, forKey: .globalSections)
             
             
         }

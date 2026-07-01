@@ -18,7 +18,7 @@ public extension PlatformClient.Order {
         
         public var state: String?
         
-        public var dislayName: String?
+        public var displayName: String?
         
         public var code: Int?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Order {
             
             case state = "state"
             
-            case dislayName = "dislay_name"
+            case displayName = "display_name"
             
             case code = "code"
             
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(category: String? = nil, code: Int? = nil, dislayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
+        public init(category: String? = nil, code: Int? = nil, displayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
             
             self.text = text
             
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             
             self.state = state
             
-            self.dislayName = dislayName
+            self.displayName = displayName
             
             self.code = code
             
@@ -98,7 +98,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    dislayName = try container.decode(String.self, forKey: .dislayName)
+                    displayName = try container.decode(String.self, forKey: .displayName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,7 +154,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(dislayName, forKey: .dislayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
@@ -189,7 +189,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var state: String?
         
-        public var dislayName: String?
+        public var displayName: String?
         
         public var code: Int?
         
@@ -204,7 +204,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case state = "state"
             
-            case dislayName = "dislay_name"
+            case displayName = "display_name"
             
             case code = "code"
             
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(category: String? = nil, code: Int? = nil, dislayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
+        public init(category: String? = nil, code: Int? = nil, displayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
             
             self.text = text
             
@@ -220,7 +220,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.state = state
             
-            self.dislayName = dislayName
+            self.displayName = displayName
             
             self.code = code
             
@@ -269,7 +269,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    dislayName = try container.decode(String.self, forKey: .dislayName)
+                    displayName = try container.decode(String.self, forKey: .displayName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -325,7 +325,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(dislayName, forKey: .dislayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             

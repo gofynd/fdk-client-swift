@@ -34,6 +34,10 @@ public extension PlatformClient.Order {
         
         public var orderingChannel: String?
         
+        public var orderingSource: String?
+        
+        public var loyaltyDiscountDetails: LoyaltyDiscountDetails?
+        
         public var meta: [String: Any]?
         
 
@@ -61,11 +65,15 @@ public extension PlatformClient.Order {
             
             case orderingChannel = "ordering_channel"
             
+            case orderingSource = "ordering_source"
+            
+            case loyaltyDiscountDetails = "loyalty_discount_details"
+            
             case meta = "meta"
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, codCharges: String? = nil, createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, codCharges: String? = nil, createdTs: String? = nil, fyndOrderId: String, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderingSource: String? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
             
             self.orderDate = orderDate
             
@@ -88,6 +96,10 @@ public extension PlatformClient.Order {
             self.orderValue = orderValue
             
             self.orderingChannel = orderingChannel
+            
+            self.orderingSource = orderingSource
+            
+            self.loyaltyDiscountDetails = loyaltyDiscountDetails
             
             self.meta = meta
             
@@ -223,6 +235,30 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    loyaltyDiscountDetails = try container.decode(LoyaltyDiscountDetails.self, forKey: .loyaltyDiscountDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -291,6 +327,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
+            
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscountDetails, forKey: .loyaltyDiscountDetails)
             
             
             
@@ -336,6 +382,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderingChannel: String?
         
+        public var orderingSource: String?
+        
+        public var loyaltyDiscountDetails: LoyaltyDiscountDetails?
+        
         public var meta: [String: Any]?
         
 
@@ -363,11 +413,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderingChannel = "ordering_channel"
             
+            case orderingSource = "ordering_source"
+            
+            case loyaltyDiscountDetails = "loyalty_discount_details"
+            
             case meta = "meta"
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, codCharges: String? = nil, createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, codCharges: String? = nil, createdTs: String? = nil, fyndOrderId: String, loyaltyDiscountDetails: LoyaltyDiscountDetails? = nil, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderingSource: String? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
             
             self.orderDate = orderDate
             
@@ -390,6 +444,10 @@ public extension PlatformClient.ApplicationClient.Order {
             self.orderValue = orderValue
             
             self.orderingChannel = orderingChannel
+            
+            self.orderingSource = orderingSource
+            
+            self.loyaltyDiscountDetails = loyaltyDiscountDetails
             
             self.meta = meta
             
@@ -525,6 +583,30 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    loyaltyDiscountDetails = try container.decode(LoyaltyDiscountDetails.self, forKey: .loyaltyDiscountDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -593,6 +675,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
+            
+            
+            
+            
+            try? container.encodeIfPresent(loyaltyDiscountDetails, forKey: .loyaltyDiscountDetails)
             
             
             

@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var kwargs: [String: Any]?
         
-        public var filters: Filter?
+        public var filter: Filter?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,17 +25,17 @@ public extension PlatformClient.Order {
             
             case kwargs = "kwargs"
             
-            case filters = "filters"
+            case filter = "filter"
             
         }
 
-        public init(filters: Filter? = nil, kwargs: [String: Any]? = nil, task: String) {
+        public init(filter: Filter? = nil, kwargs: [String: Any]? = nil, task: String) {
             
             self.task = task
             
             self.kwargs = kwargs
             
-            self.filters = filters
+            self.filter = filter
             
         }
 
@@ -61,7 +61,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    filters = try container.decode(Filter.self, forKey: .filters)
+                    filter = try container.decode(Filter.self, forKey: .filter)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(filter, forKey: .filter)
             
             
         }
@@ -111,7 +111,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var kwargs: [String: Any]?
         
-        public var filters: Filter?
+        public var filter: Filter?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -120,17 +120,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case kwargs = "kwargs"
             
-            case filters = "filters"
+            case filter = "filter"
             
         }
 
-        public init(filters: Filter? = nil, kwargs: [String: Any]? = nil, task: String) {
+        public init(filter: Filter? = nil, kwargs: [String: Any]? = nil, task: String) {
             
             self.task = task
             
             self.kwargs = kwargs
             
-            self.filters = filters
+            self.filter = filter
             
         }
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    filters = try container.decode(Filter.self, forKey: .filters)
+                    filter = try container.decode(Filter.self, forKey: .filter)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,7 +183,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(filter, forKey: .filter)
             
             
         }

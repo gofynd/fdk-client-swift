@@ -12,8 +12,6 @@ public extension ApplicationClient.Order {
         
         public var max: String?
         
-        public var dpPromise: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -21,17 +19,13 @@ public extension ApplicationClient.Order {
             
             case max = "max"
             
-            case dpPromise = "dp_promise"
-            
         }
 
-        public init(dpPromise: String? = nil, max: String? = nil, min: String? = nil) {
+        public init(max: String? = nil, min: String? = nil) {
             
             self.min = min
             
             self.max = max
-            
-            self.dpPromise = dpPromise
             
         }
 
@@ -62,18 +56,6 @@ public extension ApplicationClient.Order {
             }
             
             
-            
-            do {
-                dpPromise = try container.decode(String.self, forKey: .dpPromise)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -85,10 +67,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(max, forKey: .max)
-            
-            
-            
-            try? container.encodeIfPresent(dpPromise, forKey: .dpPromise)
             
             
         }

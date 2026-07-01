@@ -38,8 +38,6 @@ public extension PlatformClient.Communication {
         
         public var subject: TemplateAndType?
         
-        public var keys: TemplateKeys?
-        
         public var html: TemplateAndType?
         
         public var urlShorten: EnabledObj?
@@ -99,8 +97,6 @@ public extension PlatformClient.Communication {
             
             case subject = "subject"
             
-            case keys = "keys"
-            
             case html = "html"
             
             case urlShorten = "url_shorten"
@@ -133,7 +129,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(application: String? = nil, attachments: [Int]? = nil, category: String? = nil, createdAt: String? = nil, description: String? = nil, editorMeta: String? = nil, editorType: String? = nil, fromName: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, keys: TemplateKeys? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, replyTo: String? = nil, slug: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, tags: [String]? = nil, templateVariables: [String: Any]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, urlShorten: EnabledObj? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, attachments: [Int]? = nil, category: String? = nil, createdAt: String? = nil, description: String? = nil, editorMeta: String? = nil, editorType: String? = nil, fromName: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, replyTo: String? = nil, slug: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, tags: [String]? = nil, templateVariables: [String: Any]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, urlShorten: EnabledObj? = nil, id: String? = nil, v: Int? = nil) {
             
             self.application = application
             
@@ -160,8 +156,6 @@ public extension PlatformClient.Communication {
             self.tags = tags
             
             self.subject = subject
-            
-            self.keys = keys
             
             self.html = html
             
@@ -345,18 +339,6 @@ public extension PlatformClient.Communication {
             
                 do {
                     subject = try container.decode(TemplateAndType.self, forKey: .subject)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    keys = try container.decode(TemplateKeys.self, forKey: .keys)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -614,11 +596,6 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(subject, forKey: .subject)
-            
-            
-            
-            
-            try? container.encodeIfPresent(keys, forKey: .keys)
             
             
             
@@ -738,8 +715,6 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var subject: TemplateAndType?
         
-        public var keys: TemplateKeys?
-        
         public var html: TemplateAndType?
         
         public var urlShorten: EnabledObj?
@@ -799,8 +774,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case subject = "subject"
             
-            case keys = "keys"
-            
             case html = "html"
             
             case urlShorten = "url_shorten"
@@ -833,7 +806,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(application: String? = nil, attachments: [Int]? = nil, category: String? = nil, createdAt: String? = nil, description: String? = nil, editorMeta: String? = nil, editorType: String? = nil, fromName: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, keys: TemplateKeys? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, replyTo: String? = nil, slug: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, tags: [String]? = nil, templateVariables: [String: Any]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, urlShorten: EnabledObj? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, attachments: [Int]? = nil, category: String? = nil, createdAt: String? = nil, description: String? = nil, editorMeta: String? = nil, editorType: String? = nil, fromName: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, replyTo: String? = nil, slug: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, tags: [String]? = nil, templateVariables: [String: Any]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, urlShorten: EnabledObj? = nil, id: String? = nil, v: Int? = nil) {
             
             self.application = application
             
@@ -860,8 +833,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             self.tags = tags
             
             self.subject = subject
-            
-            self.keys = keys
             
             self.html = html
             
@@ -1045,18 +1016,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
                 do {
                     subject = try container.decode(TemplateAndType.self, forKey: .subject)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    keys = try container.decode(TemplateKeys.self, forKey: .keys)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1314,11 +1273,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(subject, forKey: .subject)
-            
-            
-            
-            
-            try? container.encodeIfPresent(keys, forKey: .keys)
             
             
             

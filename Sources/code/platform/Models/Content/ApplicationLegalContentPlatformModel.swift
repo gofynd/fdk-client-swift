@@ -30,8 +30,6 @@ public extension PlatformClient.Content {
         
         public var createdAt: String?
         
-        public var v: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -53,11 +51,9 @@ public extension PlatformClient.Content {
             
             case createdAt = "created_at"
             
-            case v = "__v"
-            
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, faq: [ApplicationLegalFAQ]? = nil, policy: String? = nil, returns: String? = nil, shipping: String? = nil, tnc: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, faq: [ApplicationLegalFAQ]? = nil, policy: String? = nil, returns: String? = nil, shipping: String? = nil, tnc: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.application = application
             
@@ -76,8 +72,6 @@ public extension PlatformClient.Content {
             self.updatedAt = updatedAt
             
             self.createdAt = createdAt
-            
-            self.v = v
             
         }
 
@@ -192,18 +186,6 @@ public extension PlatformClient.Content {
                 }
                 
             
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -252,11 +234,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -293,8 +270,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var createdAt: String?
         
-        public var v: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -316,11 +291,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case createdAt = "created_at"
             
-            case v = "__v"
-            
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, faq: [ApplicationLegalFAQ]? = nil, policy: String? = nil, returns: String? = nil, shipping: String? = nil, tnc: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, faq: [ApplicationLegalFAQ]? = nil, policy: String? = nil, returns: String? = nil, shipping: String? = nil, tnc: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.application = application
             
@@ -339,8 +312,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.updatedAt = updatedAt
             
             self.createdAt = createdAt
-            
-            self.v = v
             
         }
 
@@ -455,18 +426,6 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -515,11 +474,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

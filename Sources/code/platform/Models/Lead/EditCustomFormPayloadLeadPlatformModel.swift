@@ -18,7 +18,9 @@ public extension PlatformClient.Lead {
         
         public var description: String?
         
-        public var priority: String
+        public var priority: PriorityEnum
+        
+        public var headerImage: String?
         
         public var shouldNotify: Bool?
         
@@ -39,6 +41,8 @@ public extension PlatformClient.Lead {
             
             case priority = "priority"
             
+            case headerImage = "header_image"
+            
             case shouldNotify = "should_notify"
             
             case loginRequired = "login_required"
@@ -49,7 +53,7 @@ public extension PlatformClient.Lead {
             
         }
 
-        public init(description: String? = nil, inputs: [[String: Any]], loginRequired: Bool? = nil, pollForAssignment: PollForAssignment? = nil, priority: String, shouldNotify: Bool? = nil, successMessage: String? = nil, title: String) {
+        public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], loginRequired: Bool? = nil, pollForAssignment: PollForAssignment? = nil, priority: PriorityEnum, shouldNotify: Bool? = nil, successMessage: String? = nil, title: String) {
             
             self.title = title
             
@@ -58,6 +62,8 @@ public extension PlatformClient.Lead {
             self.description = description
             
             self.priority = priority
+            
+            self.headerImage = headerImage
             
             self.shouldNotify = shouldNotify
             
@@ -95,9 +101,21 @@ public extension PlatformClient.Lead {
                 
             
             
-                priority = try container.decode(String.self, forKey: .priority)
+                priority = try container.decode(PriorityEnum.self, forKey: .priority)
                 
             
+            
+            
+                do {
+                    headerImage = try container.decode(String.self, forKey: .headerImage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -170,6 +188,11 @@ public extension PlatformClient.Lead {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(headerImage, forKey: .headerImage)
             
             
             
@@ -214,7 +237,9 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var description: String?
         
-        public var priority: String
+        public var priority: PriorityEnum
+        
+        public var headerImage: String?
         
         public var shouldNotify: Bool?
         
@@ -235,6 +260,8 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             case priority = "priority"
             
+            case headerImage = "header_image"
+            
             case shouldNotify = "should_notify"
             
             case loginRequired = "login_required"
@@ -245,7 +272,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
         }
 
-        public init(description: String? = nil, inputs: [[String: Any]], loginRequired: Bool? = nil, pollForAssignment: PollForAssignment? = nil, priority: String, shouldNotify: Bool? = nil, successMessage: String? = nil, title: String) {
+        public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], loginRequired: Bool? = nil, pollForAssignment: PollForAssignment? = nil, priority: PriorityEnum, shouldNotify: Bool? = nil, successMessage: String? = nil, title: String) {
             
             self.title = title
             
@@ -254,6 +281,8 @@ public extension PlatformClient.ApplicationClient.Lead {
             self.description = description
             
             self.priority = priority
+            
+            self.headerImage = headerImage
             
             self.shouldNotify = shouldNotify
             
@@ -291,9 +320,21 @@ public extension PlatformClient.ApplicationClient.Lead {
                 
             
             
-                priority = try container.decode(String.self, forKey: .priority)
+                priority = try container.decode(PriorityEnum.self, forKey: .priority)
                 
             
+            
+            
+                do {
+                    headerImage = try container.decode(String.self, forKey: .headerImage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -366,6 +407,11 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(headerImage, forKey: .headerImage)
             
             
             

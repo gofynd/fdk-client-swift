@@ -18,8 +18,6 @@ public extension PlatformClient.Content {
         
         public var company: String?
         
-        public var v: Double?
-        
         public var tags: [TagSchema]?
         
 
@@ -31,21 +29,17 @@ public extension PlatformClient.Content {
             
             case company = "company"
             
-            case v = "__v"
-            
             case tags = "tags"
             
         }
 
-        public init(application: String? = nil, company: String? = nil, tags: [TagSchema]? = nil, id: String? = nil, v: Double? = nil) {
+        public init(application: String? = nil, company: String? = nil, tags: [TagSchema]? = nil, id: String? = nil) {
             
             self.application = application
             
             self.id = id
             
             self.company = company
-            
-            self.v = v
             
             self.tags = tags
             
@@ -92,18 +86,6 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     tags = try container.decode([TagSchema].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -132,11 +114,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(company, forKey: .company)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
             
@@ -166,8 +143,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var company: String?
         
-        public var v: Double?
-        
         public var tags: [TagSchema]?
         
 
@@ -179,21 +154,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case company = "company"
             
-            case v = "__v"
-            
             case tags = "tags"
             
         }
 
-        public init(application: String? = nil, company: String? = nil, tags: [TagSchema]? = nil, id: String? = nil, v: Double? = nil) {
+        public init(application: String? = nil, company: String? = nil, tags: [TagSchema]? = nil, id: String? = nil) {
             
             self.application = application
             
             self.id = id
             
             self.company = company
-            
-            self.v = v
             
             self.tags = tags
             
@@ -240,18 +211,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     tags = try container.decode([TagSchema].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -280,11 +239,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(company, forKey: .company)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
             

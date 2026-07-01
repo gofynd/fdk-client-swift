@@ -14,8 +14,6 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PlatformAddress: Codable {
         
         
-        public var pincode: Double?
-        
         public var phone: String?
         
         public var id: String?
@@ -72,24 +70,10 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var countryIsoCode: String?
         
-        public var customJson: AddressCustomJson?
-        
-        public var uid: Double?
-        
-        public var isAnonymous: Bool?
-        
-        public var appId: String?
-        
-        public var expireAt: String?
-        
-        public var addressId: String?
-        
-        public var storeName: String?
+        public var customJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case pincode = "pincode"
             
             case phone = "phone"
             
@@ -149,23 +133,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case customJson = "_custom_json"
             
-            case uid = "uid"
-            
-            case isAnonymous = "is_anonymous"
-            
-            case appId = "app_id"
-            
-            case expireAt = "expire_at"
-            
-            case addressId = "address_id"
-            
-            case storeName = "store_name"
-            
         }
 
-        public init(address: String? = nil, addressId: String? = nil, addressType: String? = nil, appId: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, cartId: String? = nil, checkoutMode: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdByUserId: String? = nil, email: String? = nil, expireAt: String? = nil, geoLocation: GeoLocation? = nil, googleMapPoint: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, isAnonymous: Bool? = nil, isDefaultAddress: Bool? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: Double? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, storeName: String? = nil, tags: [String]? = nil, uid: Double? = nil, userId: String? = nil, customJson: AddressCustomJson? = nil) {
-            
-            self.pincode = pincode
+        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, cartId: String? = nil, checkoutMode: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdByUserId: String? = nil, email: String? = nil, geoLocation: GeoLocation? = nil, googleMapPoint: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, isDefaultAddress: Bool? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, tags: [String]? = nil, userId: String? = nil, customJson: [String: Any]? = nil) {
             
             self.phone = phone
             
@@ -225,34 +195,10 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.customJson = customJson
             
-            self.uid = uid
-            
-            self.isAnonymous = isAnonymous
-            
-            self.appId = appId
-            
-            self.expireAt = expireAt
-            
-            self.addressId = addressId
-            
-            self.storeName = storeName
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    pincode = try container.decode(Double.self, forKey: .pincode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -592,79 +538,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    customJson = try container.decode(AddressCustomJson.self, forKey: .customJson)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    uid = try container.decode(Double.self, forKey: .uid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isAnonymous = try container.decode(Bool.self, forKey: .isAnonymous)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    appId = try container.decode(String.self, forKey: .appId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    expireAt = try container.decode(String.self, forKey: .expireAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    addressId = try container.decode(String.self, forKey: .addressId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    storeName = try container.decode(String.self, forKey: .storeName)
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -678,11 +552,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
             
             
             
@@ -827,36 +696,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isAnonymous, forKey: .isAnonymous)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appId, forKey: .appId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(expireAt, forKey: .expireAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(addressId, forKey: .addressId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
             
             
         }

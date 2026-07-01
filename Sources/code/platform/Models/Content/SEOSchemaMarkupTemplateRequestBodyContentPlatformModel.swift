@@ -14,17 +14,19 @@ public extension PlatformClient.Content {
         
         public var title: String?
         
-        public var pageType: String?
-        
-        public var description: String?
+        public var pageType: PageType?
         
         public var schema: String?
+        
+        public var description: String?
         
         public var targetJson: [String: Any]?
         
         public var active: Bool?
         
         public var createdAt: String?
+        
+        public var updatedAt: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,9 +35,9 @@ public extension PlatformClient.Content {
             
             case pageType = "page_type"
             
-            case description = "description"
-            
             case schema = "schema"
+            
+            case description = "description"
             
             case targetJson = "target_json"
             
@@ -43,23 +45,27 @@ public extension PlatformClient.Content {
             
             case createdAt = "created_at"
             
+            case updatedAt = "updated_at"
+            
         }
 
-        public init(active: Bool? = nil, createdAt: String? = nil, description: String? = nil, pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil) {
+        public init(active: Bool? = nil, createdAt: String? = nil, description: String? = nil, pageType: PageType? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil) {
             
             self.title = title
             
             self.pageType = pageType
             
-            self.description = description
-            
             self.schema = schema
+            
+            self.description = description
             
             self.targetJson = targetJson
             
             self.active = active
             
             self.createdAt = createdAt
+            
+            self.updatedAt = updatedAt
             
         }
 
@@ -80,19 +86,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
+                    pageType = try container.decode(PageType.self, forKey: .pageType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,6 +99,18 @@ public extension PlatformClient.Content {
             
                 do {
                     schema = try container.decode(String.self, forKey: .schema)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,6 +156,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -167,12 +185,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(description, forKey: .description)
-            
-            
-            
-            
             try? container.encodeIfPresent(schema, forKey: .schema)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
@@ -188,6 +206,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
         }
@@ -208,17 +231,19 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var title: String?
         
-        public var pageType: String?
-        
-        public var description: String?
+        public var pageType: PageType?
         
         public var schema: String?
+        
+        public var description: String?
         
         public var targetJson: [String: Any]?
         
         public var active: Bool?
         
         public var createdAt: String?
+        
+        public var updatedAt: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -227,9 +252,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case pageType = "page_type"
             
-            case description = "description"
-            
             case schema = "schema"
+            
+            case description = "description"
             
             case targetJson = "target_json"
             
@@ -237,23 +262,27 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case createdAt = "created_at"
             
+            case updatedAt = "updated_at"
+            
         }
 
-        public init(active: Bool? = nil, createdAt: String? = nil, description: String? = nil, pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil) {
+        public init(active: Bool? = nil, createdAt: String? = nil, description: String? = nil, pageType: PageType? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil) {
             
             self.title = title
             
             self.pageType = pageType
             
-            self.description = description
-            
             self.schema = schema
+            
+            self.description = description
             
             self.targetJson = targetJson
             
             self.active = active
             
             self.createdAt = createdAt
+            
+            self.updatedAt = updatedAt
             
         }
 
@@ -274,19 +303,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
+                    pageType = try container.decode(PageType.self, forKey: .pageType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -299,6 +316,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     schema = try container.decode(String.self, forKey: .schema)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -344,6 +373,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -361,12 +402,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(description, forKey: .description)
-            
-            
-            
-            
             try? container.encodeIfPresent(schema, forKey: .schema)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
@@ -382,6 +423,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
         }

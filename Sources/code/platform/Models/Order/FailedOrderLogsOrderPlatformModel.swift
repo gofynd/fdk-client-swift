@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class FailedOrderLogs: Codable {
         
         
-        public var items: [FailedOrdersItem]
+        public var items: FailedOrdersItem
         
         public var page: PageDetails
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(items: [FailedOrdersItem], page: PageDetails) {
+        public init(items: FailedOrdersItem, page: PageDetails) {
             
             self.items = items
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                items = try container.decode([FailedOrdersItem].self, forKey: .items)
+                items = try container.decode(FailedOrdersItem.self, forKey: .items)
                 
             
             
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class FailedOrderLogs: Codable {
         
         
-        public var items: [FailedOrdersItem]
+        public var items: FailedOrdersItem
         
         public var page: PageDetails
         
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(items: [FailedOrdersItem], page: PageDetails) {
+        public init(items: FailedOrdersItem, page: PageDetails) {
             
             self.items = items
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                items = try container.decode([FailedOrdersItem].self, forKey: .items)
+                items = try container.decode(FailedOrdersItem.self, forKey: .items)
                 
             
             

@@ -16,9 +16,7 @@ public extension ApplicationClient.Content {
         
         public var sitemapEnabled: Bool?
         
-        public var additionalSitemap: String?
-        
-        public var sitemap: SEOSitemap?
+        public var additonalSitemap: String?
         
         public var cannonicalEnabled: Bool?
         
@@ -29,8 +27,6 @@ public extension ApplicationClient.Content {
         public var createdAt: String?
         
         public var updatedAt: String?
-        
-        public var v: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -43,9 +39,7 @@ public extension ApplicationClient.Content {
             
             case sitemapEnabled = "sitemap_enabled"
             
-            case additionalSitemap = "additional_sitemap"
-            
-            case sitemap = "sitemap"
+            case additonalSitemap = "additonal_sitemap"
             
             case cannonicalEnabled = "cannonical_enabled"
             
@@ -57,11 +51,9 @@ public extension ApplicationClient.Content {
             
             case updatedAt = "updated_at"
             
-            case v = "__v"
-            
         }
 
-        public init(additionalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemap: SEOSitemap? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
+        public init(additonalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.app = app
             
@@ -71,9 +63,7 @@ public extension ApplicationClient.Content {
             
             self.sitemapEnabled = sitemapEnabled
             
-            self.additionalSitemap = additionalSitemap
-            
-            self.sitemap = sitemap
+            self.additonalSitemap = additonalSitemap
             
             self.cannonicalEnabled = cannonicalEnabled
             
@@ -84,8 +74,6 @@ public extension ApplicationClient.Content {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
-            
-            self.v = v
             
         }
 
@@ -142,19 +130,7 @@ public extension ApplicationClient.Content {
             
             
             do {
-                additionalSitemap = try container.decode(String.self, forKey: .additionalSitemap)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                sitemap = try container.decode(SEOSitemap.self, forKey: .sitemap)
+                additonalSitemap = try container.decode(String.self, forKey: .additonalSitemap)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -224,18 +200,6 @@ public extension ApplicationClient.Content {
             }
             
             
-            
-            do {
-                v = try container.decode(Double.self, forKey: .v)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -258,11 +222,7 @@ public extension ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(additionalSitemap, forKey: .additionalSitemap)
-            
-            
-            
-            try? container.encodeIfPresent(sitemap, forKey: .sitemap)
+            try? container.encodeIfPresent(additonalSitemap, forKey: .additonalSitemap)
             
             
             
@@ -283,10 +243,6 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

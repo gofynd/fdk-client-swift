@@ -42,8 +42,6 @@ public extension PlatformClient.Order {
         
         public var tags: [String]?
         
-        public var companyId: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -77,11 +75,9 @@ public extension PlatformClient.Order {
             
             case tags = "tags"
             
-            case companyId = "company_id"
-            
         }
 
-        public init(address: String? = nil, address1: String? = nil, brandStoreTags: [String]? = nil, city: String? = nil, code: String, companyId: Int? = nil, displayAddress: String? = nil, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil, tags: [String]? = nil) {
+        public init(address: String? = nil, address1: String? = nil, brandStoreTags: [String]? = nil, city: String? = nil, code: String, displayAddress: String? = nil, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil, tags: [String]? = nil) {
             
             self.phone = phone
             
@@ -112,8 +108,6 @@ public extension PlatformClient.Order {
             self.city = city
             
             self.tags = tags
-            
-            self.companyId = companyId
             
         }
 
@@ -286,18 +280,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -376,11 +358,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }
@@ -429,8 +406,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var tags: [String]?
         
-        public var companyId: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -464,11 +439,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case tags = "tags"
             
-            case companyId = "company_id"
-            
         }
 
-        public init(address: String? = nil, address1: String? = nil, brandStoreTags: [String]? = nil, city: String? = nil, code: String, companyId: Int? = nil, displayAddress: String? = nil, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil, tags: [String]? = nil) {
+        public init(address: String? = nil, address1: String? = nil, brandStoreTags: [String]? = nil, city: String? = nil, code: String, displayAddress: String? = nil, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil, tags: [String]? = nil) {
             
             self.phone = phone
             
@@ -499,8 +472,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.city = city
             
             self.tags = tags
-            
-            self.companyId = companyId
             
         }
 
@@ -673,18 +644,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -763,11 +722,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }

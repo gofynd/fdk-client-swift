@@ -20,6 +20,14 @@ public extension ApplicationClient.Catalog {
         
         public var col5: ColumnHeader?
         
+        public var col7: ColumnHeader?
+        
+        public var col8: ColumnHeader?
+        
+        public var col9: ColumnHeader?
+        
+        public var col10: ColumnHeader?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +43,17 @@ public extension ApplicationClient.Catalog {
             
             case col5 = "col_5"
             
+            case col7 = "col_7"
+            
+            case col8 = "col_8"
+            
+            case col9 = "col_9"
+            
+            case col10 = "col_10"
+            
         }
 
-        public init(col1: ColumnHeader? = nil, col2: ColumnHeader? = nil, col3: ColumnHeader? = nil, col4: ColumnHeader? = nil, col5: ColumnHeader? = nil, col6: ColumnHeader? = nil) {
+        public init(col1: ColumnHeader? = nil, col10: ColumnHeader? = nil, col2: ColumnHeader? = nil, col3: ColumnHeader? = nil, col4: ColumnHeader? = nil, col5: ColumnHeader? = nil, col6: ColumnHeader? = nil, col7: ColumnHeader? = nil, col8: ColumnHeader? = nil, col9: ColumnHeader? = nil) {
             
             self.col3 = col3
             
@@ -50,6 +66,14 @@ public extension ApplicationClient.Catalog {
             self.col1 = col1
             
             self.col5 = col5
+            
+            self.col7 = col7
+            
+            self.col8 = col8
+            
+            self.col9 = col9
+            
+            self.col10 = col10
             
         }
 
@@ -128,6 +152,54 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                col7 = try container.decode(ColumnHeader.self, forKey: .col7)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                col8 = try container.decode(ColumnHeader.self, forKey: .col8)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                col9 = try container.decode(ColumnHeader.self, forKey: .col9)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                col10 = try container.decode(ColumnHeader.self, forKey: .col10)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -155,6 +227,22 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(col5, forKey: .col5)
+            
+            
+            
+            try? container.encodeIfPresent(col7, forKey: .col7)
+            
+            
+            
+            try? container.encodeIfPresent(col8, forKey: .col8)
+            
+            
+            
+            try? container.encodeIfPresent(col9, forKey: .col9)
+            
+            
+            
+            try? container.encodeIfPresent(col10, forKey: .col10)
             
             
         }

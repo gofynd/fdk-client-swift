@@ -12,13 +12,11 @@ public extension PlatformClient.Order {
     class Article: Codable {
         
         
-        public var childDetails: [String: Any]?
-        
         public var sellerIdentifier: String
         
         public var uid: String
         
-        public var aSet: [String: Any]?
+        public var set: [String: Any]?
         
         public var dimensions: Dimensions?
         
@@ -44,18 +42,16 @@ public extension PlatformClient.Order {
         
         public var tags: [String]?
         
-        public var variants: [String: Any]?
+        public var customJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case childDetails = "child_details"
             
             case sellerIdentifier = "seller_identifier"
             
             case uid = "uid"
             
-            case aSet = "a_set"
+            case set = "set"
             
             case dimensions = "dimensions"
             
@@ -81,19 +77,17 @@ public extension PlatformClient.Order {
             
             case tags = "tags"
             
-            case variants = "variants"
+            case customJson = "_custom_json"
             
         }
 
-        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, tags: [String]? = nil, uid: String, variants: [String: Any]? = nil, weight: Weight? = nil, id: String) {
-            
-            self.childDetails = childDetails
+        public init(code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, customJson: [String: Any]? = nil, id: String) {
             
             self.sellerIdentifier = sellerIdentifier
             
             self.uid = uid
             
-            self.aSet = aSet
+            self.set = set
             
             self.dimensions = dimensions
             
@@ -119,24 +113,12 @@ public extension PlatformClient.Order {
             
             self.tags = tags
             
-            self.variants = variants
+            self.customJson = customJson
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    childDetails = try container.decode([String: Any].self, forKey: .childDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
@@ -150,7 +132,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    aSet = try container.decode([String: Any].self, forKey: .aSet)
+                    set = try container.decode([String: Any].self, forKey: .set)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -285,7 +267,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    variants = try container.decode([String: Any].self, forKey: .variants)
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -302,11 +284,6 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(childDetails, forKey: .childDetails)
-            
-            
-            
-            
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
             
             
@@ -317,7 +294,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(aSet, forKey: .aSet)
+            try? container.encodeIfPresent(set, forKey: .set)
             
             
             
@@ -382,7 +359,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(variants, forKey: .variants)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }
@@ -401,13 +378,11 @@ public extension PlatformClient.ApplicationClient.Order {
     class Article: Codable {
         
         
-        public var childDetails: [String: Any]?
-        
         public var sellerIdentifier: String
         
         public var uid: String
         
-        public var aSet: [String: Any]?
+        public var set: [String: Any]?
         
         public var dimensions: Dimensions?
         
@@ -433,18 +408,16 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var tags: [String]?
         
-        public var variants: [String: Any]?
+        public var customJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case childDetails = "child_details"
             
             case sellerIdentifier = "seller_identifier"
             
             case uid = "uid"
             
-            case aSet = "a_set"
+            case set = "set"
             
             case dimensions = "dimensions"
             
@@ -470,19 +443,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case tags = "tags"
             
-            case variants = "variants"
+            case customJson = "_custom_json"
             
         }
 
-        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, tags: [String]? = nil, uid: String, variants: [String: Any]? = nil, weight: Weight? = nil, id: String) {
-            
-            self.childDetails = childDetails
+        public init(code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, customJson: [String: Any]? = nil, id: String) {
             
             self.sellerIdentifier = sellerIdentifier
             
             self.uid = uid
             
-            self.aSet = aSet
+            self.set = set
             
             self.dimensions = dimensions
             
@@ -508,24 +479,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.tags = tags
             
-            self.variants = variants
+            self.customJson = customJson
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    childDetails = try container.decode([String: Any].self, forKey: .childDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
@@ -539,7 +498,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    aSet = try container.decode([String: Any].self, forKey: .aSet)
+                    set = try container.decode([String: Any].self, forKey: .set)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -674,7 +633,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    variants = try container.decode([String: Any].self, forKey: .variants)
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -691,11 +650,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(childDetails, forKey: .childDetails)
-            
-            
-            
-            
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
             
             
@@ -706,7 +660,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(aSet, forKey: .aSet)
+            try? container.encodeIfPresent(set, forKey: .set)
             
             
             
@@ -771,7 +725,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(variants, forKey: .variants)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

@@ -12,15 +12,15 @@ public extension PlatformClient.Order {
     class BagsPage: Codable {
         
         
-        public var itemTotal: Int?
+        public var itemTotal: Int
         
-        public var hasNext: Bool?
+        public var hasNext: Bool
         
-        public var pageType: String?
+        public var pageType: String
         
-        public var current: Int?
+        public var current: Int
         
-        public var size: Int?
+        public var size: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, pageType: String? = nil, size: Int? = nil) {
+        public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
             
             self.itemTotal = itemTotal
             
@@ -55,64 +55,29 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
                 
             
             
-                do {
-                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
                 
             
             
-                do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                pageType = try container.decode(String.self, forKey: .pageType)
                 
             
             
-                do {
-                    current = try container.decode(Int.self, forKey: .current)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                current = try container.decode(Int.self, forKey: .current)
                 
             
             
-                do {
-                    size = try container.decode(Int.self, forKey: .size)
+            
+                size = try container.decode(Int.self, forKey: .size)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -160,15 +125,15 @@ public extension PlatformClient.ApplicationClient.Order {
     class BagsPage: Codable {
         
         
-        public var itemTotal: Int?
+        public var itemTotal: Int
         
-        public var hasNext: Bool?
+        public var hasNext: Bool
         
-        public var pageType: String?
+        public var pageType: String
         
-        public var current: Int?
+        public var current: Int
         
-        public var size: Int?
+        public var size: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -185,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, pageType: String? = nil, size: Int? = nil) {
+        public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
             
             self.itemTotal = itemTotal
             
@@ -203,64 +168,29 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
                 
             
             
-                do {
-                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
                 
             
             
-                do {
-                    pageType = try container.decode(String.self, forKey: .pageType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                pageType = try container.decode(String.self, forKey: .pageType)
                 
             
             
-                do {
-                    current = try container.decode(Int.self, forKey: .current)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                current = try container.decode(Int.self, forKey: .current)
                 
             
             
-                do {
-                    size = try container.decode(Int.self, forKey: .size)
+            
+                size = try container.decode(Int.self, forKey: .size)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

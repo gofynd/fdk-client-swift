@@ -54,10 +54,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var codCharges: Double
         
-        public var platformOrderId: String?
-        
-        public var extraMeta: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -101,13 +97,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case codCharges = "cod_charges"
             
-            case platformOrderId = "platform_order_id"
-            
-            case extraMeta = "extra_meta"
-            
         }
 
-        public init(affiliateOrderId: String? = nil, billingAddress: ShippingAddress, cartItems: [OpenApiOrderItem], cartValue: Double, cashbackApplied: Double, codCharges: Double, comment: String? = nil, coupon: String? = nil, couponCode: String, couponValue: Double, currencyCode: String? = nil, deliveryCharges: Double, employeeDiscount: [String: Any]? = nil, extraMeta: [String: Any]? = nil, files: [OpenApiFiles]? = nil, gstin: String? = nil, loyaltyDiscount: Double? = nil, orderId: String? = nil, paymentMethods: [MultiTenderPaymentMethod], paymentMode: String? = nil, platformOrderId: String? = nil, shippingAddress: ShippingAddress? = nil) {
+        public init(affiliateOrderId: String? = nil, billingAddress: ShippingAddress, cartItems: [OpenApiOrderItem], cartValue: Double, cashbackApplied: Double, codCharges: Double, comment: String? = nil, coupon: String? = nil, couponCode: String, couponValue: Double, currencyCode: String? = nil, deliveryCharges: Double, employeeDiscount: [String: Any]? = nil, files: [OpenApiFiles]? = nil, gstin: String? = nil, loyaltyDiscount: Double? = nil, orderId: String? = nil, paymentMethods: [MultiTenderPaymentMethod], paymentMode: String? = nil, shippingAddress: ShippingAddress? = nil) {
             
             self.paymentMode = paymentMode
             
@@ -148,10 +140,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.files = files
             
             self.codCharges = codCharges
-            
-            self.platformOrderId = platformOrderId
-            
-            self.extraMeta = extraMeta
             
         }
 
@@ -335,30 +323,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-            
-                do {
-                    platformOrderId = try container.decode(String.self, forKey: .platformOrderId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -462,16 +426,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
-            
-            
-            
-            
-            try? container.encodeIfPresent(platformOrderId, forKey: .platformOrderId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
             
             
         }

@@ -18,7 +18,7 @@ public extension PlatformClient.Order {
         
         public var breakup: [[String: Any]]?
         
-        public var amount: AmountSchema
+        public var amount: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(amount: AmountSchema, breakup: [[String: Any]]? = nil, name: String, rate: Double) {
+        public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
             
             self.name = name
             
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
                 
             
             
-                amount = try container.decode(AmountSchema.self, forKey: .amount)
+                amount = try container.decode([String: Any].self, forKey: .amount)
                 
             
             
@@ -122,7 +122,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var breakup: [[String: Any]]?
         
-        public var amount: AmountSchema
+        public var amount: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -137,7 +137,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(amount: AmountSchema, breakup: [[String: Any]]? = nil, name: String, rate: Double) {
+        public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
             
             self.name = name
             
@@ -175,7 +175,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                amount = try container.decode(AmountSchema.self, forKey: .amount)
+                amount = try container.decode([String: Any].self, forKey: .amount)
                 
             
             

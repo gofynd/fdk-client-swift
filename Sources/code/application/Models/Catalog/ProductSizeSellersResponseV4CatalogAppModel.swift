@@ -8,11 +8,11 @@ public extension ApplicationClient.Catalog {
     */
     class ProductSizeSellersResponseV4: Codable {
         
-        public var items: [ProductSizePriceResponseV4]?
+        public var items: [ProductSellersPriceResponseV3]?
         
         public var page: Page
         
-        public var sortOn: [ProductSizeSellerFilterSchemaV4]?
+        public var sortOn: [ProductSizeSellerFilterSchemaV3]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(items: [ProductSizePriceResponseV4]? = nil, page: Page, sortOn: [ProductSizeSellerFilterSchemaV4]? = nil) {
+        public init(items: [ProductSellersPriceResponseV3]? = nil, page: Page, sortOn: [ProductSizeSellerFilterSchemaV3]? = nil) {
             
             self.items = items
             
@@ -40,7 +40,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                items = try container.decode([ProductSizePriceResponseV4].self, forKey: .items)
+                items = try container.decode([ProductSellersPriceResponseV3].self, forKey: .items)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                sortOn = try container.decode([ProductSizeSellerFilterSchemaV4].self, forKey: .sortOn)
+                sortOn = try container.decode([ProductSizeSellerFilterSchemaV3].self, forKey: .sortOn)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

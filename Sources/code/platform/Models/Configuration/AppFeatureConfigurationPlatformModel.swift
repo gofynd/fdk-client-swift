@@ -30,7 +30,23 @@ public extension PlatformClient.Configuration {
         
         public var order: OrderFeature?
         
+        public var security: SecurityFeature?
+        
         public var buybox: BuyboxFeature?
+        
+        public var deliveryStrategy: DeliveryStrategy?
+        
+        public var orderingSources: [OrderingSources]?
+        
+        public var priceStrategy: String?
+        
+        public var international: Bool?
+        
+        public var strategyChangePending: Bool?
+        
+        public var strategyModifiedAt: String?
+        
+        public var fulfillmentOption: FulfillmentOption?
         
         public var id: String?
         
@@ -41,8 +57,6 @@ public extension PlatformClient.Configuration {
         public var modifiedAt: String?
         
         public var v: Int?
-        
-        public var pricingStrategy: PricingStrategy?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -65,7 +79,23 @@ public extension PlatformClient.Configuration {
             
             case order = "order"
             
+            case security = "security"
+            
             case buybox = "buybox"
+            
+            case deliveryStrategy = "delivery_strategy"
+            
+            case orderingSources = "ordering_sources"
+            
+            case priceStrategy = "price_strategy"
+            
+            case international = "international"
+            
+            case strategyChangePending = "strategy_change_pending"
+            
+            case strategyModifiedAt = "strategy_modified_at"
+            
+            case fulfillmentOption = "fulfillment_option"
             
             case id = "_id"
             
@@ -77,11 +107,9 @@ public extension PlatformClient.Configuration {
             
             case v = "__v"
             
-            case pricingStrategy = "pricing_strategy"
-            
         }
 
-        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, pricingStrategy: PricingStrategy? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, international: Bool? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, orderingSources: [OrderingSources]? = nil, pcr: PcrFeature? = nil, priceStrategy: String? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, security: SecurityFeature? = nil, strategyChangePending: Bool? = nil, strategyModifiedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -101,7 +129,23 @@ public extension PlatformClient.Configuration {
             
             self.order = order
             
+            self.security = security
+            
             self.buybox = buybox
+            
+            self.deliveryStrategy = deliveryStrategy
+            
+            self.orderingSources = orderingSources
+            
+            self.priceStrategy = priceStrategy
+            
+            self.international = international
+            
+            self.strategyChangePending = strategyChangePending
+            
+            self.strategyModifiedAt = strategyModifiedAt
+            
+            self.fulfillmentOption = fulfillmentOption
             
             self.id = id
             
@@ -112,8 +156,6 @@ public extension PlatformClient.Configuration {
             self.modifiedAt = modifiedAt
             
             self.v = v
-            
-            self.pricingStrategy = pricingStrategy
             
         }
 
@@ -230,7 +272,103 @@ public extension PlatformClient.Configuration {
             
             
                 do {
+                    security = try container.decode(SecurityFeature.self, forKey: .security)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     buybox = try container.decode(BuyboxFeature.self, forKey: .buybox)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSources = try container.decode([OrderingSources].self, forKey: .orderingSources)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceStrategy = try container.decode(String.self, forKey: .priceStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    international = try container.decode(Bool.self, forKey: .international)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    strategyChangePending = try container.decode(Bool.self, forKey: .strategyChangePending)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    strategyModifiedAt = try container.decode(String.self, forKey: .strategyModifiedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fulfillmentOption = try container.decode(FulfillmentOption.self, forKey: .fulfillmentOption)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -300,18 +438,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -364,7 +490,47 @@ public extension PlatformClient.Configuration {
             
             
             
+            try? container.encodeIfPresent(security, forKey: .security)
+            
+            
+            
+            
             try? container.encodeIfPresent(buybox, forKey: .buybox)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSources, forKey: .orderingSources)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceStrategy, forKey: .priceStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(international, forKey: .international)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategyChangePending, forKey: .strategyChangePending)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategyModifiedAt, forKey: .strategyModifiedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentOption, forKey: .fulfillmentOption)
             
             
             
@@ -390,11 +556,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
         }
@@ -431,7 +592,23 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var order: OrderFeature?
         
+        public var security: SecurityFeature?
+        
         public var buybox: BuyboxFeature?
+        
+        public var deliveryStrategy: DeliveryStrategy?
+        
+        public var orderingSources: [OrderingSources]?
+        
+        public var priceStrategy: String?
+        
+        public var international: Bool?
+        
+        public var strategyChangePending: Bool?
+        
+        public var strategyModifiedAt: String?
+        
+        public var fulfillmentOption: FulfillmentOption?
         
         public var id: String?
         
@@ -442,8 +619,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         public var modifiedAt: String?
         
         public var v: Int?
-        
-        public var pricingStrategy: PricingStrategy?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -466,7 +641,23 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case order = "order"
             
+            case security = "security"
+            
             case buybox = "buybox"
+            
+            case deliveryStrategy = "delivery_strategy"
+            
+            case orderingSources = "ordering_sources"
+            
+            case priceStrategy = "price_strategy"
+            
+            case international = "international"
+            
+            case strategyChangePending = "strategy_change_pending"
+            
+            case strategyModifiedAt = "strategy_modified_at"
+            
+            case fulfillmentOption = "fulfillment_option"
             
             case id = "_id"
             
@@ -478,11 +669,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case v = "__v"
             
-            case pricingStrategy = "pricing_strategy"
-            
         }
 
-        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, pricingStrategy: PricingStrategy? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, deliveryStrategy: DeliveryStrategy? = nil, fulfillmentOption: FulfillmentOption? = nil, homePage: HomePageFeature? = nil, international: Bool? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, orderingSources: [OrderingSources]? = nil, pcr: PcrFeature? = nil, priceStrategy: String? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, security: SecurityFeature? = nil, strategyChangePending: Bool? = nil, strategyModifiedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -502,7 +691,23 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.order = order
             
+            self.security = security
+            
             self.buybox = buybox
+            
+            self.deliveryStrategy = deliveryStrategy
+            
+            self.orderingSources = orderingSources
+            
+            self.priceStrategy = priceStrategy
+            
+            self.international = international
+            
+            self.strategyChangePending = strategyChangePending
+            
+            self.strategyModifiedAt = strategyModifiedAt
+            
+            self.fulfillmentOption = fulfillmentOption
             
             self.id = id
             
@@ -513,8 +718,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.modifiedAt = modifiedAt
             
             self.v = v
-            
-            self.pricingStrategy = pricingStrategy
             
         }
 
@@ -631,7 +834,103 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
+                    security = try container.decode(SecurityFeature.self, forKey: .security)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     buybox = try container.decode(BuyboxFeature.self, forKey: .buybox)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSources = try container.decode([OrderingSources].self, forKey: .orderingSources)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceStrategy = try container.decode(String.self, forKey: .priceStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    international = try container.decode(Bool.self, forKey: .international)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    strategyChangePending = try container.decode(Bool.self, forKey: .strategyChangePending)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    strategyModifiedAt = try container.decode(String.self, forKey: .strategyModifiedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fulfillmentOption = try container.decode(FulfillmentOption.self, forKey: .fulfillmentOption)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -701,18 +1000,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -765,7 +1052,47 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
+            try? container.encodeIfPresent(security, forKey: .security)
+            
+            
+            
+            
             try? container.encodeIfPresent(buybox, forKey: .buybox)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSources, forKey: .orderingSources)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceStrategy, forKey: .priceStrategy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(international, forKey: .international)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategyChangePending, forKey: .strategyChangePending)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategyModifiedAt, forKey: .strategyModifiedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentOption, forKey: .fulfillmentOption)
             
             
             
@@ -791,11 +1118,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
         }

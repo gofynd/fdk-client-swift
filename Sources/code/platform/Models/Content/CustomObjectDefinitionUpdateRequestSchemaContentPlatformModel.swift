@@ -12,20 +12,16 @@ public extension PlatformClient.Content {
     class CustomObjectDefinitionUpdateRequestSchema: Codable {
         
         
-        public var type: String?
-        
         public var description: String?
         
         public var name: String?
         
         public var displayNameKey: String?
         
-        public var fieldDefinitions: [CustomFieldDefinitionDetailResSchema]?
+        public var fieldDefinitions: [CustomObjectCustomFieldDefinitions]?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case type = "type"
             
             case description = "description"
             
@@ -37,9 +33,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomFieldDefinitionDetailResSchema]? = nil, name: String? = nil, type: String? = nil) {
-            
-            self.type = type
+        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomObjectCustomFieldDefinitions]? = nil, name: String? = nil) {
             
             self.description = description
             
@@ -53,18 +47,6 @@ public extension PlatformClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -104,7 +86,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    fieldDefinitions = try container.decode([CustomFieldDefinitionDetailResSchema].self, forKey: .fieldDefinitions)
+                    fieldDefinitions = try container.decode([CustomObjectCustomFieldDefinitions].self, forKey: .fieldDefinitions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,11 +100,6 @@ public extension PlatformClient.Content {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             
@@ -160,20 +137,16 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomObjectDefinitionUpdateRequestSchema: Codable {
         
         
-        public var type: String?
-        
         public var description: String?
         
         public var name: String?
         
         public var displayNameKey: String?
         
-        public var fieldDefinitions: [CustomFieldDefinitionDetailResSchema]?
+        public var fieldDefinitions: [CustomObjectCustomFieldDefinitions]?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case type = "type"
             
             case description = "description"
             
@@ -185,9 +158,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomFieldDefinitionDetailResSchema]? = nil, name: String? = nil, type: String? = nil) {
-            
-            self.type = type
+        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomObjectCustomFieldDefinitions]? = nil, name: String? = nil) {
             
             self.description = description
             
@@ -201,18 +172,6 @@ public extension PlatformClient.ApplicationClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -252,7 +211,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    fieldDefinitions = try container.decode([CustomFieldDefinitionDetailResSchema].self, forKey: .fieldDefinitions)
+                    fieldDefinitions = try container.decode([CustomObjectCustomFieldDefinitions].self, forKey: .fieldDefinitions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -266,11 +225,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             

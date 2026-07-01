@@ -14,22 +14,16 @@ public extension PlatformClient.Lead {
         
         public var userAgent: String
         
-        public var platform: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case userAgent = "user_agent"
             
-            case platform = "platform"
-            
         }
 
-        public init(platform: String? = nil, userAgent: String) {
+        public init(userAgent: String) {
             
             self.userAgent = userAgent
-            
-            self.platform = platform
             
         }
 
@@ -41,18 +35,6 @@ public extension PlatformClient.Lead {
                 
             
             
-            
-                do {
-                    platform = try container.decode(String.self, forKey: .platform)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -61,11 +43,6 @@ public extension PlatformClient.Lead {
             
             
             try? container.encodeIfPresent(userAgent, forKey: .userAgent)
-            
-            
-            
-            
-            try? container.encodeIfPresent(platform, forKey: .platform)
             
             
         }
@@ -86,22 +63,16 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var userAgent: String
         
-        public var platform: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case userAgent = "user_agent"
             
-            case platform = "platform"
-            
         }
 
-        public init(platform: String? = nil, userAgent: String) {
+        public init(userAgent: String) {
             
             self.userAgent = userAgent
-            
-            self.platform = platform
             
         }
 
@@ -113,18 +84,6 @@ public extension PlatformClient.ApplicationClient.Lead {
                 
             
             
-            
-                do {
-                    platform = try container.decode(String.self, forKey: .platform)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -133,11 +92,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(userAgent, forKey: .userAgent)
-            
-            
-            
-            
-            try? container.encodeIfPresent(platform, forKey: .platform)
             
             
         }

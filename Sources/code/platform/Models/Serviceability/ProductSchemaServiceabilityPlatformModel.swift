@@ -14,7 +14,9 @@ public extension PlatformClient.Serviceability {
         
         public var type: String
         
-        public var values: [Int]
+        public var values: [[String: Any]]
+        
+        public var action: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,13 +25,17 @@ public extension PlatformClient.Serviceability {
             
             case values = "values"
             
+            case action = "action"
+            
         }
 
-        public init(type: String, values: [Int]) {
+        public init(action: String? = nil, type: String, values: [[String: Any]]) {
             
             self.type = type
             
             self.values = values
+            
+            self.action = action
             
         }
 
@@ -42,9 +48,21 @@ public extension PlatformClient.Serviceability {
             
             
             
-                values = try container.decode([Int].self, forKey: .values)
+                values = try container.decode([[String: Any]].self, forKey: .values)
                 
             
+            
+            
+                do {
+                    action = try container.decode(String.self, forKey: .action)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -59,6 +77,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(values, forKey: .values)
+            
+            
+            
+            
+            try? container.encodeIfPresent(action, forKey: .action)
             
             
         }
@@ -79,7 +102,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var type: String
         
-        public var values: [Int]
+        public var values: [[String: Any]]
+        
+        public var action: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -88,13 +113,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case values = "values"
             
+            case action = "action"
+            
         }
 
-        public init(type: String, values: [Int]) {
+        public init(action: String? = nil, type: String, values: [[String: Any]]) {
             
             self.type = type
             
             self.values = values
+            
+            self.action = action
             
         }
 
@@ -107,9 +136,21 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                values = try container.decode([Int].self, forKey: .values)
+                values = try container.decode([[String: Any]].self, forKey: .values)
                 
             
+            
+            
+                do {
+                    action = try container.decode(String.self, forKey: .action)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -124,6 +165,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(values, forKey: .values)
+            
+            
+            
+            
+            try? container.encodeIfPresent(action, forKey: .action)
             
             
         }

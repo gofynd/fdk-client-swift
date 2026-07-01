@@ -12,54 +12,48 @@ public extension PlatformClient.Payment {
     class SubPaymentMode: Codable {
         
         
-        public var name: String?
-        
-        public var displayName: String?
-        
         public var code: String?
-        
-        public var priority: Int?
         
         public var isActive: Bool?
         
-        public var logo: String?
+        public var priority: Int?
         
-        public var logos: PaymentModeLogo?
+        public var logos: LogoSet?
+        
+        public var name: String?
+        
+        public var isActiveAtPg: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
-            
-            case displayName = "display_name"
-            
             case code = "code"
-            
-            case priority = "priority"
             
             case isActive = "is_active"
             
-            case logo = "logo"
+            case priority = "priority"
             
             case logos = "logos"
             
+            case name = "name"
+            
+            case isActiveAtPg = "is_active_at_pg"
+            
         }
 
-        public init(code: String? = nil, displayName: String? = nil, isActive: Bool? = nil, logo: String? = nil, logos: PaymentModeLogo? = nil, name: String? = nil, priority: Int? = nil) {
-            
-            self.name = name
-            
-            self.displayName = displayName
+        public init(code: String? = nil, isActive: Bool? = nil, isActiveAtPg: Bool? = nil, logos: LogoSet? = nil, name: String? = nil, priority: Int? = nil) {
             
             self.code = code
             
-            self.priority = priority
-            
             self.isActive = isActive
             
-            self.logo = logo
+            self.priority = priority
             
             self.logos = logos
+            
+            self.name = name
+            
+            self.isActiveAtPg = isActiveAtPg
             
         }
 
@@ -68,43 +62,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    displayName = try container.decode(String.self, forKey: .displayName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     code = try container.decode(String.self, forKey: .code)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    priority = try container.decode(Int.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,7 +86,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    logo = try container.decode(String.self, forKey: .logo)
+                    priority = try container.decode(Int.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +98,31 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
+                    logos = try container.decode(LogoSet.self, forKey: .logos)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isActiveAtPg = try container.decode(Bool.self, forKey: .isActiveAtPg)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,22 +139,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
             try? container.encodeIfPresent(code, forKey: .code)
-            
-            
-            
-            
-            try? container.encodeIfPresent(priority, forKey: .priority)
             
             
             
@@ -182,12 +149,22 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(priority, forKey: .priority)
             
             
             
             
             try? container.encodeIfPresent(logos, forKey: .logos)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isActiveAtPg, forKey: .isActiveAtPg)
             
             
         }
@@ -206,54 +183,48 @@ public extension PlatformClient.ApplicationClient.Payment {
     class SubPaymentMode: Codable {
         
         
-        public var name: String?
-        
-        public var displayName: String?
-        
         public var code: String?
-        
-        public var priority: Int?
         
         public var isActive: Bool?
         
-        public var logo: String?
+        public var priority: Int?
         
-        public var logos: PaymentModeLogo?
+        public var logos: LogoSet?
+        
+        public var name: String?
+        
+        public var isActiveAtPg: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
-            
-            case displayName = "display_name"
-            
             case code = "code"
-            
-            case priority = "priority"
             
             case isActive = "is_active"
             
-            case logo = "logo"
+            case priority = "priority"
             
             case logos = "logos"
             
+            case name = "name"
+            
+            case isActiveAtPg = "is_active_at_pg"
+            
         }
 
-        public init(code: String? = nil, displayName: String? = nil, isActive: Bool? = nil, logo: String? = nil, logos: PaymentModeLogo? = nil, name: String? = nil, priority: Int? = nil) {
-            
-            self.name = name
-            
-            self.displayName = displayName
+        public init(code: String? = nil, isActive: Bool? = nil, isActiveAtPg: Bool? = nil, logos: LogoSet? = nil, name: String? = nil, priority: Int? = nil) {
             
             self.code = code
             
-            self.priority = priority
-            
             self.isActive = isActive
             
-            self.logo = logo
+            self.priority = priority
             
             self.logos = logos
+            
+            self.name = name
+            
+            self.isActiveAtPg = isActiveAtPg
             
         }
 
@@ -262,43 +233,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    displayName = try container.decode(String.self, forKey: .displayName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     code = try container.decode(String.self, forKey: .code)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    priority = try container.decode(Int.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -322,7 +257,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    logo = try container.decode(String.self, forKey: .logo)
+                    priority = try container.decode(Int.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -334,7 +269,31 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
+                    logos = try container.decode(LogoSet.self, forKey: .logos)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isActiveAtPg = try container.decode(Bool.self, forKey: .isActiveAtPg)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -351,22 +310,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
             try? container.encodeIfPresent(code, forKey: .code)
-            
-            
-            
-            
-            try? container.encodeIfPresent(priority, forKey: .priority)
             
             
             
@@ -376,12 +320,22 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(priority, forKey: .priority)
             
             
             
             
             try? container.encodeIfPresent(logos, forKey: .logos)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isActiveAtPg, forKey: .isActiveAtPg)
             
             
         }

@@ -20,7 +20,7 @@ public extension PlatformClient.Discount {
         
         public var isActive: Bool
         
-        public var appId: String
+        public var appIds: [String]
         
         public var jobType: String
         
@@ -36,7 +36,9 @@ public extension PlatformClient.Discount {
         
         public var storeIds: [Int]?
         
-        public var factoryTypeIds: [String]?
+        public var zoneIds: [String]?
+        
+        public var priceFactoryIds: [String]?
         
         public var discountMeta: DiscountMeta?
         
@@ -63,7 +65,7 @@ public extension PlatformClient.Discount {
             
             case isActive = "is_active"
             
-            case appId = "app_id"
+            case appIds = "app_ids"
             
             case jobType = "job_type"
             
@@ -79,7 +81,9 @@ public extension PlatformClient.Discount {
             
             case storeIds = "store_ids"
             
-            case factoryTypeIds = "factory_type_ids"
+            case zoneIds = "zone_ids"
+            
+            case priceFactoryIds = "price_factory_ids"
             
             case discountMeta = "discount_meta"
             
@@ -97,7 +101,7 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(appId: String, brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String? = nil, factoryTypeIds: [String]? = nil, filePath: String? = nil, isActive: Bool, jobType: String, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, id: String) {
+        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, priceFactoryIds: [String]? = nil, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, zoneIds: [String]? = nil, id: String) {
             
             self.id = id
             
@@ -107,7 +111,7 @@ public extension PlatformClient.Discount {
             
             self.isActive = isActive
             
-            self.appId = appId
+            self.appIds = appIds
             
             self.jobType = jobType
             
@@ -123,7 +127,9 @@ public extension PlatformClient.Discount {
             
             self.storeIds = storeIds
             
-            self.factoryTypeIds = factoryTypeIds
+            self.zoneIds = zoneIds
+            
+            self.priceFactoryIds = priceFactoryIds
             
             self.discountMeta = discountMeta
             
@@ -165,7 +171,7 @@ public extension PlatformClient.Discount {
             
             
             
-                appId = try container.decode(String.self, forKey: .appId)
+                appIds = try container.decode([String].self, forKey: .appIds)
                 
             
             
@@ -241,7 +247,19 @@ public extension PlatformClient.Discount {
             
             
                 do {
-                    factoryTypeIds = try container.decode([String].self, forKey: .factoryTypeIds)
+                    zoneIds = try container.decode([String].self, forKey: .zoneIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceFactoryIds = try container.decode([String].self, forKey: .priceFactoryIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -327,7 +345,7 @@ public extension PlatformClient.Discount {
             
             
             
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(appIds, forKey: .appIds)
             
             
             
@@ -367,7 +385,12 @@ public extension PlatformClient.Discount {
             
             
             
-            try? container.encodeIfPresent(factoryTypeIds, forKey: .factoryTypeIds)
+            try? container.encodeIfPresent(zoneIds, forKey: .zoneIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceFactoryIds, forKey: .priceFactoryIds)
             
             
             

@@ -16,7 +16,7 @@ public extension PlatformClient.Catalog {
         
         public var op: String
         
-        public var value: [String]
+        public var value: [[String: Any]]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(attribute: String, op: String, value: [String]) {
+        public init(attribute: String, op: String, value: [[String: Any]]) {
             
             self.attribute = attribute
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Catalog {
             
             
             
-                value = try container.decode([String].self, forKey: .value)
+                value = try container.decode([[String: Any]].self, forKey: .value)
                 
             
             
@@ -97,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var op: String
         
-        public var value: [String]
+        public var value: [[String: Any]]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -110,7 +110,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(attribute: String, op: String, value: [String]) {
+        public init(attribute: String, op: String, value: [[String: Any]]) {
             
             self.attribute = attribute
             
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                value = try container.decode([String].self, forKey: .value)
+                value = try container.decode([[String: Any]].self, forKey: .value)
                 
             
             

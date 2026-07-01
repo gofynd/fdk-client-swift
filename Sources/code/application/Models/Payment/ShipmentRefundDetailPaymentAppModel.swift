@@ -8,16 +8,18 @@ public extension ApplicationClient.Payment {
     */
     class ShipmentRefundDetail: Codable {
         
+        public var shipmentId: String
+        
         public var orderId: String
         
         public var transferMode: String
         
         public var beneficiaryId: String
         
-        public var shipmentIds: [String]
-        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case shipmentId = "shipment_id"
             
             case orderId = "order_id"
             
@@ -25,11 +27,11 @@ public extension ApplicationClient.Payment {
             
             case beneficiaryId = "beneficiary_id"
             
-            case shipmentIds = "shipment_ids"
-            
         }
 
-        public init(beneficiaryId: String, orderId: String, shipmentIds: [String], transferMode: String) {
+        public init(beneficiaryId: String, orderId: String, shipmentId: String, transferMode: String) {
+            
+            self.shipmentId = shipmentId
             
             self.orderId = orderId
             
@@ -37,12 +39,15 @@ public extension ApplicationClient.Payment {
             
             self.beneficiaryId = beneficiaryId
             
-            self.shipmentIds = shipmentIds
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+            
+            
             
             
             orderId = try container.decode(String.self, forKey: .orderId)
@@ -59,15 +64,14 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            shipmentIds = try container.decode([String].self, forKey: .shipmentIds)
-            
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
             
             
             try? container.encodeIfPresent(orderId, forKey: .orderId)
@@ -79,10 +83,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
-            
-            
-            
-            try? container.encodeIfPresent(shipmentIds, forKey: .shipmentIds)
             
             
         }

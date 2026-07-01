@@ -12,17 +12,11 @@ public extension PlatformClient.Payment {
     class PaymentCustomConfigDetailsSchema: Codable {
         
         
-        public var customer: PaymentCustomConfigCustomerSchema?
+        public var customer: PaymentCustomConfigCustomerSchema
         
-        public var paymentMode: PaymentCustomConfigDetailsSchema?
+        public var paymentMode: PaymentCustomConfigModeSchema
         
-        public var minOrderValue: Double?
-        
-        public var available: Bool?
-        
-        public var preOrder: [String]?
-        
-        public var postOrder: [String]?
+        public var minOrderValue: Double
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,15 +27,9 @@ public extension PlatformClient.Payment {
             
             case minOrderValue = "min_order_value"
             
-            case available = "available"
-            
-            case preOrder = "pre_order"
-            
-            case postOrder = "post_order"
-            
         }
 
-        public init(available: Bool? = nil, customer: PaymentCustomConfigCustomerSchema? = nil, minOrderValue: Double? = nil, paymentMode: PaymentCustomConfigDetailsSchema? = nil, postOrder: [String]? = nil, preOrder: [String]? = nil) {
+        public init(customer: PaymentCustomConfigCustomerSchema, minOrderValue: Double, paymentMode: PaymentCustomConfigModeSchema) {
             
             self.customer = customer
             
@@ -49,88 +37,25 @@ public extension PlatformClient.Payment {
             
             self.minOrderValue = minOrderValue
             
-            self.available = available
-            
-            self.preOrder = preOrder
-            
-            self.postOrder = postOrder
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    customer = try container.decode(PaymentCustomConfigCustomerSchema.self, forKey: .customer)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                customer = try container.decode(PaymentCustomConfigCustomerSchema.self, forKey: .customer)
                 
             
             
-                do {
-                    paymentMode = try container.decode(PaymentCustomConfigDetailsSchema.self, forKey: .paymentMode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                paymentMode = try container.decode(PaymentCustomConfigModeSchema.self, forKey: .paymentMode)
                 
             
             
-                do {
-                    minOrderValue = try container.decode(Double.self, forKey: .minOrderValue)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                minOrderValue = try container.decode(Double.self, forKey: .minOrderValue)
                 
             
-            
-                do {
-                    available = try container.decode(Bool.self, forKey: .available)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    preOrder = try container.decode([String].self, forKey: .preOrder)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    postOrder = try container.decode([String].self, forKey: .postOrder)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -150,21 +75,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(minOrderValue, forKey: .minOrderValue)
-            
-            
-            
-            
-            try? container.encodeIfPresent(available, forKey: .available)
-            
-            
-            
-            
-            try? container.encodeIfPresent(preOrder, forKey: .preOrder)
-            
-            
-            
-            
-            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
             
             
         }
@@ -183,17 +93,11 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentCustomConfigDetailsSchema: Codable {
         
         
-        public var customer: PaymentCustomConfigCustomerSchema?
+        public var customer: PaymentCustomConfigCustomerSchema
         
-        public var paymentMode: PaymentCustomConfigDetailsSchema?
+        public var paymentMode: PaymentCustomConfigModeSchema
         
-        public var minOrderValue: Double?
-        
-        public var available: Bool?
-        
-        public var preOrder: [String]?
-        
-        public var postOrder: [String]?
+        public var minOrderValue: Double
         
 
         public enum CodingKeys: String, CodingKey {
@@ -204,15 +108,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case minOrderValue = "min_order_value"
             
-            case available = "available"
-            
-            case preOrder = "pre_order"
-            
-            case postOrder = "post_order"
-            
         }
 
-        public init(available: Bool? = nil, customer: PaymentCustomConfigCustomerSchema? = nil, minOrderValue: Double? = nil, paymentMode: PaymentCustomConfigDetailsSchema? = nil, postOrder: [String]? = nil, preOrder: [String]? = nil) {
+        public init(customer: PaymentCustomConfigCustomerSchema, minOrderValue: Double, paymentMode: PaymentCustomConfigModeSchema) {
             
             self.customer = customer
             
@@ -220,88 +118,25 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             self.minOrderValue = minOrderValue
             
-            self.available = available
-            
-            self.preOrder = preOrder
-            
-            self.postOrder = postOrder
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    customer = try container.decode(PaymentCustomConfigCustomerSchema.self, forKey: .customer)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                customer = try container.decode(PaymentCustomConfigCustomerSchema.self, forKey: .customer)
                 
             
             
-                do {
-                    paymentMode = try container.decode(PaymentCustomConfigDetailsSchema.self, forKey: .paymentMode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                paymentMode = try container.decode(PaymentCustomConfigModeSchema.self, forKey: .paymentMode)
                 
             
             
-                do {
-                    minOrderValue = try container.decode(Double.self, forKey: .minOrderValue)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                minOrderValue = try container.decode(Double.self, forKey: .minOrderValue)
                 
             
-            
-                do {
-                    available = try container.decode(Bool.self, forKey: .available)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    preOrder = try container.decode([String].self, forKey: .preOrder)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    postOrder = try container.decode([String].self, forKey: .postOrder)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -321,21 +156,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(minOrderValue, forKey: .minOrderValue)
-            
-            
-            
-            
-            try? container.encodeIfPresent(available, forKey: .available)
-            
-            
-            
-            
-            try? container.encodeIfPresent(preOrder, forKey: .preOrder)
-            
-            
-            
-            
-            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
             
             
         }

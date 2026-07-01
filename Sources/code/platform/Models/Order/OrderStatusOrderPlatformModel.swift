@@ -14,16 +14,34 @@ public extension PlatformClient.Order {
         
         public var orderDetails: [FyndOrderIdList]?
         
+        public var startDate: String
+        
+        public var endDate: String
+        
+        public var mobile: Int
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case orderDetails = "order_details"
             
+            case startDate = "start_date"
+            
+            case endDate = "end_date"
+            
+            case mobile = "mobile"
+            
         }
 
-        public init(orderDetails: [FyndOrderIdList]? = nil) {
+        public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
             
             self.orderDetails = orderDetails
+            
+            self.startDate = startDate
+            
+            self.endDate = endDate
+            
+            self.mobile = mobile
             
         }
 
@@ -42,6 +60,21 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                startDate = try container.decode(String.self, forKey: .startDate)
+                
+            
+            
+            
+                endDate = try container.decode(String.self, forKey: .endDate)
+                
+            
+            
+            
+                mobile = try container.decode(Int.self, forKey: .mobile)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -50,6 +83,21 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
             
             
         }
@@ -70,16 +118,34 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderDetails: [FyndOrderIdList]?
         
+        public var startDate: String
+        
+        public var endDate: String
+        
+        public var mobile: Int
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case orderDetails = "order_details"
             
+            case startDate = "start_date"
+            
+            case endDate = "end_date"
+            
+            case mobile = "mobile"
+            
         }
 
-        public init(orderDetails: [FyndOrderIdList]? = nil) {
+        public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
             
             self.orderDetails = orderDetails
+            
+            self.startDate = startDate
+            
+            self.endDate = endDate
+            
+            self.mobile = mobile
             
         }
 
@@ -98,6 +164,21 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                startDate = try container.decode(String.self, forKey: .startDate)
+                
+            
+            
+            
+                endDate = try container.decode(String.self, forKey: .endDate)
+                
+            
+            
+            
+                mobile = try container.decode(Int.self, forKey: .mobile)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -106,6 +187,21 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
             
             
         }

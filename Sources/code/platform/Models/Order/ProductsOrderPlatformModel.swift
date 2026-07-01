@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var identifier: String?
         
-        public var quantity: Double?
+        public var quantity: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Double? = nil) {
+        public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
             
             self.lineNumber = lineNumber
             
@@ -68,7 +68,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    quantity = try container.decode(Double.self, forKey: .quantity)
+                    quantity = try container.decode(Int.self, forKey: .quantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var identifier: String?
         
-        public var quantity: Double?
+        public var quantity: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Double? = nil) {
+        public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
             
             self.lineNumber = lineNumber
             
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    quantity = try container.decode(Double.self, forKey: .quantity)
+                    quantity = try container.decode(Int.self, forKey: .quantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

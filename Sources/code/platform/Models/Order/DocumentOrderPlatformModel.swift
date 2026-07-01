@@ -14,7 +14,7 @@ public extension PlatformClient.Order {
         
         public var value: String
         
-        public var dsType: String
+        public var type: String
         
         public var verified: Bool
         
@@ -27,7 +27,7 @@ public extension PlatformClient.Order {
             
             case value = "value"
             
-            case dsType = "ds_type"
+            case type = "type"
             
             case verified = "verified"
             
@@ -37,11 +37,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
+        public init(legalName: String, type: String, url: String? = nil, value: String, verified: Bool) {
             
             self.value = value
             
-            self.dsType = dsType
+            self.type = type
             
             self.verified = verified
             
@@ -60,7 +60,7 @@ public extension PlatformClient.Order {
             
             
             
-                dsType = try container.decode(String.self, forKey: .dsType)
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
@@ -98,7 +98,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var value: String
         
-        public var dsType: String
+        public var type: String
         
         public var verified: Bool
         
@@ -147,7 +147,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case value = "value"
             
-            case dsType = "ds_type"
+            case type = "type"
             
             case verified = "verified"
             
@@ -157,11 +157,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
+        public init(legalName: String, type: String, url: String? = nil, value: String, verified: Bool) {
             
             self.value = value
             
-            self.dsType = dsType
+            self.type = type
             
             self.verified = verified
             
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                dsType = try container.decode(String.self, forKey: .dsType)
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
@@ -218,7 +218,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             

@@ -14,6 +14,8 @@ public extension ApplicationClient.Communication {
         
         public var channels: CommunicationConsentChannels?
         
+        public var encrypted: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,15 +25,19 @@ public extension ApplicationClient.Communication {
             
             case channels = "channels"
             
+            case encrypted = "encrypted"
+            
         }
 
-        public init(appId: String? = nil, channels: CommunicationConsentChannels? = nil, userId: String? = nil) {
+        public init(appId: String? = nil, channels: CommunicationConsentChannels? = nil, encrypted: Bool? = nil, userId: String? = nil) {
             
             self.appId = appId
             
             self.userId = userId
             
             self.channels = channels
+            
+            self.encrypted = encrypted
             
         }
 
@@ -74,6 +80,18 @@ public extension ApplicationClient.Communication {
             }
             
             
+            
+            do {
+                encrypted = try container.decode(Bool.self, forKey: .encrypted)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -89,6 +107,10 @@ public extension ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(channels, forKey: .channels)
+            
+            
+            
+            try? container.encodeIfPresent(encrypted, forKey: .encrypted)
             
             
         }

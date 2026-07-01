@@ -20,6 +20,8 @@ public extension PlatformClient.Content {
         
         public var exception: String?
         
+        public var info: String?
+        
         public var requestId: String?
         
         public var stackTrace: String?
@@ -37,6 +39,8 @@ public extension PlatformClient.Content {
             
             case exception = "exception"
             
+            case info = "info"
+            
             case requestId = "request_id"
             
             case stackTrace = "stack_trace"
@@ -45,7 +49,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(code: String? = nil, exception: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Double? = nil) {
+        public init(code: String? = nil, exception: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Double? = nil) {
             
             self.message = message
             
@@ -54,6 +58,8 @@ public extension PlatformClient.Content {
             self.code = code
             
             self.exception = exception
+            
+            self.info = info
             
             self.requestId = requestId
             
@@ -105,6 +111,18 @@ public extension PlatformClient.Content {
             
                 do {
                     exception = try container.decode(String.self, forKey: .exception)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    info = try container.decode(String.self, forKey: .info)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,6 +191,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(exception, forKey: .exception)
+            
+            
+            
+            
+            try? container.encodeIfPresent(info, forKey: .info)
             
             
             
@@ -214,6 +237,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var exception: String?
         
+        public var info: String?
+        
         public var requestId: String?
         
         public var stackTrace: String?
@@ -231,6 +256,8 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case exception = "exception"
             
+            case info = "info"
+            
             case requestId = "request_id"
             
             case stackTrace = "stack_trace"
@@ -239,7 +266,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(code: String? = nil, exception: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Double? = nil) {
+        public init(code: String? = nil, exception: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Double? = nil) {
             
             self.message = message
             
@@ -248,6 +275,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.code = code
             
             self.exception = exception
+            
+            self.info = info
             
             self.requestId = requestId
             
@@ -299,6 +328,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     exception = try container.decode(String.self, forKey: .exception)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    info = try container.decode(String.self, forKey: .info)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -367,6 +408,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(exception, forKey: .exception)
+            
+            
+            
+            
+            try? container.encodeIfPresent(info, forKey: .info)
             
             
             

@@ -20,6 +20,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var articleUid: String
         
+        public var itemIndex: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,15 +31,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case articleUid = "article_uid"
             
+            case itemIndex = "item_index"
+            
         }
 
-        public init(articleUid: String, quantity: Int? = nil, shipmentType: String) {
+        public init(articleUid: String, itemIndex: Int? = nil, quantity: Int? = nil, shipmentType: String) {
             
             self.quantity = quantity
             
             self.shipmentType = shipmentType
             
             self.articleUid = articleUid
+            
+            self.itemIndex = itemIndex
             
         }
 
@@ -66,6 +72,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
+            
+                do {
+                    itemIndex = try container.decode(Int.self, forKey: .itemIndex)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -84,6 +102,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(articleUid, forKey: .articleUid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemIndex, forKey: .itemIndex)
             
             
         }

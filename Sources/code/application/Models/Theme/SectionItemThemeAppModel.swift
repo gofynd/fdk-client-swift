@@ -12,8 +12,6 @@ public extension ApplicationClient.Theme {
         
         public var blocks: [[String: Any]]?
         
-        public var preset: SectionPreset?
-        
         public var name: String?
         
         public var label: String?
@@ -25,21 +23,17 @@ public extension ApplicationClient.Theme {
             
             case blocks = "blocks"
             
-            case preset = "preset"
-            
             case name = "name"
             
             case label = "label"
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, preset: SectionPreset? = nil, props: [[String: Any]]? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, props: [[String: Any]]? = nil) {
             
             self.props = props
             
             self.blocks = blocks
-            
-            self.preset = preset
             
             self.name = name
             
@@ -65,18 +59,6 @@ public extension ApplicationClient.Theme {
             
             do {
                 blocks = try container.decode([[String: Any]].self, forKey: .blocks)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                preset = try container.decode(SectionPreset.self, forKey: .preset)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,10 +103,6 @@ public extension ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(blocks, forKey: .blocks)
-            
-            
-            
-            try? container.encodeIfPresent(preset, forKey: .preset)
             
             
             

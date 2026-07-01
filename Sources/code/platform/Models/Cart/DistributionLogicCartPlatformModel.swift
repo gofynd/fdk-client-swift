@@ -16,7 +16,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var distributionLevel: String?
         
-        public var distribution: [String: Any]?
+        public var distribution: Distribution?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,7 +27,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(distribution: [String: Any]? = nil, distributionLevel: String? = nil) {
+        public init(distribution: Distribution? = nil, distributionLevel: String? = nil) {
             
             self.distributionLevel = distributionLevel
             
@@ -52,7 +52,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    distribution = try container.decode([String: Any].self, forKey: .distribution)
+                    distribution = try container.decode(Distribution.self, forKey: .distribution)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

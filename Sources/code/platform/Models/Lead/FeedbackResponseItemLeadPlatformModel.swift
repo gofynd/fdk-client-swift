@@ -16,6 +16,8 @@ public extension PlatformClient.Lead {
         
         public var key: String
         
+        public var value: String
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Lead {
             
             case key = "key"
             
+            case value = "value"
+            
         }
 
-        public init(display: String, key: String) {
+        public init(display: String, key: String, value: String) {
             
             self.display = display
             
             self.key = key
+            
+            self.value = value
             
         }
 
@@ -46,6 +52,11 @@ public extension PlatformClient.Lead {
                 
             
             
+            
+                value = try container.decode(String.self, forKey: .value)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -59,6 +70,11 @@ public extension PlatformClient.Lead {
             
             
             try? container.encodeIfPresent(key, forKey: .key)
+            
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }
@@ -81,6 +97,8 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var key: String
         
+        public var value: String
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -88,13 +106,17 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             case key = "key"
             
+            case value = "value"
+            
         }
 
-        public init(display: String, key: String) {
+        public init(display: String, key: String, value: String) {
             
             self.display = display
             
             self.key = key
+            
+            self.value = value
             
         }
 
@@ -111,6 +133,11 @@ public extension PlatformClient.ApplicationClient.Lead {
                 
             
             
+            
+                value = try container.decode(String.self, forKey: .value)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -124,6 +151,11 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(key, forKey: .key)
+            
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }

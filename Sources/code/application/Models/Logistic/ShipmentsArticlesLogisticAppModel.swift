@@ -8,102 +8,150 @@ public extension ApplicationClient.Logistic {
     */
     class ShipmentsArticles: Codable {
         
-        public var id: String
+        public var id: String?
         
-        public var quantity: Int
+        public var itemId: Int?
         
-        public var itemId: Int
+        public var sla: String?
         
-        public var size: String
+        public var tags: [String]?
+        
+        public var size: String?
+        
+        public var groupId: String?
+        
+        public var weight: ArticleWeight?
+        
+        public var attributes: ArticleAttributes?
+        
+        public var categoryId: Int?
+        
+        public var departmentId: Int?
+        
+        public var dimension: ArticleDimension?
+        
+        public var price: Double?
+        
+        public var brandId: Int?
+        
+        public var quantity: Int?
+        
+        public var manufacturingTime: Int?
+        
+        public var manufacturingTimeUnit: String?
+        
+        public var mtoQuantity: Int?
+        
+        public var isGift: Bool?
         
         public var isSet: Bool?
         
         public var set: ArticleSet?
         
-        public var sla: String
+        public var setQuantity: Int?
         
-        public var meta: ShipmentArticleMeta?
+        public var deliverySlots: ArticleDeliverySlots?
         
-        public var departmentId: Int?
-        
-        public var categoryId: Int?
-        
-        public var brandId: Int?
-        
-        public var groupId: String?
-        
-        public var groupInfo: [String: Any]?
-        
-        public var groupInfoIds: [String: Any]?
-        
-        public var tags: [String]?
+        public var returnReason: ArticleReturnReason?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case id = "id"
             
-            case quantity = "quantity"
-            
             case itemId = "item_id"
             
+            case sla = "sla"
+            
+            case tags = "tags"
+            
             case size = "size"
+            
+            case groupId = "group_id"
+            
+            case weight = "weight"
+            
+            case attributes = "attributes"
+            
+            case categoryId = "category_id"
+            
+            case departmentId = "department_id"
+            
+            case dimension = "dimension"
+            
+            case price = "price"
+            
+            case brandId = "brand_id"
+            
+            case quantity = "quantity"
+            
+            case manufacturingTime = "manufacturing_time"
+            
+            case manufacturingTimeUnit = "manufacturing_time_unit"
+            
+            case mtoQuantity = "mto_quantity"
+            
+            case isGift = "is_gift"
             
             case isSet = "is_set"
             
             case set = "set"
             
-            case sla = "sla"
+            case setQuantity = "set_quantity"
             
-            case meta = "meta"
+            case deliverySlots = "delivery_slots"
             
-            case departmentId = "department_id"
-            
-            case categoryId = "category_id"
-            
-            case brandId = "brand_id"
-            
-            case groupId = "group_id"
-            
-            case groupInfo = "group_info"
-            
-            case groupInfoIds = "group_info_ids"
-            
-            case tags = "tags"
+            case returnReason = "return_reason"
             
         }
 
-        public init(brandId: Int? = nil, categoryId: Int? = nil, departmentId: Int? = nil, groupId: String? = nil, groupInfo: [String: Any]? = nil, groupInfoIds: [String: Any]? = nil, id: String, isSet: Bool? = nil, itemId: Int, meta: ShipmentArticleMeta? = nil, quantity: Int, set: ArticleSet? = nil, size: String, sla: String, tags: [String]? = nil) {
+        public init(attributes: ArticleAttributes? = nil, brandId: Int? = nil, categoryId: Int? = nil, deliverySlots: ArticleDeliverySlots? = nil, departmentId: Int? = nil, dimension: ArticleDimension? = nil, groupId: String? = nil, id: String? = nil, isGift: Bool? = nil, isSet: Bool? = nil, itemId: Int? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil, mtoQuantity: Int? = nil, price: Double? = nil, quantity: Int? = nil, returnReason: ArticleReturnReason? = nil, set: ArticleSet? = nil, setQuantity: Int? = nil, size: String? = nil, sla: String? = nil, tags: [String]? = nil, weight: ArticleWeight? = nil) {
             
             self.id = id
             
-            self.quantity = quantity
-            
             self.itemId = itemId
             
+            self.sla = sla
+            
+            self.tags = tags
+            
             self.size = size
+            
+            self.groupId = groupId
+            
+            self.weight = weight
+            
+            self.attributes = attributes
+            
+            self.categoryId = categoryId
+            
+            self.departmentId = departmentId
+            
+            self.dimension = dimension
+            
+            self.price = price
+            
+            self.brandId = brandId
+            
+            self.quantity = quantity
+            
+            self.manufacturingTime = manufacturingTime
+            
+            self.manufacturingTimeUnit = manufacturingTimeUnit
+            
+            self.mtoQuantity = mtoQuantity
+            
+            self.isGift = isGift
             
             self.isSet = isSet
             
             self.set = set
             
-            self.sla = sla
+            self.setQuantity = setQuantity
             
-            self.meta = meta
+            self.deliverySlots = deliverySlots
             
-            self.departmentId = departmentId
-            
-            self.categoryId = categoryId
-            
-            self.brandId = brandId
-            
-            self.groupId = groupId
-            
-            self.groupInfo = groupInfo
-            
-            self.groupInfoIds = groupInfoIds
-            
-            self.tags = tags
+            self.returnReason = returnReason
             
         }
 
@@ -111,23 +159,219 @@ public extension ApplicationClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            id = try container.decode(String.self, forKey: .id)
+            do {
+                id = try container.decode(String.self, forKey: .id)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                itemId = try container.decode(Int.self, forKey: .itemId)
             
-            quantity = try container.decode(Int.self, forKey: .quantity)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                sla = try container.decode(String.self, forKey: .sla)
             
-            itemId = try container.decode(Int.self, forKey: .itemId)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                tags = try container.decode([String].self, forKey: .tags)
             
-            size = try container.decode(String.self, forKey: .size)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
+            
+            
+            do {
+                size = try container.decode(String.self, forKey: .size)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                groupId = try container.decode(String.self, forKey: .groupId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                weight = try container.decode(ArticleWeight.self, forKey: .weight)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                attributes = try container.decode(ArticleAttributes.self, forKey: .attributes)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                categoryId = try container.decode(Int.self, forKey: .categoryId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                departmentId = try container.decode(Int.self, forKey: .departmentId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                dimension = try container.decode(ArticleDimension.self, forKey: .dimension)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                price = try container.decode(Double.self, forKey: .price)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                brandId = try container.decode(Int.self, forKey: .brandId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                mtoQuantity = try container.decode(Int.self, forKey: .mtoQuantity)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                isGift = try container.decode(Bool.self, forKey: .isGift)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -155,13 +399,8 @@ public extension ApplicationClient.Logistic {
             
             
             
-            sla = try container.decode(String.self, forKey: .sla)
-            
-            
-            
-            
             do {
-                meta = try container.decode(ShipmentArticleMeta.self, forKey: .meta)
+                setQuantity = try container.decode(Int.self, forKey: .setQuantity)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,7 +412,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                departmentId = try container.decode(Int.self, forKey: .departmentId)
+                deliverySlots = try container.decode(ArticleDeliverySlots.self, forKey: .deliverySlots)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -185,67 +424,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                categoryId = try container.decode(Int.self, forKey: .categoryId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                brandId = try container.decode(Int.self, forKey: .brandId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                groupId = try container.decode(String.self, forKey: .groupId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                groupInfo = try container.decode([String: Any].self, forKey: .groupInfo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                groupInfoIds = try container.decode([String: Any].self, forKey: .groupInfoIds)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
+                returnReason = try container.decode(ArticleReturnReason.self, forKey: .returnReason)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -265,15 +444,71 @@ public extension ApplicationClient.Logistic {
             
             
             
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-            
-            
-            
             try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             
+            try? container.encodeIfPresent(sla, forKey: .sla)
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
             try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            
+            
+            
+            try? container.encodeIfPresent(weight, forKey: .weight)
+            
+            
+            
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+            
+            
+            
+            try? container.encodeIfPresent(categoryId, forKey: .categoryId)
+            
+            
+            
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
+            
+            
+            
+            try? container.encodeIfPresent(dimension, forKey: .dimension)
+            
+            
+            
+            try? container.encodeIfPresent(price, forKey: .price)
+            
+            
+            
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
+            
+            
+            
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            
+            
+            
+            try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
+            
+            
+            
+            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
+            
+            
+            
+            try? container.encodeIfPresent(mtoQuantity, forKey: .mtoQuantity)
+            
+            
+            
+            try? container.encodeIfPresent(isGift, forKey: .isGift)
             
             
             
@@ -285,39 +520,15 @@ public extension ApplicationClient.Logistic {
             
             
             
-            try? container.encodeIfPresent(sla, forKey: .sla)
+            try? container.encodeIfPresent(setQuantity, forKey: .setQuantity)
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
             
             
             
-            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
-            
-            
-            
-            try? container.encodeIfPresent(categoryId, forKey: .categoryId)
-            
-            
-            
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
-            
-            
-            
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
-            
-            
-            
-            try? container.encodeIfPresent(groupInfo, forKey: .groupInfo)
-            
-            
-            
-            try? container.encodeIfPresent(groupInfoIds, forKey: .groupInfoIds)
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
+            try? container.encodeIfPresent(returnReason, forKey: .returnReason)
             
             
         }

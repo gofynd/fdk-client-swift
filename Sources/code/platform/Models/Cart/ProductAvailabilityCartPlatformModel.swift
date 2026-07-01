@@ -16,7 +16,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var isValid: Bool?
         
-        public var otherStoreQuantity: Int64?
+        public var otherStoreQuantity: Int?
         
         public var deliverable: Bool?
         
@@ -43,7 +43,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(availableSizes: [ProductAvailabilitySize]? = nil, deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int64? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
+        public init(availableSizes: [ProductAvailabilitySize]? = nil, deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
             
             self.isValid = isValid
             
@@ -76,7 +76,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    otherStoreQuantity = try container.decode(Int64.self, forKey: .otherStoreQuantity)
+                    otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

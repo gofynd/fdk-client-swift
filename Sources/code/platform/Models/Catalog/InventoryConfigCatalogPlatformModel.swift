@@ -14,22 +14,22 @@ public extension PlatformClient.Catalog {
         
         public var data: [FilerList]?
         
-        public var multivalue: Bool?
+        public var multivalues: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case data = "data"
             
-            case multivalue = "multivalue"
+            case multivalues = "multivalues"
             
         }
 
-        public init(data: [FilerList]? = nil, multivalue: Bool? = nil) {
+        public init(data: [FilerList]? = nil, multivalues: Bool? = nil) {
             
             self.data = data
             
-            self.multivalue = multivalue
+            self.multivalues = multivalues
             
         }
 
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    multivalue = try container.decode(Bool.self, forKey: .multivalue)
+                    multivalues = try container.decode(Bool.self, forKey: .multivalues)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(multivalue, forKey: .multivalue)
+            try? container.encodeIfPresent(multivalues, forKey: .multivalues)
             
             
         }
@@ -93,22 +93,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var data: [FilerList]?
         
-        public var multivalue: Bool?
+        public var multivalues: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case data = "data"
             
-            case multivalue = "multivalue"
+            case multivalues = "multivalues"
             
         }
 
-        public init(data: [FilerList]? = nil, multivalue: Bool? = nil) {
+        public init(data: [FilerList]? = nil, multivalues: Bool? = nil) {
             
             self.data = data
             
-            self.multivalue = multivalue
+            self.multivalues = multivalues
             
         }
 
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    multivalue = try container.decode(Bool.self, forKey: .multivalue)
+                    multivalues = try container.decode(Bool.self, forKey: .multivalues)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,7 +151,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(multivalue, forKey: .multivalue)
+            try? container.encodeIfPresent(multivalues, forKey: .multivalues)
             
             
         }

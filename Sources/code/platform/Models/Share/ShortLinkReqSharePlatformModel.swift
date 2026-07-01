@@ -38,6 +38,8 @@ public extension PlatformClient.ApplicationClient.Share {
         
         public var count: Int?
         
+        public var meta: shortLinkReqMeta?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -65,9 +67,11 @@ public extension PlatformClient.ApplicationClient.Share {
             
             case count = "count"
             
+            case meta = "meta"
+            
         }
 
-        public init(active: Bool? = nil, attribution: Attribution? = nil, campaign: CampaignShortLink? = nil, count: Int? = nil, enableTracking: Bool? = nil, expireAt: String? = nil, hash: String? = nil, personalized: Bool? = nil, redirects: Redirects? = nil, socialMediaTags: SocialMediaTags? = nil, title: String, url: String) {
+        public init(active: Bool? = nil, attribution: Attribution? = nil, campaign: CampaignShortLink? = nil, count: Int? = nil, enableTracking: Bool? = nil, expireAt: String? = nil, hash: String? = nil, meta: shortLinkReqMeta? = nil, personalized: Bool? = nil, redirects: Redirects? = nil, socialMediaTags: SocialMediaTags? = nil, title: String, url: String) {
             
             self.title = title
             
@@ -92,6 +96,8 @@ public extension PlatformClient.ApplicationClient.Share {
             self.socialMediaTags = socialMediaTags
             
             self.count = count
+            
+            self.meta = meta
             
         }
 
@@ -228,6 +234,18 @@ public extension PlatformClient.ApplicationClient.Share {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode(shortLinkReqMeta.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -291,6 +309,11 @@ public extension PlatformClient.ApplicationClient.Share {
             
             
             try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

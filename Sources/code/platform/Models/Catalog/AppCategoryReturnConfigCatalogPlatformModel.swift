@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var categoryId: Int
         
-        public var returnConfig: ProductReturnConfigBaseSerializer
+        public var returnConfig: ProductReturnConfigBaseSchema
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(categoryId: Int, returnConfig: ProductReturnConfigBaseSerializer) {
+        public init(categoryId: Int, returnConfig: ProductReturnConfigBaseSchema) {
             
             self.categoryId = categoryId
             
@@ -42,7 +42,7 @@ public extension PlatformClient.Catalog {
             
             
             
-                returnConfig = try container.decode(ProductReturnConfigBaseSerializer.self, forKey: .returnConfig)
+                returnConfig = try container.decode(ProductReturnConfigBaseSchema.self, forKey: .returnConfig)
                 
             
             
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var categoryId: Int
         
-        public var returnConfig: ProductReturnConfigBaseSerializer
+        public var returnConfig: ProductReturnConfigBaseSchema
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(categoryId: Int, returnConfig: ProductReturnConfigBaseSerializer) {
+        public init(categoryId: Int, returnConfig: ProductReturnConfigBaseSchema) {
             
             self.categoryId = categoryId
             
@@ -107,7 +107,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                returnConfig = try container.decode(ProductReturnConfigBaseSerializer.self, forKey: .returnConfig)
+                returnConfig = try container.decode(ProductReturnConfigBaseSchema.self, forKey: .returnConfig)
                 
             
             

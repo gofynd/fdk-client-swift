@@ -22,7 +22,7 @@ public extension PlatformClient.Order {
         
         public var tags: [String]?
         
-        public var variants: [String: Any]?
+        public var customJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,11 +37,11 @@ public extension PlatformClient.Order {
             
             case tags = "tags"
             
-            case variants = "variants"
+            case customJson = "_custom_json"
             
         }
 
-        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, variants: [String: Any]? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
             
             self.identifiers = identifiers
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Order {
             
             self.tags = tags
             
-            self.variants = variants
+            self.customJson = customJson
             
         }
 
@@ -122,7 +122,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    variants = try container.decode([String: Any].self, forKey: .variants)
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(variants, forKey: .variants)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }
@@ -193,7 +193,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var tags: [String]?
         
-        public var variants: [String: Any]?
+        public var customJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -208,11 +208,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case tags = "tags"
             
-            case variants = "variants"
+            case customJson = "_custom_json"
             
         }
 
-        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, variants: [String: Any]? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
             
             self.identifiers = identifiers
             
@@ -224,7 +224,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.tags = tags
             
-            self.variants = variants
+            self.customJson = customJson
             
         }
 
@@ -293,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    variants = try container.decode([String: Any].self, forKey: .variants)
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -335,7 +335,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(variants, forKey: .variants)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

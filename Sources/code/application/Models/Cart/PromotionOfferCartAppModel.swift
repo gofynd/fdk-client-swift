@@ -10,7 +10,7 @@ public extension ApplicationClient.Cart {
         
         public var id: String?
         
-        public var buyRules: [String: Any]?
+        public var buyRules: BuyRuleItemCriteria?
         
         public var offerText: String?
         
@@ -22,13 +22,11 @@ public extension ApplicationClient.Cart {
         
         public var validTill: String?
         
-        public var discountRules: [[String: Any]]?
+        public var discountRules: [DiscountOfferRule]?
         
         public var freeGiftItems: [FreeGiftItems]?
         
         public var description: String?
-        
-        public var tags: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -53,11 +51,9 @@ public extension ApplicationClient.Cart {
             
             case description = "description"
             
-            case tags = "tags"
-            
         }
 
-        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, tags: [String]? = nil, validTill: String? = nil) {
+        public init(buyRules: BuyRuleItemCriteria? = nil, description: String? = nil, discountRules: [DiscountOfferRule]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
             
             self.id = id
             
@@ -79,8 +75,6 @@ public extension ApplicationClient.Cart {
             
             self.description = description
             
-            self.tags = tags
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -100,7 +94,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                buyRules = try container.decode([String: Any].self, forKey: .buyRules)
+                buyRules = try container.decode(BuyRuleItemCriteria.self, forKey: .buyRules)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +166,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                discountRules = try container.decode([[String: Any]].self, forKey: .discountRules)
+                discountRules = try container.decode([DiscountOfferRule].self, forKey: .discountRules)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,18 +191,6 @@ public extension ApplicationClient.Cart {
             
             do {
                 description = try container.decode(String.self, forKey: .description)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -261,10 +243,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }

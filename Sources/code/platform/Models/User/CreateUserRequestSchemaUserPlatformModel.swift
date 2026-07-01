@@ -14,7 +14,7 @@ public extension PlatformClient.ApplicationClient.User {
     class CreateUserRequestSchema: Codable {
         
         
-        public var phoneNumber: String
+        public var phoneNumber: String?
         
         public var email: String?
         
@@ -24,13 +24,15 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var gender: String?
         
-        public var username: String
+        public var username: String?
         
         public var meta: [String: Any]?
         
         public var externalId: String?
         
         public var rrId: String?
+        
+        public var dob: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -53,9 +55,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             case rrId = "rr_id"
             
+            case dob = "dob"
+            
         }
 
-        public init(email: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String, rrId: String? = nil, username: String) {
+        public init(dob: String? = nil, email: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String? = nil, rrId: String? = nil, username: String? = nil) {
             
             self.phoneNumber = phoneNumber
             
@@ -75,15 +79,24 @@ public extension PlatformClient.ApplicationClient.User {
             
             self.rrId = rrId
             
+            self.dob = dob
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+                do {
+                    phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -134,9 +147,16 @@ public extension PlatformClient.ApplicationClient.User {
                 
             
             
-                username = try container.decode(String.self, forKey: .username)
+                do {
+                    username = try container.decode(String.self, forKey: .username)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -165,6 +185,18 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     rrId = try container.decode(String.self, forKey: .rrId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    dob = try container.decode(String.self, forKey: .dob)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,6 +254,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(rrId, forKey: .rrId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dob, forKey: .dob)
             
             
         }

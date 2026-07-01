@@ -26,7 +26,15 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var type: String?
         
-        public var multiValue: Bool?
+        public var icon: String?
+        
+        public var orderingChannels: [String]?
+        
+        public var masking: AttributeMaskingProperties?
+        
+        public var registration: AttributeRegistrationProperties?
+        
+        public var isMultiValue: Bool?
         
         public var customerEditable: Bool?
         
@@ -46,6 +54,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var v: Int?
         
+        public var options: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -61,7 +71,15 @@ public extension PlatformClient.ApplicationClient.User {
             
             case type = "type"
             
-            case multiValue = "multi_value"
+            case icon = "icon"
+            
+            case orderingChannels = "ordering_channels"
+            
+            case masking = "masking"
+            
+            case registration = "registration"
+            
+            case isMultiValue = "is_multi_value"
             
             case customerEditable = "customer_editable"
             
@@ -81,9 +99,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             case v = "__v"
             
+            case options = "options"
+            
         }
 
-        public init(applicationId: String? = nil, createdAt: String? = nil, customerEditable: Bool? = nil, description: String? = nil, encrypted: Bool? = nil, isLocked: Bool? = nil, modifiedAt: String? = nil, multiValue: Bool? = nil, name: String? = nil, pinned: Bool? = nil, pinOrder: Int? = nil, slug: String? = nil, type: String? = nil, validations: [[String: Any]]? = nil, id: String? = nil, v: Int? = nil) {
+        public init(applicationId: String? = nil, createdAt: String? = nil, customerEditable: Bool? = nil, description: String? = nil, encrypted: Bool? = nil, icon: String? = nil, isLocked: Bool? = nil, isMultiValue: Bool? = nil, masking: AttributeMaskingProperties? = nil, modifiedAt: String? = nil, name: String? = nil, options: [String]? = nil, orderingChannels: [String]? = nil, pinned: Bool? = nil, pinOrder: Int? = nil, registration: AttributeRegistrationProperties? = nil, slug: String? = nil, type: String? = nil, validations: [[String: Any]]? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
@@ -97,7 +117,15 @@ public extension PlatformClient.ApplicationClient.User {
             
             self.type = type
             
-            self.multiValue = multiValue
+            self.icon = icon
+            
+            self.orderingChannels = orderingChannels
+            
+            self.masking = masking
+            
+            self.registration = registration
+            
+            self.isMultiValue = isMultiValue
             
             self.customerEditable = customerEditable
             
@@ -116,6 +144,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.modifiedAt = modifiedAt
             
             self.v = v
+            
+            self.options = options
             
         }
 
@@ -196,7 +226,55 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    multiValue = try container.decode(Bool.self, forKey: .multiValue)
+                    icon = try container.decode(String.self, forKey: .icon)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingChannels = try container.decode([String].self, forKey: .orderingChannels)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    masking = try container.decode(AttributeMaskingProperties.self, forKey: .masking)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    registration = try container.decode(AttributeRegistrationProperties.self, forKey: .registration)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isMultiValue = try container.decode(Bool.self, forKey: .isMultiValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -314,6 +392,18 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    options = try container.decode([String].self, forKey: .options)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -351,7 +441,27 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             
-            try? container.encodeIfPresent(multiValue, forKey: .multiValue)
+            try? container.encodeIfPresent(icon, forKey: .icon)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingChannels, forKey: .orderingChannels)
+            
+            
+            
+            
+            try? container.encodeIfPresent(masking, forKey: .masking)
+            
+            
+            
+            
+            try? container.encodeIfPresent(registration, forKey: .registration)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isMultiValue, forKey: .isMultiValue)
             
             
             
@@ -397,6 +507,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            
+            try? container.encodeIfPresent(options, forKey: .options)
             
             
         }

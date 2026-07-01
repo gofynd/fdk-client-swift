@@ -34,6 +34,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var maxOfferQuantity: Int?
         
+        public var itemSequenceNumber: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,9 +59,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case maxOfferQuantity = "max_offer_quantity"
             
+            case itemSequenceNumber = "item_sequence_number"
+            
         }
 
-        public init(apportionDiscount: Bool? = nil, code: String? = nil, discountAmount: Double? = nil, discountPercentage: Double? = nil, discountPrice: Double? = nil, maxDiscountAmount: Double? = nil, maxOfferQuantity: Int? = nil, maxUsagePerTransaction: Int? = nil, minOfferQuantity: Int? = nil, partialCanRet: Bool? = nil) {
+        public init(apportionDiscount: Bool? = nil, code: String? = nil, discountAmount: Double? = nil, discountPercentage: Double? = nil, discountPrice: Double? = nil, itemSequenceNumber: Int? = nil, maxDiscountAmount: Double? = nil, maxOfferQuantity: Int? = nil, maxUsagePerTransaction: Int? = nil, minOfferQuantity: Int? = nil, partialCanRet: Bool? = nil) {
             
             self.maxDiscountAmount = maxDiscountAmount
             
@@ -80,6 +84,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.discountPercentage = discountPercentage
             
             self.maxOfferQuantity = maxOfferQuantity
+            
+            self.itemSequenceNumber = itemSequenceNumber
             
         }
 
@@ -206,6 +212,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    itemSequenceNumber = try container.decode(Int.self, forKey: .itemSequenceNumber)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -259,6 +277,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(maxOfferQuantity, forKey: .maxOfferQuantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemSequenceNumber, forKey: .itemSequenceNumber)
             
             
         }
