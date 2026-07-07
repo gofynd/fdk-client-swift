@@ -62,6 +62,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var tags: [String]?
         
+        public var filterTags: [String]?
+        
         public var autoApply: Bool?
         
 
@@ -115,11 +117,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case tags = "tags"
             
+            case filterTags = "filter_tags"
+            
             case autoApply = "auto_apply"
             
         }
 
-        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, autoApply: Bool? = nil, buyRules: ItemCriteria? = nil, calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule]? = nil, displayMeta: DisplayMeta1? = nil, mode: String, ownership: Ownership1? = nil, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, reason: String? = nil, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
+        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, autoApply: Bool? = nil, buyRules: ItemCriteria? = nil, calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule]? = nil, displayMeta: DisplayMeta1? = nil, filterTags: [String]? = nil, mode: String, ownership: Ownership1? = nil, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, reason: String? = nil, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
             
             self.stackable = stackable
             
@@ -168,6 +172,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.dateMeta = dateMeta
             
             self.tags = tags
+            
+            self.filterTags = filterTags
             
             self.autoApply = autoApply
             
@@ -438,6 +444,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    filterTags = try container.decode([String].self, forKey: .filterTags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     autoApply = try container.decode(Bool.self, forKey: .autoApply)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -571,6 +589,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filterTags, forKey: .filterTags)
             
             
             

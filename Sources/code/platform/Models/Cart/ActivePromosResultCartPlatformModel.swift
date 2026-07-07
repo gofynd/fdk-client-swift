@@ -34,6 +34,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var description: String?
         
+        public var discountType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,9 +59,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case description = "description"
             
+            case discountType = "discount_type"
+            
         }
 
-        public init(createdOn: String? = nil, description: String? = nil, entitySlug: String? = nil, entityType: String? = nil, example: String? = nil, isHidden: Bool? = nil, modifiedOn: String? = nil, subtitle: String? = nil, title: String? = nil, type: String? = nil) {
+        public init(createdOn: String? = nil, description: String? = nil, discountType: String? = nil, entitySlug: String? = nil, entityType: String? = nil, example: String? = nil, isHidden: Bool? = nil, modifiedOn: String? = nil, subtitle: String? = nil, title: String? = nil, type: String? = nil) {
             
             self.entitySlug = entitySlug
             
@@ -80,6 +84,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.subtitle = subtitle
             
             self.description = description
+            
+            self.discountType = discountType
             
         }
 
@@ -206,6 +212,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    discountType = try container.decode(String.self, forKey: .discountType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -259,6 +277,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(discountType, forKey: .discountType)
             
             
         }

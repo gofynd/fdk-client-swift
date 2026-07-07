@@ -30,6 +30,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var schedule: OfferSchedule?
         
+        public var filterTags: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,9 +51,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case schedule = "schedule"
             
+            case filterTags = "filter_tags"
+            
         }
 
-        public init(author: OfferAuthor? = nil, dateMeta: OfferDateMeta? = nil, displayMeta: OfferDisplayMeta? = nil, mode: String? = nil, published: Bool? = nil, schedule: OfferSchedule? = nil, status: String? = nil, type: String? = nil) {
+        public init(author: OfferAuthor? = nil, dateMeta: OfferDateMeta? = nil, displayMeta: OfferDisplayMeta? = nil, filterTags: [String]? = nil, mode: String? = nil, published: Bool? = nil, schedule: OfferSchedule? = nil, status: String? = nil, type: String? = nil) {
             
             self.mode = mode
             
@@ -68,6 +72,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.dateMeta = dateMeta
             
             self.schedule = schedule
+            
+            self.filterTags = filterTags
             
         }
 
@@ -170,6 +176,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    filterTags = try container.decode([String].self, forKey: .filterTags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -213,6 +231,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filterTags, forKey: .filterTags)
             
             
         }

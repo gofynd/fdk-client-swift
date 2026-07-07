@@ -188,6 +188,7 @@ public class PlatformClient {
                 reviewStartTime: String?,
                 reviewEndTime: String?,
                 status: String?,
+                filterTags: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CouponsResult?, _ error: FDKError?) -> Void
@@ -253,6 +254,10 @@ public class PlatformClient {
                 
                 if let value = status {
                     xQuery["status"] = value
+                }
+                
+                if let value = filterTags {
+                    xQuery["filter_tags"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -567,6 +572,7 @@ public class PlatformClient {
                 reviewStartTime: String?,
                 reviewEndTime: String?,
                 status: String?,
+                filterTags: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PromotionsResult?, _ error: FDKError?) -> Void
@@ -632,6 +638,10 @@ public class PlatformClient {
                 
                 if let value = status {
                     xQuery["status"] = value
+                }
+                
+                if let value = filterTags {
+                    xQuery["filter_tags"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -4453,6 +4463,7 @@ public class PlatformClient {
                 status: String?,
                 code: String?,
                 isPublic: Bool?,
+                filterTags: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OfferListResult?, _ error: FDKError?) -> Void
@@ -4518,6 +4529,10 @@ public class PlatformClient {
                 
                 if let value = isPublic {
                     xQuery["is_public"] = value
+                }
+                
+                if let value = filterTags {
+                    xQuery["filter_tags"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
