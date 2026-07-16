@@ -16,6 +16,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var groups: [Int]?
         
+        public var excludeGroups: [Int]?
+        
         public var type: String?
         
         public var anonymous: Bool?
@@ -31,6 +33,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case groups = "groups"
             
+            case excludeGroups = "exclude_groups"
+            
             case type = "type"
             
             case anonymous = "anonymous"
@@ -43,9 +47,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(anonymous: Bool? = nil, emailDomain: [String]? = nil, groups: [Int]? = nil, id: [String]? = nil, registered: UserRegistered? = nil, type: String? = nil) {
+        public init(anonymous: Bool? = nil, emailDomain: [String]? = nil, excludeGroups: [Int]? = nil, groups: [Int]? = nil, id: [String]? = nil, registered: UserRegistered? = nil, type: String? = nil) {
             
             self.groups = groups
+            
+            self.excludeGroups = excludeGroups
             
             self.type = type
             
@@ -65,6 +71,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     groups = try container.decode([Int].self, forKey: .groups)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    excludeGroups = try container.decode([Int].self, forKey: .excludeGroups)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,6 +160,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(groups, forKey: .groups)
+            
+            
+            
+            
+            try? container.encodeIfPresent(excludeGroups, forKey: .excludeGroups)
             
             
             

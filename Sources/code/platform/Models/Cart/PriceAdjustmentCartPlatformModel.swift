@@ -24,6 +24,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var articleLevelDistribution: Bool
         
+        public var includedInEligibilityAmount: Bool?
+        
         public var id: String?
         
         public var collection: Collection
@@ -57,6 +59,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case articleLevelDistribution = "article_level_distribution"
             
+            case includedInEligibilityAmount = "included_in_eligibility_amount"
+            
             case id = "id"
             
             case collection = "collection"
@@ -79,7 +83,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, distributionLogic: DistributionLogic? = nil, id: String? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, distributionLogic: DistributionLogic? = nil, id: String? = nil, includedInEligibilityAmount: Bool? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
             
             self.value = value
             
@@ -90,6 +94,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.restrictions = restrictions
             
             self.articleLevelDistribution = articleLevelDistribution
+            
+            self.includedInEligibilityAmount = includedInEligibilityAmount
             
             self.id = id
             
@@ -154,6 +160,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 articleLevelDistribution = try container.decode(Bool.self, forKey: .articleLevelDistribution)
                 
             
+            
+            
+                do {
+                    includedInEligibilityAmount = try container.decode(Bool.self, forKey: .includedInEligibilityAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -268,6 +286,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(articleLevelDistribution, forKey: .articleLevelDistribution)
+            
+            
+            
+            
+            try? container.encodeIfPresent(includedInEligibilityAmount, forKey: .includedInEligibilityAmount)
             
             
             
