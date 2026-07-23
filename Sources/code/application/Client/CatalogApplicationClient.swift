@@ -69,6 +69,8 @@ extension ApplicationClient {
             
             ulrs["getLocationDetailsById"] = config.domain.appendAsPath("/service/application/catalog/v2.0/locations/{location_id}/") 
             
+            ulrs["getProductSizesBySlugs"] = config.domain.appendAsPath("/service/application/catalog/v2.0/products/sizes/") 
+            
             ulrs["getProductPriceBySlug"] = config.domain.appendAsPath("/service/application/catalog/v4.0/products/{slug}/sizes/{size}/price/") 
             
             ulrs["getProductSellersBySlug"] = config.domain.appendAsPath("/service/application/catalog/v4.0/products/{slug}/sizes/{size}/sellers/") 
@@ -743,6 +745,7 @@ extension ApplicationClient {
             pageSize: Int?,
             pageNo: Int?,
             pageType: String?,
+            showAllVariants: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductListingResponseSchema?, _ error: FDKError?) -> Void
@@ -780,6 +783,10 @@ extension ApplicationClient {
             
             if let value = pageType {
                 xQuery["page_type"] = value
+            }
+            
+            if let value = showAllVariants {
+                xQuery["show_all_variants"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -834,6 +841,8 @@ extension ApplicationClient {
         
         
         
+        
+        
         /**
         *
         * Summary: get paginator for getProducts
@@ -845,6 +854,7 @@ extension ApplicationClient {
             filters: Bool?,
             sortOn: String?,
             pageSize: Int?,
+            showAllVariants: Bool?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ProductListingResponseSchema> {
             let pageSize = pageSize ?? 20
@@ -859,6 +869,7 @@ extension ApplicationClient {
                     pageSize: paginator.pageSize,
                     pageNo: paginator.pageNo,
                     pageType: paginator.type,
+                    showAllVariants: showAllVariants,
                     
                     headers: headers
                 ) { response, error in                    
@@ -1479,6 +1490,7 @@ extension ApplicationClient {
             pageSize: Int?,
             pageNo: Int?,
             pageType: String?,
+            showAllVariants: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductListingResponseSchema?, _ error: FDKError?) -> Void
@@ -1516,6 +1528,10 @@ extension ApplicationClient {
             
             if let value = pageType {
                 xQuery["page_type"] = value
+            }
+            
+            if let value = showAllVariants {
+                xQuery["show_all_variants"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -1574,6 +1590,8 @@ extension ApplicationClient {
         
         
         
+        
+        
         /**
         *
         * Summary: get paginator for getCollectionItemsBySlug
@@ -1586,6 +1604,7 @@ extension ApplicationClient {
             filters: Bool?,
             sortOn: String?,
             pageSize: Int?,
+            showAllVariants: Bool?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ProductListingResponseSchema> {
             let pageSize = pageSize ?? 20
@@ -1601,6 +1620,7 @@ extension ApplicationClient {
                     pageSize: paginator.pageSize,
                     pageNo: paginator.pageNo,
                     pageType: paginator.type,
+                    showAllVariants: showAllVariants,
                     
                     headers: headers
                 ) { response, error in                    
@@ -2332,6 +2352,65 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(StoreDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: List sizes for multiple products
+        * Description: Provides detailed size information (availability, quantities, dimensions, weight, price details, seller identifiers) for multiple products in a single request. Pass repeated `slug` query parameters (up to 50) to avoid N+1 per-product size lookups when rendering listings. Each entry in the response is a ProductSizes object annotated with its `slug`.
+        **/
+        public func getProductSizesBySlugs(
+            slug: [String],
+            storeId: Int?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: ProductSizesBySlugsSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["slug"] = slug
+            
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getProductSizesBySlugs"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ProductSizesBySlugsSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
