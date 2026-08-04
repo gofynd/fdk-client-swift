@@ -10,16 +10,22 @@ public extension ApplicationClient.Order {
         
         public var lineNumbers: [RefundModeLineNumber]?
         
+        public var nextState: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case lineNumbers = "line_numbers"
             
+            case nextState = "next_state"
+            
         }
 
-        public init(lineNumbers: [RefundModeLineNumber]? = nil) {
+        public init(lineNumbers: [RefundModeLineNumber]? = nil, nextState: String? = nil) {
             
             self.lineNumbers = lineNumbers
+            
+            self.nextState = nextState
             
         }
 
@@ -38,6 +44,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                nextState = try container.decode(String.self, forKey: .nextState)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -45,6 +63,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(lineNumbers, forKey: .lineNumbers)
+            
+            
+            
+            try? container.encodeIfPresent(nextState, forKey: .nextState)
             
             
         }

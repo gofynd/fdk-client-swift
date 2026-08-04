@@ -22,6 +22,8 @@ public extension ApplicationClient.Payment {
         
         public var codLimit: Double?
         
+        public var isSplitCodAvailable: Bool?
+        
         public var intentFlow: Bool?
         
         public var fyndVpa: String?
@@ -95,6 +97,8 @@ public extension ApplicationClient.Payment {
             
             case codLimit = "cod_limit"
             
+            case isSplitCodAvailable = "is_split_cod_available"
+            
             case intentFlow = "intent_flow"
             
             case fyndVpa = "fynd_vpa"
@@ -153,7 +157,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, name: String? = nil, nickname: String? = nil, partialPaymentAllowed: Bool? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
+        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, isSplitCodAvailable: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, name: String? = nil, nickname: String? = nil, partialPaymentAllowed: Bool? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
             
             self.cardNumber = cardNumber
             
@@ -168,6 +172,8 @@ public extension ApplicationClient.Payment {
             self.code = code
             
             self.codLimit = codLimit
+            
+            self.isSplitCodAvailable = isSplitCodAvailable
             
             self.intentFlow = intentFlow
             
@@ -305,6 +311,18 @@ public extension ApplicationClient.Payment {
             
             do {
                 codLimit = try container.decode(Double.self, forKey: .codLimit)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                isSplitCodAvailable = try container.decode(Bool.self, forKey: .isSplitCodAvailable)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -674,6 +692,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(codLimit, forKey: .codLimit)
+            
+            
+            
+            try? container.encodeIfPresent(isSplitCodAvailable, forKey: .isSplitCodAvailable)
             
             
             

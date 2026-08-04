@@ -12,9 +12,9 @@ public extension PlatformClient.Serviceability {
     class ArticleAssignment: Codable {
         
         
-        public var level: String?
+        public var level: String
         
-        public var strategy: String?
+        public var strategy: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(level: String? = nil, strategy: String? = nil) {
+        public init(level: String, strategy: String) {
             
             self.level = level
             
@@ -37,28 +37,14 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    level = try container.decode(String.self, forKey: .level)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                level = try container.decode(String.self, forKey: .level)
                 
             
             
-                do {
-                    strategy = try container.decode(String.self, forKey: .strategy)
+            
+                strategy = try container.decode(String.self, forKey: .strategy)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -91,9 +77,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ArticleAssignment: Codable {
         
         
-        public var level: String?
+        public var level: String
         
-        public var strategy: String?
+        public var strategy: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(level: String? = nil, strategy: String? = nil) {
+        public init(level: String, strategy: String) {
             
             self.level = level
             
@@ -116,28 +102,14 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    level = try container.decode(String.self, forKey: .level)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                level = try container.decode(String.self, forKey: .level)
                 
             
             
-                do {
-                    strategy = try container.decode(String.self, forKey: .strategy)
+            
+                strategy = try container.decode(String.self, forKey: .strategy)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

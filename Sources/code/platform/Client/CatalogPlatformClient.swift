@@ -2906,7 +2906,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/inventory/\(sizeIdentifier)",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/inventory/\(String(describing: sizeIdentifier).fdkPathEncoded)",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -4595,7 +4595,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(String(describing: sellerIdentifier).fdkPathEncoded)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -4647,7 +4647,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(String(describing: sellerIdentifier).fdkPathEncoded)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -4699,7 +4699,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/store/\(storeId)/identifier/\(sellerIdentifier)/price",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/store/\(storeId)/identifier/\(String(describing: sellerIdentifier).fdkPathEncoded)/price",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -4751,7 +4751,7 @@ For arrays of objects (e.g. sizes): match on a unique identifier (seller_identif
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/store/\(storeId)/identifier/\(sellerIdentifier)/quantity",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/store/\(storeId)/identifier/\(String(describing: sellerIdentifier).fdkPathEncoded)/quantity",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,

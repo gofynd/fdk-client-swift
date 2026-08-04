@@ -1136,7 +1136,7 @@ Export locality wise CSV files.
         /**
         *
         * Summary: Get selling locations
-        * Description: Retrieves a list selling locations which are best suited to fullfil an order for a customer.
+        * Description: Retrieves a list of selling locations that are optimally suited to fulfill a customer's order, based on product availability and other fulfillment criteria.
         **/
         public func getOptimalLocations(
             body: OptimlLocationsRequestSchema,
