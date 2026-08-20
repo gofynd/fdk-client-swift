@@ -6428,6 +6428,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 tags: [String]?,
                 storeTypes: [String]?,
+                opted: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: LocationListSchema?, _ error: FDKError?) -> Void
@@ -6465,6 +6466,10 @@ public class PlatformClient {
                 
                 if let value = storeTypes {
                     xQuery["store_types"] = value
+                }
+                
+                if let value = opted {
+                    xQuery["opted"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -6516,6 +6521,8 @@ public class PlatformClient {
             
             
             
+            
+            
             /**
             *
             * Summary: get paginator for getAppLocations
@@ -6529,6 +6536,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 tags: [String]?,
                 storeTypes: [String]?,
+                opted: Bool?,
                 headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<LocationListSchema> {
                 let pageSize = pageSize ?? 20
@@ -6543,6 +6551,7 @@ public class PlatformClient {
                         pageSize: paginator.pageSize,
                         tags: tags,
                         storeTypes: storeTypes,
+                        opted: opted,
                         
                         headers: headers
                     ) { response, error in                    
@@ -25079,6 +25088,7 @@ public class PlatformClient {
                         }
                 });
             }
+            
             
             
             

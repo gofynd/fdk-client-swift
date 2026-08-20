@@ -2890,6 +2890,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             fulfillmentType: String?,
             orderingSource: String?,
             channelAccountId: String?,
+            includeCount: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponseSchema?, _ error: FDKError?) -> Void
@@ -3053,6 +3054,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["channel_account_id"] = value
             }
             
+            if let value = includeCount {
+                xQuery["include_count"] = value
+            }
+            
             var xHeaders: [(key: String, value: String)] = []
             
             
@@ -3087,6 +3092,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     }
             });
         }
+        
+        
         
         
         
@@ -3208,6 +3215,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             fulfillmentType: String?,
             orderingSource: String?,
             channelAccountId: String?,
+            includeCount: Bool?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ShipmentInternalPlatformViewResponseSchema> {
             let pageSize = pageSize ?? 20
@@ -3253,6 +3261,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     fulfillmentType: fulfillmentType,
                     orderingSource: orderingSource,
                     channelAccountId: channelAccountId,
+                    includeCount: includeCount,
                     
                     headers: headers
                 ) { response, error in                    
@@ -3580,6 +3589,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             fulfillmentType: String?,
             orderingSource: String?,
             channelAccountId: String?,
+            includeCount: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderListingResponseSchema?, _ error: FDKError?) -> Void
@@ -3699,6 +3709,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["channel_account_id"] = value
             }
             
+            if let value = includeCount {
+                xQuery["include_count"] = value
+            }
+            
             var xHeaders: [(key: String, value: String)] = []
             
             
@@ -3788,6 +3802,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         
         
+        
+        
         /**
         *
         * Summary: get paginator for getOrders
@@ -3821,6 +3837,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             fulfillmentType: String?,
             orderingSource: String?,
             channelAccountId: String?,
+            includeCount: Bool?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<OrderListingResponseSchema> {
             let pageSize = pageSize ?? 20
@@ -3855,6 +3872,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     fulfillmentType: fulfillmentType,
                     orderingSource: orderingSource,
                     channelAccountId: channelAccountId,
+                    includeCount: includeCount,
                     
                     headers: headers
                 ) { response, error in                    
@@ -3868,6 +3886,226 @@ The ESM config stores order processing configuration. Each document in the ESM c
             return paginator
         }
         
+        
+        
+        
+        /**
+        *
+        * Summary: Get listing count
+        * Description: Get the total number of shipments or orders matching the given filters. Companion to the shipments-listing and orders-listing APIs when they are called with `include_count=false`: the listing skips computing the total and this API returns it separately. Accepts the same filter query parameters as the listing APIs; pass the same values that were sent to the listing call.
+        **/
+        public func getListingCount(
+            groupEntity: String?,
+            parentViewSlug: String?,
+            childViewSlug: String?,
+            bagStatus: String?,
+            statusAssigned: String?,
+            timeToDispatch: Int?,
+            searchType: String?,
+            searchValue: String?,
+            fromDate: String?,
+            toDate: String?,
+            startDate: String?,
+            endDate: String?,
+            statusAssignedStartDate: String?,
+            statusAssignedEndDate: String?,
+            dpIds: String?,
+            stores: String?,
+            salesChannels: String?,
+            fetchActiveShipment: Bool?,
+            allowInactive: Bool?,
+            excludeLockedShipments: Bool?,
+            paymentMethods: String?,
+            channelShipmentId: String?,
+            channelOrderId: String?,
+            companyAffiliateTag: String?,
+            myOrders: Bool?,
+            platformUserId: String?,
+            showCrossCompanyData: Bool?,
+            tags: String?,
+            customerId: String?,
+            orderType: String?,
+            enforceDateFilter: Bool?,
+            fulfillmentType: String?,
+            orderingSource: String?,
+            channelAccountId: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: ListingCountResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = groupEntity {
+                xQuery["group_entity"] = value
+            }
+            
+            if let value = parentViewSlug {
+                xQuery["parent_view_slug"] = value
+            }
+            
+            if let value = childViewSlug {
+                xQuery["child_view_slug"] = value
+            }
+            
+            if let value = bagStatus {
+                xQuery["bag_status"] = value
+            }
+            
+            if let value = statusAssigned {
+                xQuery["status_assigned"] = value
+            }
+            
+            if let value = timeToDispatch {
+                xQuery["time_to_dispatch"] = value
+            }
+            
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
+            
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
+            
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+            
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+            
+            if let value = startDate {
+                xQuery["start_date"] = value
+            }
+            
+            if let value = endDate {
+                xQuery["end_date"] = value
+            }
+            
+            if let value = statusAssignedStartDate {
+                xQuery["status_assigned_start_date"] = value
+            }
+            
+            if let value = statusAssignedEndDate {
+                xQuery["status_assigned_end_date"] = value
+            }
+            
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
+            
+            if let value = stores {
+                xQuery["stores"] = value
+            }
+            
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
+            }
+            
+            if let value = fetchActiveShipment {
+                xQuery["fetch_active_shipment"] = value
+            }
+            
+            if let value = allowInactive {
+                xQuery["allow_inactive"] = value
+            }
+            
+            if let value = excludeLockedShipments {
+                xQuery["exclude_locked_shipments"] = value
+            }
+            
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
+            }
+            
+            if let value = channelShipmentId {
+                xQuery["channel_shipment_id"] = value
+            }
+            
+            if let value = channelOrderId {
+                xQuery["channel_order_id"] = value
+            }
+            
+            if let value = companyAffiliateTag {
+                xQuery["company_affiliate_tag"] = value
+            }
+            
+            if let value = myOrders {
+                xQuery["my_orders"] = value
+            }
+            
+            if let value = platformUserId {
+                xQuery["platform_user_id"] = value
+            }
+            
+            if let value = showCrossCompanyData {
+                xQuery["show_cross_company_data"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            if let value = customerId {
+                xQuery["customer_id"] = value
+            }
+            
+            if let value = orderType {
+                xQuery["order_type"] = value
+            }
+            
+            if let value = enforceDateFilter {
+                xQuery["enforce_date_filter"] = value
+            }
+            
+            if let value = fulfillmentType {
+                xQuery["fulfillment_type"] = value
+            }
+            
+            if let value = orderingSource {
+                xQuery["ordering_source"] = value
+            }
+            
+            if let value = channelAccountId {
+                xQuery["channel_account_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order/v1.0/company/\(companyId)/listing/count/",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ListingCountResponseSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
         
         
         

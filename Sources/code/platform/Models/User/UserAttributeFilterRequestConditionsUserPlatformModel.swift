@@ -20,6 +20,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var value: [String: Any]
         
+        public var ignoreYear: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,15 +31,19 @@ public extension PlatformClient.ApplicationClient.User {
             
             case value = "value"
             
+            case ignoreYear = "ignore_year"
+            
         }
 
-        public init(definitionId: String, type: String, value: [String: Any]) {
+        public init(definitionId: String, ignoreYear: Bool? = nil, type: String, value: [String: Any]) {
             
             self.definitionId = definitionId
             
             self.type = type
             
             self.value = value
+            
+            self.ignoreYear = ignoreYear
             
         }
 
@@ -59,6 +65,18 @@ public extension PlatformClient.ApplicationClient.User {
                 
             
             
+            
+                do {
+                    ignoreYear = try container.decode(Bool.self, forKey: .ignoreYear)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -77,6 +95,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(value, forKey: .value)
+            
+            
+            
+            
+            try? container.encodeIfPresent(ignoreYear, forKey: .ignoreYear)
             
             
         }

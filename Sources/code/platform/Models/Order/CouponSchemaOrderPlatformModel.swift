@@ -22,6 +22,8 @@ public extension PlatformClient.Order {
         
         public var isCancellationAllowed: Bool
         
+        public var allowZeroDiscount: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension PlatformClient.Order {
             
             case isCancellationAllowed = "is_cancellation_allowed"
             
+            case allowZeroDiscount = "allow_zero_discount"
+            
         }
 
-        public init(code: String, id: String, isCancellationAllowed: Bool, isReturnAllowed: Bool, ownership: CouponOwnershipSchema) {
+        public init(allowZeroDiscount: Bool? = nil, code: String, id: String, isCancellationAllowed: Bool, isReturnAllowed: Bool, ownership: CouponOwnershipSchema) {
             
             self.code = code
             
@@ -48,6 +52,8 @@ public extension PlatformClient.Order {
             self.isReturnAllowed = isReturnAllowed
             
             self.isCancellationAllowed = isCancellationAllowed
+            
+            self.allowZeroDiscount = allowZeroDiscount
             
         }
 
@@ -79,6 +85,18 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                do {
+                    allowZeroDiscount = try container.decode(Bool.self, forKey: .allowZeroDiscount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -107,6 +125,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(isCancellationAllowed, forKey: .isCancellationAllowed)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowZeroDiscount, forKey: .allowZeroDiscount)
             
             
         }
@@ -135,6 +158,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var isCancellationAllowed: Bool
         
+        public var allowZeroDiscount: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -148,9 +173,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isCancellationAllowed = "is_cancellation_allowed"
             
+            case allowZeroDiscount = "allow_zero_discount"
+            
         }
 
-        public init(code: String, id: String, isCancellationAllowed: Bool, isReturnAllowed: Bool, ownership: CouponOwnershipSchema) {
+        public init(allowZeroDiscount: Bool? = nil, code: String, id: String, isCancellationAllowed: Bool, isReturnAllowed: Bool, ownership: CouponOwnershipSchema) {
             
             self.code = code
             
@@ -161,6 +188,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.isReturnAllowed = isReturnAllowed
             
             self.isCancellationAllowed = isCancellationAllowed
+            
+            self.allowZeroDiscount = allowZeroDiscount
             
         }
 
@@ -192,6 +221,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                do {
+                    allowZeroDiscount = try container.decode(Bool.self, forKey: .allowZeroDiscount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -220,6 +261,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(isCancellationAllowed, forKey: .isCancellationAllowed)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowZeroDiscount, forKey: .allowZeroDiscount)
             
             
         }

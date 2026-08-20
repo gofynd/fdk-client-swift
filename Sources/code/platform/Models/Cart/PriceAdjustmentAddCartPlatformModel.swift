@@ -28,6 +28,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var includedInEligibilityAmount: Bool?
         
+        public var eligibilityScope: String?
+        
         public var collection: Collection
         
         public var type: String
@@ -63,6 +65,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case includedInEligibilityAmount = "included_in_eligibility_amount"
             
+            case eligibilityScope = "eligibility_scope"
+            
             case collection = "collection"
             
             case type = "type"
@@ -83,7 +87,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, createdBy: String? = nil, distributionLogic: DistributionLogic? = nil, includedInEligibilityAmount: Bool? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, createdBy: String? = nil, distributionLogic: DistributionLogic? = nil, eligibilityScope: String? = nil, includedInEligibilityAmount: Bool? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
             
             self.value = value
             
@@ -98,6 +102,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.articleLevelDistribution = articleLevelDistribution
             
             self.includedInEligibilityAmount = includedInEligibilityAmount
+            
+            self.eligibilityScope = eligibilityScope
             
             self.collection = collection
             
@@ -176,6 +182,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     includedInEligibilityAmount = try container.decode(Bool.self, forKey: .includedInEligibilityAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    eligibilityScope = try container.decode(String.self, forKey: .eligibilityScope)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -296,6 +314,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(includedInEligibilityAmount, forKey: .includedInEligibilityAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(eligibilityScope, forKey: .eligibilityScope)
             
             
             
