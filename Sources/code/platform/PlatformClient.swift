@@ -86,6 +86,8 @@ public class PlatformClient {
         var applicationId: String
 
         
+        public let authorization: Authorization
+        
         public let cart: Cart
         
         public let catalog: Catalog
@@ -121,6 +123,8 @@ public class PlatformClient {
             self.applicationId = applicationId
 
             
+            authorization = Authorization(config: config, applicationId: applicationId)
+            
             cart = Cart(config: config, applicationId: applicationId)
             
             catalog = Catalog(config: config, applicationId: applicationId)
@@ -151,6 +155,148 @@ public class PlatformClient {
             
         }
 
+        
+            
+        public class Authorization {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get a paginated list of application staff
+            * Description: Returns a paginated list of staff assigned to a sales channel, including each staff member's name, employee code, incentive eligibility, assigned ordering stores, and title.
+            **/
+            public func getApplicationStaffList(
+                pageNo: Int?,
+                pageSize: Int?,
+                orderIncent: Bool?,
+                orderingStore: Int?,
+                user: String?,
+                userName: String?,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: ApplicationStaffPage?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = orderIncent {
+                    xQuery["order_incent"] = value
+                }
+                
+                if let value = orderingStore {
+                    xQuery["ordering_store"] = value
+                }
+                
+                if let value = user {
+                    xQuery["user"] = value
+                }
+                
+                if let value = userName {
+                    xQuery["user_name"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/authorization/v1.0/company/\(companyId)/application/\(applicationId)/staff/list",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ApplicationStaffPage.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getApplicationStaffList
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getApplicationStaffListPaginator(
+                pageSize: Int?,
+                orderIncent: Bool?,
+                orderingStore: Int?,
+                user: String?,
+                userName: String?,
+                headers: [(key: String, value: String)]? = nil
+                ) -> Paginator<ApplicationStaffPage> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<ApplicationStaffPage>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getApplicationStaffList(
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        orderIncent: orderIncent,
+                        orderingStore: orderingStore,
+                        user: user,
+                        userName: userName,
+                        
+                        headers: headers
+                    ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+        }
+        
         
             
         public class Cart {        
