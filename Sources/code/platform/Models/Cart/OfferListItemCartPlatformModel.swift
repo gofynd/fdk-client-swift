@@ -18,6 +18,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var type: String?
         
+        public var code: String?
+        
         public var status: String?
         
         public var published: Bool?
@@ -30,12 +32,16 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var schedule: OfferSchedule?
         
+        public var filterTags: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case mode = "mode"
             
             case type = "type"
+            
+            case code = "code"
             
             case status = "status"
             
@@ -49,13 +55,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case schedule = "schedule"
             
+            case filterTags = "filter_tags"
+            
         }
 
-        public init(author: OfferAuthor? = nil, dateMeta: OfferDateMeta? = nil, displayMeta: OfferDisplayMeta? = nil, mode: String? = nil, published: Bool? = nil, schedule: OfferSchedule? = nil, status: String? = nil, type: String? = nil) {
+        public init(author: OfferAuthor? = nil, code: String? = nil, dateMeta: OfferDateMeta? = nil, displayMeta: OfferDisplayMeta? = nil, filterTags: [String]? = nil, mode: String? = nil, published: Bool? = nil, schedule: OfferSchedule? = nil, status: String? = nil, type: String? = nil) {
             
             self.mode = mode
             
             self.type = type
+            
+            self.code = code
             
             self.status = status
             
@@ -68,6 +78,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.dateMeta = dateMeta
             
             self.schedule = schedule
+            
+            self.filterTags = filterTags
             
         }
 
@@ -89,6 +101,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    code = try container.decode(String.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,6 +194,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    filterTags = try container.decode([String].self, forKey: .filterTags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -183,6 +219,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -213,6 +254,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filterTags, forKey: .filterTags)
             
             
         }

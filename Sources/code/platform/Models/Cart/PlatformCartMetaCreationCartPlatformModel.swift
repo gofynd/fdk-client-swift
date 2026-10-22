@@ -16,6 +16,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var gstin: String?
         
+        public var shipToGstDetails: ShipToGstDetails?
+        
         public var pickUpCustomerDetails: [String: Any]?
         
         public var alternatePickupPerson: PlatformAlternatePickupPerson?
@@ -35,6 +37,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case gstin = "gstin"
             
+            case shipToGstDetails = "ship_to_gst_details"
+            
             case pickUpCustomerDetails = "pick_up_customer_details"
             
             case alternatePickupPerson = "alternate_pickup_person"
@@ -51,9 +55,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(alternatePickupPerson: PlatformAlternatePickupPerson? = nil, checkoutMode: String? = nil, comment: String? = nil, giftDetails: [String: Any]? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, staffUserId: String? = nil) {
+        public init(alternatePickupPerson: PlatformAlternatePickupPerson? = nil, checkoutMode: String? = nil, comment: String? = nil, giftDetails: [String: Any]? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, shipToGstDetails: ShipToGstDetails? = nil, staffUserId: String? = nil) {
             
             self.gstin = gstin
+            
+            self.shipToGstDetails = shipToGstDetails
             
             self.pickUpCustomerDetails = pickUpCustomerDetails
             
@@ -77,6 +83,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     gstin = try container.decode(String.self, forKey: .gstin)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    shipToGstDetails = try container.decode(ShipToGstDetails.self, forKey: .shipToGstDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,6 +196,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipToGstDetails, forKey: .shipToGstDetails)
             
             
             

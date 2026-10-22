@@ -3,94 +3,38 @@
 import Foundation
 
 
-
-
-public extension PlatformClient.ApplicationClient.Analytics {
+public extension PlatformClient.Content {
     /*
-        Model: JobStatus
-        Used By: Analytics
+        Model: AppAssociationDeleted
+        Used By: Content
     */
 
-    class JobStatus: Codable {
+    class AppAssociationDeleted: Codable {
         
-        
-        public var startDate: String?
-        
-        public var endDate: String?
-        
-        public var status: String?
         
         public var message: String?
         
-        public var fileMetadata: [[String: Any]]?
+        public var applicationId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case startDate = "start_date"
-            
-            case endDate = "end_date"
-            
-            case status = "status"
-            
             case message = "message"
             
-            case fileMetadata = "file_metadata"
+            case applicationId = "application_id"
             
         }
 
-        public init(endDate: String? = nil, fileMetadata: [[String: Any]]? = nil, message: String? = nil, startDate: String? = nil, status: String? = nil) {
-            
-            self.startDate = startDate
-            
-            self.endDate = endDate
-            
-            self.status = status
+        public init(applicationId: String? = nil, message: String? = nil) {
             
             self.message = message
             
-            self.fileMetadata = fileMetadata
+            self.applicationId = applicationId
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    startDate = try container.decode(String.self, forKey: .startDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    endDate = try container.decode(String.self, forKey: .endDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -106,7 +50,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
                 do {
-                    fileMetadata = try container.decode([[String: Any]].self, forKey: .fileMetadata)
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,18 +67,82 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
             
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
+        }
+        
+    }
+}
+
+
+
+public extension PlatformClient.ApplicationClient.Content {
+    /*
+        Model: AppAssociationDeleted
+        Used By: Content
+    */
+
+    class AppAssociationDeleted: Codable {
+        
+        
+        public var message: String?
+        
+        public var applicationId: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case message = "message"
+            
+            case applicationId = "application_id"
+            
+        }
+
+        public init(applicationId: String? = nil, message: String? = nil) {
+            
+            self.message = message
+            
+            self.applicationId = applicationId
+            
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
+            
+                do {
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
             
             
             
@@ -143,7 +151,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
             
-            try? container.encodeIfPresent(fileMetadata, forKey: .fileMetadata)
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
         }

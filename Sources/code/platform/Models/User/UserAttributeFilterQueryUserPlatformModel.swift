@@ -28,6 +28,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var phone: String?
         
+        public var countryCode: String?
+        
         public var definitionIds: [String]?
         
         public var conditions: [UserAttributeFilterRequestConditions]
@@ -49,13 +51,15 @@ public extension PlatformClient.ApplicationClient.User {
             
             case phone = "phone"
             
+            case countryCode = "country_code"
+            
             case definitionIds = "definition_ids"
             
             case conditions = "conditions"
             
         }
 
-        public init(conditions: [UserAttributeFilterRequestConditions], definitionIds: [String]? = nil, email: String? = nil, hasEmail: Bool? = nil, hasPhone: Bool? = nil, limit: Int, page: Int, phone: String? = nil, type: String) {
+        public init(conditions: [UserAttributeFilterRequestConditions], countryCode: String? = nil, definitionIds: [String]? = nil, email: String? = nil, hasEmail: Bool? = nil, hasPhone: Bool? = nil, limit: Int, page: Int, phone: String? = nil, type: String) {
             
             self.type = type
             
@@ -70,6 +74,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.hasPhone = hasPhone
             
             self.phone = phone
+            
+            self.countryCode = countryCode
             
             self.definitionIds = definitionIds
             
@@ -145,6 +151,18 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     definitionIds = try container.decode([String].self, forKey: .definitionIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -198,6 +216,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(phone, forKey: .phone)
+            
+            
+            
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             

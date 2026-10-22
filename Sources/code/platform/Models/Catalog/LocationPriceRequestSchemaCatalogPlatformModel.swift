@@ -16,7 +16,13 @@ public extension PlatformClient.Catalog {
         
         public var priceMarked: Double
         
+        public var priceCost: Double?
+        
         public var tags: [String]?
+        
+        public var transactionType: String?
+        
+        public var transaction: InventoryTransaction?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,17 +31,29 @@ public extension PlatformClient.Catalog {
             
             case priceMarked = "price_marked"
             
+            case priceCost = "price_cost"
+            
             case tags = "tags"
+            
+            case transactionType = "transaction_type"
+            
+            case transaction = "transaction"
             
         }
 
-        public init(priceEffective: Double, priceMarked: Double, tags: [String]? = nil) {
+        public init(priceCost: Double? = nil, priceEffective: Double, priceMarked: Double, tags: [String]? = nil, transaction: InventoryTransaction? = nil, transactionType: String? = nil) {
             
             self.priceEffective = priceEffective
             
             self.priceMarked = priceMarked
             
+            self.priceCost = priceCost
+            
             self.tags = tags
+            
+            self.transactionType = transactionType
+            
+            self.transaction = transaction
             
         }
 
@@ -54,7 +72,43 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    priceCost = try container.decode(Double.self, forKey: .priceCost)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transactionType = try container.decode(String.self, forKey: .transactionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +135,22 @@ public extension PlatformClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(priceCost, forKey: .priceCost)
+            
+            
+            
+            
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
         }
@@ -104,7 +173,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var priceMarked: Double
         
+        public var priceCost: Double?
+        
         public var tags: [String]?
+        
+        public var transactionType: String?
+        
+        public var transaction: InventoryTransaction?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -113,17 +188,29 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case priceMarked = "price_marked"
             
+            case priceCost = "price_cost"
+            
             case tags = "tags"
+            
+            case transactionType = "transaction_type"
+            
+            case transaction = "transaction"
             
         }
 
-        public init(priceEffective: Double, priceMarked: Double, tags: [String]? = nil) {
+        public init(priceCost: Double? = nil, priceEffective: Double, priceMarked: Double, tags: [String]? = nil, transaction: InventoryTransaction? = nil, transactionType: String? = nil) {
             
             self.priceEffective = priceEffective
             
             self.priceMarked = priceMarked
             
+            self.priceCost = priceCost
+            
             self.tags = tags
+            
+            self.transactionType = transactionType
+            
+            self.transaction = transaction
             
         }
 
@@ -142,7 +229,43 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    priceCost = try container.decode(Double.self, forKey: .priceCost)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transactionType = try container.decode(String.self, forKey: .transactionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -169,7 +292,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(priceCost, forKey: .priceCost)
+            
+            
+            
+            
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
         }

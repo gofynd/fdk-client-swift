@@ -28,6 +28,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var userGroups: [Int]?
         
+        public var excludeUserGroups: [Int]?
+        
         public var couponAllowed: Bool?
         
         public var uses: UsesRestriction?
@@ -51,6 +53,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case userGroups = "user_groups"
             
+            case excludeUserGroups = "exclude_user_groups"
+            
             case couponAllowed = "coupon_allowed"
             
             case uses = "uses"
@@ -59,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(bulkBundle: BulkBundleRestriction? = nil, couponAllowed: Bool? = nil, orderingStores: [Int]? = nil, payments: PaymentModes? = nil, platforms: [String]? = nil, postOrder: PostOrder? = nil, priceRange: PriceRange? = nil, userGroups: [Int]? = nil, userType: String? = nil, uses: UsesRestriction? = nil) {
+        public init(bulkBundle: BulkBundleRestriction? = nil, couponAllowed: Bool? = nil, excludeUserGroups: [Int]? = nil, orderingStores: [Int]? = nil, payments: PaymentModes? = nil, platforms: [String]? = nil, postOrder: PostOrder? = nil, priceRange: PriceRange? = nil, userGroups: [Int]? = nil, userType: String? = nil, uses: UsesRestriction? = nil) {
             
             self.payments = payments
             
@@ -74,6 +78,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.bulkBundle = bulkBundle
             
             self.userGroups = userGroups
+            
+            self.excludeUserGroups = excludeUserGroups
             
             self.couponAllowed = couponAllowed
             
@@ -172,6 +178,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    excludeUserGroups = try container.decode([Int].self, forKey: .excludeUserGroups)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     couponAllowed = try container.decode(Bool.self, forKey: .couponAllowed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -244,6 +262,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(userGroups, forKey: .userGroups)
+            
+            
+            
+            
+            try? container.encodeIfPresent(excludeUserGroups, forKey: .excludeUserGroups)
             
             
             

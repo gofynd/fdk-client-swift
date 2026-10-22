@@ -86,7 +86,7 @@ public class PlatformClient {
         var applicationId: String
 
         
-        public let analytics: Analytics
+        public let authorization: Authorization
         
         public let cart: Cart
         
@@ -123,7 +123,7 @@ public class PlatformClient {
             self.applicationId = applicationId
 
             
-            analytics = Analytics(config: config, applicationId: applicationId)
+            authorization = Authorization(config: config, applicationId: applicationId)
             
             cart = Cart(config: config, applicationId: applicationId)
             
@@ -157,7 +157,7 @@ public class PlatformClient {
 
         
             
-        public class Analytics {        
+        public class Authorization {        
             var config: PlatformConfig
             var companyId: String
             var applicationId: String
@@ -173,119 +173,46 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Executes given sql(Base64 Encoded) query
-            * Description: Query click events data
+            * Summary: Get a paginated list of application staff
+            * Description: Returns a paginated list of staff assigned to a sales channel, including each staff member's name, employee code, incentive eligibility, assigned ordering stores, and title.
             **/
-            public func executeJobForProvidedParametersV2(
-                body: JobExecute,
+            public func getApplicationStaffList(
+                pageNo: Int?,
+                pageSize: Int?,
+                orderIncent: Bool?,
+                orderingStore: Int?,
+                user: String?,
+                userName: String?,
+                
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: JobExecutionResult?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/insights/v2.0/company/\(companyId)/application/\(applicationId)/job/execute",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(JobExecutionResult.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Initiates download job
-            * Description: Initiates download job and returns job name
-            **/
-            public func startDownloadForQueryV2(
-                exportType: String,
-                body: FileDownloadRequestBody,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationStaffPage?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
-                xQuery["export_type"] = exportType
                 
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
+                if let value = pageNo {
+                    xQuery["page_no"] = value
                 }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/insights/v2.0/company/\(companyId)/application/\(applicationId)/job/download",
-                    query: xQuery,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = data.dictionary
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Checks download job status
-            * Description: Takes job name in path param to check the status of job Returns file URL if downloading is done else returns status of job
-            **/
-            public func checkJobStatusByNameV2(
-                fileName: String,
                 
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: JobStatus?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = orderIncent {
+                    xQuery["order_incent"] = value
+                }
+                
+                if let value = orderingStore {
+                    xQuery["ordering_store"] = value
+                }
+                
+                if let value = user {
+                    xQuery["user"] = value
+                }
+                
+                if let value = userName {
+                    xQuery["user_name"] = value
+                }
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -296,8 +223,8 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/insights/v2.0/company/\(companyId)/application/\(applicationId)/job/\(fileName)/status",
-                    query: nil,
+                    url: "/service/platform/authorization/v1.0/company/\(companyId)/application/\(applicationId)/staff/list",
+                    query: xQuery,
                     body: nil,
                     headers: xHeaders,
                     responseType: "application/json",
@@ -310,7 +237,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(JobStatus.self, from: data)
+                            let response = Utility.decode(ApplicationStaffPage.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -321,6 +248,53 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getApplicationStaffList
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getApplicationStaffListPaginator(
+                pageSize: Int?,
+                orderIncent: Bool?,
+                orderingStore: Int?,
+                user: String?,
+                userName: String?,
+                headers: [(key: String, value: String)]? = nil
+                ) -> Paginator<ApplicationStaffPage> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<ApplicationStaffPage>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getApplicationStaffList(
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        orderIncent: orderIncent,
+                        orderingStore: orderingStore,
+                        user: user,
+                        userName: userName,
+                        
+                        headers: headers
+                    ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
         }
         
         
@@ -360,6 +334,7 @@ public class PlatformClient {
                 reviewStartTime: String?,
                 reviewEndTime: String?,
                 status: String?,
+                filterTags: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CouponsResult?, _ error: FDKError?) -> Void
@@ -425,6 +400,10 @@ public class PlatformClient {
                 
                 if let value = status {
                     xQuery["status"] = value
+                }
+                
+                if let value = filterTags {
+                    xQuery["filter_tags"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -739,6 +718,7 @@ public class PlatformClient {
                 reviewStartTime: String?,
                 reviewEndTime: String?,
                 status: String?,
+                filterTags: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PromotionsResult?, _ error: FDKError?) -> Void
@@ -804,6 +784,10 @@ public class PlatformClient {
                 
                 if let value = status {
                     xQuery["status"] = value
+                }
+                
+                if let value = filterTags {
+                    xQuery["filter_tags"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -1779,6 +1763,56 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(OpenApiCartServiceabilityResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Check COD serviceability and charges for cart
+            * Description: Check whether Cash on Delivery (COD) is available for the given cart items at a specific pin code, and return the applicable COD charges. Performs a pincode-level serviceability check via the logistics layer and computes COD fee based on cart value and payment configuration.
+            **/
+            public func checkCODServiceability(
+                body: PlatformCartCODServiceabilityCreation,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: PlatformCartCODServiceabilityResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/serviceability/cod",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PlatformCartCODServiceabilityResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4625,6 +4659,7 @@ public class PlatformClient {
                 status: String?,
                 code: String?,
                 isPublic: Bool?,
+                filterTags: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OfferListResult?, _ error: FDKError?) -> Void
@@ -4690,6 +4725,10 @@ public class PlatformClient {
                 
                 if let value = isPublic {
                     xQuery["is_public"] = value
+                }
+                
+                if let value = filterTags {
+                    xQuery["filter_tags"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -6535,6 +6574,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 tags: [String]?,
                 storeTypes: [String]?,
+                opted: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: LocationListSchema?, _ error: FDKError?) -> Void
@@ -6572,6 +6612,10 @@ public class PlatformClient {
                 
                 if let value = storeTypes {
                     xQuery["store_types"] = value
+                }
+                
+                if let value = opted {
+                    xQuery["opted"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -6623,6 +6667,8 @@ public class PlatformClient {
             
             
             
+            
+            
             /**
             *
             * Summary: get paginator for getAppLocations
@@ -6636,6 +6682,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 tags: [String]?,
                 storeTypes: [String]?,
+                opted: Bool?,
                 headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<LocationListSchema> {
                 let pageSize = pageSize ?? 20
@@ -6650,6 +6697,7 @@ public class PlatformClient {
                         pageSize: paginator.pageSize,
                         tags: tags,
                         storeTypes: storeTypes,
+                        opted: opted,
                         
                         headers: headers
                     ) { response, error in                    
@@ -7235,7 +7283,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/products/\(itemId)/inventory/\(sizeIdentifier)",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/products/\(itemId)/inventory/\(String(describing: sizeIdentifier).fdkPathEncoded)",
                     query: xQuery,
                     body: nil,
                     headers: xHeaders,
@@ -8673,6 +8721,7 @@ public class PlatformClient {
                         }
                 });
             }
+            
             
             
             
@@ -14612,6 +14661,41 @@ public class PlatformClient {
             
             
             
+            
+            
+            /**
+            *
+            * Summary: get paginator for getStaffOrderingStores
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getStaffOrderingStoresPaginator(
+                pageSize: Int?,
+                q: String?,
+                headers: [(key: String, value: String)]? = nil
+                ) -> Paginator<OrderingStoresResponseSchema> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<OrderingStoresResponseSchema>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getStaffOrderingStores(
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        q: q,
+                        
+                        headers: headers
+                    ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
             /**
             *
             * Summary: Get ordering store signed cookie
@@ -15340,6 +15424,206 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get app association
+            * Description: Fetch the app-association configuration (Apple AASA + Google Asset Links payloads) for this application. Returns 404 if no record exists.
+            **/
+            public func getAppAssociation(
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: AppAssociationRecord?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/app-association",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AppAssociationRecord.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Create app association
+            * Description: Create-only. Returns 409 if a record already exists for this application (caller should use PUT to update). 422 on shape/size violations. Body fields `ios_payload` (object|null) and `android_payload` (array|null) are both optional and independent.
+            **/
+            public func createAppAssociation(
+                body: AppAssociationWriteBody,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: AppAssociationRecord?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/app-association",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AppAssociationRecord.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update app association
+            * Description: Update-only. Returns 404 if no record exists (caller should use POST to create). Partial-update semantics: keys present are written (explicit null clears the field); keys absent are no-op.
+            **/
+            public func updateAppAssociation(
+                body: AppAssociationWriteBody,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: AppAssociationRecord?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/app-association",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AppAssociationRecord.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Delete app association
+            * Description: Remove the app-association record entirely.
+            **/
+            public func deleteAppAssociation(
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: AppAssociationDeleted?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/app-association",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AppAssociationDeleted.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16479,7 +16763,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/generate-seo/\(type)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/generate-seo/\(type.rawValue)",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -24565,6 +24849,56 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
+            
+            /**
+            *
+            * Summary: Atomically add or remove products on zones (concurrency-safe)
+            * Description: Synchronously adds or removes products on one or more zones. Each item is applied with an atomic MongoDB array operator (`$addToSet` for add, `$pull` for remove) rather than a read-modify-write of the whole product list, so concurrent writes to the same zone never lose each other's changes. `product_type` must match the existing zone's product type. Product ids are not validated against the catalog (this is a synchronous API; callers send already-known ids). Returns a per-item status and a summary; per-item failures (e.g. zone not found, product type mismatch) do not fail the whole request.
+            **/
+            public func patchZoneProductsAtomic(
+                body: ZoneProductsAtomicPatchDetails,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: ZoneProductsAtomicPatchResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/logistics/v2.0/company/\(companyId)/application/\(applicationId)/zones/bulk/products/patch",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ZoneProductsAtomicPatchResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
         }
         
         
@@ -24900,6 +25234,7 @@ public class PlatformClient {
                         }
                 });
             }
+            
             
             
             
@@ -25822,6 +26157,108 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(SetCODOptionDetails.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get default offer classification
+            * Description: Returns the configured default offer_type (bank or brand) for the given aggregator (Sales Channel x payment gateway), or null when none is configured (the hard-coded brand default then applies). Also returns offer_classification_supported — false for internal, non-offer aggregators (store credits, Fynd) so the seller panel hides the control.
+            **/
+            public func getDefaultOfferClassification(
+                aggregator: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["aggregator"] = aggregator
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/offer/default-classification",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = data.dictionary
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Set default offer classification
+            * Description: Sets the default offer_type used to classify offers that arrive without an explicit offer_type, scoped to a single aggregator (Sales Channel x payment gateway). bank => the offer settles as a separate MOP payment leg; brand => the offer settles as a discount. aggregator is required.
+            **/
+            public func patchDefaultOfferClassification(
+                body: DefaultOfferClassification,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/offer/default-classification",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = data.dictionary
                             
                             onResponse(response, nil)
                         } else {
@@ -27436,6 +27873,58 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Update order metadata
+            * Description: Update metadata associated with a payment order. Use this to set or update PAN (Permanent Account Number) for an order.
+            **/
+            public func updateOrderMeta(
+                orderId: String,
+                body: OrderMetaUpdate,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: OrderMetaResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["order_id"] = orderId
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/order/meta",
+                    query: xQuery,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OrderMetaResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Get app version for  Aggregator
             * Description: Get app version required for Payment Mode or sub payment mode for an Aggregator.if merchant required any PG payment mode after certain version for mobile app.
             **/
@@ -27638,6 +28127,57 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(OperationResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: List all transactions for an order
+            * Description: Returns all payment transactions associated with the given order ID, ordered by creation timestamp ascending. Each entry includes the merchant transaction ID, payment mode name, logo URL (small, falling back to large), transaction amount, latest status, and creation timestamp.
+            **/
+            public func getOrderTransactions(
+                orderId: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: OrderTransactionList?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/orders/\(orderId)/transactions",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OrderTransactionList.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

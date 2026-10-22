@@ -46,6 +46,8 @@ public extension ApplicationClient.Cart {
         
         public var gstin: String?
         
+        public var shipToGstDetails: ShipToGstDetails?
+        
         public var restrictCheckout: Bool?
         
         public var lastModified: String?
@@ -111,6 +113,8 @@ public extension ApplicationClient.Cart {
             
             case gstin = "gstin"
             
+            case shipToGstDetails = "ship_to_gst_details"
+            
             case restrictCheckout = "restrict_checkout"
             
             case lastModified = "last_modified"
@@ -137,7 +141,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(alternatePickupPerson: AlternatePickupPerson? = nil, appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customerId: String? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, freeGiftSelectionAvailable: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, loyaltyMeta: [String: Any]? = nil, message: String? = nil, notification: [String: Any]? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
+        public init(alternatePickupPerson: AlternatePickupPerson? = nil, appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customerId: String? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, freeGiftSelectionAvailable: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, loyaltyMeta: [String: Any]? = nil, message: String? = nil, notification: [String: Any]? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, shipToGstDetails: ShipToGstDetails? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
             
             self.cartId = cartId
             
@@ -176,6 +180,8 @@ public extension ApplicationClient.Cart {
             self.success = success
             
             self.gstin = gstin
+            
+            self.shipToGstDetails = shipToGstDetails
             
             self.restrictCheckout = restrictCheckout
             
@@ -436,6 +442,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                shipToGstDetails = try container.decode(ShipToGstDetails.self, forKey: .shipToGstDetails)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 restrictCheckout = try container.decode(Bool.self, forKey: .restrictCheckout)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -657,6 +675,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            try? container.encodeIfPresent(shipToGstDetails, forKey: .shipToGstDetails)
             
             
             

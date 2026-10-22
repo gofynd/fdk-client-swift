@@ -28,6 +28,10 @@ public extension PlatformClient.Catalog {
         
         public var name: String?
         
+        public var region: String?
+        
+        public var regionDetails: RegionDetailsSchema?
+        
         public var rejectReason: String?
         
         public var stage: String?
@@ -57,6 +61,10 @@ public extension PlatformClient.Catalog {
             
             case name = "name"
             
+            case region = "region"
+            
+            case regionDetails = "region_details"
+            
             case rejectReason = "reject_reason"
             
             case stage = "stage"
@@ -69,7 +77,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil) {
+        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, region: String? = nil, regionDetails: RegionDetailsSchema? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil) {
             
             self.addresses = addresses
             
@@ -86,6 +94,10 @@ public extension PlatformClient.Catalog {
             self.modifiedOn = modifiedOn
             
             self.name = name
+            
+            self.region = region
+            
+            self.regionDetails = regionDetails
             
             self.rejectReason = rejectReason
             
@@ -200,6 +212,30 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    region = try container.decode(String.self, forKey: .region)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    regionDetails = try container.decode(RegionDetailsSchema.self, forKey: .regionDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     rejectReason = try container.decode(String.self, forKey: .rejectReason)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -301,6 +337,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(region, forKey: .region)
+            
+            
+            
+            
+            try? container.encodeIfPresent(regionDetails, forKey: .regionDetails)
             
             
             
@@ -360,6 +406,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var name: String?
         
+        public var region: String?
+        
+        public var regionDetails: RegionDetailsSchema?
+        
         public var rejectReason: String?
         
         public var stage: String?
@@ -389,6 +439,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case name = "name"
             
+            case region = "region"
+            
+            case regionDetails = "region_details"
+            
             case rejectReason = "reject_reason"
             
             case stage = "stage"
@@ -401,7 +455,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil) {
+        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, region: String? = nil, regionDetails: RegionDetailsSchema? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil) {
             
             self.addresses = addresses
             
@@ -418,6 +472,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.modifiedOn = modifiedOn
             
             self.name = name
+            
+            self.region = region
+            
+            self.regionDetails = regionDetails
             
             self.rejectReason = rejectReason
             
@@ -532,6 +590,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    region = try container.decode(String.self, forKey: .region)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    regionDetails = try container.decode(RegionDetailsSchema.self, forKey: .regionDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     rejectReason = try container.decode(String.self, forKey: .rejectReason)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -633,6 +715,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(region, forKey: .region)
+            
+            
+            
+            
+            try? container.encodeIfPresent(regionDetails, forKey: .regionDetails)
             
             
             

@@ -22,6 +22,10 @@ public extension PlatformClient.Catalog {
         
         public var mode: String?
         
+        public var transactionType: String?
+        
+        public var transaction: InventoryTransaction?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +39,13 @@ public extension PlatformClient.Catalog {
             
             case mode = "mode"
             
+            case transactionType = "transaction_type"
+            
+            case transaction = "transaction"
+            
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil) {
+        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil, transaction: InventoryTransaction? = nil, transactionType: String? = nil) {
             
             self.expirationDate = expirationDate
             
@@ -48,6 +56,10 @@ public extension PlatformClient.Catalog {
             self.notAvailableQuantity = notAvailableQuantity
             
             self.mode = mode
+            
+            self.transactionType = transactionType
+            
+            self.transaction = transaction
             
         }
 
@@ -114,6 +126,30 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    transactionType = try container.decode(String.self, forKey: .transactionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +178,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(mode, forKey: .mode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
         }
@@ -170,6 +216,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var mode: String?
         
+        public var transactionType: String?
+        
+        public var transaction: InventoryTransaction?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -183,9 +233,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case mode = "mode"
             
+            case transactionType = "transaction_type"
+            
+            case transaction = "transaction"
+            
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil) {
+        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, totalQuantity: Int? = nil, transaction: InventoryTransaction? = nil, transactionType: String? = nil) {
             
             self.expirationDate = expirationDate
             
@@ -196,6 +250,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.notAvailableQuantity = notAvailableQuantity
             
             self.mode = mode
+            
+            self.transactionType = transactionType
+            
+            self.transaction = transaction
             
         }
 
@@ -262,6 +320,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    transactionType = try container.decode(String.self, forKey: .transactionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -290,6 +372,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(mode, forKey: .mode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
         }

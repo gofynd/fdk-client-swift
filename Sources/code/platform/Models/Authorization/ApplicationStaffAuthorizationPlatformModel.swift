@@ -5,69 +5,75 @@ import Foundation
 
 
 
-public extension PlatformClient.ApplicationClient.Analytics {
+public extension PlatformClient.ApplicationClient.Authorization {
     /*
-        Model: Page
-        Used By: Analytics
+        Model: ApplicationStaff
+        Used By: Authorization
     */
 
-    class Page: Codable {
+    class ApplicationStaff: Codable {
         
         
-        public var itemTotal: Int?
+        public var application: String?
         
-        public var nextId: String?
+        public var user: String?
         
-        public var hasPrevious: Bool?
+        public var title: String?
         
-        public var hasNext: Bool?
+        public var orderIncent: Bool?
         
-        public var current: Int?
+        public var stores: [Int]?
         
-        public var type: String
+        public var employeeCode: String?
         
-        public var size: Int?
+        public var firstName: String?
         
-        public var pageSize: Int?
+        public var lastName: String?
+        
+        public var profilePicUrl: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case itemTotal = "item_total"
+            case application = "application"
             
-            case nextId = "next_id"
+            case user = "user"
             
-            case hasPrevious = "has_previous"
+            case title = "title"
             
-            case hasNext = "has_next"
+            case orderIncent = "order_incent"
             
-            case current = "current"
+            case stores = "stores"
             
-            case type = "type"
+            case employeeCode = "employee_code"
             
-            case size = "size"
+            case firstName = "first_name"
             
-            case pageSize = "page_size"
+            case lastName = "last_name"
+            
+            case profilePicUrl = "profile_pic_url"
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, pageSize: Int? = nil, size: Int? = nil, type: String) {
+        public init(application: String? = nil, employeeCode: String? = nil, firstName: String? = nil, lastName: String? = nil, orderIncent: Bool? = nil, profilePicUrl: String? = nil, stores: [Int]? = nil, title: String? = nil, user: String? = nil) {
             
-            self.itemTotal = itemTotal
+            self.application = application
             
-            self.nextId = nextId
+            self.user = user
             
-            self.hasPrevious = hasPrevious
+            self.title = title
             
-            self.hasNext = hasNext
+            self.orderIncent = orderIncent
             
-            self.current = current
+            self.stores = stores
             
-            self.type = type
+            self.employeeCode = employeeCode
             
-            self.size = size
+            self.firstName = firstName
             
-            self.pageSize = pageSize
+            self.lastName = lastName
+            
+            self.profilePicUrl = profilePicUrl
             
         }
 
@@ -76,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
                 do {
-                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                    application = try container.decode(String.self, forKey: .application)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +94,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
                 do {
-                    nextId = try container.decode(String.self, forKey: .nextId)
+                    user = try container.decode(String.self, forKey: .user)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,7 +106,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
                 do {
-                    hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                    title = try container.decode(String.self, forKey: .title)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
                 do {
-                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                    orderIncent = try container.decode(Bool.self, forKey: .orderIncent)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,24 +130,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
                 do {
-                    current = try container.decode(Int.self, forKey: .current)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
-                do {
-                    size = try container.decode(Int.self, forKey: .size)
+                    stores = try container.decode([Int].self, forKey: .stores)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,7 +142,43 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
                 do {
-                    pageSize = try container.decode(Int.self, forKey: .pageSize)
+                    employeeCode = try container.decode(String.self, forKey: .employeeCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    firstName = try container.decode(String.self, forKey: .firstName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    lastName = try container.decode(String.self, forKey: .lastName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    profilePicUrl = try container.decode(String.self, forKey: .profilePicUrl)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,42 +195,47 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
             
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(application, forKey: .application)
             
             
             
             
-            try? container.encodeIfPresent(nextId, forKey: .nextId)
+            try? container.encodeIfPresent(user, forKey: .user)
             
             
             
             
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+            try? container.encodeIfPresent(title, forKey: .title)
             
             
             
             
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(orderIncent, forKey: .orderIncent)
             
             
             
             
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(stores, forKey: .stores)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
             
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
             
             
             
             
-            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(profilePicUrl, forKey: .profilePicUrl)
             
             
         }

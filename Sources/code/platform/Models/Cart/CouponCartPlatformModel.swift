@@ -28,6 +28,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var expiresOn: String?
         
+        public var expiresAt: String?
+        
         public var couponValue: Double?
         
         public var subTitle: String?
@@ -63,6 +65,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case expiresOn = "expires_on"
             
+            case expiresAt = "expires_at"
+            
             case couponValue = "coupon_value"
             
             case subTitle = "sub_title"
@@ -83,7 +87,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, rule: [DiscountRules]? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
+        public init(couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresAt: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, rule: [DiscountRules]? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
             
             self.title = title
             
@@ -98,6 +102,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.couponType = couponType
             
             self.expiresOn = expiresOn
+            
+            self.expiresAt = expiresAt
             
             self.couponValue = couponValue
             
@@ -197,6 +203,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     expiresOn = try container.decode(String.self, forKey: .expiresOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    expiresAt = try container.decode(String.self, forKey: .expiresAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -352,6 +370,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(expiresOn, forKey: .expiresOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(expiresAt, forKey: .expiresAt)
             
             
             

@@ -70,6 +70,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var isBankOffer: Bool?
         
+        public var filterTags: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -129,9 +131,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case isBankOffer = "is_bank_offer"
             
+            case filterTags = "filter_tags"
+            
         }
 
-        public init(applicationId: String? = nil, applyExclusive: String? = nil, author: OfferAuthor? = nil, autoApply: Bool? = nil, buyRules: [String: OfferItemCriteria]? = nil, calculateOn: String? = nil, code: String? = nil, companyId: String? = nil, couponConfig: OfferCouponConfiguration? = nil, currency: String? = nil, dateMeta: OfferDateMeta? = nil, discountRules: [OfferDiscountRule]? = nil, displayMeta: OfferDisplayMeta, isBankOffer: Bool? = nil, isExclusiveCoupon: Bool? = nil, isProcessed: Bool? = nil, mode: String, ownership: OfferOwnership? = nil, priority: Int? = nil, promoGroup: String? = nil, published: Bool, restrictions: OfferRestrictions? = nil, stackable: Bool? = nil, status: String, type: String, customJson: [String: Any]? = nil, id: String? = nil, schedule: OfferSchedule? = nil) {
+        public init(applicationId: String? = nil, applyExclusive: String? = nil, author: OfferAuthor? = nil, autoApply: Bool? = nil, buyRules: [String: OfferItemCriteria]? = nil, calculateOn: String? = nil, code: String? = nil, companyId: String? = nil, couponConfig: OfferCouponConfiguration? = nil, currency: String? = nil, dateMeta: OfferDateMeta? = nil, discountRules: [OfferDiscountRule]? = nil, displayMeta: OfferDisplayMeta, filterTags: [String]? = nil, isBankOffer: Bool? = nil, isExclusiveCoupon: Bool? = nil, isProcessed: Bool? = nil, mode: String, ownership: OfferOwnership? = nil, priority: Int? = nil, promoGroup: String? = nil, published: Bool, restrictions: OfferRestrictions? = nil, stackable: Bool? = nil, status: String, type: String, customJson: [String: Any]? = nil, id: String? = nil, schedule: OfferSchedule? = nil) {
             
             self.id = id
             
@@ -188,6 +192,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.isProcessed = isProcessed
             
             self.isBankOffer = isBankOffer
+            
+            self.filterTags = filterTags
             
         }
 
@@ -495,6 +501,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    filterTags = try container.decode([String].self, forKey: .filterTags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -638,6 +656,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(isBankOffer, forKey: .isBankOffer)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filterTags, forKey: .filterTags)
             
             
         }

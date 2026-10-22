@@ -18,6 +18,8 @@ public extension PlatformClient.Catalog {
         
         public var priceMarked: Double?
         
+        public var priceCost: Double?
+        
         public var sellerIdentifier: String
         
         public var storeId: Int
@@ -36,6 +38,10 @@ public extension PlatformClient.Catalog {
         
         public var meta: [String: Any]?
         
+        public var transactionType: String?
+        
+        public var transaction: InventoryTransaction?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -44,6 +50,8 @@ public extension PlatformClient.Catalog {
             case priceEffective = "price_effective"
             
             case priceMarked = "price_marked"
+            
+            case priceCost = "price_cost"
             
             case sellerIdentifier = "seller_identifier"
             
@@ -63,15 +71,21 @@ public extension PlatformClient.Catalog {
             
             case meta = "meta"
             
+            case transactionType = "transaction_type"
+            
+            case transaction = "transaction"
+            
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, meta: [String: Any]? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
+        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, meta: [String: Any]? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, priceCost: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil, transaction: InventoryTransaction? = nil, transactionType: String? = nil) {
             
             self.expirationDate = expirationDate
             
             self.priceEffective = priceEffective
             
             self.priceMarked = priceMarked
+            
+            self.priceCost = priceCost
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -90,6 +104,10 @@ public extension PlatformClient.Catalog {
             self.traceId = traceId
             
             self.meta = meta
+            
+            self.transactionType = transactionType
+            
+            self.transaction = transaction
             
         }
 
@@ -123,6 +141,18 @@ public extension PlatformClient.Catalog {
             
                 do {
                     priceMarked = try container.decode(Double.self, forKey: .priceMarked)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceCost = try container.decode(Double.self, forKey: .priceCost)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -226,6 +256,30 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    transactionType = try container.decode(String.self, forKey: .transactionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -244,6 +298,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceCost, forKey: .priceCost)
             
             
             
@@ -289,6 +348,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
         }
@@ -313,6 +382,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var priceMarked: Double?
         
+        public var priceCost: Double?
+        
         public var sellerIdentifier: String
         
         public var storeId: Int
@@ -331,6 +402,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var meta: [String: Any]?
         
+        public var transactionType: String?
+        
+        public var transaction: InventoryTransaction?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -339,6 +414,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case priceEffective = "price_effective"
             
             case priceMarked = "price_marked"
+            
+            case priceCost = "price_cost"
             
             case sellerIdentifier = "seller_identifier"
             
@@ -358,15 +435,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case meta = "meta"
             
+            case transactionType = "transaction_type"
+            
+            case transaction = "transaction"
+            
         }
 
-        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, meta: [String: Any]? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
+        public init(damagedQuantity: Int? = nil, expirationDate: String? = nil, meta: [String: Any]? = nil, mode: String? = nil, notAvailableQuantity: Int? = nil, priceCost: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil, transaction: InventoryTransaction? = nil, transactionType: String? = nil) {
             
             self.expirationDate = expirationDate
             
             self.priceEffective = priceEffective
             
             self.priceMarked = priceMarked
+            
+            self.priceCost = priceCost
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -385,6 +468,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.traceId = traceId
             
             self.meta = meta
+            
+            self.transactionType = transactionType
+            
+            self.transaction = transaction
             
         }
 
@@ -418,6 +505,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     priceMarked = try container.decode(Double.self, forKey: .priceMarked)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceCost = try container.decode(Double.self, forKey: .priceCost)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -521,6 +620,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    transactionType = try container.decode(String.self, forKey: .transactionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transaction = try container.decode(InventoryTransaction.self, forKey: .transaction)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -539,6 +662,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceCost, forKey: .priceCost)
             
             
             
@@ -584,6 +712,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
         }

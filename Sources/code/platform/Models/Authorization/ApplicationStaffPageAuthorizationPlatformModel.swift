@@ -5,31 +5,31 @@ import Foundation
 
 
 
-public extension PlatformClient.ApplicationClient.Analytics {
+public extension PlatformClient.ApplicationClient.Authorization {
     /*
-        Model: JobExecute
-        Used By: Analytics
+        Model: ApplicationStaffPage
+        Used By: Authorization
     */
 
-    class JobExecute: Codable {
+    class ApplicationStaffPage: Codable {
         
         
-        public var query: String
+        public var items: [ApplicationStaff]?
         
         public var page: Page?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case query = "query"
+            case items = "items"
             
             case page = "page"
             
         }
 
-        public init(page: Page? = nil, query: String) {
+        public init(items: [ApplicationStaff]? = nil, page: Page? = nil) {
             
-            self.query = query
+            self.items = items
             
             self.page = page
             
@@ -39,9 +39,16 @@ public extension PlatformClient.ApplicationClient.Analytics {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                query = try container.decode(String.self, forKey: .query)
+                do {
+                    items = try container.decode([ApplicationStaff].self, forKey: .items)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -62,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
             
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
             

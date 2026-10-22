@@ -22,6 +22,10 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var marked: Double?
         
+        public var preOverrideEffective: Double?
+        
+        public var preOverrideMarked: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -33,9 +37,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case marked = "marked"
             
+            case preOverrideEffective = "pre_override_effective"
+            
+            case preOverrideMarked = "pre_override_marked"
+            
         }
 
-        public init(currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil) {
+        public init(currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, preOverrideEffective: Double? = nil, preOverrideMarked: Double? = nil) {
             
             self.effective = effective
             
@@ -44,6 +52,10 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.currencySymbol = currencySymbol
             
             self.marked = marked
+            
+            self.preOverrideEffective = preOverrideEffective
+            
+            self.preOverrideMarked = preOverrideMarked
             
         }
 
@@ -98,6 +110,30 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    preOverrideEffective = try container.decode(Double.self, forKey: .preOverrideEffective)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    preOverrideMarked = try container.decode(Double.self, forKey: .preOverrideMarked)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -121,6 +157,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(marked, forKey: .marked)
+            
+            
+            
+            
+            try? container.encodeIfPresent(preOverrideEffective, forKey: .preOverrideEffective)
+            
+            
+            
+            
+            try? container.encodeIfPresent(preOverrideMarked, forKey: .preOverrideMarked)
             
             
         }

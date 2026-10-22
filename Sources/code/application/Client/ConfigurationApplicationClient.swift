@@ -814,6 +814,7 @@ extension ApplicationClient {
             orderingStore: Int?,
             user: String?,
             userName: String?,
+            appPermissions: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AppStaffListResponseSchema?, _ error: FDKError?) -> Void
@@ -843,6 +844,10 @@ extension ApplicationClient {
             
             if let value = userName {
                 xQuery["user_name"] = value
+            }
+            
+            if let value = appPermissions {
+                xQuery["app_permissions"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -893,6 +898,8 @@ extension ApplicationClient {
         
         
         
+        
+        
         /**
         *
         * Summary: get paginator for getAppStaffList
@@ -904,6 +911,7 @@ extension ApplicationClient {
             orderingStore: Int?,
             user: String?,
             userName: String?,
+            appPermissions: String?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<AppStaffListResponseSchema> {
             let pageSize = pageSize ?? 20
@@ -916,6 +924,7 @@ extension ApplicationClient {
                     orderingStore: orderingStore,
                     user: user,
                     userName: userName,
+                    appPermissions: appPermissions,
                     
                     headers: headers
                 ) { response, error in                    

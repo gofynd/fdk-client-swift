@@ -7,31 +7,31 @@ import Foundation
 
 public extension PlatformClient.ApplicationClient.Cart {
     /*
-        Model: NextScheduleItems
+        Model: ShipToGstDetails
         Used By: Cart
     */
 
-    class NextScheduleItems: Codable {
+    class ShipToGstDetails: Codable {
         
         
-        public var start: String?
+        public var gstin: String?
         
-        public var end: String?
+        public var tradeName: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case start = "start"
+            case gstin = "gstin"
             
-            case end = "end"
+            case tradeName = "trade_name"
             
         }
 
-        public init(end: String? = nil, start: String? = nil) {
+        public init(gstin: String? = nil, tradeName: String? = nil) {
             
-            self.start = start
+            self.gstin = gstin
             
-            self.end = end
+            self.tradeName = tradeName
             
         }
 
@@ -40,7 +40,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    start = try container.decode(String.self, forKey: .start)
+                    gstin = try container.decode(String.self, forKey: .gstin)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,7 +52,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    end = try container.decode(String.self, forKey: .end)
+                    tradeName = try container.decode(String.self, forKey: .tradeName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,12 +69,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(start, forKey: .start)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
             
             
             
             
-            try? container.encodeIfPresent(end, forKey: .end)
+            try? container.encodeIfPresent(tradeName, forKey: .tradeName)
             
             
         }

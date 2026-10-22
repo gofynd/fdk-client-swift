@@ -24,6 +24,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var userGroups: [Int]?
         
+        public var excludeUserGroups: [Int]?
+        
         public var orderQuantity: Int?
         
         public var anonymousUsers: Bool?
@@ -47,6 +49,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case userGroups = "user_groups"
             
+            case excludeUserGroups = "exclude_user_groups"
+            
             case orderQuantity = "order_quantity"
             
             case anonymousUsers = "anonymous_users"
@@ -59,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(anonymousUsers: Bool? = nil, orderingStores: [Int]? = nil, orderQuantity: Int? = nil, payments: PaymentModes? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, uses: UsesRestriction1? = nil) {
+        public init(anonymousUsers: Bool? = nil, excludeUserGroups: [Int]? = nil, orderingStores: [Int]? = nil, orderQuantity: Int? = nil, payments: PaymentModes? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, uses: UsesRestriction1? = nil) {
             
             self.payments = payments
             
@@ -70,6 +74,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.postOrder = postOrder
             
             self.userGroups = userGroups
+            
+            self.excludeUserGroups = excludeUserGroups
             
             self.orderQuantity = orderQuantity
             
@@ -137,6 +143,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     userGroups = try container.decode([Int].self, forKey: .userGroups)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    excludeUserGroups = try container.decode([Int].self, forKey: .excludeUserGroups)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -234,6 +252,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(userGroups, forKey: .userGroups)
+            
+            
+            
+            
+            try? container.encodeIfPresent(excludeUserGroups, forKey: .excludeUserGroups)
             
             
             

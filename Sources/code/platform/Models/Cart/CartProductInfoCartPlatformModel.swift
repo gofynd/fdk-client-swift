@@ -62,6 +62,10 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var charges: [ArticleCharges]?
         
+        public var addedOn: String?
+        
+        public var returnable: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -113,9 +117,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case charges = "charges"
             
+            case addedOn = "added_on"
+            
+            case returnable = "returnable"
+            
         }
 
-        public init(article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, charges: [ArticleCharges]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: [String: Any]? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, itemType: String? = nil, key: String? = nil, maxQuantity: ProductMaxQuantityInfo? = nil, message: String? = nil, moq: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
+        public init(addedOn: String? = nil, article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, charges: [ArticleCharges]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: [String: Any]? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, itemType: String? = nil, key: String? = nil, maxQuantity: ProductMaxQuantityInfo? = nil, message: String? = nil, moq: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil, returnable: Bool? = nil) {
             
             self.quantity = quantity
             
@@ -164,6 +172,10 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.itemType = itemType
             
             self.charges = charges
+            
+            self.addedOn = addedOn
+            
+            self.returnable = returnable
             
         }
 
@@ -451,6 +463,30 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    addedOn = try container.decode(String.self, forKey: .addedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    returnable = try container.decode(Bool.self, forKey: .returnable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -574,6 +610,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(charges, forKey: .charges)
+            
+            
+            
+            
+            try? container.encodeIfPresent(addedOn, forKey: .addedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(returnable, forKey: .returnable)
             
             
         }

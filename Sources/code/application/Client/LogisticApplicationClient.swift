@@ -384,6 +384,61 @@ extension ApplicationClient {
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getLocalities
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getLocalitiesPaginator(
+            localityType: String,
+            country: String?,
+            state: String?,
+            city: String?,
+            pageSize: Int?,
+            q: String?,
+            sector: String?,
+            headers: [(key: String, value: String)]? = nil
+            ) -> Paginator<GetLocalitiesApp> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetLocalitiesApp>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getLocalities(
+                    localityType: localityType,
+                    country: country,
+                    state: state,
+                    city: city,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    q: q,
+                    sector: sector,
+                    
+                    headers: headers
+                ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
         /**
         *
         * Summary: Get Locality API

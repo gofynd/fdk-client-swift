@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var shipments: [CreateOrderShipmentSchema]?
         
+        public var charges: [CreateOrderChargeSchema]?
+        
         public var tags: [String]?
         
         public var currencyDetails: CurrencySchema
@@ -57,6 +59,8 @@ public extension PlatformClient.Order {
             
             case shipments = "shipments"
             
+            case charges = "charges"
+            
             case tags = "tags"
             
             case currencyDetails = "currency_details"
@@ -97,9 +101,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, isOfflineOrder: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
+        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, charges: [CreateOrderChargeSchema]? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, isOfflineOrder: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
             
             self.shipments = shipments
+            
+            self.charges = charges
             
             self.tags = tags
             
@@ -147,6 +153,18 @@ public extension PlatformClient.Order {
             
                 do {
                     shipments = try container.decode([CreateOrderShipmentSchema].self, forKey: .shipments)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    charges = try container.decode([CreateOrderChargeSchema].self, forKey: .charges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -364,6 +382,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(shipments, forKey: .shipments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
             
@@ -479,6 +502,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shipments: [CreateOrderShipmentSchema]?
         
+        public var charges: [CreateOrderChargeSchema]?
+        
         public var tags: [String]?
         
         public var currencyDetails: CurrencySchema
@@ -522,6 +547,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case shipments = "shipments"
             
+            case charges = "charges"
+            
             case tags = "tags"
             
             case currencyDetails = "currency_details"
@@ -562,9 +589,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, isOfflineOrder: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
+        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, charges: [CreateOrderChargeSchema]? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, isOfflineOrder: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
             
             self.shipments = shipments
+            
+            self.charges = charges
             
             self.tags = tags
             
@@ -612,6 +641,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     shipments = try container.decode([CreateOrderShipmentSchema].self, forKey: .shipments)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    charges = try container.decode([CreateOrderChargeSchema].self, forKey: .charges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -829,6 +870,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(shipments, forKey: .shipments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
             

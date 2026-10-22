@@ -30,6 +30,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var tags: [String]?
         
+        public var filterTags: [String]?
+        
         public var schedule: CouponSchedule?
         
         public var rule: [Rule]?
@@ -73,6 +75,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case tags = "tags"
             
+            case filterTags = "filter_tags"
+            
             case schedule = "_schedule"
             
             case rule = "rule"
@@ -99,7 +103,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, couponCounts: Int? = nil, couponPrefix: String? = nil, couponType: String? = nil, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta? = nil, identifiers: Identifier? = nil, ownership: Ownership? = nil, reason: String? = nil, restrictions: Restrictions? = nil, rule: [Rule]? = nil, ruleDefinition: RuleDefinition? = nil, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity? = nil, schedule: CouponSchedule? = nil) {
+        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, couponCounts: Int? = nil, couponPrefix: String? = nil, couponType: String? = nil, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta? = nil, filterTags: [String]? = nil, identifiers: Identifier? = nil, ownership: Ownership? = nil, reason: String? = nil, restrictions: Restrictions? = nil, rule: [Rule]? = nil, ruleDefinition: RuleDefinition? = nil, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity? = nil, schedule: CouponSchedule? = nil) {
             
             self.dateMeta = dateMeta
             
@@ -116,6 +120,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.action = action
             
             self.tags = tags
+            
+            self.filterTags = filterTags
             
             self.schedule = schedule
             
@@ -233,6 +239,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    filterTags = try container.decode([String].self, forKey: .filterTags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -415,6 +433,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filterTags, forKey: .filterTags)
             
             
             

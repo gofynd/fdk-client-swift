@@ -16,6 +16,12 @@ extension String {
         return addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? self
     }
 
+    var fdkPathEncoded: String {
+        var allowed = CharacterSet.alphanumerics
+        allowed.insert(charactersIn: "-._~")
+        return addingPercentEncoding(withAllowedCharacters: allowed) ?? self
+    }
+
     func appendAsPath(_ path: String) -> String {
         var pathToJoin = path
         if (self.last == "/" && path.first == "/") {

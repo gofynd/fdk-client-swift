@@ -22,6 +22,8 @@ public extension ApplicationClient.Cart {
         
         public var gstin: String?
         
+        public var shipToGstDetails: ShipToGstDetails?
+        
         public var customCartMeta: [String: Any]?
         
 
@@ -41,11 +43,13 @@ public extension ApplicationClient.Cart {
             
             case gstin = "gstin"
             
+            case shipToGstDetails = "ship_to_gst_details"
+            
             case customCartMeta = "custom_cart_meta"
             
         }
 
-        public init(alternatePickupPerson: AlternatePickupPerson? = nil, checkoutMode: String? = nil, comment: String? = nil, customCartMeta: [String: Any]? = nil, deliverySlots: [String: Any]? = nil, giftDetails: ArticleGiftDetail? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
+        public init(alternatePickupPerson: AlternatePickupPerson? = nil, checkoutMode: String? = nil, comment: String? = nil, customCartMeta: [String: Any]? = nil, deliverySlots: [String: Any]? = nil, giftDetails: ArticleGiftDetail? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, shipToGstDetails: ShipToGstDetails? = nil) {
             
             self.deliverySlots = deliverySlots
             
@@ -60,6 +64,8 @@ public extension ApplicationClient.Cart {
             self.comment = comment
             
             self.gstin = gstin
+            
+            self.shipToGstDetails = shipToGstDetails
             
             self.customCartMeta = customCartMeta
             
@@ -154,6 +160,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                shipToGstDetails = try container.decode(ShipToGstDetails.self, forKey: .shipToGstDetails)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 customCartMeta = try container.decode([String: Any].self, forKey: .customCartMeta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -195,6 +213,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            try? container.encodeIfPresent(shipToGstDetails, forKey: .shipToGstDetails)
             
             
             

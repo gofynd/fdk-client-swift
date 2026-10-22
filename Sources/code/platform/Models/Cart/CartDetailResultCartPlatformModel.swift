@@ -62,6 +62,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var gstin: String?
         
+        public var shipToGstDetails: ShipToGstDetails?
+        
         public var appliedPromoDetails: [AppliedPromotion]?
         
         public var panNo: String?
@@ -125,6 +127,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case gstin = "gstin"
             
+            case shipToGstDetails = "ship_to_gst_details"
+            
             case appliedPromoDetails = "applied_promo_details"
             
             case panNo = "pan_no"
@@ -139,7 +143,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(alternatePickupPerson: PlatformAlternatePickupPerson? = nil, appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, freeGiftSelectionAvailable: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, loyaltyMeta: [String: Any]? = nil, message: String? = nil, notification: [String: Any]? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
+        public init(alternatePickupPerson: PlatformAlternatePickupPerson? = nil, appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, freeGiftSelectionAvailable: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, loyaltyMeta: [String: Any]? = nil, message: String? = nil, notification: [String: Any]? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, shipToGstDetails: ShipToGstDetails? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
             
             self.cartId = cartId
             
@@ -188,6 +192,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.buyNow = buyNow
             
             self.gstin = gstin
+            
+            self.shipToGstDetails = shipToGstDetails
             
             self.appliedPromoDetails = appliedPromoDetails
             
@@ -496,6 +502,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    shipToGstDetails = try container.decode(ShipToGstDetails.self, forKey: .shipToGstDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     appliedPromoDetails = try container.decode([AppliedPromotion].self, forKey: .appliedPromoDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -689,6 +707,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipToGstDetails, forKey: .shipToGstDetails)
             
             
             

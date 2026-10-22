@@ -30,6 +30,8 @@ public extension PlatformClient.Order {
         
         public var bundleDetails: BundleDetailsSchema?
         
+        public var charges: [CreateOrderLineItemChargeSchema]?
+        
         public var meta: [String: Any]?
         
 
@@ -53,11 +55,13 @@ public extension PlatformClient.Order {
             
             case bundleDetails = "bundle_details"
             
+            case charges = "charges"
+            
             case meta = "meta"
             
         }
 
-        public init(bundleDetails: BundleDetailsSchema? = nil, dimension: DimensionSchema? = nil, externalLineId: String? = nil, giftDetails: GiftDetailsSchema? = nil, meta: [String: Any]? = nil, monetaryValues: LineItemMonetaryValuesSchema, paymentMethods: [LineItemPaymentMethodSchema], quantity: Double? = nil, sellerIdentifier: String? = nil, specialInstructions: String? = nil) {
+        public init(bundleDetails: BundleDetailsSchema? = nil, charges: [CreateOrderLineItemChargeSchema]? = nil, dimension: DimensionSchema? = nil, externalLineId: String? = nil, giftDetails: GiftDetailsSchema? = nil, meta: [String: Any]? = nil, monetaryValues: LineItemMonetaryValuesSchema, paymentMethods: [LineItemPaymentMethodSchema], quantity: Double? = nil, sellerIdentifier: String? = nil, specialInstructions: String? = nil) {
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -76,6 +80,8 @@ public extension PlatformClient.Order {
             self.externalLineId = externalLineId
             
             self.bundleDetails = bundleDetails
+            
+            self.charges = charges
             
             self.meta = meta
             
@@ -180,6 +186,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    charges = try container.decode([CreateOrderLineItemChargeSchema].self, forKey: .charges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -238,6 +256,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
             
@@ -279,6 +302,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var bundleDetails: BundleDetailsSchema?
         
+        public var charges: [CreateOrderLineItemChargeSchema]?
+        
         public var meta: [String: Any]?
         
 
@@ -302,11 +327,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case bundleDetails = "bundle_details"
             
+            case charges = "charges"
+            
             case meta = "meta"
             
         }
 
-        public init(bundleDetails: BundleDetailsSchema? = nil, dimension: DimensionSchema? = nil, externalLineId: String? = nil, giftDetails: GiftDetailsSchema? = nil, meta: [String: Any]? = nil, monetaryValues: LineItemMonetaryValuesSchema, paymentMethods: [LineItemPaymentMethodSchema], quantity: Double? = nil, sellerIdentifier: String? = nil, specialInstructions: String? = nil) {
+        public init(bundleDetails: BundleDetailsSchema? = nil, charges: [CreateOrderLineItemChargeSchema]? = nil, dimension: DimensionSchema? = nil, externalLineId: String? = nil, giftDetails: GiftDetailsSchema? = nil, meta: [String: Any]? = nil, monetaryValues: LineItemMonetaryValuesSchema, paymentMethods: [LineItemPaymentMethodSchema], quantity: Double? = nil, sellerIdentifier: String? = nil, specialInstructions: String? = nil) {
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -325,6 +352,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.externalLineId = externalLineId
             
             self.bundleDetails = bundleDetails
+            
+            self.charges = charges
             
             self.meta = meta
             
@@ -429,6 +458,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    charges = try container.decode([CreateOrderLineItemChargeSchema].self, forKey: .charges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -487,6 +528,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(bundleDetails, forKey: .bundleDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
             

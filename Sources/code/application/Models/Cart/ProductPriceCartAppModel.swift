@@ -20,6 +20,10 @@ public extension ApplicationClient.Cart {
         
         public var marked: Double?
         
+        public var preOverrideEffective: Double?
+        
+        public var preOverrideMarked: Double?
+        
         public var finalPrice: Double?
         
         public var discount: Double?
@@ -39,13 +43,17 @@ public extension ApplicationClient.Cart {
             
             case marked = "marked"
             
+            case preOverrideEffective = "pre_override_effective"
+            
+            case preOverrideMarked = "pre_override_marked"
+            
             case finalPrice = "final_price"
             
             case discount = "discount"
             
         }
 
-        public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, discount: Double? = nil, effective: Double? = nil, finalPrice: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
+        public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, discount: Double? = nil, effective: Double? = nil, finalPrice: Double? = nil, marked: Double? = nil, preOverrideEffective: Double? = nil, preOverrideMarked: Double? = nil, selling: Double? = nil) {
             
             self.currencySymbol = currencySymbol
             
@@ -58,6 +66,10 @@ public extension ApplicationClient.Cart {
             self.effective = effective
             
             self.marked = marked
+            
+            self.preOverrideEffective = preOverrideEffective
+            
+            self.preOverrideMarked = preOverrideMarked
             
             self.finalPrice = finalPrice
             
@@ -142,6 +154,30 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                preOverrideEffective = try container.decode(Double.self, forKey: .preOverrideEffective)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                preOverrideMarked = try container.decode(Double.self, forKey: .preOverrideMarked)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 finalPrice = try container.decode(Double.self, forKey: .finalPrice)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -191,6 +227,14 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(marked, forKey: .marked)
+            
+            
+            
+            try? container.encodeIfPresent(preOverrideEffective, forKey: .preOverrideEffective)
+            
+            
+            
+            try? container.encodeIfPresent(preOverrideMarked, forKey: .preOverrideMarked)
             
             
             
