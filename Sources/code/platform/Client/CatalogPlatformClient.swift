@@ -3936,6 +3936,8 @@ extension PlatformClient {
             pageType: String?,
             sortOn: String?,
             pageId: String?,
+            modifiedOnGte: String?,
+            modifiedOnLte: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductListingResponseV2?, _ error: FDKError?) -> Void
@@ -4003,6 +4005,14 @@ extension PlatformClient {
                 xQuery["page_id"] = value
             }
             
+            if let value = modifiedOnGte {
+                xQuery["modified_on_gte"] = value
+            }
+            
+            if let value = modifiedOnLte {
+                xQuery["modified_on_lte"] = value
+            }
+            
             var xHeaders: [(key: String, value: String)] = []
             
             
@@ -4066,6 +4076,10 @@ extension PlatformClient {
         
         
         
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getProducts
@@ -4084,6 +4098,8 @@ extension PlatformClient {
             tags: [String]?,
             pageSize: Int?,
             sortOn: String?,
+            modifiedOnGte: String?,
+            modifiedOnLte: String?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ProductListingResponseV2> {
             let pageSize = pageSize ?? 20
@@ -4105,6 +4121,8 @@ extension PlatformClient {
                     pageType: paginator.type,
                     sortOn: sortOn,
                     pageId: paginator.pageId,
+                    modifiedOnGte: modifiedOnGte,
+                    modifiedOnLte: modifiedOnLte,
                     
                     headers: headers
                 ) { response, error in                    

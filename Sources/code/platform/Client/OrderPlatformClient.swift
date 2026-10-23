@@ -2891,6 +2891,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             orderingSource: String?,
             channelAccountId: String?,
             includeCount: Bool?,
+            instoreReturnLookup: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponseSchema?, _ error: FDKError?) -> Void
@@ -3058,6 +3059,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["include_count"] = value
             }
             
+            if let value = instoreReturnLookup {
+                xQuery["instore_return_lookup"] = value
+            }
+            
             var xHeaders: [(key: String, value: String)] = []
             
             
@@ -3092,6 +3097,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     }
             });
         }
+        
+        
         
         
         
@@ -3216,6 +3223,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             orderingSource: String?,
             channelAccountId: String?,
             includeCount: Bool?,
+            instoreReturnLookup: Bool?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ShipmentInternalPlatformViewResponseSchema> {
             let pageSize = pageSize ?? 20
@@ -3262,6 +3270,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     orderingSource: orderingSource,
                     channelAccountId: channelAccountId,
                     includeCount: includeCount,
+                    instoreReturnLookup: instoreReturnLookup,
                     
                     headers: headers
                 ) { response, error in                    
@@ -3288,6 +3297,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             shipmentId: String?,
             fetchActiveShipment: Bool?,
             allowInactive: Bool?,
+            instoreReturnLookup: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentInfoResponseSchema?, _ error: FDKError?) -> Void
@@ -3309,6 +3319,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = allowInactive {
                 xQuery["allow_inactive"] = value
+            }
+            
+            if let value = instoreReturnLookup {
+                xQuery["instore_return_lookup"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -3357,6 +3371,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             orderId: String,
             myOrders: Bool?,
             allowInactive: Bool?,
+            instoreReturnLookup: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderDetailsResponseSchema?, _ error: FDKError?) -> Void
@@ -3371,6 +3386,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = allowInactive {
                 xQuery["allow_inactive"] = value
+            }
+            
+            if let value = instoreReturnLookup {
+                xQuery["instore_return_lookup"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -3590,6 +3609,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             orderingSource: String?,
             channelAccountId: String?,
             includeCount: Bool?,
+            instoreReturnLookup: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderListingResponseSchema?, _ error: FDKError?) -> Void
@@ -3713,6 +3733,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["include_count"] = value
             }
             
+            if let value = instoreReturnLookup {
+                xQuery["instore_return_lookup"] = value
+            }
+            
             var xHeaders: [(key: String, value: String)] = []
             
             
@@ -3804,6 +3828,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         
         
+        
+        
         /**
         *
         * Summary: get paginator for getOrders
@@ -3838,6 +3864,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             orderingSource: String?,
             channelAccountId: String?,
             includeCount: Bool?,
+            instoreReturnLookup: Bool?,
             headers: [(key: String, value: String)]? = nil
             ) -> Paginator<OrderListingResponseSchema> {
             let pageSize = pageSize ?? 20
@@ -3873,6 +3900,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     orderingSource: orderingSource,
                     channelAccountId: channelAccountId,
                     includeCount: includeCount,
+                    instoreReturnLookup: instoreReturnLookup,
                     
                     headers: headers
                 ) { response, error in                    
@@ -3929,6 +3957,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
             fulfillmentType: String?,
             orderingSource: String?,
             channelAccountId: String?,
+            instoreReturnLookup: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ListingCountResponseSchema?, _ error: FDKError?) -> Void
@@ -4070,6 +4099,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = channelAccountId {
                 xQuery["channel_account_id"] = value
+            }
+            
+            if let value = instoreReturnLookup {
+                xQuery["instore_return_lookup"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
