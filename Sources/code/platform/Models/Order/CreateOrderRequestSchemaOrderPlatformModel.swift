@@ -46,7 +46,7 @@ public extension PlatformClient.Order {
         
         public var b2BGstinNumber: String?
         
-        public var channelCompanyId: String?
+        public var channelCompanyId: Int?
         
         public var isDraft: Bool?
         
@@ -101,7 +101,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, charges: [CreateOrderChargeSchema]? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, isOfflineOrder: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
+        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: Int? = nil, charges: [CreateOrderChargeSchema]? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, isOfflineOrder: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
             
             self.shipments = shipments
             
@@ -328,7 +328,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    channelCompanyId = try container.decode(String.self, forKey: .channelCompanyId)
+                    channelCompanyId = try container.decode(Int.self, forKey: .channelCompanyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -534,7 +534,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var b2BGstinNumber: String?
         
-        public var channelCompanyId: String?
+        public var channelCompanyId: Int?
         
         public var isDraft: Bool?
         
@@ -589,7 +589,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: String? = nil, charges: [CreateOrderChargeSchema]? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, isOfflineOrder: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
+        public init(allowLocationReassignment: Bool? = nil, b2BGstinNumber: String? = nil, billingDetails: BillingDetailsSchema, channelApplicationId: String? = nil, channelCompanyId: Int? = nil, charges: [CreateOrderChargeSchema]? = nil, couponDetails: CouponSchema? = nil, cpConfiguration: CPConfigurationSchema? = nil, currencyDetails: CurrencySchema, externalCreationDate: String? = nil, externalOrderId: String? = nil, isDraft: Bool? = nil, isOfflineOrder: Bool? = nil, meta: [String: Any]? = nil, orderingLocationId: Int? = nil, orderLifecycleMessages: [LifecycleMessageSchema]? = nil, primaryPaymentMode: String, shipments: [CreateOrderShipmentSchema]? = nil, shippingDetails: ShippingDetailsSchema, tags: [String]? = nil, userDetails: UserDetailsSchema? = nil) {
             
             self.shipments = shipments
             
@@ -816,7 +816,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    channelCompanyId = try container.decode(String.self, forKey: .channelCompanyId)
+                    channelCompanyId = try container.decode(Int.self, forKey: .channelCompanyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
